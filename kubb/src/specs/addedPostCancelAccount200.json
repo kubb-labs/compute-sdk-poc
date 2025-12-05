@@ -1,0 +1,1 @@
+{"additionalProperties":false,"example":{"survey_link":"https://alinktothesurvey.com"},"properties":{"survey_link":{"description":"A link to Linode's exit survey.","type":"string"}},"type":"object","x-akamai":{"file-path":"schemas/added-post-cancel-account-200.yaml"},"x-readme-ref-name":"added-post-cancel-account-200"}

@@ -1,0 +1,7 @@
+{
+  "name": "compute-sdk-poc",
+  "workspaces": [
+    "kubb",
+    "openapi-ts"
+  ]
+}

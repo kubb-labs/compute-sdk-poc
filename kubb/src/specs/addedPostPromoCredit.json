@@ -1,0 +1,1 @@
+{"additionalProperties":false,"properties":{"promo_code":{"description":"The Promo Code.","maxLength":32,"minLength":1,"type":"string"}},"required":["promo_code"],"type":"object","x-akamai":{"file-path":"schemas/added-post-promo-credit.yaml"},"x-readme-ref-name":"added-post-promo-credit"}

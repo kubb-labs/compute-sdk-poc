@@ -1,0 +1,37 @@
+{
+  "name": "@akamai/openapi-ts",
+  "version": "0.0.1",
+  "type": "module",
+  "files": ["dist"],
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.mts"
+    },
+    "./zod": {
+      "import": "./dist/zod.gen.mjs",
+      "types": "./dist/zod.gen.d.mts"
+    },
+    "./client": {
+      "import": "./dist/client.gen.mjs",
+      "types": "./dist/client.gen.d.mts"
+    }
+  },
+  "scripts": {
+    "download": "bun run ./scripts/download.ts",
+    "generate": "openapi-ts",
+    "build": "tsdown",
+    "build:full": "bun run download && bun run generate && bun run build",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "0.88.0",
+    "@types/bun": "latest",
+    "openapi-types": "^12.1.3",
+    "tsdown": "^0.17.0-beta.6",
+    "typescript": "^5"
+  },
+  "dependencies": {}
+}

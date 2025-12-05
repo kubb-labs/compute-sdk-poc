@@ -1,0 +1,1 @@
+{"description":"__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).","example":1,"readOnly":true,"type":"integer","x-readme-ref-name":"pages"}

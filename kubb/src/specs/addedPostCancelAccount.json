@@ -1,0 +1,1 @@
+{"additionalProperties":false,"properties":{"comments":{"description":"Any reason for cancelling the account, and any other comments you might have about your Linode service.","example":"I'm consolidating multiple accounts into one.","type":"string"}},"type":"object","x-akamai":{"file-path":"schemas/added-post-cancel-account.yaml"},"x-readme-ref-name":"added-post-cancel-account"}

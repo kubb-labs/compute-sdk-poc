@@ -1,0 +1,1 @@
+{"description":"Whether this Payment Method is the default method for automatically processing service charges.","example":true,"type":"boolean","x-linode-cli-display":3,"x-readme-ref-name":"is_default"}
