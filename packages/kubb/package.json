@@ -20,7 +20,6 @@
     "@kubb/plugin-ts": "^4.6.0",
     "@kubb/plugin-zod": "^4.7.2",
     "@types/bun": "latest",
-    "bunup": "^0.16.10",
     "tsdown": "^0.17.0-beta.6",
     "typescript": "^5"
   },
