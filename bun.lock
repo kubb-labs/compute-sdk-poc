@@ -17,6 +17,19 @@
         "typescript": "^5",
       },
     },
+    "examples/openapi-ts": {
+      "name": "@akamai/openapi-ts-example",
+      "dependencies": {
+        "@akamai/openapi-ts": "workspace:*",
+        "zod": "^4",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
     "packages/kubb": {
       "name": "@akamai/kubb",
       "version": "0.0.1",
@@ -47,6 +60,9 @@
         "tsdown": "^0.17.0-beta.6",
         "typescript": "^5",
       },
+      "peerDependencies": {
+        "zod": "^4",
+      },
     },
   },
   "packages": {
@@ -55,6 +71,8 @@
     "@akamai/kubb-example": ["@akamai/kubb-example@workspace:examples/kubb"],
 
     "@akamai/openapi-ts": ["@akamai/openapi-ts@workspace:packages/openapi-ts"],
+
+    "@akamai/openapi-ts-example": ["@akamai/openapi-ts-example@workspace:examples/openapi-ts"],
 
     "@apidevtools/json-schema-ref-parser": ["@apidevtools/json-schema-ref-parser@14.2.1", "", { "dependencies": { "js-yaml": "^4.1.0" }, "peerDependencies": { "@types/json-schema": "^7.0.15" } }, "sha512-HmdFw9CDYqM6B25pqGBpNeLCKvGPlIx1EbLrVL0zPvj50CJQUHyBNBw45Muk0kEIkogo1VZvOKHajdMuAzSxRg=="],
 

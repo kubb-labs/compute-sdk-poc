@@ -33,5 +33,8 @@
     "tsdown": "^0.17.0-beta.6",
     "typescript": "^5"
   },
+  "peerDependencies": {
+    "zod": "^4"
+  },
   "dependencies": {}
 }

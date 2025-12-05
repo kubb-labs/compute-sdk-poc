@@ -1,0 +1,16 @@
+{
+  "name": "@akamai/openapi-ts-example",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@akamai/openapi-ts": "workspace:*",
+    "zod": "^4"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
