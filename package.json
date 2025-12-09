@@ -2,7 +2,8 @@
   "name": "compute-sdk-poc",
   "scripts": {
     "test": "bun run --filter '*' test",
-    "build": "bun run --filter '*' build:full"
+    "build": "bun run --filter '*' build:full",
+    "typecheck": "bun run --filter '*' typecheck"
   },
   "workspaces": [
     "packages/*",
