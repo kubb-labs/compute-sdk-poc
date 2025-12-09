@@ -32,16 +32,14 @@ describe("TypeScript types", () => {
 });
 
 
-// @todo the schema is not correct ☹️
-// fields that should not be required *are* required in the Zod schemas. Need to find a fix for this.
 describe("Validation Schemas", () => {
-  test.fails("should not throw if all required params as passed", () => {
+  test("should not throw if all required params as passed", () => {
     const payload = { region: 'us-east', type: 'g6-standard-1' };
 
-    expect(postLinodeInstanceRequestSchema.shape.body.parse(payload)).not.toThrow();
+    expect(() => postLinodeInstanceRequestSchema.shape.body.parse(payload)).not.toThrow();
   });
 
-  test.fails("should throw if required params are missing", () => {
+  test("should throw if required params are missing", () => {
     const payload = { type: 'g6-standard-1' };
 
     const { error } = postLinodeInstanceRequestSchema.shape.body.safeParse(payload);

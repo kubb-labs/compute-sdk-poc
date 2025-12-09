@@ -6,13 +6,13 @@ import { z } from 'zod';
  * Account object.
  */
 export const accountSchema = z.object({
-    active_promotions: z.array(z.object({
-        credit_monthly_cap: z.string(),
-        credit_remaining: z.string(),
-        description: z.string(),
-        expire_dt: z.string(),
-        image_url: z.string(),
-        service_type: z.enum([
+    active_promotions: z.optional(z.array(z.object({
+        credit_monthly_cap: z.optional(z.string()),
+        credit_remaining: z.optional(z.string()),
+        description: z.optional(z.string()),
+        expire_dt: z.optional(z.string()),
+        image_url: z.optional(z.string()),
+        service_type: z.optional(z.enum([
             'all',
             'backup',
             'blockstorage',
@@ -27,63 +27,63 @@ export const accountSchema = z.object({
             'objectstorage',
             'placement_group',
             'transfer_tx'
-        ]),
-        summary: z.string(),
-        this_month_credit_remaining: z.string()
-    }).readonly()).readonly(),
-    active_since: z.iso.datetime().readonly(),
-    address_1: z.string().max(64),
-    address_2: z.string().max(64),
-    balance: z.number().readonly(),
-    balance_uninvoiced: z.number().readonly(),
-    billing_source: z.enum(['akamai', 'linode']),
-    capabilities: z.array(z.string()).readonly(),
-    city: z.string().max(24),
-    company: z.string().max(128),
-    country: z.string(),
-    credit_card: z.object({
-        expiry: z.string(),
-        last_four: z.string()
-    }).readonly(),
-    email: z.string().max(128),
-    euuid: z.uuid().readonly(),
-    first_name: z.string().max(50),
-    last_name: z.string().max(50),
-    phone: z.string().max(32),
-    state: z.string().max(24),
-    tax_id: z.string().max(25),
-    zip: z.string()
+        ])),
+        summary: z.optional(z.string()),
+        this_month_credit_remaining: z.optional(z.string())
+    }).readonly()).readonly()),
+    active_since: z.optional(z.iso.datetime().readonly()),
+    address_1: z.optional(z.string().max(64)),
+    address_2: z.optional(z.string().max(64)),
+    balance: z.optional(z.number().readonly()),
+    balance_uninvoiced: z.optional(z.number().readonly()),
+    billing_source: z.optional(z.enum(['akamai', 'linode'])),
+    capabilities: z.optional(z.array(z.string()).readonly()),
+    city: z.optional(z.string().max(24)),
+    company: z.optional(z.string().max(128)),
+    country: z.optional(z.string()),
+    credit_card: z.optional(z.object({
+        expiry: z.optional(z.string()),
+        last_four: z.optional(z.string())
+    }).readonly()),
+    email: z.optional(z.string().max(128)),
+    euuid: z.optional(z.uuid().readonly()),
+    first_name: z.optional(z.string().max(50)),
+    last_name: z.optional(z.string().max(50)),
+    phone: z.optional(z.string().max(32)),
+    state: z.optional(z.string().max(24)),
+    tax_id: z.optional(z.string().max(25)),
+    zip: z.optional(z.string())
 });
 
 /**
  * Account Service Availability object.
  */
 export const accountAvailabilitySchema = z.object({
-    available: z.array(z.string()).readonly(),
-    region: z.string().readonly(),
-    unavailable: z.array(z.string()).readonly()
+    available: z.optional(z.array(z.string()).readonly()),
+    region: z.optional(z.string().readonly()),
+    unavailable: z.optional(z.array(z.string()).readonly())
 });
 
 /**
  * Account Settings object.
  */
 export const accountSettingsSchema = z.object({
-    backups_enabled: z.boolean(),
-    interfaces_for_new_linodes: z.enum([
+    backups_enabled: z.optional(z.boolean()),
+    interfaces_for_new_linodes: z.optional(z.enum([
         'legacy_config_only',
         'legacy_config_default_but_linode_allowed',
         'linode_default_but_legacy_config_allowed',
         'linode_only'
-    ]),
-    longview_subscription: z.string().readonly(),
-    maintenance_policy: z.enum(['linode/migrate', 'linode/power_off_on']),
-    managed: z.boolean().readonly(),
-    network_helper: z.boolean(),
-    object_storage: z.enum([
+    ])),
+    longview_subscription: z.optional(z.string().readonly()),
+    maintenance_policy: z.optional(z.enum(['linode/migrate', 'linode/power_off_on'])),
+    managed: z.optional(z.boolean().readonly()),
+    network_helper: z.optional(z.boolean()),
+    object_storage: z.optional(z.enum([
         'disabled',
         'suspended',
         'active'
-    ])
+    ]))
 });
 
 /**
@@ -92,186 +92,186 @@ export const accountSettingsSchema = z.object({
 export const addedEmptyObjSchema = z.record(z.string(), z.unknown());
 
 export const addedGetAccountLogins200Schema = z.object({
-    data: z.array(z.object({
-        datetime: z.iso.datetime().readonly(),
-        id: z.int().readonly(),
-        ip: z.string().readonly(),
-        restricted: z.boolean().readonly(),
-        status: z.enum(['successful', 'failed']),
-        username: z.string().readonly()
-    })),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+    data: z.optional(z.array(z.object({
+        datetime: z.optional(z.iso.datetime().readonly()),
+        id: z.optional(z.int().readonly()),
+        ip: z.optional(z.string().readonly()),
+        restricted: z.optional(z.boolean().readonly()),
+        status: z.optional(z.enum(['successful', 'failed'])),
+        username: z.optional(z.string().readonly())
+    }))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 export const addedGetAvailability200Schema = z.object({
-    data: z.array(z.object({
-        available: z.array(z.string()).readonly(),
-        region: z.string().readonly(),
-        unavailable: z.array(z.string()).readonly()
-    }))
+    data: z.optional(z.array(z.object({
+        available: z.optional(z.array(z.string()).readonly()),
+        region: z.optional(z.string().readonly()),
+        unavailable: z.optional(z.array(z.string()).readonly())
+    })))
 }).and(z.object({
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 }));
 
 export const addedGetChildAccounts200Schema = z.object({
-    data: z.array(z.object({
-        active_since: z.iso.datetime().readonly(),
-        address_1: z.string().max(64),
-        address_2: z.string().max(64),
-        balance: z.number().readonly(),
-        balance_uninvoiced: z.number().readonly(),
-        billing_source: z.enum(['external']),
-        capabilities: z.array(z.string()).readonly(),
-        city: z.string().max(24),
-        company: z.string().max(128),
-        country: z.string(),
-        credit_card: z.object({
-            expiry: z.string(),
-            last_four: z.string()
-        }).readonly(),
-        email: z.string().max(128),
-        euuid: z.uuid().readonly(),
-        first_name: z.string().max(50),
-        last_name: z.string().max(50),
-        phone: z.string().max(32),
-        state: z.string().max(24),
-        tax_id: z.string().max(25),
-        zip: z.string()
-    })),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+    data: z.optional(z.array(z.object({
+        active_since: z.optional(z.iso.datetime().readonly()),
+        address_1: z.optional(z.string().max(64)),
+        address_2: z.optional(z.string().max(64)),
+        balance: z.optional(z.number().readonly()),
+        balance_uninvoiced: z.optional(z.number().readonly()),
+        billing_source: z.optional(z.enum(['external'])),
+        capabilities: z.optional(z.array(z.string()).readonly()),
+        city: z.optional(z.string().max(24)),
+        company: z.optional(z.string().max(128)),
+        country: z.optional(z.string()),
+        credit_card: z.optional(z.object({
+            expiry: z.optional(z.string()),
+            last_four: z.optional(z.string())
+        }).readonly()),
+        email: z.optional(z.string().max(128)),
+        euuid: z.optional(z.uuid().readonly()),
+        first_name: z.optional(z.string().max(50)),
+        last_name: z.optional(z.string().max(50)),
+        phone: z.optional(z.string().max(32)),
+        state: z.optional(z.string().max(24)),
+        tax_id: z.optional(z.string().max(25)),
+        zip: z.optional(z.string())
+    }))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 export const addedGetClients200Schema = z.object({
-    data: z.array(z.object({
-        id: z.string().readonly(),
-        label: z.string().min(1).max(512),
-        public: z.boolean().default(false),
-        redirect_uri: z.string(),
-        secret: z.string().readonly(),
-        status: z.enum([
+    data: z.optional(z.array(z.object({
+        id: z.optional(z.string().readonly()),
+        label: z.optional(z.string().min(1).max(512)),
+        public: z.optional(z.boolean()).default(false),
+        redirect_uri: z.optional(z.string()),
+        secret: z.optional(z.string().readonly()),
+        status: z.optional(z.enum([
             'active',
             'disabled',
             'suspended'
-        ]),
-        thumbnail_url: z.union([
+        ])),
+        thumbnail_url: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly()
-    })),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+        ]).readonly())
+    }))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 export const addedGetEnrolledBetaPrograms200Schema = z.object({
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 }).and(z.object({
-    data: z.array(z.object({
-        description: z.union([
+    data: z.optional(z.array(z.object({
+        description: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly(),
-        ended: z.union([
+        ]).readonly()),
+        ended: z.optional(z.union([
             z.iso.datetime().readonly(),
             z.null()
-        ]).readonly(),
-        enrolled: z.iso.datetime().readonly(),
-        id: z.string(),
-        label: z.string().readonly(),
-        started: z.iso.datetime().readonly()
-    }))
+        ]).readonly()),
+        enrolled: z.optional(z.iso.datetime().readonly()),
+        id: z.optional(z.string()),
+        label: z.optional(z.string().readonly()),
+        started: z.optional(z.iso.datetime().readonly())
+    })))
 }));
 
 export const addedGetEntityTransfers200Schema = z.object({
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 }).and(z.object({
     data: z.optional(z.array(z.object({
-        created: z.iso.datetime(),
-        entities: z.object({
-            linodes: z.array(z.int())
-        }),
-        expiry: z.iso.datetime(),
-        is_sender: z.boolean(),
-        status: z.enum([
+        created: z.optional(z.iso.datetime()),
+        entities: z.optional(z.object({
+            linodes: z.optional(z.array(z.int()))
+        })),
+        expiry: z.optional(z.iso.datetime()),
+        is_sender: z.optional(z.boolean()),
+        status: z.optional(z.enum([
             'accepted',
             'canceled',
             'completed',
             'failed',
             'pending',
             'stale'
-        ]),
-        token: z.uuid(),
-        updated: z.iso.datetime()
+        ])),
+        token: z.optional(z.uuid()),
+        updated: z.optional(z.iso.datetime())
     })))
 }));
 
 export const addedGetInvoiceItems200Schema = z.object({
-    data: z.array(z.object({
-        amount: z.number().readonly(),
-        from: z.iso.datetime().readonly(),
-        label: z.string().readonly(),
-        quantity: z.int().readonly(),
-        region: z.union([
+    data: z.optional(z.array(z.object({
+        amount: z.optional(z.number().readonly()),
+        from: z.optional(z.iso.datetime().readonly()),
+        label: z.optional(z.string().readonly()),
+        quantity: z.optional(z.int().readonly()),
+        region: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly(),
-        tax: z.number().readonly(),
-        to: z.iso.datetime().readonly(),
-        total: z.number().readonly(),
-        type: z.enum(['hourly', 'misc']),
-        unit_price: z.string().readonly()
-    })),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+        ]).readonly()),
+        tax: z.optional(z.number().readonly()),
+        to: z.optional(z.iso.datetime().readonly()),
+        total: z.optional(z.number().readonly()),
+        type: z.optional(z.enum(['hourly', 'misc'])),
+        unit_price: z.optional(z.string().readonly())
+    }))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 export const addedGetInvoices200Schema = z.object({
-    data: z.array(z.object({
-        billing_source: z.enum(['akamai', 'linode']),
-        date: z.iso.datetime().readonly(),
-        id: z.int().readonly(),
-        label: z.string().readonly(),
-        subtotal: z.number().readonly(),
-        tax: z.number().readonly(),
-        tax_summary: z.array(z.object({
-            name: z.string(),
-            tax: z.number()
-        })).readonly(),
-        total: z.number().readonly()
-    })),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+    data: z.optional(z.array(z.object({
+        billing_source: z.optional(z.enum(['akamai', 'linode'])),
+        date: z.optional(z.iso.datetime().readonly()),
+        id: z.optional(z.int().readonly()),
+        label: z.optional(z.string().readonly()),
+        subtotal: z.optional(z.number().readonly()),
+        tax: z.optional(z.number().readonly()),
+        tax_summary: z.optional(z.array(z.object({
+            name: z.optional(z.string()),
+            tax: z.optional(z.number())
+        })).readonly()),
+        total: z.optional(z.number().readonly())
+    }))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 export const addedGetNotifications200Schema = z.object({
-    data: z.array(z.object({
-        body: z.union([
+    data: z.optional(z.array(z.object({
+        body: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        entity: z.union([
+        ])),
+        entity: z.optional(z.union([
             z.object({
-                id: z.union([
+                id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ]),
-                label: z.union([
+                ])),
+                label: z.optional(z.union([
                     z.string(),
                     z.null()
-                ]),
-                type: z.enum([
+                ])),
+                type: z.optional(z.enum([
                     'account',
                     'entity_transfer',
                     'linode',
@@ -281,22 +281,22 @@ export const addedGetNotifications200Schema = z.object({
                     'region',
                     'ticket',
                     'volume'
-                ]),
-                url: z.union([
+                ])),
+                url: z.optional(z.union([
                     z.string(),
                     z.null()
-                ])
+                ]))
             }),
             z.null()
-        ]),
-        label: z.string(),
-        message: z.string(),
-        severity: z.enum([
+        ])),
+        label: z.optional(z.string()),
+        message: z.optional(z.string()),
+        severity: z.optional(z.enum([
             'minor',
             'major',
             'critical'
-        ]),
-        type: z.enum([
+        ])),
+        type: z.optional(z.enum([
             'migration_scheduled',
             'migration_imminent',
             'migration_pending',
@@ -311,151 +311,151 @@ export const addedGetNotifications200Schema = z.object({
             'promotion',
             'security_reboot_maintenance_scheduled',
             'tax_id_verifying'
-        ]),
-        until: z.union([
+        ])),
+        until: z.optional(z.union([
             z.iso.datetime(),
             z.null()
-        ]),
-        when: z.union([
+        ])),
+        when: z.optional(z.union([
             z.iso.datetime(),
             z.null()
-        ])
-    })),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+        ]))
+    }))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 export const addedGetPaymentMethods200Schema = z.object({
-    data: z.array(z.object({
-        created: z.iso.datetime().readonly(),
-        data: z.union([
+    data: z.optional(z.array(z.object({
+        created: z.optional(z.iso.datetime().readonly()),
+        data: z.optional(z.union([
             z.object({
-                card_type: z.string().readonly(),
-                expiry: z.string().readonly(),
-                last_four: z.string().readonly()
+                card_type: z.optional(z.string().readonly()),
+                expiry: z.optional(z.string().readonly()),
+                last_four: z.optional(z.string().readonly())
             }),
             z.object({
-                card_type: z.string().readonly(),
-                expiry: z.string().readonly(),
-                last_four: z.string().readonly()
+                card_type: z.optional(z.string().readonly()),
+                expiry: z.optional(z.string().readonly()),
+                last_four: z.optional(z.string().readonly())
             }),
             z.object({
-                email: z.string().readonly(),
-                paypal_id: z.string().readonly()
+                email: z.optional(z.string().readonly()),
+                paypal_id: z.optional(z.string().readonly())
             })
-        ]),
-        id: z.int(),
-        is_default: z.boolean(),
-        type: z.enum([
+        ])),
+        id: z.optional(z.int()),
+        is_default: z.optional(z.boolean()),
+        type: z.optional(z.enum([
             'credit_card',
             'google_pay',
             'paypal'
-        ])
-    })),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+        ]))
+    }))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 export const addedGetPayments200Schema = z.object({
-    data: z.array(z.object({
-        date: z.iso.datetime().readonly(),
-        id: z.int().readonly(),
-        usd: z.int().readonly()
-    })),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+    data: z.optional(z.array(z.object({
+        date: z.optional(z.iso.datetime().readonly()),
+        id: z.optional(z.int().readonly()),
+        usd: z.optional(z.int().readonly())
+    }))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 export const addedGetServiceTransfers200Schema = z.object({
-    data: z.array(z.object({
-        created: z.iso.datetime(),
-        entities: z.object({
-            linodes: z.array(z.int())
-        }),
-        expiry: z.iso.datetime(),
-        is_sender: z.boolean(),
-        status: z.enum([
+    data: z.optional(z.array(z.object({
+        created: z.optional(z.iso.datetime()),
+        entities: z.optional(z.object({
+            linodes: z.optional(z.array(z.int()))
+        })),
+        expiry: z.optional(z.iso.datetime()),
+        is_sender: z.optional(z.boolean()),
+        status: z.optional(z.enum([
             'accepted',
             'canceled',
             'completed',
             'failed',
             'pending',
             'stale'
-        ]),
-        token: z.uuid(),
-        updated: z.iso.datetime()
-    })),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+        ])),
+        token: z.optional(z.uuid()),
+        updated: z.optional(z.iso.datetime())
+    }))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 export const addedGetUser200Schema = z.object({
-    email: z.email(),
-    last_login: z.union([
+    email: z.optional(z.email()),
+    last_login: z.optional(z.union([
         z.object({
-            login_datetime: z.iso.datetime().readonly(),
-            status: z.enum(['successful', 'failed'])
+            login_datetime: z.optional(z.iso.datetime().readonly()),
+            status: z.optional(z.enum(['successful', 'failed']))
         }).readonly(),
         z.null()
-    ]).readonly(),
-    password_created: z.union([
+    ]).readonly()),
+    password_created: z.optional(z.union([
         z.iso.datetime().readonly(),
         z.null()
-    ]).readonly(),
-    restricted: z.boolean(),
-    ssh_keys: z.array(z.string()).readonly(),
-    tfa_enabled: z.boolean().readonly(),
-    username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/),
-    verified_phone_number: z.union([
+    ]).readonly()),
+    restricted: z.optional(z.boolean()),
+    ssh_keys: z.optional(z.array(z.string()).readonly()),
+    tfa_enabled: z.optional(z.boolean().readonly()),
+    username: z.optional(z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/)),
+    verified_phone_number: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly()
+    ]).readonly())
 }).and(z.object({
-    user_type: z.enum([
+    user_type: z.optional(z.enum([
         'parent',
         'child',
         'proxy',
         'default'
-    ])
+    ]))
 }));
 
 export const addedGetUsers200Schema = z.object({
-    data: z.array(z.object({
-        email: z.email(),
-        last_login: z.union([
+    data: z.optional(z.array(z.object({
+        email: z.optional(z.email()),
+        last_login: z.optional(z.union([
             z.object({
-                login_datetime: z.iso.datetime().readonly(),
-                status: z.enum(['successful', 'failed'])
+                login_datetime: z.optional(z.iso.datetime().readonly()),
+                status: z.optional(z.enum(['successful', 'failed']))
             }).readonly(),
             z.null()
-        ]).readonly(),
-        password_created: z.union([
+        ]).readonly()),
+        password_created: z.optional(z.union([
             z.iso.datetime().readonly(),
             z.null()
-        ]).readonly(),
-        restricted: z.boolean(),
-        ssh_keys: z.array(z.string()).readonly(),
-        tfa_enabled: z.boolean().readonly(),
-        username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/),
-        verified_phone_number: z.union([
+        ]).readonly()),
+        restricted: z.optional(z.boolean()),
+        ssh_keys: z.optional(z.array(z.string()).readonly()),
+        tfa_enabled: z.optional(z.boolean().readonly()),
+        username: z.optional(z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/)),
+        verified_phone_number: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly()
+        ]).readonly())
     }).and(z.object({
-        user_type: z.enum([
+        user_type: z.optional(z.enum([
             'parent',
             'child',
             'proxy',
             'default'
-        ])
-    }))),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+        ]))
+    })))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 /**
@@ -466,59 +466,59 @@ export const addedPostBetaProgramSchema = z.object({
 });
 
 export const addedPostCancelAccountSchema = z.object({
-    comments: z.string()
+    comments: z.optional(z.string())
 });
 
 export const addedPostCancelAccount200Schema = z.object({
-    survey_link: z.string()
+    survey_link: z.optional(z.string())
 });
 
 export const addedPostCancelAccount409Schema = z.object({
-    errors: z.array(z.object({
-        reason: z.string()
-    }))
+    errors: z.optional(z.array(z.object({
+        reason: z.optional(z.string())
+    })))
 });
 
 export const addedPostCancelAccount504Schema = z.object({
-    errors: z.array(z.object({
-        reason: z.string()
-    }))
+    errors: z.optional(z.array(z.object({
+        reason: z.optional(z.string())
+    })))
 });
 
 /**
  * A third-party application registered to Linode that users may log into with their Linode account through our authentication server at [login.linode.com](https://login.linode.com).  Using an OAuth Client, a third-party developer may be given access to some, or all, of a User's account for the purposes of their application.
  */
 export const addedPostClientSchema = z.object({
-    id: z.string().readonly(),
+    id: z.optional(z.string().readonly()),
     label: z.string().min(1).max(512),
-    public: z.boolean().default(false),
+    public: z.optional(z.boolean()).default(false),
     redirect_uri: z.string(),
-    secret: z.string().readonly(),
-    status: z.enum([
+    secret: z.optional(z.string().readonly()),
+    status: z.optional(z.enum([
         'active',
         'disabled',
         'suspended'
-    ]),
-    thumbnail_url: z.union([
+    ])),
+    thumbnail_url: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly()
+    ]).readonly())
 });
 
 export const addedPostEntityTransferSchema = z.object({
     entities: z.object({
-        linodes: z.array(z.int())
+        linodes: z.optional(z.array(z.int()))
     })
 });
 
 export const addedPostPayPalPayment200Schema = z.object({
-    checkout_token: z.string().readonly(),
-    payment_id: z.string()
+    checkout_token: z.optional(z.string().readonly()),
+    payment_id: z.optional(z.string())
 });
 
 export const addedPostPaymentSchema = z.object({
-    payment_method_id: z.int(),
-    usd: z.string().regex(/^\$?\d+\.\d{2}$/)
+    payment_method_id: z.optional(z.int()),
+    usd: z.optional(z.string().regex(/^\$?\d+\.\d{2}$/))
 });
 
 /**
@@ -541,7 +541,7 @@ export const addedPostPromoCreditSchema = z.object({
 
 export const addedPostServiceTransferSchema = z.object({
     entities: z.object({
-        linodes: z.array(z.int())
+        linodes: z.optional(z.array(z.int()))
     })
 });
 
@@ -550,111 +550,111 @@ export const addedPostServiceTransferSchema = z.object({
  */
 export const addedPostUserSchema = z.object({
     email: z.email(),
-    last_login: z.union([
+    last_login: z.optional(z.union([
         z.object({
-            login_datetime: z.iso.datetime().readonly(),
-            status: z.enum(['successful', 'failed'])
+            login_datetime: z.optional(z.iso.datetime().readonly()),
+            status: z.optional(z.enum(['successful', 'failed']))
         }).readonly(),
         z.null()
-    ]).readonly(),
-    password_created: z.union([
+    ]).readonly()),
+    password_created: z.optional(z.union([
         z.iso.datetime().readonly(),
         z.null()
-    ]).readonly(),
-    restricted: z.boolean(),
-    ssh_keys: z.array(z.string()).readonly(),
-    tfa_enabled: z.boolean().readonly(),
+    ]).readonly()),
+    restricted: z.optional(z.boolean()),
+    ssh_keys: z.optional(z.array(z.string()).readonly()),
+    tfa_enabled: z.optional(z.boolean().readonly()),
     username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/),
-    verified_phone_number: z.union([
+    verified_phone_number: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly()
+    ]).readonly())
 });
 
 export const addedPutUser200Schema = z.object({
-    email: z.email(),
-    last_login: z.union([
+    email: z.optional(z.email()),
+    last_login: z.optional(z.union([
         z.object({
-            login_datetime: z.iso.datetime().readonly(),
-            status: z.enum(['successful', 'failed'])
+            login_datetime: z.optional(z.iso.datetime().readonly()),
+            status: z.optional(z.enum(['successful', 'failed']))
         }).readonly(),
         z.null()
-    ]).readonly(),
-    password_created: z.union([
+    ]).readonly()),
+    password_created: z.optional(z.union([
         z.iso.datetime().readonly(),
         z.null()
-    ]).readonly(),
-    restricted: z.boolean(),
-    ssh_keys: z.array(z.string()).readonly(),
-    tfa_enabled: z.boolean().readonly(),
-    username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/),
-    verified_phone_number: z.union([
+    ]).readonly()),
+    restricted: z.optional(z.boolean()),
+    ssh_keys: z.optional(z.array(z.string()).readonly()),
+    tfa_enabled: z.optional(z.boolean().readonly()),
+    username: z.optional(z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/)),
+    verified_phone_number: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly()
+    ]).readonly())
 }).and(z.object({
-    user_type: z.enum([
+    user_type: z.optional(z.enum([
         'parent',
         'child',
         'proxy',
         'default'
-    ])
+    ]))
 }));
 
 /**
  * Acknowledgment status for agreements on your account. When acknowledging any agreements, set them to `true` and omit any remainders.
  */
 export const agreementsSchema = z.object({
-    billing_agreement: z.boolean(),
-    eu_model: z.boolean(),
-    master_service_agreement: z.boolean(),
-    privacy_policy: z.boolean()
+    billing_agreement: z.optional(z.boolean()),
+    eu_model: z.optional(z.boolean()),
+    master_service_agreement: z.optional(z.boolean()),
+    privacy_policy: z.optional(z.boolean())
 });
 
 /**
  * An object representing an enrolled Beta Program for the Account.
  */
 export const betaProgramEnrolledSchema = z.object({
-    description: z.union([
+    description: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly(),
-    ended: z.union([
+    ]).readonly()),
+    ended: z.optional(z.union([
         z.iso.datetime().readonly(),
         z.null()
-    ]).readonly(),
-    enrolled: z.iso.datetime().readonly(),
-    id: z.string(),
-    label: z.string().readonly(),
-    started: z.iso.datetime().readonly()
+    ]).readonly()),
+    enrolled: z.optional(z.iso.datetime().readonly()),
+    id: z.optional(z.string()),
+    label: z.optional(z.string().readonly()),
+    started: z.optional(z.iso.datetime().readonly())
 });
 
 /**
  * Child account object.
  */
 export const childAccountSchema = z.object({
-    active_since: z.iso.datetime().readonly(),
-    address_1: z.string().max(64),
-    address_2: z.string().max(64),
-    balance: z.number().readonly(),
-    balance_uninvoiced: z.number().readonly(),
-    billing_source: z.enum(['external']),
-    capabilities: z.array(z.string()).readonly(),
-    city: z.string().max(24),
-    company: z.string().max(128),
-    country: z.string(),
-    credit_card: z.object({
-        expiry: z.string(),
-        last_four: z.string()
-    }).readonly(),
-    email: z.string().max(128),
-    euuid: z.uuid().readonly(),
-    first_name: z.string().max(50),
-    last_name: z.string().max(50),
-    phone: z.string().max(32),
-    state: z.string().max(24),
-    tax_id: z.string().max(25),
-    zip: z.string()
+    active_since: z.optional(z.iso.datetime().readonly()),
+    address_1: z.optional(z.string().max(64)),
+    address_2: z.optional(z.string().max(64)),
+    balance: z.optional(z.number().readonly()),
+    balance_uninvoiced: z.optional(z.number().readonly()),
+    billing_source: z.optional(z.enum(['external'])),
+    capabilities: z.optional(z.array(z.string()).readonly()),
+    city: z.optional(z.string().max(24)),
+    company: z.optional(z.string().max(128)),
+    country: z.optional(z.string()),
+    credit_card: z.optional(z.object({
+        expiry: z.optional(z.string()),
+        last_four: z.optional(z.string())
+    }).readonly()),
+    email: z.optional(z.string().max(128)),
+    euuid: z.optional(z.uuid().readonly()),
+    first_name: z.optional(z.string().max(50)),
+    last_name: z.optional(z.string().max(50)),
+    phone: z.optional(z.string().max(32)),
+    state: z.optional(z.string().max(24)),
+    tax_id: z.optional(z.string().max(25)),
+    zip: z.optional(z.string())
 });
 
 /**
@@ -673,9 +673,9 @@ export const creditCardSchema = z.object({
  * Credit card information.
  */
 export const creditCardDataSchema = z.object({
-    card_type: z.string().readonly(),
-    expiry: z.string().readonly(),
-    last_four: z.string().readonly()
+    card_type: z.optional(z.string().readonly()),
+    expiry: z.optional(z.string().readonly()),
+    last_four: z.optional(z.string().readonly())
 });
 
 /**
@@ -700,44 +700,44 @@ export const endedSchema = z.union([
  * A collection of the entities to include in this transfer request, separated by type.
  */
 export const entitiesSchema = z.object({
-    linodes: z.array(z.int())
+    linodes: z.optional(z.array(z.int()))
 });
 
 /**
  * An object representing an Entity Transfer.
  */
 export const entityTransferSchema = z.object({
-    created: z.iso.datetime(),
-    entities: z.object({
-        linodes: z.array(z.int())
-    }),
-    expiry: z.iso.datetime(),
-    is_sender: z.boolean(),
-    status: z.enum([
+    created: z.optional(z.iso.datetime()),
+    entities: z.optional(z.object({
+        linodes: z.optional(z.array(z.int()))
+    })),
+    expiry: z.optional(z.iso.datetime()),
+    is_sender: z.optional(z.boolean()),
+    status: z.optional(z.enum([
         'accepted',
         'canceled',
         'completed',
         'failed',
         'pending',
         'stale'
-    ]),
-    token: z.uuid(),
-    updated: z.iso.datetime()
+    ])),
+    token: z.optional(z.uuid()),
+    updated: z.optional(z.iso.datetime())
 });
 
 /**
  * An object for describing a single error that occurred during the processing of a request.
  */
 export const errorObjectSchema = z.object({
-    field: z.string(),
-    reason: z.string()
+    field: z.optional(z.string()),
+    reason: z.optional(z.string())
 });
 
 /**
  * A specific event object. An event is an action taken against an entity related to your account. For example, if you boot a Linode, the system creates an event. The events returned depend on your user grants.
  */
 export const eventSchema = z.object({
-    action: z.enum([
+    action: z.optional(z.enum([
         'account_agreement_eu_model',
         'account_promo_apply',
         'account_update',
@@ -923,21 +923,21 @@ export const eventSchema = z.object({
         'vpc_create',
         'vpc_delete',
         'vpc_update'
-    ]),
-    created: z.iso.datetime().readonly(),
-    details: z.object({
-        complete_time: z.iso.datetime(),
-        description: z.enum(['Scheduled Maintenance', 'Emergency Maintenance']),
-        maintenance_policy_set: z.string(),
-        not_before: z.iso.datetime(),
-        source: z.enum(['platform', 'user']),
-        start_time: z.iso.datetime()
-    }).readonly(),
-    duration: z.number().readonly(),
-    entity: z.object({
-        id: z.int(),
-        label: z.string(),
-        type: z.enum([
+    ])),
+    created: z.optional(z.iso.datetime().readonly()),
+    details: z.optional(z.object({
+        complete_time: z.optional(z.iso.datetime()),
+        description: z.optional(z.enum(['Scheduled Maintenance', 'Emergency Maintenance'])),
+        maintenance_policy_set: z.optional(z.string()),
+        not_before: z.optional(z.iso.datetime()),
+        source: z.optional(z.enum(['platform', 'user'])),
+        start_time: z.optional(z.iso.datetime())
+    }).readonly()),
+    duration: z.optional(z.number().readonly()),
+    entity: z.optional(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string()),
+        type: z.optional(z.enum([
             'account',
             'backups',
             'community',
@@ -961,49 +961,49 @@ export const eventSchema = z.object({
             'user',
             'user_ssh_key',
             'volume'
-        ]),
-        url: z.string()
-    }).readonly(),
-    id: z.int().readonly(),
-    message: z.union([
+        ])),
+        url: z.optional(z.string())
+    }).readonly()),
+    id: z.optional(z.int().readonly()),
+    message: z.optional(z.union([
         z.string(),
         z.null()
-    ]),
-    percent_complete: z.union([
+    ])),
+    percent_complete: z.optional(z.union([
         z.int().readonly(),
         z.null()
-    ]).readonly(),
-    rate: z.union([
+    ]).readonly()),
+    rate: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly(),
-    secondary_entity: z.object({
-        id: z.string(),
-        label: z.string(),
-        type: z.string().readonly(),
-        url: z.string()
-    }).readonly(),
-    seen: z.boolean().readonly(),
-    status: z.enum([
+    ]).readonly()),
+    secondary_entity: z.optional(z.object({
+        id: z.optional(z.string()),
+        label: z.optional(z.string()),
+        type: z.optional(z.string().readonly()),
+        url: z.optional(z.string())
+    }).readonly()),
+    seen: z.optional(z.boolean().readonly()),
+    status: z.optional(z.enum([
         'failed',
         'finished',
         'notification',
         'scheduled',
         'started'
-    ]),
-    time_remaining: z.union([
+    ])),
+    time_remaining: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly(),
-    username: z.union([
+    ]).readonly()),
+    username: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly()
+    ]).readonly())
 });
 
 export const eventsSchema = z.object({
-    data: z.array(z.object({
-        action: z.enum([
+    data: z.optional(z.array(z.object({
+        action: z.optional(z.enum([
             'account_agreement_eu_model',
             'account_promo_apply',
             'account_update',
@@ -1189,21 +1189,21 @@ export const eventsSchema = z.object({
             'vpc_create',
             'vpc_delete',
             'vpc_update'
-        ]),
-        created: z.iso.datetime(),
-        details: z.object({
-            complete_time: z.iso.datetime(),
-            description: z.enum(['Scheduled Maintenance', 'Emergency Maintenance']),
-            maintenance_policy_set: z.string(),
-            not_before: z.iso.datetime(),
-            source: z.enum(['platform', 'user']),
-            start_time: z.iso.datetime()
-        }),
-        duration: z.number(),
-        entity: z.object({
-            id: z.int(),
-            label: z.string(),
-            type: z.enum([
+        ])),
+        created: z.optional(z.iso.datetime()),
+        details: z.optional(z.object({
+            complete_time: z.optional(z.iso.datetime()),
+            description: z.optional(z.enum(['Scheduled Maintenance', 'Emergency Maintenance'])),
+            maintenance_policy_set: z.optional(z.string()),
+            not_before: z.optional(z.iso.datetime()),
+            source: z.optional(z.enum(['platform', 'user'])),
+            start_time: z.optional(z.iso.datetime())
+        })),
+        duration: z.optional(z.number()),
+        entity: z.optional(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string()),
+            type: z.optional(z.enum([
                 'account',
                 'backups',
                 'community',
@@ -1227,30 +1227,30 @@ export const eventsSchema = z.object({
                 'user',
                 'user_ssh_key',
                 'volume'
-            ]),
-            url: z.string()
-        }),
-        id: z.int(),
-        message: z.union([
+            ])),
+            url: z.optional(z.string())
+        })),
+        id: z.optional(z.int()),
+        message: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        percent_complete: z.union([
+        ])),
+        percent_complete: z.optional(z.union([
             z.int(),
             z.null()
-        ]),
-        rate: z.union([
+        ])),
+        rate: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        secondary_entity: z.object({
-            id: z.string(),
-            label: z.string(),
-            type: z.string(),
-            url: z.string()
-        }),
-        seen: z.boolean(),
-        status: z.enum([
+        ])),
+        secondary_entity: z.optional(z.object({
+            id: z.optional(z.string()),
+            label: z.optional(z.string()),
+            type: z.optional(z.string()),
+            url: z.optional(z.string())
+        })),
+        seen: z.optional(z.boolean()),
+        status: z.optional(z.enum([
             'completed',
             'failed',
             'finished',
@@ -1258,56 +1258,56 @@ export const eventsSchema = z.object({
             'notification',
             'scheduled',
             'started'
-        ]),
-        time_remaining: z.union([
+        ])),
+        time_remaining: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        username: z.union([
+        ])),
+        username: z.optional(z.union([
             z.string(),
             z.null()
-        ])
-    })),
-    page: z.int(),
-    pages: z.int(),
-    results: z.int()
+        ]))
+    }))),
+    page: z.optional(z.int()),
+    pages: z.optional(z.int()),
+    results: z.optional(z.int())
 });
 
 export const getMaintenance200Schema = z.object({
-    data: z.array(z.object({
-        complete_time: z.iso.datetime(),
-        description: z.enum(['Scheduled Maintenance', 'Emergency Maintenance']),
-        entity: z.object({
-            id: z.number(),
-            label: z.string(),
-            type: z.string(),
-            url: z.string()
-        }),
-        maintenance_policy_set: z.string(),
-        not_before: z.iso.datetime(),
-        reason: z.string(),
-        source: z.enum(['platform', 'user']),
-        start_time: z.iso.datetime(),
-        status: z.enum([
+    data: z.optional(z.array(z.object({
+        complete_time: z.optional(z.iso.datetime()),
+        description: z.optional(z.enum(['Scheduled Maintenance', 'Emergency Maintenance'])),
+        entity: z.optional(z.object({
+            id: z.optional(z.number()),
+            label: z.optional(z.string()),
+            type: z.optional(z.string()),
+            url: z.optional(z.string())
+        })),
+        maintenance_policy_set: z.optional(z.string()),
+        not_before: z.optional(z.iso.datetime()),
+        reason: z.optional(z.string()),
+        source: z.optional(z.enum(['platform', 'user'])),
+        start_time: z.optional(z.iso.datetime()),
+        status: z.optional(z.enum([
             'pending',
             'scheduled',
             'started',
             'in-progress',
             'completed',
             'canceled'
-        ]),
-        type: z.enum([
+        ])),
+        type: z.optional(z.enum([
             'reboot',
             'cold_migration',
             'live_migration',
             'migrate',
             'power_off_on'
-        ]),
-        when: z.iso.datetime()
-    })),
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+        ])),
+        when: z.optional(z.iso.datetime())
+    }))),
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 /**
@@ -1316,90 +1316,90 @@ export const getMaintenance200Schema = z.object({
  * Google Pay information.
  */
 export const googlePayDataSchema = z.object({
-    card_type: z.string().readonly(),
-    expiry: z.string().readonly(),
-    last_four: z.string().readonly()
+    card_type: z.optional(z.string().readonly()),
+    expiry: z.optional(z.string().readonly()),
+    last_four: z.optional(z.string().readonly())
 });
 
 /**
  * Represents the level of access a restricted user has to a specific resource on the account.
  */
 export const grantSchema = z.object({
-    id: z.int(),
-    label: z.string().readonly(),
-    permissions: z.enum(['read_only', 'read_write'])
+    id: z.optional(z.int()),
+    label: z.optional(z.string().readonly()),
+    permissions: z.optional(z.enum(['read_only', 'read_write']))
 });
 
 export const grantsResponseSchema = z.object({
-    database: z.array(z.object({
-        id: z.int(),
-        label: z.string().readonly(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    domain: z.array(z.object({
-        id: z.int(),
-        label: z.string().readonly(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    firewall: z.array(z.object({
-        id: z.int(),
-        label: z.string().readonly(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    global: z.object({
-        account_access: z.enum(['read_only', 'read_write']),
-        add_databases: z.boolean(),
-        add_domains: z.boolean(),
-        add_firewalls: z.boolean(),
-        add_images: z.boolean(),
-        add_linodes: z.boolean(),
-        add_longview: z.boolean(),
-        add_nodebalancers: z.boolean(),
-        add_stackscripts: z.boolean(),
-        add_volumes: z.boolean(),
-        add_vpcs: z.boolean(),
-        cancel_account: z.boolean(),
-        child_account_access: z.union([
+    database: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string().readonly()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    domain: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string().readonly()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    firewall: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string().readonly()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    global: z.optional(z.object({
+        account_access: z.optional(z.enum(['read_only', 'read_write'])),
+        add_databases: z.optional(z.boolean()),
+        add_domains: z.optional(z.boolean()),
+        add_firewalls: z.optional(z.boolean()),
+        add_images: z.optional(z.boolean()),
+        add_linodes: z.optional(z.boolean()),
+        add_longview: z.optional(z.boolean()),
+        add_nodebalancers: z.optional(z.boolean()),
+        add_stackscripts: z.optional(z.boolean()),
+        add_volumes: z.optional(z.boolean()),
+        add_vpcs: z.optional(z.boolean()),
+        cancel_account: z.optional(z.boolean()),
+        child_account_access: z.optional(z.union([
             z.boolean(),
             z.null()
-        ]),
-        longview_subscription: z.boolean()
-    }),
-    image: z.array(z.object({
-        id: z.int(),
-        label: z.string().readonly(),
-        permissions: z.enum(['read_only', 'read_write'])
+        ])),
+        longview_subscription: z.optional(z.boolean())
     })),
-    linode: z.array(z.object({
-        id: z.int(),
-        label: z.string().readonly(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    longview: z.array(z.object({
-        id: z.int(),
-        label: z.string().readonly(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    nodebalancer: z.array(z.object({
-        id: z.int(),
-        label: z.string().readonly(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    stackscript: z.array(z.object({
-        id: z.int(),
-        label: z.string().readonly(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    volume: z.array(z.object({
-        id: z.int(),
-        label: z.string().readonly(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    vpc: z.array(z.object({
-        id: z.int(),
-        label: z.string().readonly(),
-        permissions: z.enum(['read_only', 'read_write'])
-    }))
+    image: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string().readonly()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    linode: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string().readonly()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    longview: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string().readonly()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    nodebalancer: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string().readonly()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    stackscript: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string().readonly()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    volume: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string().readonly()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    vpc: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        label: z.optional(z.string().readonly()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    })))
 });
 
 /**
@@ -1411,36 +1411,36 @@ export const idSchema = z.string();
  * Account Invoice object.
  */
 export const invoiceSchema = z.object({
-    billing_source: z.enum(['akamai', 'linode']),
-    date: z.iso.datetime().readonly(),
-    id: z.int().readonly(),
-    label: z.string().readonly(),
-    subtotal: z.number().readonly(),
-    tax: z.number().readonly(),
-    tax_summary: z.array(z.object({
-        name: z.string(),
-        tax: z.number()
-    })).readonly(),
-    total: z.number().readonly()
+    billing_source: z.optional(z.enum(['akamai', 'linode'])),
+    date: z.optional(z.iso.datetime().readonly()),
+    id: z.optional(z.int().readonly()),
+    label: z.optional(z.string().readonly()),
+    subtotal: z.optional(z.number().readonly()),
+    tax: z.optional(z.number().readonly()),
+    tax_summary: z.optional(z.array(z.object({
+        name: z.optional(z.string()),
+        tax: z.optional(z.number())
+    })).readonly()),
+    total: z.optional(z.number().readonly())
 });
 
 /**
  * An InvoiceItem object.
  */
 export const invoiceItemSchema = z.object({
-    amount: z.number().readonly(),
-    from: z.iso.datetime().readonly(),
-    label: z.string().readonly(),
-    quantity: z.int().readonly(),
-    region: z.union([
+    amount: z.optional(z.number().readonly()),
+    from: z.optional(z.iso.datetime().readonly()),
+    label: z.optional(z.string().readonly()),
+    quantity: z.optional(z.int().readonly()),
+    region: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly(),
-    tax: z.number().readonly(),
-    to: z.iso.datetime().readonly(),
-    total: z.number().readonly(),
-    type: z.enum(['hourly', 'misc']),
-    unit_price: z.string().readonly()
+    ]).readonly()),
+    tax: z.optional(z.number().readonly()),
+    to: z.optional(z.iso.datetime().readonly()),
+    total: z.optional(z.number().readonly()),
+    type: z.optional(z.enum(['hourly', 'misc'])),
+    unit_price: z.optional(z.string().readonly())
 });
 
 /**
@@ -1457,68 +1457,68 @@ export const labelSchema = z.string().readonly();
  * An object representing a previous successful login for a User.
  */
 export const loginSchema = z.object({
-    datetime: z.iso.datetime().readonly(),
-    id: z.int().readonly(),
-    ip: z.string().readonly(),
-    restricted: z.boolean().readonly(),
-    status: z.enum(['successful', 'failed']),
-    username: z.string().readonly()
+    datetime: z.optional(z.iso.datetime().readonly()),
+    id: z.optional(z.int().readonly()),
+    ip: z.optional(z.string().readonly()),
+    restricted: z.optional(z.boolean().readonly()),
+    status: z.optional(z.enum(['successful', 'failed'])),
+    username: z.optional(z.string().readonly())
 });
 
 /**
  * Information about maintenance affecting an entity.
  */
 export const maintenanceSchema = z.object({
-    complete_time: z.iso.datetime(),
-    description: z.enum(['Scheduled Maintenance', 'Emergency Maintenance']),
-    entity: z.object({
-        id: z.number(),
-        label: z.string(),
-        type: z.string(),
-        url: z.string()
-    }),
-    maintenance_policy_set: z.string(),
-    not_before: z.iso.datetime(),
-    reason: z.string(),
-    source: z.enum(['platform', 'user']),
-    start_time: z.iso.datetime(),
-    status: z.enum([
+    complete_time: z.optional(z.iso.datetime()),
+    description: z.optional(z.enum(['Scheduled Maintenance', 'Emergency Maintenance'])),
+    entity: z.optional(z.object({
+        id: z.optional(z.number()),
+        label: z.optional(z.string()),
+        type: z.optional(z.string()),
+        url: z.optional(z.string())
+    })),
+    maintenance_policy_set: z.optional(z.string()),
+    not_before: z.optional(z.iso.datetime()),
+    reason: z.optional(z.string()),
+    source: z.optional(z.enum(['platform', 'user'])),
+    start_time: z.optional(z.iso.datetime()),
+    status: z.optional(z.enum([
         'pending',
         'scheduled',
         'started',
         'in-progress',
         'completed',
         'canceled'
-    ]),
-    type: z.enum([
+    ])),
+    type: z.optional(z.enum([
         'reboot',
         'cold_migration',
         'live_migration',
         'migrate',
         'power_off_on'
-    ]),
-    when: z.iso.datetime()
+    ])),
+    when: z.optional(z.iso.datetime())
 });
 
 /**
  * An important, often time-sensitive item related to your account.
  */
 export const notificationSchema = z.object({
-    body: z.union([
+    body: z.optional(z.union([
         z.string(),
         z.null()
-    ]),
-    entity: z.union([
+    ])),
+    entity: z.optional(z.union([
         z.object({
-            id: z.union([
+            id: z.optional(z.union([
                 z.int(),
                 z.null()
-            ]),
-            label: z.union([
+            ])),
+            label: z.optional(z.union([
                 z.string(),
                 z.null()
-            ]),
-            type: z.enum([
+            ])),
+            type: z.optional(z.enum([
                 'account',
                 'entity_transfer',
                 'linode',
@@ -1528,22 +1528,22 @@ export const notificationSchema = z.object({
                 'region',
                 'ticket',
                 'volume'
-            ]),
-            url: z.union([
+            ])),
+            url: z.optional(z.union([
                 z.string(),
                 z.null()
-            ])
+            ]))
         }),
         z.null()
-    ]),
-    label: z.string(),
-    message: z.string(),
-    severity: z.enum([
+    ])),
+    label: z.optional(z.string()),
+    message: z.optional(z.string()),
+    severity: z.optional(z.enum([
         'minor',
         'major',
         'critical'
-    ]),
-    type: z.enum([
+    ])),
+    type: z.optional(z.enum([
         'migration_scheduled',
         'migration_imminent',
         'migration_pending',
@@ -1558,35 +1558,35 @@ export const notificationSchema = z.object({
         'promotion',
         'security_reboot_maintenance_scheduled',
         'tax_id_verifying'
-    ]),
-    until: z.union([
+    ])),
+    until: z.optional(z.union([
         z.iso.datetime(),
         z.null()
-    ]),
-    when: z.union([
+    ])),
+    when: z.optional(z.union([
         z.iso.datetime(),
         z.null()
-    ])
+    ]))
 });
 
 /**
  * A third-party application registered to Linode that users may log into with their Linode account through our authentication server at [login.linode.com](https://login.linode.com).  Using an OAuth Client, a third-party developer may be given access to some, or all, of a User's account for the purposes of their application.
  */
 export const oauthClientSchema = z.object({
-    id: z.string().readonly(),
-    label: z.string().min(1).max(512),
-    public: z.boolean().default(false),
-    redirect_uri: z.string(),
-    secret: z.string().readonly(),
-    status: z.enum([
+    id: z.optional(z.string().readonly()),
+    label: z.optional(z.string().min(1).max(512)),
+    public: z.optional(z.boolean()).default(false),
+    redirect_uri: z.optional(z.string()),
+    secret: z.optional(z.string().readonly()),
+    status: z.optional(z.enum([
         'active',
         'disabled',
         'suspended'
-    ]),
-    thumbnail_url: z.union([
+    ])),
+    thumbnail_url: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly()
+    ]).readonly())
 });
 
 /**
@@ -1603,48 +1603,48 @@ export const pagesSchema = z.int().readonly();
  * An envelope for paginated response. When accessing a collection through a GET endpoint, the results are wrapped in this envelope which includes metadata about those results. Results are presented within a `data` array. See [Pagination](https://techdocs.akamai.com/linode-api/reference/pagination) for more information.
  */
 export const paginationEnvelopeSchema = z.object({
-    page: z.int().readonly(),
-    pages: z.int().readonly(),
-    results: z.int().readonly()
+    page: z.optional(z.int().readonly()),
+    pages: z.optional(z.int().readonly()),
+    results: z.optional(z.int().readonly())
 });
 
 /**
  * Payment object response.
  */
 export const paymentSchema = z.object({
-    date: z.iso.datetime().readonly(),
-    id: z.int().readonly(),
-    usd: z.int().readonly()
+    date: z.optional(z.iso.datetime().readonly()),
+    id: z.optional(z.int().readonly()),
+    usd: z.optional(z.int().readonly())
 });
 
 /**
  * Payment Method Response Object.
  */
 export const paymentMethodSchema = z.object({
-    created: z.iso.datetime().readonly(),
-    data: z.union([
+    created: z.optional(z.iso.datetime().readonly()),
+    data: z.optional(z.union([
         z.object({
-            card_type: z.string().readonly(),
-            expiry: z.string().readonly(),
-            last_four: z.string().readonly()
+            card_type: z.optional(z.string().readonly()),
+            expiry: z.optional(z.string().readonly()),
+            last_four: z.optional(z.string().readonly())
         }),
         z.object({
-            card_type: z.string().readonly(),
-            expiry: z.string().readonly(),
-            last_four: z.string().readonly()
+            card_type: z.optional(z.string().readonly()),
+            expiry: z.optional(z.string().readonly()),
+            last_four: z.optional(z.string().readonly())
         }),
         z.object({
-            email: z.string().readonly(),
-            paypal_id: z.string().readonly()
+            email: z.optional(z.string().readonly()),
+            paypal_id: z.optional(z.string().readonly())
         })
-    ]),
-    id: z.int(),
-    is_default: z.boolean(),
-    type: z.enum([
+    ])),
+    id: z.optional(z.int()),
+    is_default: z.optional(z.boolean()),
+    type: z.optional(z.enum([
         'credit_card',
         'google_pay',
         'paypal'
-    ])
+    ]))
 });
 
 /**
@@ -1662,8 +1662,8 @@ export const paypalSchema = z.object({
  * PayPal information.
  */
 export const paypalDataSchema = z.object({
-    email: z.string().readonly(),
-    paypal_id: z.string().readonly()
+    email: z.optional(z.string().readonly()),
+    paypal_id: z.optional(z.string().readonly())
 });
 
 /**
@@ -1680,12 +1680,12 @@ export const paypalExecuteSchema = z.object({
  * Simply put, a promotion offers a certain amount of credit  month, until either the expiration date is passed, or until the total promotional credit is used, whichever comes first.
  */
 export const promotionSchema = z.object({
-    credit_monthly_cap: z.string(),
-    credit_remaining: z.string(),
-    description: z.string(),
-    expire_dt: z.string(),
-    image_url: z.string(),
-    service_type: z.enum([
+    credit_monthly_cap: z.optional(z.string()),
+    credit_remaining: z.optional(z.string()),
+    description: z.optional(z.string()),
+    expire_dt: z.optional(z.string()),
+    image_url: z.optional(z.string()),
+    service_type: z.optional(z.enum([
         'all',
         'backup',
         'blockstorage',
@@ -1700,28 +1700,28 @@ export const promotionSchema = z.object({
         'objectstorage',
         'placement_group',
         'transfer_tx'
-    ]),
-    summary: z.string(),
-    this_month_credit_remaining: z.string()
+    ])),
+    summary: z.optional(z.string()),
+    this_month_credit_remaining: z.optional(z.string())
 }).readonly();
 
 /**
  * A collection of the services to include in this transfer request, separated by type.
  */
 export const propertiesEntitiesSchema = z.object({
-    linodes: z.array(z.int())
+    linodes: z.optional(z.array(z.int()))
 });
 
 /**
  * The token generated manually for a child account so its proxy user can access the API and CLI without going through an OAuth login.
  */
 export const proxyUserTokenSchema = z.object({
-    created: z.iso.datetime().readonly(),
-    expiry: z.iso.datetime().readonly(),
-    id: z.int().readonly(),
-    label: z.string().min(1).max(100),
-    scopes: z.string().readonly(),
-    token: z.string().readonly()
+    created: z.optional(z.iso.datetime().readonly()),
+    expiry: z.optional(z.iso.datetime().readonly()),
+    id: z.optional(z.int().readonly()),
+    label: z.optional(z.string().min(1).max(100)),
+    scopes: z.optional(z.string().readonly()),
+    token: z.optional(z.string().readonly())
 });
 
 /**
@@ -1733,22 +1733,22 @@ export const resultsSchema = z.int().readonly();
  * An object representing a Service Transfer.
  */
 export const serviceTransferSchema = z.object({
-    created: z.iso.datetime(),
-    entities: z.object({
-        linodes: z.array(z.int())
-    }),
-    expiry: z.iso.datetime(),
-    is_sender: z.boolean(),
-    status: z.enum([
+    created: z.optional(z.iso.datetime()),
+    entities: z.optional(z.object({
+        linodes: z.optional(z.array(z.int()))
+    })),
+    expiry: z.optional(z.iso.datetime()),
+    is_sender: z.optional(z.boolean()),
+    status: z.optional(z.enum([
         'accepted',
         'canceled',
         'completed',
         'failed',
         'pending',
         'stale'
-    ]),
-    token: z.uuid(),
-    updated: z.iso.datetime()
+    ])),
+    token: z.optional(z.uuid()),
+    updated: z.optional(z.iso.datetime())
 });
 
 /**
@@ -1762,61 +1762,61 @@ export const startedSchema = z.iso.datetime().readonly();
  * Certain Regions have separate utilization quotas and rates. For Region-specific network utilization data, see `region_transfers`.
  */
 export const transferSchema = z.object({
-    billable: z.int().readonly(),
-    quota: z.int().readonly(),
-    region_transfers: z.array(z.object({
-        billable: z.int().readonly(),
-        id: z.string(),
-        quota: z.int().readonly(),
-        used: z.int().readonly()
-    })),
-    used: z.int().readonly()
+    billable: z.optional(z.int().readonly()),
+    quota: z.optional(z.int().readonly()),
+    region_transfers: z.optional(z.array(z.object({
+        billable: z.optional(z.int().readonly()),
+        id: z.optional(z.string()),
+        quota: z.optional(z.int().readonly()),
+        used: z.optional(z.int().readonly())
+    }))),
+    used: z.optional(z.int().readonly())
 });
 
 /**
  * A user on your account. Unrestricted users can log in and access information about your account, while restricted users may only access entities or perform actions they've been granted access to.
  */
 export const userSchema = z.object({
-    email: z.email(),
-    last_login: z.union([
+    email: z.optional(z.email()),
+    last_login: z.optional(z.union([
         z.object({
-            login_datetime: z.iso.datetime().readonly(),
-            status: z.enum(['successful', 'failed'])
+            login_datetime: z.optional(z.iso.datetime().readonly()),
+            status: z.optional(z.enum(['successful', 'failed']))
         }).readonly(),
         z.null()
-    ]).readonly(),
-    password_created: z.union([
+    ]).readonly()),
+    password_created: z.optional(z.union([
         z.iso.datetime().readonly(),
         z.null()
-    ]).readonly(),
-    restricted: z.boolean(),
-    ssh_keys: z.array(z.string()).readonly(),
-    tfa_enabled: z.boolean().readonly(),
-    username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/),
-    verified_phone_number: z.union([
+    ]).readonly()),
+    restricted: z.optional(z.boolean()),
+    ssh_keys: z.optional(z.array(z.string()).readonly()),
+    tfa_enabled: z.optional(z.boolean().readonly()),
+    username: z.optional(z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/)),
+    verified_phone_number: z.optional(z.union([
         z.string().readonly(),
         z.null()
-    ]).readonly()
+    ]).readonly())
 });
 
 /**
  * The type of user on an account. Mostly applies to the use of the parent and child accounts for Akamai partners functionality.
  */
 export const userTypeSchema = z.object({
-    user_type: z.enum([
+    user_type: z.optional(z.enum([
         'parent',
         'child',
         'proxy',
         'default'
-    ])
+    ]))
 });
 
 /**
  * An object for describing a single warning associated with a response.
  */
 export const warningObjectSchema = z.object({
-    details: z.string(),
-    title: z.string()
+    details: z.optional(z.string()),
+    title: z.optional(z.string())
 });
 
 /**
@@ -1825,16 +1825,16 @@ export const warningObjectSchema = z.object({
 export const xFilterSchema = z.union([
     z.record(z.string(), z.unknown()),
     z.object({
-        '+and': z.array(z.record(z.string(), z.unknown())),
-        '+contains': z.string(),
-        '+gt': z.number(),
-        '+gte': z.number(),
-        '+lt': z.number(),
-        '+lte': z.number(),
-        '+neq': z.string(),
-        '+or': z.array(z.record(z.string(), z.unknown())),
-        '+order': z.enum(['asc', 'desc']),
-        '+order_by': z.string()
+        '+and': z.optional(z.array(z.record(z.string(), z.unknown()))),
+        '+contains': z.optional(z.string()),
+        '+gt': z.optional(z.number()),
+        '+gte': z.optional(z.number()),
+        '+lt': z.optional(z.number()),
+        '+lte': z.optional(z.number()),
+        '+neq': z.optional(z.string()),
+        '+or': z.optional(z.array(z.record(z.string(), z.unknown()))),
+        '+order': z.optional(z.enum(['asc', 'desc'])),
+        '+order_by': z.optional(z.string())
     })
 ]);
 
@@ -1849,120 +1849,120 @@ export const xFilterCriteriaSchema = z.record(z.string(), z.unknown());
  * Account object.
  */
 export const accountWritableSchema = z.object({
-    address_1: z.string().max(64),
-    address_2: z.string().max(64),
-    city: z.string().max(24),
-    company: z.string().max(128),
-    country: z.string(),
-    email: z.string().max(128),
-    first_name: z.string().max(50),
-    last_name: z.string().max(50),
-    phone: z.string().max(32),
-    state: z.string().max(24),
-    tax_id: z.string().max(25),
-    zip: z.string()
+    address_1: z.optional(z.string().max(64)),
+    address_2: z.optional(z.string().max(64)),
+    city: z.optional(z.string().max(24)),
+    company: z.optional(z.string().max(128)),
+    country: z.optional(z.string()),
+    email: z.optional(z.string().max(128)),
+    first_name: z.optional(z.string().max(50)),
+    last_name: z.optional(z.string().max(50)),
+    phone: z.optional(z.string().max(32)),
+    state: z.optional(z.string().max(24)),
+    tax_id: z.optional(z.string().max(25)),
+    zip: z.optional(z.string())
 });
 
 /**
  * Account Settings object.
  */
 export const accountSettingsWritableSchema = z.object({
-    backups_enabled: z.boolean(),
-    interfaces_for_new_linodes: z.enum([
+    backups_enabled: z.optional(z.boolean()),
+    interfaces_for_new_linodes: z.optional(z.enum([
         'legacy_config_only',
         'legacy_config_default_but_linode_allowed',
         'linode_default_but_legacy_config_allowed',
         'linode_only'
-    ]),
-    maintenance_policy: z.enum(['linode/migrate', 'linode/power_off_on']),
-    network_helper: z.boolean()
+    ])),
+    maintenance_policy: z.optional(z.enum(['linode/migrate', 'linode/power_off_on'])),
+    network_helper: z.optional(z.boolean())
 });
 
 export const addedGetAccountLogins200WritableSchema = z.object({
-    data: z.array(z.record(z.string(), z.never()))
+    data: z.optional(z.array(z.record(z.string(), z.never())))
 });
 
 export const addedGetAvailability200WritableSchema = z.object({
-    data: z.array(z.object({}))
+    data: z.optional(z.array(z.object({})))
 }).and(z.object({}));
 
 export const addedGetChildAccounts200WritableSchema = z.object({
-    data: z.array(z.object({
-        address_1: z.string().max(64),
-        address_2: z.string().max(64),
-        city: z.string().max(24),
-        company: z.string().max(128),
-        country: z.string(),
-        email: z.string().max(128),
-        first_name: z.string().max(50),
-        last_name: z.string().max(50),
-        phone: z.string().max(32),
-        state: z.string().max(24),
-        tax_id: z.string().max(25),
-        zip: z.string()
-    }))
+    data: z.optional(z.array(z.object({
+        address_1: z.optional(z.string().max(64)),
+        address_2: z.optional(z.string().max(64)),
+        city: z.optional(z.string().max(24)),
+        company: z.optional(z.string().max(128)),
+        country: z.optional(z.string()),
+        email: z.optional(z.string().max(128)),
+        first_name: z.optional(z.string().max(50)),
+        last_name: z.optional(z.string().max(50)),
+        phone: z.optional(z.string().max(32)),
+        state: z.optional(z.string().max(24)),
+        tax_id: z.optional(z.string().max(25)),
+        zip: z.optional(z.string())
+    })))
 });
 
 export const addedGetClients200WritableSchema = z.object({
-    data: z.array(z.object({
-        label: z.string().min(1).max(512),
-        public: z.boolean().default(false),
-        redirect_uri: z.string()
-    }))
+    data: z.optional(z.array(z.object({
+        label: z.optional(z.string().min(1).max(512)),
+        public: z.optional(z.boolean()).default(false),
+        redirect_uri: z.optional(z.string())
+    })))
 });
 
 export const addedGetEnrolledBetaPrograms200WritableSchema = z.object({}).and(z.object({
-    data: z.array(z.object({
-        id: z.string()
-    }))
+    data: z.optional(z.array(z.object({
+        id: z.optional(z.string())
+    })))
 }));
 
 export const addedGetEntityTransfers200WritableSchema = z.object({}).and(z.object({
     data: z.optional(z.array(z.object({
-        created: z.iso.datetime(),
-        entities: z.object({
-            linodes: z.array(z.int())
-        }),
-        expiry: z.iso.datetime(),
-        is_sender: z.boolean(),
-        status: z.enum([
+        created: z.optional(z.iso.datetime()),
+        entities: z.optional(z.object({
+            linodes: z.optional(z.array(z.int()))
+        })),
+        expiry: z.optional(z.iso.datetime()),
+        is_sender: z.optional(z.boolean()),
+        status: z.optional(z.enum([
             'accepted',
             'canceled',
             'completed',
             'failed',
             'pending',
             'stale'
-        ]),
-        token: z.uuid(),
-        updated: z.iso.datetime()
+        ])),
+        token: z.optional(z.uuid()),
+        updated: z.optional(z.iso.datetime())
     })))
 }));
 
 export const addedGetInvoiceItems200WritableSchema = z.object({
-    data: z.array(z.record(z.string(), z.never()))
+    data: z.optional(z.array(z.record(z.string(), z.never())))
 });
 
 export const addedGetInvoices200WritableSchema = z.object({
-    data: z.array(z.record(z.string(), z.never()))
+    data: z.optional(z.array(z.record(z.string(), z.never())))
 });
 
 export const addedGetNotifications200WritableSchema = z.object({
-    data: z.array(z.object({
-        body: z.union([
+    data: z.optional(z.array(z.object({
+        body: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        entity: z.union([
+        ])),
+        entity: z.optional(z.union([
             z.object({
-                id: z.union([
+                id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ]),
-                label: z.union([
+                ])),
+                label: z.optional(z.union([
                     z.string(),
                     z.null()
-                ]),
-                type: z.enum([
+                ])),
+                type: z.optional(z.enum([
                     'account',
                     'entity_transfer',
                     'linode',
@@ -1972,22 +1972,22 @@ export const addedGetNotifications200WritableSchema = z.object({
                     'region',
                     'ticket',
                     'volume'
-                ]),
-                url: z.union([
+                ])),
+                url: z.optional(z.union([
                     z.string(),
                     z.null()
-                ])
+                ]))
             }),
             z.null()
-        ]),
-        label: z.string(),
-        message: z.string(),
-        severity: z.enum([
+        ])),
+        label: z.optional(z.string()),
+        message: z.optional(z.string()),
+        severity: z.optional(z.enum([
             'minor',
             'major',
             'critical'
-        ]),
-        type: z.enum([
+        ])),
+        type: z.optional(z.enum([
             'migration_scheduled',
             'migration_imminent',
             'migration_pending',
@@ -2002,72 +2002,72 @@ export const addedGetNotifications200WritableSchema = z.object({
             'promotion',
             'security_reboot_maintenance_scheduled',
             'tax_id_verifying'
-        ]),
-        until: z.union([
+        ])),
+        until: z.optional(z.union([
             z.iso.datetime(),
             z.null()
-        ]),
-        when: z.union([
+        ])),
+        when: z.optional(z.union([
             z.iso.datetime(),
             z.null()
-        ])
-    }))
+        ]))
+    })))
 });
 
 export const addedGetPaymentMethods200WritableSchema = z.object({
-    data: z.array(z.object({
-        data: z.union([
+    data: z.optional(z.array(z.object({
+        data: z.optional(z.union([
             z.record(z.string(), z.never()),
             z.record(z.string(), z.never()),
             z.record(z.string(), z.never())
-        ]),
-        id: z.int(),
-        is_default: z.boolean(),
-        type: z.enum([
+        ])),
+        id: z.optional(z.int()),
+        is_default: z.optional(z.boolean()),
+        type: z.optional(z.enum([
             'credit_card',
             'google_pay',
             'paypal'
-        ])
-    }))
+        ]))
+    })))
 });
 
 export const addedGetPayments200WritableSchema = z.object({
-    data: z.array(z.record(z.string(), z.never()))
+    data: z.optional(z.array(z.record(z.string(), z.never())))
 });
 
 export const addedGetServiceTransfers200WritableSchema = z.object({
-    data: z.array(z.object({
-        created: z.iso.datetime(),
-        entities: z.object({
-            linodes: z.array(z.int())
-        }),
-        expiry: z.iso.datetime(),
-        is_sender: z.boolean(),
-        status: z.enum([
+    data: z.optional(z.array(z.object({
+        created: z.optional(z.iso.datetime()),
+        entities: z.optional(z.object({
+            linodes: z.optional(z.array(z.int()))
+        })),
+        expiry: z.optional(z.iso.datetime()),
+        is_sender: z.optional(z.boolean()),
+        status: z.optional(z.enum([
             'accepted',
             'canceled',
             'completed',
             'failed',
             'pending',
             'stale'
-        ]),
-        token: z.uuid(),
-        updated: z.iso.datetime()
-    }))
+        ])),
+        token: z.optional(z.uuid()),
+        updated: z.optional(z.iso.datetime())
+    })))
 });
 
 export const addedGetUser200WritableSchema = z.object({
-    email: z.email(),
-    restricted: z.boolean(),
-    username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/)
+    email: z.optional(z.email()),
+    restricted: z.optional(z.boolean()),
+    username: z.optional(z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/))
 }).and(z.object({}));
 
 export const addedGetUsers200WritableSchema = z.object({
-    data: z.array(z.object({
-        email: z.email(),
-        restricted: z.boolean(),
-        username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/)
-    }).and(z.object({})))
+    data: z.optional(z.array(z.object({
+        email: z.optional(z.email()),
+        restricted: z.optional(z.boolean()),
+        username: z.optional(z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/))
+    }).and(z.object({}))))
 });
 
 /**
@@ -2075,12 +2075,12 @@ export const addedGetUsers200WritableSchema = z.object({
  */
 export const addedPostClientWritableSchema = z.object({
     label: z.string().min(1).max(512),
-    public: z.boolean().default(false),
+    public: z.optional(z.boolean()).default(false),
     redirect_uri: z.string()
 });
 
 export const addedPostPayPalPayment200WritableSchema = z.object({
-    payment_id: z.string()
+    payment_id: z.optional(z.string())
 });
 
 /**
@@ -2088,153 +2088,153 @@ export const addedPostPayPalPayment200WritableSchema = z.object({
  */
 export const addedPostUserWritableSchema = z.object({
     email: z.email(),
-    restricted: z.boolean(),
+    restricted: z.optional(z.boolean()),
     username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/)
 });
 
 export const addedPutUser200WritableSchema = z.object({
-    email: z.email(),
-    restricted: z.boolean(),
-    username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/)
+    email: z.optional(z.email()),
+    restricted: z.optional(z.boolean()),
+    username: z.optional(z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/))
 }).and(z.object({}));
 
 /**
  * An object representing an enrolled Beta Program for the Account.
  */
 export const betaProgramEnrolledWritableSchema = z.object({
-    id: z.string()
+    id: z.optional(z.string())
 });
 
 /**
  * Child account object.
  */
 export const childAccountWritableSchema = z.object({
-    address_1: z.string().max(64),
-    address_2: z.string().max(64),
-    city: z.string().max(24),
-    company: z.string().max(128),
-    country: z.string(),
-    email: z.string().max(128),
-    first_name: z.string().max(50),
-    last_name: z.string().max(50),
-    phone: z.string().max(32),
-    state: z.string().max(24),
-    tax_id: z.string().max(25),
-    zip: z.string()
+    address_1: z.optional(z.string().max(64)),
+    address_2: z.optional(z.string().max(64)),
+    city: z.optional(z.string().max(24)),
+    company: z.optional(z.string().max(128)),
+    country: z.optional(z.string()),
+    email: z.optional(z.string().max(128)),
+    first_name: z.optional(z.string().max(50)),
+    last_name: z.optional(z.string().max(50)),
+    phone: z.optional(z.string().max(32)),
+    state: z.optional(z.string().max(24)),
+    tax_id: z.optional(z.string().max(25)),
+    zip: z.optional(z.string())
 });
 
 /**
  * A specific event object. An event is an action taken against an entity related to your account. For example, if you boot a Linode, the system creates an event. The events returned depend on your user grants.
  */
 export const eventWritableSchema = z.object({
-    message: z.union([
+    message: z.optional(z.union([
         z.string(),
         z.null()
-    ])
+    ]))
 });
 
 export const getMaintenance200WritableSchema = z.object({
-    data: z.array(z.object({
-        complete_time: z.iso.datetime(),
-        description: z.enum(['Scheduled Maintenance', 'Emergency Maintenance']),
-        entity: z.object({
-            id: z.number(),
-            label: z.string(),
-            type: z.string(),
-            url: z.string()
-        }),
-        maintenance_policy_set: z.string(),
-        not_before: z.iso.datetime(),
-        reason: z.string(),
-        source: z.enum(['platform', 'user']),
-        start_time: z.iso.datetime(),
-        status: z.enum([
+    data: z.optional(z.array(z.object({
+        complete_time: z.optional(z.iso.datetime()),
+        description: z.optional(z.enum(['Scheduled Maintenance', 'Emergency Maintenance'])),
+        entity: z.optional(z.object({
+            id: z.optional(z.number()),
+            label: z.optional(z.string()),
+            type: z.optional(z.string()),
+            url: z.optional(z.string())
+        })),
+        maintenance_policy_set: z.optional(z.string()),
+        not_before: z.optional(z.iso.datetime()),
+        reason: z.optional(z.string()),
+        source: z.optional(z.enum(['platform', 'user'])),
+        start_time: z.optional(z.iso.datetime()),
+        status: z.optional(z.enum([
             'pending',
             'scheduled',
             'started',
             'in-progress',
             'completed',
             'canceled'
-        ]),
-        type: z.enum([
+        ])),
+        type: z.optional(z.enum([
             'reboot',
             'cold_migration',
             'live_migration',
             'migrate',
             'power_off_on'
-        ]),
-        when: z.iso.datetime()
-    }))
+        ])),
+        when: z.optional(z.iso.datetime())
+    })))
 });
 
 /**
  * Represents the level of access a restricted user has to a specific resource on the account.
  */
 export const grantWritableSchema = z.object({
-    id: z.int(),
-    permissions: z.enum(['read_only', 'read_write'])
+    id: z.optional(z.int()),
+    permissions: z.optional(z.enum(['read_only', 'read_write']))
 });
 
 export const grantsResponseWritableSchema = z.object({
-    database: z.array(z.object({
-        id: z.int(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    domain: z.array(z.object({
-        id: z.int(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    firewall: z.array(z.object({
-        id: z.int(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    global: z.object({
-        account_access: z.enum(['read_only', 'read_write']),
-        add_databases: z.boolean(),
-        add_domains: z.boolean(),
-        add_firewalls: z.boolean(),
-        add_images: z.boolean(),
-        add_linodes: z.boolean(),
-        add_longview: z.boolean(),
-        add_nodebalancers: z.boolean(),
-        add_stackscripts: z.boolean(),
-        add_volumes: z.boolean(),
-        add_vpcs: z.boolean(),
-        cancel_account: z.boolean(),
-        child_account_access: z.union([
+    database: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    domain: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    firewall: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    global: z.optional(z.object({
+        account_access: z.optional(z.enum(['read_only', 'read_write'])),
+        add_databases: z.optional(z.boolean()),
+        add_domains: z.optional(z.boolean()),
+        add_firewalls: z.optional(z.boolean()),
+        add_images: z.optional(z.boolean()),
+        add_linodes: z.optional(z.boolean()),
+        add_longview: z.optional(z.boolean()),
+        add_nodebalancers: z.optional(z.boolean()),
+        add_stackscripts: z.optional(z.boolean()),
+        add_volumes: z.optional(z.boolean()),
+        add_vpcs: z.optional(z.boolean()),
+        cancel_account: z.optional(z.boolean()),
+        child_account_access: z.optional(z.union([
             z.boolean(),
             z.null()
-        ]),
-        longview_subscription: z.boolean()
-    }),
-    image: z.array(z.object({
-        id: z.int(),
-        permissions: z.enum(['read_only', 'read_write'])
+        ])),
+        longview_subscription: z.optional(z.boolean())
     })),
-    linode: z.array(z.object({
-        id: z.int(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    longview: z.array(z.object({
-        id: z.int(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    nodebalancer: z.array(z.object({
-        id: z.int(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    stackscript: z.array(z.object({
-        id: z.int(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    volume: z.array(z.object({
-        id: z.int(),
-        permissions: z.enum(['read_only', 'read_write'])
-    })),
-    vpc: z.array(z.object({
-        id: z.int(),
-        permissions: z.enum(['read_only', 'read_write'])
-    }))
+    image: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    linode: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    longview: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    nodebalancer: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    stackscript: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    volume: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    }))),
+    vpc: z.optional(z.array(z.object({
+        id: z.optional(z.int()),
+        permissions: z.optional(z.enum(['read_only', 'read_write']))
+    })))
 });
 
 /**
@@ -2246,34 +2246,34 @@ export const invoiceWritableSchema = z.record(z.string(), z.never());
  * A third-party application registered to Linode that users may log into with their Linode account through our authentication server at [login.linode.com](https://login.linode.com).  Using an OAuth Client, a third-party developer may be given access to some, or all, of a User's account for the purposes of their application.
  */
 export const oauthClientWritableSchema = z.object({
-    label: z.string().min(1).max(512),
-    public: z.boolean().default(false),
-    redirect_uri: z.string()
+    label: z.optional(z.string().min(1).max(512)),
+    public: z.optional(z.boolean()).default(false),
+    redirect_uri: z.optional(z.string())
 });
 
 /**
  * Payment Method Response Object.
  */
 export const paymentMethodWritableSchema = z.object({
-    data: z.union([
+    data: z.optional(z.union([
         z.record(z.string(), z.never()),
         z.record(z.string(), z.never()),
         z.record(z.string(), z.never())
-    ]),
-    id: z.int(),
-    is_default: z.boolean(),
-    type: z.enum([
+    ])),
+    id: z.optional(z.int()),
+    is_default: z.optional(z.boolean()),
+    type: z.optional(z.enum([
         'credit_card',
         'google_pay',
         'paypal'
-    ])
+    ]))
 });
 
 /**
  * The token generated manually for a child account so its proxy user can access the API and CLI without going through an OAuth login.
  */
 export const proxyUserTokenWritableSchema = z.object({
-    label: z.string().min(1).max(100)
+    label: z.optional(z.string().min(1).max(100))
 });
 
 /**
@@ -2282,18 +2282,18 @@ export const proxyUserTokenWritableSchema = z.object({
  * Certain Regions have separate utilization quotas and rates. For Region-specific network utilization data, see `region_transfers`.
  */
 export const transferWritableSchema = z.object({
-    region_transfers: z.array(z.object({
-        id: z.string()
-    }))
+    region_transfers: z.optional(z.array(z.object({
+        id: z.optional(z.string())
+    })))
 });
 
 /**
  * A user on your account. Unrestricted users can log in and access information about your account, while restricted users may only access entities or perform actions they've been granted access to.
  */
 export const userWritableSchema = z.object({
-    email: z.email(),
-    restricted: z.boolean(),
-    username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/)
+    email: z.optional(z.email()),
+    restricted: z.optional(z.boolean()),
+    username: z.optional(z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/))
 });
 
 /**
@@ -2392,16 +2392,16 @@ export const usernamePathSchema = z.string();
 export const xFilterHeaderSchema = z.union([
     z.record(z.string(), z.unknown()),
     z.object({
-        '+and': z.array(z.record(z.string(), z.unknown())),
-        '+contains': z.string(),
-        '+gt': z.number(),
-        '+gte': z.number(),
-        '+lt': z.number(),
-        '+lte': z.number(),
-        '+neq': z.string(),
-        '+or': z.array(z.record(z.string(), z.unknown())),
-        '+order': z.enum(['asc', 'desc']),
-        '+order_by': z.string()
+        '+and': z.optional(z.array(z.record(z.string(), z.unknown()))),
+        '+contains': z.optional(z.string()),
+        '+gt': z.optional(z.number()),
+        '+gte': z.optional(z.number()),
+        '+lt': z.optional(z.number()),
+        '+lte': z.optional(z.number()),
+        '+neq': z.optional(z.string()),
+        '+or': z.optional(z.array(z.record(z.string(), z.unknown()))),
+        '+order': z.optional(z.enum(['asc', 'desc'])),
+        '+order_by': z.optional(z.string())
     })
 ]);
 
@@ -2466,13 +2466,13 @@ export const getAccountResponseSchema = z.object({
 
 export const putAccountRequestSchema = z.object({
     body: z.object({
-        active_promotions: z.array(z.object({
-            credit_monthly_cap: z.string(),
-            credit_remaining: z.string(),
-            description: z.string(),
-            expire_dt: z.string(),
-            image_url: z.string(),
-            service_type: z.enum([
+        active_promotions: z.optional(z.array(z.object({
+            credit_monthly_cap: z.optional(z.string()),
+            credit_remaining: z.optional(z.string()),
+            description: z.optional(z.string()),
+            expire_dt: z.optional(z.string()),
+            image_url: z.optional(z.string()),
+            service_type: z.optional(z.enum([
                 'all',
                 'backup',
                 'blockstorage',
@@ -2487,32 +2487,32 @@ export const putAccountRequestSchema = z.object({
                 'objectstorage',
                 'placement_group',
                 'transfer_tx'
-            ]),
-            summary: z.string(),
-            this_month_credit_remaining: z.string()
-        }).readonly()).readonly(),
-        active_since: z.iso.datetime().readonly(),
-        address_1: z.string().max(64),
-        address_2: z.string().max(64),
-        balance: z.number().readonly(),
-        balance_uninvoiced: z.number().readonly(),
-        billing_source: z.enum(['akamai', 'linode']),
-        capabilities: z.array(z.string()).readonly(),
-        city: z.string().max(24),
-        company: z.string().max(128),
-        country: z.string(),
-        credit_card: z.object({
-            expiry: z.string(),
-            last_four: z.string()
-        }).readonly(),
-        email: z.string().max(128),
-        euuid: z.uuid().readonly(),
-        first_name: z.string().max(50),
-        last_name: z.string().max(50),
-        phone: z.string().max(32),
-        state: z.string().max(24),
-        tax_id: z.string().max(25),
-        zip: z.string()
+            ])),
+            summary: z.optional(z.string()),
+            this_month_credit_remaining: z.optional(z.string())
+        }).readonly()).readonly()),
+        active_since: z.optional(z.iso.datetime().readonly()),
+        address_1: z.optional(z.string().max(64)),
+        address_2: z.optional(z.string().max(64)),
+        balance: z.optional(z.number().readonly()),
+        balance_uninvoiced: z.optional(z.number().readonly()),
+        billing_source: z.optional(z.enum(['akamai', 'linode'])),
+        capabilities: z.optional(z.array(z.string()).readonly()),
+        city: z.optional(z.string().max(24)),
+        company: z.optional(z.string().max(128)),
+        country: z.optional(z.string()),
+        credit_card: z.optional(z.object({
+            expiry: z.optional(z.string()),
+            last_four: z.optional(z.string())
+        }).readonly()),
+        email: z.optional(z.string().max(128)),
+        euuid: z.optional(z.uuid().readonly()),
+        first_name: z.optional(z.string().max(50)),
+        last_name: z.optional(z.string().max(50)),
+        phone: z.optional(z.string().max(32)),
+        state: z.optional(z.string().max(24)),
+        tax_id: z.optional(z.string().max(25)),
+        zip: z.optional(z.string())
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -2589,10 +2589,10 @@ export const getAccountAgreementsResponseSchema = z.object({
 
 export const postAccountAgreementsRequestSchema = z.object({
     body: z.object({
-        billing_agreement: z.boolean(),
-        eu_model: z.boolean(),
-        master_service_agreement: z.boolean(),
-        privacy_policy: z.boolean()
+        billing_agreement: z.optional(z.boolean()),
+        eu_model: z.optional(z.boolean()),
+        master_service_agreement: z.optional(z.boolean()),
+        privacy_policy: z.optional(z.boolean())
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -2718,7 +2718,7 @@ export const getEnrolledBetaProgramResponseSchema = z.object({
 
 export const postCancelAccountRequestSchema = z.object({
     body: z.object({
-        comments: z.string()
+        comments: z.optional(z.string())
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -2885,7 +2885,7 @@ export const getEntityTransfersResponseSchema = z.object({
 export const postEntityTransferRequestSchema = z.object({
     body: z.optional(z.object({
         entities: z.object({
-            linodes: z.array(z.int())
+            linodes: z.optional(z.array(z.int()))
         })
     })),
     path: z.optional(z.never()),
@@ -2981,16 +2981,16 @@ export const getEventsRequestSchema = z.object({
         'X-Filter': z.optional(z.union([
             z.record(z.string(), z.unknown()),
             z.object({
-                '+and': z.array(z.record(z.string(), z.unknown())),
-                '+contains': z.string(),
-                '+gt': z.number(),
-                '+gte': z.number(),
-                '+lt': z.number(),
-                '+lte': z.number(),
-                '+neq': z.string(),
-                '+or': z.array(z.record(z.string(), z.unknown())),
-                '+order': z.enum(['asc', 'desc']),
-                '+order_by': z.string()
+                '+and': z.optional(z.array(z.record(z.string(), z.unknown()))),
+                '+contains': z.optional(z.string()),
+                '+gt': z.optional(z.number()),
+                '+gte': z.optional(z.number()),
+                '+lt': z.optional(z.number()),
+                '+lte': z.optional(z.number()),
+                '+neq': z.optional(z.string()),
+                '+or': z.optional(z.array(z.record(z.string(), z.unknown()))),
+                '+order': z.optional(z.enum(['asc', 'desc'])),
+                '+order_by': z.optional(z.string())
             })
         ]))
     }))
@@ -3571,16 +3571,16 @@ export const getInvoicesRequestSchema = z.object({
         'X-Filter': z.optional(z.union([
             z.record(z.string(), z.unknown()),
             z.object({
-                '+and': z.array(z.record(z.string(), z.unknown())),
-                '+contains': z.string(),
-                '+gt': z.number(),
-                '+gte': z.number(),
-                '+lt': z.number(),
-                '+lte': z.number(),
-                '+neq': z.string(),
-                '+or': z.array(z.record(z.string(), z.unknown())),
-                '+order': z.enum(['asc', 'desc']),
-                '+order_by': z.string()
+                '+and': z.optional(z.array(z.record(z.string(), z.unknown()))),
+                '+contains': z.optional(z.string()),
+                '+gt': z.optional(z.number()),
+                '+gte': z.optional(z.number()),
+                '+lt': z.optional(z.number()),
+                '+lte': z.optional(z.number()),
+                '+neq': z.optional(z.string()),
+                '+or': z.optional(z.array(z.record(z.string(), z.unknown()))),
+                '+order': z.optional(z.enum(['asc', 'desc'])),
+                '+order_by': z.optional(z.string())
             })
         ]))
     }))
@@ -3873,20 +3873,20 @@ export const getClientsResponseSchema = z.object({
 
 export const postClientRequestSchema = z.object({
     body: z.optional(z.object({
-        id: z.string().readonly(),
+        id: z.optional(z.string().readonly()),
         label: z.string().min(1).max(512),
-        public: z.boolean().default(false),
+        public: z.optional(z.boolean()).default(false),
         redirect_uri: z.string(),
-        secret: z.string().readonly(),
-        status: z.enum([
+        secret: z.optional(z.string().readonly()),
+        status: z.optional(z.enum([
             'active',
             'disabled',
             'suspended'
-        ]),
-        thumbnail_url: z.union([
+        ])),
+        thumbnail_url: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly()
+        ]).readonly())
     })),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -3955,20 +3955,20 @@ export const getClientResponseSchema = z.object({
 
 export const putClientRequestSchema = z.object({
     body: z.optional(z.object({
-        id: z.string().readonly(),
-        label: z.string().min(1).max(512),
-        public: z.boolean().default(false),
-        redirect_uri: z.string(),
-        secret: z.string().readonly(),
-        status: z.enum([
+        id: z.optional(z.string().readonly()),
+        label: z.optional(z.string().min(1).max(512)),
+        public: z.optional(z.boolean()).default(false),
+        redirect_uri: z.optional(z.string()),
+        secret: z.optional(z.string().readonly()),
+        status: z.optional(z.enum([
             'active',
             'disabled',
             'suspended'
-        ]),
-        thumbnail_url: z.union([
+        ])),
+        thumbnail_url: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly()
+        ]).readonly())
     })),
     path: z.object({
         clientId: z.string()
@@ -4189,16 +4189,16 @@ export const getPaymentsRequestSchema = z.object({
         'X-Filter': z.optional(z.union([
             z.record(z.string(), z.unknown()),
             z.object({
-                '+and': z.array(z.record(z.string(), z.unknown())),
-                '+contains': z.string(),
-                '+gt': z.number(),
-                '+gte': z.number(),
-                '+lt': z.number(),
-                '+lte': z.number(),
-                '+neq': z.string(),
-                '+or': z.array(z.record(z.string(), z.unknown())),
-                '+order': z.enum(['asc', 'desc']),
-                '+order_by': z.string()
+                '+and': z.optional(z.array(z.record(z.string(), z.unknown()))),
+                '+contains': z.optional(z.string()),
+                '+gt': z.optional(z.number()),
+                '+gte': z.optional(z.number()),
+                '+lt': z.optional(z.number()),
+                '+lte': z.optional(z.number()),
+                '+neq': z.optional(z.string()),
+                '+or': z.optional(z.array(z.record(z.string(), z.unknown()))),
+                '+order': z.optional(z.enum(['asc', 'desc'])),
+                '+order_by': z.optional(z.string())
             })
         ]))
     }))
@@ -4220,8 +4220,8 @@ export const getPaymentsResponseSchema = z.object({
 
 export const postPaymentRequestSchema = z.object({
     body: z.object({
-        payment_method_id: z.int(),
-        usd: z.string().regex(/^\$?\d+\.\d{2}$/)
+        payment_method_id: z.optional(z.int()),
+        usd: z.optional(z.string().regex(/^\$?\d+\.\d{2}$/))
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -4384,7 +4384,7 @@ export const getServiceTransfersResponseSchema = z.object({
 export const postServiceTransferRequestSchema = z.object({
     body: z.optional(z.object({
         entities: z.object({
-            linodes: z.array(z.int())
+            linodes: z.optional(z.array(z.int()))
         })
     })),
     path: z.optional(z.never()),
@@ -4499,22 +4499,22 @@ export const getAccountSettingsResponseSchema = z.object({
 
 export const putAccountSettingsRequestSchema = z.object({
     body: z.object({
-        backups_enabled: z.boolean(),
-        interfaces_for_new_linodes: z.enum([
+        backups_enabled: z.optional(z.boolean()),
+        interfaces_for_new_linodes: z.optional(z.enum([
             'legacy_config_only',
             'legacy_config_default_but_linode_allowed',
             'linode_default_but_legacy_config_allowed',
             'linode_only'
-        ]),
-        longview_subscription: z.string().readonly(),
-        maintenance_policy: z.enum(['linode/migrate', 'linode/power_off_on']),
-        managed: z.boolean().readonly(),
-        network_helper: z.boolean(),
-        object_storage: z.enum([
+        ])),
+        longview_subscription: z.optional(z.string().readonly()),
+        maintenance_policy: z.optional(z.enum(['linode/migrate', 'linode/power_off_on'])),
+        managed: z.optional(z.boolean().readonly()),
+        network_helper: z.optional(z.boolean()),
+        object_storage: z.optional(z.enum([
             'disabled',
             'suspended',
             'active'
-        ])
+        ]))
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -4626,25 +4626,25 @@ export const getUsersResponseSchema = z.object({
 export const postUserRequestSchema = z.object({
     body: z.optional(z.object({
         email: z.email(),
-        last_login: z.union([
+        last_login: z.optional(z.union([
             z.object({
-                login_datetime: z.iso.datetime().readonly(),
-                status: z.enum(['successful', 'failed'])
+                login_datetime: z.optional(z.iso.datetime().readonly()),
+                status: z.optional(z.enum(['successful', 'failed']))
             }).readonly(),
             z.null()
-        ]).readonly(),
-        password_created: z.union([
+        ]).readonly()),
+        password_created: z.optional(z.union([
             z.iso.datetime().readonly(),
             z.null()
-        ]).readonly(),
-        restricted: z.boolean(),
-        ssh_keys: z.array(z.string()).readonly(),
-        tfa_enabled: z.boolean().readonly(),
+        ]).readonly()),
+        restricted: z.optional(z.boolean()),
+        ssh_keys: z.optional(z.array(z.string()).readonly()),
+        tfa_enabled: z.optional(z.boolean().readonly()),
         username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/),
-        verified_phone_number: z.union([
+        verified_phone_number: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly()
+        ]).readonly())
     })),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -4732,26 +4732,26 @@ export const getUserResponseSchema = z.object({
 
 export const putUserRequestSchema = z.object({
     body: z.optional(z.object({
-        email: z.email(),
-        last_login: z.union([
+        email: z.optional(z.email()),
+        last_login: z.optional(z.union([
             z.object({
-                login_datetime: z.iso.datetime().readonly(),
-                status: z.enum(['successful', 'failed'])
+                login_datetime: z.optional(z.iso.datetime().readonly()),
+                status: z.optional(z.enum(['successful', 'failed']))
             }).readonly(),
             z.null()
-        ]).readonly(),
-        password_created: z.union([
+        ]).readonly()),
+        password_created: z.optional(z.union([
             z.iso.datetime().readonly(),
             z.null()
-        ]).readonly(),
-        restricted: z.boolean(),
-        ssh_keys: z.array(z.string()).readonly(),
-        tfa_enabled: z.boolean().readonly(),
-        username: z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/),
-        verified_phone_number: z.union([
+        ]).readonly()),
+        restricted: z.optional(z.boolean()),
+        ssh_keys: z.optional(z.array(z.string()).readonly()),
+        tfa_enabled: z.optional(z.boolean().readonly()),
+        username: z.optional(z.string().min(3).max(32).regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/)),
+        verified_phone_number: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly()
+        ]).readonly())
     })),
     path: z.object({
         username: z.string()
@@ -4877,75 +4877,75 @@ export const getUserGrantsResponseSchema = z.union([
 
 export const putUserGrantsRequestSchema = z.object({
     body: z.object({
-        database: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            permissions: z.enum(['read_only', 'read_write'])
-        })),
-        domain: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            permissions: z.enum(['read_only', 'read_write'])
-        })),
-        firewall: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            permissions: z.enum(['read_only', 'read_write'])
-        })),
-        global: z.object({
-            account_access: z.enum(['read_only', 'read_write']),
-            add_databases: z.boolean(),
-            add_domains: z.boolean(),
-            add_firewalls: z.boolean(),
-            add_images: z.boolean(),
-            add_linodes: z.boolean(),
-            add_longview: z.boolean(),
-            add_nodebalancers: z.boolean(),
-            add_stackscripts: z.boolean(),
-            add_volumes: z.boolean(),
-            add_vpcs: z.boolean(),
-            cancel_account: z.boolean(),
-            child_account_access: z.union([
+        database: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            permissions: z.optional(z.enum(['read_only', 'read_write']))
+        }))),
+        domain: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            permissions: z.optional(z.enum(['read_only', 'read_write']))
+        }))),
+        firewall: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            permissions: z.optional(z.enum(['read_only', 'read_write']))
+        }))),
+        global: z.optional(z.object({
+            account_access: z.optional(z.enum(['read_only', 'read_write'])),
+            add_databases: z.optional(z.boolean()),
+            add_domains: z.optional(z.boolean()),
+            add_firewalls: z.optional(z.boolean()),
+            add_images: z.optional(z.boolean()),
+            add_linodes: z.optional(z.boolean()),
+            add_longview: z.optional(z.boolean()),
+            add_nodebalancers: z.optional(z.boolean()),
+            add_stackscripts: z.optional(z.boolean()),
+            add_volumes: z.optional(z.boolean()),
+            add_vpcs: z.optional(z.boolean()),
+            cancel_account: z.optional(z.boolean()),
+            child_account_access: z.optional(z.union([
                 z.boolean(),
                 z.null()
-            ]),
-            longview_subscription: z.boolean()
-        }),
-        image: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            permissions: z.enum(['read_only', 'read_write'])
+            ])),
+            longview_subscription: z.optional(z.boolean())
         })),
-        linode: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            permissions: z.enum(['read_only', 'read_write'])
-        })),
-        longview: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            permissions: z.enum(['read_only', 'read_write'])
-        })),
-        nodebalancer: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            permissions: z.enum(['read_only', 'read_write'])
-        })),
-        stackscript: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            permissions: z.enum(['read_only', 'read_write'])
-        })),
-        volume: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            permissions: z.enum(['read_only', 'read_write'])
-        })),
-        vpc: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            permissions: z.enum(['read_only', 'read_write'])
-        }))
+        image: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            permissions: z.optional(z.enum(['read_only', 'read_write']))
+        }))),
+        linode: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            permissions: z.optional(z.enum(['read_only', 'read_write']))
+        }))),
+        longview: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            permissions: z.optional(z.enum(['read_only', 'read_write']))
+        }))),
+        nodebalancer: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            permissions: z.optional(z.enum(['read_only', 'read_write']))
+        }))),
+        stackscript: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            permissions: z.optional(z.enum(['read_only', 'read_write']))
+        }))),
+        volume: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            permissions: z.optional(z.enum(['read_only', 'read_write']))
+        }))),
+        vpc: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            permissions: z.optional(z.enum(['read_only', 'read_write']))
+        })))
     }),
     path: z.object({
         username: z.string()
@@ -5583,38 +5583,38 @@ export const postDatabasesMysqlInstancesRequestSchema = z.object({
         ])),
         engine: z.string(),
         engine_config: z.optional(z.object({
-            binlog_retention_period: z.int().gte(600).lte(86400),
-            mysql: z.object({
-                connect_timeout: z.int().gte(2).lte(3600),
-                default_time_zone: z.string().min(2).max(100).regex(/^([-+][\\d:]*|[\\w\/]*)$/),
-                group_concat_max_len: z.int().gte(4).lte(18446744073709552000),
-                information_schema_stats_expiry: z.int().gte(900).lte(31536000),
-                innodb_change_buffer_max_size: z.int().gte(0).lte(50).default(25),
-                innodb_flush_neighbors: z.int().gte(0).lte(2).default(1),
-                innodb_ft_min_token_size: z.int().gte(0).lte(16),
-                innodb_ft_server_stopword_table: z.union([
+            binlog_retention_period: z.optional(z.int().gte(600).lte(86400)),
+            mysql: z.optional(z.object({
+                connect_timeout: z.optional(z.int().gte(2).lte(3600)),
+                default_time_zone: z.optional(z.string().min(2).max(100).regex(/^([-+][\\d:]*|[\\w\/]*)$/)),
+                group_concat_max_len: z.optional(z.int().gte(4).lte(18446744073709552000)),
+                information_schema_stats_expiry: z.optional(z.int().gte(900).lte(31536000)),
+                innodb_change_buffer_max_size: z.optional(z.int().gte(0).lte(50)).default(25),
+                innodb_flush_neighbors: z.optional(z.int().gte(0).lte(2)).default(1),
+                innodb_ft_min_token_size: z.optional(z.int().gte(0).lte(16)),
+                innodb_ft_server_stopword_table: z.optional(z.union([
                     z.string().max(1024).regex(/^.+\/.+$/),
                     z.null()
-                ]),
-                innodb_lock_wait_timeout: z.int().gte(1).lte(3600).default(120),
-                innodb_log_buffer_size: z.int().gte(1048576).lte(4294967295),
-                innodb_online_alter_log_max_size: z.int().gte(65536).lte(1099511627776),
-                innodb_read_io_threads: z.int().gte(1).lte(64).default(4),
-                innodb_rollback_on_timeout: z.boolean(),
-                innodb_thread_concurrency: z.int().gte(0).lte(1000).default(0),
-                innodb_write_io_threads: z.int().gte(1).lte(64).default(4),
-                interactive_timeout: z.int().gte(30).lte(604800),
-                internal_tmp_mem_storage_engine: z.enum(['TempTable', 'MEMORY']),
-                max_allowed_packet: z.int().gte(102400).lte(1073741824).default(7108864),
-                max_heap_table_size: z.int().gte(1048576).lte(1073741824).default(16777216),
-                net_buffer_length: z.int().gte(1024).lte(1048576).default(16384),
-                net_read_timeout: z.int().gte(1).lte(3600),
-                net_write_timeout: z.int().gte(1).lte(3600),
-                sql_mode: z.string().max(1024).regex(/^[A-Z_]*(,[A-Z_]+)*$/),
-                sql_require_primary_key: z.boolean(),
-                tmp_table_size: z.int().gte(1048576).lte(1073741824).default(16777216),
-                wait_timeout: z.int().gte(1).lte(2147483)
-            })
+                ])),
+                innodb_lock_wait_timeout: z.optional(z.int().gte(1).lte(3600)).default(120),
+                innodb_log_buffer_size: z.optional(z.int().gte(1048576).lte(4294967295)),
+                innodb_online_alter_log_max_size: z.optional(z.int().gte(65536).lte(1099511627776)),
+                innodb_read_io_threads: z.optional(z.int().gte(1).lte(64)).default(4),
+                innodb_rollback_on_timeout: z.optional(z.boolean()),
+                innodb_thread_concurrency: z.optional(z.int().gte(0).lte(1000)).default(0),
+                innodb_write_io_threads: z.optional(z.int().gte(1).lte(64)).default(4),
+                interactive_timeout: z.optional(z.int().gte(30).lte(604800)),
+                internal_tmp_mem_storage_engine: z.optional(z.enum(['TempTable', 'MEMORY'])),
+                max_allowed_packet: z.optional(z.int().gte(102400).lte(1073741824)).default(7108864),
+                max_heap_table_size: z.optional(z.int().gte(1048576).lte(1073741824)).default(16777216),
+                net_buffer_length: z.optional(z.int().gte(1024).lte(1048576)).default(16384),
+                net_read_timeout: z.optional(z.int().gte(1).lte(3600)),
+                net_write_timeout: z.optional(z.int().gte(1).lte(3600)),
+                sql_mode: z.optional(z.string().max(1024).regex(/^[A-Z_]*(,[A-Z_]+)*$/)),
+                sql_require_primary_key: z.optional(z.boolean()),
+                tmp_table_size: z.optional(z.int().gte(1048576).lte(1073741824)).default(16777216),
+                wait_timeout: z.optional(z.int().gte(1).lte(2147483))
+            }))
         })),
         fork: z.optional(z.object({
             restore_time: z.optional(z.iso.datetime()),
@@ -5623,9 +5623,9 @@ export const postDatabasesMysqlInstancesRequestSchema = z.object({
         label: z.string().min(3).max(32),
         private_network: z.optional(z.union([
             z.object({
-                public_access: z.boolean().default(false),
-                subnet_id: z.int(),
-                vpc_id: z.int()
+                public_access: z.optional(z.boolean()).default(false),
+                subnet_id: z.optional(z.int()),
+                vpc_id: z.optional(z.int())
             }),
             z.null()
         ])),
@@ -5884,69 +5884,69 @@ export const getDatabasesMysqlInstanceResponseSchema = z.object({
 
 export const putDatabasesMysqlInstanceRequestSchema = z.object({
     body: z.object({
-        allow_list: z.array(z.string().regex(/^([0-9]{1,3}\.){3}[0-9]{1,3}(\/([0-9]|[1-2][0-9]|3[0-2]))?$/)).min(0),
-        engine_config: z.object({
-            binlog_retention_period: z.int().gte(600).lte(86400),
-            mysql: z.object({
-                connect_timeout: z.int().gte(2).lte(3600),
-                default_time_zone: z.string().min(2).max(100).regex(/^([-+][\\d:]*|[\\w\/]*)$/),
-                group_concat_max_len: z.int().gte(4).lte(18446744073709552000),
-                information_schema_stats_expiry: z.int().gte(900).lte(31536000),
-                innodb_change_buffer_max_size: z.int().gte(0).lte(50).default(25),
-                innodb_flush_neighbors: z.int().gte(0).lte(2).default(1),
-                innodb_ft_min_token_size: z.int().gte(0).lte(16),
-                innodb_ft_server_stopword_table: z.union([
+        allow_list: z.optional(z.array(z.string().regex(/^([0-9]{1,3}\.){3}[0-9]{1,3}(\/([0-9]|[1-2][0-9]|3[0-2]))?$/)).min(0)),
+        engine_config: z.optional(z.object({
+            binlog_retention_period: z.optional(z.int().gte(600).lte(86400)),
+            mysql: z.optional(z.object({
+                connect_timeout: z.optional(z.int().gte(2).lte(3600)),
+                default_time_zone: z.optional(z.string().min(2).max(100).regex(/^([-+][\\d:]*|[\\w\/]*)$/)),
+                group_concat_max_len: z.optional(z.int().gte(4).lte(18446744073709552000)),
+                information_schema_stats_expiry: z.optional(z.int().gte(900).lte(31536000)),
+                innodb_change_buffer_max_size: z.optional(z.int().gte(0).lte(50)).default(25),
+                innodb_flush_neighbors: z.optional(z.int().gte(0).lte(2)).default(1),
+                innodb_ft_min_token_size: z.optional(z.int().gte(0).lte(16)),
+                innodb_ft_server_stopword_table: z.optional(z.union([
                     z.string().max(1024).regex(/^.+\/.+$/),
                     z.null()
-                ]),
-                innodb_lock_wait_timeout: z.int().gte(1).lte(3600).default(120),
-                innodb_log_buffer_size: z.int().gte(1048576).lte(4294967295),
-                innodb_online_alter_log_max_size: z.int().gte(65536).lte(1099511627776),
-                innodb_read_io_threads: z.int().gte(1).lte(64).default(4),
-                innodb_rollback_on_timeout: z.boolean(),
-                innodb_thread_concurrency: z.int().gte(0).lte(1000).default(0),
-                innodb_write_io_threads: z.int().gte(1).lte(64).default(4),
-                interactive_timeout: z.int().gte(30).lte(604800),
-                internal_tmp_mem_storage_engine: z.enum(['TempTable', 'MEMORY']),
-                max_allowed_packet: z.int().gte(102400).lte(1073741824).default(7108864),
-                max_heap_table_size: z.int().gte(1048576).lte(1073741824).default(16777216),
-                net_buffer_length: z.int().gte(1024).lte(1048576).default(16384),
-                net_read_timeout: z.int().gte(1).lte(3600),
-                net_write_timeout: z.int().gte(1).lte(3600),
-                sql_mode: z.string().max(1024).regex(/^[A-Z_]*(,[A-Z_]+)*$/),
-                sql_require_primary_key: z.boolean(),
-                tmp_table_size: z.int().gte(1048576).lte(1073741824).default(16777216),
-                wait_timeout: z.int().gte(1).lte(2147483)
-            })
-        }),
-        label: z.string().min(3).max(32),
-        private_network: z.union([
+                ])),
+                innodb_lock_wait_timeout: z.optional(z.int().gte(1).lte(3600)).default(120),
+                innodb_log_buffer_size: z.optional(z.int().gte(1048576).lte(4294967295)),
+                innodb_online_alter_log_max_size: z.optional(z.int().gte(65536).lte(1099511627776)),
+                innodb_read_io_threads: z.optional(z.int().gte(1).lte(64)).default(4),
+                innodb_rollback_on_timeout: z.optional(z.boolean()),
+                innodb_thread_concurrency: z.optional(z.int().gte(0).lte(1000)).default(0),
+                innodb_write_io_threads: z.optional(z.int().gte(1).lte(64)).default(4),
+                interactive_timeout: z.optional(z.int().gte(30).lte(604800)),
+                internal_tmp_mem_storage_engine: z.optional(z.enum(['TempTable', 'MEMORY'])),
+                max_allowed_packet: z.optional(z.int().gte(102400).lte(1073741824)).default(7108864),
+                max_heap_table_size: z.optional(z.int().gte(1048576).lte(1073741824)).default(16777216),
+                net_buffer_length: z.optional(z.int().gte(1024).lte(1048576)).default(16384),
+                net_read_timeout: z.optional(z.int().gte(1).lte(3600)),
+                net_write_timeout: z.optional(z.int().gte(1).lte(3600)),
+                sql_mode: z.optional(z.string().max(1024).regex(/^[A-Z_]*(,[A-Z_]+)*$/)),
+                sql_require_primary_key: z.optional(z.boolean()),
+                tmp_table_size: z.optional(z.int().gte(1048576).lte(1073741824)).default(16777216),
+                wait_timeout: z.optional(z.int().gte(1).lte(2147483))
+            }))
+        })),
+        label: z.optional(z.string().min(3).max(32)),
+        private_network: z.optional(z.union([
             z.object({
-                public_access: z.boolean().default(false),
-                subnet_id: z.int(),
-                vpc_id: z.int()
+                public_access: z.optional(z.boolean()).default(false),
+                subnet_id: z.optional(z.int()),
+                vpc_id: z.optional(z.int())
             }),
             z.null()
-        ]),
-        type: z.string(),
-        updates: z.object({
-            day_of_week: z.int().gte(1).lte(7),
-            duration: z.int().gte(1).lte(3),
-            frequency: z.enum(['weekly']),
-            hour_of_day: z.int().gte(0).lte(23),
-            pending: z.array(z.object({
-                deadline: z.union([
+        ])),
+        type: z.optional(z.string()),
+        updates: z.optional(z.object({
+            day_of_week: z.optional(z.int().gte(1).lte(7)),
+            duration: z.optional(z.int().gte(1).lte(3)),
+            frequency: z.optional(z.enum(['weekly'])),
+            hour_of_day: z.optional(z.int().gte(0).lte(23)),
+            pending: z.optional(z.array(z.object({
+                deadline: z.optional(z.union([
                     z.iso.datetime(),
                     z.null()
-                ]),
-                description: z.string(),
-                planned_for: z.union([
+                ])),
+                description: z.optional(z.string()),
+                planned_for: z.optional(z.union([
                     z.iso.datetime(),
                     z.null()
-                ])
-            })).min(0).readonly()
-        }),
-        version: z.string()
+                ]))
+            })).min(0).readonly())
+        })),
+        version: z.optional(z.string())
     }),
     path: z.object({
         instanceId: z.int()
@@ -6690,65 +6690,65 @@ export const postDatabasesPostgreSqlInstancesRequestSchema = z.object({
         ])),
         engine: z.string(),
         engine_config: z.optional(z.object({
-            pg: z.object({
-                autovacuum_analyze_scale_factor: z.number().gte(0).lte(1).default(0.2),
-                autovacuum_analyze_threshold: z.int().gte(0).lte(2147483647).default(50),
-                autovacuum_max_workers: z.int().gte(1).lte(20).default(3),
-                autovacuum_naptime: z.int().gte(1).lte(86400).default(60),
-                autovacuum_vacuum_cost_delay: z.int().gte(-1).lte(100).default(20),
-                autovacuum_vacuum_cost_limit: z.int().gte(-1).lte(10000).default(-1),
-                autovacuum_vacuum_scale_factor: z.number().gte(0).lte(1).default(0.2),
-                autovacuum_vacuum_threshold: z.int().gte(0).lte(2147483647).default(50),
-                bgwriter_delay: z.int().gte(20).lte(10000).default(200),
-                bgwriter_flush_after: z.int().gte(0).lte(2048).default(512),
-                bgwriter_lru_maxpages: z.int().gte(0).lte(1073741823).default(100),
-                bgwriter_lru_multiplier: z.number().gte(0).lte(10).default(2.5),
-                deadlock_timeout: z.int().gte(500).lte(1800000),
-                default_toast_compression: z.enum(['lz4', 'pglz']),
-                idle_in_transaction_session_timeout: z.int().gte(0).lte(604800000),
-                jit: z.boolean(),
-                max_files_per_process: z.int().gte(1000).lte(4096),
-                max_locks_per_transaction: z.int().gte(64).lte(6400),
-                max_logical_replication_workers: z.int().gte(4).lte(64),
-                max_parallel_workers: z.int().gte(0).lte(96),
-                max_parallel_workers_per_gather: z.int().gte(0).lte(96),
-                max_pred_locks_per_transaction: z.int().gte(64).lte(5120),
-                max_replication_slots: z.int().gte(8).lte(64),
-                max_slot_wal_keep_size: z.int().gte(-1).lte(2147483647).default(-1),
-                max_stack_depth: z.int().gte(2097152).lte(6291456),
-                max_standby_archive_delay: z.int().gte(1).lte(43200000),
-                max_standby_streaming_delay: z.int().gte(1).lte(43200000),
-                max_wal_senders: z.int().gte(20).lte(64),
-                max_worker_processes: z.int().gte(8).lte(96),
-                password_encryption: z.enum(['scram-sh-256', 'md5']),
-                'pg_partman_bgw.interval': z.int().gte(3600).lte(604800),
-                'pg_partman_bgw.role': z.string(),
-                'pg_stat_monitor.pgsm_enable_query_plan': z.boolean(),
-                'pg_stat_monitor.pgsm_max_buckets': z.int().gte(1).lte(10),
-                'pg_stat_statements.track': z.enum([
+            pg: z.optional(z.object({
+                autovacuum_analyze_scale_factor: z.optional(z.number().gte(0).lte(1)).default(0.2),
+                autovacuum_analyze_threshold: z.optional(z.int().gte(0).lte(2147483647)).default(50),
+                autovacuum_max_workers: z.optional(z.int().gte(1).lte(20)).default(3),
+                autovacuum_naptime: z.optional(z.int().gte(1).lte(86400)).default(60),
+                autovacuum_vacuum_cost_delay: z.optional(z.int().gte(-1).lte(100)).default(20),
+                autovacuum_vacuum_cost_limit: z.optional(z.int().gte(-1).lte(10000)).default(-1),
+                autovacuum_vacuum_scale_factor: z.optional(z.number().gte(0).lte(1)).default(0.2),
+                autovacuum_vacuum_threshold: z.optional(z.int().gte(0).lte(2147483647)).default(50),
+                bgwriter_delay: z.optional(z.int().gte(20).lte(10000)).default(200),
+                bgwriter_flush_after: z.optional(z.int().gte(0).lte(2048)).default(512),
+                bgwriter_lru_maxpages: z.optional(z.int().gte(0).lte(1073741823)).default(100),
+                bgwriter_lru_multiplier: z.optional(z.number().gte(0).lte(10)).default(2.5),
+                deadlock_timeout: z.optional(z.int().gte(500).lte(1800000)),
+                default_toast_compression: z.optional(z.enum(['lz4', 'pglz'])),
+                idle_in_transaction_session_timeout: z.optional(z.int().gte(0).lte(604800000)),
+                jit: z.optional(z.boolean()),
+                max_files_per_process: z.optional(z.int().gte(1000).lte(4096)),
+                max_locks_per_transaction: z.optional(z.int().gte(64).lte(6400)),
+                max_logical_replication_workers: z.optional(z.int().gte(4).lte(64)),
+                max_parallel_workers: z.optional(z.int().gte(0).lte(96)),
+                max_parallel_workers_per_gather: z.optional(z.int().gte(0).lte(96)),
+                max_pred_locks_per_transaction: z.optional(z.int().gte(64).lte(5120)),
+                max_replication_slots: z.optional(z.int().gte(8).lte(64)),
+                max_slot_wal_keep_size: z.optional(z.int().gte(-1).lte(2147483647)).default(-1),
+                max_stack_depth: z.optional(z.int().gte(2097152).lte(6291456)),
+                max_standby_archive_delay: z.optional(z.int().gte(1).lte(43200000)),
+                max_standby_streaming_delay: z.optional(z.int().gte(1).lte(43200000)),
+                max_wal_senders: z.optional(z.int().gte(20).lte(64)),
+                max_worker_processes: z.optional(z.int().gte(8).lte(96)),
+                password_encryption: z.optional(z.enum(['scram-sh-256', 'md5'])),
+                'pg_partman_bgw.interval': z.optional(z.int().gte(3600).lte(604800)),
+                'pg_partman_bgw.role': z.optional(z.string()),
+                'pg_stat_monitor.pgsm_enable_query_plan': z.optional(z.boolean()),
+                'pg_stat_monitor.pgsm_max_buckets': z.optional(z.int().gte(1).lte(10)),
+                'pg_stat_statements.track': z.optional(z.enum([
                     'all',
                     'top',
                     'none'
-                ]),
-                temp_file_limit: z.int().gte(-1).lte(2147483647),
-                timezone: z.string().max(64).regex(/^[\\w\/]*$/),
-                track_activity_query_size: z.int().gte(1024).lte(10240),
-                track_commit_timestamp: z.enum(['on', 'off']),
-                track_functions: z.enum([
+                ])),
+                temp_file_limit: z.optional(z.int().gte(-1).lte(2147483647)),
+                timezone: z.optional(z.string().max(64).regex(/^[\\w\/]*$/)),
+                track_activity_query_size: z.optional(z.int().gte(1024).lte(10240)),
+                track_commit_timestamp: z.optional(z.enum(['on', 'off'])),
+                track_functions: z.optional(z.enum([
                     'all',
                     'pl',
                     'none'
-                ]),
-                track_io_timing: z.enum(['on', 'off']),
-                wal_sender_timeout: z.int().gte(0).lte(60000),
-                wal_writer_delay: z.int().gte(10).lte(200).default(200)
-            }),
-            pg_stat_monitor_enable: z.boolean(),
-            pglookout: z.object({
-                max_failover_replication_time_lag: z.int().gte(10).lte(999999)
-            }),
-            shared_buffers_percentage: z.number().gte(20).lte(60),
-            work_mem: z.int().gte(1).lte(4)
+                ])),
+                track_io_timing: z.optional(z.enum(['on', 'off'])),
+                wal_sender_timeout: z.optional(z.int().gte(0).lte(60000)),
+                wal_writer_delay: z.optional(z.int().gte(10).lte(200)).default(200)
+            })),
+            pg_stat_monitor_enable: z.optional(z.boolean()),
+            pglookout: z.optional(z.object({
+                max_failover_replication_time_lag: z.optional(z.int().gte(10).lte(999999))
+            })),
+            shared_buffers_percentage: z.optional(z.number().gte(20).lte(60)),
+            work_mem: z.optional(z.int().gte(1).lte(4))
         })),
         fork: z.optional(z.object({
             restore_time: z.optional(z.iso.datetime()),
@@ -6757,9 +6757,9 @@ export const postDatabasesPostgreSqlInstancesRequestSchema = z.object({
         label: z.string().min(3).max(32),
         private_network: z.optional(z.union([
             z.object({
-                public_access: z.boolean().default(false),
-                subnet_id: z.int(),
-                vpc_id: z.int()
+                public_access: z.optional(z.boolean()).default(false),
+                subnet_id: z.optional(z.int()),
+                vpc_id: z.optional(z.int())
             }),
             z.null()
         ])),
@@ -7063,96 +7063,96 @@ export const getDatabasesPostgreSqlInstanceResponseSchema = z.object({
 
 export const putDatabasesPostgreSqlInstanceRequestSchema = z.object({
     body: z.object({
-        allow_list: z.array(z.string().regex(/^([0-9]{1,3}\.){3}[0-9]{1,3}(\/([0-9]|[1-2][0-9]|3[0-2]))?$/)).min(0),
-        engine_config: z.object({
-            pg: z.object({
-                autovacuum_analyze_scale_factor: z.number().gte(0).lte(1).default(0.2),
-                autovacuum_analyze_threshold: z.int().gte(0).lte(2147483647).default(50),
-                autovacuum_max_workers: z.int().gte(1).lte(20).default(3),
-                autovacuum_naptime: z.int().gte(1).lte(86400).default(60),
-                autovacuum_vacuum_cost_delay: z.int().gte(-1).lte(100).default(20),
-                autovacuum_vacuum_cost_limit: z.int().gte(-1).lte(10000).default(-1),
-                autovacuum_vacuum_scale_factor: z.number().gte(0).lte(1).default(0.2),
-                autovacuum_vacuum_threshold: z.int().gte(0).lte(2147483647).default(50),
-                bgwriter_delay: z.int().gte(20).lte(10000).default(200),
-                bgwriter_flush_after: z.int().gte(0).lte(2048).default(512),
-                bgwriter_lru_maxpages: z.int().gte(0).lte(1073741823).default(100),
-                bgwriter_lru_multiplier: z.number().gte(0).lte(10).default(2.5),
-                deadlock_timeout: z.int().gte(500).lte(1800000),
-                default_toast_compression: z.enum(['lz4', 'pglz']),
-                idle_in_transaction_session_timeout: z.int().gte(0).lte(604800000),
-                jit: z.boolean(),
-                max_files_per_process: z.int().gte(1000).lte(4096),
-                max_locks_per_transaction: z.int().gte(64).lte(6400),
-                max_logical_replication_workers: z.int().gte(4).lte(64),
-                max_parallel_workers: z.int().gte(0).lte(96),
-                max_parallel_workers_per_gather: z.int().gte(0).lte(96),
-                max_pred_locks_per_transaction: z.int().gte(64).lte(5120),
-                max_replication_slots: z.int().gte(8).lte(64),
-                max_slot_wal_keep_size: z.int().gte(-1).lte(2147483647).default(-1),
-                max_stack_depth: z.int().gte(2097152).lte(6291456),
-                max_standby_archive_delay: z.int().gte(1).lte(43200000),
-                max_standby_streaming_delay: z.int().gte(1).lte(43200000),
-                max_wal_senders: z.int().gte(20).lte(64),
-                max_worker_processes: z.int().gte(8).lte(96),
-                password_encryption: z.enum(['scram-sh-256', 'md5']),
-                'pg_partman_bgw.interval': z.int().gte(3600).lte(604800),
-                'pg_partman_bgw.role': z.string(),
-                'pg_stat_monitor.pgsm_enable_query_plan': z.boolean(),
-                'pg_stat_monitor.pgsm_max_buckets': z.int().gte(1).lte(10),
-                'pg_stat_statements.track': z.enum([
+        allow_list: z.optional(z.array(z.string().regex(/^([0-9]{1,3}\.){3}[0-9]{1,3}(\/([0-9]|[1-2][0-9]|3[0-2]))?$/)).min(0)),
+        engine_config: z.optional(z.object({
+            pg: z.optional(z.object({
+                autovacuum_analyze_scale_factor: z.optional(z.number().gte(0).lte(1)).default(0.2),
+                autovacuum_analyze_threshold: z.optional(z.int().gte(0).lte(2147483647)).default(50),
+                autovacuum_max_workers: z.optional(z.int().gte(1).lte(20)).default(3),
+                autovacuum_naptime: z.optional(z.int().gte(1).lte(86400)).default(60),
+                autovacuum_vacuum_cost_delay: z.optional(z.int().gte(-1).lte(100)).default(20),
+                autovacuum_vacuum_cost_limit: z.optional(z.int().gte(-1).lte(10000)).default(-1),
+                autovacuum_vacuum_scale_factor: z.optional(z.number().gte(0).lte(1)).default(0.2),
+                autovacuum_vacuum_threshold: z.optional(z.int().gte(0).lte(2147483647)).default(50),
+                bgwriter_delay: z.optional(z.int().gte(20).lte(10000)).default(200),
+                bgwriter_flush_after: z.optional(z.int().gte(0).lte(2048)).default(512),
+                bgwriter_lru_maxpages: z.optional(z.int().gte(0).lte(1073741823)).default(100),
+                bgwriter_lru_multiplier: z.optional(z.number().gte(0).lte(10)).default(2.5),
+                deadlock_timeout: z.optional(z.int().gte(500).lte(1800000)),
+                default_toast_compression: z.optional(z.enum(['lz4', 'pglz'])),
+                idle_in_transaction_session_timeout: z.optional(z.int().gte(0).lte(604800000)),
+                jit: z.optional(z.boolean()),
+                max_files_per_process: z.optional(z.int().gte(1000).lte(4096)),
+                max_locks_per_transaction: z.optional(z.int().gte(64).lte(6400)),
+                max_logical_replication_workers: z.optional(z.int().gte(4).lte(64)),
+                max_parallel_workers: z.optional(z.int().gte(0).lte(96)),
+                max_parallel_workers_per_gather: z.optional(z.int().gte(0).lte(96)),
+                max_pred_locks_per_transaction: z.optional(z.int().gte(64).lte(5120)),
+                max_replication_slots: z.optional(z.int().gte(8).lte(64)),
+                max_slot_wal_keep_size: z.optional(z.int().gte(-1).lte(2147483647)).default(-1),
+                max_stack_depth: z.optional(z.int().gte(2097152).lte(6291456)),
+                max_standby_archive_delay: z.optional(z.int().gte(1).lte(43200000)),
+                max_standby_streaming_delay: z.optional(z.int().gte(1).lte(43200000)),
+                max_wal_senders: z.optional(z.int().gte(20).lte(64)),
+                max_worker_processes: z.optional(z.int().gte(8).lte(96)),
+                password_encryption: z.optional(z.enum(['scram-sh-256', 'md5'])),
+                'pg_partman_bgw.interval': z.optional(z.int().gte(3600).lte(604800)),
+                'pg_partman_bgw.role': z.optional(z.string()),
+                'pg_stat_monitor.pgsm_enable_query_plan': z.optional(z.boolean()),
+                'pg_stat_monitor.pgsm_max_buckets': z.optional(z.int().gte(1).lte(10)),
+                'pg_stat_statements.track': z.optional(z.enum([
                     'all',
                     'top',
                     'none'
-                ]),
-                temp_file_limit: z.int().gte(-1).lte(2147483647),
-                timezone: z.string().max(64).regex(/^[\\w\/]*$/),
-                track_activity_query_size: z.int().gte(1024).lte(10240),
-                track_commit_timestamp: z.enum(['on', 'off']),
-                track_functions: z.enum([
+                ])),
+                temp_file_limit: z.optional(z.int().gte(-1).lte(2147483647)),
+                timezone: z.optional(z.string().max(64).regex(/^[\\w\/]*$/)),
+                track_activity_query_size: z.optional(z.int().gte(1024).lte(10240)),
+                track_commit_timestamp: z.optional(z.enum(['on', 'off'])),
+                track_functions: z.optional(z.enum([
                     'all',
                     'pl',
                     'none'
-                ]),
-                track_io_timing: z.enum(['on', 'off']),
-                wal_sender_timeout: z.int().gte(0).lte(60000),
-                wal_writer_delay: z.int().gte(10).lte(200).default(200)
-            }),
-            pg_stat_monitor_enable: z.boolean(),
-            pglookout: z.object({
-                max_failover_replication_time_lag: z.int().gte(10).lte(999999)
-            }),
-            shared_buffers_percentage: z.number().gte(20).lte(60),
-            work_mem: z.int().gte(1).lte(4)
-        }),
-        label: z.string().min(3).max(32),
-        private_network: z.union([
+                ])),
+                track_io_timing: z.optional(z.enum(['on', 'off'])),
+                wal_sender_timeout: z.optional(z.int().gte(0).lte(60000)),
+                wal_writer_delay: z.optional(z.int().gte(10).lte(200)).default(200)
+            })),
+            pg_stat_monitor_enable: z.optional(z.boolean()),
+            pglookout: z.optional(z.object({
+                max_failover_replication_time_lag: z.optional(z.int().gte(10).lte(999999))
+            })),
+            shared_buffers_percentage: z.optional(z.number().gte(20).lte(60)),
+            work_mem: z.optional(z.int().gte(1).lte(4))
+        })),
+        label: z.optional(z.string().min(3).max(32)),
+        private_network: z.optional(z.union([
             z.object({
-                public_access: z.boolean().default(false),
-                subnet_id: z.int(),
-                vpc_id: z.int()
+                public_access: z.optional(z.boolean()).default(false),
+                subnet_id: z.optional(z.int()),
+                vpc_id: z.optional(z.int())
             }),
             z.null()
-        ]),
-        type: z.string(),
-        updates: z.object({
-            day_of_week: z.int().gte(1).lte(7),
-            duration: z.int().gte(1).lte(3),
-            frequency: z.enum(['weekly']),
-            hour_of_day: z.int().gte(0).lte(23),
-            pending: z.array(z.object({
-                deadline: z.union([
+        ])),
+        type: z.optional(z.string()),
+        updates: z.optional(z.object({
+            day_of_week: z.optional(z.int().gte(1).lte(7)),
+            duration: z.optional(z.int().gte(1).lte(3)),
+            frequency: z.optional(z.enum(['weekly'])),
+            hour_of_day: z.optional(z.int().gte(0).lte(23)),
+            pending: z.optional(z.array(z.object({
+                deadline: z.optional(z.union([
                     z.iso.datetime(),
                     z.null()
-                ]),
-                description: z.string(),
-                planned_for: z.union([
+                ])),
+                description: z.optional(z.string()),
+                planned_for: z.optional(z.union([
                     z.iso.datetime(),
                     z.null()
-                ])
-            })).min(0).readonly()
-        }),
-        version: z.string()
+                ]))
+            })).min(0).readonly())
+        })),
+        version: z.optional(z.string())
     }),
     path: z.object({
         instanceId: z.int()
@@ -7530,25 +7530,25 @@ export const getDomainsResponseSchema = z.object({
 
 export const postDomainRequestSchema = z.object({
     body: z.object({
-        axfr_ips: z.array(z.string()),
-        description: z.union([
+        axfr_ips: z.optional(z.array(z.string())),
+        description: z.optional(z.union([
             z.string().min(1).max(253),
             z.null()
-        ]),
+        ])),
         domain: z.string().min(1).max(253).regex(/^(\*\.)?([a-zA-Z0-9-_]{1,63}\.)+([a-zA-Z]{2,3}\.)?([a-zA-Z]{2,16}|xn--[a-zA-Z0-9]+)$/),
-        expire_sec: z.int().default(0),
-        group: z.union([
+        expire_sec: z.optional(z.int()).default(0),
+        group: z.optional(z.union([
             z.string().min(1).max(50),
             z.null()
-        ]),
-        id: z.int().readonly(),
-        master_ips: z.array(z.string()),
-        refresh_sec: z.int().default(0),
-        retry_sec: z.int().default(0),
-        soa_email: z.email(),
-        status: z.enum(['disabled', 'active']),
-        tags: z.array(z.string()),
-        ttl_sec: z.int().default(0),
+        ])),
+        id: z.optional(z.int().readonly()),
+        master_ips: z.optional(z.array(z.string())),
+        refresh_sec: z.optional(z.int()).default(0),
+        retry_sec: z.optional(z.int()).default(0),
+        soa_email: z.optional(z.email()),
+        status: z.optional(z.enum(['disabled', 'active'])),
+        tags: z.optional(z.array(z.string())),
+        ttl_sec: z.optional(z.int()).default(0),
         type: z.enum(['master', 'slave'])
     }),
     path: z.optional(z.never()),
@@ -7671,26 +7671,26 @@ export const getDomainResponseSchema = z.object({
 
 export const putDomainRequestSchema = z.object({
     body: z.object({
-        axfr_ips: z.array(z.string()),
-        description: z.union([
+        axfr_ips: z.optional(z.array(z.string())),
+        description: z.optional(z.union([
             z.string().min(1).max(253),
             z.null()
-        ]),
-        domain: z.string().min(1).max(253).regex(/^(\*\.)?([a-zA-Z0-9-_]{1,63}\.)+([a-zA-Z]{2,3}\.)?([a-zA-Z]{2,16}|xn--[a-zA-Z0-9]+)$/),
-        expire_sec: z.int().default(0),
-        group: z.union([
+        ])),
+        domain: z.optional(z.string().min(1).max(253).regex(/^(\*\.)?([a-zA-Z0-9-_]{1,63}\.)+([a-zA-Z]{2,3}\.)?([a-zA-Z]{2,16}|xn--[a-zA-Z0-9]+)$/)),
+        expire_sec: z.optional(z.int()).default(0),
+        group: z.optional(z.union([
             z.string().min(1).max(50),
             z.null()
-        ]),
-        id: z.int().readonly(),
-        master_ips: z.array(z.string()),
-        refresh_sec: z.int().default(0),
-        retry_sec: z.int().default(0),
-        soa_email: z.email(),
-        status: z.enum(['disabled', 'active']),
-        tags: z.array(z.string()),
-        ttl_sec: z.int().default(0),
-        type: z.enum(['master', 'slave'])
+        ])),
+        id: z.optional(z.int().readonly()),
+        master_ips: z.optional(z.array(z.string())),
+        refresh_sec: z.optional(z.int()).default(0),
+        retry_sec: z.optional(z.int()).default(0),
+        soa_email: z.optional(z.email()),
+        status: z.optional(z.enum(['disabled', 'active'])),
+        tags: z.optional(z.array(z.string())),
+        ttl_sec: z.optional(z.int()).default(0),
+        type: z.optional(z.enum(['master', 'slave']))
     }),
     path: z.object({
         domainId: z.int()
@@ -7821,26 +7821,26 @@ export const getDomainRecordsResponseSchema = z.object({
 
 export const postDomainRecordRequestSchema = z.object({
     body: z.object({
-        created: z.iso.datetime().readonly(),
-        id: z.int().readonly(),
-        name: z.string().min(1).max(100),
-        port: z.int().gte(0).lte(65535),
-        priority: z.int().gte(0).lte(255),
-        protocol: z.union([
+        created: z.optional(z.iso.datetime().readonly()),
+        id: z.optional(z.int().readonly()),
+        name: z.optional(z.string().min(1).max(100)),
+        port: z.optional(z.int().gte(0).lte(65535)),
+        priority: z.optional(z.int().gte(0).lte(255)),
+        protocol: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        service: z.union([
+        ])),
+        service: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        tag: z.enum([
+        ])),
+        tag: z.optional(z.enum([
             'issue',
             'issuewild',
             'iodef'
-        ]),
-        target: z.string().max(65535),
-        ttl_sec: z.int(),
+        ])),
+        target: z.optional(z.string().max(65535)),
+        ttl_sec: z.optional(z.int()),
         type: z.enum([
             'A',
             'AAAA',
@@ -7852,8 +7852,8 @@ export const postDomainRecordRequestSchema = z.object({
             'PTR',
             'CAA'
         ]),
-        updated: z.iso.datetime().readonly(),
-        weight: z.int().gte(0).lte(65535)
+        updated: z.optional(z.iso.datetime().readonly()),
+        weight: z.optional(z.int().gte(0).lte(65535))
     }),
     path: z.object({
         domainId: z.int()
@@ -7964,25 +7964,25 @@ export const getDomainRecordResponseSchema = z.object({
 
 export const putDomainRecordRequestSchema = z.object({
     body: z.object({
-        name: z.string().min(1).max(100),
-        port: z.int().gte(0).lte(65535),
-        priority: z.int().gte(0).lte(255),
-        protocol: z.union([
+        name: z.optional(z.string().min(1).max(100)),
+        port: z.optional(z.int().gte(0).lte(65535)),
+        priority: z.optional(z.int().gte(0).lte(255)),
+        protocol: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        service: z.union([
+        ])),
+        service: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        tag: z.enum([
+        ])),
+        tag: z.optional(z.enum([
             'issue',
             'issuewild',
             'iodef'
-        ]),
-        target: z.string().max(65535),
-        ttl_sec: z.int(),
-        weight: z.int().gte(0).lte(65535)
+        ])),
+        target: z.optional(z.string().max(65535)),
+        ttl_sec: z.optional(z.int()),
+        weight: z.optional(z.int().gte(0).lte(65535))
     }),
     path: z.object({
         domainId: z.int(),
@@ -8642,8 +8642,8 @@ export const getSharegroupResponseSchema = z.object({
 
 export const putSharegroupRequestSchema = z.object({
     body: z.object({
-        description: z.string(),
-        label: z.string()
+        description: z.optional(z.string()),
+        label: z.optional(z.string())
     }),
     path: z.object({
         sharegroupId: z.int()
@@ -8867,8 +8867,8 @@ export const deleteSharegroupImageshareResponseSchema = z.record(z.string(), z.u
 
 export const putSharegroupImageshareRequestSchema = z.object({
     body: z.object({
-        description: z.string(),
-        label: z.string()
+        description: z.optional(z.string()),
+        label: z.optional(z.string())
     }),
     path: z.object({
         sharegroupId: z.int(),
@@ -9291,55 +9291,55 @@ export const getImageResponseSchema = z.object({
 
 export const putImageRequestSchema = z.object({
     body: z.object({
-        capabilities: z.array(z.string()).readonly(),
-        created: z.iso.datetime().readonly(),
-        created_by: z.string().readonly(),
-        deprecated: z.boolean().readonly(),
-        description: z.union([
+        capabilities: z.optional(z.array(z.string()).readonly()),
+        created: z.optional(z.iso.datetime().readonly()),
+        created_by: z.optional(z.string().readonly()),
+        deprecated: z.optional(z.boolean().readonly()),
+        description: z.optional(z.union([
             z.string().min(1).max(65000),
             z.null()
-        ]),
-        eol: z.union([
+        ])),
+        eol: z.optional(z.union([
             z.iso.datetime().readonly(),
             z.null()
-        ]).readonly(),
-        expiry: z.union([
+        ]).readonly()),
+        expiry: z.optional(z.union([
             z.iso.datetime().readonly(),
             z.null()
-        ]).readonly(),
-        id: z.string().readonly(),
-        is_public: z.boolean().readonly(),
-        is_shared: z.union([
+        ]).readonly()),
+        id: z.optional(z.string().readonly()),
+        is_public: z.optional(z.boolean().readonly()),
+        is_shared: z.optional(z.union([
             z.literal(true),
             z.literal(false),
             z.literal('none')
-        ]),
-        label: z.string(),
-        regions: z.array(z.object({
-            region: z.string(),
-            status: z.enum([
+        ])),
+        label: z.optional(z.string()),
+        regions: z.optional(z.array(z.object({
+            region: z.optional(z.string()),
+            status: z.optional(z.enum([
                 'available',
                 'creating',
                 'pending',
                 'pending deletion',
                 'pending replication',
                 'replicating'
-            ])
-        })).readonly(),
-        size: z.int().readonly(),
-        status: z.enum([
+            ]))
+        })).readonly()),
+        size: z.optional(z.int().readonly()),
+        status: z.optional(z.enum([
             'creating',
             'pending_upload',
             'available'
-        ]),
-        tags: z.array(z.string().min(3).max(100)).min(0).max(500),
-        total_size: z.int().readonly(),
-        type: z.enum(['manual', 'automatic']),
-        updated: z.iso.datetime().readonly(),
-        vendor: z.union([
+        ])),
+        tags: z.optional(z.array(z.string().min(3).max(100)).min(0).max(500)),
+        total_size: z.optional(z.int().readonly()),
+        type: z.optional(z.enum(['manual', 'automatic'])),
+        updated: z.optional(z.iso.datetime().readonly()),
+        vendor: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly()
+        ]).readonly())
     }),
     path: z.object({
         imageId: z.string()
@@ -9435,7 +9435,7 @@ export const putImageResponseSchema = z.object({
 
 export const postReplicateImageRequestSchema = z.object({
     body: z.object({
-        regions: z.array(z.string())
+        regions: z.optional(z.array(z.string()))
     }),
     path: z.object({
         imageId: z.string()
@@ -9578,16 +9578,16 @@ export const getLinodeInstancesRequestSchema = z.object({
         'X-Filter': z.optional(z.union([
             z.record(z.string(), z.unknown()),
             z.object({
-                '+and': z.array(z.record(z.string(), z.unknown())),
-                '+contains': z.string(),
-                '+gt': z.number(),
-                '+gte': z.number(),
-                '+lt': z.number(),
-                '+lte': z.number(),
-                '+neq': z.string(),
-                '+or': z.array(z.record(z.string(), z.unknown())),
-                '+order': z.enum(['asc', 'desc']),
-                '+order_by': z.string()
+                '+and': z.optional(z.array(z.record(z.string(), z.unknown()))),
+                '+contains': z.optional(z.string()),
+                '+gt': z.optional(z.number()),
+                '+gte': z.optional(z.number()),
+                '+lt': z.optional(z.number()),
+                '+lte': z.optional(z.number()),
+                '+neq': z.optional(z.string()),
+                '+or': z.optional(z.array(z.record(z.string(), z.unknown()))),
+                '+order': z.optional(z.enum(['asc', 'desc'])),
+                '+order_by': z.optional(z.string())
             })
         ]))
     }))
@@ -9710,21 +9710,21 @@ export const getLinodeInstancesResponseSchema = z.object({
 
 export const postLinodeInstanceRequestSchema = z.object({
     body: z.object({
-        authorized_keys: z.array(z.string()),
-        authorized_users: z.array(z.string()),
-        booted: z.boolean().default(true),
-        disk_encryption: z.enum(['enabled', 'disabled']),
-        image: z.union([
+        authorized_keys: z.optional(z.array(z.string())),
+        authorized_users: z.optional(z.array(z.string())),
+        booted: z.optional(z.boolean()).default(true),
+        disk_encryption: z.optional(z.enum(['enabled', 'disabled'])),
+        image: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        maintenance_policy: z.enum(['linode/migrate', 'linode/power_off_on']),
-        metadata: z.object({
-            user_data: z.string()
-        }),
-        root_pass: z.string().min(7).max(128),
-        stackscript_data: z.record(z.string(), z.unknown()),
-        stackscript_id: z.int()
+        ])),
+        maintenance_policy: z.optional(z.enum(['linode/migrate', 'linode/power_off_on'])),
+        metadata: z.optional(z.object({
+            user_data: z.optional(z.string())
+        })),
+        root_pass: z.optional(z.string().min(7).max(128)),
+        stackscript_data: z.optional(z.record(z.string(), z.unknown())),
+        stackscript_id: z.optional(z.int())
     }).and(z.object({
         backup_id: z.optional(z.int()),
         backups_enabled: z.optional(z.boolean()),
@@ -9733,87 +9733,87 @@ export const postLinodeInstanceRequestSchema = z.object({
         interface_generation: z.optional(z.enum(['legacy_config', 'linode'])),
         interfaces: z.optional(z.array(z.union([
             z.object({
-                default_route: z.object({
-                    ipv4: z.union([
+                default_route: z.optional(z.object({
+                    ipv4: z.optional(z.union([
                         z.boolean(),
                         z.null()
-                    ]),
-                    ipv6: z.union([
+                    ])),
+                    ipv6: z.optional(z.union([
                         z.boolean(),
                         z.null()
-                    ])
-                }),
-                firewall_id: z.union([
+                    ]))
+                })),
+                firewall_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ]),
-                public: z.union([
+                ])),
+                public: z.optional(z.union([
                     z.object({
-                        ipv4: z.object({
-                            addresses: z.array(z.object({
-                                address: z.union([
+                        ipv4: z.optional(z.object({
+                            addresses: z.optional(z.array(z.object({
+                                address: z.optional(z.union([
                                     z.string().min(1),
                                     z.enum(['auto']),
                                     z.string()
-                                ]),
-                                primary: z.boolean().default(false)
-                            }))
-                        }),
-                        ipv6: z.object({
-                            ranges: z.array(z.object({
+                                ])),
+                                primary: z.optional(z.boolean()).default(false)
+                            })))
+                        })),
+                        ipv6: z.optional(z.object({
+                            ranges: z.optional(z.array(z.object({
                                 range: z.string()
-                            }))
-                        })
+                            })))
+                        }))
                     }),
                     z.null()
-                ])
+                ]))
             }),
             z.object({
-                vlan: z.union([
+                vlan: z.optional(z.union([
                     z.object({
-                        ipam_address: z.string(),
-                        vlan_label: z.string().min(1).max(64).regex(/[a-zA-Z0-9-]+/)
+                        ipam_address: z.optional(z.string()),
+                        vlan_label: z.optional(z.string().min(1).max(64).regex(/[a-zA-Z0-9-]+/))
                     }),
                     z.null()
-                ])
+                ]))
             }),
             z.object({
-                default_route: z.object({
-                    ipv4: z.union([
+                default_route: z.optional(z.object({
+                    ipv4: z.optional(z.union([
                         z.boolean(),
                         z.null()
-                    ])
-                }),
-                firewall_id: z.union([
+                    ]))
+                })),
+                firewall_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ]),
-                vpc: z.union([
+                ])),
+                vpc: z.optional(z.union([
                     z.object({
                         ipv4: z.optional(z.object({
-                            addresses: z.array(z.object({
-                                address: z.union([
+                            addresses: z.optional(z.array(z.object({
+                                address: z.optional(z.union([
                                     z.string().min(1),
                                     z.enum(['auto'])
-                                ]),
-                                nat_1_1_address: z.union([
+                                ])),
+                                nat_1_1_address: z.optional(z.union([
                                     z.string().min(1),
                                     z.enum(['auto']),
                                     z.null()
-                                ]),
-                                primary: z.union([
+                                ])),
+                                primary: z.optional(z.union([
                                     z.boolean().default(false),
                                     z.null()
-                                ]).default(false)
-                            })),
-                            ranges: z.array(z.object({
+                                ])).default(false)
+                            }))),
+                            ranges: z.optional(z.array(z.object({
                                 range: z.string()
-                            }))
+                            })))
                         })),
                         subnet_id: z.int()
                     }),
                     z.null()
-                ])
+                ]))
             }),
             z.intersection(z.unknown(), z.object({
                 active: z.optional(z.boolean().readonly()),
@@ -9827,15 +9827,15 @@ export const postLinodeInstanceRequestSchema = z.object({
                     z.null()
                 ])),
                 ipv4: z.optional(z.object({
-                    nat_1_1: z.union([
+                    nat_1_1: z.optional(z.union([
                         z.string().min(1),
                         z.enum(['any']),
                         z.null()
-                    ]),
-                    vpc: z.union([
+                    ])),
+                    vpc: z.optional(z.union([
                         z.string(),
                         z.null()
-                    ])
+                    ]))
                 })),
                 label: z.optional(z.union([
                     z.string().min(1).max(64).regex(/[a-zA-Z0-9-]+/),
@@ -9863,7 +9863,7 @@ export const postLinodeInstanceRequestSchema = z.object({
             z.null()
         ])),
         placement_group: z.optional(z.object({
-            id: z.int()
+            id: z.optional(z.int())
         })),
         private_ip: z.optional(z.boolean()),
         region: z.string(),
@@ -10121,19 +10121,19 @@ export const getLinodeInstanceResponseSchema = z.object({
 
 export const putLinodeInstanceRequestSchema = z.object({
     body: z.object({
-        alerts: z.object({
-            cpu: z.int(),
-            io: z.int(),
-            network_in: z.int(),
-            network_out: z.int(),
-            transfer_quota: z.int()
-        }),
-        backups: z.object({
-            available: z.boolean().readonly(),
-            enabled: z.boolean().readonly(),
-            last_successful: z.iso.datetime().readonly(),
-            schedule: z.object({
-                day: z.enum([
+        alerts: z.optional(z.object({
+            cpu: z.optional(z.int()),
+            io: z.optional(z.int()),
+            network_in: z.optional(z.int()),
+            network_out: z.optional(z.int()),
+            transfer_quota: z.optional(z.int())
+        })),
+        backups: z.optional(z.object({
+            available: z.optional(z.boolean().readonly()),
+            enabled: z.optional(z.boolean().readonly()),
+            last_successful: z.optional(z.iso.datetime().readonly()),
+            schedule: z.optional(z.object({
+                day: z.optional(z.enum([
                     'Scheduling',
                     'Sunday',
                     'Monday',
@@ -10142,8 +10142,8 @@ export const putLinodeInstanceRequestSchema = z.object({
                     'Thursday',
                     'Friday',
                     'Saturday'
-                ]),
-                window: z.enum([
+                ])),
+                window: z.optional(z.enum([
                     'Scheduling',
                     'W0',
                     'W2',
@@ -10157,54 +10157,54 @@ export const putLinodeInstanceRequestSchema = z.object({
                     'W18',
                     'W20',
                     'W22'
-                ])
-            })
-        }),
-        capabilities: z.array(z.string()).readonly(),
-        created: z.iso.datetime().readonly(),
-        disk_encryption: z.union([
+                ]))
+            }))
+        })),
+        capabilities: z.optional(z.array(z.string()).readonly()),
+        created: z.optional(z.iso.datetime().readonly()),
+        disk_encryption: z.optional(z.union([
             z.string().readonly().default('enabled'),
             z.null()
-        ]).readonly().default('enabled'),
-        group: z.string(),
-        has_user_data: z.boolean().readonly(),
-        host_uuid: z.uuid().readonly(),
-        hypervisor: z.enum(['kvm']),
-        id: z.int().readonly(),
-        image: z.union([
+        ]).readonly()).default('enabled'),
+        group: z.optional(z.string()),
+        has_user_data: z.optional(z.boolean().readonly()),
+        host_uuid: z.optional(z.uuid().readonly()),
+        hypervisor: z.optional(z.enum(['kvm'])),
+        id: z.optional(z.int().readonly()),
+        image: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        interface_generation: z.enum(['legacy_config', 'linode']),
-        ipv4: z.array(z.string()).readonly(),
-        ipv6: z.union([
+        ])),
+        interface_generation: z.optional(z.enum(['legacy_config', 'linode'])),
+        ipv4: z.optional(z.array(z.string()).readonly()),
+        ipv6: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly(),
-        label: z.string().min(3).max(64).regex(/^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$/),
-        lke_cluster_id: z.union([
+        ]).readonly()),
+        label: z.optional(z.string().min(3).max(64).regex(/^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$/)),
+        lke_cluster_id: z.optional(z.union([
             z.int().readonly(),
             z.null()
-        ]).readonly(),
-        maintenance_policy: z.enum(['linode/migrate', 'linode/power_off_on']),
-        placement_group: z.union([
+        ]).readonly()),
+        maintenance_policy: z.optional(z.enum(['linode/migrate', 'linode/power_off_on'])),
+        placement_group: z.optional(z.union([
             z.object({
-                id: z.int(),
-                label: z.string().min(1),
-                placement_group_policy: z.enum(['strict', 'flexible']),
-                placement_group_type: z.enum(['anti_affinity:local'])
+                id: z.optional(z.int()),
+                label: z.optional(z.string().min(1)),
+                placement_group_policy: z.optional(z.enum(['strict', 'flexible'])),
+                placement_group_type: z.optional(z.enum(['anti_affinity:local']))
             }).readonly(),
             z.null()
-        ]).readonly(),
-        region: z.string().readonly(),
-        specs: z.object({
-            disk: z.int().readonly(),
-            gpus: z.int().readonly(),
-            memory: z.int().readonly(),
-            transfer: z.int().readonly(),
-            vcpus: z.int().readonly()
-        }).readonly(),
-        status: z.enum([
+        ]).readonly()),
+        region: z.optional(z.string().readonly()),
+        specs: z.optional(z.object({
+            disk: z.optional(z.int().readonly()),
+            gpus: z.optional(z.int().readonly()),
+            memory: z.optional(z.int().readonly()),
+            transfer: z.optional(z.int().readonly()),
+            vcpus: z.optional(z.int().readonly())
+        }).readonly()),
+        status: z.optional(z.enum([
             'running',
             'offline',
             'booting',
@@ -10219,11 +10219,11 @@ export const putLinodeInstanceRequestSchema = z.object({
             'restoring',
             'stopped',
             'billing_suspension'
-        ]),
-        tags: z.array(z.string()),
-        type: z.string().readonly(),
-        updated: z.iso.datetime().readonly(),
-        watchdog_enabled: z.boolean()
+        ])),
+        tags: z.optional(z.array(z.string())),
+        type: z.optional(z.string().readonly()),
+        updated: z.optional(z.iso.datetime().readonly()),
+        watchdog_enabled: z.optional(z.boolean())
     }),
     path: z.object({
         linodeId: z.int()
@@ -10602,10 +10602,10 @@ export const postRestoreBackupResponseSchema = z.record(z.string(), z.unknown())
 
 export const postBootLinodeInstanceRequestSchema = z.object({
     body: z.optional(z.object({
-        config_id: z.union([
+        config_id: z.optional(z.union([
             z.int(),
             z.null()
-        ])
+        ]))
     })),
     path: z.object({
         linodeId: z.int()
@@ -10620,22 +10620,22 @@ export const postBootLinodeInstanceResponseSchema = z.record(z.string(), z.unkno
 
 export const postCloneLinodeInstanceRequestSchema = z.object({
     body: z.object({
-        backups_enabled: z.boolean(),
-        configs: z.array(z.int()),
-        disks: z.array(z.int()),
-        group: z.string(),
-        label: z.string().min(3).max(64),
-        linode_id: z.int(),
-        maintenance_policy: z.enum(['linode/migrate', 'linode/power_off_on']),
-        metadata: z.object({
-            user_data: z.string()
-        }),
-        placement_group: z.object({
+        backups_enabled: z.optional(z.boolean()),
+        configs: z.optional(z.array(z.int())),
+        disks: z.optional(z.array(z.int())),
+        group: z.optional(z.string()),
+        label: z.optional(z.string().min(3).max(64)),
+        linode_id: z.optional(z.int()),
+        maintenance_policy: z.optional(z.enum(['linode/migrate', 'linode/power_off_on'])),
+        metadata: z.optional(z.object({
+            user_data: z.optional(z.string())
+        })),
+        placement_group: z.optional(z.object({
             id: z.int()
-        }),
-        private_ip: z.boolean(),
-        region: z.string(),
-        type: z.string()
+        })),
+        private_ip: z.optional(z.boolean()),
+        region: z.optional(z.string()),
+        type: z.optional(z.string())
     }),
     path: z.object({
         linodeId: z.int()
@@ -10902,80 +10902,80 @@ export const getLinodeConfigsResponseSchema = z.object({
 
 export const postAddLinodeConfigRequestSchema = z.object({
     body: z.object({
-        comments: z.union([
+        comments: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
+        ])),
         devices: z.object({
-            sda: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+            sda: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdb: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdb: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdc: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdc: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdd: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdd: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sde: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sde: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdf: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdf: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdg: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdg: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdh: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdh: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            })
+                ]))
+            }))
         }),
-        helpers: z.object({
-            devtmpfs_automount: z.boolean().default(false),
-            distro: z.boolean(),
-            modules_dep: z.boolean(),
-            network: z.union([
+        helpers: z.optional(z.object({
+            devtmpfs_automount: z.optional(z.boolean()).default(false),
+            distro: z.optional(z.boolean()),
+            modules_dep: z.optional(z.boolean()),
+            network: z.optional(z.union([
                 z.boolean(),
                 z.null()
-            ]),
-            updatedb_disabled: z.boolean()
-        }),
-        id: z.int().readonly(),
-        interfaces: z.array(z.object({
+            ])),
+            updatedb_disabled: z.optional(z.boolean())
+        })),
+        id: z.optional(z.int().readonly()),
+        interfaces: z.optional(z.array(z.object({
             active: z.optional(z.boolean().readonly()),
             id: z.optional(z.int().readonly()),
             ip_ranges: z.optional(z.union([
@@ -10987,15 +10987,15 @@ export const postAddLinodeConfigRequestSchema = z.object({
                 z.null()
             ])),
             ipv4: z.optional(z.object({
-                nat_1_1: z.union([
+                nat_1_1: z.optional(z.union([
                     z.string().min(1),
                     z.enum(['any']),
                     z.null()
-                ]),
-                vpc: z.union([
+                ])),
+                vpc: z.optional(z.union([
                     z.string(),
                     z.null()
-                ])
+                ]))
             })),
             label: z.optional(z.union([
                 z.string().min(1).max(64).regex(/[a-zA-Z0-9-]+/),
@@ -11015,17 +11015,17 @@ export const postAddLinodeConfigRequestSchema = z.object({
                 z.int().readonly(),
                 z.null()
             ]).readonly())
-        })).min(1).max(3),
-        kernel: z.string().default('linode/latest-64bit'),
+        })).min(1).max(3)),
+        kernel: z.optional(z.string()).default('linode/latest-64bit'),
         label: z.string().min(1).max(48),
-        memory_limit: z.int(),
-        root_device: z.string().regex(/a-z, A-Z, 0-9, \/, _, -/),
-        run_level: z.enum([
+        memory_limit: z.optional(z.int()),
+        root_device: z.optional(z.string().regex(/a-z, A-Z, 0-9, \/, _, -/)),
+        run_level: z.optional(z.enum([
             'default',
             'single',
             'binbash'
-        ]),
-        virt_mode: z.enum(['paravirt', 'fullvirt'])
+        ])),
+        virt_mode: z.optional(z.enum(['paravirt', 'fullvirt']))
     }),
     path: z.object({
         linodeId: z.int()
@@ -11318,80 +11318,80 @@ export const getLinodeConfigResponseSchema = z.object({
 
 export const putLinodeConfigRequestSchema = z.object({
     body: z.object({
-        comments: z.union([
+        comments: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        devices: z.object({
-            sda: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+        ])),
+        devices: z.optional(z.object({
+            sda: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdb: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdb: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdc: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdc: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdd: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdd: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sde: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sde: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdf: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdf: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdg: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdg: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdh: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdh: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            })
-        }),
-        helpers: z.object({
-            devtmpfs_automount: z.boolean().default(false),
-            distro: z.boolean(),
-            modules_dep: z.boolean(),
-            network: z.union([
+                ]))
+            }))
+        })),
+        helpers: z.optional(z.object({
+            devtmpfs_automount: z.optional(z.boolean()).default(false),
+            distro: z.optional(z.boolean()),
+            modules_dep: z.optional(z.boolean()),
+            network: z.optional(z.union([
                 z.boolean(),
                 z.null()
-            ]),
-            updatedb_disabled: z.boolean()
-        }),
-        id: z.int().readonly(),
-        interfaces: z.array(z.object({
+            ])),
+            updatedb_disabled: z.optional(z.boolean())
+        })),
+        id: z.optional(z.int().readonly()),
+        interfaces: z.optional(z.array(z.object({
             active: z.optional(z.boolean().readonly()),
             id: z.optional(z.int().readonly()),
             ip_ranges: z.optional(z.union([
@@ -11403,15 +11403,15 @@ export const putLinodeConfigRequestSchema = z.object({
                 z.null()
             ])),
             ipv4: z.optional(z.object({
-                nat_1_1: z.union([
+                nat_1_1: z.optional(z.union([
                     z.string().min(1),
                     z.enum(['any']),
                     z.null()
-                ]),
-                vpc: z.union([
+                ])),
+                vpc: z.optional(z.union([
                     z.string(),
                     z.null()
-                ])
+                ]))
             })),
             label: z.optional(z.union([
                 z.string().min(1).max(64).regex(/[a-zA-Z0-9-]+/),
@@ -11431,17 +11431,17 @@ export const putLinodeConfigRequestSchema = z.object({
                 z.int().readonly(),
                 z.null()
             ]).readonly())
-        })).min(1).max(3),
-        kernel: z.string().default('linode/latest-64bit'),
-        label: z.string().min(1).max(48),
-        memory_limit: z.int(),
-        root_device: z.string().regex(/a-z, A-Z, 0-9, \/, _, -/),
-        run_level: z.enum([
+        })).min(1).max(3)),
+        kernel: z.optional(z.string()).default('linode/latest-64bit'),
+        label: z.optional(z.string().min(1).max(48)),
+        memory_limit: z.optional(z.int()),
+        root_device: z.optional(z.string().regex(/a-z, A-Z, 0-9, \/, _, -/)),
+        run_level: z.optional(z.enum([
             'default',
             'single',
             'binbash'
-        ]),
-        virt_mode: z.enum(['paravirt', 'fullvirt'])
+        ])),
+        virt_mode: z.optional(z.enum(['paravirt', 'fullvirt']))
     }),
     path: z.object({
         linodeId: z.int(),
@@ -11670,15 +11670,15 @@ export const postLinodeConfigInterfaceRequestSchema = z.object({
             z.null()
         ])),
         ipv4: z.optional(z.object({
-            nat_1_1: z.union([
+            nat_1_1: z.optional(z.union([
                 z.string().min(1),
                 z.enum(['any']),
                 z.null()
-            ]),
-            vpc: z.union([
+            ])),
+            vpc: z.optional(z.union([
                 z.string(),
                 z.null()
-            ])
+            ]))
         })),
         label: z.optional(z.union([
             z.string().min(1).max(64).regex(/[a-zA-Z0-9-]+/),
@@ -11839,19 +11839,19 @@ export const getLinodeConfigInterfaceResponseSchema = z.object({
 
 export const putLinodeConfigInterfaceRequestSchema = z.object({
     body: z.object({
-        ip_ranges: z.array(z.string()),
-        ipv4: z.object({
-            nat_1_1: z.union([
+        ip_ranges: z.optional(z.array(z.string())),
+        ipv4: z.optional(z.object({
+            nat_1_1: z.optional(z.union([
                 z.string().min(1),
                 z.enum(['any']),
                 z.null()
-            ]),
-            vpc: z.union([
+            ])),
+            vpc: z.optional(z.union([
                 z.string(),
                 z.null()
-            ])
-        }),
-        primary: z.boolean()
+            ]))
+        })),
+        primary: z.optional(z.boolean())
     }),
     path: z.object({
         linodeId: z.int(),
@@ -11948,25 +11948,25 @@ export const getLinodeDisksResponseSchema = z.object({
 
 export const postAddLinodeDiskRequestSchema = z.object({
     body: z.object({
-        authorized_keys: z.array(z.string()),
-        authorized_users: z.array(z.string()),
-        filesystem: z.enum([
+        authorized_keys: z.optional(z.array(z.string())),
+        authorized_users: z.optional(z.array(z.string())),
+        filesystem: z.optional(z.enum([
             'raw',
             'swap',
             'ext2',
             'ext3',
             'ext4',
             'initrd'
-        ]),
-        image: z.union([
+        ])),
+        image: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        label: z.string().min(1).max(48),
-        root_pass: z.string().min(7).max(128),
+        ])),
+        label: z.optional(z.string().min(1).max(48)),
+        root_pass: z.optional(z.string().min(7).max(128)),
         size: z.int(),
-        stackscript_data: z.record(z.string(), z.unknown()),
-        stackscript_id: z.int()
+        stackscript_data: z.optional(z.record(z.string(), z.unknown())),
+        stackscript_id: z.optional(z.int())
     }),
     path: z.object({
         linodeId: z.int()
@@ -12049,7 +12049,7 @@ export const getLinodeDiskResponseSchema = z.object({
 
 export const putDiskRequestSchema = z.object({
     body: z.object({
-        label: z.string().min(1).max(48)
+        label: z.optional(z.string().min(1).max(48))
     }),
     path: z.object({
         linodeId: z.int(),
@@ -12486,87 +12486,87 @@ export const getLinodeInterfacesResponseSchema = z.object({
 export const postLinodeInterfaceRequestSchema = z.object({
     body: z.optional(z.union([
         z.object({
-            default_route: z.object({
-                ipv4: z.union([
+            default_route: z.optional(z.object({
+                ipv4: z.optional(z.union([
                     z.boolean(),
                     z.null()
-                ]),
-                ipv6: z.union([
+                ])),
+                ipv6: z.optional(z.union([
                     z.boolean(),
                     z.null()
-                ])
-            }),
-            firewall_id: z.union([
+                ]))
+            })),
+            firewall_id: z.optional(z.union([
                 z.int(),
                 z.null()
-            ]),
-            public: z.union([
+            ])),
+            public: z.optional(z.union([
                 z.object({
-                    ipv4: z.object({
-                        addresses: z.array(z.object({
-                            address: z.union([
+                    ipv4: z.optional(z.object({
+                        addresses: z.optional(z.array(z.object({
+                            address: z.optional(z.union([
                                 z.string().min(1),
                                 z.enum(['auto']),
                                 z.string()
-                            ]),
-                            primary: z.boolean().default(false)
-                        }))
-                    }),
-                    ipv6: z.object({
-                        ranges: z.array(z.object({
+                            ])),
+                            primary: z.optional(z.boolean()).default(false)
+                        })))
+                    })),
+                    ipv6: z.optional(z.object({
+                        ranges: z.optional(z.array(z.object({
                             range: z.string()
-                        }))
-                    })
+                        })))
+                    }))
                 }),
                 z.null()
-            ])
+            ]))
         }),
         z.object({
-            vlan: z.union([
+            vlan: z.optional(z.union([
                 z.object({
-                    ipam_address: z.string(),
-                    vlan_label: z.string().min(1).max(64).regex(/[a-zA-Z0-9-]+/)
+                    ipam_address: z.optional(z.string()),
+                    vlan_label: z.optional(z.string().min(1).max(64).regex(/[a-zA-Z0-9-]+/))
                 }),
                 z.null()
-            ])
+            ]))
         }),
         z.object({
-            default_route: z.object({
-                ipv4: z.union([
+            default_route: z.optional(z.object({
+                ipv4: z.optional(z.union([
                     z.boolean(),
                     z.null()
-                ])
-            }),
-            firewall_id: z.union([
+                ]))
+            })),
+            firewall_id: z.optional(z.union([
                 z.int(),
                 z.null()
-            ]),
-            vpc: z.union([
+            ])),
+            vpc: z.optional(z.union([
                 z.object({
                     ipv4: z.optional(z.object({
-                        addresses: z.array(z.object({
-                            address: z.union([
+                        addresses: z.optional(z.array(z.object({
+                            address: z.optional(z.union([
                                 z.string().min(1),
                                 z.enum(['auto'])
-                            ]),
-                            nat_1_1_address: z.union([
+                            ])),
+                            nat_1_1_address: z.optional(z.union([
                                 z.string().min(1),
                                 z.enum(['auto']),
                                 z.null()
-                            ]),
-                            primary: z.union([
+                            ])),
+                            primary: z.optional(z.union([
                                 z.boolean().default(false),
                                 z.null()
-                            ]).default(false)
-                        })),
-                        ranges: z.array(z.object({
+                            ])).default(false)
+                        }))),
+                        ranges: z.optional(z.array(z.object({
                             range: z.string()
-                        }))
+                        })))
                     })),
                     subnet_id: z.int()
                 }),
                 z.null()
-            ])
+            ]))
         })
     ])),
     path: z.object({
@@ -12740,19 +12740,19 @@ export const getLinodeInterfaceSettingsResponseSchema = z.object({
 
 export const putLinodeInterfaceSettingsRequestSchema = z.object({
     body: z.object({
-        default_route: z.object({
-            ipv4_eligible_interface_ids: z.array(z.int().readonly()),
-            ipv4_interface_id: z.union([
+        default_route: z.optional(z.object({
+            ipv4_eligible_interface_ids: z.optional(z.array(z.int().readonly())),
+            ipv4_interface_id: z.optional(z.union([
                 z.int(),
                 z.null()
-            ]).default(null),
-            ipv6_eligible_interface_ids: z.array(z.int().readonly()),
-            ipv6_interface_id: z.union([
+            ])).default(null),
+            ipv6_eligible_interface_ids: z.optional(z.array(z.int().readonly())),
+            ipv6_interface_id: z.optional(z.union([
                 z.int(),
                 z.null()
-            ]).default(null)
-        }),
-        network_helper: z.boolean()
+            ])).default(null)
+        })),
+        network_helper: z.optional(z.boolean())
     }),
     path: z.object({
         linodeId: z.int()
@@ -12916,74 +12916,74 @@ export const getLinodeInterfaceResponseSchema = z.union([
 export const putLinodeInterfaceRequestSchema = z.object({
     body: z.union([
         z.object({
-            default_route: z.object({
-                ipv4: z.union([
+            default_route: z.optional(z.object({
+                ipv4: z.optional(z.union([
                     z.boolean(),
                     z.null()
-                ]),
-                ipv6: z.union([
+                ])),
+                ipv6: z.optional(z.union([
                     z.boolean(),
                     z.null()
-                ])
-            }),
-            public: z.union([
-                z.object({
-                    ipv4: z.object({
-                        addresses: z.array(z.object({
-                            address: z.string().default('auto'),
-                            primary: z.union([
-                                z.boolean(),
-                                z.null()
-                            ])
-                        }))
-                    }),
-                    ipv6: z.object({
-                        ranges: z.array(z.object({
-                            range: z.string().default(null)
-                        }))
-                    })
-                }),
-                z.null()
-            ])
-        }),
-        z.object({
-            vlan: z.object({
-                ipam_address: z.union([
-                    z.string(),
-                    z.null()
-                ]),
-                vlan_label: z.string().min(1).max(64).regex(/[a-zA-Z0-9-]+/)
-            })
-        }),
-        z.object({
-            default_route: z.object({
-                ipv4: z.union([
-                    z.boolean(),
-                    z.null()
-                ])
-            }),
-            vpc: z.union([
+                ]))
+            })),
+            public: z.optional(z.union([
                 z.object({
                     ipv4: z.optional(z.object({
-                        addresses: z.array(z.object({
+                        addresses: z.optional(z.array(z.object({
+                            address: z.optional(z.string()).default('auto'),
+                            primary: z.optional(z.union([
+                                z.boolean(),
+                                z.null()
+                            ]))
+                        })))
+                    })),
+                    ipv6: z.optional(z.object({
+                        ranges: z.optional(z.array(z.object({
+                            range: z.string().default(null)
+                        })))
+                    }))
+                }),
+                z.null()
+            ]))
+        }),
+        z.object({
+            vlan: z.optional(z.object({
+                ipam_address: z.optional(z.union([
+                    z.string(),
+                    z.null()
+                ])),
+                vlan_label: z.optional(z.string().min(1).max(64).regex(/[a-zA-Z0-9-]+/))
+            }))
+        }),
+        z.object({
+            default_route: z.optional(z.object({
+                ipv4: z.optional(z.union([
+                    z.boolean(),
+                    z.null()
+                ]))
+            })),
+            vpc: z.optional(z.union([
+                z.object({
+                    ipv4: z.optional(z.object({
+                        addresses: z.optional(z.array(z.object({
                             address: z.string().default('auto'),
                             nat_1_1_address: z.optional(z.string()).default(null),
                             primary: z.optional(z.union([
                                 z.boolean(),
                                 z.null()
                             ]))
-                        })),
-                        ranges: z.array(z.object({
-                            range: z.union([
+                        }))),
+                        ranges: z.optional(z.array(z.object({
+                            range: z.optional(z.union([
                                 z.string(),
                                 z.null()
-                            ]).default(null)
-                        }))
+                            ])).default(null)
+                        })))
                     })),
                     subnet_id: z.int()
                 }),
                 z.null()
-            ])
+            ]))
         })
     ]),
     path: z.object({
@@ -13549,12 +13549,12 @@ export const putLinodeIpResponseSchema = z.object({
 
 export const postMigrateLinodeInstanceRequestSchema = z.object({
     body: z.optional(z.object({
-        placement_group: z.object({
+        placement_group: z.optional(z.object({
             id: z.int()
-        }),
-        region: z.string(),
-        type: z.enum(['warm', 'cold']),
-        upgrade: z.boolean().default(false)
+        })),
+        region: z.optional(z.string()),
+        type: z.optional(z.enum(['warm', 'cold'])),
+        upgrade: z.optional(z.boolean()).default(false)
     })),
     path: z.object({
         linodeId: z.int()
@@ -13569,7 +13569,7 @@ export const postMigrateLinodeInstanceResponseSchema = z.record(z.string(), z.un
 
 export const postMutateLinodeInstanceRequestSchema = z.object({
     body: z.optional(z.object({
-        allow_auto_disk_resize: z.boolean().default(true)
+        allow_auto_disk_resize: z.optional(z.boolean()).default(true)
     })),
     path: z.object({
         linodeId: z.int()
@@ -13655,10 +13655,10 @@ export const postResetLinodePasswordResponseSchema = z.record(z.string(), z.unkn
 
 export const postRebootLinodeInstanceRequestSchema = z.object({
     body: z.optional(z.object({
-        config_id: z.union([
+        config_id: z.optional(z.union([
             z.int(),
             z.null()
-        ])
+        ]))
     })),
     path: z.object({
         linodeId: z.int()
@@ -13673,23 +13673,23 @@ export const postRebootLinodeInstanceResponseSchema = z.record(z.string(), z.unk
 
 export const postRebuildLinodeInstanceRequestSchema = z.object({
     body: z.object({
-        authorized_keys: z.array(z.string()),
-        authorized_users: z.array(z.string()),
-        booted: z.boolean().default(true),
-        disk_encryption: z.enum(['enabled', 'disabled']),
+        authorized_keys: z.optional(z.array(z.string())),
+        authorized_users: z.optional(z.array(z.string())),
+        booted: z.optional(z.boolean()).default(true),
+        disk_encryption: z.optional(z.enum(['enabled', 'disabled'])),
         image: z.union([
             z.string(),
             z.null()
         ]),
-        maintenance_policy: z.enum(['linode/migrate', 'linode/power_off_on']),
-        metadata: z.object({
-            user_data: z.string()
-        }),
+        maintenance_policy: z.optional(z.enum(['linode/migrate', 'linode/power_off_on'])),
+        metadata: z.optional(z.object({
+            user_data: z.optional(z.string())
+        })),
         root_pass: z.string().min(7).max(128),
-        stackscript_data: z.record(z.string(), z.unknown()),
-        stackscript_id: z.int()
+        stackscript_data: z.optional(z.record(z.string(), z.unknown())),
+        stackscript_id: z.optional(z.int())
     }).and(z.object({
-        type: z.string()
+        type: z.optional(z.string())
     })),
     path: z.object({
         linodeId: z.int()
@@ -13810,57 +13810,57 @@ export const postRebuildLinodeInstanceResponseSchema = z.object({
 
 export const postRescueLinodeInstanceRequestSchema = z.object({
     body: z.optional(z.object({
-        devices: z.object({
-            sda: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+        devices: z.optional(z.object({
+            sda: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdb: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdb: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdc: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdc: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdd: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdd: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sde: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sde: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdf: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdf: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            }),
-            sdg: z.object({
-                disk_id: z.int(),
-                volume_id: z.union([
+                ]))
+            })),
+            sdg: z.optional(z.object({
+                disk_id: z.optional(z.int()),
+                volume_id: z.optional(z.union([
                     z.int(),
                     z.null()
-                ])
-            })
-        })
+                ]))
+            }))
+        }))
     })),
     path: z.object({
         linodeId: z.int()
@@ -14008,11 +14008,11 @@ export const getLinodeTransferByYearMonthResponseSchema = z.object({
 export const postUpgradeLinodeInterfacesRequestSchema = z.object({
     body: z.optional(z.union([
         z.object({
-            config_id: z.union([
+            config_id: z.optional(z.union([
                 z.int(),
                 z.null()
-            ]).default(null),
-            dry_run: z.boolean().default(true)
+            ])).default(null),
+            dry_run: z.optional(z.boolean()).default(true)
         }),
         z.null()
     ])),
@@ -14278,28 +14278,28 @@ export const getStackScriptsResponseSchema = z.object({
 
 export const postAddStackScriptRequestSchema = z.object({
     body: z.object({
-        created: z.iso.datetime().readonly(),
-        deployments_active: z.int().readonly(),
-        deployments_total: z.int().readonly(),
-        description: z.string(),
-        id: z.int().readonly(),
+        created: z.optional(z.iso.datetime().readonly()),
+        deployments_active: z.optional(z.int().readonly()),
+        deployments_total: z.optional(z.int().readonly()),
+        description: z.optional(z.string()),
+        id: z.optional(z.int().readonly()),
         images: z.array(z.string()),
-        is_public: z.boolean(),
+        is_public: z.optional(z.boolean()),
         label: z.string().min(3).max(128),
-        mine: z.boolean().readonly(),
-        rev_note: z.string(),
+        mine: z.optional(z.boolean().readonly()),
+        rev_note: z.optional(z.string()),
         script: z.string(),
-        updated: z.iso.datetime().readonly(),
-        user_defined_fields: z.array(z.object({
+        updated: z.optional(z.iso.datetime().readonly()),
+        user_defined_fields: z.optional(z.array(z.object({
             default: z.optional(z.string().readonly()),
             example: z.string().readonly(),
             label: z.string().readonly(),
             manyOf: z.optional(z.string().readonly()),
             name: z.string().readonly(),
             oneOf: z.optional(z.string().readonly())
-        })).readonly(),
-        user_gravatar_id: z.string().readonly(),
-        username: z.string().readonly()
+        })).readonly()),
+        user_gravatar_id: z.optional(z.string().readonly()),
+        username: z.optional(z.string().readonly())
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -14384,28 +14384,28 @@ export const getStackScriptResponseSchema = z.object({
 
 export const putStackScriptRequestSchema = z.object({
     body: z.optional(z.object({
-        created: z.iso.datetime().readonly(),
-        deployments_active: z.int().readonly(),
-        deployments_total: z.int().readonly(),
-        description: z.string(),
-        id: z.int().readonly(),
-        images: z.array(z.string()),
-        is_public: z.boolean(),
-        label: z.string().min(3).max(128),
-        mine: z.boolean().readonly(),
-        rev_note: z.string(),
-        script: z.string(),
-        updated: z.iso.datetime().readonly(),
-        user_defined_fields: z.array(z.object({
+        created: z.optional(z.iso.datetime().readonly()),
+        deployments_active: z.optional(z.int().readonly()),
+        deployments_total: z.optional(z.int().readonly()),
+        description: z.optional(z.string()),
+        id: z.optional(z.int().readonly()),
+        images: z.optional(z.array(z.string())),
+        is_public: z.optional(z.boolean()),
+        label: z.optional(z.string().min(3).max(128)),
+        mine: z.optional(z.boolean().readonly()),
+        rev_note: z.optional(z.string()),
+        script: z.optional(z.string()),
+        updated: z.optional(z.iso.datetime().readonly()),
+        user_defined_fields: z.optional(z.array(z.object({
             default: z.optional(z.string().readonly()),
             example: z.string().readonly(),
             label: z.string().readonly(),
             manyOf: z.optional(z.string().readonly()),
             name: z.string().readonly(),
             oneOf: z.optional(z.string().readonly())
-        })).readonly(),
-        user_gravatar_id: z.string().readonly(),
-        username: z.string().readonly()
+        })).readonly()),
+        user_gravatar_id: z.optional(z.string().readonly()),
+        username: z.optional(z.string().readonly())
     })),
     path: z.object({
         stackscriptId: z.string()
@@ -14595,30 +14595,30 @@ export const postLkeClusterRequestSchema = z.object({
     body: z.optional(z.object({
         apl_enabled: z.optional(z.boolean()),
         control_plane: z.optional(z.object({
-            acl: z.object({
-                addresses: z.object({
-                    ipv4: z.array(z.string()),
-                    ipv6: z.array(z.string())
-                }),
-                enabled: z.boolean(),
-                'revision-id': z.string()
-            }),
-            audit_logs_enabled: z.boolean().default(false),
-            high_availability: z.boolean().default(false)
+            acl: z.optional(z.object({
+                addresses: z.optional(z.object({
+                    ipv4: z.optional(z.array(z.string())),
+                    ipv6: z.optional(z.array(z.string()))
+                })),
+                enabled: z.optional(z.boolean()),
+                'revision-id': z.optional(z.string())
+            })),
+            audit_logs_enabled: z.optional(z.boolean()).default(false),
+            high_availability: z.optional(z.boolean()).default(false)
         })),
         k8s_version: z.string(),
         label: z.string().min(1).max(32),
         node_pools: z.array(z.object({
             autoscaler: z.optional(z.object({
-                enabled: z.boolean(),
-                max: z.int().gte(1).lte(100),
-                min: z.int().gte(1).lte(100)
+                enabled: z.optional(z.boolean()),
+                max: z.optional(z.int().gte(1).lte(100)),
+                min: z.optional(z.int().gte(1).lte(100))
             })),
             count: z.int().gte(1).lte(100),
             disk_encryption: z.optional(z.enum(['enabled', 'disabled'])),
             disks: z.optional(z.array(z.object({
-                size: z.int(),
-                type: z.enum(['raw', 'ext4'])
+                size: z.optional(z.int()),
+                type: z.optional(z.enum(['raw', 'ext4']))
             }))),
             k8s_version: z.optional(z.string()),
             label: z.optional(z.string().min(1).max(32).regex(/^[a-z0-9]([-a-z0-9]*[a-z0-9])$/)),
@@ -14714,21 +14714,21 @@ export const getLkeClusterResponseSchema = z.object({
 
 export const putLkeClusterRequestSchema = z.object({
     body: z.optional(z.object({
-        control_plane: z.object({
-            acl: z.object({
-                addresses: z.object({
-                    ipv4: z.array(z.string()),
-                    ipv6: z.array(z.string())
-                }),
-                enabled: z.boolean(),
-                'revision-id': z.string()
-            }),
-            audit_logs_enabled: z.boolean().default(false),
-            high_availability: z.boolean().default(false)
-        }),
-        k8s_version: z.string(),
-        label: z.string().min(1).max(32),
-        tags: z.array(z.string())
+        control_plane: z.optional(z.object({
+            acl: z.optional(z.object({
+                addresses: z.optional(z.object({
+                    ipv4: z.optional(z.array(z.string())),
+                    ipv6: z.optional(z.array(z.string()))
+                })),
+                enabled: z.optional(z.boolean()),
+                'revision-id': z.optional(z.string())
+            })),
+            audit_logs_enabled: z.optional(z.boolean()).default(false),
+            high_availability: z.optional(z.boolean()).default(false)
+        })),
+        k8s_version: z.optional(z.string()),
+        label: z.optional(z.string().min(1).max(32)),
+        tags: z.optional(z.array(z.string()))
     })),
     path: z.object({
         clusterId: z.int()
@@ -14823,14 +14823,14 @@ export const getLkeClusterAclResponseSchema = z.object({
 
 export const putLkeClusterAclRequestSchema = z.object({
     body: z.optional(z.object({
-        acl: z.object({
-            addresses: z.object({
-                ipv4: z.array(z.string()),
-                ipv6: z.array(z.string())
-            }),
-            enabled: z.boolean(),
-            'revision-id': z.string()
-        })
+        acl: z.optional(z.object({
+            addresses: z.optional(z.object({
+                ipv4: z.optional(z.array(z.string())),
+                ipv6: z.optional(z.array(z.string()))
+            })),
+            enabled: z.optional(z.boolean()),
+            'revision-id': z.optional(z.string())
+        }))
     })),
     path: z.object({
         clusterId: z.int()
@@ -15009,15 +15009,15 @@ export const getLkeClusterPoolsResponseSchema = z.object({
 export const postLkeClusterPoolsRequestSchema = z.object({
     body: z.object({
         autoscaler: z.optional(z.object({
-            enabled: z.boolean(),
-            max: z.int().gte(1).lte(100),
-            min: z.int().gte(1).lte(100)
+            enabled: z.optional(z.boolean()),
+            max: z.optional(z.int().gte(1).lte(100)),
+            min: z.optional(z.int().gte(1).lte(100))
         })),
         count: z.int().gte(1).lte(100),
         disk_encryption: z.optional(z.enum(['enabled', 'disabled'])),
         disks: z.optional(z.array(z.object({
-            size: z.int(),
-            type: z.enum(['raw', 'ext4'])
+            size: z.optional(z.int()),
+            type: z.optional(z.enum(['raw', 'ext4']))
         }))),
         k8s_version: z.optional(z.string()),
         label: z.optional(z.string().min(1).max(32).regex(/^[a-z0-9]([-a-z0-9]*[a-z0-9])$/)),
@@ -15148,15 +15148,15 @@ export const getLkeNodePoolResponseSchema = z.object({
 
 export const putLkeNodePoolRequestSchema = z.object({
     body: z.optional(z.object({
-        autoscaler: z.object({
-            enabled: z.boolean(),
-            max: z.int().gte(1).lte(100),
-            min: z.int().gte(1).lte(100)
-        }),
-        count: z.int().gte(1).lte(100),
-        labels: z.record(z.string(), z.string().min(0).max(63).regex(/^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?/)),
-        tags: z.array(z.string()),
-        taints: z.array(z.object({
+        autoscaler: z.optional(z.object({
+            enabled: z.optional(z.boolean()),
+            max: z.optional(z.int().gte(1).lte(100)),
+            min: z.optional(z.int().gte(1).lte(100))
+        })),
+        count: z.optional(z.int().gte(1).lte(100)),
+        labels: z.optional(z.record(z.string(), z.string().min(0).max(63).regex(/^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?/))),
+        tags: z.optional(z.array(z.string())),
+        taints: z.optional(z.array(z.object({
             effect: z.enum([
                 'NoSchedule',
                 'PreferNoSchedule',
@@ -15164,7 +15164,7 @@ export const putLkeNodePoolRequestSchema = z.object({
             ]),
             key: z.string().min(1).max(63).regex(/^([A-Za-z0-9][-A-Za-z0-9_.]*)?(\/)?([A-Za-z0-9][-A-Za-z0-9_.]{1,63})?$/),
             value: z.string().min(0).max(63).regex(/^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?/)
-        })).min(0)
+        })).min(0))
     })),
     path: z.object({
         clusterId: z.int(),
@@ -15243,8 +15243,8 @@ export const postLkeClusterRecycleResponseSchema = z.record(z.string(), z.unknow
 
 export const postLkeClusterRegenerateRequestSchema = z.object({
     body: z.optional(z.object({
-        kubeconfig: z.boolean().default(false),
-        servicetoken: z.boolean().default(false)
+        kubeconfig: z.optional(z.boolean()).default(false),
+        servicetoken: z.optional(z.boolean()).default(false)
     })),
     path: z.object({
         clusterId: z.int()
@@ -15403,17 +15403,17 @@ export const getLongviewClientsResponseSchema = z.object({
 
 export const postLongviewClientRequestSchema = z.object({
     body: z.object({
-        api_key: z.string().readonly(),
-        apps: z.object({
-            apache: z.boolean().readonly(),
-            mysql: z.boolean().readonly(),
-            nginx: z.boolean().readonly()
-        }).readonly(),
-        created: z.iso.datetime().readonly(),
-        id: z.int().readonly(),
-        install_code: z.string().readonly(),
-        label: z.string().min(3).max(32).regex(/[a-zA-Z0-9-_]{3,32}/),
-        updated: z.iso.datetime().readonly()
+        api_key: z.optional(z.string().readonly()),
+        apps: z.optional(z.object({
+            apache: z.optional(z.boolean().readonly()),
+            mysql: z.optional(z.boolean().readonly()),
+            nginx: z.optional(z.boolean().readonly())
+        }).readonly()),
+        created: z.optional(z.iso.datetime().readonly()),
+        id: z.optional(z.int().readonly()),
+        install_code: z.optional(z.string().readonly()),
+        label: z.optional(z.string().min(3).max(32).regex(/[a-zA-Z0-9-_]{3,32}/)),
+        updated: z.optional(z.iso.datetime().readonly())
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -15476,17 +15476,17 @@ export const getLongviewClientResponseSchema = z.object({
 
 export const putLongviewClientRequestSchema = z.object({
     body: z.object({
-        api_key: z.string().readonly(),
-        apps: z.object({
-            apache: z.boolean().readonly(),
-            mysql: z.boolean().readonly(),
-            nginx: z.boolean().readonly()
-        }).readonly(),
-        created: z.iso.datetime().readonly(),
-        id: z.int().readonly(),
-        install_code: z.string().readonly(),
-        label: z.string().min(3).max(32).regex(/[a-zA-Z0-9-_]{3,32}/),
-        updated: z.iso.datetime().readonly()
+        api_key: z.optional(z.string().readonly()),
+        apps: z.optional(z.object({
+            apache: z.optional(z.boolean().readonly()),
+            mysql: z.optional(z.boolean().readonly()),
+            nginx: z.optional(z.boolean().readonly())
+        }).readonly()),
+        created: z.optional(z.iso.datetime().readonly()),
+        id: z.optional(z.int().readonly()),
+        install_code: z.optional(z.string().readonly()),
+        label: z.optional(z.string().min(3).max(32).regex(/[a-zA-Z0-9-_]{3,32}/)),
+        updated: z.optional(z.iso.datetime().readonly())
     }),
     path: z.object({
         clientId: z.int()
@@ -15537,12 +15537,12 @@ export const getLongviewPlanResponseSchema = z.object({
 
 export const putLongviewPlanRequestSchema = z.object({
     body: z.object({
-        longview_subscription: z.enum([
+        longview_subscription: z.optional(z.enum([
             'longview-3',
             'longview-10',
             'longview-40',
             'longview-100'
-        ])
+        ]))
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -15716,24 +15716,24 @@ export const getManagedContactsResponseSchema = z.object({
 
 export const postManagedContactRequestSchema = z.object({
     body: z.optional(z.object({
-        email: z.email(),
-        group: z.union([
+        email: z.optional(z.email()),
+        group: z.optional(z.union([
             z.string().min(2).max(50),
             z.null()
-        ]),
-        id: z.int().readonly(),
-        name: z.string().min(2).max(64).regex(/[a-zA-Z0-9-_ ]{2,64}/),
-        phone: z.object({
-            primary: z.union([
+        ])),
+        id: z.optional(z.int().readonly()),
+        name: z.optional(z.string().min(2).max(64).regex(/[a-zA-Z0-9-_ ]{2,64}/)),
+        phone: z.optional(z.object({
+            primary: z.optional(z.union([
                 z.string(),
                 z.null()
-            ]),
-            secondary: z.union([
+            ])),
+            secondary: z.optional(z.union([
                 z.string(),
                 z.null()
-            ])
-        }),
-        updated: z.iso.datetime().readonly()
+            ]))
+        })),
+        updated: z.optional(z.iso.datetime().readonly())
     })),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -15810,24 +15810,24 @@ export const getManagedContactResponseSchema = z.object({
 
 export const putManagedContactRequestSchema = z.object({
     body: z.object({
-        email: z.email(),
-        group: z.union([
+        email: z.optional(z.email()),
+        group: z.optional(z.union([
             z.string().min(2).max(50),
             z.null()
-        ]),
-        id: z.int().readonly(),
-        name: z.string().min(2).max(64).regex(/[a-zA-Z0-9-_ ]{2,64}/),
-        phone: z.object({
-            primary: z.union([
+        ])),
+        id: z.optional(z.int().readonly()),
+        name: z.optional(z.string().min(2).max(64).regex(/[a-zA-Z0-9-_ ]{2,64}/)),
+        phone: z.optional(z.object({
+            primary: z.optional(z.union([
                 z.string(),
                 z.null()
-            ]),
-            secondary: z.union([
+            ])),
+            secondary: z.optional(z.union([
                 z.string(),
                 z.null()
-            ])
-        }),
-        updated: z.iso.datetime().readonly()
+            ]))
+        })),
+        updated: z.optional(z.iso.datetime().readonly())
     }),
     path: z.object({
         contactId: z.int()
@@ -15884,12 +15884,12 @@ export const getManagedCredentialsResponseSchema = z.object({
 
 export const postManagedCredentialRequestSchema = z.object({
     body: z.optional(z.object({
-        id: z.int().readonly(),
+        id: z.optional(z.int().readonly()),
         label: z.string().min(2).max(75).regex(/[a-zA-Z0-9-_ \.]{2,75}/),
-        last_decrypted: z.iso.datetime().readonly()
+        last_decrypted: z.optional(z.iso.datetime().readonly())
     }).and(z.object({
         password: z.string(),
-        username: z.string().min(0).max(5000)
+        username: z.optional(z.string().min(0).max(5000))
     }))),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -15936,9 +15936,9 @@ export const getManagedCredentialResponseSchema = z.object({
 
 export const putManagedCredentialRequestSchema = z.object({
     body: z.object({
-        id: z.int().readonly(),
-        label: z.string().min(2).max(75).regex(/[a-zA-Z0-9-_ \.]{2,75}/),
-        last_decrypted: z.iso.datetime().readonly()
+        id: z.optional(z.int().readonly()),
+        label: z.optional(z.string().min(2).max(75).regex(/[a-zA-Z0-9-_ \.]{2,75}/)),
+        last_decrypted: z.optional(z.iso.datetime().readonly())
     }),
     path: z.object({
         credentialId: z.int()
@@ -16102,21 +16102,21 @@ export const getManagedLinodeSettingResponseSchema = z.object({
 
 export const putManagedLinodeSettingRequestSchema = z.object({
     body: z.object({
-        group: z.string().readonly(),
-        id: z.int().readonly(),
-        label: z.string().readonly(),
-        ssh: z.object({
-            access: z.boolean().default(true),
-            ip: z.string().default('any'),
-            port: z.union([
+        group: z.optional(z.string().readonly()),
+        id: z.optional(z.int().readonly()),
+        label: z.optional(z.string().readonly()),
+        ssh: z.optional(z.object({
+            access: z.optional(z.boolean()).default(true),
+            ip: z.optional(z.string()).default('any'),
+            port: z.optional(z.union([
                 z.int().gte(1).lte(65535),
                 z.null()
-            ]).default(null),
-            user: z.union([
+            ])).default(null),
+            user: z.optional(z.union([
                 z.string().min(0).max(32),
                 z.null()
-            ]).default(null)
-        })
+            ])).default(null)
+        }))
     }),
     path: z.object({
         linodeId: z.int()
@@ -16192,32 +16192,32 @@ export const getManagedServicesResponseSchema = z.object({
 export const postManagedServiceRequestSchema = z.object({
     body: z.optional(z.object({
         address: z.string().min(3).max(100),
-        body: z.union([
+        body: z.optional(z.union([
             z.string().min(0).max(100),
             z.null()
-        ]),
-        consultation_group: z.string().min(0).max(50),
-        created: z.iso.datetime().readonly(),
-        credentials: z.array(z.int()),
-        id: z.int().readonly(),
+        ])),
+        consultation_group: z.optional(z.string().min(0).max(50)),
+        created: z.optional(z.iso.datetime().readonly()),
+        credentials: z.optional(z.array(z.int())),
+        id: z.optional(z.int().readonly()),
         label: z.string().min(3).max(64).regex(/[a-zA-Z0-9-_ \.]{3,64}/),
-        notes: z.union([
+        notes: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        region: z.union([
+        ])),
+        region: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
+        ])),
         service_type: z.enum(['url', 'tcp']),
-        status: z.enum([
+        status: z.optional(z.enum([
             'disabled',
             'pending',
             'ok',
             'problem'
-        ]),
+        ])),
         timeout: z.int().gte(1).lte(255),
-        updated: z.iso.datetime().readonly()
+        updated: z.optional(z.iso.datetime().readonly())
     })),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -16312,33 +16312,33 @@ export const getManagedServiceResponseSchema = z.object({
 
 export const putManagedServiceRequestSchema = z.object({
     body: z.object({
-        address: z.string().min(3).max(100),
-        body: z.union([
+        address: z.optional(z.string().min(3).max(100)),
+        body: z.optional(z.union([
             z.string().min(0).max(100),
             z.null()
-        ]),
-        consultation_group: z.string().min(0).max(50),
-        created: z.iso.datetime().readonly(),
-        credentials: z.array(z.int()),
-        id: z.int().readonly(),
-        label: z.string().min(3).max(64).regex(/[a-zA-Z0-9-_ \.]{3,64}/),
-        notes: z.union([
+        ])),
+        consultation_group: z.optional(z.string().min(0).max(50)),
+        created: z.optional(z.iso.datetime().readonly()),
+        credentials: z.optional(z.array(z.int())),
+        id: z.optional(z.int().readonly()),
+        label: z.optional(z.string().min(3).max(64).regex(/[a-zA-Z0-9-_ \.]{3,64}/)),
+        notes: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        region: z.union([
+        ])),
+        region: z.optional(z.union([
             z.string(),
             z.null()
-        ]),
-        service_type: z.enum(['url', 'tcp']),
-        status: z.enum([
+        ])),
+        service_type: z.optional(z.enum(['url', 'tcp'])),
+        status: z.optional(z.enum([
             'disabled',
             'pending',
             'ok',
             'problem'
-        ]),
-        timeout: z.int().gte(1).lte(255),
-        updated: z.iso.datetime().readonly()
+        ])),
+        timeout: z.optional(z.int().gte(1).lte(255)),
+        updated: z.optional(z.iso.datetime().readonly())
     }),
     path: z.object({
         serviceId: z.int()
@@ -16879,33 +16879,33 @@ export const postAlertDefinitionForServiceTypeRequestSchema = z.object({
         entity_ids: z.optional(z.array(z.string())),
         label: z.string(),
         rule_criteria: z.object({
-            rules: z.array(z.object({
-                aggregate_function: z.enum([
+            rules: z.optional(z.array(z.object({
+                aggregate_function: z.optional(z.enum([
                     'avg',
                     'sum',
                     'min',
                     'max'
-                ]),
-                dimension_filters: z.array(z.object({
-                    dimension_label: z.string(),
-                    operator: z.enum([
+                ])),
+                dimension_filters: z.optional(z.array(z.object({
+                    dimension_label: z.optional(z.string()),
+                    operator: z.optional(z.enum([
                         'eq',
                         'neq',
                         'startswith',
                         'endswith'
-                    ]),
-                    value: z.string()
-                })),
-                metric: z.string(),
-                operator: z.enum([
+                    ])),
+                    value: z.optional(z.string())
+                }))),
+                metric: z.optional(z.string()),
+                operator: z.optional(z.enum([
                     'eq',
                     'gt',
                     'lt',
                     'gte',
                     'lte'
-                ]),
-                threshold: z.number()
-            }))
+                ])),
+                threshold: z.optional(z.number())
+            })))
         }),
         severity: z.union([
             z.literal(0),
@@ -16914,10 +16914,10 @@ export const postAlertDefinitionForServiceTypeRequestSchema = z.object({
             z.literal(3)
         ]),
         trigger_conditions: z.object({
-            criteria_condition: z.enum(['ALL']),
-            evaluation_period_seconds: z.int(),
-            polling_interval_seconds: z.int(),
-            trigger_occurrences: z.int()
+            criteria_condition: z.optional(z.enum(['ALL'])),
+            evaluation_period_seconds: z.optional(z.int()),
+            polling_interval_seconds: z.optional(z.int()),
+            trigger_occurrences: z.optional(z.int())
         })
     }),
     path: z.object({
@@ -17119,52 +17119,52 @@ export const getAlertDefinitionResponseSchema = z.object({
 
 export const putAlertDefinitionRequestSchema = z.object({
     body: z.object({
-        channel_ids: z.array(z.int()),
-        description: z.string(),
-        entity_ids: z.array(z.string()),
-        label: z.string(),
-        rule_criteria: z.object({
-            rules: z.array(z.object({
-                aggregate_function: z.enum([
+        channel_ids: z.optional(z.array(z.int())),
+        description: z.optional(z.string()),
+        entity_ids: z.optional(z.array(z.string())),
+        label: z.optional(z.string()),
+        rule_criteria: z.optional(z.object({
+            rules: z.optional(z.array(z.object({
+                aggregate_function: z.optional(z.enum([
                     'avg',
                     'sum',
                     'min',
                     'max'
-                ]),
-                dimension_filters: z.array(z.object({
-                    dimension_label: z.string(),
-                    operator: z.enum([
+                ])),
+                dimension_filters: z.optional(z.array(z.object({
+                    dimension_label: z.optional(z.string()),
+                    operator: z.optional(z.enum([
                         'eq',
                         'neq',
                         'startswith',
                         'endswith'
-                    ]),
-                    value: z.string()
-                })),
-                metric: z.string(),
-                operator: z.enum([
+                    ])),
+                    value: z.optional(z.string())
+                }))),
+                metric: z.optional(z.string()),
+                operator: z.optional(z.enum([
                     'eq',
                     'gt',
                     'lt',
                     'gte',
                     'lte'
-                ]),
-                threshold: z.number()
-            }))
-        }),
-        severity: z.union([
+                ])),
+                threshold: z.optional(z.number())
+            })))
+        })),
+        severity: z.optional(z.union([
             z.literal(0),
             z.literal(1),
             z.literal(2),
             z.literal(3)
-        ]),
-        status: z.enum(['enabled', 'disabled']),
-        trigger_conditions: z.object({
-            criteria_condition: z.enum(['ALL']),
-            evaluation_period_seconds: z.int(),
-            polling_interval_seconds: z.int(),
-            trigger_occurrences: z.int()
-        })
+        ])),
+        status: z.optional(z.enum(['enabled', 'disabled'])),
+        trigger_conditions: z.optional(z.object({
+            criteria_condition: z.optional(z.enum(['ALL'])),
+            evaluation_period_seconds: z.optional(z.int()),
+            polling_interval_seconds: z.optional(z.int()),
+            trigger_occurrences: z.optional(z.int())
+        }))
     }),
     path: z.object({
         serviceType: z.string(),
@@ -17335,24 +17335,24 @@ export const getMonitorInformationRequestSchema = z.object({
             }),
             z.object({
                 '+and': z.optional(z.array(z.object({
-                    is_alertable: z.boolean(),
-                    metric_type: z.enum([
+                    is_alertable: z.optional(z.boolean()),
+                    metric_type: z.optional(z.enum([
                         'counter',
                         'histogram',
                         'gauge',
                         'summary'
-                    ])
+                    ]))
                 })))
             }),
             z.object({
                 '+or': z.optional(z.array(z.object({
-                    is_alertable: z.boolean(),
-                    metric_type: z.enum([
+                    is_alertable: z.optional(z.boolean()),
+                    metric_type: z.optional(z.enum([
                         'counter',
                         'histogram',
                         'gauge',
                         'summary'
-                    ])
+                    ]))
                 })))
             })
         ]))
@@ -17414,80 +17414,80 @@ export const postReadMetricRequestSchema = z.object({
         z.object({
             entity_ids: z.array(z.int()).min(1),
             filters: z.optional(z.array(z.object({
-                dimension_label: z.string(),
-                operator: z.enum([
+                dimension_label: z.optional(z.string()),
+                operator: z.optional(z.enum([
                     'eq',
                     'neq',
                     'startswith',
                     'endswith'
-                ]),
-                value: z.string()
+                ])),
+                value: z.optional(z.string())
             }))),
             group_by: z.optional(z.array(z.string())),
             metrics: z.array(z.object({
-                aggregate_function: z.enum([
+                aggregate_function: z.optional(z.enum([
                     'min',
                     'max',
                     'avg',
                     'sum'
-                ]),
-                name: z.string()
+                ])),
+                name: z.optional(z.string())
             })).min(1),
             time_granularity: z.optional(z.object({
-                unit: z.enum([
+                unit: z.optional(z.enum([
                     'sec',
                     'min',
                     'hr',
                     'days'
-                ]),
-                value: z.int()
+                ])),
+                value: z.optional(z.int())
             }))
         }).and(z.object({
             relative_time_duration: z.object({
-                unit: z.enum([
+                unit: z.optional(z.enum([
                     'sec',
                     'min',
                     'hr',
                     'days'
-                ]),
-                value: z.int()
+                ])),
+                value: z.optional(z.int())
             })
         })),
         z.object({
             entity_ids: z.array(z.int()).min(1),
             filters: z.optional(z.array(z.object({
-                dimension_label: z.string(),
-                operator: z.enum([
+                dimension_label: z.optional(z.string()),
+                operator: z.optional(z.enum([
                     'eq',
                     'neq',
                     'startswith',
                     'endswith'
-                ]),
-                value: z.string()
+                ])),
+                value: z.optional(z.string())
             }))),
             group_by: z.optional(z.array(z.string())),
             metrics: z.array(z.object({
-                aggregate_function: z.enum([
+                aggregate_function: z.optional(z.enum([
                     'min',
                     'max',
                     'avg',
                     'sum'
-                ]),
-                name: z.string()
+                ])),
+                name: z.optional(z.string())
             })).min(1),
             time_granularity: z.optional(z.object({
-                unit: z.enum([
+                unit: z.optional(z.enum([
                     'sec',
                     'min',
                     'hr',
                     'days'
-                ]),
-                value: z.int()
+                ])),
+                value: z.optional(z.int())
             }))
         }).and(z.object({
             absolute_time_duration: z.object({
-                end: z.iso.datetime(),
-                start: z.iso.datetime()
+                end: z.optional(z.iso.datetime()),
+                start: z.optional(z.iso.datetime())
             })
         }))
     ]),
@@ -17667,88 +17667,88 @@ export const getFirewallsResponseSchema = z.object({
 
 export const postFirewallsRequestSchema = z.object({
     body: z.optional(z.object({
-        created: z.iso.datetime().readonly(),
-        entities: z.array(z.object({
-            id: z.int(),
-            label: z.string().readonly(),
-            parent_entity: z.union([
+        created: z.optional(z.iso.datetime().readonly()),
+        entities: z.optional(z.array(z.object({
+            id: z.optional(z.int()),
+            label: z.optional(z.string().readonly()),
+            parent_entity: z.optional(z.union([
                 z.object({
-                    id: z.int(),
-                    label: z.string(),
-                    parent_entity: z.union([
+                    id: z.optional(z.int()),
+                    label: z.optional(z.string()),
+                    parent_entity: z.optional(z.union([
                         z.string().readonly(),
                         z.null()
-                    ]).readonly(),
-                    type: z.enum(['linode']),
-                    url: z.string()
+                    ]).readonly()),
+                    type: z.optional(z.enum(['linode'])),
+                    url: z.optional(z.string())
                 }).readonly(),
                 z.null()
-            ]).readonly(),
-            type: z.enum([
+            ]).readonly()),
+            type: z.optional(z.enum([
                 'linode',
                 'linode_interface',
                 'nodebalancer'
-            ]),
-            url: z.string().readonly()
-        })).readonly(),
-        id: z.int().readonly(),
+            ])),
+            url: z.optional(z.string().readonly())
+        })).readonly()),
+        id: z.optional(z.int().readonly()),
         label: z.string().min(3).max(32).regex(/^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$/),
         rules: z.object({
-            fingerprint: z.string().readonly(),
-            inbound: z.array(z.object({
-                action: z.enum(['ACCEPT', 'DROP']),
-                addresses: z.object({
-                    ipv4: z.array(z.string()),
-                    ipv6: z.array(z.string())
-                }),
-                description: z.string().min(1).max(100),
-                label: z.string().min(3).max(32),
-                ports: z.union([
+            fingerprint: z.optional(z.string().readonly()),
+            inbound: z.optional(z.array(z.object({
+                action: z.optional(z.enum(['ACCEPT', 'DROP'])),
+                addresses: z.optional(z.object({
+                    ipv4: z.optional(z.array(z.string())),
+                    ipv6: z.optional(z.array(z.string()))
+                })),
+                description: z.optional(z.string().min(1).max(100)),
+                label: z.optional(z.string().min(3).max(32)),
+                ports: z.optional(z.union([
                     z.string(),
                     z.null()
-                ]),
-                protocol: z.enum([
+                ])),
+                protocol: z.optional(z.enum([
                     'TCP',
                     'UDP',
                     'ICMP',
                     'IPENCAP'
-                ])
-            })),
-            inbound_policy: z.enum(['ACCEPT', 'DROP']),
-            outbound: z.array(z.object({
-                action: z.enum(['ACCEPT', 'DROP']),
-                addresses: z.object({
-                    ipv4: z.array(z.string()),
-                    ipv6: z.array(z.string())
-                }),
-                description: z.string().min(1).max(100),
-                label: z.string().min(3).max(32),
-                ports: z.union([
+                ]))
+            }))),
+            inbound_policy: z.optional(z.enum(['ACCEPT', 'DROP'])),
+            outbound: z.optional(z.array(z.object({
+                action: z.optional(z.enum(['ACCEPT', 'DROP'])),
+                addresses: z.optional(z.object({
+                    ipv4: z.optional(z.array(z.string())),
+                    ipv6: z.optional(z.array(z.string()))
+                })),
+                description: z.optional(z.string().min(1).max(100)),
+                label: z.optional(z.string().min(3).max(32)),
+                ports: z.optional(z.union([
                     z.string(),
                     z.null()
-                ]),
-                protocol: z.enum([
+                ])),
+                protocol: z.optional(z.enum([
                     'TCP',
                     'UDP',
                     'ICMP',
                     'IPENCAP'
-                ])
-            })),
-            outbound_policy: z.enum(['ACCEPT', 'DROP']),
-            version: z.int().readonly()
+                ]))
+            }))),
+            outbound_policy: z.optional(z.enum(['ACCEPT', 'DROP'])),
+            version: z.optional(z.int().readonly())
         }),
-        status: z.enum([
+        status: z.optional(z.enum([
             'enabled',
             'disabled',
             'deleted'
-        ]),
-        tags: z.array(z.string()),
-        updated: z.iso.datetime().readonly()
+        ])),
+        tags: z.optional(z.array(z.string())),
+        updated: z.optional(z.iso.datetime().readonly())
     }).and(z.object({
         devices: z.optional(z.object({
-            linode_interfaces: z.array(z.int()),
-            linodes: z.array(z.int()),
-            nodebalancers: z.array(z.int())
+            linode_interfaces: z.optional(z.array(z.int())),
+            linodes: z.optional(z.array(z.int())),
+            nodebalancers: z.optional(z.array(z.int()))
         })),
         rules: z.object({
             inbound: z.optional(z.unknown()),
@@ -17866,12 +17866,12 @@ export const getFirewallSettingsResponseSchema = z.object({
 
 export const putFirewallSettingsRequestSchema = z.object({
     body: z.object({
-        default_firewall_ids: z.object({
-            linode: z.int(),
-            nodebalancer: z.int(),
-            public_interface: z.int(),
-            vpc_interface: z.int()
-        })
+        default_firewall_ids: z.optional(z.object({
+            linode: z.optional(z.int()),
+            nodebalancer: z.optional(z.int()),
+            public_interface: z.optional(z.int()),
+            vpc_interface: z.optional(z.int())
+        }))
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -18118,9 +18118,9 @@ export const getFirewallResponseSchema = z.object({
 
 export const putFirewallRequestSchema = z.object({
     body: z.optional(z.object({
-        label: z.string().min(3).max(32).regex(/^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$/),
-        status: z.enum(['enabled', 'disabled']),
-        tags: z.array(z.string())
+        label: z.optional(z.string().min(3).max(32).regex(/^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$/)),
+        status: z.optional(z.enum(['enabled', 'disabled'])),
+        tags: z.optional(z.array(z.string()))
     })),
     path: z.object({
         firewallId: z.int()
@@ -18262,26 +18262,26 @@ export const getFirewallDevicesResponseSchema = z.object({
 export const postFirewallDeviceRequestSchema = z.object({
     body: z.optional(z.object({
         id: z.int(),
-        label: z.string().readonly(),
-        parent_entity: z.union([
+        label: z.optional(z.string().readonly()),
+        parent_entity: z.optional(z.union([
             z.object({
-                id: z.int(),
-                label: z.string(),
-                parent_entity: z.union([
+                id: z.optional(z.int()),
+                label: z.optional(z.string()),
+                parent_entity: z.optional(z.union([
                     z.string().readonly(),
                     z.null()
-                ]).readonly(),
-                type: z.enum(['linode']),
-                url: z.string()
+                ]).readonly()),
+                type: z.optional(z.enum(['linode'])),
+                url: z.optional(z.string())
             }).readonly(),
             z.null()
-        ]).readonly(),
+        ]).readonly()),
         type: z.enum([
             'linode',
             'nodebalancer',
             'linode_interface'
         ]),
-        url: z.string().readonly()
+        url: z.optional(z.string().readonly())
     })),
     path: z.object({
         firewallId: z.int()
@@ -18621,48 +18621,48 @@ export const getFirewallRulesResponseSchema = z.object({
 
 export const putFirewallRulesRequestSchema = z.object({
     body: z.optional(z.object({
-        fingerprint: z.string().readonly(),
-        inbound: z.array(z.object({
-            action: z.enum(['ACCEPT', 'DROP']),
-            addresses: z.object({
-                ipv4: z.array(z.string()),
-                ipv6: z.array(z.string())
-            }),
-            description: z.string().min(1).max(100),
-            label: z.string().min(3).max(32),
-            ports: z.union([
+        fingerprint: z.optional(z.string().readonly()),
+        inbound: z.optional(z.array(z.object({
+            action: z.optional(z.enum(['ACCEPT', 'DROP'])),
+            addresses: z.optional(z.object({
+                ipv4: z.optional(z.array(z.string())),
+                ipv6: z.optional(z.array(z.string()))
+            })),
+            description: z.optional(z.string().min(1).max(100)),
+            label: z.optional(z.string().min(3).max(32)),
+            ports: z.optional(z.union([
                 z.string(),
                 z.null()
-            ]),
-            protocol: z.enum([
+            ])),
+            protocol: z.optional(z.enum([
                 'TCP',
                 'UDP',
                 'ICMP',
                 'IPENCAP'
-            ])
-        })),
-        inbound_policy: z.enum(['ACCEPT', 'DROP']),
-        outbound: z.array(z.object({
-            action: z.enum(['ACCEPT', 'DROP']),
-            addresses: z.object({
-                ipv4: z.array(z.string()),
-                ipv6: z.array(z.string())
-            }),
-            description: z.string().min(1).max(100),
-            label: z.string().min(3).max(32),
-            ports: z.union([
+            ]))
+        }))),
+        inbound_policy: z.optional(z.enum(['ACCEPT', 'DROP'])),
+        outbound: z.optional(z.array(z.object({
+            action: z.optional(z.enum(['ACCEPT', 'DROP'])),
+            addresses: z.optional(z.object({
+                ipv4: z.optional(z.array(z.string())),
+                ipv6: z.optional(z.array(z.string()))
+            })),
+            description: z.optional(z.string().min(1).max(100)),
+            label: z.optional(z.string().min(3).max(32)),
+            ports: z.optional(z.union([
                 z.string(),
                 z.null()
-            ]),
-            protocol: z.enum([
+            ])),
+            protocol: z.optional(z.enum([
                 'TCP',
                 'UDP',
                 'ICMP',
                 'IPENCAP'
-            ])
-        })),
-        outbound_policy: z.enum(['ACCEPT', 'DROP']),
-        version: z.int().readonly()
+            ]))
+        }))),
+        outbound_policy: z.optional(z.enum(['ACCEPT', 'DROP'])),
+        version: z.optional(z.int().readonly())
     }).and(z.object({
         inbound: z.optional(z.unknown()),
         outbound: z.optional(z.unknown())
@@ -19209,8 +19209,8 @@ export const postNodeBalancerRequestSchema = z.object({
                     weight: z.optional(z.int().gte(1).lte(255))
                 })),
                 nodes_status: z.optional(z.object({
-                    down: z.int().readonly(),
-                    up: z.int().readonly()
+                    down: z.optional(z.int().readonly()),
+                    up: z.optional(z.int().readonly())
                 }).readonly()),
                 port: z.optional(z.int().gte(1).lte(65535)).default(80),
                 protocol: z.optional(z.enum(['udp'])),
@@ -19275,8 +19275,8 @@ export const postNodeBalancerRequestSchema = z.object({
                     weight: z.optional(z.int().gte(1).lte(255))
                 })),
                 nodes_status: z.optional(z.object({
-                    down: z.int().readonly(),
-                    up: z.int().readonly()
+                    down: z.optional(z.int().readonly()),
+                    up: z.optional(z.int().readonly())
                 }).readonly()),
                 port: z.optional(z.int().gte(1).lte(65535)).default(80),
                 protocol: z.optional(z.enum(['tcp'])),
@@ -19339,8 +19339,8 @@ export const postNodeBalancerRequestSchema = z.object({
                     weight: z.optional(z.int().gte(1).lte(255))
                 })),
                 nodes_status: z.optional(z.object({
-                    down: z.int().readonly(),
-                    up: z.int().readonly()
+                    down: z.optional(z.int().readonly()),
+                    up: z.optional(z.int().readonly())
                 }).readonly()),
                 port: z.optional(z.int().gte(1).lte(65535)).default(80),
                 protocol: z.optional(z.enum(['http'])),
@@ -19403,8 +19403,8 @@ export const postNodeBalancerRequestSchema = z.object({
                     weight: z.optional(z.int().gte(1).lte(255))
                 })),
                 nodes_status: z.optional(z.object({
-                    down: z.int().readonly(),
-                    up: z.int().readonly()
+                    down: z.optional(z.int().readonly()),
+                    up: z.optional(z.int().readonly())
                 }).readonly()),
                 port: z.optional(z.int().gte(1).lte(65535)).default(80),
                 protocol: z.optional(z.enum(['https'])),
@@ -19591,43 +19591,43 @@ export const getNodeBalancerResponseSchema = z.object({
 
 export const putNodeBalancerRequestSchema = z.object({
     body: z.object({
-        client_conn_throttle: z.int().gte(0).lte(20),
-        created: z.iso.datetime().readonly(),
-        hostname: z.string().readonly(),
-        id: z.int().readonly(),
-        ipv4: z.string().readonly(),
-        ipv6: z.union([
+        client_conn_throttle: z.optional(z.int().gte(0).lte(20)),
+        created: z.optional(z.iso.datetime().readonly()),
+        hostname: z.optional(z.string().readonly()),
+        id: z.optional(z.int().readonly()),
+        ipv4: z.optional(z.string().readonly()),
+        ipv6: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly(),
-        label: z.string().min(3).max(32).regex(/[a-zA-Z0-9-_]{3,32}/),
-        lke_cluster: z.union([
+        ]).readonly()),
+        label: z.optional(z.string().min(3).max(32).regex(/[a-zA-Z0-9-_]{3,32}/)),
+        lke_cluster: z.optional(z.union([
             z.object({
-                id: z.string(),
-                label: z.string(),
-                type: z.string().readonly(),
-                url: z.string()
+                id: z.optional(z.string()),
+                label: z.optional(z.string()),
+                type: z.optional(z.string().readonly()),
+                url: z.optional(z.string())
             }).readonly(),
             z.null()
-        ]).readonly(),
-        region: z.string().readonly(),
-        tags: z.array(z.string()),
-        transfer: z.object({
-            in: z.union([
+        ]).readonly()),
+        region: z.optional(z.string().readonly()),
+        tags: z.optional(z.array(z.string())),
+        transfer: z.optional(z.object({
+            in: z.optional(z.union([
                 z.number().readonly(),
                 z.null()
-            ]).readonly(),
-            out: z.union([
+            ]).readonly()),
+            out: z.optional(z.union([
                 z.number().readonly(),
                 z.null()
-            ]).readonly(),
-            total: z.union([
+            ]).readonly()),
+            total: z.optional(z.union([
                 z.number().readonly(),
                 z.null()
-            ]).readonly()
-        }).readonly(),
-        type: z.enum(['common', 'premium']),
-        updated: z.iso.datetime().readonly()
+            ]).readonly())
+        }).readonly()),
+        type: z.optional(z.enum(['common', 'premium'])),
+        updated: z.optional(z.iso.datetime().readonly())
     }),
     path: z.object({
         nodeBalancerId: z.int()
@@ -19918,8 +19918,8 @@ export const postNodeBalancerConfigRequestSchema = z.object({
                 weight: z.optional(z.int().gte(1).lte(255))
             })),
             nodes_status: z.optional(z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
             }).readonly()),
             port: z.optional(z.int().gte(1).lte(65535)).default(80),
             protocol: z.optional(z.enum(['udp'])),
@@ -19984,8 +19984,8 @@ export const postNodeBalancerConfigRequestSchema = z.object({
                 weight: z.optional(z.int().gte(1).lte(255))
             })),
             nodes_status: z.optional(z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
             }).readonly()),
             port: z.optional(z.int().gte(1).lte(65535)).default(80),
             protocol: z.optional(z.enum(['tcp'])),
@@ -20048,8 +20048,8 @@ export const postNodeBalancerConfigRequestSchema = z.object({
                 weight: z.optional(z.int().gte(1).lte(255))
             })),
             nodes_status: z.optional(z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
             }).readonly()),
             port: z.optional(z.int().gte(1).lte(65535)).default(80),
             protocol: z.optional(z.enum(['http'])),
@@ -20112,8 +20112,8 @@ export const postNodeBalancerConfigRequestSchema = z.object({
                 weight: z.optional(z.int().gte(1).lte(255))
             })),
             nodes_status: z.optional(z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
             }).readonly()),
             port: z.optional(z.int().gte(1).lte(65535)).default(80),
             protocol: z.optional(z.enum(['https'])),
@@ -20136,17 +20136,17 @@ export const postNodeBalancerConfigRequestSchema = z.object({
         })
     ]), z.object({
         nodes: z.array(z.object({
-            address: z.string(),
-            id: z.int(),
-            label: z.string().min(3).max(32).regex(/[a-zA-Z0-9-_.]{3,32}/),
-            mode: z.enum([
+            address: z.optional(z.string()),
+            id: z.optional(z.int()),
+            label: z.optional(z.string().min(3).max(32).regex(/[a-zA-Z0-9-_.]{3,32}/)),
+            mode: z.optional(z.enum([
                 'accept',
                 'reject',
                 'drain',
                 'backup'
-            ]),
-            subnet_id: z.int(),
-            weight: z.int().gte(1).lte(255)
+            ])),
+            subnet_id: z.optional(z.int()),
+            weight: z.optional(z.int().gte(1).lte(255))
         }))
     }))),
     path: z.object({
@@ -20557,182 +20557,182 @@ export const getNodeBalancerConfigResponseSchema = z.union([
 export const putNodeBalancerConfigRequestSchema = z.object({
     body: z.union([
         z.object({
-            algorithm: z.enum([
+            algorithm: z.optional(z.enum([
                 'roundrobin',
                 'leastconn',
                 'ring_hash'
-            ]),
-            check: z.enum([
+            ])),
+            check: z.optional(z.enum([
                 'none',
                 'connection',
                 'http',
                 'http_body'
-            ]),
-            check_attempts: z.int().gte(1).lte(30).default(3),
-            check_body: z.string(),
-            check_interval: z.int().gte(2).lte(3600).default(5),
-            check_passive: z.boolean().readonly(),
-            check_path: z.string().regex(/^[a-zA-Z0-9\/\-%?&=.]*$/),
-            check_timeout: z.int().gte(1).lte(30).default(30),
-            cipher_suite: z.string().readonly(),
-            id: z.int().readonly(),
-            nodebalancer_id: z.int().readonly(),
-            nodes_status: z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
-            }).readonly(),
-            port: z.int().gte(1).lte(65535).default(80),
-            protocol: z.enum(['udp']),
-            proxy_protocol: z.string().readonly(),
-            ssl_cert: z.union([
+            ])),
+            check_attempts: z.optional(z.int().gte(1).lte(30)).default(3),
+            check_body: z.optional(z.string()),
+            check_interval: z.optional(z.int().gte(2).lte(3600)).default(5),
+            check_passive: z.optional(z.boolean().readonly()),
+            check_path: z.optional(z.string().regex(/^[a-zA-Z0-9\/\-%?&=.]*$/)),
+            check_timeout: z.optional(z.int().gte(1).lte(30)).default(30),
+            cipher_suite: z.optional(z.string().readonly()),
+            id: z.optional(z.int().readonly()),
+            nodebalancer_id: z.optional(z.int().readonly()),
+            nodes_status: z.optional(z.object({
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
+            }).readonly()),
+            port: z.optional(z.int().gte(1).lte(65535)).default(80),
+            protocol: z.optional(z.enum(['udp'])),
+            proxy_protocol: z.optional(z.string().readonly()),
+            ssl_cert: z.optional(z.union([
                 z.string().readonly(),
                 z.null()
-            ]).readonly(),
-            ssl_commonname: z.string().readonly(),
-            ssl_fingerprint: z.string().readonly(),
-            ssl_key: z.union([
+            ]).readonly()),
+            ssl_commonname: z.optional(z.string().readonly()),
+            ssl_fingerprint: z.optional(z.string().readonly()),
+            ssl_key: z.optional(z.union([
                 z.string().readonly(),
                 z.null()
-            ]).readonly(),
-            stickiness: z.enum([
+            ]).readonly()),
+            stickiness: z.optional(z.enum([
                 'none',
                 'session',
                 'source_ip'
-            ]),
-            udp_check_port: z.int().gte(1).lte(65535).default(80),
-            udp_session_timeout: z.int().gte(1).lte(300).readonly().default(16)
+            ])),
+            udp_check_port: z.optional(z.int().gte(1).lte(65535)).default(80),
+            udp_session_timeout: z.optional(z.int().gte(1).lte(300).readonly()).default(16)
         }),
         z.object({
-            algorithm: z.enum([
+            algorithm: z.optional(z.enum([
                 'roundrobin',
                 'leastconn',
                 'source'
-            ]),
-            check: z.enum([
+            ])),
+            check: z.optional(z.enum([
                 'none',
                 'connection',
                 'http',
                 'http_body'
-            ]),
-            check_attempts: z.int().gte(1).lte(30).default(3),
-            check_body: z.string(),
-            check_interval: z.int().gte(2).lte(3600).default(5),
-            check_passive: z.boolean().default(true),
-            check_path: z.string().regex(/^[a-zA-Z0-9\/\-%?&=.]*$/),
-            check_timeout: z.int().gte(1).lte(30).default(30),
-            cipher_suite: z.string().readonly(),
-            id: z.int().readonly(),
-            nodebalancer_id: z.int().readonly(),
-            nodes_status: z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
-            }).readonly(),
-            port: z.int().gte(1).lte(65535).default(80),
-            protocol: z.enum(['tcp']),
-            proxy_protocol: z.enum([
+            ])),
+            check_attempts: z.optional(z.int().gte(1).lte(30)).default(3),
+            check_body: z.optional(z.string()),
+            check_interval: z.optional(z.int().gte(2).lte(3600)).default(5),
+            check_passive: z.optional(z.boolean()).default(true),
+            check_path: z.optional(z.string().regex(/^[a-zA-Z0-9\/\-%?&=.]*$/)),
+            check_timeout: z.optional(z.int().gte(1).lte(30)).default(30),
+            cipher_suite: z.optional(z.string().readonly()),
+            id: z.optional(z.int().readonly()),
+            nodebalancer_id: z.optional(z.int().readonly()),
+            nodes_status: z.optional(z.object({
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
+            }).readonly()),
+            port: z.optional(z.int().gte(1).lte(65535)).default(80),
+            protocol: z.optional(z.enum(['tcp'])),
+            proxy_protocol: z.optional(z.enum([
                 'none',
                 'v1',
                 'v2'
-            ]),
-            ssl_cert: z.union([
+            ])),
+            ssl_cert: z.optional(z.union([
                 z.string().readonly(),
                 z.null()
-            ]).readonly(),
-            ssl_commonname: z.string().readonly(),
-            ssl_fingerprint: z.string().readonly(),
-            ssl_key: z.union([
+            ]).readonly()),
+            ssl_commonname: z.optional(z.string().readonly()),
+            ssl_fingerprint: z.optional(z.string().readonly()),
+            ssl_key: z.optional(z.union([
                 z.string().readonly(),
                 z.null()
-            ]).readonly(),
-            stickiness: z.enum(['none', 'table'])
+            ]).readonly()),
+            stickiness: z.optional(z.enum(['none', 'table']))
         }),
         z.object({
-            algorithm: z.enum([
+            algorithm: z.optional(z.enum([
                 'roundrobin',
                 'leastconn',
                 'source'
-            ]),
-            check: z.enum([
+            ])),
+            check: z.optional(z.enum([
                 'none',
                 'connection',
                 'http',
                 'http_body'
-            ]),
-            check_attempts: z.int().gte(1).lte(30).default(3),
-            check_body: z.string(),
-            check_interval: z.int().gte(2).lte(3600).default(5),
-            check_passive: z.boolean().default(true),
-            check_path: z.string().regex(/^[a-zA-Z0-9\/\-%?&=.]*$/),
-            check_timeout: z.int().gte(1).lte(30).default(3),
-            cipher_suite: z.string().readonly(),
-            id: z.int().readonly(),
-            nodebalancer_id: z.int().readonly(),
-            nodes_status: z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
-            }).readonly(),
-            port: z.int().gte(1).lte(65535).default(80),
-            protocol: z.enum(['http']),
-            proxy_protocol: z.string().readonly().default('none'),
-            ssl_cert: z.union([
+            ])),
+            check_attempts: z.optional(z.int().gte(1).lte(30)).default(3),
+            check_body: z.optional(z.string()),
+            check_interval: z.optional(z.int().gte(2).lte(3600)).default(5),
+            check_passive: z.optional(z.boolean()).default(true),
+            check_path: z.optional(z.string().regex(/^[a-zA-Z0-9\/\-%?&=.]*$/)),
+            check_timeout: z.optional(z.int().gte(1).lte(30)).default(3),
+            cipher_suite: z.optional(z.string().readonly()),
+            id: z.optional(z.int().readonly()),
+            nodebalancer_id: z.optional(z.int().readonly()),
+            nodes_status: z.optional(z.object({
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
+            }).readonly()),
+            port: z.optional(z.int().gte(1).lte(65535)).default(80),
+            protocol: z.optional(z.enum(['http'])),
+            proxy_protocol: z.optional(z.string().readonly()).default('none'),
+            ssl_cert: z.optional(z.union([
                 z.string().readonly(),
                 z.null()
-            ]).readonly(),
-            ssl_commonname: z.string().readonly(),
-            ssl_fingerprint: z.string().readonly(),
-            ssl_key: z.union([
+            ]).readonly()),
+            ssl_commonname: z.optional(z.string().readonly()),
+            ssl_fingerprint: z.optional(z.string().readonly()),
+            ssl_key: z.optional(z.union([
                 z.string().readonly(),
                 z.null()
-            ]).readonly(),
-            stickiness: z.enum([
+            ]).readonly()),
+            stickiness: z.optional(z.enum([
                 'none',
                 'table',
                 'http_cookie'
-            ])
+            ]))
         }),
         z.object({
-            algorithm: z.enum([
+            algorithm: z.optional(z.enum([
                 'roundrobin',
                 'leastconn',
                 'source'
-            ]),
-            check: z.enum([
+            ])),
+            check: z.optional(z.enum([
                 'none',
                 'connection',
                 'http',
                 'http_body'
-            ]),
-            check_attempts: z.int().gte(1).lte(30).default(3),
-            check_body: z.string(),
-            check_interval: z.int().gte(2).lte(3600).default(5),
-            check_passive: z.boolean().default(true),
-            check_path: z.string().regex(/^[a-zA-Z0-9\/\-%?&=.]*$/),
-            check_timeout: z.int().gte(1).lte(30).default(3),
-            cipher_suite: z.enum(['recommended', 'legacy']),
-            id: z.int().readonly(),
-            nodebalancer_id: z.int().readonly(),
-            nodes_status: z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
-            }).readonly(),
-            port: z.int().gte(1).lte(65535).default(80),
-            protocol: z.enum(['https']),
-            proxy_protocol: z.string().readonly().default('none'),
-            ssl_cert: z.union([
+            ])),
+            check_attempts: z.optional(z.int().gte(1).lte(30)).default(3),
+            check_body: z.optional(z.string()),
+            check_interval: z.optional(z.int().gte(2).lte(3600)).default(5),
+            check_passive: z.optional(z.boolean()).default(true),
+            check_path: z.optional(z.string().regex(/^[a-zA-Z0-9\/\-%?&=.]*$/)),
+            check_timeout: z.optional(z.int().gte(1).lte(30)).default(3),
+            cipher_suite: z.optional(z.enum(['recommended', 'legacy'])),
+            id: z.optional(z.int().readonly()),
+            nodebalancer_id: z.optional(z.int().readonly()),
+            nodes_status: z.optional(z.object({
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
+            }).readonly()),
+            port: z.optional(z.int().gte(1).lte(65535)).default(80),
+            protocol: z.optional(z.enum(['https'])),
+            proxy_protocol: z.optional(z.string().readonly()).default('none'),
+            ssl_cert: z.optional(z.union([
                 z.string(),
                 z.null()
-            ]),
-            ssl_commonname: z.string().readonly(),
-            ssl_fingerprint: z.string().readonly(),
-            ssl_key: z.union([
+            ])),
+            ssl_commonname: z.optional(z.string().readonly()),
+            ssl_fingerprint: z.optional(z.string().readonly()),
+            ssl_key: z.optional(z.union([
                 z.string(),
                 z.null()
-            ]),
-            stickiness: z.enum([
+            ])),
+            stickiness: z.optional(z.enum([
                 'none',
                 'table',
                 'http_cookie'
-            ])
+            ]))
         })
     ]),
     path: z.object({
@@ -21287,8 +21287,8 @@ export const postRebuildNodeBalancerConfigRequestSchema = z.object({
                 weight: z.optional(z.int().gte(1).lte(255))
             })),
             nodes_status: z.optional(z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
             }).readonly()),
             port: z.optional(z.int().gte(1).lte(65535)).default(80),
             protocol: z.optional(z.enum(['udp'])),
@@ -21353,8 +21353,8 @@ export const postRebuildNodeBalancerConfigRequestSchema = z.object({
                 weight: z.optional(z.int().gte(1).lte(255))
             })),
             nodes_status: z.optional(z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
             }).readonly()),
             port: z.optional(z.int().gte(1).lte(65535)).default(80),
             protocol: z.optional(z.enum(['tcp'])),
@@ -21417,8 +21417,8 @@ export const postRebuildNodeBalancerConfigRequestSchema = z.object({
                 weight: z.optional(z.int().gte(1).lte(255))
             })),
             nodes_status: z.optional(z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
             }).readonly()),
             port: z.optional(z.int().gte(1).lte(65535)).default(80),
             protocol: z.optional(z.enum(['http'])),
@@ -21481,8 +21481,8 @@ export const postRebuildNodeBalancerConfigRequestSchema = z.object({
                 weight: z.optional(z.int().gte(1).lte(255))
             })),
             nodes_status: z.optional(z.object({
-                down: z.int().readonly(),
-                up: z.int().readonly()
+                down: z.optional(z.int().readonly()),
+                up: z.optional(z.int().readonly())
             }).readonly()),
             port: z.optional(z.int().gte(1).lte(65535)).default(80),
             protocol: z.optional(z.enum(['https'])),
@@ -21505,17 +21505,17 @@ export const postRebuildNodeBalancerConfigRequestSchema = z.object({
         })
     ]), z.object({
         nodes: z.array(z.object({
-            address: z.string(),
-            id: z.int(),
-            label: z.string().min(3).max(32).regex(/[a-zA-Z0-9-_.]{3,32}/),
-            mode: z.enum([
+            address: z.optional(z.string()),
+            id: z.optional(z.int()),
+            label: z.optional(z.string().min(3).max(32).regex(/[a-zA-Z0-9-_.]{3,32}/)),
+            mode: z.optional(z.enum([
                 'accept',
                 'reject',
                 'drain',
                 'backup'
-            ]),
-            subnet_id: z.int(),
-            weight: z.int().gte(1).lte(255)
+            ])),
+            subnet_id: z.optional(z.int()),
+            weight: z.optional(z.int().gte(1).lte(255))
         }))
     })),
     path: z.object({
@@ -22178,14 +22178,14 @@ export const getObjectStorageBucketAccessResponseSchema = z.object({
 
 export const postObjectStorageBucketAccessRequestSchema = z.object({
     body: z.optional(z.object({
-        acl: z.enum([
+        acl: z.optional(z.enum([
             'private',
             'public-read',
             'authenticated-read',
             'public-read-write',
             'custom'
-        ]),
-        cors_enabled: z.boolean()
+        ])),
+        cors_enabled: z.optional(z.boolean())
     })),
     path: z.object({
         regionId: z.string(),
@@ -22201,14 +22201,14 @@ export const postObjectStorageBucketAccessResponseSchema = z.record(z.string(), 
 
 export const putStorageBucketAccessRequestSchema = z.object({
     body: z.optional(z.object({
-        acl: z.enum([
+        acl: z.optional(z.enum([
             'private',
             'public-read',
             'authenticated-read',
             'public-read-write',
             'custom'
-        ]),
-        cors_enabled: z.boolean()
+        ])),
+        cors_enabled: z.optional(z.boolean())
     })),
     path: z.object({
         regionId: z.string(),
@@ -22500,20 +22500,20 @@ export const getObjectStorageKeysResponseSchema = z.object({
 export const postObjectStorageKeysRequestSchema = z.object({
     body: z.optional(z.union([
         z.object({
-            bucket_access: z.array(z.union([z.object({
-                    bucket_name: z.string(),
-                    permissions: z.enum(['read_write', 'read_only']),
-                    region: z.string()
+            bucket_access: z.optional(z.array(z.union([z.object({
+                    bucket_name: z.optional(z.string()),
+                    permissions: z.optional(z.enum(['read_write', 'read_only'])),
+                    region: z.optional(z.string())
                 }), z.object({
-                    bucket_name: z.string(),
-                    cluster: z.string(),
-                    permissions: z.enum(['read_write', 'read_only'])
-                })])),
-            label: z.string()
+                    bucket_name: z.optional(z.string()),
+                    cluster: z.optional(z.string()),
+                    permissions: z.optional(z.enum(['read_write', 'read_only']))
+                })]))),
+            label: z.optional(z.string())
         }),
         z.object({
-            label: z.string(),
-            regions: z.array(z.string())
+            label: z.optional(z.string()),
+            regions: z.optional(z.array(z.string()))
         })
     ])),
     path: z.optional(z.never()),
@@ -22597,8 +22597,8 @@ export const getObjectStorageKeyResponseSchema = z.object({
 
 export const putObjectStorageKeyRequestSchema = z.object({
     body: z.optional(z.object({
-        label: z.string(),
-        regions: z.array(z.string())
+        label: z.optional(z.string()),
+        regions: z.optional(z.array(z.string()))
     })),
     path: z.object({
         keyId: z.int()
@@ -22878,7 +22878,7 @@ export const getPlacementGroupResponseSchema = z.object({
 
 export const putPlacementGroupRequestSchema = z.object({
     body: z.object({
-        label: z.string().min(1)
+        label: z.optional(z.string().min(1))
     }),
     path: z.object({
         groupId: z.int()
@@ -22904,7 +22904,7 @@ export const putPlacementGroupResponseSchema = z.object({
 
 export const postGroupAddLinodeRequestSchema = z.object({
     body: z.object({
-        linodes: z.array(z.int())
+        linodes: z.optional(z.array(z.int()))
     }),
     path: z.object({
         groupId: z.int()
@@ -22930,7 +22930,7 @@ export const postGroupAddLinodeResponseSchema = z.object({
 
 export const postGroupUnassignRequestSchema = z.object({
     body: z.object({
-        linodes: z.array(z.int())
+        linodes: z.optional(z.array(z.int()))
     }),
     path: z.object({
         groupId: z.int()
@@ -22998,36 +22998,36 @@ export const getProfileResponseSchema = z.object({
 
 export const putProfileRequestSchema = z.object({
     body: z.object({
-        authentication_type: z.enum(['password', 'github']),
-        authorized_keys: z.union([
+        authentication_type: z.optional(z.enum(['password', 'github'])),
+        authorized_keys: z.optional(z.union([
             z.array(z.string()),
             z.null()
-        ]),
-        email: z.email(),
-        email_notifications: z.boolean(),
-        ip_whitelist_enabled: z.boolean(),
-        lish_auth_method: z.enum([
+        ])),
+        email: z.optional(z.email()),
+        email_notifications: z.optional(z.boolean()),
+        ip_whitelist_enabled: z.optional(z.boolean()),
+        lish_auth_method: z.optional(z.enum([
             'password_keys',
             'keys_only',
             'disabled'
-        ]),
-        referrals: z.object({
-            code: z.string().readonly(),
-            completed: z.int().readonly(),
-            credit: z.int().readonly(),
-            pending: z.int().readonly(),
-            total: z.int().readonly(),
-            url: z.string().readonly()
-        }).readonly(),
-        restricted: z.boolean(),
-        timezone: z.string(),
-        two_factor_auth: z.boolean(),
-        uid: z.int().readonly(),
-        username: z.string().readonly(),
-        verified_phone_number: z.union([
+        ])),
+        referrals: z.optional(z.object({
+            code: z.optional(z.string().readonly()),
+            completed: z.optional(z.int().readonly()),
+            credit: z.optional(z.int().readonly()),
+            pending: z.optional(z.int().readonly()),
+            total: z.optional(z.int().readonly()),
+            url: z.optional(z.string().readonly())
+        }).readonly()),
+        restricted: z.optional(z.boolean()),
+        timezone: z.optional(z.string()),
+        two_factor_auth: z.optional(z.boolean()),
+        uid: z.optional(z.int().readonly()),
+        username: z.optional(z.string().readonly()),
+        verified_phone_number: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly()
+        ]).readonly())
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -23401,11 +23401,11 @@ export const getSecurityQuestionsResponseSchema = z.object({
 
 export const postSecurityQuestionsRequestSchema = z.object({
     body: z.optional(z.object({
-        security_questions: z.array(z.object({
-            question_id: z.int(),
-            response: z.string().min(3).max(17),
-            security_question: z.string().readonly()
-        }))
+        security_questions: z.optional(z.array(z.object({
+            question_id: z.optional(z.int()),
+            response: z.optional(z.string().min(3).max(17)),
+            security_question: z.optional(z.string().readonly())
+        })))
     })),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -23448,10 +23448,10 @@ export const getSshKeysResponseSchema = z.object({
 
 export const postAddSshKeyRequestSchema = z.object({
     body: z.optional(z.object({
-        created: z.iso.datetime().readonly(),
-        id: z.int().readonly(),
-        label: z.string().min(0).max(64),
-        ssh_key: z.string()
+        created: z.optional(z.iso.datetime().readonly()),
+        id: z.optional(z.int().readonly()),
+        label: z.optional(z.string().min(0).max(64)),
+        ssh_key: z.optional(z.string())
     })),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -23500,7 +23500,7 @@ export const getSshKeyResponseSchema = z.object({
 
 export const putSshKeyRequestSchema = z.object({
     body: z.object({
-        label: z.string().min(0).max(64)
+        label: z.optional(z.string().min(0).max(64))
     }),
     path: z.object({
         sshKeyId: z.int()
@@ -23545,7 +23545,7 @@ export const postTfaEnableResponseSchema = z.object({
 
 export const postTfaConfirmRequestSchema = z.object({
     body: z.object({
-        tfa_code: z.string()
+        tfa_code: z.optional(z.string())
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -23583,12 +23583,12 @@ export const getPersonalAccessTokensResponseSchema = z.object({
 
 export const postPersonalAccessTokenRequestSchema = z.object({
     body: z.object({
-        expiry: z.union([
+        expiry: z.optional(z.union([
             z.iso.datetime(),
             z.null()
-        ]),
-        label: z.string().min(1).max(100),
-        scopes: z.string()
+        ])),
+        label: z.optional(z.string().min(1).max(100)),
+        scopes: z.optional(z.string())
     }),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -23641,12 +23641,12 @@ export const getPersonalAccessTokenResponseSchema = z.object({
 
 export const putPersonalAccessTokenRequestSchema = z.object({
     body: z.object({
-        created: z.iso.datetime().readonly(),
-        expiry: z.iso.datetime().readonly(),
-        id: z.int().readonly(),
-        label: z.string().min(1).max(100),
-        scopes: z.string().readonly(),
-        token: z.string().readonly()
+        created: z.optional(z.iso.datetime().readonly()),
+        expiry: z.optional(z.iso.datetime().readonly()),
+        id: z.optional(z.int().readonly()),
+        label: z.optional(z.string().min(1).max(100)),
+        scopes: z.optional(z.string().readonly()),
+        token: z.optional(z.string().readonly())
     }),
     path: z.object({
         tokenId: z.int()
@@ -24572,34 +24572,34 @@ export const getVolumeResponseSchema = z.object({
 
 export const putVolumeRequestSchema = z.object({
     body: z.object({
-        created: z.iso.datetime().readonly(),
-        encryption: z.enum(['enabled', 'disabled']),
-        filesystem_path: z.string().readonly(),
-        hardware_type: z.enum(['hdd', 'nvme']),
-        id: z.int().readonly(),
-        io_ready: z.boolean().readonly(),
-        label: z.string().min(1).max(32).regex(/^[a-zA-Z]((?!--|__)[a-zA-Z0-9-_])+$/),
-        linode_id: z.union([
+        created: z.optional(z.iso.datetime().readonly()),
+        encryption: z.optional(z.enum(['enabled', 'disabled'])),
+        filesystem_path: z.optional(z.string().readonly()),
+        hardware_type: z.optional(z.enum(['hdd', 'nvme'])),
+        id: z.optional(z.int().readonly()),
+        io_ready: z.optional(z.boolean().readonly()),
+        label: z.optional(z.string().min(1).max(32).regex(/^[a-zA-Z]((?!--|__)[a-zA-Z0-9-_])+$/)),
+        linode_id: z.optional(z.union([
             z.int(),
             z.null()
-        ]),
-        linode_label: z.union([
+        ])),
+        linode_label: z.optional(z.union([
             z.string().readonly(),
             z.null()
-        ]).readonly(),
-        region: z.string(),
-        size: z.int().lte(10240),
-        status: z.enum([
+        ]).readonly()),
+        region: z.optional(z.string()),
+        size: z.optional(z.int().lte(10240)),
+        status: z.optional(z.enum([
             'creating',
             'active',
             'resizing',
             'key_rotating'
-        ]),
-        tags: z.array(z.string()),
-        updated: z.iso.datetime().readonly()
+        ])),
+        tags: z.optional(z.array(z.string())),
+        updated: z.optional(z.iso.datetime().readonly())
     }).and(z.object({
-        linode_id: z.unknown().readonly(),
-        size: z.unknown().readonly()
+        linode_id: z.optional(z.unknown().readonly()),
+        size: z.optional(z.unknown().readonly())
     })),
     path: z.object({
         volumeId: z.int()
@@ -24839,36 +24839,36 @@ export const postVpcRequestSchema = z.object({
     body: z.intersection(z.unknown(), z.object({
         subnets: z.optional(z.unknown())
     }), z.object({
-        created: z.iso.datetime().readonly(),
-        description: z.string().max(255).default(''),
-        id: z.int().readonly(),
-        label: z.string().min(1).max(64),
-        region: z.string(),
-        subnets: z.array(z.object({
-            created: z.iso.datetime().readonly(),
-            id: z.int().readonly(),
-            ipv4: z.string(),
-            label: z.string().min(1).max(64),
-            linodes: z.array(z.object({
-                id: z.int(),
-                interfaces: z.array(z.object({
-                    active: z.boolean(),
-                    config_id: z.union([
+        created: z.optional(z.iso.datetime().readonly()),
+        description: z.optional(z.string().max(255)).default(''),
+        id: z.optional(z.int().readonly()),
+        label: z.optional(z.string().min(1).max(64)),
+        region: z.optional(z.string()),
+        subnets: z.optional(z.array(z.object({
+            created: z.optional(z.iso.datetime().readonly()),
+            id: z.optional(z.int().readonly()),
+            ipv4: z.optional(z.string()),
+            label: z.optional(z.string().min(1).max(64)),
+            linodes: z.optional(z.array(z.object({
+                id: z.optional(z.int()),
+                interfaces: z.optional(z.array(z.object({
+                    active: z.optional(z.boolean()),
+                    config_id: z.optional(z.union([
                         z.int(),
                         z.null()
-                    ]),
-                    id: z.int()
-                }))
-            })).readonly(),
-            updated: z.union([
+                    ])),
+                    id: z.optional(z.int())
+                })))
+            })).readonly()),
+            updated: z.optional(z.union([
                 z.iso.datetime().readonly(),
                 z.null()
-            ]).readonly()
-        })),
-        updated: z.union([
+            ]).readonly())
+        }))),
+        updated: z.optional(z.union([
             z.iso.datetime().readonly(),
             z.null()
-        ]).readonly()
+        ]).readonly())
     })),
     path: z.optional(z.never()),
     query: z.optional(z.never())
@@ -25018,8 +25018,8 @@ export const getVpcResponseSchema = z.object({
 
 export const putVpcRequestSchema = z.object({
     body: z.object({
-        description: z.string().max(255).default(''),
-        label: z.string().min(1).max(64)
+        description: z.optional(z.string().max(255)).default(''),
+        label: z.optional(z.string().min(1).max(64))
     }),
     path: z.object({
         vpcId: z.int()
@@ -25242,7 +25242,7 @@ export const getVpcSubnetResponseSchema = z.object({
 
 export const putVpcSubnetRequestSchema = z.object({
     body: z.object({
-        label: z.string().min(1).max(64)
+        label: z.optional(z.string().min(1).max(64))
     }),
     path: z.object({
         vpcId: z.int(),

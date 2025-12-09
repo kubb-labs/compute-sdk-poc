@@ -8,113 +8,113 @@ export type ClientOptions = {
  * Account object.
  */
 export type Account = {
-    readonly active_promotions: Array<{
+    readonly active_promotions?: Array<{
         /**
          * The amount available to spend per month.
          */
-        credit_monthly_cap: string;
+        credit_monthly_cap?: string;
         /**
          * The total amount of credit left for this promotion.
          */
-        credit_remaining: string;
+        credit_remaining?: string;
         /**
          * A detailed description of this promotion.
          */
-        description: string;
+        description?: string;
         /**
          * When this promotion's credits expire.
          */
-        expire_dt: string;
+        expire_dt?: string;
         /**
          * The location of an image for this promotion.
          */
-        image_url: string;
+        image_url?: string;
         /**
          * The service to which this promotion applies.
          */
-        service_type: 'all' | 'backup' | 'blockstorage' | 'db_mysql' | 'ip_v4' | 'linode' | 'linode_disk' | 'linode_memory' | 'longview' | 'managed' | 'nodebalancer' | 'objectstorage' | 'placement_group' | 'transfer_tx';
+        service_type?: 'all' | 'backup' | 'blockstorage' | 'db_mysql' | 'ip_v4' | 'linode' | 'linode_disk' | 'linode_memory' | 'longview' | 'managed' | 'nodebalancer' | 'objectstorage' | 'placement_group' | 'transfer_tx';
         /**
          * Short details of this promotion.
          */
-        summary: string;
+        summary?: string;
         /**
          * The amount of credit left for this month for this promotion.
          */
-        this_month_credit_remaining: string;
+        this_month_credit_remaining?: string;
     }>;
     /**
      * __Read-only__ The date and time the account was activated.
      */
-    readonly active_since: string;
+    readonly active_since?: string;
     /**
      * The first line of this account's billing address.
      */
-    address_1: string;
+    address_1?: string;
     /**
      * The second line of this account's billing address.
      */
-    address_2: string;
+    address_2?: string;
     /**
      * __Read-only__ This account's balance, in US dollars.
      */
-    readonly balance: number;
+    readonly balance?: number;
     /**
      * __Read-only__ This account's current estimated invoice in US dollars. This is not your final invoice balance. Transfer charges are not included in the estimate.
      */
-    readonly balance_uninvoiced: number;
+    readonly balance_uninvoiced?: number;
     /**
      * __Read-only__ The source of service charges for this account. Accounts that are associated with Akamai-specific customers return a value of `akamai`. All other accounts return a value of `linode`.
      */
-    billing_source: 'akamai' | 'linode';
+    billing_source?: 'akamai' | 'linode';
     /**
      * __Read-only__ The Akamai Cloud Computing services your account supports.
      */
-    readonly capabilities: Array<string>;
+    readonly capabilities?: Array<string>;
     /**
      * The city for this account's `address`.
      */
-    city: string;
+    city?: string;
     /**
      * The company name assigned to this account. This value can't include the characters, `<` `>` `(` `)` `"` `=`.
      */
-    company: string;
+    company?: string;
     /**
      * The two-letter ISO 3166 country code for this account's `address`.
      */
-    country: string;
+    country?: string;
     /**
      * __Read-only__ The credit card information assigned to this account.
      */
-    readonly credit_card: {
+    readonly credit_card?: {
         /**
          * The expiration month and year of the `credit_card`.
          */
-        expiry: string;
+        expiry?: string;
         /**
          * The last four digits of the `credit_card` assigned to this account.
          */
-        last_four: string;
+        last_four?: string;
     };
     /**
      * The email address of the person assigned to this account.
      */
-    email: string;
+    email?: string;
     /**
      * __Read-only__ An external unique identifier for this account.
      */
-    readonly euuid: string;
+    readonly euuid?: string;
     /**
      * The first name of the person assigned to this account. This value can't include the characters, `<` `>` `(` `)` `"` `=`.
      */
-    first_name: string;
+    first_name?: string;
     /**
      * The last name of the person assigned to this account. This value can't include the characters, `<` `>` `(` `)` `"` `=`.
      */
-    last_name: string;
+    last_name?: string;
     /**
      * The phone number assigned to this account.
      */
-    phone: string;
+    phone?: string;
     /**
      * The state or province for the `address` set for your account, if applicable.
      *
@@ -124,7 +124,7 @@ export type Account = {
      *
      * - If outside the US or CA, this is the province associated with the account's `address`.
      */
-    state: string;
+    state?: string;
     /**
      * The tax identification number (TIN) assigned to this account, used for tax calculations. A TIN is set by the national authorities in your `country`, based on your `address_1`, and it may be named differently between countries. Set to an empty string (`""`) if a TIN doesn't apply or for countries that don't collect tax.
      *
@@ -132,7 +132,7 @@ export type Account = {
      * >
      * > This value is externally validated. If the validation is successful, a `tax_id_valid` [event](https://techdocs.akamai.com/linode-api/reference/get-events) is triggered. If unsuccessful, a `tax_id_invalid` event is triggered and an error response is issued for an operation that included it.
      */
-    tax_id: string;
+    tax_id?: string;
     /**
      * The zip code for this account's `address`.
      *
@@ -140,7 +140,7 @@ export type Account = {
      *
      * - It can't contain more than nine letter or number characters.
      */
-    zip: string;
+    zip?: string;
 };
 
 /**
@@ -150,15 +150,15 @@ export type AccountAvailability = {
     /**
      * __Read-only__ A list of services _available_ to your account in the `region`.
      */
-    readonly available: Array<string>;
+    readonly available?: Array<string>;
     /**
      * __Read-only__ The Akamai cloud computing data center (region), represented by a slug value. You can view a full list of regions and their associated slugs with the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation.
      */
-    readonly region: string;
+    readonly region?: string;
     /**
      * __Read-only__ A list of services _unavailable_ to your account in the `region`.
      */
-    readonly unavailable: Array<string>;
+    readonly unavailable?: Array<string>;
 };
 
 /**
@@ -168,7 +168,7 @@ export type AccountSettings = {
     /**
      * Account-wide backups default.  If `true`, all Linodes created will automatically be enrolled in the Backups service.  If `false`, Linodes will not be enrolled by default, but may still be enrolled on creation or later.
      */
-    backups_enabled: boolean;
+    backups_enabled?: boolean;
     /**
      * __Beta__ Defines if new Linodes can use legacy configuration interfaces:
      * - `legacy_config_only`. All new Linodes need to use legacy configuration interfaces. Prevously created Linodes with Linode Interfaces can still exist. Linodes using legacy configuration interfaces can't be upgraded to use Linode Interfaces.
@@ -176,27 +176,27 @@ export type AccountSettings = {
      * - `linode_default_but_legacy_config_allowed`. New Linodes can use legacy configuration interfaces or Linode Interfaces, depending on the `interface_generation` setting specified when creating the Linode. By default, new Linodes use Linode Interfaces unless otherwise specified. Linodes that use legacy configuration interfaces can upgrade to Linode interfaces. This is the default setting for new accounts.
      * - `linode_only`. All new Linodes need to use Linode Interfaces. Prevously created Linodes with legacy configuration profile interfaces can still exist if they were created under a previous setting. Linodes using legacy configuration interfaces can be upgraded to Linode Interfaces.
      */
-    interfaces_for_new_linodes: 'legacy_config_only' | 'legacy_config_default_but_linode_allowed' | 'linode_default_but_legacy_config_allowed' | 'linode_only';
+    interfaces_for_new_linodes?: 'legacy_config_only' | 'legacy_config_default_but_linode_allowed' | 'linode_default_but_legacy_config_allowed' | 'linode_only';
     /**
      * __Read-only__ The Longview Pro tier you are currently subscribed to. The value must be a [Longview subscription](https://techdocs.akamai.com/linode-api/reference/get-longview-subscriptions) ID or `null` for Longview Free.
      */
-    readonly longview_subscription: string;
+    readonly longview_subscription?: string;
     /**
      * __Beta__ Defines the default maintenance policy for new Linodes created on this account. Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details.
      */
-    maintenance_policy: 'linode/migrate' | 'linode/power_off_on';
+    maintenance_policy?: 'linode/migrate' | 'linode/power_off_on';
     /**
      * __Read-only__ Our 24/7 incident response service. This robust, multi-homed monitoring system distributes monitoring checks to ensure that your servers remain online and available at all times. Linode Managed can monitor any service or software stack reachable over TCP or HTTP. Once you add a service to Linode Managed, we'll monitor it for connectivity, response, and total request time.
      */
-    readonly managed: boolean;
+    readonly managed?: boolean;
     /**
      * Enables network helper across all users by default for new Linodes and Linode Configs.
      */
-    network_helper: boolean;
+    network_helper?: boolean;
     /**
      * __Read-only__ A string describing the status of this account's Object Storage service enrollment.
      */
-    object_storage: 'disabled' | 'suspended' | 'active';
+    object_storage?: 'disabled' | 'suspended' | 'active';
 };
 
 /**
@@ -207,151 +207,151 @@ export type AddedEmptyObj = {
 };
 
 export type AddedGetAccountLogins200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Read-only__ When the login was initiated.
          */
-        readonly datetime: string;
+        readonly datetime?: string;
         /**
          * __Read-only__ The unique ID of this login object.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Read-only__ The remote IP address that requested the login.
          */
-        readonly ip: string;
+        readonly ip?: string;
         /**
          * __Read-only__ True if the User that attempted the login was a restricted User, false otherwise.
          */
-        readonly restricted: boolean;
+        readonly restricted?: boolean;
         /**
          * __Read-only__ Whether the login attempt succeeded or failed.
          */
-        status: 'successful' | 'failed';
+        status?: 'successful' | 'failed';
         /**
          * __Read-only__ The username of the User that attempted the login.
          */
-        readonly username: string;
+        readonly username?: string;
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 export type AddedGetAvailability200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Read-only__ A list of services _available_ to your account in the `region`.
          */
-        readonly available: Array<string>;
+        readonly available?: Array<string>;
         /**
          * __Read-only__ The Akamai cloud computing data center (region), represented by a slug value. You can view a full list of regions and their associated slugs with the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation.
          */
-        readonly region: string;
+        readonly region?: string;
         /**
          * __Read-only__ A list of services _unavailable_ to your account in the `region`.
          */
-        readonly unavailable: Array<string>;
+        readonly unavailable?: Array<string>;
     }>;
 } & {
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 export type AddedGetChildAccounts200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Read-only__ The activation date and time for the child account.
          */
-        readonly active_since: string;
+        readonly active_since?: string;
         /**
          * __Filterable__ First line of this child account's billing address.
          */
-        address_1: string;
+        address_1?: string;
         /**
          * __Filterable__ Second line of this child account's billing address, if applicable.
          */
-        address_2: string;
+        address_2?: string;
         /**
          * __Read-only__ This child account's balance, in US dollars.
          */
-        readonly balance: number;
+        readonly balance?: number;
         /**
          * __Read-only__ This child account's current estimated invoice in US dollars. This is not your final invoice balance. Transfer charges are not included in the estimate.
          */
-        readonly balance_uninvoiced: number;
+        readonly balance_uninvoiced?: number;
         /**
          * __Read-only__ The source of service charges for this account, as determined by its relationship with Akamai. The API returns a value of `external` to describe a child account in a parent-child account environment.
          */
-        billing_source: 'external';
+        billing_source?: 'external';
         /**
          * __Read-only__ A list of the capabilities the child account supports.
          */
-        readonly capabilities: Array<string>;
+        readonly capabilities?: Array<string>;
         /**
          * __Filterable__ The city for this child account's billing address.
          */
-        city: string;
+        city?: string;
         /**
          * __Filterable__ The company name for the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`. You can't change this value yourself. We use it to create the proxy users that a parent account uses to access a child account. Talk to your account team if you need to change this value.
          */
-        company: string;
+        company?: string;
         /**
          * __Filterable__ The two-letter ISO 3166 country code for this child account's billing address.
          */
-        country: string;
+        country?: string;
         /**
          * __Read-only__ Information for the credit card you've assigned to this child account.
          */
-        readonly credit_card: {
+        readonly credit_card?: {
             /**
              * The expiration month and year of the credit card.
              */
-            expiry: string;
+            expiry?: string;
             /**
              * The last four digits of the credit card.
              */
-            last_four: string;
+            last_four?: string;
         };
         /**
          * __Filterable__ The email address of the owner of this child account.
          */
-        email: string;
+        email?: string;
         /**
          * __Read-only__ An external, unique identifier that Akamai assigned to the child account.
          */
-        readonly euuid: string;
+        readonly euuid?: string;
         /**
          * __Filterable__ The first name of the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`.
          */
-        first_name: string;
+        first_name?: string;
         /**
          * __Filterable__ The last name of the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`.
          */
-        last_name: string;
+        last_name?: string;
         /**
          * __Filterable__ The phone number for the owner of this child account.
          */
-        phone: string;
+        phone?: string;
         /**
          * __Filterable__ The state or province for the billing address (`address_1` and `address_2, if applicable`). If in the United States (US) or Canada (CA), this is the two-letter ISO 3166 State or Province code.
          *
@@ -359,119 +359,119 @@ export type AddedGetChildAccounts200 = {
          * >
          * > If this is a US military address, use state abbreviations (AA, AE, AP).
          */
-        state: string;
+        state?: string;
         /**
          * The tax identification number for this child account. Use this for tax calculations in some countries. If you live in a country that doesn't collect taxes, ensure this is an empty string (`""`).
          */
-        tax_id: string;
+        tax_id?: string;
         /**
          * __Filterable__ The zip code of this Account's billing address. The following restrictions apply:
          *
          * - Can only contain ASCII letters, numbers, and hyphens (`-`).
          * - Can't contain more than 9 letter or number characters.
          */
-        zip: string;
+        zip?: string;
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 export type AddedGetClients200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Read-only__ The OAuth Client ID.  This is used to identify the client, and is a publicly known value (it is not a secret).
          */
-        readonly id: string;
+        readonly id?: string;
         /**
          * __Filterable__ The name of this application.  This will be presented to users when they are asked to grant it access to their Account.
          */
-        label: string;
+        label?: string;
         /**
          * __Filterable__ If this is a public or private OAuth Client.  Public clients have a slightly different authentication workflow than private clients.  See the [OAuth spec](https://oauth.net/2/) for more details.
          */
-        public: boolean;
+        public?: boolean;
         /**
          * The location a successful log in from [login.linode.com](https://login.linode.com) should be redirected to for this client.  The receiver of this redirect should be ready to accept an OAuth exchange code and finish the OAuth exchange.
          */
-        redirect_uri: string;
+        redirect_uri?: string;
         /**
          * __Read-only__ The OAuth Client secret, used in the OAuth exchange.  This is returned as `<REDACTED>` except when an OAuth Client is created or its secret is reset.  This is a secret, and should not be shared or disclosed publicly.
          */
-        readonly secret: string;
+        readonly secret?: string;
         /**
          * __Read-only__ The status of this application.  `active` by default.
          */
-        status: 'active' | 'disabled' | 'suspended';
+        status?: 'active' | 'disabled' | 'suspended';
         /**
          * __Read-only__ The URL where this client's thumbnail may be viewed, or `null` if this client does not have a thumbnail set.
          */
-        readonly thumbnail_url: string | null;
+        readonly thumbnail_url?: string | null;
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 export type AddedGetEnrolledBetaPrograms200 = {
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 } & {
-    data: Array<{
+    data?: Array<{
         /**
          * __Read-only__ Additional details regarding the Beta Program.
          */
-        readonly description: string | null;
+        readonly description?: string | null;
         /**
          * __Filterable__, __Read-only__ The date-time that the Beta Program ended.
          *
          * `null` indicates that the Beta Program is ongoing.
          */
-        readonly ended: string | null;
+        readonly ended?: string | null;
         /**
          * __Filterable__, __Read-only__ The date-time of Account enrollment to the Beta Program.
          */
-        readonly enrolled: string;
+        readonly enrolled?: string;
         /**
          * The unique identifier of the Beta Program.
          */
-        id: string;
+        id?: string;
         /**
          * __Filterable__, __Read-only__ The name of the Beta Program.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * __Filterable__, __Read-only__ The start date-time of the Beta Program.
          */
-        readonly started: string;
+        readonly started?: string;
     }>;
 };
 
@@ -479,38 +479,38 @@ export type AddedGetEntityTransfers200 = {
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 } & {
     data?: Array<{
         /**
          * When this transfer was created.
          */
-        created: string;
+        created?: string;
         /**
          * A collection of the entities to include in this transfer request, separated by type.
          */
-        entities: {
+        entities?: {
             /**
              * An array containing the IDs of each of the Linodes included in this transfer.
              */
-            linodes: Array<number>;
+            linodes?: Array<number>;
         };
         /**
          * When this transfer expires. Transfers will automatically expire 24 hours after creation.
          */
-        expiry: string;
+        expiry?: string;
         /**
          * __Filterable__ If the requesting account created this transfer.
          */
-        is_sender: boolean;
+        is_sender?: boolean;
         /**
          * __Filterable__ The status of the transfer request:
          *
@@ -521,149 +521,149 @@ export type AddedGetEntityTransfers200 = {
          * `pending`: The transfer is ready to be accepted.
          * `stale`: The transfer has exceeded its expiration date. It can no longer be accepted or canceled.
          */
-        status: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
+        status?: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
         /**
          * The token used to identify and accept or cancel this transfer.
          */
-        token: string;
+        token?: string;
         /**
          * When this transfer was last updated.
          */
-        updated: string;
+        updated?: string;
     }>;
 };
 
 export type AddedGetInvoiceItems200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Read-only__ The price, in US dollars, of the Invoice Item. Equal to the unit price multiplied by quantity.
          */
-        readonly amount: number;
+        readonly amount?: number;
         /**
          * __Read-only__ The date the Invoice Item started, based on month.
          */
-        readonly from: string;
+        readonly from?: string;
         /**
          * __Read-only__ The Invoice Item's display label.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * __Read-only__ The quantity of this Item for the specified Invoice.
          */
-        readonly quantity: number;
+        readonly quantity?: number;
         /**
          * __Read-only__ The ID of the applicable Region associated with this Invoice Item.
          *
          * `null` if there is no applicable Region.
          */
-        readonly region: string | null;
+        readonly region?: string | null;
         /**
          * __Read-only__ The amount of tax levied on this Item in US Dollars.
          */
-        readonly tax: number;
+        readonly tax?: number;
         /**
          * __Read-only__ The date the Invoice Item ended, based on month.
          */
-        readonly to: string;
+        readonly to?: string;
         /**
          * __Read-only__ The price of this Item after taxes in US Dollars.
          */
-        readonly total: number;
+        readonly total?: number;
         /**
          * __Read-only__ The type of service, ether `hourly` or `misc`.
          */
-        type: 'hourly' | 'misc';
+        type?: 'hourly' | 'misc';
         /**
          * __Read-only__ The monthly service fee in US Dollars for this Item.
          */
-        readonly unit_price: string;
+        readonly unit_price?: string;
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 export type AddedGetInvoices200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Filterable__, __Read-only__ The source of service charges for this invoice. A value of `akamai` indicates an invoice generated according to the terms of an agreement between the customer and Akamai. A value of `linode` indicates an invoice was generated according to the default terms, prices, and discounts.
          */
-        billing_source: 'akamai' | 'linode';
+        billing_source?: 'akamai' | 'linode';
         /**
          * __Filterable__, __Read-only__ When this Invoice was generated.
          */
-        readonly date: string;
+        readonly date?: string;
         /**
          * __Read-only__ The Invoice's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Filterable__, __Read-only__ The Invoice's display label.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * __Read-only__ The amount of the Invoice before taxes in US Dollars.
          */
-        readonly subtotal: number;
+        readonly subtotal?: number;
         /**
          * __Read-only__ The amount of tax levied on the Invoice in US Dollars.
          */
-        readonly tax: number;
+        readonly tax?: number;
         /**
          * __Read-only__ The amount of tax broken down into subtotals by source.
          */
-        readonly tax_summary: Array<{
+        readonly tax_summary?: Array<{
             /**
              * The source of this tax subtotal.
              */
-            name: string;
+            name?: string;
             /**
              * The amount of tax subtotal attributable to this source.
              */
-            tax: number;
+            tax?: number;
         }>;
         /**
          * __Filterable__, __Read-only__ The amount of the Invoice after taxes in US Dollars.
          */
-        readonly total: number;
+        readonly total?: number;
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 export type AddedGetNotifications200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * A full description of this notification, in markdown format. Not all notifications include a `body`. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          */
-        body: string | null;
+        body?: string | null;
         /**
          * Detailed information about the notification. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          */
-        entity: {
+        entity?: {
             /**
              * The unique ID of the notification's entity, based on the entity type. Returns `null` for an `account` or `promotion` entity.
              */
-            id: number | null;
+            id?: number | null;
             /**
              * The current name of this notification's entity. Returns `null` for the following `entity` types:
              *
@@ -673,28 +673,28 @@ export type AddedGetNotifications200 = {
              *
              * - `region`
              */
-            label: string | null;
+            label?: string | null;
             /**
              * __Filterable__ The type of entity this is related to. An entity can be product or service-specific, such as a `linode`, `loadbalancers`, or `nodebalancers`. It can apply to a specific component, such as your `account`, a specific `promotion` your participating in, a data center (`region`) where you're using services, a transfer from one component to another (an `entity_transfer`), a support `ticket` you've opened, or a `volume` on a specific Linode.
              */
-            type: 'account' | 'entity_transfer' | 'linode' | 'loadbalancers' | 'nodebalancer' | 'promotion' | 'region' | 'ticket' | 'volume';
+            type?: 'account' | 'entity_transfer' | 'linode' | 'loadbalancers' | 'nodebalancer' | 'promotion' | 'region' | 'ticket' | 'volume';
             /**
              * The URL where you can access the notification's object. The URL is relative to the domain where you retrieved the notification. This value is `null` for the `promotion` entity type.
              */
-            url: string | null;
+            url?: string | null;
         } | null;
         /**
          * A short description of this notification.
          */
-        label: string;
+        label?: string;
         /**
          * A human-readable description of the notification.
          */
-        message: string;
+        message?: string;
         /**
          * The severity of this notification. This field determines how prominently the notification is displayed and the color of the display text.
          */
-        severity: 'minor' | 'major' | 'critical';
+        severity?: 'minor' | 'major' | 'critical';
         /**
          * __Filterable__ The type of notification.
          *
@@ -702,151 +702,151 @@ export type AddedGetNotifications200 = {
          * >
          * > A `security_reboot_maintenance_scheduled` event is a global notice that a Linode needs to be rebooted for QEMU upgrade maintenance. Have a look at [this workflow](https://techdocs.akamai.com/linode-api/reference/reboot-your-linodes-for-qemu-maintenance) for guidance on reboooting your Linodes for this maintenance.
          */
-        type: 'migration_scheduled' | 'migration_imminent' | 'migration_pending' | 'reboot_scheduled' | 'outage' | 'payment_due' | 'ticket_important' | 'ticket_abuse' | 'notice' | 'maintenance' | 'maintenance_scheduled' | 'promotion' | 'security_reboot_maintenance_scheduled' | 'tax_id_verifying';
+        type?: 'migration_scheduled' | 'migration_imminent' | 'migration_pending' | 'reboot_scheduled' | 'outage' | 'payment_due' | 'ticket_important' | 'ticket_abuse' | 'notice' | 'maintenance' | 'maintenance_scheduled' | 'promotion' | 'security_reboot_maintenance_scheduled' | 'tax_id_verifying';
         /**
          * If this notification has a duration, this is when the event or action will complete. For example, if there's scheduled maintenance for one of our systems, `until` represents the end of the maintenance window. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          */
-        until: string | null;
+        until?: string | null;
         /**
          * If this notification is for an event in the future, this specifies when the action occurs. For example, if a compute instance needs to migrate in response to a security advisory, this field sets the approximate time the compute instance will be taken offline for migration. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          */
-        when: string | null;
+        when?: string | null;
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 export type AddedGetPaymentMethods200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Read-only__ When the Payment Method was added to the Account.
          */
-        readonly created: string;
-        data: {
+        readonly created?: string;
+        data?: {
             /**
              * __Read-only__ The type of credit card.
              */
-            readonly card_type: string;
+            readonly card_type?: string;
             /**
              * __Read-only__ The expiration month and year of the credit card.
              */
-            readonly expiry: string;
+            readonly expiry?: string;
             /**
              * __Read-only__ The last four digits of the credit card number.
              */
-            readonly last_four: string;
+            readonly last_four?: string;
         } | {
             /**
              * __Read-only__ The type of credit card.
              */
-            readonly card_type: string;
+            readonly card_type?: string;
             /**
              * __Read-only__ The expiration month and year of the credit card.
              */
-            readonly expiry: string;
+            readonly expiry?: string;
             /**
              * __Read-only__ The last four digits of the credit card number.
              */
-            readonly last_four: string;
+            readonly last_four?: string;
         } | {
             /**
              * __Read-only__ The email address associated with your PayPal account.
              */
-            readonly email: string;
+            readonly email?: string;
             /**
              * __Read-only__ PayPal Merchant ID associated with your PayPal account.
              */
-            readonly paypal_id: string;
+            readonly paypal_id?: string;
         };
         /**
          * The unique ID of this Payment Method.
          */
-        id: number;
+        id?: number;
         /**
          * Whether this Payment Method is the default method for automatically processing service charges.
          */
-        is_default: boolean;
+        is_default?: boolean;
         /**
          * The type of Payment Method.
          */
-        type: 'credit_card' | 'google_pay' | 'paypal';
+        type?: 'credit_card' | 'google_pay' | 'paypal';
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 export type AddedGetPayments200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Filterable__, __Read-only__ When the payment was made.
          */
-        readonly date: string;
+        readonly date?: string;
         /**
          * __Read-only__ The unique ID of the payment.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Filterable__, __Read-only__ The amount, in US dollars, of the payment.
          */
-        readonly usd: number;
+        readonly usd?: number;
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 export type AddedGetServiceTransfers200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * When this transfer was created.
          */
-        created: string;
+        created?: string;
         /**
          * A collection of the services to include in this transfer request, separated by type.
          */
-        entities: {
+        entities?: {
             /**
              * An array containing the IDs of each of the Linodes included in this transfer.
              */
-            linodes: Array<number>;
+            linodes?: Array<number>;
         };
         /**
          * When this transfer expires. Transfers will automatically expire 24 hours after creation.
          */
-        expiry: string;
+        expiry?: string;
         /**
          * __Filterable__ If the requesting account created this transfer.
          */
-        is_sender: boolean;
+        is_sender?: boolean;
         /**
          * __Filterable__ The status of the transfer request.
          *
@@ -864,56 +864,56 @@ export type AddedGetServiceTransfers200 = {
          * `stale`: The transfer has exceeded its expiration date. It can no longer be accepted or
          * canceled.
          */
-        status: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
+        status?: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
         /**
          * The token used to identify and accept or cancel this transfer.
          */
-        token: string;
+        token?: string;
         /**
          * When this transfer was last updated.
          */
-        updated: string;
+        updated?: string;
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 export type AddedGetUser200 = {
     /**
      * This user's email address. Akamai uses this address for account management communications.
      */
-    email: string;
+    email?: string;
     /**
      * __Read-only__ Details on this user's last login attempt. Returned as `null` if this user hasn't attempted a login since it was created. You can run the [List user logins](https://techdocs.akamai.com/linode-api/reference/get-account-logins) operation for additional login information.
      */
-    readonly last_login: {
+    readonly last_login?: {
         /**
          * __Read-only__ The date and time of this user's most recent login attempt.
          */
-        readonly login_datetime: string;
+        readonly login_datetime?: string;
         /**
          * __Read-only__ The result of this user's most recent login attempt.
          */
-        status: 'successful' | 'failed';
+        status?: 'successful' | 'failed';
     } | null;
     /**
      * __Read-only__ When this user's current password was created. You initially create a password during the account sign-up process, and you can update it using the [Reset Password](https://login.linode.com/forgot/password) webpage. Returned as `null` if this user doesn't have a password set.
      */
-    readonly password_created: string | null;
+    readonly password_created?: string | null;
     /**
      * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
      */
-    restricted: boolean;
+    restricted?: boolean;
     /**
      * __Read-only__ A list of the labels for SSH keys added by this user. Users can add keys with the [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) operation. These keys are deployed when this user is included in the `authorized_users` field of the following requests:
      *
@@ -923,19 +923,19 @@ export type AddedGetUser200 = {
      *
      * - [Create a disk](https://techdocs.akamai.com/linode-api/reference/post-add-linode-disk)
      */
-    readonly ssh_keys: Array<string>;
+    readonly ssh_keys?: Array<string>;
     /**
      * __Read-only__ Whether this user has Two Factor Authentication (TFA) enabled. Run the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation to enable TFA.
      */
-    readonly tfa_enabled: boolean;
+    readonly tfa_enabled?: boolean;
     /**
      * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
      */
-    username: string;
+    username?: string;
     /**
      * __Read-only__ The [verified](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) phone number for this user profile. Returned as `null` if the user doesn't have a verified phone number.
      */
-    readonly verified_phone_number: string | null;
+    readonly verified_phone_number?: string | null;
 } & {
     /**
      * __Read-only__ If the user belongs to a [parent or child account](https://www.linode.com/docs/guides/parent-child-accounts/) relationship, this defines the user type in the respective account. Possible values include:
@@ -948,36 +948,36 @@ export type AddedGetUser200 = {
      *
      * - `default`. This applies to all regular, non-parent-child account users.
      */
-    user_type: 'parent' | 'child' | 'proxy' | 'default';
+    user_type?: 'parent' | 'child' | 'proxy' | 'default';
 };
 
 export type AddedGetUsers200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * This user's email address. Akamai uses this address for account management communications.
          */
-        email: string;
+        email?: string;
         /**
          * __Read-only__ Details on this user's last login attempt. Returned as `null` if this user hasn't attempted a login since it was created. You can run the [List user logins](https://techdocs.akamai.com/linode-api/reference/get-account-logins) operation for additional login information.
          */
-        readonly last_login: {
+        readonly last_login?: {
             /**
              * __Read-only__ The date and time of this user's most recent login attempt.
              */
-            readonly login_datetime: string;
+            readonly login_datetime?: string;
             /**
              * __Read-only__ The result of this user's most recent login attempt.
              */
-            status: 'successful' | 'failed';
+            status?: 'successful' | 'failed';
         } | null;
         /**
          * __Read-only__ When this user's current password was created. You initially create a password during the account sign-up process, and you can update it using the [Reset Password](https://login.linode.com/forgot/password) webpage. Returned as `null` if this user doesn't have a password set.
          */
-        readonly password_created: string | null;
+        readonly password_created?: string | null;
         /**
          * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
          */
-        restricted: boolean;
+        restricted?: boolean;
         /**
          * __Read-only__ A list of the labels for SSH keys added by this user. Users can add keys with the [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) operation. These keys are deployed when this user is included in the `authorized_users` field of the following requests:
          *
@@ -987,19 +987,19 @@ export type AddedGetUsers200 = {
          *
          * - [Create a disk](https://techdocs.akamai.com/linode-api/reference/post-add-linode-disk)
          */
-        readonly ssh_keys: Array<string>;
+        readonly ssh_keys?: Array<string>;
         /**
          * __Read-only__ Whether this user has Two Factor Authentication (TFA) enabled. Run the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation to enable TFA.
          */
-        readonly tfa_enabled: boolean;
+        readonly tfa_enabled?: boolean;
         /**
          * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
          */
-        username: string;
+        username?: string;
         /**
          * __Read-only__ The [verified](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) phone number for this user profile. Returned as `null` if the user doesn't have a verified phone number.
          */
-        readonly verified_phone_number: string | null;
+        readonly verified_phone_number?: string | null;
     } & {
         /**
          * __Read-only__ If the user belongs to a [parent or child account](https://www.linode.com/docs/guides/parent-child-accounts/) relationship, this defines the user type in the respective account. Possible values include:
@@ -1012,20 +1012,20 @@ export type AddedGetUsers200 = {
          *
          * - `default`. This applies to all regular, non-parent-child account users.
          */
-        user_type: 'parent' | 'child' | 'proxy' | 'default';
+        user_type?: 'parent' | 'child' | 'proxy' | 'default';
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 /**
@@ -1042,31 +1042,31 @@ export type AddedPostCancelAccount = {
     /**
      * Any reason for cancelling the account, and any other comments you might have about your Linode service.
      */
-    comments: string;
+    comments?: string;
 };
 
 export type AddedPostCancelAccount200 = {
     /**
      * A link to Linode's exit survey.
      */
-    survey_link: string;
+    survey_link?: string;
 };
 
 export type AddedPostCancelAccount409 = {
-    errors: Array<{
+    errors?: Array<{
         /**
          * A string explaining that the account could not be canceled because there is an outstanding balance on the account that must be paid first.
          */
-        reason: string;
+        reason?: string;
     }>;
 };
 
 export type AddedPostCancelAccount504 = {
-    errors: Array<{
+    errors?: Array<{
         /**
          * A string explaining that the account is taking longer to close than expected.
          */
-        reason: string;
+        reason?: string;
     }>;
 };
 
@@ -1077,7 +1077,7 @@ export type AddedPostClient = {
     /**
      * __Read-only__ The OAuth Client ID.  This is used to identify the client, and is a publicly known value (it is not a secret).
      */
-    readonly id: string;
+    readonly id?: string;
     /**
      * __Filterable__ The name of this application.  This will be presented to users when they are asked to grant it access to their Account.
      */
@@ -1085,7 +1085,7 @@ export type AddedPostClient = {
     /**
      * __Filterable__ If this is a public or private OAuth Client.  Public clients have a slightly different authentication workflow than private clients.  See the [OAuth spec](https://oauth.net/2/) for more details.
      */
-    public: boolean;
+    public?: boolean;
     /**
      * The location a successful log in from [login.linode.com](https://login.linode.com) should be redirected to for this client.  The receiver of this redirect should be ready to accept an OAuth exchange code and finish the OAuth exchange.
      */
@@ -1093,15 +1093,15 @@ export type AddedPostClient = {
     /**
      * __Read-only__ The OAuth Client secret, used in the OAuth exchange.  This is returned as `<REDACTED>` except when an OAuth Client is created or its secret is reset.  This is a secret, and should not be shared or disclosed publicly.
      */
-    readonly secret: string;
+    readonly secret?: string;
     /**
      * __Read-only__ The status of this application.  `active` by default.
      */
-    status: 'active' | 'disabled' | 'suspended';
+    status?: 'active' | 'disabled' | 'suspended';
     /**
      * __Read-only__ The URL where this client's thumbnail may be viewed, or `null` if this client does not have a thumbnail set.
      */
-    readonly thumbnail_url: string | null;
+    readonly thumbnail_url?: string | null;
 };
 
 export type AddedPostEntityTransfer = {
@@ -1112,7 +1112,7 @@ export type AddedPostEntityTransfer = {
         /**
          * An array containing the IDs of each of the Linodes included in this transfer.
          */
-        linodes: Array<number>;
+        linodes?: Array<number>;
     };
 };
 
@@ -1120,18 +1120,18 @@ export type AddedPostPayPalPayment200 = {
     /**
      * __Read-only__ The checkout token generated for this Payment.
      */
-    readonly checkout_token: string;
+    readonly checkout_token?: string;
     /**
      * The paypal-generated ID for this Payment. Used when authorizing the Payment in PayPal's interface.
      */
-    payment_id: string;
+    payment_id?: string;
 };
 
 export type AddedPostPayment = {
     /**
      * The ID of the Payment Method to apply to the Payment.
      */
-    payment_method_id: number;
+    payment_method_id?: number;
     /**
      * The amount in US Dollars of the Payment.
      *
@@ -1141,7 +1141,7 @@ export type AddedPostPayment = {
      * - Minimum: `$5.00` or the Account balance, whichever is lower.
      * - Maximum: `$2000.00` or the Account balance up to `$50000.00`, whichever is greater.
      */
-    usd: string;
+    usd?: string;
 };
 
 /**
@@ -1204,7 +1204,7 @@ export type AddedPostServiceTransfer = {
         /**
          * An array containing the IDs of each of the Linodes included in this transfer.
          */
-        linodes: Array<number>;
+        linodes?: Array<number>;
     };
 };
 
@@ -1219,24 +1219,24 @@ export type AddedPostUser = {
     /**
      * __Read-only__ Details on this user's last login attempt. Returned as `null` if this user hasn't attempted a login since it was created. You can run the [List user logins](https://techdocs.akamai.com/linode-api/reference/get-account-logins) operation for additional login information.
      */
-    readonly last_login: {
+    readonly last_login?: {
         /**
          * __Read-only__ The date and time of this user's most recent login attempt.
          */
-        readonly login_datetime: string;
+        readonly login_datetime?: string;
         /**
          * __Read-only__ The result of this user's most recent login attempt.
          */
-        status: 'successful' | 'failed';
+        status?: 'successful' | 'failed';
     } | null;
     /**
      * __Read-only__ When this user's current password was created. You initially create a password during the account sign-up process, and you can update it using the [Reset Password](https://login.linode.com/forgot/password) webpage. Returned as `null` if this user doesn't have a password set.
      */
-    readonly password_created: string | null;
+    readonly password_created?: string | null;
     /**
      * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
      */
-    restricted: boolean;
+    restricted?: boolean;
     /**
      * __Read-only__ A list of the labels for SSH keys added by this user. Users can add keys with the [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) operation. These keys are deployed when this user is included in the `authorized_users` field of the following requests:
      *
@@ -1246,11 +1246,11 @@ export type AddedPostUser = {
      *
      * - [Create a disk](https://techdocs.akamai.com/linode-api/reference/post-add-linode-disk)
      */
-    readonly ssh_keys: Array<string>;
+    readonly ssh_keys?: Array<string>;
     /**
      * __Read-only__ Whether this user has Two Factor Authentication (TFA) enabled. Run the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation to enable TFA.
      */
-    readonly tfa_enabled: boolean;
+    readonly tfa_enabled?: boolean;
     /**
      * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
      */
@@ -1258,35 +1258,35 @@ export type AddedPostUser = {
     /**
      * __Read-only__ The [verified](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) phone number for this user profile. Returned as `null` if the user doesn't have a verified phone number.
      */
-    readonly verified_phone_number: string | null;
+    readonly verified_phone_number?: string | null;
 };
 
 export type AddedPutUser200 = {
     /**
      * This user's email address. Akamai uses this address for account management communications.
      */
-    email: string;
+    email?: string;
     /**
      * __Read-only__ Details on this user's last login attempt. Returned as `null` if this user hasn't attempted a login since it was created. You can run the [List user logins](https://techdocs.akamai.com/linode-api/reference/get-account-logins) operation for additional login information.
      */
-    readonly last_login: {
+    readonly last_login?: {
         /**
          * __Read-only__ The date and time of this user's most recent login attempt.
          */
-        readonly login_datetime: string;
+        readonly login_datetime?: string;
         /**
          * __Read-only__ The result of this user's most recent login attempt.
          */
-        status: 'successful' | 'failed';
+        status?: 'successful' | 'failed';
     } | null;
     /**
      * __Read-only__ When this user's current password was created. You initially create a password during the account sign-up process, and you can update it using the [Reset Password](https://login.linode.com/forgot/password) webpage. Returned as `null` if this user doesn't have a password set.
      */
-    readonly password_created: string | null;
+    readonly password_created?: string | null;
     /**
      * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
      */
-    restricted: boolean;
+    restricted?: boolean;
     /**
      * __Read-only__ A list of the labels for SSH keys added by this user. Users can add keys with the [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) operation. These keys are deployed when this user is included in the `authorized_users` field of the following requests:
      *
@@ -1296,19 +1296,19 @@ export type AddedPutUser200 = {
      *
      * - [Create a disk](https://techdocs.akamai.com/linode-api/reference/post-add-linode-disk)
      */
-    readonly ssh_keys: Array<string>;
+    readonly ssh_keys?: Array<string>;
     /**
      * __Read-only__ Whether this user has Two Factor Authentication (TFA) enabled. Run the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation to enable TFA.
      */
-    readonly tfa_enabled: boolean;
+    readonly tfa_enabled?: boolean;
     /**
      * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
      */
-    username: string;
+    username?: string;
     /**
      * __Read-only__ The [verified](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) phone number for this user profile. Returned as `null` if the user doesn't have a verified phone number.
      */
-    readonly verified_phone_number: string | null;
+    readonly verified_phone_number?: string | null;
 } & {
     /**
      * __Read-only__ If the user belongs to a [parent or child account](https://www.linode.com/docs/guides/parent-child-accounts/) relationship, this defines the user type in the respective account. Possible values include:
@@ -1321,7 +1321,7 @@ export type AddedPutUser200 = {
      *
      * - `default`. This applies to all regular, non-parent-child account users.
      */
-    user_type: 'parent' | 'child' | 'proxy' | 'default';
+    user_type?: 'parent' | 'child' | 'proxy' | 'default';
 };
 
 /**
@@ -1331,19 +1331,19 @@ export type Agreements = {
     /**
      * Certain regions require that you share your tax identification number (TIN) with Akamai. When you do, you need to acknowledge Akamai's [privacy statement](https://www.akamai.com/legal/privacy-statement) agreement, in regards to its protection. When set to `true`, you've acknowledged this agreement.
      */
-    billing_agreement: boolean;
+    billing_agreement?: boolean;
     /**
      * The acknowledgement status for the [cross-border data transfer](https://www.akamai.com/legal/compliance/privacy-trust-center/cross-border-data-transfer-statement) agreement.
      */
-    eu_model: boolean;
+    eu_model?: boolean;
     /**
      * The acknowledgement status for Akamai's [master service agreement](https://www.linode.com/legal-msa/).
      */
-    master_service_agreement: boolean;
+    master_service_agreement?: boolean;
     /**
      * The acknowledgement status for Akamai's [privacy statement](https://www.akamai.com/legal/privacy-statement).
      */
-    privacy_policy: boolean;
+    privacy_policy?: boolean;
 };
 
 /**
@@ -1353,29 +1353,29 @@ export type BetaProgramEnrolled = {
     /**
      * __Read-only__ Additional details regarding the Beta Program.
      */
-    readonly description: string | null;
+    readonly description?: string | null;
     /**
      * __Filterable__, __Read-only__ The date-time that the Beta Program ended.
      *
      * `null` indicates that the Beta Program is ongoing.
      */
-    readonly ended: string | null;
+    readonly ended?: string | null;
     /**
      * __Filterable__, __Read-only__ The date-time of Account enrollment to the Beta Program.
      */
-    readonly enrolled: string;
+    readonly enrolled?: string;
     /**
      * The unique identifier of the Beta Program.
      */
-    id: string;
+    id?: string;
     /**
      * __Filterable__, __Read-only__ The name of the Beta Program.
      */
-    readonly label: string;
+    readonly label?: string;
     /**
      * __Filterable__, __Read-only__ The start date-time of the Beta Program.
      */
-    readonly started: string;
+    readonly started?: string;
 };
 
 /**
@@ -1385,76 +1385,76 @@ export type ChildAccount = {
     /**
      * __Read-only__ The activation date and time for the child account.
      */
-    readonly active_since: string;
+    readonly active_since?: string;
     /**
      * __Filterable__ First line of this child account's billing address.
      */
-    address_1: string;
+    address_1?: string;
     /**
      * __Filterable__ Second line of this child account's billing address, if applicable.
      */
-    address_2: string;
+    address_2?: string;
     /**
      * __Read-only__ This child account's balance, in US dollars.
      */
-    readonly balance: number;
+    readonly balance?: number;
     /**
      * __Read-only__ This child account's current estimated invoice in US dollars. This is not your final invoice balance. Transfer charges are not included in the estimate.
      */
-    readonly balance_uninvoiced: number;
+    readonly balance_uninvoiced?: number;
     /**
      * __Read-only__ The source of service charges for this account, as determined by its relationship with Akamai. The API returns a value of `external` to describe a child account in a parent-child account environment.
      */
-    billing_source: 'external';
+    billing_source?: 'external';
     /**
      * __Read-only__ A list of the capabilities the child account supports.
      */
-    readonly capabilities: Array<string>;
+    readonly capabilities?: Array<string>;
     /**
      * __Filterable__ The city for this child account's billing address.
      */
-    city: string;
+    city?: string;
     /**
      * __Filterable__ The company name for the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`. You can't change this value yourself. We use it to create the proxy users that a parent account uses to access a child account. Talk to your account team if you need to change this value.
      */
-    company: string;
+    company?: string;
     /**
      * __Filterable__ The two-letter ISO 3166 country code for this child account's billing address.
      */
-    country: string;
+    country?: string;
     /**
      * __Read-only__ Information for the credit card you've assigned to this child account.
      */
-    readonly credit_card: {
+    readonly credit_card?: {
         /**
          * The expiration month and year of the credit card.
          */
-        expiry: string;
+        expiry?: string;
         /**
          * The last four digits of the credit card.
          */
-        last_four: string;
+        last_four?: string;
     };
     /**
      * __Filterable__ The email address of the owner of this child account.
      */
-    email: string;
+    email?: string;
     /**
      * __Read-only__ An external, unique identifier that Akamai assigned to the child account.
      */
-    readonly euuid: string;
+    readonly euuid?: string;
     /**
      * __Filterable__ The first name of the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`.
      */
-    first_name: string;
+    first_name?: string;
     /**
      * __Filterable__ The last name of the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`.
      */
-    last_name: string;
+    last_name?: string;
     /**
      * __Filterable__ The phone number for the owner of this child account.
      */
-    phone: string;
+    phone?: string;
     /**
      * __Filterable__ The state or province for the billing address (`address_1` and `address_2, if applicable`). If in the United States (US) or Canada (CA), this is the two-letter ISO 3166 State or Province code.
      *
@@ -1462,18 +1462,18 @@ export type ChildAccount = {
      * >
      * > If this is a US military address, use state abbreviations (AA, AE, AP).
      */
-    state: string;
+    state?: string;
     /**
      * The tax identification number for this child account. Use this for tax calculations in some countries. If you live in a country that doesn't collect taxes, ensure this is an empty string (`""`).
      */
-    tax_id: string;
+    tax_id?: string;
     /**
      * __Filterable__ The zip code of this Account's billing address. The following restrictions apply:
      *
      * - Can only contain ASCII letters, numbers, and hyphens (`-`).
      * - Can't contain more than 9 letter or number characters.
      */
-    zip: string;
+    zip?: string;
 };
 
 /**
@@ -1514,15 +1514,15 @@ export type CreditCardData = {
     /**
      * __Read-only__ The type of credit card.
      */
-    readonly card_type: string;
+    readonly card_type?: string;
     /**
      * __Read-only__ The expiration month and year of the credit card.
      */
-    readonly expiry: string;
+    readonly expiry?: string;
     /**
      * __Read-only__ The last four digits of the credit card number.
      */
-    readonly last_four: string;
+    readonly last_four?: string;
 };
 
 /**
@@ -1544,7 +1544,7 @@ export type Entities = {
     /**
      * An array containing the IDs of each of the Linodes included in this transfer.
      */
-    linodes: Array<number>;
+    linodes?: Array<number>;
 };
 
 /**
@@ -1554,24 +1554,24 @@ export type EntityTransfer = {
     /**
      * When this transfer was created.
      */
-    created: string;
+    created?: string;
     /**
      * A collection of the entities to include in this transfer request, separated by type.
      */
-    entities: {
+    entities?: {
         /**
          * An array containing the IDs of each of the Linodes included in this transfer.
          */
-        linodes: Array<number>;
+        linodes?: Array<number>;
     };
     /**
      * When this transfer expires. Transfers will automatically expire 24 hours after creation.
      */
-    expiry: string;
+    expiry?: string;
     /**
      * __Filterable__ If the requesting account created this transfer.
      */
-    is_sender: boolean;
+    is_sender?: boolean;
     /**
      * __Filterable__ The status of the transfer request:
      *
@@ -1582,15 +1582,15 @@ export type EntityTransfer = {
      * `pending`: The transfer is ready to be accepted.
      * `stale`: The transfer has exceeded its expiration date. It can no longer be accepted or canceled.
      */
-    status: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
+    status?: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
     /**
      * The token used to identify and accept or cancel this transfer.
      */
-    token: string;
+    token?: string;
     /**
      * When this transfer was last updated.
      */
-    updated: string;
+    updated?: string;
 };
 
 /**
@@ -1600,11 +1600,11 @@ export type ErrorObject = {
     /**
      * The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
      */
-    field: string;
+    field?: string;
     /**
      * What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
      */
-    reason: string;
+    reason?: string;
 };
 
 /**
@@ -1614,15 +1614,15 @@ export type Event = {
     /**
      * __Read-only__ The action that caused this event. New actions may be added in the future.
      */
-    action: 'account_agreement_eu_model' | 'account_promo_apply' | 'account_update' | 'account_settings_update' | 'backups_enable' | 'backups_cancel' | 'backups_restore' | 'community_question_reply' | 'community_like' | 'community_mention' | 'credit_card_updated' | 'database_create' | 'database_delete' | 'database_update' | 'database_failed' | 'database_degraded' | 'database_create_failed' | 'database_update_failed' | 'database_backup_create' | 'database_backup_restore' | 'database_backup_delete' | 'database_credentials_reset' | 'database_low_disk_space' | 'database_scale' | 'database_resize' | 'database_resize_create' | 'database_migrate' | 'database_upgrade' | 'database_suspend' | 'database_resume' | 'disk_create' | 'disk_delete' | 'disk_update' | 'disk_duplicate' | 'disk_imagize' | 'disk_resize' | 'dns_record_create' | 'dns_record_delete' | 'dns_record_update' | 'dns_zone_create' | 'dns_zone_delete' | 'dns_zone_import' | 'dns_zone_update' | 'entity_transfer_accept' | 'entity_transfer_accept_recipient' | 'entity_transfer_cancel' | 'entity_transfer_create' | 'entity_transfer_fail' | 'entity_transfer_stale' | 'firewall_apply' | 'firewall_create' | 'firewall_delete' | 'firewall_disable' | 'firewall_enable' | 'firewall_update' | 'firewall_device_add' | 'firewall_device_remove' | 'firewall_rules_update' | 'host_reboot' | 'image_delete' | 'image_update' | 'image_upload' | 'interface_create' | 'interface_delete' | 'interface_update' | 'ipaddress_update' | 'ipv6pool_add' | 'ipv6pool_delete' | 'lassie_reboot' | 'lish_boot' | 'linode_addip' | 'linode_boot' | 'linode_clone' | 'linode_create' | 'linode_delete' | 'linode_update' | 'linode_deleteip' | 'linode_kvmify' | 'linode_migrate' | 'linode_migrate_datacenter' | 'linode_migrate_datacenter_create' | 'linode_mutate' | 'linode_mutate_create' | 'linode_poweroff_on' | 'linode_reboot' | 'linode_rebuild' | 'linode_resize' | 'linode_resize_create' | 'linode_resize_warm_create' | 'linode_shutdown' | 'linode_snapshot' | 'linode_config_create' | 'linode_config_delete' | 'linode_config_update' | 'lke_control_plane_acl_create' | 'lke_control_plane_acl_update' | 'lke_control_plane_acl_delete' | 'lke_cluster_create' | 'lke_cluster_update' | 'lke_cluster_delete' | 'lke_cluster_recycle' | 'lke_cluster_regenerate' | 'lke_node_create' | 'lke_node_delete' | 'lke_node_recycle' | 'lke_pool_create' | 'lke_pool_delete' | 'lke_pool_recycle' | 'lke_kubeconfig_regenerate' | 'lke_token_rotate' | 'longviewclient_create' | 'longviewclient_delete' | 'longviewclient_update' | 'managed_disabled' | 'managed_enabled' | 'managed_service_create' | 'managed_service_delete' | 'nodebalancer_create' | 'nodebalancer_delete' | 'nodebalancer_update' | 'nodebalancer_config_create' | 'nodebalancer_config_delete' | 'nodebalancer_config_update' | 'nodebalancer_node_create' | 'nodebalancer_node_delete' | 'nodebalancer_node_update' | 'oauth_client_create' | 'oauth_client_delete' | 'oauth_client_secret_reset' | 'oauth_client_update' | 'obj_access_key_create' | 'obj_access_key_delete' | 'obj_access_key_update' | 'password_reset' | 'payment_method_add' | 'payment_submitted' | 'placement_group_assign' | 'placement_group_became_compliant' | 'placement_group_became_non_compliant' | 'placement_group_create' | 'placement_group_delete' | 'placement_group_unassign' | 'placement_group_update' | 'profile_update' | 'stackscript_create' | 'stackscript_delete' | 'stackscript_update' | 'stackscript_publicize' | 'stackscript_revise' | 'subnet_create' | 'subnet_delete' | 'subnet_update' | 'tag_create' | 'tag_delete' | 'tag_update' | 'tax_id_valid' | 'tax_id_invalid' | 'tfa_disabled' | 'tfa_enabled' | 'ticket_attachment_upload' | 'ticket_create' | 'ticket_update' | 'token_create' | 'token_delete' | 'token_update' | 'user_create' | 'user_update' | 'user_delete' | 'user_ssh_key_add' | 'user_ssh_key_delete' | 'user_ssh_key_update' | 'vlan_attach' | 'vlan_detach' | 'volume_attach' | 'volume_clone' | 'volume_create' | 'volume_delete' | 'volume_update' | 'volume_detach' | 'volume_resize' | 'volume_migrate' | 'volume_migrate_scheduled' | 'vpc_create' | 'vpc_delete' | 'vpc_update';
+    action?: 'account_agreement_eu_model' | 'account_promo_apply' | 'account_update' | 'account_settings_update' | 'backups_enable' | 'backups_cancel' | 'backups_restore' | 'community_question_reply' | 'community_like' | 'community_mention' | 'credit_card_updated' | 'database_create' | 'database_delete' | 'database_update' | 'database_failed' | 'database_degraded' | 'database_create_failed' | 'database_update_failed' | 'database_backup_create' | 'database_backup_restore' | 'database_backup_delete' | 'database_credentials_reset' | 'database_low_disk_space' | 'database_scale' | 'database_resize' | 'database_resize_create' | 'database_migrate' | 'database_upgrade' | 'database_suspend' | 'database_resume' | 'disk_create' | 'disk_delete' | 'disk_update' | 'disk_duplicate' | 'disk_imagize' | 'disk_resize' | 'dns_record_create' | 'dns_record_delete' | 'dns_record_update' | 'dns_zone_create' | 'dns_zone_delete' | 'dns_zone_import' | 'dns_zone_update' | 'entity_transfer_accept' | 'entity_transfer_accept_recipient' | 'entity_transfer_cancel' | 'entity_transfer_create' | 'entity_transfer_fail' | 'entity_transfer_stale' | 'firewall_apply' | 'firewall_create' | 'firewall_delete' | 'firewall_disable' | 'firewall_enable' | 'firewall_update' | 'firewall_device_add' | 'firewall_device_remove' | 'firewall_rules_update' | 'host_reboot' | 'image_delete' | 'image_update' | 'image_upload' | 'interface_create' | 'interface_delete' | 'interface_update' | 'ipaddress_update' | 'ipv6pool_add' | 'ipv6pool_delete' | 'lassie_reboot' | 'lish_boot' | 'linode_addip' | 'linode_boot' | 'linode_clone' | 'linode_create' | 'linode_delete' | 'linode_update' | 'linode_deleteip' | 'linode_kvmify' | 'linode_migrate' | 'linode_migrate_datacenter' | 'linode_migrate_datacenter_create' | 'linode_mutate' | 'linode_mutate_create' | 'linode_poweroff_on' | 'linode_reboot' | 'linode_rebuild' | 'linode_resize' | 'linode_resize_create' | 'linode_resize_warm_create' | 'linode_shutdown' | 'linode_snapshot' | 'linode_config_create' | 'linode_config_delete' | 'linode_config_update' | 'lke_control_plane_acl_create' | 'lke_control_plane_acl_update' | 'lke_control_plane_acl_delete' | 'lke_cluster_create' | 'lke_cluster_update' | 'lke_cluster_delete' | 'lke_cluster_recycle' | 'lke_cluster_regenerate' | 'lke_node_create' | 'lke_node_delete' | 'lke_node_recycle' | 'lke_pool_create' | 'lke_pool_delete' | 'lke_pool_recycle' | 'lke_kubeconfig_regenerate' | 'lke_token_rotate' | 'longviewclient_create' | 'longviewclient_delete' | 'longviewclient_update' | 'managed_disabled' | 'managed_enabled' | 'managed_service_create' | 'managed_service_delete' | 'nodebalancer_create' | 'nodebalancer_delete' | 'nodebalancer_update' | 'nodebalancer_config_create' | 'nodebalancer_config_delete' | 'nodebalancer_config_update' | 'nodebalancer_node_create' | 'nodebalancer_node_delete' | 'nodebalancer_node_update' | 'oauth_client_create' | 'oauth_client_delete' | 'oauth_client_secret_reset' | 'oauth_client_update' | 'obj_access_key_create' | 'obj_access_key_delete' | 'obj_access_key_update' | 'password_reset' | 'payment_method_add' | 'payment_submitted' | 'placement_group_assign' | 'placement_group_became_compliant' | 'placement_group_became_non_compliant' | 'placement_group_create' | 'placement_group_delete' | 'placement_group_unassign' | 'placement_group_update' | 'profile_update' | 'stackscript_create' | 'stackscript_delete' | 'stackscript_update' | 'stackscript_publicize' | 'stackscript_revise' | 'subnet_create' | 'subnet_delete' | 'subnet_update' | 'tag_create' | 'tag_delete' | 'tag_update' | 'tax_id_valid' | 'tax_id_invalid' | 'tfa_disabled' | 'tfa_enabled' | 'ticket_attachment_upload' | 'ticket_create' | 'ticket_update' | 'token_create' | 'token_delete' | 'token_update' | 'user_create' | 'user_update' | 'user_delete' | 'user_ssh_key_add' | 'user_ssh_key_delete' | 'user_ssh_key_update' | 'vlan_attach' | 'vlan_detach' | 'volume_attach' | 'volume_clone' | 'volume_create' | 'volume_delete' | 'volume_update' | 'volume_detach' | 'volume_resize' | 'volume_migrate' | 'volume_migrate_scheduled' | 'vpc_create' | 'vpc_delete' | 'vpc_update';
     /**
      * __Read-only__ When the system created this event.
      */
-    readonly created: string;
+    readonly created?: string;
     /**
      * __Beta__, __Read-only__ Maintenance details for this event, if any.
      */
-    readonly details: {
+    readonly details?: {
         /**
          * The time the maintenance completed. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -1630,15 +1630,15 @@ export type Event = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        complete_time: string;
+        complete_time?: string;
         /**
          * Differentiates between scheduled and emergency maintenance.
          */
-        description: 'Scheduled Maintenance' | 'Emergency Maintenance';
+        description?: 'Scheduled Maintenance' | 'Emergency Maintenance';
         /**
          * The maintenance policy the user configures for this event.
          */
-        maintenance_policy_set: string;
+        maintenance_policy_set?: string;
         /**
          * The scheduled start time for the event. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -1646,11 +1646,11 @@ export type Event = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        not_before: string;
+        not_before?: string;
         /**
          * The origin of the event. A `platform` source indicates that the event was initiated by Akamai. A `user` source indicates that the event was initiated by the user.
          */
-        source: 'platform' | 'user';
+        source?: 'platform' | 'user';
         /**
          * The actual start time for the event. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -1658,102 +1658,102 @@ export type Event = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        start_time: string;
+        start_time?: string;
     };
     /**
      * __Read-only__ The number of seconds that it takes for the event to complete.
      */
-    readonly duration: number;
+    readonly duration?: number;
     /**
      * __Read-only__ Detailed information about the entity that triggered this event.
      */
-    readonly entity: {
+    readonly entity?: {
         /**
          * The unique identifier assigned to the entity.
          */
-        id: number;
+        id?: number;
         /**
          * The name of the entity. The label may reflect changes that occur with this event.
          */
-        label: string;
+        label?: string;
         /**
          * __Read-only__ The type of entity that is being referenced by the event.
          */
-        type: 'account' | 'backups' | 'community' | 'disks' | 'domain' | 'entity_transfer' | 'firewall' | 'image' | 'ipaddress' | 'linode' | 'longview' | 'loadbalancer' | 'managed_service' | 'nodebalancer' | 'oauth_client' | 'profile' | 'stackscript' | 'tag' | 'ticket' | 'token' | 'user' | 'user_ssh_key' | 'volume';
+        type?: 'account' | 'backups' | 'community' | 'disks' | 'domain' | 'entity_transfer' | 'firewall' | 'image' | 'ipaddress' | 'linode' | 'longview' | 'loadbalancer' | 'managed_service' | 'nodebalancer' | 'oauth_client' | 'profile' | 'stackscript' | 'tag' | 'ticket' | 'token' | 'user' | 'user_ssh_key' | 'volume';
         /**
          * The URL where you can access this event's entity. If it's a relative URL, it's relative to the domain where you retrieved the event.
          */
-        url: string;
+        url?: string;
     };
     /**
      * __Read-only__ The unique ID of this event.
      */
-    readonly id: number;
+    readonly id?: number;
     /**
      * Additional information about the event. This can be a more detailed representation of an event that can help you diagnose non-obvious failures.
      */
-    message: string | null;
+    message?: string | null;
     /**
      * __Read-only__ A percentage estimating the amount of time remaining for an event. Returned as `null` for notification events.
      */
-    readonly percent_complete: number | null;
+    readonly percent_complete?: number | null;
     /**
      * __Read-only__ The rate of completion of the event. Only some events return a `rate`, such as the `migration` and `resize` events.
      */
-    readonly rate: string | null;
+    readonly rate?: string | null;
     /**
      * __Read-only__ Detailed information about the event's secondary entity, if applicable.
      */
-    readonly secondary_entity: {
+    readonly secondary_entity?: {
         /**
          * The identifier for the secondary entity object.
          */
-        id: string;
+        id?: string;
         /**
          * The name of the secondary entity object.
          */
-        label: string;
+        label?: string;
         /**
          * __Read-only__ The type of secondary entity object that's being referenced by the event.
          */
-        readonly type: string;
+        readonly type?: string;
         /**
          * The URL where you can access this event's secondary entity object. If it's a relative URL, it's relative to the domain where you retrieved the event.
          */
-        url: string;
+        url?: string;
     };
     /**
      * __Read-only__ If a user on your account has [marked an event as seen](https://techdocs.akamai.com/linode-api/reference/post-event-seen).
      */
-    readonly seen: boolean;
+    readonly seen?: boolean;
     /**
      * __Read-only__ The current status of this event.
      */
-    status: 'failed' | 'finished' | 'notification' | 'scheduled' | 'started';
+    status?: 'failed' | 'finished' | 'notification' | 'scheduled' | 'started';
     /**
      * __Read-only__ The estimated time remaining until the event completes. This is only returned for some in-progress migration events. Otherwise, `percent_complete` indicates how long until completion.
      */
-    readonly time_remaining: string | null;
+    readonly time_remaining?: string | null;
     /**
      * __Read-only__ The name of the user whose action caused the event.
      */
-    readonly username: string | null;
+    readonly username?: string | null;
 };
 
 export type Events = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Filterable__ The action that caused this event. New actions may be added in the future.
          */
-        action: 'account_agreement_eu_model' | 'account_promo_apply' | 'account_update' | 'account_settings_update' | 'backups_enable' | 'backups_cancel' | 'backups_restore' | 'community_question_reply' | 'community_like' | 'community_mention' | 'credit_card_updated' | 'database_create' | 'database_delete' | 'database_update' | 'database_failed' | 'database_degraded' | 'database_create_failed' | 'database_update_failed' | 'database_backup_create' | 'database_backup_restore' | 'database_backup_delete' | 'database_credentials_reset' | 'database_low_disk_space' | 'database_scale' | 'database_resize' | 'database_resize_create' | 'database_migrate' | 'database_upgrade' | 'database_suspend' | 'database_resume' | 'disk_create' | 'disk_delete' | 'disk_update' | 'disk_duplicate' | 'disk_imagize' | 'disk_resize' | 'dns_record_create' | 'dns_record_delete' | 'dns_record_update' | 'dns_zone_create' | 'dns_zone_delete' | 'dns_zone_import' | 'dns_zone_update' | 'entity_transfer_accept' | 'entity_transfer_accept_recipient' | 'entity_transfer_cancel' | 'entity_transfer_create' | 'entity_transfer_fail' | 'entity_transfer_stale' | 'firewall_apply' | 'firewall_create' | 'firewall_delete' | 'firewall_disable' | 'firewall_enable' | 'firewall_update' | 'firewall_device_add' | 'firewall_device_remove' | 'firewall_rules_update' | 'host_reboot' | 'image_delete' | 'image_update' | 'image_upload' | 'interface_create' | 'interface_delete' | 'interface_update' | 'ipaddress_update' | 'ipv6pool_add' | 'ipv6pool_delete' | 'lassie_reboot' | 'lish_boot' | 'linode_addip' | 'linode_boot' | 'linode_clone' | 'linode_create' | 'linode_delete' | 'linode_update' | 'linode_deleteip' | 'linode_kvmify' | 'linode_migrate' | 'linode_migrate_datacenter' | 'linode_migrate_datacenter_create' | 'linode_mutate' | 'linode_mutate_create' | 'linode_poweroff_on' | 'linode_reboot' | 'linode_rebuild' | 'linode_resize' | 'linode_resize_create' | 'linode_resize_warm_create' | 'linode_shutdown' | 'linode_snapshot' | 'linode_config_create' | 'linode_config_delete' | 'linode_config_update' | 'lke_cluster_create' | 'lke_cluster_update' | 'lke_cluster_delete' | 'lke_cluster_recycle' | 'lke_cluster_regenerate' | 'lke_control_plane_acl_create' | 'lke_control_plane_acl_update' | 'lke_control_plane_acl_delete' | 'lke_node_create' | 'lke_node_delete' | 'lke_node_recycle' | 'lke_pool_create' | 'lke_pool_delete' | 'lke_pool_recycle' | 'lke_kubeconfig_regenerate' | 'lke_token_rotate' | 'longviewclient_create' | 'longviewclient_delete' | 'longviewclient_update' | 'managed_disabled' | 'managed_enabled' | 'managed_service_create' | 'managed_service_delete' | 'nodebalancer_create' | 'nodebalancer_delete' | 'nodebalancer_update' | 'nodebalancer_config_create' | 'nodebalancer_config_delete' | 'nodebalancer_config_update' | 'nodebalancer_node_create' | 'nodebalancer_node_delete' | 'nodebalancer_node_update' | 'oauth_client_create' | 'oauth_client_delete' | 'oauth_client_secret_reset' | 'oauth_client_update' | 'obj_access_key_create' | 'obj_access_key_delete' | 'obj_access_key_update' | 'password_reset' | 'payment_method_add' | 'payment_submitted' | 'placement_group_assign' | 'placement_group_became_compliant' | 'placement_group_became_non_compliant' | 'placement_group_create' | 'placement_group_delete' | 'placement_group_unassign' | 'placement_group_update' | 'profile_update' | 'stackscript_create' | 'stackscript_delete' | 'stackscript_update' | 'stackscript_publicize' | 'stackscript_revise' | 'subnet_create' | 'subnet_delete' | 'subnet_update' | 'tag_create' | 'tag_delete' | 'tag_update' | 'tax_id_valid' | 'tax_id_invalid' | 'tfa_disabled' | 'tfa_enabled' | 'ticket_attachment_upload' | 'ticket_create' | 'ticket_update' | 'token_create' | 'token_delete' | 'token_update' | 'user_create' | 'user_update' | 'user_delete' | 'user_ssh_key_add' | 'user_ssh_key_delete' | 'user_ssh_key_update' | 'vlan_attach' | 'vlan_detach' | 'volume_attach' | 'volume_clone' | 'volume_create' | 'volume_delete' | 'volume_update' | 'volume_detach' | 'volume_resize' | 'volume_migrate' | 'volume_migrate_scheduled' | 'vpc_create' | 'vpc_delete' | 'vpc_update';
+        action?: 'account_agreement_eu_model' | 'account_promo_apply' | 'account_update' | 'account_settings_update' | 'backups_enable' | 'backups_cancel' | 'backups_restore' | 'community_question_reply' | 'community_like' | 'community_mention' | 'credit_card_updated' | 'database_create' | 'database_delete' | 'database_update' | 'database_failed' | 'database_degraded' | 'database_create_failed' | 'database_update_failed' | 'database_backup_create' | 'database_backup_restore' | 'database_backup_delete' | 'database_credentials_reset' | 'database_low_disk_space' | 'database_scale' | 'database_resize' | 'database_resize_create' | 'database_migrate' | 'database_upgrade' | 'database_suspend' | 'database_resume' | 'disk_create' | 'disk_delete' | 'disk_update' | 'disk_duplicate' | 'disk_imagize' | 'disk_resize' | 'dns_record_create' | 'dns_record_delete' | 'dns_record_update' | 'dns_zone_create' | 'dns_zone_delete' | 'dns_zone_import' | 'dns_zone_update' | 'entity_transfer_accept' | 'entity_transfer_accept_recipient' | 'entity_transfer_cancel' | 'entity_transfer_create' | 'entity_transfer_fail' | 'entity_transfer_stale' | 'firewall_apply' | 'firewall_create' | 'firewall_delete' | 'firewall_disable' | 'firewall_enable' | 'firewall_update' | 'firewall_device_add' | 'firewall_device_remove' | 'firewall_rules_update' | 'host_reboot' | 'image_delete' | 'image_update' | 'image_upload' | 'interface_create' | 'interface_delete' | 'interface_update' | 'ipaddress_update' | 'ipv6pool_add' | 'ipv6pool_delete' | 'lassie_reboot' | 'lish_boot' | 'linode_addip' | 'linode_boot' | 'linode_clone' | 'linode_create' | 'linode_delete' | 'linode_update' | 'linode_deleteip' | 'linode_kvmify' | 'linode_migrate' | 'linode_migrate_datacenter' | 'linode_migrate_datacenter_create' | 'linode_mutate' | 'linode_mutate_create' | 'linode_poweroff_on' | 'linode_reboot' | 'linode_rebuild' | 'linode_resize' | 'linode_resize_create' | 'linode_resize_warm_create' | 'linode_shutdown' | 'linode_snapshot' | 'linode_config_create' | 'linode_config_delete' | 'linode_config_update' | 'lke_cluster_create' | 'lke_cluster_update' | 'lke_cluster_delete' | 'lke_cluster_recycle' | 'lke_cluster_regenerate' | 'lke_control_plane_acl_create' | 'lke_control_plane_acl_update' | 'lke_control_plane_acl_delete' | 'lke_node_create' | 'lke_node_delete' | 'lke_node_recycle' | 'lke_pool_create' | 'lke_pool_delete' | 'lke_pool_recycle' | 'lke_kubeconfig_regenerate' | 'lke_token_rotate' | 'longviewclient_create' | 'longviewclient_delete' | 'longviewclient_update' | 'managed_disabled' | 'managed_enabled' | 'managed_service_create' | 'managed_service_delete' | 'nodebalancer_create' | 'nodebalancer_delete' | 'nodebalancer_update' | 'nodebalancer_config_create' | 'nodebalancer_config_delete' | 'nodebalancer_config_update' | 'nodebalancer_node_create' | 'nodebalancer_node_delete' | 'nodebalancer_node_update' | 'oauth_client_create' | 'oauth_client_delete' | 'oauth_client_secret_reset' | 'oauth_client_update' | 'obj_access_key_create' | 'obj_access_key_delete' | 'obj_access_key_update' | 'password_reset' | 'payment_method_add' | 'payment_submitted' | 'placement_group_assign' | 'placement_group_became_compliant' | 'placement_group_became_non_compliant' | 'placement_group_create' | 'placement_group_delete' | 'placement_group_unassign' | 'placement_group_update' | 'profile_update' | 'stackscript_create' | 'stackscript_delete' | 'stackscript_update' | 'stackscript_publicize' | 'stackscript_revise' | 'subnet_create' | 'subnet_delete' | 'subnet_update' | 'tag_create' | 'tag_delete' | 'tag_update' | 'tax_id_valid' | 'tax_id_invalid' | 'tfa_disabled' | 'tfa_enabled' | 'ticket_attachment_upload' | 'ticket_create' | 'ticket_update' | 'token_create' | 'token_delete' | 'token_update' | 'user_create' | 'user_update' | 'user_delete' | 'user_ssh_key_add' | 'user_ssh_key_delete' | 'user_ssh_key_update' | 'vlan_attach' | 'vlan_detach' | 'volume_attach' | 'volume_clone' | 'volume_create' | 'volume_delete' | 'volume_update' | 'volume_detach' | 'volume_resize' | 'volume_migrate' | 'volume_migrate_scheduled' | 'vpc_create' | 'vpc_delete' | 'vpc_update';
         /**
          * __Filterable__ When the system created this event.
          */
-        created: string;
+        created?: string;
         /**
          * __Beta__ Maintenance details for this event, if any.
          */
-        details: {
+        details?: {
             /**
              * __Filterable__ The time the maintenance completed. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
              *
@@ -1761,15 +1761,15 @@ export type Events = {
              *
              * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
              */
-            complete_time: string;
+            complete_time?: string;
             /**
              * __Filterable__ Differentiates between scheduled and emergency maintenance.
              */
-            description: 'Scheduled Maintenance' | 'Emergency Maintenance';
+            description?: 'Scheduled Maintenance' | 'Emergency Maintenance';
             /**
              * __Filterable__ The maintenance policy the user configures for this event.
              */
-            maintenance_policy_set: string;
+            maintenance_policy_set?: string;
             /**
              * __Filterable__ The scheduled start time for the event. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
              *
@@ -1777,11 +1777,11 @@ export type Events = {
              *
              * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
              */
-            not_before: string;
+            not_before?: string;
             /**
              * __Filterable__ The origin of the event. A `platform` source indicates that the event was initiated by Akamai. A `user` source indicates that the event was initiated by the user.
              */
-            source: 'platform' | 'user';
+            source?: 'platform' | 'user';
             /**
              * __Filterable__ The actual start time for the event. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
              *
@@ -1789,16 +1789,16 @@ export type Events = {
              *
              * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
              */
-            start_time: string;
+            start_time?: string;
         };
         /**
          * The number of seconds that it takes for the event to complete.
          */
-        duration: number;
+        duration?: number;
         /**
          * Detailed information about the entity that triggered this event.
          */
-        entity: {
+        entity?: {
             /**
              * __Filterable__ The unique identifier assigned to the entity.
              *
@@ -1812,90 +1812,90 @@ export type Events = {
              * >
              * > - The `tag` entity uses the tag's name as its `id`. Set this value to the tag's name to filter.
              */
-            id: number;
+            id?: number;
             /**
              * The name of the entity. The label may reflect changes that occur with this event.
              */
-            label: string;
+            label?: string;
             /**
              * __Filterable__ The type of entity that is being referenced by the event.
              */
-            type: 'account' | 'backups' | 'community' | 'disks' | 'domain' | 'entity_transfer' | 'firewall' | 'image' | 'ipaddress' | 'linode' | 'longview' | 'loadbalancer' | 'managed_service' | 'nodebalancer' | 'oauth_client' | 'profile' | 'stackscript' | 'tag' | 'ticket' | 'token' | 'user' | 'user_ssh_key' | 'volume';
+            type?: 'account' | 'backups' | 'community' | 'disks' | 'domain' | 'entity_transfer' | 'firewall' | 'image' | 'ipaddress' | 'linode' | 'longview' | 'loadbalancer' | 'managed_service' | 'nodebalancer' | 'oauth_client' | 'profile' | 'stackscript' | 'tag' | 'ticket' | 'token' | 'user' | 'user_ssh_key' | 'volume';
             /**
              * The URL where you can access this event's entity. If it's a relative URL, it's relative to the domain where you retrieved the event.
              */
-            url: string;
+            url?: string;
         };
         /**
          * __Filterable__ The unique ID of this event.
          */
-        id: number;
+        id?: number;
         /**
          * Additional information about the event. This can be a more detailed representation of an event that can help you diagnose non-obvious failures.
          */
-        message: string | null;
+        message?: string | null;
         /**
          * A percentage estimating the amount of time remaining for an event. Returned as `null` for notification events.
          */
-        percent_complete: number | null;
+        percent_complete?: number | null;
         /**
          * The rate of completion of the event. Only some events return a `rate`, such as the `migration` and `resize` events.
          */
-        rate: string | null;
+        rate?: string | null;
         /**
          * Detailed information about the event's secondary entity, if applicable.
          */
-        secondary_entity: {
+        secondary_entity?: {
             /**
              * The identifier for the secondary entity object.
              */
-            id: string;
+            id?: string;
             /**
              * The name of the secondary entity object.
              */
-            label: string;
+            label?: string;
             /**
              * The type of secondary entity object that's being referenced by the event.
              */
-            type: string;
+            type?: string;
             /**
              * The URL where you can access this event's secondary entity object. If it's a relative URL, it's relative to the domain where you retrieved the event.
              */
-            url: string;
+            url?: string;
         };
         /**
          * If a user on your account has [marked an event as seen](https://techdocs.akamai.com/linode-api/reference/post-event-seen).
          */
-        seen: boolean;
+        seen?: boolean;
         /**
          * The current status of this event.
          */
-        status: 'completed' | 'failed' | 'finished' | 'in_progress' | 'notification' | 'scheduled' | 'started';
+        status?: 'completed' | 'failed' | 'finished' | 'in_progress' | 'notification' | 'scheduled' | 'started';
         /**
          * The estimated time remaining until the event completes. This is only returned for some in-progress migration events. Otherwise, the `percent_complete` attribute indicates how long until completion.
          */
-        time_remaining: string | null;
+        time_remaining?: string | null;
         /**
          * The name of the user whose action caused the event.
          */
-        username: string | null;
+        username?: string | null;
     }>;
     /**
      * The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    page: number;
+    page?: number;
     /**
      * The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    pages: number;
+    pages?: number;
     /**
      * The total number of results.
      */
-    results: number;
+    results?: number;
 };
 
 export type GetMaintenance200 = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Beta__, __Filterable__ The time the maintenance completed. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -1903,36 +1903,36 @@ export type GetMaintenance200 = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        complete_time: string;
+        complete_time?: string;
         /**
          * __Beta__ Differentiates between scheduled and emergency maintenance.
          */
-        description: 'Scheduled Maintenance' | 'Emergency Maintenance';
+        description?: 'Scheduled Maintenance' | 'Emergency Maintenance';
         /**
          * The entity affected by the maintenance.
          */
-        entity: {
+        entity?: {
             /**
              * The unique identifier of the entity targeted by the maintenance.
              */
-            id: number;
+            id?: number;
             /**
              * The name of the entity targeted by the maintenance.
              */
-            label: string;
+            label?: string;
             /**
              * The type of entity.
              */
-            type: string;
+            type?: string;
             /**
              * A combination of the API operation prefix and the entity's `id` that can be used to review the entity.
              */
-            url: string;
+            url?: string;
         };
         /**
          * __Beta__, __Filterable__ The maintenance policy configured by the user.
          */
-        maintenance_policy_set: string;
+        maintenance_policy_set?: string;
         /**
          * __Beta__, __Filterable__ The earliest time when the maintenance can start. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -1940,15 +1940,15 @@ export type GetMaintenance200 = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        not_before: string;
+        not_before?: string;
         /**
          * The reason maintenance is being performed.
          */
-        reason: string;
+        reason?: string;
         /**
          * __Beta__ The origin of the maintenance. A `platform` source indicates that the maintenance was initiated by Akamai. A `user` source indicates that the maintenance was initiated by the user.
          */
-        source: 'platform' | 'user';
+        source?: 'platform' | 'user';
         /**
          * __Beta__, __Filterable__ The time the maintenance started. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -1956,15 +1956,15 @@ export type GetMaintenance200 = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        start_time: string;
+        start_time?: string;
         /**
          * __Filterable__ The maintenance status. Maintenance progress follows the sequence `pending`, `scheduled`, `started`, and `completed`. A `scheduled` status is unique to Linodes that require a reboot for [QEMU maintenance](https://techdocs.akamai.com/linode-api/reference/reboot-your-linodes-for-qemu-maintenance).
          */
-        status: 'pending' | 'scheduled' | 'started' | 'in-progress' | 'completed' | 'canceled';
+        status?: 'pending' | 'scheduled' | 'started' | 'in-progress' | 'completed' | 'canceled';
         /**
          * __Filterable__ The type of maintenance.
          */
-        type: 'reboot' | 'cold_migration' | 'live_migration' | 'migrate' | 'power_off_on';
+        type?: 'reboot' | 'cold_migration' | 'live_migration' | 'migrate' | 'power_off_on';
         /**
          * __Filterable__ The start time for the maintenance. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -1972,20 +1972,20 @@ export type GetMaintenance200 = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        when: string;
+        when?: string;
     }>;
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 /**
@@ -1997,15 +1997,15 @@ export type GooglePayData = {
     /**
      * __Read-only__ The type of credit card.
      */
-    readonly card_type: string;
+    readonly card_type?: string;
     /**
      * __Read-only__ The expiration month and year of the credit card.
      */
-    readonly expiry: string;
+    readonly expiry?: string;
     /**
      * __Read-only__ The last four digits of the credit card number.
      */
-    readonly last_four: string;
+    readonly last_four?: string;
 };
 
 /**
@@ -2015,73 +2015,73 @@ export type Grant = {
     /**
      * The unique identifier of the resource this grant applies to.
      */
-    id: number;
+    id?: number;
     /**
      * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
      */
-    readonly label: string;
+    readonly label?: string;
     /**
      * The level of access this user has to this entity. If `null`, this user has no access.
      */
-    permissions: 'read_only' | 'read_write';
+    permissions?: 'read_only' | 'read_write';
 };
 
 export type GrantsResponse = {
     /**
      * The grants this user has for individual Managed Databases on this account.
      */
-    database: Array<{
+    database?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has for individual domains on this account.
      */
-    domain: Array<{
+    domain?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has for individual firewalls on this account.
      */
-    firewall: Array<{
+    firewall?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants the user has to all resources on your account.
      */
-    global: {
+    global?: {
         /**
          * The level of access this user has to account-level actions, like billing information and user management.
          *
@@ -2093,178 +2093,178 @@ export type GrantsResponse = {
          *
          * In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, this grant can be added to a child account user, to give the user `read-write` access. This gives the child user unrestricted access to expected management operations, such as creating other child users. However, child users don't have write access to billing operations. The API issues a specific error message if a write operation is attempted by a child user.
          */
-        account_access: 'read_only' | 'read_write';
+        account_access?: 'read_only' | 'read_write';
         /**
          * Whether this user can add Managed Databases on the account.
          */
-        add_databases: boolean;
+        add_databases?: boolean;
         /**
          * Whether this user can add domains on the account.
          */
-        add_domains: boolean;
+        add_domains?: boolean;
         /**
          * Whether this user can add Firewalls on the account.
          */
-        add_firewalls: boolean;
+        add_firewalls?: boolean;
         /**
          * Whether this user can create images from disks on your Linodes, on the account.
          */
-        add_images: boolean;
+        add_images?: boolean;
         /**
          * Whether this user can create Linodes.
          */
-        add_linodes: boolean;
+        add_linodes?: boolean;
         /**
          * Whether this user can create Longview clients and view the current plan.
          */
-        add_longview: boolean;
+        add_longview?: boolean;
         /**
          * Whether this user can add NodeBalancers on the account.
          */
-        add_nodebalancers: boolean;
+        add_nodebalancers?: boolean;
         /**
          * Whether this user can add StackScripts on the account.
          */
-        add_stackscripts: boolean;
+        add_stackscripts?: boolean;
         /**
          * Whether this user can add volumes on the account.
          */
-        add_volumes: boolean;
+        add_volumes?: boolean;
         /**
          * Whether this user can add Virtual Private Clouds (VPCs) on the account.
          */
-        add_vpcs: boolean;
+        add_vpcs?: boolean;
         /**
          * Whether this user can cancel the entire account.
          */
-        cancel_account: boolean;
+        cancel_account?: boolean;
         /**
          * In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, this gives a parent account access to operations that can be used to manage child accounts. Unrestricted parent account users have access to this grant, while restricted parent users don't. An unrestricted parent user can set this to `true` to add this grant to a restricted parent user. Displayed as `null` for all non-parent accounts.
          */
-        child_account_access: boolean | null;
+        child_account_access?: boolean | null;
         /**
          * Whether this user can manage your account's Longview subscription.
          */
-        longview_subscription: boolean;
+        longview_subscription?: boolean;
     };
     /**
      * The grants this user has for individual images on this account.
      */
-    image: Array<{
+    image?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has for individual Linodes on this account.
      */
-    linode: Array<{
+    linode?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has for individual Longview Clients on this account.
      */
-    longview: Array<{
+    longview?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has for individual NodeBalancers on this account.
      */
-    nodebalancer: Array<{
+    nodebalancer?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this User has for individual StackScripts on this account.
      */
-    stackscript: Array<{
+    stackscript?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has individual Block Storage Volumes on this account.
      */
-    volume: Array<{
+    volume?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has individual Virtual Private Clouds (VPCs) on this account.
      */
-    vpc: Array<{
+    vpc?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
 };
 
@@ -2280,44 +2280,44 @@ export type Invoice = {
     /**
      * __Filterable__, __Read-only__ The source of service charges for this invoice. A value of `akamai` indicates an invoice generated according to the terms of an agreement between the customer and Akamai. A value of `linode` indicates an invoice was generated according to the default terms, prices, and discounts.
      */
-    billing_source: 'akamai' | 'linode';
+    billing_source?: 'akamai' | 'linode';
     /**
      * __Filterable__, __Read-only__ When this Invoice was generated.
      */
-    readonly date: string;
+    readonly date?: string;
     /**
      * __Read-only__ The Invoice's unique ID.
      */
-    readonly id: number;
+    readonly id?: number;
     /**
      * __Filterable__, __Read-only__ The Invoice's display label.
      */
-    readonly label: string;
+    readonly label?: string;
     /**
      * __Read-only__ The amount of the Invoice before taxes in US Dollars.
      */
-    readonly subtotal: number;
+    readonly subtotal?: number;
     /**
      * __Read-only__ The amount of tax levied on the Invoice in US Dollars.
      */
-    readonly tax: number;
+    readonly tax?: number;
     /**
      * __Read-only__ The amount of tax broken down into subtotals by source.
      */
-    readonly tax_summary: Array<{
+    readonly tax_summary?: Array<{
         /**
          * The source of this tax subtotal.
          */
-        name: string;
+        name?: string;
         /**
          * The amount of tax subtotal attributable to this source.
          */
-        tax: number;
+        tax?: number;
     }>;
     /**
      * __Filterable__, __Read-only__ The amount of the Invoice after taxes in US Dollars.
      */
-    readonly total: number;
+    readonly total?: number;
 };
 
 /**
@@ -2327,45 +2327,45 @@ export type InvoiceItem = {
     /**
      * __Read-only__ The price, in US dollars, of the Invoice Item. Equal to the unit price multiplied by quantity.
      */
-    readonly amount: number;
+    readonly amount?: number;
     /**
      * __Read-only__ The date the Invoice Item started, based on month.
      */
-    readonly from: string;
+    readonly from?: string;
     /**
      * __Read-only__ The Invoice Item's display label.
      */
-    readonly label: string;
+    readonly label?: string;
     /**
      * __Read-only__ The quantity of this Item for the specified Invoice.
      */
-    readonly quantity: number;
+    readonly quantity?: number;
     /**
      * __Read-only__ The ID of the applicable Region associated with this Invoice Item.
      *
      * `null` if there is no applicable Region.
      */
-    readonly region: string | null;
+    readonly region?: string | null;
     /**
      * __Read-only__ The amount of tax levied on this Item in US Dollars.
      */
-    readonly tax: number;
+    readonly tax?: number;
     /**
      * __Read-only__ The date the Invoice Item ended, based on month.
      */
-    readonly to: string;
+    readonly to?: string;
     /**
      * __Read-only__ The price of this Item after taxes in US Dollars.
      */
-    readonly total: number;
+    readonly total?: number;
     /**
      * __Read-only__ The type of service, ether `hourly` or `misc`.
      */
-    type: 'hourly' | 'misc';
+    type?: 'hourly' | 'misc';
     /**
      * __Read-only__ The monthly service fee in US Dollars for this Item.
      */
-    readonly unit_price: string;
+    readonly unit_price?: string;
 };
 
 /**
@@ -2385,27 +2385,27 @@ export type Login = {
     /**
      * __Read-only__ When the login was initiated.
      */
-    readonly datetime: string;
+    readonly datetime?: string;
     /**
      * __Read-only__ The unique ID of this login object.
      */
-    readonly id: number;
+    readonly id?: number;
     /**
      * __Read-only__ The remote IP address that requested the login.
      */
-    readonly ip: string;
+    readonly ip?: string;
     /**
      * __Read-only__ True if the User that attempted the login was a restricted User, false otherwise.
      */
-    readonly restricted: boolean;
+    readonly restricted?: boolean;
     /**
      * __Read-only__ Whether the login attempt succeeded or failed.
      */
-    status: 'successful' | 'failed';
+    status?: 'successful' | 'failed';
     /**
      * __Read-only__ The username of the User that attempted the login.
      */
-    readonly username: string;
+    readonly username?: string;
 };
 
 /**
@@ -2419,36 +2419,36 @@ export type Maintenance = {
      *
      * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
      */
-    complete_time: string;
+    complete_time?: string;
     /**
      * __Beta__ Differentiates between scheduled and emergency maintenance.
      */
-    description: 'Scheduled Maintenance' | 'Emergency Maintenance';
+    description?: 'Scheduled Maintenance' | 'Emergency Maintenance';
     /**
      * The entity affected by the maintenance.
      */
-    entity: {
+    entity?: {
         /**
          * The unique identifier of the entity targeted by the maintenance.
          */
-        id: number;
+        id?: number;
         /**
          * The name of the entity targeted by the maintenance.
          */
-        label: string;
+        label?: string;
         /**
          * The type of entity.
          */
-        type: string;
+        type?: string;
         /**
          * A combination of the API operation prefix and the entity's `id` that can be used to review the entity.
          */
-        url: string;
+        url?: string;
     };
     /**
      * __Beta__, __Filterable__ The maintenance policy configured by the user.
      */
-    maintenance_policy_set: string;
+    maintenance_policy_set?: string;
     /**
      * __Beta__, __Filterable__ The earliest time when the maintenance can start. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
      *
@@ -2456,15 +2456,15 @@ export type Maintenance = {
      *
      * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
      */
-    not_before: string;
+    not_before?: string;
     /**
      * The reason maintenance is being performed.
      */
-    reason: string;
+    reason?: string;
     /**
      * __Beta__ The origin of the maintenance. A `platform` source indicates that the maintenance was initiated by Akamai. A `user` source indicates that the maintenance was initiated by the user.
      */
-    source: 'platform' | 'user';
+    source?: 'platform' | 'user';
     /**
      * __Beta__, __Filterable__ The time the maintenance started. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
      *
@@ -2472,15 +2472,15 @@ export type Maintenance = {
      *
      * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
      */
-    start_time: string;
+    start_time?: string;
     /**
      * __Filterable__ The maintenance status. Maintenance progress follows the sequence `pending`, `scheduled`, `started`, and `completed`. A `scheduled` status is unique to Linodes that require a reboot for [QEMU maintenance](https://techdocs.akamai.com/linode-api/reference/reboot-your-linodes-for-qemu-maintenance).
      */
-    status: 'pending' | 'scheduled' | 'started' | 'in-progress' | 'completed' | 'canceled';
+    status?: 'pending' | 'scheduled' | 'started' | 'in-progress' | 'completed' | 'canceled';
     /**
      * __Filterable__ The type of maintenance.
      */
-    type: 'reboot' | 'cold_migration' | 'live_migration' | 'migrate' | 'power_off_on';
+    type?: 'reboot' | 'cold_migration' | 'live_migration' | 'migrate' | 'power_off_on';
     /**
      * __Filterable__ The start time for the maintenance. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
      *
@@ -2488,7 +2488,7 @@ export type Maintenance = {
      *
      * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
      */
-    when: string;
+    when?: string;
 };
 
 /**
@@ -2498,15 +2498,15 @@ export type Notification = {
     /**
      * A full description of this notification, in markdown format. Not all notifications include a `body`. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
      */
-    body: string | null;
+    body?: string | null;
     /**
      * Detailed information about the notification. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
      */
-    entity: {
+    entity?: {
         /**
          * The unique ID of the notification's entity, based on the entity type. Returns `null` for an `account` or `promotion` entity.
          */
-        id: number | null;
+        id?: number | null;
         /**
          * The current name of this notification's entity. Returns `null` for the following `entity` types:
          *
@@ -2516,28 +2516,28 @@ export type Notification = {
          *
          * - `region`
          */
-        label: string | null;
+        label?: string | null;
         /**
          * __Filterable__ The type of entity this is related to. An entity can be product or service-specific, such as a `linode`, `loadbalancers`, or `nodebalancers`. It can apply to a specific component, such as your `account`, a specific `promotion` your participating in, a data center (`region`) where you're using services, a transfer from one component to another (an `entity_transfer`), a support `ticket` you've opened, or a `volume` on a specific Linode.
          */
-        type: 'account' | 'entity_transfer' | 'linode' | 'loadbalancers' | 'nodebalancer' | 'promotion' | 'region' | 'ticket' | 'volume';
+        type?: 'account' | 'entity_transfer' | 'linode' | 'loadbalancers' | 'nodebalancer' | 'promotion' | 'region' | 'ticket' | 'volume';
         /**
          * The URL where you can access the notification's object. The URL is relative to the domain where you retrieved the notification. This value is `null` for the `promotion` entity type.
          */
-        url: string | null;
+        url?: string | null;
     } | null;
     /**
      * A short description of this notification.
      */
-    label: string;
+    label?: string;
     /**
      * A human-readable description of the notification.
      */
-    message: string;
+    message?: string;
     /**
      * The severity of this notification. This field determines how prominently the notification is displayed and the color of the display text.
      */
-    severity: 'minor' | 'major' | 'critical';
+    severity?: 'minor' | 'major' | 'critical';
     /**
      * __Filterable__ The type of notification.
      *
@@ -2545,15 +2545,15 @@ export type Notification = {
      * >
      * > A `security_reboot_maintenance_scheduled` event is a global notice that a Linode needs to be rebooted for QEMU upgrade maintenance. Have a look at [this workflow](https://techdocs.akamai.com/linode-api/reference/reboot-your-linodes-for-qemu-maintenance) for guidance on reboooting your Linodes for this maintenance.
      */
-    type: 'migration_scheduled' | 'migration_imminent' | 'migration_pending' | 'reboot_scheduled' | 'outage' | 'payment_due' | 'ticket_important' | 'ticket_abuse' | 'notice' | 'maintenance' | 'maintenance_scheduled' | 'promotion' | 'security_reboot_maintenance_scheduled' | 'tax_id_verifying';
+    type?: 'migration_scheduled' | 'migration_imminent' | 'migration_pending' | 'reboot_scheduled' | 'outage' | 'payment_due' | 'ticket_important' | 'ticket_abuse' | 'notice' | 'maintenance' | 'maintenance_scheduled' | 'promotion' | 'security_reboot_maintenance_scheduled' | 'tax_id_verifying';
     /**
      * If this notification has a duration, this is when the event or action will complete. For example, if there's scheduled maintenance for one of our systems, `until` represents the end of the maintenance window. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
      */
-    until: string | null;
+    until?: string | null;
     /**
      * If this notification is for an event in the future, this specifies when the action occurs. For example, if a compute instance needs to migrate in response to a security advisory, this field sets the approximate time the compute instance will be taken offline for migration. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
      */
-    when: string | null;
+    when?: string | null;
 };
 
 /**
@@ -2563,31 +2563,31 @@ export type OauthClient = {
     /**
      * __Read-only__ The OAuth Client ID.  This is used to identify the client, and is a publicly known value (it is not a secret).
      */
-    readonly id: string;
+    readonly id?: string;
     /**
      * __Filterable__ The name of this application.  This will be presented to users when they are asked to grant it access to their Account.
      */
-    label: string;
+    label?: string;
     /**
      * __Filterable__ If this is a public or private OAuth Client.  Public clients have a slightly different authentication workflow than private clients.  See the [OAuth spec](https://oauth.net/2/) for more details.
      */
-    public: boolean;
+    public?: boolean;
     /**
      * The location a successful log in from [login.linode.com](https://login.linode.com) should be redirected to for this client.  The receiver of this redirect should be ready to accept an OAuth exchange code and finish the OAuth exchange.
      */
-    redirect_uri: string;
+    redirect_uri?: string;
     /**
      * __Read-only__ The OAuth Client secret, used in the OAuth exchange.  This is returned as `<REDACTED>` except when an OAuth Client is created or its secret is reset.  This is a secret, and should not be shared or disclosed publicly.
      */
-    readonly secret: string;
+    readonly secret?: string;
     /**
      * __Read-only__ The status of this application.  `active` by default.
      */
-    status: 'active' | 'disabled' | 'suspended';
+    status?: 'active' | 'disabled' | 'suspended';
     /**
      * __Read-only__ The URL where this client's thumbnail may be viewed, or `null` if this client does not have a thumbnail set.
      */
-    readonly thumbnail_url: string | null;
+    readonly thumbnail_url?: string | null;
 };
 
 /**
@@ -2607,15 +2607,15 @@ export type PaginationEnvelope = {
     /**
      * __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly page: number;
+    readonly page?: number;
     /**
      * __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
      */
-    readonly pages: number;
+    readonly pages?: number;
     /**
      * __Read-only__ The total number of results.
      */
-    readonly results: number;
+    readonly results?: number;
 };
 
 /**
@@ -2625,15 +2625,15 @@ export type Payment = {
     /**
      * __Filterable__, __Read-only__ When the payment was made.
      */
-    readonly date: string;
+    readonly date?: string;
     /**
      * __Read-only__ The unique ID of the payment.
      */
-    readonly id: number;
+    readonly id?: number;
     /**
      * __Filterable__, __Read-only__ The amount, in US dollars, of the payment.
      */
-    readonly usd: number;
+    readonly usd?: number;
 };
 
 /**
@@ -2643,55 +2643,55 @@ export type PaymentMethod = {
     /**
      * __Read-only__ When the Payment Method was added to the Account.
      */
-    readonly created: string;
-    data: {
+    readonly created?: string;
+    data?: {
         /**
          * __Read-only__ The type of credit card.
          */
-        readonly card_type: string;
+        readonly card_type?: string;
         /**
          * __Read-only__ The expiration month and year of the credit card.
          */
-        readonly expiry: string;
+        readonly expiry?: string;
         /**
          * __Read-only__ The last four digits of the credit card number.
          */
-        readonly last_four: string;
+        readonly last_four?: string;
     } | {
         /**
          * __Read-only__ The type of credit card.
          */
-        readonly card_type: string;
+        readonly card_type?: string;
         /**
          * __Read-only__ The expiration month and year of the credit card.
          */
-        readonly expiry: string;
+        readonly expiry?: string;
         /**
          * __Read-only__ The last four digits of the credit card number.
          */
-        readonly last_four: string;
+        readonly last_four?: string;
     } | {
         /**
          * __Read-only__ The email address associated with your PayPal account.
          */
-        readonly email: string;
+        readonly email?: string;
         /**
          * __Read-only__ PayPal Merchant ID associated with your PayPal account.
          */
-        readonly paypal_id: string;
+        readonly paypal_id?: string;
     };
     /**
      * The unique ID of this Payment Method.
      */
-    id: number;
+    id?: number;
     /**
      * Whether this Payment Method is the default method for automatically processing service charges.
      */
-    is_default: boolean;
+    is_default?: boolean;
     /**
      * The type of Payment Method.
      */
-    type: 'credit_card' | 'google_pay' | 'paypal';
+    type?: 'credit_card' | 'google_pay' | 'paypal';
 };
 
 /**
@@ -2721,11 +2721,11 @@ export type PaypalData = {
     /**
      * __Read-only__ The email address associated with your PayPal account.
      */
-    readonly email: string;
+    readonly email?: string;
     /**
      * __Read-only__ PayPal Merchant ID associated with your PayPal account.
      */
-    readonly paypal_id: string;
+    readonly paypal_id?: string;
 };
 
 /**
@@ -2751,35 +2751,35 @@ export type Promotion = {
     /**
      * The amount available to spend per month.
      */
-    credit_monthly_cap: string;
+    credit_monthly_cap?: string;
     /**
      * The total amount of credit left for this promotion.
      */
-    credit_remaining: string;
+    credit_remaining?: string;
     /**
      * A detailed description of this promotion.
      */
-    description: string;
+    description?: string;
     /**
      * When this promotion's credits expire.
      */
-    expire_dt: string;
+    expire_dt?: string;
     /**
      * The location of an image for this promotion.
      */
-    image_url: string;
+    image_url?: string;
     /**
      * The service to which this promotion applies.
      */
-    service_type: 'all' | 'backup' | 'blockstorage' | 'db_mysql' | 'ip_v4' | 'linode' | 'linode_disk' | 'linode_memory' | 'longview' | 'managed' | 'nodebalancer' | 'objectstorage' | 'placement_group' | 'transfer_tx';
+    service_type?: 'all' | 'backup' | 'blockstorage' | 'db_mysql' | 'ip_v4' | 'linode' | 'linode_disk' | 'linode_memory' | 'longview' | 'managed' | 'nodebalancer' | 'objectstorage' | 'placement_group' | 'transfer_tx';
     /**
      * Short details of this promotion.
      */
-    summary: string;
+    summary?: string;
     /**
      * The amount of credit left for this month for this promotion.
      */
-    this_month_credit_remaining: string;
+    this_month_credit_remaining?: string;
 };
 
 /**
@@ -2789,7 +2789,7 @@ export type PropertiesEntities = {
     /**
      * An array containing the IDs of each of the Linodes included in this transfer.
      */
-    linodes: Array<number>;
+    linodes?: Array<number>;
 };
 
 /**
@@ -2799,27 +2799,27 @@ export type ProxyUserToken = {
     /**
      * __Filterable__, __Read-only__ The date and time this token was created.
      */
-    readonly created: string;
+    readonly created?: string;
     /**
      * __Read-only__ When this token expires. This is default set to 15 minutes from the time of creation. Proxy user tokens can't be renewed. After this time, Akamai revokes the token and you need to generate a new one.
      */
-    readonly expiry: string;
+    readonly expiry?: string;
     /**
      * __Read-only__ The proxy user token's unique ID, which can be used to revoke it.
      */
-    readonly id: number;
+    readonly id?: number;
     /**
      * __Filterable__ The name of the token. The API automatically sets this to `<username>_<uid>_<time>`. It's composed of the `username` for your parent account user, the unique `uid` Akamai assigned to identify your user, and the `time` the API generated the token. This is for display purposes only, but you can use it to help track how you're using each proxy user token.
      */
-    label: string;
+    label?: string;
     /**
      * __Read-only__ The scopes this token was created with. Defaults to `*`. Proxy user tokens automatically inherit all the permissions of the proxy user.
      */
-    readonly scopes: string;
+    readonly scopes?: string;
     /**
      * __Read-only__ The proxy user token that can be used to access the API and CLI. After you [create](https://techdocs.akamai.com/linode-api/reference/post-child-account-token) a token, you can see the full token in the response. All other operations that contain this token only show the first 16 characters in their response.
      */
-    readonly token: string;
+    readonly token?: string;
 };
 
 /**
@@ -2834,24 +2834,24 @@ export type ServiceTransfer = {
     /**
      * When this transfer was created.
      */
-    created: string;
+    created?: string;
     /**
      * A collection of the services to include in this transfer request, separated by type.
      */
-    entities: {
+    entities?: {
         /**
          * An array containing the IDs of each of the Linodes included in this transfer.
          */
-        linodes: Array<number>;
+        linodes?: Array<number>;
     };
     /**
      * When this transfer expires. Transfers will automatically expire 24 hours after creation.
      */
-    expiry: string;
+    expiry?: string;
     /**
      * __Filterable__ If the requesting account created this transfer.
      */
-    is_sender: boolean;
+    is_sender?: boolean;
     /**
      * __Filterable__ The status of the transfer request.
      *
@@ -2869,15 +2869,15 @@ export type ServiceTransfer = {
      * `stale`: The transfer has exceeded its expiration date. It can no longer be accepted or
      * canceled.
      */
-    status: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
+    status?: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
     /**
      * The token used to identify and accept or cancel this transfer.
      */
-    token: string;
+    token?: string;
     /**
      * When this transfer was last updated.
      */
-    updated: string;
+    updated?: string;
 };
 
 /**
@@ -2894,33 +2894,33 @@ export type Transfer = {
     /**
      * __Read-only__ The amount of your transfer pool that is billable this billing cycle.
      */
-    readonly billable: number;
+    readonly billable?: number;
     /**
      * __Read-only__ The amount of network usage allowed this billing cycle.
      */
-    readonly quota: number;
-    region_transfers: Array<{
+    readonly quota?: number;
+    region_transfers?: Array<{
         /**
          * __Read-only__ The amount of your transfer pool that is billable this billing cycle for this Region.
          */
-        readonly billable: number;
+        readonly billable?: number;
         /**
          * The Region ID for this network utilization data.
          */
-        id: string;
+        id?: string;
         /**
          * __Read-only__ The amount of network usage allowed this billing cycle for this Region.
          */
-        readonly quota: number;
+        readonly quota?: number;
         /**
          * __Read-only__ The amount of network usage you have used this billing cycle for this Region.
          */
-        readonly used: number;
+        readonly used?: number;
     }>;
     /**
      * __Read-only__ The amount of network usage you have used this billing cycle.
      */
-    readonly used: number;
+    readonly used?: number;
 };
 
 /**
@@ -2930,28 +2930,28 @@ export type User = {
     /**
      * This user's email address. Akamai uses this address for account management communications.
      */
-    email: string;
+    email?: string;
     /**
      * __Read-only__ Details on this user's last login attempt. Returned as `null` if this user hasn't attempted a login since it was created. You can run the [List user logins](https://techdocs.akamai.com/linode-api/reference/get-account-logins) operation for additional login information.
      */
-    readonly last_login: {
+    readonly last_login?: {
         /**
          * __Read-only__ The date and time of this user's most recent login attempt.
          */
-        readonly login_datetime: string;
+        readonly login_datetime?: string;
         /**
          * __Read-only__ The result of this user's most recent login attempt.
          */
-        status: 'successful' | 'failed';
+        status?: 'successful' | 'failed';
     } | null;
     /**
      * __Read-only__ When this user's current password was created. You initially create a password during the account sign-up process, and you can update it using the [Reset Password](https://login.linode.com/forgot/password) webpage. Returned as `null` if this user doesn't have a password set.
      */
-    readonly password_created: string | null;
+    readonly password_created?: string | null;
     /**
      * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
      */
-    restricted: boolean;
+    restricted?: boolean;
     /**
      * __Read-only__ A list of the labels for SSH keys added by this user. Users can add keys with the [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) operation. These keys are deployed when this user is included in the `authorized_users` field of the following requests:
      *
@@ -2961,19 +2961,19 @@ export type User = {
      *
      * - [Create a disk](https://techdocs.akamai.com/linode-api/reference/post-add-linode-disk)
      */
-    readonly ssh_keys: Array<string>;
+    readonly ssh_keys?: Array<string>;
     /**
      * __Read-only__ Whether this user has Two Factor Authentication (TFA) enabled. Run the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation to enable TFA.
      */
-    readonly tfa_enabled: boolean;
+    readonly tfa_enabled?: boolean;
     /**
      * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
      */
-    username: string;
+    username?: string;
     /**
      * __Read-only__ The [verified](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) phone number for this user profile. Returned as `null` if the user doesn't have a verified phone number.
      */
-    readonly verified_phone_number: string | null;
+    readonly verified_phone_number?: string | null;
 };
 
 /**
@@ -2991,7 +2991,7 @@ export type UserType = {
      *
      * - `default`. This applies to all regular, non-parent-child account users.
      */
-    user_type: 'parent' | 'child' | 'proxy' | 'default';
+    user_type?: 'parent' | 'child' | 'proxy' | 'default';
 };
 
 /**
@@ -3001,11 +3001,11 @@ export type WarningObject = {
     /**
      * Specific information related to the warning.
      */
-    details: string;
+    details?: string;
     /**
      * The general warning message.
      */
-    title: string;
+    title?: string;
 };
 
 /**
@@ -3017,47 +3017,47 @@ export type XFilter = {
     /**
      * All conditions need to be true.
      */
-    '+and': Array<{
+    '+and'?: Array<{
         [key: string]: unknown;
     }>;
     /**
      * The provided string needs to be in the value.
      */
-    '+contains': string;
+    '+contains'?: string;
     /**
      * The value needs to be greater than the provided number.
      */
-    '+gt': number;
+    '+gt'?: number;
     /**
      * The value needs to be greater than or equal to the provided number.
      */
-    '+gte': number;
+    '+gte'?: number;
     /**
      * The value needs to be less than the provided number.
      */
-    '+lt': number;
+    '+lt'?: number;
     /**
      * The value needs to be less than or equal to the provided number.
      */
-    '+lte': number;
+    '+lte'?: number;
     /**
      * The provided string is left out of the results.
      */
-    '+neq': string;
+    '+neq'?: string;
     /**
      * At least one condition needs to be true.
      */
-    '+or': Array<{
+    '+or'?: Array<{
         [key: string]: unknown;
     }>;
     /**
      * Sort in ascending (`asc`) or descending (`desc`) order. This defaults to `asc`. Requires `+order_by`.
      */
-    '+order': 'asc' | 'desc';
+    '+order'?: 'asc' | 'desc';
     /**
      * Order results based on the provided attribute. The attribute needs to be filterable.
      */
-    '+order_by': string;
+    '+order_by'?: string;
 };
 
 /**
@@ -3076,39 +3076,39 @@ export type AccountWritable = {
     /**
      * The first line of this account's billing address.
      */
-    address_1: string;
+    address_1?: string;
     /**
      * The second line of this account's billing address.
      */
-    address_2: string;
+    address_2?: string;
     /**
      * The city for this account's `address`.
      */
-    city: string;
+    city?: string;
     /**
      * The company name assigned to this account. This value can't include the characters, `<` `>` `(` `)` `"` `=`.
      */
-    company: string;
+    company?: string;
     /**
      * The two-letter ISO 3166 country code for this account's `address`.
      */
-    country: string;
+    country?: string;
     /**
      * The email address of the person assigned to this account.
      */
-    email: string;
+    email?: string;
     /**
      * The first name of the person assigned to this account. This value can't include the characters, `<` `>` `(` `)` `"` `=`.
      */
-    first_name: string;
+    first_name?: string;
     /**
      * The last name of the person assigned to this account. This value can't include the characters, `<` `>` `(` `)` `"` `=`.
      */
-    last_name: string;
+    last_name?: string;
     /**
      * The phone number assigned to this account.
      */
-    phone: string;
+    phone?: string;
     /**
      * The state or province for the `address` set for your account, if applicable.
      *
@@ -3118,7 +3118,7 @@ export type AccountWritable = {
      *
      * - If outside the US or CA, this is the province associated with the account's `address`.
      */
-    state: string;
+    state?: string;
     /**
      * The tax identification number (TIN) assigned to this account, used for tax calculations. A TIN is set by the national authorities in your `country`, based on your `address_1`, and it may be named differently between countries. Set to an empty string (`""`) if a TIN doesn't apply or for countries that don't collect tax.
      *
@@ -3126,7 +3126,7 @@ export type AccountWritable = {
      * >
      * > This value is externally validated. If the validation is successful, a `tax_id_valid` [event](https://techdocs.akamai.com/linode-api/reference/get-events) is triggered. If unsuccessful, a `tax_id_invalid` event is triggered and an error response is issued for an operation that included it.
      */
-    tax_id: string;
+    tax_id?: string;
     /**
      * The zip code for this account's `address`.
      *
@@ -3134,7 +3134,7 @@ export type AccountWritable = {
      *
      * - It can't contain more than nine letter or number characters.
      */
-    zip: string;
+    zip?: string;
 };
 
 /**
@@ -3144,7 +3144,7 @@ export type AccountSettingsWritable = {
     /**
      * Account-wide backups default.  If `true`, all Linodes created will automatically be enrolled in the Backups service.  If `false`, Linodes will not be enrolled by default, but may still be enrolled on creation or later.
      */
-    backups_enabled: boolean;
+    backups_enabled?: boolean;
     /**
      * __Beta__ Defines if new Linodes can use legacy configuration interfaces:
      * - `legacy_config_only`. All new Linodes need to use legacy configuration interfaces. Prevously created Linodes with Linode Interfaces can still exist. Linodes using legacy configuration interfaces can't be upgraded to use Linode Interfaces.
@@ -3152,65 +3152,65 @@ export type AccountSettingsWritable = {
      * - `linode_default_but_legacy_config_allowed`. New Linodes can use legacy configuration interfaces or Linode Interfaces, depending on the `interface_generation` setting specified when creating the Linode. By default, new Linodes use Linode Interfaces unless otherwise specified. Linodes that use legacy configuration interfaces can upgrade to Linode interfaces. This is the default setting for new accounts.
      * - `linode_only`. All new Linodes need to use Linode Interfaces. Prevously created Linodes with legacy configuration profile interfaces can still exist if they were created under a previous setting. Linodes using legacy configuration interfaces can be upgraded to Linode Interfaces.
      */
-    interfaces_for_new_linodes: 'legacy_config_only' | 'legacy_config_default_but_linode_allowed' | 'linode_default_but_legacy_config_allowed' | 'linode_only';
+    interfaces_for_new_linodes?: 'legacy_config_only' | 'legacy_config_default_but_linode_allowed' | 'linode_default_but_legacy_config_allowed' | 'linode_only';
     /**
      * __Beta__ Defines the default maintenance policy for new Linodes created on this account. Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details.
      */
-    maintenance_policy: 'linode/migrate' | 'linode/power_off_on';
+    maintenance_policy?: 'linode/migrate' | 'linode/power_off_on';
     /**
      * Enables network helper across all users by default for new Linodes and Linode Configs.
      */
-    network_helper: boolean;
+    network_helper?: boolean;
 };
 
 export type AddedGetAccountLogins200Writable = {
-    data: Array<{
+    data?: Array<{
         [key: string]: never;
     }>;
 };
 
 export type AddedGetAvailability200Writable = {
-    data: Array<{}>;
+    data?: Array<{}>;
 } & {};
 
 export type AddedGetChildAccounts200Writable = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Filterable__ First line of this child account's billing address.
          */
-        address_1: string;
+        address_1?: string;
         /**
          * __Filterable__ Second line of this child account's billing address, if applicable.
          */
-        address_2: string;
+        address_2?: string;
         /**
          * __Filterable__ The city for this child account's billing address.
          */
-        city: string;
+        city?: string;
         /**
          * __Filterable__ The company name for the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`. You can't change this value yourself. We use it to create the proxy users that a parent account uses to access a child account. Talk to your account team if you need to change this value.
          */
-        company: string;
+        company?: string;
         /**
          * __Filterable__ The two-letter ISO 3166 country code for this child account's billing address.
          */
-        country: string;
+        country?: string;
         /**
          * __Filterable__ The email address of the owner of this child account.
          */
-        email: string;
+        email?: string;
         /**
          * __Filterable__ The first name of the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`.
          */
-        first_name: string;
+        first_name?: string;
         /**
          * __Filterable__ The last name of the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`.
          */
-        last_name: string;
+        last_name?: string;
         /**
          * __Filterable__ The phone number for the owner of this child account.
          */
-        phone: string;
+        phone?: string;
         /**
          * __Filterable__ The state or province for the billing address (`address_1` and `address_2, if applicable`). If in the United States (US) or Canada (CA), this is the two-letter ISO 3166 State or Province code.
          *
@@ -3218,44 +3218,44 @@ export type AddedGetChildAccounts200Writable = {
          * >
          * > If this is a US military address, use state abbreviations (AA, AE, AP).
          */
-        state: string;
+        state?: string;
         /**
          * The tax identification number for this child account. Use this for tax calculations in some countries. If you live in a country that doesn't collect taxes, ensure this is an empty string (`""`).
          */
-        tax_id: string;
+        tax_id?: string;
         /**
          * __Filterable__ The zip code of this Account's billing address. The following restrictions apply:
          *
          * - Can only contain ASCII letters, numbers, and hyphens (`-`).
          * - Can't contain more than 9 letter or number characters.
          */
-        zip: string;
+        zip?: string;
     }>;
 };
 
 export type AddedGetClients200Writable = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Filterable__ The name of this application.  This will be presented to users when they are asked to grant it access to their Account.
          */
-        label: string;
+        label?: string;
         /**
          * __Filterable__ If this is a public or private OAuth Client.  Public clients have a slightly different authentication workflow than private clients.  See the [OAuth spec](https://oauth.net/2/) for more details.
          */
-        public: boolean;
+        public?: boolean;
         /**
          * The location a successful log in from [login.linode.com](https://login.linode.com) should be redirected to for this client.  The receiver of this redirect should be ready to accept an OAuth exchange code and finish the OAuth exchange.
          */
-        redirect_uri: string;
+        redirect_uri?: string;
     }>;
 };
 
 export type AddedGetEnrolledBetaPrograms200Writable = {} & {
-    data: Array<{
+    data?: Array<{
         /**
          * The unique identifier of the Beta Program.
          */
-        id: string;
+        id?: string;
     }>;
 };
 
@@ -3264,24 +3264,24 @@ export type AddedGetEntityTransfers200Writable = {} & {
         /**
          * When this transfer was created.
          */
-        created: string;
+        created?: string;
         /**
          * A collection of the entities to include in this transfer request, separated by type.
          */
-        entities: {
+        entities?: {
             /**
              * An array containing the IDs of each of the Linodes included in this transfer.
              */
-            linodes: Array<number>;
+            linodes?: Array<number>;
         };
         /**
          * When this transfer expires. Transfers will automatically expire 24 hours after creation.
          */
-        expiry: string;
+        expiry?: string;
         /**
          * __Filterable__ If the requesting account created this transfer.
          */
-        is_sender: boolean;
+        is_sender?: boolean;
         /**
          * __Filterable__ The status of the transfer request:
          *
@@ -3292,44 +3292,44 @@ export type AddedGetEntityTransfers200Writable = {} & {
          * `pending`: The transfer is ready to be accepted.
          * `stale`: The transfer has exceeded its expiration date. It can no longer be accepted or canceled.
          */
-        status: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
+        status?: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
         /**
          * The token used to identify and accept or cancel this transfer.
          */
-        token: string;
+        token?: string;
         /**
          * When this transfer was last updated.
          */
-        updated: string;
+        updated?: string;
     }>;
 };
 
 export type AddedGetInvoiceItems200Writable = {
-    data: Array<{
+    data?: Array<{
         [key: string]: never;
     }>;
 };
 
 export type AddedGetInvoices200Writable = {
-    data: Array<{
+    data?: Array<{
         [key: string]: never;
     }>;
 };
 
 export type AddedGetNotifications200Writable = {
-    data: Array<{
+    data?: Array<{
         /**
          * A full description of this notification, in markdown format. Not all notifications include a `body`. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          */
-        body: string | null;
+        body?: string | null;
         /**
          * Detailed information about the notification. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          */
-        entity: {
+        entity?: {
             /**
              * The unique ID of the notification's entity, based on the entity type. Returns `null` for an `account` or `promotion` entity.
              */
-            id: number | null;
+            id?: number | null;
             /**
              * The current name of this notification's entity. Returns `null` for the following `entity` types:
              *
@@ -3339,28 +3339,28 @@ export type AddedGetNotifications200Writable = {
              *
              * - `region`
              */
-            label: string | null;
+            label?: string | null;
             /**
              * __Filterable__ The type of entity this is related to. An entity can be product or service-specific, such as a `linode`, `loadbalancers`, or `nodebalancers`. It can apply to a specific component, such as your `account`, a specific `promotion` your participating in, a data center (`region`) where you're using services, a transfer from one component to another (an `entity_transfer`), a support `ticket` you've opened, or a `volume` on a specific Linode.
              */
-            type: 'account' | 'entity_transfer' | 'linode' | 'loadbalancers' | 'nodebalancer' | 'promotion' | 'region' | 'ticket' | 'volume';
+            type?: 'account' | 'entity_transfer' | 'linode' | 'loadbalancers' | 'nodebalancer' | 'promotion' | 'region' | 'ticket' | 'volume';
             /**
              * The URL where you can access the notification's object. The URL is relative to the domain where you retrieved the notification. This value is `null` for the `promotion` entity type.
              */
-            url: string | null;
+            url?: string | null;
         } | null;
         /**
          * A short description of this notification.
          */
-        label: string;
+        label?: string;
         /**
          * A human-readable description of the notification.
          */
-        message: string;
+        message?: string;
         /**
          * The severity of this notification. This field determines how prominently the notification is displayed and the color of the display text.
          */
-        severity: 'minor' | 'major' | 'critical';
+        severity?: 'minor' | 'major' | 'critical';
         /**
          * __Filterable__ The type of notification.
          *
@@ -3368,21 +3368,21 @@ export type AddedGetNotifications200Writable = {
          * >
          * > A `security_reboot_maintenance_scheduled` event is a global notice that a Linode needs to be rebooted for QEMU upgrade maintenance. Have a look at [this workflow](https://techdocs.akamai.com/linode-api/reference/reboot-your-linodes-for-qemu-maintenance) for guidance on reboooting your Linodes for this maintenance.
          */
-        type: 'migration_scheduled' | 'migration_imminent' | 'migration_pending' | 'reboot_scheduled' | 'outage' | 'payment_due' | 'ticket_important' | 'ticket_abuse' | 'notice' | 'maintenance' | 'maintenance_scheduled' | 'promotion' | 'security_reboot_maintenance_scheduled' | 'tax_id_verifying';
+        type?: 'migration_scheduled' | 'migration_imminent' | 'migration_pending' | 'reboot_scheduled' | 'outage' | 'payment_due' | 'ticket_important' | 'ticket_abuse' | 'notice' | 'maintenance' | 'maintenance_scheduled' | 'promotion' | 'security_reboot_maintenance_scheduled' | 'tax_id_verifying';
         /**
          * If this notification has a duration, this is when the event or action will complete. For example, if there's scheduled maintenance for one of our systems, `until` represents the end of the maintenance window. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          */
-        until: string | null;
+        until?: string | null;
         /**
          * If this notification is for an event in the future, this specifies when the action occurs. For example, if a compute instance needs to migrate in response to a security advisory, this field sets the approximate time the compute instance will be taken offline for migration. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          */
-        when: string | null;
+        when?: string | null;
     }>;
 };
 
 export type AddedGetPaymentMethods200Writable = {
-    data: Array<{
-        data: {
+    data?: Array<{
+        data?: {
             [key: string]: never;
         } | {
             [key: string]: never;
@@ -3392,47 +3392,47 @@ export type AddedGetPaymentMethods200Writable = {
         /**
          * The unique ID of this Payment Method.
          */
-        id: number;
+        id?: number;
         /**
          * Whether this Payment Method is the default method for automatically processing service charges.
          */
-        is_default: boolean;
+        is_default?: boolean;
         /**
          * The type of Payment Method.
          */
-        type: 'credit_card' | 'google_pay' | 'paypal';
+        type?: 'credit_card' | 'google_pay' | 'paypal';
     }>;
 };
 
 export type AddedGetPayments200Writable = {
-    data: Array<{
+    data?: Array<{
         [key: string]: never;
     }>;
 };
 
 export type AddedGetServiceTransfers200Writable = {
-    data: Array<{
+    data?: Array<{
         /**
          * When this transfer was created.
          */
-        created: string;
+        created?: string;
         /**
          * A collection of the services to include in this transfer request, separated by type.
          */
-        entities: {
+        entities?: {
             /**
              * An array containing the IDs of each of the Linodes included in this transfer.
              */
-            linodes: Array<number>;
+            linodes?: Array<number>;
         };
         /**
          * When this transfer expires. Transfers will automatically expire 24 hours after creation.
          */
-        expiry: string;
+        expiry?: string;
         /**
          * __Filterable__ If the requesting account created this transfer.
          */
-        is_sender: boolean;
+        is_sender?: boolean;
         /**
          * __Filterable__ The status of the transfer request.
          *
@@ -3450,15 +3450,15 @@ export type AddedGetServiceTransfers200Writable = {
          * `stale`: The transfer has exceeded its expiration date. It can no longer be accepted or
          * canceled.
          */
-        status: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
+        status?: 'accepted' | 'canceled' | 'completed' | 'failed' | 'pending' | 'stale';
         /**
          * The token used to identify and accept or cancel this transfer.
          */
-        token: string;
+        token?: string;
         /**
          * When this transfer was last updated.
          */
-        updated: string;
+        updated?: string;
     }>;
 };
 
@@ -3466,31 +3466,31 @@ export type AddedGetUser200Writable = {
     /**
      * This user's email address. Akamai uses this address for account management communications.
      */
-    email: string;
+    email?: string;
     /**
      * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
      */
-    restricted: boolean;
+    restricted?: boolean;
     /**
      * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
      */
-    username: string;
+    username?: string;
 } & {};
 
 export type AddedGetUsers200Writable = {
-    data: Array<{
+    data?: Array<{
         /**
          * This user's email address. Akamai uses this address for account management communications.
          */
-        email: string;
+        email?: string;
         /**
          * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
          */
-        restricted: boolean;
+        restricted?: boolean;
         /**
          * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
          */
-        username: string;
+        username?: string;
     } & {}>;
 };
 
@@ -3505,7 +3505,7 @@ export type AddedPostClientWritable = {
     /**
      * __Filterable__ If this is a public or private OAuth Client.  Public clients have a slightly different authentication workflow than private clients.  See the [OAuth spec](https://oauth.net/2/) for more details.
      */
-    public: boolean;
+    public?: boolean;
     /**
      * The location a successful log in from [login.linode.com](https://login.linode.com) should be redirected to for this client.  The receiver of this redirect should be ready to accept an OAuth exchange code and finish the OAuth exchange.
      */
@@ -3516,7 +3516,7 @@ export type AddedPostPayPalPayment200Writable = {
     /**
      * The paypal-generated ID for this Payment. Used when authorizing the Payment in PayPal's interface.
      */
-    payment_id: string;
+    payment_id?: string;
 };
 
 /**
@@ -3530,7 +3530,7 @@ export type AddedPostUserWritable = {
     /**
      * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
      */
-    restricted: boolean;
+    restricted?: boolean;
     /**
      * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
      */
@@ -3541,15 +3541,15 @@ export type AddedPutUser200Writable = {
     /**
      * This user's email address. Akamai uses this address for account management communications.
      */
-    email: string;
+    email?: string;
     /**
      * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
      */
-    restricted: boolean;
+    restricted?: boolean;
     /**
      * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
      */
-    username: string;
+    username?: string;
 } & {};
 
 /**
@@ -3559,7 +3559,7 @@ export type BetaProgramEnrolledWritable = {
     /**
      * The unique identifier of the Beta Program.
      */
-    id: string;
+    id?: string;
 };
 
 /**
@@ -3569,39 +3569,39 @@ export type ChildAccountWritable = {
     /**
      * __Filterable__ First line of this child account's billing address.
      */
-    address_1: string;
+    address_1?: string;
     /**
      * __Filterable__ Second line of this child account's billing address, if applicable.
      */
-    address_2: string;
+    address_2?: string;
     /**
      * __Filterable__ The city for this child account's billing address.
      */
-    city: string;
+    city?: string;
     /**
      * __Filterable__ The company name for the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`. You can't change this value yourself. We use it to create the proxy users that a parent account uses to access a child account. Talk to your account team if you need to change this value.
      */
-    company: string;
+    company?: string;
     /**
      * __Filterable__ The two-letter ISO 3166 country code for this child account's billing address.
      */
-    country: string;
+    country?: string;
     /**
      * __Filterable__ The email address of the owner of this child account.
      */
-    email: string;
+    email?: string;
     /**
      * __Filterable__ The first name of the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`.
      */
-    first_name: string;
+    first_name?: string;
     /**
      * __Filterable__ The last name of the owner of this child account. It can't include any of these characters: `<` `>` `(` `)` `"` `=`.
      */
-    last_name: string;
+    last_name?: string;
     /**
      * __Filterable__ The phone number for the owner of this child account.
      */
-    phone: string;
+    phone?: string;
     /**
      * __Filterable__ The state or province for the billing address (`address_1` and `address_2, if applicable`). If in the United States (US) or Canada (CA), this is the two-letter ISO 3166 State or Province code.
      *
@@ -3609,18 +3609,18 @@ export type ChildAccountWritable = {
      * >
      * > If this is a US military address, use state abbreviations (AA, AE, AP).
      */
-    state: string;
+    state?: string;
     /**
      * The tax identification number for this child account. Use this for tax calculations in some countries. If you live in a country that doesn't collect taxes, ensure this is an empty string (`""`).
      */
-    tax_id: string;
+    tax_id?: string;
     /**
      * __Filterable__ The zip code of this Account's billing address. The following restrictions apply:
      *
      * - Can only contain ASCII letters, numbers, and hyphens (`-`).
      * - Can't contain more than 9 letter or number characters.
      */
-    zip: string;
+    zip?: string;
 };
 
 /**
@@ -3630,11 +3630,11 @@ export type EventWritable = {
     /**
      * Additional information about the event. This can be a more detailed representation of an event that can help you diagnose non-obvious failures.
      */
-    message: string | null;
+    message?: string | null;
 };
 
 export type GetMaintenance200Writable = {
-    data: Array<{
+    data?: Array<{
         /**
          * __Beta__, __Filterable__ The time the maintenance completed. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -3642,36 +3642,36 @@ export type GetMaintenance200Writable = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        complete_time: string;
+        complete_time?: string;
         /**
          * __Beta__ Differentiates between scheduled and emergency maintenance.
          */
-        description: 'Scheduled Maintenance' | 'Emergency Maintenance';
+        description?: 'Scheduled Maintenance' | 'Emergency Maintenance';
         /**
          * The entity affected by the maintenance.
          */
-        entity: {
+        entity?: {
             /**
              * The unique identifier of the entity targeted by the maintenance.
              */
-            id: number;
+            id?: number;
             /**
              * The name of the entity targeted by the maintenance.
              */
-            label: string;
+            label?: string;
             /**
              * The type of entity.
              */
-            type: string;
+            type?: string;
             /**
              * A combination of the API operation prefix and the entity's `id` that can be used to review the entity.
              */
-            url: string;
+            url?: string;
         };
         /**
          * __Beta__, __Filterable__ The maintenance policy configured by the user.
          */
-        maintenance_policy_set: string;
+        maintenance_policy_set?: string;
         /**
          * __Beta__, __Filterable__ The earliest time when the maintenance can start. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -3679,15 +3679,15 @@ export type GetMaintenance200Writable = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        not_before: string;
+        not_before?: string;
         /**
          * The reason maintenance is being performed.
          */
-        reason: string;
+        reason?: string;
         /**
          * __Beta__ The origin of the maintenance. A `platform` source indicates that the maintenance was initiated by Akamai. A `user` source indicates that the maintenance was initiated by the user.
          */
-        source: 'platform' | 'user';
+        source?: 'platform' | 'user';
         /**
          * __Beta__, __Filterable__ The time the maintenance started. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -3695,15 +3695,15 @@ export type GetMaintenance200Writable = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        start_time: string;
+        start_time?: string;
         /**
          * __Filterable__ The maintenance status. Maintenance progress follows the sequence `pending`, `scheduled`, `started`, and `completed`. A `scheduled` status is unique to Linodes that require a reboot for [QEMU maintenance](https://techdocs.akamai.com/linode-api/reference/reboot-your-linodes-for-qemu-maintenance).
          */
-        status: 'pending' | 'scheduled' | 'started' | 'in-progress' | 'completed' | 'canceled';
+        status?: 'pending' | 'scheduled' | 'started' | 'in-progress' | 'completed' | 'canceled';
         /**
          * __Filterable__ The type of maintenance.
          */
-        type: 'reboot' | 'cold_migration' | 'live_migration' | 'migrate' | 'power_off_on';
+        type?: 'reboot' | 'cold_migration' | 'live_migration' | 'migrate' | 'power_off_on';
         /**
          * __Filterable__ The start time for the maintenance. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:
          *
@@ -3711,7 +3711,7 @@ export type GetMaintenance200Writable = {
          *
          * - Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
          */
-        when: string;
+        when?: string;
     }>;
 };
 
@@ -3722,57 +3722,57 @@ export type GrantWritable = {
     /**
      * The unique identifier of the resource this grant applies to.
      */
-    id: number;
+    id?: number;
     /**
      * The level of access this user has to this entity. If `null`, this user has no access.
      */
-    permissions: 'read_only' | 'read_write';
+    permissions?: 'read_only' | 'read_write';
 };
 
 export type GrantsResponseWritable = {
     /**
      * The grants this user has for individual Managed Databases on this account.
      */
-    database: Array<{
+    database?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has for individual domains on this account.
      */
-    domain: Array<{
+    domain?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has for individual firewalls on this account.
      */
-    firewall: Array<{
+    firewall?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants the user has to all resources on your account.
      */
-    global: {
+    global?: {
         /**
          * The level of access this user has to account-level actions, like billing information and user management.
          *
@@ -3784,150 +3784,150 @@ export type GrantsResponseWritable = {
          *
          * In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, this grant can be added to a child account user, to give the user `read-write` access. This gives the child user unrestricted access to expected management operations, such as creating other child users. However, child users don't have write access to billing operations. The API issues a specific error message if a write operation is attempted by a child user.
          */
-        account_access: 'read_only' | 'read_write';
+        account_access?: 'read_only' | 'read_write';
         /**
          * Whether this user can add Managed Databases on the account.
          */
-        add_databases: boolean;
+        add_databases?: boolean;
         /**
          * Whether this user can add domains on the account.
          */
-        add_domains: boolean;
+        add_domains?: boolean;
         /**
          * Whether this user can add Firewalls on the account.
          */
-        add_firewalls: boolean;
+        add_firewalls?: boolean;
         /**
          * Whether this user can create images from disks on your Linodes, on the account.
          */
-        add_images: boolean;
+        add_images?: boolean;
         /**
          * Whether this user can create Linodes.
          */
-        add_linodes: boolean;
+        add_linodes?: boolean;
         /**
          * Whether this user can create Longview clients and view the current plan.
          */
-        add_longview: boolean;
+        add_longview?: boolean;
         /**
          * Whether this user can add NodeBalancers on the account.
          */
-        add_nodebalancers: boolean;
+        add_nodebalancers?: boolean;
         /**
          * Whether this user can add StackScripts on the account.
          */
-        add_stackscripts: boolean;
+        add_stackscripts?: boolean;
         /**
          * Whether this user can add volumes on the account.
          */
-        add_volumes: boolean;
+        add_volumes?: boolean;
         /**
          * Whether this user can add Virtual Private Clouds (VPCs) on the account.
          */
-        add_vpcs: boolean;
+        add_vpcs?: boolean;
         /**
          * Whether this user can cancel the entire account.
          */
-        cancel_account: boolean;
+        cancel_account?: boolean;
         /**
          * In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, this gives a parent account access to operations that can be used to manage child accounts. Unrestricted parent account users have access to this grant, while restricted parent users don't. An unrestricted parent user can set this to `true` to add this grant to a restricted parent user. Displayed as `null` for all non-parent accounts.
          */
-        child_account_access: boolean | null;
+        child_account_access?: boolean | null;
         /**
          * Whether this user can manage your account's Longview subscription.
          */
-        longview_subscription: boolean;
+        longview_subscription?: boolean;
     };
     /**
      * The grants this user has for individual images on this account.
      */
-    image: Array<{
+    image?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has for individual Linodes on this account.
      */
-    linode: Array<{
+    linode?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has for individual Longview Clients on this account.
      */
-    longview: Array<{
+    longview?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has for individual NodeBalancers on this account.
      */
-    nodebalancer: Array<{
+    nodebalancer?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this User has for individual StackScripts on this account.
      */
-    stackscript: Array<{
+    stackscript?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has individual Block Storage Volumes on this account.
      */
-    volume: Array<{
+    volume?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
     /**
      * The grants this user has individual Virtual Private Clouds (VPCs) on this account.
      */
-    vpc: Array<{
+    vpc?: Array<{
         /**
          * The unique identifier of the resource this grant applies to.
          */
-        id: number;
+        id?: number;
         /**
          * The level of access this user has to this entity. If `null`, this user has no access.
          */
-        permissions: 'read_only' | 'read_write';
+        permissions?: 'read_only' | 'read_write';
     }>;
 };
 
@@ -3945,22 +3945,22 @@ export type OauthClientWritable = {
     /**
      * __Filterable__ The name of this application.  This will be presented to users when they are asked to grant it access to their Account.
      */
-    label: string;
+    label?: string;
     /**
      * __Filterable__ If this is a public or private OAuth Client.  Public clients have a slightly different authentication workflow than private clients.  See the [OAuth spec](https://oauth.net/2/) for more details.
      */
-    public: boolean;
+    public?: boolean;
     /**
      * The location a successful log in from [login.linode.com](https://login.linode.com) should be redirected to for this client.  The receiver of this redirect should be ready to accept an OAuth exchange code and finish the OAuth exchange.
      */
-    redirect_uri: string;
+    redirect_uri?: string;
 };
 
 /**
  * Payment Method Response Object.
  */
 export type PaymentMethodWritable = {
-    data: {
+    data?: {
         [key: string]: never;
     } | {
         [key: string]: never;
@@ -3970,15 +3970,15 @@ export type PaymentMethodWritable = {
     /**
      * The unique ID of this Payment Method.
      */
-    id: number;
+    id?: number;
     /**
      * Whether this Payment Method is the default method for automatically processing service charges.
      */
-    is_default: boolean;
+    is_default?: boolean;
     /**
      * The type of Payment Method.
      */
-    type: 'credit_card' | 'google_pay' | 'paypal';
+    type?: 'credit_card' | 'google_pay' | 'paypal';
 };
 
 /**
@@ -3988,7 +3988,7 @@ export type ProxyUserTokenWritable = {
     /**
      * __Filterable__ The name of the token. The API automatically sets this to `<username>_<uid>_<time>`. It's composed of the `username` for your parent account user, the unique `uid` Akamai assigned to identify your user, and the `time` the API generated the token. This is for display purposes only, but you can use it to help track how you're using each proxy user token.
      */
-    label: string;
+    label?: string;
 };
 
 /**
@@ -3997,11 +3997,11 @@ export type ProxyUserTokenWritable = {
  * Certain Regions have separate utilization quotas and rates. For Region-specific network utilization data, see `region_transfers`.
  */
 export type TransferWritable = {
-    region_transfers: Array<{
+    region_transfers?: Array<{
         /**
          * The Region ID for this network utilization data.
          */
-        id: string;
+        id?: string;
     }>;
 };
 
@@ -4012,15 +4012,15 @@ export type UserWritable = {
     /**
      * This user's email address. Akamai uses this address for account management communications.
      */
-    email: string;
+    email?: string;
     /**
      * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
      */
-    restricted: boolean;
+    restricted?: boolean;
     /**
      * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
      */
-    username: string;
+    username?: string;
 };
 
 /**
@@ -4122,47 +4122,47 @@ export type XFilterHeader = {
     /**
      * All conditions need to be true.
      */
-    '+and': Array<{
+    '+and'?: Array<{
         [key: string]: unknown;
     }>;
     /**
      * The provided string needs to be in the value.
      */
-    '+contains': string;
+    '+contains'?: string;
     /**
      * The value needs to be greater than the provided number.
      */
-    '+gt': number;
+    '+gt'?: number;
     /**
      * The value needs to be greater than or equal to the provided number.
      */
-    '+gte': number;
+    '+gte'?: number;
     /**
      * The value needs to be less than the provided number.
      */
-    '+lt': number;
+    '+lt'?: number;
     /**
      * The value needs to be less than or equal to the provided number.
      */
-    '+lte': number;
+    '+lte'?: number;
     /**
      * The provided string is left out of the results.
      */
-    '+neq': string;
+    '+neq'?: string;
     /**
      * At least one condition needs to be true.
      */
-    '+or': Array<{
+    '+or'?: Array<{
         [key: string]: unknown;
     }>;
     /**
      * Sort in ascending (`asc`) or descending (`desc`) order. This defaults to `asc`. Requires `+order_by`.
      */
-    '+order': 'asc' | 'desc';
+    '+order'?: 'asc' | 'desc';
     /**
      * Order results based on the provided attribute. The attribute needs to be filterable.
      */
-    '+order_by': string;
+    '+order_by'?: string;
 };
 
 export type GetAccountData = {
@@ -4340,113 +4340,113 @@ export type PutAccountData = {
      * Account object.
      */
     body: {
-        readonly active_promotions: Array<{
+        readonly active_promotions?: Array<{
             /**
              * The amount available to spend per month.
              */
-            credit_monthly_cap: string;
+            credit_monthly_cap?: string;
             /**
              * The total amount of credit left for this promotion.
              */
-            credit_remaining: string;
+            credit_remaining?: string;
             /**
              * A detailed description of this promotion.
              */
-            description: string;
+            description?: string;
             /**
              * When this promotion's credits expire.
              */
-            expire_dt: string;
+            expire_dt?: string;
             /**
              * The location of an image for this promotion.
              */
-            image_url: string;
+            image_url?: string;
             /**
              * The service to which this promotion applies.
              */
-            service_type: 'all' | 'backup' | 'blockstorage' | 'db_mysql' | 'ip_v4' | 'linode' | 'linode_disk' | 'linode_memory' | 'longview' | 'managed' | 'nodebalancer' | 'objectstorage' | 'placement_group' | 'transfer_tx';
+            service_type?: 'all' | 'backup' | 'blockstorage' | 'db_mysql' | 'ip_v4' | 'linode' | 'linode_disk' | 'linode_memory' | 'longview' | 'managed' | 'nodebalancer' | 'objectstorage' | 'placement_group' | 'transfer_tx';
             /**
              * Short details of this promotion.
              */
-            summary: string;
+            summary?: string;
             /**
              * The amount of credit left for this month for this promotion.
              */
-            this_month_credit_remaining: string;
+            this_month_credit_remaining?: string;
         }>;
         /**
          * __Read-only__ The date and time the account was activated.
          */
-        readonly active_since: string;
+        readonly active_since?: string;
         /**
          * The first line of this account's billing address.
          */
-        address_1: string;
+        address_1?: string;
         /**
          * The second line of this account's billing address.
          */
-        address_2: string;
+        address_2?: string;
         /**
          * __Read-only__ This account's balance, in US dollars.
          */
-        readonly balance: number;
+        readonly balance?: number;
         /**
          * __Read-only__ This account's current estimated invoice in US dollars. This is not your final invoice balance. Transfer charges are not included in the estimate.
          */
-        readonly balance_uninvoiced: number;
+        readonly balance_uninvoiced?: number;
         /**
          * __Read-only__ The source of service charges for this account. Accounts that are associated with Akamai-specific customers return a value of `akamai`. All other accounts return a value of `linode`.
          */
-        billing_source: 'akamai' | 'linode';
+        billing_source?: 'akamai' | 'linode';
         /**
          * __Read-only__ The Akamai Cloud Computing services your account supports.
          */
-        readonly capabilities: Array<string>;
+        readonly capabilities?: Array<string>;
         /**
          * The city for this account's `address`.
          */
-        city: string;
+        city?: string;
         /**
          * The company name assigned to this account. This value can't include the characters, `<` `>` `(` `)` `"` `=`.
          */
-        company: string;
+        company?: string;
         /**
          * The two-letter ISO 3166 country code for this account's `address`.
          */
-        country: string;
+        country?: string;
         /**
          * __Read-only__ The credit card information assigned to this account.
          */
-        readonly credit_card: {
+        readonly credit_card?: {
             /**
              * The expiration month and year of the `credit_card`.
              */
-            expiry: string;
+            expiry?: string;
             /**
              * The last four digits of the `credit_card` assigned to this account.
              */
-            last_four: string;
+            last_four?: string;
         };
         /**
          * The email address of the person assigned to this account.
          */
-        email: string;
+        email?: string;
         /**
          * __Read-only__ An external unique identifier for this account.
          */
-        readonly euuid: string;
+        readonly euuid?: string;
         /**
          * The first name of the person assigned to this account. This value can't include the characters, `<` `>` `(` `)` `"` `=`.
          */
-        first_name: string;
+        first_name?: string;
         /**
          * The last name of the person assigned to this account. This value can't include the characters, `<` `>` `(` `)` `"` `=`.
          */
-        last_name: string;
+        last_name?: string;
         /**
          * The phone number assigned to this account.
          */
-        phone: string;
+        phone?: string;
         /**
          * The state or province for the `address` set for your account, if applicable.
          *
@@ -4456,7 +4456,7 @@ export type PutAccountData = {
          *
          * - If outside the US or CA, this is the province associated with the account's `address`.
          */
-        state: string;
+        state?: string;
         /**
          * The tax identification number (TIN) assigned to this account, used for tax calculations. A TIN is set by the national authorities in your `country`, based on your `address_1`, and it may be named differently between countries. Set to an empty string (`""`) if a TIN doesn't apply or for countries that don't collect tax.
          *
@@ -4464,7 +4464,7 @@ export type PutAccountData = {
          * >
          * > This value is externally validated. If the validation is successful, a `tax_id_valid` [event](https://techdocs.akamai.com/linode-api/reference/get-events) is triggered. If unsuccessful, a `tax_id_invalid` event is triggered and an error response is issued for an operation that included it.
          */
-        tax_id: string;
+        tax_id?: string;
         /**
          * The zip code for this account's `address`.
          *
@@ -4472,7 +4472,7 @@ export type PutAccountData = {
          *
          * - It can't contain more than nine letter or number characters.
          */
-        zip: string;
+        zip?: string;
     };
     path?: never;
     query?: never;
@@ -4703,19 +4703,19 @@ export type PostAccountAgreementsData = {
         /**
          * Certain regions require that you share your tax identification number (TIN) with Akamai. When you do, you need to acknowledge Akamai's [privacy statement](https://www.akamai.com/legal/privacy-statement) agreement, in regards to its protection. When set to `true`, you've acknowledged this agreement.
          */
-        billing_agreement: boolean;
+        billing_agreement?: boolean;
         /**
          * The acknowledgement status for the [cross-border data transfer](https://www.akamai.com/legal/compliance/privacy-trust-center/cross-border-data-transfer-statement) agreement.
          */
-        eu_model: boolean;
+        eu_model?: boolean;
         /**
          * The acknowledgement status for Akamai's [master service agreement](https://www.linode.com/legal-msa/).
          */
-        master_service_agreement: boolean;
+        master_service_agreement?: boolean;
         /**
          * The acknowledgement status for Akamai's [privacy statement](https://www.akamai.com/legal/privacy-statement).
          */
-        privacy_policy: boolean;
+        privacy_policy?: boolean;
     };
     path?: never;
     query?: never;
@@ -5089,7 +5089,7 @@ export type PostCancelAccountData = {
         /**
          * Any reason for cancelling the account, and any other comments you might have about your Linode service.
          */
-        comments: string;
+        comments?: string;
     };
     path?: never;
     query?: never;
@@ -5682,7 +5682,7 @@ export type PostEntityTransferData = {
             /**
              * An array containing the IDs of each of the Linodes included in this transfer.
              */
-            linodes: Array<number>;
+            linodes?: Array<number>;
         };
     };
     path?: never;
@@ -5940,47 +5940,47 @@ export type GetEventsData = {
             /**
              * All conditions need to be true.
              */
-            '+and': Array<{
+            '+and'?: Array<{
                 [key: string]: unknown;
             }>;
             /**
              * The provided string needs to be in the value.
              */
-            '+contains': string;
+            '+contains'?: string;
             /**
              * The value needs to be greater than the provided number.
              */
-            '+gt': number;
+            '+gt'?: number;
             /**
              * The value needs to be greater than or equal to the provided number.
              */
-            '+gte': number;
+            '+gte'?: number;
             /**
              * The value needs to be less than the provided number.
              */
-            '+lt': number;
+            '+lt'?: number;
             /**
              * The value needs to be less than or equal to the provided number.
              */
-            '+lte': number;
+            '+lte'?: number;
             /**
              * The provided string is left out of the results.
              */
-            '+neq': string;
+            '+neq'?: string;
             /**
              * At least one condition needs to be true.
              */
-            '+or': Array<{
+            '+or'?: Array<{
                 [key: string]: unknown;
             }>;
             /**
              * Sort in ascending (`asc`) or descending (`desc`) order. This defaults to `asc`. Requires `+order_by`.
              */
-            '+order': 'asc' | 'desc';
+            '+order'?: 'asc' | 'desc';
             /**
              * Order results based on the provided attribute. The attribute needs to be filterable.
              */
-            '+order_by': string;
+            '+order_by'?: string;
         };
     };
     path?: never;
@@ -6402,47 +6402,47 @@ export type GetInvoicesData = {
             /**
              * All conditions need to be true.
              */
-            '+and': Array<{
+            '+and'?: Array<{
                 [key: string]: unknown;
             }>;
             /**
              * The provided string needs to be in the value.
              */
-            '+contains': string;
+            '+contains'?: string;
             /**
              * The value needs to be greater than the provided number.
              */
-            '+gt': number;
+            '+gt'?: number;
             /**
              * The value needs to be greater than or equal to the provided number.
              */
-            '+gte': number;
+            '+gte'?: number;
             /**
              * The value needs to be less than the provided number.
              */
-            '+lt': number;
+            '+lt'?: number;
             /**
              * The value needs to be less than or equal to the provided number.
              */
-            '+lte': number;
+            '+lte'?: number;
             /**
              * The provided string is left out of the results.
              */
-            '+neq': string;
+            '+neq'?: string;
             /**
              * At least one condition needs to be true.
              */
-            '+or': Array<{
+            '+or'?: Array<{
                 [key: string]: unknown;
             }>;
             /**
              * Sort in ascending (`asc`) or descending (`desc`) order. This defaults to `asc`. Requires `+order_by`.
              */
-            '+order': 'asc' | 'desc';
+            '+order'?: 'asc' | 'desc';
             /**
              * Order results based on the provided attribute. The attribute needs to be filterable.
              */
-            '+order_by': string;
+            '+order_by'?: string;
         };
     };
     path?: never;
@@ -7209,7 +7209,7 @@ export type PostClientData = {
         /**
          * __Read-only__ The OAuth Client ID.  This is used to identify the client, and is a publicly known value (it is not a secret).
          */
-        readonly id: string;
+        readonly id?: string;
         /**
          * __Filterable__ The name of this application.  This will be presented to users when they are asked to grant it access to their Account.
          */
@@ -7217,7 +7217,7 @@ export type PostClientData = {
         /**
          * __Filterable__ If this is a public or private OAuth Client.  Public clients have a slightly different authentication workflow than private clients.  See the [OAuth spec](https://oauth.net/2/) for more details.
          */
-        public: boolean;
+        public?: boolean;
         /**
          * The location a successful log in from [login.linode.com](https://login.linode.com) should be redirected to for this client.  The receiver of this redirect should be ready to accept an OAuth exchange code and finish the OAuth exchange.
          */
@@ -7225,15 +7225,15 @@ export type PostClientData = {
         /**
          * __Read-only__ The OAuth Client secret, used in the OAuth exchange.  This is returned as `<REDACTED>` except when an OAuth Client is created or its secret is reset.  This is a secret, and should not be shared or disclosed publicly.
          */
-        readonly secret: string;
+        readonly secret?: string;
         /**
          * __Read-only__ The status of this application.  `active` by default.
          */
-        status: 'active' | 'disabled' | 'suspended';
+        status?: 'active' | 'disabled' | 'suspended';
         /**
          * __Read-only__ The URL where this client's thumbnail may be viewed, or `null` if this client does not have a thumbnail set.
          */
-        readonly thumbnail_url: string | null;
+        readonly thumbnail_url?: string | null;
     };
     path?: never;
     query?: never;
@@ -7419,31 +7419,31 @@ export type PutClientData = {
         /**
          * __Read-only__ The OAuth Client ID.  This is used to identify the client, and is a publicly known value (it is not a secret).
          */
-        readonly id: string;
+        readonly id?: string;
         /**
          * __Filterable__ The name of this application.  This will be presented to users when they are asked to grant it access to their Account.
          */
-        label: string;
+        label?: string;
         /**
          * __Filterable__ If this is a public or private OAuth Client.  Public clients have a slightly different authentication workflow than private clients.  See the [OAuth spec](https://oauth.net/2/) for more details.
          */
-        public: boolean;
+        public?: boolean;
         /**
          * The location a successful log in from [login.linode.com](https://login.linode.com) should be redirected to for this client.  The receiver of this redirect should be ready to accept an OAuth exchange code and finish the OAuth exchange.
          */
-        redirect_uri: string;
+        redirect_uri?: string;
         /**
          * __Read-only__ The OAuth Client secret, used in the OAuth exchange.  This is returned as `<REDACTED>` except when an OAuth Client is created or its secret is reset.  This is a secret, and should not be shared or disclosed publicly.
          */
-        readonly secret: string;
+        readonly secret?: string;
         /**
          * __Read-only__ The status of this application.  `active` by default.
          */
-        status: 'active' | 'disabled' | 'suspended';
+        status?: 'active' | 'disabled' | 'suspended';
         /**
          * __Read-only__ The URL where this client's thumbnail may be viewed, or `null` if this client does not have a thumbnail set.
          */
-        readonly thumbnail_url: string | null;
+        readonly thumbnail_url?: string | null;
     };
     path: {
         /**
@@ -8055,47 +8055,47 @@ export type GetPaymentsData = {
             /**
              * All conditions need to be true.
              */
-            '+and': Array<{
+            '+and'?: Array<{
                 [key: string]: unknown;
             }>;
             /**
              * The provided string needs to be in the value.
              */
-            '+contains': string;
+            '+contains'?: string;
             /**
              * The value needs to be greater than the provided number.
              */
-            '+gt': number;
+            '+gt'?: number;
             /**
              * The value needs to be greater than or equal to the provided number.
              */
-            '+gte': number;
+            '+gte'?: number;
             /**
              * The value needs to be less than the provided number.
              */
-            '+lt': number;
+            '+lt'?: number;
             /**
              * The value needs to be less than or equal to the provided number.
              */
-            '+lte': number;
+            '+lte'?: number;
             /**
              * The provided string is left out of the results.
              */
-            '+neq': string;
+            '+neq'?: string;
             /**
              * At least one condition needs to be true.
              */
-            '+or': Array<{
+            '+or'?: Array<{
                 [key: string]: unknown;
             }>;
             /**
              * Sort in ascending (`asc`) or descending (`desc`) order. This defaults to `asc`. Requires `+order_by`.
              */
-            '+order': 'asc' | 'desc';
+            '+order'?: 'asc' | 'desc';
             /**
              * Order results based on the provided attribute. The attribute needs to be filterable.
              */
-            '+order_by': string;
+            '+order_by'?: string;
         };
     };
     path?: never;
@@ -8176,7 +8176,7 @@ export type PostPaymentData = {
         /**
          * The ID of the Payment Method to apply to the Payment.
          */
-        payment_method_id: number;
+        payment_method_id?: number;
         /**
          * The amount in US Dollars of the Payment.
          *
@@ -8186,7 +8186,7 @@ export type PostPaymentData = {
          * - Minimum: `$5.00` or the Account balance, whichever is lower.
          * - Maximum: `$2000.00` or the Account balance up to `$50000.00`, whichever is greater.
          */
-        usd: string;
+        usd?: string;
     };
     path?: never;
     query?: never;
@@ -8666,7 +8666,7 @@ export type PostServiceTransferData = {
             /**
              * An array containing the IDs of each of the Linodes included in this transfer.
              */
-            linodes: Array<number>;
+            linodes?: Array<number>;
         };
     };
     path?: never;
@@ -9003,7 +9003,7 @@ export type PutAccountSettingsData = {
         /**
          * Account-wide backups default.  If `true`, all Linodes created will automatically be enrolled in the Backups service.  If `false`, Linodes will not be enrolled by default, but may still be enrolled on creation or later.
          */
-        backups_enabled: boolean;
+        backups_enabled?: boolean;
         /**
          * __Beta__ Defines if new Linodes can use legacy configuration interfaces:
          * - `legacy_config_only`. All new Linodes need to use legacy configuration interfaces. Prevously created Linodes with Linode Interfaces can still exist. Linodes using legacy configuration interfaces can't be upgraded to use Linode Interfaces.
@@ -9011,27 +9011,27 @@ export type PutAccountSettingsData = {
          * - `linode_default_but_legacy_config_allowed`. New Linodes can use legacy configuration interfaces or Linode Interfaces, depending on the `interface_generation` setting specified when creating the Linode. By default, new Linodes use Linode Interfaces unless otherwise specified. Linodes that use legacy configuration interfaces can upgrade to Linode interfaces. This is the default setting for new accounts.
          * - `linode_only`. All new Linodes need to use Linode Interfaces. Prevously created Linodes with legacy configuration profile interfaces can still exist if they were created under a previous setting. Linodes using legacy configuration interfaces can be upgraded to Linode Interfaces.
          */
-        interfaces_for_new_linodes: 'legacy_config_only' | 'legacy_config_default_but_linode_allowed' | 'linode_default_but_legacy_config_allowed' | 'linode_only';
+        interfaces_for_new_linodes?: 'legacy_config_only' | 'legacy_config_default_but_linode_allowed' | 'linode_default_but_legacy_config_allowed' | 'linode_only';
         /**
          * __Read-only__ The Longview Pro tier you are currently subscribed to. The value must be a [Longview subscription](https://techdocs.akamai.com/linode-api/reference/get-longview-subscriptions) ID or `null` for Longview Free.
          */
-        readonly longview_subscription: string;
+        readonly longview_subscription?: string;
         /**
          * __Beta__ Defines the default maintenance policy for new Linodes created on this account. Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details.
          */
-        maintenance_policy: 'linode/migrate' | 'linode/power_off_on';
+        maintenance_policy?: 'linode/migrate' | 'linode/power_off_on';
         /**
          * __Read-only__ Our 24/7 incident response service. This robust, multi-homed monitoring system distributes monitoring checks to ensure that your servers remain online and available at all times. Linode Managed can monitor any service or software stack reachable over TCP or HTTP. Once you add a service to Linode Managed, we'll monitor it for connectivity, response, and total request time.
          */
-        readonly managed: boolean;
+        readonly managed?: boolean;
         /**
          * Enables network helper across all users by default for new Linodes and Linode Configs.
          */
-        network_helper: boolean;
+        network_helper?: boolean;
         /**
          * __Read-only__ A string describing the status of this account's Object Storage service enrollment.
          */
-        object_storage: 'disabled' | 'suspended' | 'active';
+        object_storage?: 'disabled' | 'suspended' | 'active';
     };
     path?: never;
     query?: never;
@@ -9339,24 +9339,24 @@ export type PostUserData = {
         /**
          * __Read-only__ Details on this user's last login attempt. Returned as `null` if this user hasn't attempted a login since it was created. You can run the [List user logins](https://techdocs.akamai.com/linode-api/reference/get-account-logins) operation for additional login information.
          */
-        readonly last_login: {
+        readonly last_login?: {
             /**
              * __Read-only__ The date and time of this user's most recent login attempt.
              */
-            readonly login_datetime: string;
+            readonly login_datetime?: string;
             /**
              * __Read-only__ The result of this user's most recent login attempt.
              */
-            status: 'successful' | 'failed';
+            status?: 'successful' | 'failed';
         } | null;
         /**
          * __Read-only__ When this user's current password was created. You initially create a password during the account sign-up process, and you can update it using the [Reset Password](https://login.linode.com/forgot/password) webpage. Returned as `null` if this user doesn't have a password set.
          */
-        readonly password_created: string | null;
+        readonly password_created?: string | null;
         /**
          * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
          */
-        restricted: boolean;
+        restricted?: boolean;
         /**
          * __Read-only__ A list of the labels for SSH keys added by this user. Users can add keys with the [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) operation. These keys are deployed when this user is included in the `authorized_users` field of the following requests:
          *
@@ -9366,11 +9366,11 @@ export type PostUserData = {
          *
          * - [Create a disk](https://techdocs.akamai.com/linode-api/reference/post-add-linode-disk)
          */
-        readonly ssh_keys: Array<string>;
+        readonly ssh_keys?: Array<string>;
         /**
          * __Read-only__ Whether this user has Two Factor Authentication (TFA) enabled. Run the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation to enable TFA.
          */
-        readonly tfa_enabled: boolean;
+        readonly tfa_enabled?: boolean;
         /**
          * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
          */
@@ -9378,7 +9378,7 @@ export type PostUserData = {
         /**
          * __Read-only__ The [verified](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) phone number for this user profile. Returned as `null` if the user doesn't have a verified phone number.
          */
-        readonly verified_phone_number: string | null;
+        readonly verified_phone_number?: string | null;
     };
     path?: never;
     query?: never;
@@ -9615,28 +9615,28 @@ export type PutUserData = {
         /**
          * This user's email address. Akamai uses this address for account management communications.
          */
-        email: string;
+        email?: string;
         /**
          * __Read-only__ Details on this user's last login attempt. Returned as `null` if this user hasn't attempted a login since it was created. You can run the [List user logins](https://techdocs.akamai.com/linode-api/reference/get-account-logins) operation for additional login information.
          */
-        readonly last_login: {
+        readonly last_login?: {
             /**
              * __Read-only__ The date and time of this user's most recent login attempt.
              */
-            readonly login_datetime: string;
+            readonly login_datetime?: string;
             /**
              * __Read-only__ The result of this user's most recent login attempt.
              */
-            status: 'successful' | 'failed';
+            status?: 'successful' | 'failed';
         } | null;
         /**
          * __Read-only__ When this user's current password was created. You initially create a password during the account sign-up process, and you can update it using the [Reset Password](https://login.linode.com/forgot/password) webpage. Returned as `null` if this user doesn't have a password set.
          */
-        readonly password_created: string | null;
+        readonly password_created?: string | null;
         /**
          * If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
          */
-        restricted: boolean;
+        restricted?: boolean;
         /**
          * __Read-only__ A list of the labels for SSH keys added by this user. Users can add keys with the [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) operation. These keys are deployed when this user is included in the `authorized_users` field of the following requests:
          *
@@ -9646,19 +9646,19 @@ export type PutUserData = {
          *
          * - [Create a disk](https://techdocs.akamai.com/linode-api/reference/post-add-linode-disk)
          */
-        readonly ssh_keys: Array<string>;
+        readonly ssh_keys?: Array<string>;
         /**
          * __Read-only__ Whether this user has Two Factor Authentication (TFA) enabled. Run the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation to enable TFA.
          */
-        readonly tfa_enabled: boolean;
+        readonly tfa_enabled?: boolean;
         /**
          * __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
          */
-        username: string;
+        username?: string;
         /**
          * __Read-only__ The [verified](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) phone number for this user profile. Returned as `null` if the user doesn't have a verified phone number.
          */
-        readonly verified_phone_number: string | null;
+        readonly verified_phone_number?: string | null;
     };
     path: {
         /**
@@ -10050,58 +10050,58 @@ export type PutUserGrantsData = {
         /**
          * The grants this user has for individual Managed Databases on this account.
          */
-        database: Array<{
+        database?: Array<{
             /**
              * The unique identifier of the resource this grant applies to.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * The level of access this user has to this entity. If `null`, this user has no access.
              */
-            permissions: 'read_only' | 'read_write';
+            permissions?: 'read_only' | 'read_write';
         }>;
         /**
          * The grants this user has for individual domains on this account.
          */
-        domain: Array<{
+        domain?: Array<{
             /**
              * The unique identifier of the resource this grant applies to.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * The level of access this user has to this entity. If `null`, this user has no access.
              */
-            permissions: 'read_only' | 'read_write';
+            permissions?: 'read_only' | 'read_write';
         }>;
         /**
          * The grants this user has for individual firewalls on this account.
          */
-        firewall: Array<{
+        firewall?: Array<{
             /**
              * The unique identifier of the resource this grant applies to.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * The level of access this user has to this entity. If `null`, this user has no access.
              */
-            permissions: 'read_only' | 'read_write';
+            permissions?: 'read_only' | 'read_write';
         }>;
         /**
          * The grants the user has to all resources on your account.
          */
-        global: {
+        global?: {
             /**
              * The level of access this user has to account-level actions, like billing information and user management.
              *
@@ -10113,178 +10113,178 @@ export type PutUserGrantsData = {
              *
              * In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, this grant can be added to a child account user, to give the user `read-write` access. This gives the child user unrestricted access to expected management operations, such as creating other child users. However, child users don't have write access to billing operations. The API issues a specific error message if a write operation is attempted by a child user.
              */
-            account_access: 'read_only' | 'read_write';
+            account_access?: 'read_only' | 'read_write';
             /**
              * Whether this user can add Managed Databases on the account.
              */
-            add_databases: boolean;
+            add_databases?: boolean;
             /**
              * Whether this user can add domains on the account.
              */
-            add_domains: boolean;
+            add_domains?: boolean;
             /**
              * Whether this user can add Firewalls on the account.
              */
-            add_firewalls: boolean;
+            add_firewalls?: boolean;
             /**
              * Whether this user can create images from disks on your Linodes, on the account.
              */
-            add_images: boolean;
+            add_images?: boolean;
             /**
              * Whether this user can create Linodes.
              */
-            add_linodes: boolean;
+            add_linodes?: boolean;
             /**
              * Whether this user can create Longview clients and view the current plan.
              */
-            add_longview: boolean;
+            add_longview?: boolean;
             /**
              * Whether this user can add NodeBalancers on the account.
              */
-            add_nodebalancers: boolean;
+            add_nodebalancers?: boolean;
             /**
              * Whether this user can add StackScripts on the account.
              */
-            add_stackscripts: boolean;
+            add_stackscripts?: boolean;
             /**
              * Whether this user can add volumes on the account.
              */
-            add_volumes: boolean;
+            add_volumes?: boolean;
             /**
              * Whether this user can add Virtual Private Clouds (VPCs) on the account.
              */
-            add_vpcs: boolean;
+            add_vpcs?: boolean;
             /**
              * Whether this user can cancel the entire account.
              */
-            cancel_account: boolean;
+            cancel_account?: boolean;
             /**
              * In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, this gives a parent account access to operations that can be used to manage child accounts. Unrestricted parent account users have access to this grant, while restricted parent users don't. An unrestricted parent user can set this to `true` to add this grant to a restricted parent user. Displayed as `null` for all non-parent accounts.
              */
-            child_account_access: boolean | null;
+            child_account_access?: boolean | null;
             /**
              * Whether this user can manage your account's Longview subscription.
              */
-            longview_subscription: boolean;
+            longview_subscription?: boolean;
         };
         /**
          * The grants this user has for individual images on this account.
          */
-        image: Array<{
+        image?: Array<{
             /**
              * The unique identifier of the resource this grant applies to.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * The level of access this user has to this entity. If `null`, this user has no access.
              */
-            permissions: 'read_only' | 'read_write';
+            permissions?: 'read_only' | 'read_write';
         }>;
         /**
          * The grants this user has for individual Linodes on this account.
          */
-        linode: Array<{
+        linode?: Array<{
             /**
              * The unique identifier of the resource this grant applies to.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * The level of access this user has to this entity. If `null`, this user has no access.
              */
-            permissions: 'read_only' | 'read_write';
+            permissions?: 'read_only' | 'read_write';
         }>;
         /**
          * The grants this user has for individual Longview Clients on this account.
          */
-        longview: Array<{
+        longview?: Array<{
             /**
              * The unique identifier of the resource this grant applies to.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * The level of access this user has to this entity. If `null`, this user has no access.
              */
-            permissions: 'read_only' | 'read_write';
+            permissions?: 'read_only' | 'read_write';
         }>;
         /**
          * The grants this user has for individual NodeBalancers on this account.
          */
-        nodebalancer: Array<{
+        nodebalancer?: Array<{
             /**
              * The unique identifier of the resource this grant applies to.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * The level of access this user has to this entity. If `null`, this user has no access.
              */
-            permissions: 'read_only' | 'read_write';
+            permissions?: 'read_only' | 'read_write';
         }>;
         /**
          * The grants this User has for individual StackScripts on this account.
          */
-        stackscript: Array<{
+        stackscript?: Array<{
             /**
              * The unique identifier of the resource this grant applies to.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * The level of access this user has to this entity. If `null`, this user has no access.
              */
-            permissions: 'read_only' | 'read_write';
+            permissions?: 'read_only' | 'read_write';
         }>;
         /**
          * The grants this user has individual Block Storage Volumes on this account.
          */
-        volume: Array<{
+        volume?: Array<{
             /**
              * The unique identifier of the resource this grant applies to.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * The level of access this user has to this entity. If `null`, this user has no access.
              */
-            permissions: 'read_only' | 'read_write';
+            permissions?: 'read_only' | 'read_write';
         }>;
         /**
          * The grants this user has individual Virtual Private Clouds (VPCs) on this account.
          */
-        vpc: Array<{
+        vpc?: Array<{
             /**
              * The unique identifier of the resource this grant applies to.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * The level of access this user has to this entity. If `null`, this user has no access.
              */
-            permissions: 'read_only' | 'read_write';
+            permissions?: 'read_only' | 'read_write';
         }>;
     };
     path: {
@@ -12284,115 +12284,115 @@ export type PostDatabasesMysqlInstancesData = {
             /**
              * The minimum amount of time in seconds to keep `binlog` entries before deletion. This may be extended for services that require `binlog` entries for longer than the default, for example if using the MySQL Debezium Kafka connector.
              */
-            binlog_retention_period: number;
+            binlog_retention_period?: number;
             /**
              * MySQL-specific advanced configuration parameters.
              */
-            mysql: {
+            mysql?: {
                 /**
                  * The number of seconds that the `mysqld` server waits for a connect packet before responding with bad handshake.
                  */
-                connect_timeout: number;
+                connect_timeout?: number;
                 /**
                  * Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or `SYSTEM` to use the MySQL server default.
                  */
-                default_time_zone: string;
+                default_time_zone?: string;
                 /**
                  * The maximum permitted result length in bytes for the `GROUP_CONCAT()` function.
                  */
-                group_concat_max_len: number;
+                group_concat_max_len?: number;
                 /**
                  * The time, in seconds, before cached statistics expire.
                  */
-                information_schema_stats_expiry: number;
+                information_schema_stats_expiry?: number;
                 /**
                  * Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool.
                  */
-                innodb_change_buffer_max_size: number;
+                innodb_change_buffer_max_size?: number;
                 /**
                  * Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent: `0` - dirty pages in the same extent are not flushed, `1` - flush contiguous dirty pages in the same extent, `2` - flush dirty pages in the same extent.
                  */
-                innodb_flush_neighbors: number;
+                innodb_flush_neighbors?: number;
                 /**
                  * Minimum length of words that are stored in an InnoDB `-1FULLTEXT` index. Changing this parameter will lead to a restart of the MySQL service.
                  */
-                innodb_ft_min_token_size: number;
+                innodb_ft_min_token_size?: number;
                 /**
                  * This option is used to specify your own InnoDB `FULLTEXT` index `stopword` list for all InnoDB tables. Set to `null` for no value.
                  */
-                innodb_ft_server_stopword_table: string | null;
+                innodb_ft_server_stopword_table?: string | null;
                 /**
                  * The length of time in seconds an InnoDB transaction waits for a row lock before giving up.
                  */
-                innodb_lock_wait_timeout: number;
+                innodb_lock_wait_timeout?: number;
                 /**
                  * The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
                  */
-                innodb_log_buffer_size: number;
+                innodb_log_buffer_size?: number;
                 /**
                  * The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
                  */
-                innodb_online_alter_log_max_size: number;
+                innodb_online_alter_log_max_size?: number;
                 /**
                  * The number of I/O threads for read operations in InnoDB. Changing this parameter will lead to a restart of the MySQL service.
                  */
-                innodb_read_io_threads: number;
+                innodb_read_io_threads?: number;
                 /**
                  * When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
                  */
-                innodb_rollback_on_timeout: boolean;
+                innodb_rollback_on_timeout?: boolean;
                 /**
                  * Defines the maximum number of threads permitted inside of InnoDB. The default is `0` which indicates infinite concurrency, or no limit.
                  */
-                innodb_thread_concurrency: number;
+                innodb_thread_concurrency?: number;
                 /**
                  * The number of I/O threads for write operations in InnoDB. Changing this parameter will lead to a restart of the MySQL service.
                  */
-                innodb_write_io_threads: number;
+                innodb_write_io_threads?: number;
                 /**
                  * The number of seconds the server waits for activity on an interactive connection before closing it.
                  */
-                interactive_timeout: number;
+                interactive_timeout?: number;
                 /**
                  * The storage engine for in-memory internal temporary tables.
                  */
-                internal_tmp_mem_storage_engine: 'TempTable' | 'MEMORY';
+                internal_tmp_mem_storage_engine?: 'TempTable' | 'MEMORY';
                 /**
                  * Size of the largest message in bytes that can be received by the server.
                  */
-                max_allowed_packet: number;
+                max_allowed_packet?: number;
                 /**
                  * Limits the size of internal in-memory tables. Also set `tmp_table_size`.
                  */
-                max_heap_table_size: number;
+                max_heap_table_size?: number;
                 /**
                  * Start sizes of connection buffer and result buffer. Changing this parameter will lead to a restart of the MySQL service.
                  */
-                net_buffer_length: number;
+                net_buffer_length?: number;
                 /**
                  * The number of seconds to wait for more data from a connection before aborting the read.
                  */
-                net_read_timeout: number;
+                net_read_timeout?: number;
                 /**
                  * The number of seconds to wait for a block to be written to a connection before aborting the write.
                  */
-                net_write_timeout: number;
+                net_write_timeout?: number;
                 /**
                  * Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field, Akamai defaults to SQL mode which is strict, SQL standard compliant.
                  */
-                sql_mode: string;
+                sql_mode?: string;
                 /**
                  * Require primary key to be defined for new tables or old tables modified with `ALTER TABLE` and fail if missing. You should always have primary keys because various functionality may break if any large table is missing them.
                  */
-                sql_require_primary_key: boolean;
+                sql_require_primary_key?: boolean;
                 /**
                  * Limits the size of internal in-memory tables. This also requires a `max_heap_table_size`.
                  */
-                tmp_table_size: number;
+                tmp_table_size?: number;
                 /**
                  * The number of seconds the server waits for activity on a non-interactive connection before closing it.
                  */
-                wait_timeout: number;
+                wait_timeout?: number;
             };
         };
         /**
@@ -12427,7 +12427,7 @@ export type PostDatabasesMysqlInstancesData = {
              * >
              * > If your Managed Database is also configured using an `allow_list`, only IP addresses set in it can access that database, even if this object is set to `true`.
              */
-            public_access: boolean;
+            public_access?: boolean;
             /**
              * If the `vpc_id` includes multiple subnets, specify the `subnet_id` you want to use to control access to the database. Use the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation to find and store the `id` of the relevant subnet object.
              *
@@ -12435,11 +12435,11 @@ export type PostDatabasesMysqlInstancesData = {
              * >
              * > A VPC needs at least one subnet to assign a Manage Database instance.
              */
-            subnet_id: number;
+            subnet_id?: number;
             /**
              * The unique identifier of the VPC you want to use to enable private access to the Managed Database. Run the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation and store the `id` for the applicable VPC.
              */
-            vpc_id: number;
+            vpc_id?: number;
         } | null;
         /**
          * __Filterable__ The unique identifier for the [region](https://techdocs.akamai.com/linode-api/reference/get-regions) where the Managed Database lives.
@@ -13206,7 +13206,7 @@ export type PutDatabasesMysqlInstanceData = {
          *
          * - An empty array (`[]`) blocks all public and private connections to the Managed Database.
          */
-        allow_list: Array<string>;
+        allow_list?: Array<string>;
         /**
          * Advanced parameters you can apply to a MySQL Managed Database, via our partner [Aiven's specification](https://aiven.io/docs/products/mysql/reference/advanced-params). Only include the objects for parameters you want to set in your database. Omit objects for parameters you don't want to define or change.
          *
@@ -13214,129 +13214,129 @@ export type PutDatabasesMysqlInstanceData = {
          * >
          * > Aiven may offer additional parameters in their specification. Currently, only those listed here are supported for use in a MySQL Managed Database. You can also run the [List MySQL Managed Database advanced parameters](https://techdocs.akamai.com/linode-api/reference/get-databases-mysql-config) operation to see an up-to-date list.
          */
-        engine_config: {
+        engine_config?: {
             /**
              * The minimum amount of time in seconds to keep `binlog` entries before deletion. This may be extended for services that require `binlog` entries for longer than the default, for example if using the MySQL Debezium Kafka connector.
              */
-            binlog_retention_period: number;
+            binlog_retention_period?: number;
             /**
              * MySQL-specific advanced configuration parameters.
              */
-            mysql: {
+            mysql?: {
                 /**
                  * The number of seconds that the `mysqld` server waits for a connect packet before responding with bad handshake.
                  */
-                connect_timeout: number;
+                connect_timeout?: number;
                 /**
                  * Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or `SYSTEM` to use the MySQL server default.
                  */
-                default_time_zone: string;
+                default_time_zone?: string;
                 /**
                  * The maximum permitted result length in bytes for the `GROUP_CONCAT()` function.
                  */
-                group_concat_max_len: number;
+                group_concat_max_len?: number;
                 /**
                  * The time, in seconds, before cached statistics expire.
                  */
-                information_schema_stats_expiry: number;
+                information_schema_stats_expiry?: number;
                 /**
                  * Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool.
                  */
-                innodb_change_buffer_max_size: number;
+                innodb_change_buffer_max_size?: number;
                 /**
                  * Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent: `0` - dirty pages in the same extent are not flushed, `1` - flush contiguous dirty pages in the same extent, `2` - flush dirty pages in the same extent.
                  */
-                innodb_flush_neighbors: number;
+                innodb_flush_neighbors?: number;
                 /**
                  * Minimum length of words that are stored in an InnoDB `-1FULLTEXT` index. Changing this parameter will lead to a restart of the MySQL service.
                  */
-                innodb_ft_min_token_size: number;
+                innodb_ft_min_token_size?: number;
                 /**
                  * This option is used to specify your own InnoDB `FULLTEXT` index `stopword` list for all InnoDB tables. Set to `null` for no value.
                  */
-                innodb_ft_server_stopword_table: string | null;
+                innodb_ft_server_stopword_table?: string | null;
                 /**
                  * The length of time in seconds an InnoDB transaction waits for a row lock before giving up.
                  */
-                innodb_lock_wait_timeout: number;
+                innodb_lock_wait_timeout?: number;
                 /**
                  * The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
                  */
-                innodb_log_buffer_size: number;
+                innodb_log_buffer_size?: number;
                 /**
                  * The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
                  */
-                innodb_online_alter_log_max_size: number;
+                innodb_online_alter_log_max_size?: number;
                 /**
                  * The number of I/O threads for read operations in InnoDB. Changing this parameter will lead to a restart of the MySQL service.
                  */
-                innodb_read_io_threads: number;
+                innodb_read_io_threads?: number;
                 /**
                  * When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
                  */
-                innodb_rollback_on_timeout: boolean;
+                innodb_rollback_on_timeout?: boolean;
                 /**
                  * Defines the maximum number of threads permitted inside of InnoDB. The default is `0` which indicates infinite concurrency, or no limit.
                  */
-                innodb_thread_concurrency: number;
+                innodb_thread_concurrency?: number;
                 /**
                  * The number of I/O threads for write operations in InnoDB. Changing this parameter will lead to a restart of the MySQL service.
                  */
-                innodb_write_io_threads: number;
+                innodb_write_io_threads?: number;
                 /**
                  * The number of seconds the server waits for activity on an interactive connection before closing it.
                  */
-                interactive_timeout: number;
+                interactive_timeout?: number;
                 /**
                  * The storage engine for in-memory internal temporary tables.
                  */
-                internal_tmp_mem_storage_engine: 'TempTable' | 'MEMORY';
+                internal_tmp_mem_storage_engine?: 'TempTable' | 'MEMORY';
                 /**
                  * Size of the largest message in bytes that can be received by the server.
                  */
-                max_allowed_packet: number;
+                max_allowed_packet?: number;
                 /**
                  * Limits the size of internal in-memory tables. Also set `tmp_table_size`.
                  */
-                max_heap_table_size: number;
+                max_heap_table_size?: number;
                 /**
                  * Start sizes of connection buffer and result buffer. Changing this parameter will lead to a restart of the MySQL service.
                  */
-                net_buffer_length: number;
+                net_buffer_length?: number;
                 /**
                  * The number of seconds to wait for more data from a connection before aborting the read.
                  */
-                net_read_timeout: number;
+                net_read_timeout?: number;
                 /**
                  * The number of seconds to wait for a block to be written to a connection before aborting the write.
                  */
-                net_write_timeout: number;
+                net_write_timeout?: number;
                 /**
                  * Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field, Akamai defaults to SQL mode which is strict, SQL standard compliant.
                  */
-                sql_mode: string;
+                sql_mode?: string;
                 /**
                  * Require primary key to be defined for new tables or old tables modified with `ALTER TABLE` and fail if missing. You should always have primary keys because various functionality may break if any large table is missing them.
                  */
-                sql_require_primary_key: boolean;
+                sql_require_primary_key?: boolean;
                 /**
                  * Limits the size of internal in-memory tables. This also requires a `max_heap_table_size`.
                  */
-                tmp_table_size: number;
+                tmp_table_size?: number;
                 /**
                  * The number of seconds the server waits for activity on a non-interactive connection before closing it.
                  */
-                wait_timeout: number;
+                wait_timeout?: number;
             };
         };
         /**
          * __Filterable__ A unique, user-defined string referring to the Managed Database. This string needs to be unique per Managed Database engine type.
          */
-        label: string;
+        label?: string;
         /**
          * __Beta__ Restricts access on a MySQL Managed Database to a specific Virtual Private Cloud (VPC) configured for the cluster.
          */
-        private_network: {
+        private_network?: {
             /**
              * Set to `true` to allow clients outside of the VPC to connect to the database using a public IP address. Defaults to `false`, where only nodes within the specified `vpc_id` can access the Managed Database cluster.
              *
@@ -13344,7 +13344,7 @@ export type PutDatabasesMysqlInstanceData = {
              * >
              * > If your Managed Database is also configured using an `allow_list`, only IP addresses set in it can access that database, even if this object is set to `true`.
              */
-            public_access: boolean;
+            public_access?: boolean;
             /**
              * If the `vpc_id` includes multiple subnets, specify the `subnet_id` you want to use to control access to the database. Use the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation to find and store the `id` of the relevant subnet object.
              *
@@ -13352,11 +13352,11 @@ export type PutDatabasesMysqlInstanceData = {
              * >
              * > A VPC needs at least one subnet to assign a Manage Database instance.
              */
-            subnet_id: number;
+            subnet_id?: number;
             /**
              * The unique identifier of the VPC you want to use to enable private access to the Managed Database. Run the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation and store the `id` for the applicable VPC.
              */
-            vpc_id: number;
+            vpc_id?: number;
         } | null;
         /**
          * Request re-sizing of your cluster to a Linode Type with more disk space. For example, you could request a Linode Type that uses a higher plan.
@@ -13369,49 +13369,49 @@ export type PutDatabasesMysqlInstanceData = {
          *
          * - Any active updates to your cluster need to complete before you can request a resize. The reverse is also true: An active resizing needs to complete before you can perform any other update.
          */
-        type: string;
+        type?: string;
         /**
          * Configuration settings for automated patch update maintenance for the Managed Database.
          */
-        updates: {
+        updates?: {
             /**
              * The numeric reference for the day of the week to perform maintenance. `1` is Monday, `2` is Tuesday, through to `7` which is Sunday.
              */
-            day_of_week: number;
+            day_of_week?: number;
             /**
              * The maximum maintenance window time in hours.
              */
-            duration: number;
+            duration?: number;
             /**
              * How frequently maintenance occurs. Currently can only be `weekly`.
              */
-            frequency: 'weekly';
+            frequency?: 'weekly';
             /**
              * The hour to begin maintenance based in UTC time.
              */
-            hour_of_day: number;
+            hour_of_day?: number;
             /**
              * __Read-only__ An array of pending updates.
              */
-            readonly pending: Array<{
+            readonly pending?: Array<{
                 /**
                  * The time when a mandatory update needs to be applied.
                  */
-                deadline: string | null;
+                deadline?: string | null;
                 /**
                  * A description of the update.
                  */
-                description: string;
+                description?: string;
                 /**
                  * The date and time a maintenance update will be applied.
                  */
-                planned_for: string | null;
+                planned_for?: string | null;
             }>;
         };
         /**
          * __Filterable__ The Managed Database engine version.
          */
-        version: string;
+        version?: string;
     };
     path: {
         /**
@@ -15863,201 +15863,201 @@ export type PostDatabasesPostgreSqlInstancesData = {
             /**
              * PostgreSQL-specific advanced configuration parameters.
              */
-            pg: {
+            pg?: {
                 /**
                  * Specifies a fraction of the table size to add to `autovacuum_analyze_threshold` when deciding whether to trigger an `ANALYZE`.
                  */
-                autovacuum_analyze_scale_factor: number;
+                autovacuum_analyze_scale_factor?: number;
                 /**
                  * Specifies the minimum number of inserted, updated, or deleted tuples needed to trigger an `ANALYZE` in any one table.
                  */
-                autovacuum_analyze_threshold: number;
+                autovacuum_analyze_threshold?: number;
                 /**
                  * Specifies the maximum number of `autovacuum` processes, other than the `autovacuum` launcher, that may be running at any one time. This parameter can only be set at server start.
                  */
-                autovacuum_max_workers: number;
+                autovacuum_max_workers?: number;
                 /**
                  * Specifies the minimum delay between `autovacuum` runs on any given database. The delay is measured in seconds.
                  */
-                autovacuum_naptime: number;
+                autovacuum_naptime?: number;
                 /**
                  * Specifies the cost delay value that will be used in automatic `VACUUM` operations. If `-1` is specified, the regular `vacuum_cost_delay` value will be used.
                  */
-                autovacuum_vacuum_cost_delay: number;
+                autovacuum_vacuum_cost_delay?: number;
                 /**
                  * Specifies the cost limit value that will be used in automatic `VACUUM` operations. The default of `-1` applies the regular `vacuum_cost_limit` value.
                  */
-                autovacuum_vacuum_cost_limit: number;
+                autovacuum_vacuum_cost_limit?: number;
                 /**
                  * Specifies a fraction of the table size to add to `autovacuum_vacuum_threshold` when deciding whether to trigger a `VACUUM`.
                  */
-                autovacuum_vacuum_scale_factor: number;
+                autovacuum_vacuum_scale_factor?: number;
                 /**
                  * Specifies the minimum number of updated or deleted tuples needed to trigger a `VACUUM` in any one table.
                  */
-                autovacuum_vacuum_threshold: number;
+                autovacuum_vacuum_threshold?: number;
                 /**
                  * Specifies the delay between activity rounds for the background writer in milliseconds.
                  */
-                bgwriter_delay: number;
+                bgwriter_delay?: number;
                 /**
                  * Whenever more than `bgwriter_flush_after` bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. A setting of `0` disables forced writeback.
                  */
-                bgwriter_flush_after: number;
+                bgwriter_flush_after?: number;
                 /**
                  * In each round, no more than this many buffers will be written by the background writer. Setting this to `0` disables background writing.
                  */
-                bgwriter_lru_maxpages: number;
+                bgwriter_lru_maxpages?: number;
                 /**
                  * The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to `bgwriter_lru_maxpages`). `1.0` represents a `“just` in `time”` policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes.
                  */
-                bgwriter_lru_multiplier: number;
+                bgwriter_lru_multiplier?: number;
                 /**
                  * This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
                  */
-                deadlock_timeout: number;
+                deadlock_timeout?: number;
                 /**
                  * Specifies the default TOAST compression method for values of compressible columns.
                  */
-                default_toast_compression: 'lz4' | 'pglz';
+                default_toast_compression?: 'lz4' | 'pglz';
                 /**
                  * Time out sessions with open transactions after this number of milliseconds.
                  */
-                idle_in_transaction_session_timeout: number;
+                idle_in_transaction_session_timeout?: number;
                 /**
                  * Controls system-wide use of Just-in-Time Compilation (JIT).
                  */
-                jit: boolean;
+                jit?: boolean;
                 /**
                  * PostgreSQL maximum number of files that can be open per process.
                  */
-                max_files_per_process: number;
+                max_files_per_process?: number;
                 /**
                  * PostgreSQL maximum locks per transaction.
                  */
-                max_locks_per_transaction: number;
+                max_locks_per_transaction?: number;
                 /**
                  * PostgreSQL maximum logical replication workers, taken from the pool of `max_parallel_workers`.
                  */
-                max_logical_replication_workers: number;
+                max_logical_replication_workers?: number;
                 /**
                  * Sets the maximum number of workers that the system can support for parallel queries.
                  */
-                max_parallel_workers: number;
+                max_parallel_workers?: number;
                 /**
                  * Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
                  */
-                max_parallel_workers_per_gather: number;
+                max_parallel_workers_per_gather?: number;
                 /**
                  * PostgreSQL maximum predicate locks per transaction.
                  */
-                max_pred_locks_per_transaction: number;
+                max_pred_locks_per_transaction?: number;
                 /**
                  * PostgreSQL maximum replication slots.
                  */
-                max_replication_slots: number;
+                max_replication_slots?: number;
                 /**
                  * PostgreSQL maximum write ahead log (WAL) size in MB, reserved for replication slots. A value of `-1` which indicates unlimited. The `wal_keep_size` minimum write ahead log (WAL) size setting takes precedence over this.
                  */
-                max_slot_wal_keep_size: number;
+                max_slot_wal_keep_size?: number;
                 /**
                  * Maximum depth of the stack in bytes.
                  */
-                max_stack_depth: number;
+                max_stack_depth?: number;
                 /**
                  * Maximum standby archive delay in milliseconds.
                  */
-                max_standby_archive_delay: number;
+                max_standby_archive_delay?: number;
                 /**
                  * Maximum standby streaming delay in milliseconds.
                  */
-                max_standby_streaming_delay: number;
+                max_standby_streaming_delay?: number;
                 /**
                  * PostgreSQL maximum write ahead log (WAL) senders.
                  */
-                max_wal_senders: number;
+                max_wal_senders?: number;
                 /**
                  * Maximum number of background processes that the system can support.
                  */
-                max_worker_processes: number;
+                max_worker_processes?: number;
                 /**
                  * Chooses the algorithm for encrypting passwords.
                  */
-                password_encryption: 'scram-sh-256' | 'md5';
+                password_encryption?: 'scram-sh-256' | 'md5';
                 /**
                  * Sets the time interval to run `pg_partman` scheduled tasks.
                  */
-                'pg_partman_bgw.interval': number;
+                'pg_partman_bgw.interval'?: number;
                 /**
                  * Controls which role to use for `pg_partman` scheduled background tasks.
                  */
-                'pg_partman_bgw.role': string;
+                'pg_partman_bgw.role'?: string;
                 /**
                  * Enables query plan monitoring.
                  */
-                'pg_stat_monitor.pgsm_enable_query_plan': boolean;
+                'pg_stat_monitor.pgsm_enable_query_plan'?: boolean;
                 /**
                  * Sets the maximum number of buckets.
                  */
-                'pg_stat_monitor.pgsm_max_buckets': number;
+                'pg_stat_monitor.pgsm_max_buckets'?: number;
                 /**
                  * Controls which statements are counted. Specify `top` to track top-level statements that are issued directly by clients, `all` to also track nested statements, such as those invoked within functions, or `none` to disable statement statistics collection.
                  */
-                'pg_stat_statements.track': 'all' | 'top' | 'none';
+                'pg_stat_statements.track'?: 'all' | 'top' | 'none';
                 /**
                  * PostgreSQL temporary file limit in KB. Set to `-1` for unlimited.
                  */
-                temp_file_limit: number;
+                temp_file_limit?: number;
                 /**
                  * PostgreSQL service time zone.
                  */
-                timezone: string;
+                timezone?: string;
                 /**
                  * Specifies the number of bytes reserved to track the currently executing command for each active session.
                  */
-                track_activity_query_size: number;
+                track_activity_query_size?: number;
                 /**
                  * Record the commit time of transactions.
                  */
-                track_commit_timestamp: 'on' | 'off';
+                track_commit_timestamp?: 'on' | 'off';
                 /**
                  * Enables tracking of function call counts and time used. Specify `pl` to track only procedural-language functions, `all` to also track SQL and C language functions, or `none` to disable function statistics tracking.
                  */
-                track_functions: 'all' | 'pl' | 'none';
+                track_functions?: 'all' | 'pl' | 'none';
                 /**
                  * Enables timing of database I/O calls. This parameter is `off` by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
                  */
-                track_io_timing: 'on' | 'off';
+                track_io_timing?: 'on' | 'off';
                 /**
                  * Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to `0` disables the timeout.
                  */
-                wal_sender_timeout: number;
+                wal_sender_timeout?: number;
                 /**
                  * Write ahead log (WAL) flush interval in milliseconds. A value lower than 200 milliseconds may negatively impact performance.
                  */
-                wal_writer_delay: number;
+                wal_writer_delay?: number;
             };
             /**
              * Enable the `pg_stat_monitor` extension. When this extension is enabled, PostgreSQL restarts the cluster it's in. Additionally, `pg_stat_statements` results for utility commands are unreliable.
              */
-            pg_stat_monitor_enable: boolean;
+            pg_stat_monitor_enable?: boolean;
             /**
              * Parameter used to apply PGLookout settings.
              */
-            pglookout: {
+            pglookout?: {
                 /**
                  * Number of seconds of master unavailability before triggering database failover to standby.
                  */
-                max_failover_replication_time_lag: number;
+                max_failover_replication_time_lag?: number;
             };
             /**
              * Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the `shared_buffers` configuration value.
              */
-            shared_buffers_percentage: number;
+            shared_buffers_percentage?: number;
             /**
              * Sets the maximum amount of memory in MB to be used by a query operation, such as a sort or hash table, before writing to temporary disk files. Default is 1MB + 0.075% of total RAM, up to 32 MB.
              */
-            work_mem: number;
+            work_mem?: number;
         };
         /**
          * Include this object to restore a Managed Database by forking from a backup.
@@ -16091,15 +16091,15 @@ export type PostDatabasesPostgreSqlInstancesData = {
              * >
              * > If your Managed Database is also configured using an `allow_list`, only IP addresses set in it can access that database, even if this object is set to `true`.
              */
-            public_access: boolean;
+            public_access?: boolean;
             /**
              * If the `vpc_id` includes subnets, you can include the one you want to limit access to the database. From the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation, store the `id` for the applicable `subnets` object.
              */
-            subnet_id: number;
+            subnet_id?: number;
             /**
              * The unique identifier of the VPC you want to use to enable private access to the Managed Database. Run the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation and store the `id` for the applicable VPC.
              */
-            vpc_id: number;
+            vpc_id?: number;
         } | null;
         /**
          * __Filterable__ The unique identifier for the [region](https://techdocs.akamai.com/linode-api/reference/get-regions) where the Managed Database lives.
@@ -16993,7 +16993,7 @@ export type PutDatabasesPostgreSqlInstanceData = {
          *
          * - An empty array (`[]`) blocks all public and private connections to the Managed Database.
          */
-        allow_list: Array<string>;
+        allow_list?: Array<string>;
         /**
          * Advanced parameters you can apply to a PostgreSQL Managed Database, via our partner [Aiven's specification](https://aiven.io/docs/products/postgresql/reference/advanced-params). Only include the objects for parameters you want to set in your database. Omit objects for parameters you don't want to define or change.
          *
@@ -17001,214 +17001,214 @@ export type PutDatabasesPostgreSqlInstanceData = {
          * >
          * > Aiven may offer additional parameters in their specification. Currently, only those listed here are supported for use in a PostgreSQL Managed Database. You can also run the [List PostgreSQL Managed Database advanced parameters](https://techdocs.akamai.com/linode-api/reference/get-databases-postgresql-config) operation to see an up-to-date list.
          */
-        engine_config: {
+        engine_config?: {
             /**
              * PostgreSQL-specific advanced configuration parameters.
              */
-            pg: {
+            pg?: {
                 /**
                  * Specifies a fraction of the table size to add to `autovacuum_analyze_threshold` when deciding whether to trigger an `ANALYZE`.
                  */
-                autovacuum_analyze_scale_factor: number;
+                autovacuum_analyze_scale_factor?: number;
                 /**
                  * Specifies the minimum number of inserted, updated, or deleted tuples needed to trigger an `ANALYZE` in any one table.
                  */
-                autovacuum_analyze_threshold: number;
+                autovacuum_analyze_threshold?: number;
                 /**
                  * Specifies the maximum number of `autovacuum` processes, other than the `autovacuum` launcher, that may be running at any one time. This parameter can only be set at server start.
                  */
-                autovacuum_max_workers: number;
+                autovacuum_max_workers?: number;
                 /**
                  * Specifies the minimum delay between `autovacuum` runs on any given database. The delay is measured in seconds.
                  */
-                autovacuum_naptime: number;
+                autovacuum_naptime?: number;
                 /**
                  * Specifies the cost delay value that will be used in automatic `VACUUM` operations. If `-1` is specified, the regular `vacuum_cost_delay` value will be used.
                  */
-                autovacuum_vacuum_cost_delay: number;
+                autovacuum_vacuum_cost_delay?: number;
                 /**
                  * Specifies the cost limit value that will be used in automatic `VACUUM` operations. The default of `-1` applies the regular `vacuum_cost_limit` value.
                  */
-                autovacuum_vacuum_cost_limit: number;
+                autovacuum_vacuum_cost_limit?: number;
                 /**
                  * Specifies a fraction of the table size to add to `autovacuum_vacuum_threshold` when deciding whether to trigger a `VACUUM`.
                  */
-                autovacuum_vacuum_scale_factor: number;
+                autovacuum_vacuum_scale_factor?: number;
                 /**
                  * Specifies the minimum number of updated or deleted tuples needed to trigger a `VACUUM` in any one table.
                  */
-                autovacuum_vacuum_threshold: number;
+                autovacuum_vacuum_threshold?: number;
                 /**
                  * Specifies the delay between activity rounds for the background writer in milliseconds.
                  */
-                bgwriter_delay: number;
+                bgwriter_delay?: number;
                 /**
                  * Whenever more than `bgwriter_flush_after` bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. A setting of `0` disables forced writeback.
                  */
-                bgwriter_flush_after: number;
+                bgwriter_flush_after?: number;
                 /**
                  * In each round, no more than this many buffers will be written by the background writer. Setting this to `0` disables background writing.
                  */
-                bgwriter_lru_maxpages: number;
+                bgwriter_lru_maxpages?: number;
                 /**
                  * The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to `bgwriter_lru_maxpages`). `1.0` represents a `“just` in `time”` policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes.
                  */
-                bgwriter_lru_multiplier: number;
+                bgwriter_lru_multiplier?: number;
                 /**
                  * This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
                  */
-                deadlock_timeout: number;
+                deadlock_timeout?: number;
                 /**
                  * Specifies the default TOAST compression method for values of compressible columns.
                  */
-                default_toast_compression: 'lz4' | 'pglz';
+                default_toast_compression?: 'lz4' | 'pglz';
                 /**
                  * Time out sessions with open transactions after this number of milliseconds.
                  */
-                idle_in_transaction_session_timeout: number;
+                idle_in_transaction_session_timeout?: number;
                 /**
                  * Controls system-wide use of Just-in-Time Compilation (JIT).
                  */
-                jit: boolean;
+                jit?: boolean;
                 /**
                  * PostgreSQL maximum number of files that can be open per process.
                  */
-                max_files_per_process: number;
+                max_files_per_process?: number;
                 /**
                  * PostgreSQL maximum locks per transaction.
                  */
-                max_locks_per_transaction: number;
+                max_locks_per_transaction?: number;
                 /**
                  * PostgreSQL maximum logical replication workers, taken from the pool of `max_parallel_workers`.
                  */
-                max_logical_replication_workers: number;
+                max_logical_replication_workers?: number;
                 /**
                  * Sets the maximum number of workers that the system can support for parallel queries.
                  */
-                max_parallel_workers: number;
+                max_parallel_workers?: number;
                 /**
                  * Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
                  */
-                max_parallel_workers_per_gather: number;
+                max_parallel_workers_per_gather?: number;
                 /**
                  * PostgreSQL maximum predicate locks per transaction.
                  */
-                max_pred_locks_per_transaction: number;
+                max_pred_locks_per_transaction?: number;
                 /**
                  * PostgreSQL maximum replication slots.
                  */
-                max_replication_slots: number;
+                max_replication_slots?: number;
                 /**
                  * PostgreSQL maximum write ahead log (WAL) size in MB, reserved for replication slots. A value of `-1` which indicates unlimited. The `wal_keep_size` minimum write ahead log (WAL) size setting takes precedence over this.
                  */
-                max_slot_wal_keep_size: number;
+                max_slot_wal_keep_size?: number;
                 /**
                  * Maximum depth of the stack in bytes.
                  */
-                max_stack_depth: number;
+                max_stack_depth?: number;
                 /**
                  * Maximum standby archive delay in milliseconds.
                  */
-                max_standby_archive_delay: number;
+                max_standby_archive_delay?: number;
                 /**
                  * Maximum standby streaming delay in milliseconds.
                  */
-                max_standby_streaming_delay: number;
+                max_standby_streaming_delay?: number;
                 /**
                  * PostgreSQL maximum write ahead log (WAL) senders.
                  */
-                max_wal_senders: number;
+                max_wal_senders?: number;
                 /**
                  * Maximum number of background processes that the system can support.
                  */
-                max_worker_processes: number;
+                max_worker_processes?: number;
                 /**
                  * Chooses the algorithm for encrypting passwords.
                  */
-                password_encryption: 'scram-sh-256' | 'md5';
+                password_encryption?: 'scram-sh-256' | 'md5';
                 /**
                  * Sets the time interval to run `pg_partman` scheduled tasks.
                  */
-                'pg_partman_bgw.interval': number;
+                'pg_partman_bgw.interval'?: number;
                 /**
                  * Controls which role to use for `pg_partman` scheduled background tasks.
                  */
-                'pg_partman_bgw.role': string;
+                'pg_partman_bgw.role'?: string;
                 /**
                  * Enables query plan monitoring.
                  */
-                'pg_stat_monitor.pgsm_enable_query_plan': boolean;
+                'pg_stat_monitor.pgsm_enable_query_plan'?: boolean;
                 /**
                  * Sets the maximum number of buckets.
                  */
-                'pg_stat_monitor.pgsm_max_buckets': number;
+                'pg_stat_monitor.pgsm_max_buckets'?: number;
                 /**
                  * Controls which statements are counted. Specify `top` to track top-level statements that are issued directly by clients, `all` to also track nested statements, such as those invoked within functions, or `none` to disable statement statistics collection.
                  */
-                'pg_stat_statements.track': 'all' | 'top' | 'none';
+                'pg_stat_statements.track'?: 'all' | 'top' | 'none';
                 /**
                  * PostgreSQL temporary file limit in KB. Set to `-1` for unlimited.
                  */
-                temp_file_limit: number;
+                temp_file_limit?: number;
                 /**
                  * PostgreSQL service time zone.
                  */
-                timezone: string;
+                timezone?: string;
                 /**
                  * Specifies the number of bytes reserved to track the currently executing command for each active session.
                  */
-                track_activity_query_size: number;
+                track_activity_query_size?: number;
                 /**
                  * Record the commit time of transactions.
                  */
-                track_commit_timestamp: 'on' | 'off';
+                track_commit_timestamp?: 'on' | 'off';
                 /**
                  * Enables tracking of function call counts and time used. Specify `pl` to track only procedural-language functions, `all` to also track SQL and C language functions, or `none` to disable function statistics tracking.
                  */
-                track_functions: 'all' | 'pl' | 'none';
+                track_functions?: 'all' | 'pl' | 'none';
                 /**
                  * Enables timing of database I/O calls. This parameter is `off` by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
                  */
-                track_io_timing: 'on' | 'off';
+                track_io_timing?: 'on' | 'off';
                 /**
                  * Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to `0` disables the timeout.
                  */
-                wal_sender_timeout: number;
+                wal_sender_timeout?: number;
                 /**
                  * Write ahead log (WAL) flush interval in milliseconds. A value lower than 200 milliseconds may negatively impact performance.
                  */
-                wal_writer_delay: number;
+                wal_writer_delay?: number;
             };
             /**
              * Enable the `pg_stat_monitor` extension. When this extension is enabled, PostgreSQL restarts the cluster it's in. Additionally, `pg_stat_statements` results for utility commands are unreliable.
              */
-            pg_stat_monitor_enable: boolean;
+            pg_stat_monitor_enable?: boolean;
             /**
              * Parameter used to apply PGLookout settings.
              */
-            pglookout: {
+            pglookout?: {
                 /**
                  * Number of seconds of master unavailability before triggering database failover to standby.
                  */
-                max_failover_replication_time_lag: number;
+                max_failover_replication_time_lag?: number;
             };
             /**
              * Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the `shared_buffers` configuration value.
              */
-            shared_buffers_percentage: number;
+            shared_buffers_percentage?: number;
             /**
              * Sets the maximum amount of memory in MB to be used by a query operation, such as a sort or hash table, before writing to temporary disk files. Default is 1MB + 0.075% of total RAM, up to 32 MB.
              */
-            work_mem: number;
+            work_mem?: number;
         };
         /**
          * __Filterable__ A unique, user-defined string referring to the Managed Database. This string needs to be unique per Managed Database engine type.
          */
-        label: string;
+        label?: string;
         /**
          * __Beta__ Restricts access on a PostgreSQL Managed Database to a specific Virtual Private Cloud (VPC) configured for the cluster.
          */
-        private_network: {
+        private_network?: {
             /**
              * Set to `true` to allow clients outside of the VPC to connect to the database using a public IP address. Defaults to `false`, where only nodes within the specified `vpc_id` can access the Managed Database cluster.
              *
@@ -17216,15 +17216,15 @@ export type PutDatabasesPostgreSqlInstanceData = {
              * >
              * > If your Managed Database is also configured using an `allow_list`, only IP addresses set in it can access that database, even if this object is set to `true`.
              */
-            public_access: boolean;
+            public_access?: boolean;
             /**
              * If the `vpc_id` includes subnets, you can include the one you want to limit access to the database. From the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation, store the `id` for the applicable `subnets` object.
              */
-            subnet_id: number;
+            subnet_id?: number;
             /**
              * The unique identifier of the VPC you want to use to enable private access to the Managed Database. Run the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation and store the `id` for the applicable VPC.
              */
-            vpc_id: number;
+            vpc_id?: number;
         } | null;
         /**
          * Request re-sizing of your cluster to a Linode Type with more disk space. For example, you could request a Linode Type that uses a higher plan.
@@ -17237,49 +17237,49 @@ export type PutDatabasesPostgreSqlInstanceData = {
          *
          * - Any active updates to your cluster need to complete before you can request a resize. The reverse is also true: An active resizing needs to complete before you can perform any other update.
          */
-        type: string;
+        type?: string;
         /**
          * Configuration settings for automated patch update maintenance for the Managed Database.
          */
-        updates: {
+        updates?: {
             /**
              * The numeric reference for the day of the week to perform maintenance. `1` is Monday, `2` is Tuesday, through to `7` which is Sunday.
              */
-            day_of_week: number;
+            day_of_week?: number;
             /**
              * The maximum maintenance window time in hours.
              */
-            duration: number;
+            duration?: number;
             /**
              * How frequently maintenance occurs. Currently can only be `weekly`.
              */
-            frequency: 'weekly';
+            frequency?: 'weekly';
             /**
              * The hour to begin maintenance based in UTC time.
              */
-            hour_of_day: number;
+            hour_of_day?: number;
             /**
              * __Read-only__ An array of pending updates.
              */
-            readonly pending: Array<{
+            readonly pending?: Array<{
                 /**
                  * The time when a mandatory update needs to be applied.
                  */
-                deadline: string | null;
+                deadline?: string | null;
                 /**
                  * A description of the update.
                  */
-                description: string;
+                description?: string;
                 /**
                  * The date and time a maintenance update will be applied.
                  */
-                planned_for: string | null;
+                planned_for?: string | null;
             }>;
         };
         /**
          * __Filterable__ The Managed Database engine version.
          */
-        version: string;
+        version?: string;
     };
     path: {
         /**
@@ -18399,11 +18399,11 @@ export type PostDomainData = {
          * >
          * > This is potentially dangerous, and should be set to an empty list unless you intend to use it.
          */
-        axfr_ips: Array<string>;
+        axfr_ips?: Array<string>;
         /**
          * A description for this domain. This is for display purposes only.
          */
-        description: string | null;
+        description?: string | null;
         /**
          * __Filterable__ The domain this domain represents. domain labels cannot be longer than 63 characters and must conform to [RFC1035](https://tools.ietf.org/html/rfc1035). domains must be unique on Linode's platform, including across different Linode accounts; there cannot be two domains representing the same domain.
          */
@@ -18417,21 +18417,21 @@ export type PostDomainData = {
          *
          * - A value of 0 is equivalent to the default value of 1209600.
          */
-        expire_sec: number;
+        expire_sec?: number;
         /**
          * __Filterable__ The group this domain belongs to.  This is for display purposes only.
          *
          * @deprecated
          */
-        group: string | null;
+        group?: string | null;
         /**
          * __Read-only__ This domain's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * The IP addresses representing the master DNS for this domain. At least one value is required for `type` slave domains. The total combined length of all data within this array cannot exceed 1000 characters.
          */
-        master_ips: Array<string>;
+        master_ips?: Array<string>;
         /**
          * The amount of time in seconds before this domain should be refreshed.
          *
@@ -18441,7 +18441,7 @@ export type PostDomainData = {
          *
          * - A value of 0 is equivalent to the default value of 14400.
          */
-        refresh_sec: number;
+        refresh_sec?: number;
         /**
          * The interval, in seconds, at which a failed refresh should be retried.
          *
@@ -18451,19 +18451,19 @@ export type PostDomainData = {
          *
          * - A value of 0 is equivalent to the default value of 14400.
          */
-        retry_sec: number;
+        retry_sec?: number;
         /**
          * Start of Authority email address. This is required for `type` master domains.
          */
-        soa_email: string;
+        soa_email?: string;
         /**
          * Used to control whether this domain is currently being rendered.
          */
-        status: 'disabled' | 'active';
+        status?: 'disabled' | 'active';
         /**
          * __Filterable__ An array of tags applied to this object.  Tags are for organizational purposes only.
          */
-        tags: Array<string>;
+        tags?: Array<string>;
         /**
          * "Time to Live" - the amount of time in seconds that this domain's records may be cached by resolvers or other domain servers.
          *
@@ -18473,7 +18473,7 @@ export type PostDomainData = {
          *
          * - A value of 0 is equivalent to the default value of 86400.
          */
-        ttl_sec: number;
+        ttl_sec?: number;
         /**
          * Whether this domain represents the authoritative source of information for the domain it describes (`master`), or whether it is a read-only copy of a master (`slave`).
          */
@@ -18926,15 +18926,15 @@ export type PutDomainData = {
          * >
          * > This is potentially dangerous, and should be set to an empty list unless you intend to use it.
          */
-        axfr_ips: Array<string>;
+        axfr_ips?: Array<string>;
         /**
          * A description for this domain. This is for display purposes only.
          */
-        description: string | null;
+        description?: string | null;
         /**
          * __Filterable__ The domain this domain represents. domain labels cannot be longer than 63 characters and must conform to [RFC1035](https://tools.ietf.org/html/rfc1035). domains must be unique on Linode's platform, including across different Linode accounts; there cannot be two domains representing the same domain.
          */
-        domain: string;
+        domain?: string;
         /**
          * The amount of time in seconds that may pass before this domain is no longer authoritative.
          *
@@ -18944,21 +18944,21 @@ export type PutDomainData = {
          *
          * - A value of 0 is equivalent to the default value of 1209600.
          */
-        expire_sec: number;
+        expire_sec?: number;
         /**
          * __Filterable__ The group this domain belongs to.  This is for display purposes only.
          *
          * @deprecated
          */
-        group: string | null;
+        group?: string | null;
         /**
          * __Read-only__ This domain's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * The IP addresses representing the master DNS for this domain. At least one value is required for `type` slave domains. The total combined length of all data within this array cannot exceed 1000 characters.
          */
-        master_ips: Array<string>;
+        master_ips?: Array<string>;
         /**
          * The amount of time in seconds before this domain should be refreshed.
          *
@@ -18968,7 +18968,7 @@ export type PutDomainData = {
          *
          * - A value of 0 is equivalent to the default value of 14400.
          */
-        refresh_sec: number;
+        refresh_sec?: number;
         /**
          * The interval, in seconds, at which a failed refresh should be retried.
          *
@@ -18978,19 +18978,19 @@ export type PutDomainData = {
          *
          * - A value of 0 is equivalent to the default value of 14400.
          */
-        retry_sec: number;
+        retry_sec?: number;
         /**
          * Start of Authority email address. This is required for `type` master domains.
          */
-        soa_email: string;
+        soa_email?: string;
         /**
          * Used to control whether this domain is currently being rendered.
          */
-        status: 'disabled' | 'active';
+        status?: 'disabled' | 'active';
         /**
          * __Filterable__ An array of tags applied to this object.  Tags are for organizational purposes only.
          */
-        tags: Array<string>;
+        tags?: Array<string>;
         /**
          * "Time to Live" - the amount of time in seconds that this domain's records may be cached by resolvers or other domain servers.
          *
@@ -19000,11 +19000,11 @@ export type PutDomainData = {
          *
          * - A value of 0 is equivalent to the default value of 86400.
          */
-        ttl_sec: number;
+        ttl_sec?: number;
         /**
          * Whether this domain represents the authoritative source of information for the domain it describes (`master`), or whether it is a read-only copy of a master (`slave`).
          */
-        type: 'master' | 'slave';
+        type?: 'master' | 'slave';
     };
     path: {
         /**
@@ -19432,11 +19432,11 @@ export type PostDomainRecordData = {
         /**
          * __Read-only__ When this Domain Record was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ This Record's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Filterable__ The name of this Record. For requests, this property's actual usage and whether it is required depends on the type of record this represents:
          *
@@ -19461,29 +19461,29 @@ export type PostDomainRecordData = {
          * `PTR`: See our guide on how to [Configure Your Linode for Reverse DNS
          * (rDNS)](https://www.linode.com/docs/guides/configure-rdns/).
          */
-        name: string;
+        name?: string;
         /**
          * The port this Record points to. Only valid and required for SRV record requests.
          */
-        port: number;
+        port?: number;
         /**
          * The priority of the target host for this Record. Lower values are preferred. Only valid for MX and SRV record requests. Required for SRV record requests.
          *
          * Defaults to `0` for MX record requests. Must be `0` for Null MX records.
          */
-        priority: number;
+        priority?: number;
         /**
          * The protocol this Record's service communicates with. An underscore (`_`) is prepended automatically to the submitted value for this property. Only valid for SRV record requests.
          */
-        protocol: string | null;
+        protocol?: string | null;
         /**
          * The name of the service. An underscore (`_`) is prepended and a period (`.`) is appended automatically to the submitted value for this property. Only valid and required for SRV record requests.
          */
-        service: string | null;
+        service?: string | null;
         /**
          * __Filterable__ The tag portion of a CAA record. Only valid and required for CAA record requests.
          */
-        tag: 'issue' | 'issuewild' | 'iodef';
+        tag?: 'issue' | 'issuewild' | 'iodef';
         /**
          * __Filterable__ The target for this Record. For requests, this property's actual usage and whether it is required depends on the type of record this represents:
          *
@@ -19519,11 +19519,11 @@ export type PostDomainRecordData = {
          *
          * With the exception of A, AAAA, and CAA records, this field accepts a trailing period.
          */
-        target: string;
+        target?: string;
         /**
          * "Time to Live" - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
          */
-        ttl_sec: number;
+        ttl_sec?: number;
         /**
          * __Filterable__ The type of Record this is in the DNS system. For example, A records associate a domain name with an IPv4 address, and AAAA records associate a domain name with an IPv6 address. For more information, see the guides on [DNS Record Types](https://www.linode.com/docs/products/networking/dns-manager/guides/#dns-record-types).
          */
@@ -19531,11 +19531,11 @@ export type PostDomainRecordData = {
         /**
          * __Read-only__ When this Domain Record was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
         /**
          * The relative weight of this Record used in the case of identical priority. Higher values are preferred. Only valid and required for SRV record requests.
          */
-        weight: number;
+        weight?: number;
     };
     path: {
         /**
@@ -19913,29 +19913,29 @@ export type PutDomainRecordData = {
          * `PTR`: See our guide on how to [Configure Your Linode for Reverse DNS
          * (rDNS)](https://www.linode.com/docs/guides/configure-rdns/).
          */
-        name: string;
+        name?: string;
         /**
          * The port this Record points to. Only valid and required for SRV record requests.
          */
-        port: number;
+        port?: number;
         /**
          * The priority of the target host for this Record. Lower values are preferred. Only valid for MX and SRV record requests. Required for SRV record requests.
          *
          * Defaults to `0` for MX record requests. Must be `0` for Null MX records.
          */
-        priority: number;
+        priority?: number;
         /**
          * The protocol this Record's service communicates with. An underscore (`_`) is prepended automatically to the submitted value for this property. Only valid for SRV record requests.
          */
-        protocol: string | null;
+        protocol?: string | null;
         /**
          * The name of the service. An underscore (`_`) is prepended and a period (`.`) is appended automatically to the submitted value for this property. Only valid and required for SRV record requests.
          */
-        service: string | null;
+        service?: string | null;
         /**
          * __Filterable__ The tag portion of a CAA record. Only valid and required for CAA record requests.
          */
-        tag: 'issue' | 'issuewild' | 'iodef';
+        tag?: 'issue' | 'issuewild' | 'iodef';
         /**
          * __Filterable__ The target for this Record. For requests, this property's actual usage and whether it is required depends on the type of record this represents:
          *
@@ -19971,15 +19971,15 @@ export type PutDomainRecordData = {
          *
          * With the exception of A, AAAA, and CAA records, this field accepts a trailing period.
          */
-        target: string;
+        target?: string;
         /**
          * "Time to Live" - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
          */
-        ttl_sec: number;
+        ttl_sec?: number;
         /**
          * The relative weight of this Record used in the case of identical priority. Higher values are preferred. Only valid and required for SRV record requests.
          */
-        weight: number;
+        weight?: number;
     };
     path: {
         /**
@@ -21570,11 +21570,11 @@ export type PutSharegroupData = {
         /**
          * A detailed description of this share group.
          */
-        description: string;
+        description?: string;
         /**
          * The share group's descriptive name.
          */
-        label: string;
+        label?: string;
     };
     path: {
         /**
@@ -22052,11 +22052,11 @@ export type PutSharegroupImageshareData = {
         /**
          * A detailed description of this image share.
          */
-        description: string;
+        description?: string;
         /**
          * The shared image's descriptive name.
          */
-        label: string;
+        label?: string;
     };
     path: {
         /**
@@ -23032,64 +23032,64 @@ export type PutImageData = {
          *
          * - `distributed-sites`. Whether the image can be used in distributed compute regions. Compared to a core compute region, distributed compute regions offer limited functionality, but they're globally distributed. Your image can be geographically closer to you, potentially letting you deploy it quicker. See [Regions and images](https://techdocs.akamai.com/cloud-computing/docs/images#regions-and-images) for complete details.
          */
-        readonly capabilities: Array<string>;
+        readonly capabilities?: Array<string>;
         /**
          * __Read-only__ When this image was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ The name of the user who created this image, or `linode` for public images.
          */
-        readonly created_by: string;
+        readonly created_by?: string;
         /**
          * __Filterable__, __Read-only__ A `true` value indicates a deprecated image. Only public images can be deprecated.
          */
-        readonly deprecated: boolean;
+        readonly deprecated?: boolean;
         /**
          * A detailed description of this image.
          */
-        description: string | null;
+        description?: string | null;
         /**
          * __Read-only__ The time of the public image's planned removal from service. This is `null` for private images.
          */
-        readonly eol: string | null;
+        readonly eol?: string | null;
         /**
          * __Read-only__ Only images created automatically from a deleted compute instance (type=automatic) expire. This is `null` for private images.
          */
-        readonly expiry: string | null;
+        readonly expiry?: string | null;
         /**
          * __Read-only__ The unique identifier for each image.
          */
-        readonly id: string;
+        readonly id?: string;
         /**
          * __Filterable__, __Read-only__ A `true` value if the image is a public distribution image. A `false` value indicates private, account-specific images.
          */
-        readonly is_public: boolean;
+        readonly is_public?: boolean;
         /**
          * __Filterable__, __Read-only__ A `true` value for shared private images. `none` for images shared within a group.
          */
-        is_shared: true | false | 'none';
+        is_shared?: true | false | 'none';
         /**
          * __Filterable__ A short description of the image.
          */
-        label: string;
+        label?: string;
         /**
          * __Read-only__ Details on the regions where this image is stored. See [Regions and images](https://techdocs.akamai.com/cloud-computing/docs/images#regions-and-images) for full details on support for `regions`.
          */
-        readonly regions: Array<{
+        readonly regions?: Array<{
             /**
              * The unique identifier for the core compute region where this image is stored.
              */
-            region: string;
+            region?: string;
             /**
              * The status of the image in this `region`. Possible values are `available`, `creating`, `pending`, `pending deletion`, `pending replication`, or `replicating`.
              */
-            status: 'available' | 'creating' | 'pending' | 'pending deletion' | 'pending replication' | 'replicating';
+            status?: 'available' | 'creating' | 'pending' | 'pending deletion' | 'pending replication' | 'replicating';
         }>;
         /**
          * __Filterable__, __Read-only__ The minimum size in MB this image needs to deploy.
          */
-        readonly size: number;
+        readonly size?: number;
         /**
          * __Filterable__, __Read-only__ The current status of the image. Possible values are `available`, `creating`, and `pending_upload`.
          *
@@ -23097,11 +23097,11 @@ export type PutImageData = {
          * >
          * > The `+order_by` and `+order` operators are not available when [filtering](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) on this key.
          */
-        status: 'creating' | 'pending_upload' | 'available';
+        status?: 'creating' | 'pending_upload' | 'available';
         /**
          * __Filterable__ Tags used for organizational purposes. A tag can be from 3 to 100 characters long, and an image can have a maximum of 500 total tags.
          */
-        tags: Array<string>;
+        tags?: Array<string>;
         /**
          * __Read-only__ The total size in bytes of all instances of this image, in all `regions`.
          *
@@ -23109,19 +23109,19 @@ export type PutImageData = {
          * >
          * > This object is empty for existing images. It's intended for use with future functionality.
          */
-        readonly total_size: number;
+        readonly total_size?: number;
         /**
          * __Filterable__, __Read-only__ How the image was created. Create a `manual` image at any time. An `automatic` image is created automatically from a deleted compute instance.
          */
-        type: 'manual' | 'automatic';
+        type?: 'manual' | 'automatic';
         /**
          * __Read-only__ When this image was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
         /**
          * __Filterable__, __Read-only__ The upstream distribution vendor. This is `null` for private images.
          */
-        readonly vendor: string | null;
+        readonly vendor?: string | null;
     };
     path: {
         /**
@@ -23320,7 +23320,7 @@ export type PostReplicateImageData = {
         /**
          * The unique identifier for each compute `region`. See [Regions and images](https://techdocs.akamai.com/cloud-computing/docs/images#regions-and-images) for full details on support for `regions`.
          */
-        regions: Array<string>;
+        regions?: Array<string>;
     };
     path: {
         /**
@@ -23619,47 +23619,47 @@ export type GetLinodeInstancesData = {
             /**
              * All conditions need to be true.
              */
-            '+and': Array<{
+            '+and'?: Array<{
                 [key: string]: unknown;
             }>;
             /**
              * The provided string needs to be in the value.
              */
-            '+contains': string;
+            '+contains'?: string;
             /**
              * The value needs to be greater than the provided number.
              */
-            '+gt': number;
+            '+gt'?: number;
             /**
              * The value needs to be greater than or equal to the provided number.
              */
-            '+gte': number;
+            '+gte'?: number;
             /**
              * The value needs to be less than the provided number.
              */
-            '+lt': number;
+            '+lt'?: number;
             /**
              * The value needs to be less than or equal to the provided number.
              */
-            '+lte': number;
+            '+lte'?: number;
             /**
              * The provided string is left out of the results.
              */
-            '+neq': string;
+            '+neq'?: string;
             /**
              * At least one condition needs to be true.
              */
-            '+or': Array<{
+            '+or'?: Array<{
                 [key: string]: unknown;
             }>;
             /**
              * Sort in ascending (`asc`) or descending (`desc`) order. This defaults to `asc`. Requires `+order_by`.
              */
-            '+order': 'asc' | 'desc';
+            '+order'?: 'asc' | 'desc';
             /**
              * Order results based on the provided attribute. The attribute needs to be filterable.
              */
-            '+order_by': string;
+            '+order_by'?: string;
         };
     };
     path?: never;
@@ -23959,27 +23959,27 @@ export type PostLinodeInstanceData = {
         /**
          * __Write-only__ A list of public SSH keys that will be automatically appended to the root user's `~/.ssh/authorized_keys` file when deploying from an Image.
          */
-        authorized_keys: Array<string>;
+        authorized_keys?: Array<string>;
         /**
          * __Write-only__ A list of usernames for authorized users. Before you can add a user, it needs an SSH key assigned to its profile. See [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) for more information. If the usernames already have associated SSH keys, the keys will be appended to the root users `~/.ssh/authorized_keys` file automatically when deploying from an image.
          */
-        authorized_users: Array<string>;
+        authorized_users?: Array<string>;
         /**
          * __Write-only__ This field defaults to `true` if the Linode is created with an Image or from a Backup. If it is deployed from an Image or a Backup and you wish it to remain `offline` after deployment, set this to `false`.
          */
-        booted: boolean;
+        booted?: boolean;
         /**
          * Local disk encryption ensures that your data stored on Linodes is secured. Disk encryption protects against unauthorized data access by keeping the data encrypted if the disk is ever removed from the data center, decommissioned, or disposed of. The platform manages the encryption and decryption for you.
          *
          * By default, encryption is `enabled` on all Linodes. If you opted out of encryption or if the Linode was created prior to local disk encryption support, you can encrypt your data using [Rebuild](https://techdocs.akamai.com/linode-api/reference/post-rebuild-linode-instance).
          */
-        disk_encryption: 'enabled' | 'disabled';
+        disk_encryption?: 'enabled' | 'disabled';
         /**
          * An Image ID to deploy the Linode Disk from.
          *
          * Run the [List images](https://techdocs.akamai.com/linode-api/reference/get-images) operation with authentication to view all available Images. Official Linode Images start with `linode/`, while your Account's Images start with `private/`. Creating a disk from a Private Image requires `read_only` or `read_write` permissions for that Image. Run the [Update a user's grants](https://techdocs.akamai.com/linode-api/reference/put-user-grants) operation to adjust permissions for an Account Image.
          */
-        image: string | null;
+        image?: string | null;
         /**
          * __Beta__ Defines the maintenance policy for this Linode. Choose from the following policies:
          *
@@ -23988,11 +23988,11 @@ export type PostLinodeInstanceData = {
          *
          * Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details.
          */
-        maintenance_policy: 'linode/migrate' | 'linode/power_off_on';
+        maintenance_policy?: 'linode/migrate' | 'linode/power_off_on';
         /**
          * __Write-only__ An object containing user-defined data relevant to the creation of Linodes.
          */
-        metadata: {
+        metadata?: {
             /**
              * Base64-encoded [cloud-config](https://www.linode.com/docs/products/compute/compute-instances/guides/metadata-cloud-config/) data.
              *
@@ -24002,7 +24002,7 @@ export type PostLinodeInstanceData = {
              *
              * Unencoded data must not exceed 65535 bytes, or about 16kb encoded.
              */
-            user_data: string;
+            user_data?: string;
         };
         /**
          * __Write-only__ This sets the root user's password on a newly created Linode Disk when deploying from an Image.
@@ -24011,7 +24011,7 @@ export type PostLinodeInstanceData = {
          *
          * - Must meet a password strength score requirement that is calculated internally by the API. If the strength requirement is not met, you will receive a `Password does not meet strength requirement` error.
          */
-        root_pass: string;
+        root_pass?: string;
         /**
          * This field is required only if the StackScript being deployed requires input data from the User for successful completion. See [User Defined Fields (UDFs)](https://www.linode.com/docs/products/tools/stackscripts/guides/write-a-custom-script/#declare-user-defined-fields-udfs) for more details.
          *
@@ -24019,13 +24019,13 @@ export type PostLinodeInstanceData = {
          *
          * Total length cannot exceed 65,535 characters.
          */
-        stackscript_data: {
+        stackscript_data?: {
             [key: string]: unknown;
         };
         /**
          * A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode. A compatible `image` is required to use a StackScript. To get a list of available StackScript and their permitted Images, run [List StackScripts](https://techdocs.akamai.com/linode-api/reference/get-stack-scripts). This field cannot be used when deploying from a Backup or a Private Image.
          */
-        stackscript_id: number;
+        stackscript_id?: number;
     } & {
         /**
          * A Backup ID from another Linode's available backups. Your User must have `read_write` access to that Linode, the Backup must have a `status` of `successful`, and the Linode must be deployed to the same `region` as the Backup. Run [List backups](https://techdocs.akamai.com/linode-api/reference/get-backups) for a Linode's available backups.
@@ -24066,53 +24066,53 @@ export type PostLinodeInstanceData = {
             /**
              * Indicates if the interface serves as the default route when multiple interfaces are eligible for this role. A public interface can have both an IPv4 `default_route` and an IPv6 `default_route`, provided it has at least one IP address of the corresponding type.
              */
-            default_route: {
+            default_route?: {
                 /**
                  * If set to `true`, the interface is used for the IPv4 `default_route`. Only one interface per Linode can be set as the IPv4 default route.
                  */
-                ipv4: boolean | null;
+                ipv4?: boolean | null;
                 /**
                  * If set to `true`, the interface is used for the IPv6 `default_route`. Only one interface per Linode can have the IPv6 default route.
                  */
-                ipv6: boolean | null;
+                ipv6?: boolean | null;
             };
             /**
              * The enabled firewall to secure a VPC or public interface. Not allowed for VLAN interfaces. If a `firewall_id` is not provided for a VPC or a public interface, then its [default interface firewall](https://techdocs.akamai.com/linode-api/reference/get-linode-interface-firewalls) is used. If a default firewall is not available, and `null` is not specified, the request fails. Setting the `firewall_id` as `null` indicates that no firewall device will be attached to the interface.
              */
-            firewall_id: number | null;
+            firewall_id?: number | null;
             /**
              * Public interface settings. A Linode can have only one public interface. A public interface can have both IPv4 and IPv6 configurations.
              */
-            public: {
+            public?: {
                 /**
                  * IPv4 address settings for this public interface. If omitted, a public IPv4 address is automatically allocated.
                  */
-                ipv4: {
+                ipv4?: {
                     /**
                      * List of IPv4 addresses to assign to this interface. Setting any to `auto` allocates a public IPv4 address. To create a public interface that uses IPv6 and no IPv4, set the IPv4 address as an empty list `[]`.
                      */
-                    addresses: Array<{
+                    addresses?: Array<{
                         /**
                          * The interface's public IPv4 address. You can specify which public IPv4 address to configure for the interface. Setting this to `auto` automatically allocates a public address. To create a public interface that uses IPv6 and no IPv4, set the IPv4 address as an empty list `[]`. If the address is a reserved or automatically assigned, it needs to be reserved or already assigned to a single Linode, and it can’t be assigned to any other interface.
                          */
-                        address: string | 'auto' | string;
+                        address?: string | 'auto' | string;
                         /**
                          * The IPv4 primary address configures the source address for routes within the Linode on the corresponding network interface.
                          * - Don't set this to `false` if there's only one address in the `addresses` array.
                          * - If more than one address is provided, primary can be set to `true` for one address.
                          * - If only one address is present in the `addresses` array, this address is automatically set as the primary address.
                          */
-                        primary: boolean;
+                        primary?: boolean;
                     }>;
                 };
                 /**
                  * IPv6 address settings for the public interface.
                  */
-                ipv6: {
+                ipv6?: {
                     /**
                      * IPv6 address ranges to assign to this interface. If omitted, no ranges are assigned.
                      */
-                    ranges: Array<{
+                    ranges?: Array<{
                         /**
                          * Your assigned IPv6 range in CIDR notation (`2001:0db8::1/64`) or prefix (`/64`).
                          * - The prefix of `/64` or `/56` block of IPv6 addresses.
@@ -24126,34 +24126,34 @@ export type PostLinodeInstanceData = {
             /**
              * VLAN interface settings. A Linode can have up to three VLAN interfaces, with a unique `vlan_label` for each.
              */
-            vlan: {
+            vlan?: {
                 /**
                  * This VLAN interface's private IPv4 address in classless inter-domain routing (CIDR) notation.
                  */
-                ipam_address: string;
+                ipam_address?: string;
                 /**
                  * The VLAN's unique label. VLAN interfaces on the same Linode must have a unique `vlan_label`.
                  */
-                vlan_label: string;
+                vlan_label?: string;
             } | null;
         } | {
             /**
              * Indicates if the interface is used as the default route when multiple interfaces are eligible for this role. A VPC interface can have an IPv4 `default_route`.
              */
-            default_route: {
+            default_route?: {
                 /**
                  * If set to `true`, the interface is used for the IPv4 `default_route`. Only one interface per Linode can be set as the IPv4 default route.
                  */
-                ipv4: boolean | null;
+                ipv4?: boolean | null;
             };
             /**
              * The enabled firewall to secure a VPC or public interface. Not allowed for VLAN interfaces. If a `firewall_id` is not provided for a VPC or a public interface, then its default interface firewall is used. If a default firewall is not available, and `null` is not specified, the request fails. Setting the `firewall_id` as `null` indicates that no firewall device will be attached to the interface.
              */
-            firewall_id: number | null;
+            firewall_id?: number | null;
             /**
              * VPC interface settings. A Linode can have one VPC interface. The maximum number of interfaces allowed on a Linode is three.
              */
-            vpc: {
+            vpc?: {
                 /**
                  * Interfaces can be configured with IPv4 addresses or ranges.
                  */
@@ -24161,11 +24161,11 @@ export type PostLinodeInstanceData = {
                     /**
                      * IPv4 address settings for this VPC interface.
                      */
-                    addresses: Array<{
+                    addresses?: Array<{
                         /**
                          * Specifies which IPv4 address to use in the VPC subnet. You can specify which VPC Ipv4 address in the subnet to configure for the interface. You can't use an IPv4 address taken from another Linode or interface, or the first two or last two addresses in the VPC subnet. When `address` is set to `auto`, an IP address from the subnet is automatically assigned.
                          */
-                        address: string | 'auto';
+                        address?: string | 'auto';
                         /**
                          * The 1:1 NAT IPv4 address used to associate a public IPv4 address with the interface's VPC subnet IPv4 address.
                          * - You can set this to a specific public IPv4 address that's available on the Linode.
@@ -24175,19 +24175,19 @@ export type PostLinodeInstanceData = {
                          * - If the address is a reserved or an automatically assigned IP, the IP must be reserved or already assigned to a single Linode, and not assigned to an interface.
                          * - If this property is omitted or set to `null`, no 1:1 NAT configuration will be applied to the VPC interface.
                          */
-                        nat_1_1_address: string | 'auto' | null;
+                        nat_1_1_address?: string | 'auto' | null;
                         /**
                          * The IPv4 primary address is used to configure the source address for routes within the Linode on the corresponding network interface.
                          * Should not be set to `false` if there is only one address present in the `addresses` array.
                          * If more than one address is provided, primary must be set to `true` for one address.
                          * If only one address is present in the `addresses` array, this address is automatically set as the primary address.
                          */
-                        primary: boolean | null;
+                        primary?: boolean | null;
                     }>;
                     /**
                      * VPC IPv4 ranges.
                      */
-                    ranges: Array<{
+                    ranges?: Array<{
                         /**
                          * CIDR notation of a range (`1.2.3.4/24`) or prefix only (`/24`).
                          * - When only the prefix is provided, then an available range of that size within the VPC's subnet is automatically selected.
@@ -24281,7 +24281,7 @@ export type PostLinodeInstanceData = {
                  * >
                  * > You can't set this to a specific IPv4 address when creating a new Linode. During the creation process, the network automatically establishes a public IPv4 address for the Linode. Since this address doesn't exist yet, you can't include a custom IPv4 address to change it. After your Linode is created, you can [update your configuration profile interface](https://www.linode.com/docs/api/linode-instances/#configuration-profile-interface-update) to change the `nat_1_1` address.
                  */
-                nat_1_1: string | 'any' | null;
+                nat_1_1?: string | 'any' | null;
                 /**
                  * The VPC subnet IPv4 address for this interface.
                  *
@@ -24297,7 +24297,7 @@ export type PostLinodeInstanceData = {
                  *
                  * - If omitted, a valid address within the Subnet IPv4 range is automatically assigned.
                  */
-                vpc: string | null;
+                vpc?: string | null;
             };
             /**
              * __Filterable__ The name of this interface.
@@ -24398,7 +24398,7 @@ export type PostLinodeInstanceData = {
             /**
              * The placement group's ID. You need to provide it for all operations that affect it.
              */
-            id: number;
+            id?: number;
         };
         /**
          * If `true`, the created Linode will have private networking enabled and assigned a private IPv4 address.
@@ -25010,7 +25010,7 @@ export type PutLinodeInstanceData = {
      * Any field that is not marked as `readOnly` may be updated. Fields that are marked `readOnly` will be ignored. If any updated field fails to pass validation, the Linode will not be updated.
      */
     body: {
-        alerts: {
+        alerts?: {
             /**
              * The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we'll send you an alert. Your Linode's total CPU capacity is represented as 100%, multiplied by its number of cores.
              *
@@ -25020,49 +25020,49 @@ export type PutLinodeInstanceData = {
              *
              * If the value is set to `0` (zero), the alert is disabled.
              */
-            cpu: number;
+            cpu?: number;
             /**
              * The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we'll send you an alert. If set to `0` (zero), this alert is disabled.
              */
-            io: number;
+            io?: number;
             /**
              * The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we'll send you an alert. If this is set to `0` (zero), the alert is disabled.
              */
-            network_in: number;
+            network_in?: number;
             /**
              * The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we'll send you an alert. If this is set to `0` (zero), the alert is disabled.
              */
-            network_out: number;
+            network_out?: number;
             /**
              * The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we'll alert you. If this is set to `0` (zero), the alert is disabled.
              */
-            transfer_quota: number;
+            transfer_quota?: number;
         };
         /**
          * Information about this Linode's backups status. For information about available backups, run [List backups](https://techdocs.akamai.com/linode-api/reference/get-backups).
          */
-        backups: {
+        backups?: {
             /**
              * __Read-only__ Whether Backups for this Linode are available for restoration.
              *
              * Backups undergoing maintenance are not available for restoration.
              */
-            readonly available: boolean;
+            readonly available?: boolean;
             /**
              * __Read-only__ If this Linode has the Backup service enabled. To enable backups, run [Enable backups](https://techdocs.akamai.com/linode-api/reference/post-enable-backups).
              */
-            readonly enabled: boolean;
+            readonly enabled?: boolean;
             /**
              * __Read-only__ The last successful backup time. Displayed as `null` if there was no previous backup.
              */
-            readonly last_successful: string;
-            schedule: {
+            readonly last_successful?: string;
+            schedule?: {
                 /**
                  * The day of the week that your Linode's weekly backup is taken. If not set manually, a day will be chosen for you. Backups are taken every day, but backups taken on this day are preferred when selecting backups to retain for a longer period.
                  *
                  * If not set manually, then when backups are initially enabled, this may come back as `Scheduling` until the `day` is automatically selected.
                  */
-                day: 'Scheduling' | 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
+                day?: 'Scheduling' | 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
                 /**
                  * When your backups will be taken, in UTC. A backups window is a two-hour span of time in which the backup may occur.
                  *
@@ -25070,63 +25070,63 @@ export type PutLinodeInstanceData = {
                  *
                  * If not set manually, when backups are initially enabled this may come back as `Scheduling` until the `window` is automatically selected.
                  */
-                window: 'Scheduling' | 'W0' | 'W2' | 'W4' | 'W6' | 'W8' | 'W10' | 'W12' | 'W14' | 'W16' | 'W18' | 'W20' | 'W22';
+                window?: 'Scheduling' | 'W0' | 'W2' | 'W4' | 'W6' | 'W8' | 'W10' | 'W12' | 'W14' | 'W16' | 'W18' | 'W20' | 'W22';
             };
         };
         /**
          * __Limited availability__, __Read-only__ A list of capabilities this compute instance supports.
          */
-        readonly capabilities: Array<string>;
+        readonly capabilities?: Array<string>;
         /**
          * __Read-only__ When this Linode was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ Indicates the local disk encryption setting for this Linode. If the Linode is part of an LKE cluster, the value is `null`.
          */
-        readonly disk_encryption: string | null;
+        readonly disk_encryption?: string | null;
         /**
          * __Deprecated__, __Filterable__ The group label for this Linode.
          *
          * @deprecated
          */
-        group: string;
+        group?: string;
         /**
          * __Read-only__ Whether this compute instance was provisioned with `user_data` provided via the Metadata service. See the [Create a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance) description for more information on Metadata.
          */
-        readonly has_user_data: boolean;
+        readonly has_user_data?: boolean;
         /**
          * __Read-only__ The Linode's host machine, as a UUID.
          */
-        readonly host_uuid: string;
+        readonly host_uuid?: string;
         /**
          * __Read-only__ The virtualization software powering this Linode.
          */
-        hypervisor: 'kvm';
+        hypervisor?: 'kvm';
         /**
          * __Filterable__, __Read-only__ This Linode's ID which must be provided for all operations impacting this Linode.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * An Image ID to deploy the Linode Disk from.
          *
          * Run the [List images](https://techdocs.akamai.com/linode-api/reference/get-images) operation with authentication to view all available Images. Official Linode Images start with `linode/`, while your Account's Images start with `private/`. Creating a disk from a Private Image requires `read_only` or `read_write` permissions for that Image. Run the [Update a user's grants](https://techdocs.akamai.com/linode-api/reference/put-user-grants) operation to adjust permissions for an Account Image.
          */
-        image: string | null;
+        image?: string | null;
         /**
          * __Filterable__, __Read-only__ Indicates if the Linode is configured to use Linode interfaces (`linode`) or legacy configuration profile interfaces (`legacy_config`).
          */
-        interface_generation: 'legacy_config' | 'linode';
+        interface_generation?: 'legacy_config' | 'linode';
         /**
          * __Filterable__, __Read-only__ This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) to get additional IPv4 addresses.
          *
          * IPv4 addresses may be reassigned between your Linodes, or shared with other Linodes. See the [networking](https://techdocs.akamai.com/linode-api/reference/post-firewalls) operations for details.
          */
-        readonly ipv4: Array<string>;
+        readonly ipv4?: Array<string>;
         /**
          * __Read-only__ This Linode's IPv6 SLAAC address. This address is specific to a Linode, and may not be shared. If the Linode has not been assigned an IPv6 address, the return value will be `null`.
          */
-        readonly ipv6: string | null;
+        readonly ipv6?: string | null;
         /**
          * __Filterable__ Provides a name for the Linode. If not provided, the API generates one for it.
          *
@@ -25136,30 +25136,30 @@ export type PutLinodeInstanceData = {
          * - It can only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).
          * - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.
          */
-        label: string;
+        label?: string;
         /**
          * __Read-only__ The ID of the Kubernetes cluster if the Linode is part of cluster.
          */
-        readonly lke_cluster_id: number | null;
+        readonly lke_cluster_id?: number | null;
         /**
          * __Beta__ The maintenance policy configured by the user for this Linode. Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details.
          */
-        maintenance_policy: 'linode/migrate' | 'linode/power_off_on';
+        maintenance_policy?: 'linode/migrate' | 'linode/power_off_on';
         /**
          * __Read-only__ Details on the [placement group](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/) that this Linode belongs to. Empty if the Linode isn't in a placement group.
          */
-        readonly placement_group: {
+        readonly placement_group?: {
             /**
              * The placement group's ID. You need to provide it for all operations that affect it.
              */
-            id: number;
+            id?: number;
             /**
              * __Filterable__ The unique name set for the placement group. A label has these constraints:
              *
              * - It needs to begin and end with an alphanumeric character.
              * - It can only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).
              */
-            label: string;
+            label?: string;
             /**
              * How requests to add future compute instances to your placement group are handled, and whether it remains compliant:
              *
@@ -25172,7 +25172,7 @@ export type PutLinodeInstanceData = {
              * >
              * > In rare cases, non-compliance can occur with a `strict` placement group if Akamai needs to failover or migrate your compute instances for maintenance. Fixing non-compliance for a `strict` placement group is prioritized over a `flexible` group.
              */
-            placement_group_policy: 'strict' | 'flexible';
+            placement_group_policy?: 'strict' | 'flexible';
             /**
              * __Filterable__, __Read-only__ How compute instances are distributed in your placement group. A `placement_group_type` using anti-affinity (`anti-affinity:local`) places compute instances in separate hosts, but still in the same region. This best supports the spread-apart model for high availability. A `placement_group_type` using affinity places compute instances physically close together, possibly on the same host. This supports the grouped-together model for low-latency.
              *
@@ -25180,38 +25180,38 @@ export type PutLinodeInstanceData = {
              * >
              * > Currently, only `anti_affinity:local` is available for `placement_group_type`.
              */
-            placement_group_type: 'anti_affinity:local';
+            placement_group_type?: 'anti_affinity:local';
         } | null;
         /**
          * __Filterable__, __Read-only__ The [region](https://techdocs.akamai.com/linode-api/reference/get-regions) where the Linode deployed. A Linode's region can only be changed by initiating a [cross data center migration](https://techdocs.akamai.com/linode-api/reference/post-migrate-linode-instance).
          */
-        readonly region: string;
+        readonly region?: string;
         /**
          * __Read-only__ Information about the resources available to this Linode.
          */
-        readonly specs: {
+        readonly specs?: {
             /**
              * __Read-only__ The amount of storage space, in MB, this Linode has access to. A typical Linode divides this space between a primary disk with an `image` deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an `image` through [Create a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance). While this configuration is suitable for 99% of use cases, if you need finer control over your Linode's disks, see the [List disks](https://techdocs.akamai.com/linode-api/reference/get-linode-disks) operations.
              */
-            readonly disk: number;
+            readonly disk?: number;
             /**
              * __Read-only__ The number of GPUs this Linode has access to.
              */
-            readonly gpus: number;
+            readonly gpus?: number;
             /**
              * __Read-only__ The amount of RAM, in MB, this Linode has access to.
              *
              * Typically, a Linode boots with all of its available RAM, but this can be configured in a config profile. See the [List config profiles](https://techdocs.akamai.com/linode-api/reference/get-linode-configs) operation for more information.
              */
-            readonly memory: number;
+            readonly memory?: number;
             /**
              * __Read-only__ The amount of network transfer this Linode is allotted each month.
              */
-            readonly transfer: number;
+            readonly transfer?: number;
             /**
              * __Read-only__ The number of VCPUs this Linode has access to.
              */
-            readonly vcpus: number;
+            readonly vcpus?: number;
         };
         /**
          * __Read-only__ A brief description of this Linode's current state. This field may change without direct action from you. For example, when a compute instance goes into maintenance mode, its status is `stopped`. Status is generally self-explanatory, based on its name.
@@ -25220,23 +25220,23 @@ export type PutLinodeInstanceData = {
          * - `provisioning` indicates that the API is applying operating system or Marketplace applications on the compute instance.
          * - `billing_suspension` indicates that payment is past due on the compute instance, so we've suspended its use.
          */
-        status: 'running' | 'offline' | 'booting' | 'busy' | 'rebooting' | 'shutting_down' | 'provisioning' | 'deleting' | 'migrating' | 'rebuilding' | 'cloning' | 'restoring' | 'stopped' | 'billing_suspension';
+        status?: 'running' | 'offline' | 'booting' | 'busy' | 'rebooting' | 'shutting_down' | 'provisioning' | 'deleting' | 'migrating' | 'rebuilding' | 'cloning' | 'restoring' | 'stopped' | 'billing_suspension';
         /**
          * __Filterable__ Tags to help you organize your content.
          */
-        tags: Array<string>;
+        tags?: Array<string>;
         /**
          * __Read-only__ This is the [Linode type](https://techdocs.akamai.com/linode-api/reference/get-linode-types) that this Linode was deployed with. To change a Linode's type, use [Resize a Linode](https://techdocs.akamai.com/linode-api/reference/post-resize-linode-instance).
          */
-        readonly type: string;
+        readonly type?: string;
         /**
          * __Read-only__ When this Linode was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
         /**
          * The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and reboots it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie gives up if there have been more than 5 boot jobs issued within 15 minutes.
          */
-        watchdog_enabled: boolean;
+        watchdog_enabled?: boolean;
     };
     path: {
         /**
@@ -26078,7 +26078,7 @@ export type PostBootLinodeInstanceData = {
         /**
          * The Linode Config ID to boot into.
          */
-        config_id: number | null;
+        config_id?: number | null;
     };
     path: {
         /**
@@ -26131,7 +26131,7 @@ export type PostCloneLinodeInstanceData = {
          *
          * - Can only be included when cloning to a new Linode.
          */
-        backups_enabled: boolean;
+        backups_enabled?: boolean;
         /**
          * An array of configuration profile IDs.
          *
@@ -26139,7 +26139,7 @@ export type PostCloneLinodeInstanceData = {
          * - __If an empty array is provided__ for the `configs` parameter, then __no configuration profiles (nor their associated disks) will be cloned__ from the source Linode. Any disks specified by the `disks` parameter will still be cloned.
          * - __If a non-empty array is provided__ for the `configs` parameter, then __the configuration profiles specified in the array (and their associated disks) will be cloned__ from the source Linode. Any disks specified by the `disks` parameter will also be cloned.
          */
-        configs: Array<number>;
+        configs?: Array<number>;
         /**
          * An array of disk IDs.
          *
@@ -26147,32 +26147,32 @@ export type PostCloneLinodeInstanceData = {
          * - __If an empty array is provided__ for the `disks` parameter, then __no extra disks will be cloned__ from the source Linode. All disks associated with the configuration profiles specified by the `configs` parameter will still be cloned.
          * - __If a non-empty array is provided__ for the `disks` parameter, then __the disks specified in the array will be cloned__ from the source Linode, in addition to any disks associated with the configuration profiles specified by the `configs` parameter.
          */
-        disks: Array<number>;
+        disks?: Array<number>;
         /**
          * A label used to group Linodes for display. Linodes are not required to have a group.
          *
          * @deprecated
          */
-        group: string;
+        group?: string;
         /**
          * The label to assign this Linode when cloning to a new Linode.
          *
          * - Can only be provided when cloning to a new Linode.
          * - Defaults to `linode`.
          */
-        label: string;
+        label?: string;
         /**
          * If an existing Linode is the target for the clone, the ID of that Linode. The existing Linode must have enough resources to accept the clone.
          */
-        linode_id: number;
+        linode_id?: number;
         /**
          * __Beta__ Defines the maintenance policy for the new Linode. If you don't provide it, the new Linode inherits the maintenance policy from the original Linode. Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details.
          */
-        maintenance_policy: 'linode/migrate' | 'linode/power_off_on';
+        maintenance_policy?: 'linode/migrate' | 'linode/power_off_on';
         /**
          * __Write-only__ An object containing user-defined data relevant to the creation of Linodes.
          */
-        metadata: {
+        metadata?: {
             /**
              * Base64-encoded [cloud-config](https://www.linode.com/docs/products/compute/compute-instances/guides/metadata-cloud-config/) data.
              *
@@ -26182,7 +26182,7 @@ export type PostCloneLinodeInstanceData = {
              *
              * Unencoded data must not exceed 65535 bytes, or about 16kb encoded.
              */
-            user_data: string;
+            user_data?: string;
         };
         /**
          * Include this to assign this Linode to an existing [placement group](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/). Consider these points when cloning:
@@ -26193,7 +26193,7 @@ export type PostCloneLinodeInstanceData = {
          *
          * - The placement group needs to have capacity. Run the [Get a region](https://techdocs.akamai.com/linode-api/reference/get-region) operation and note either the `maximum_linodes_per_pg` (strict) or `maximum_linodes_per_flexible_pg` (flexible), based on your selected `placement_group_policy`. These represent the Linode limit per placement group, for each `placement_group_policy` type. You can then run the [Get a placement group](https://techdocs.akamai.com/linode-api/reference/get-placement-group) operation to review the Linodes in that group.
          */
-        placement_group: {
+        placement_group?: {
             /**
              * The placement group's ID. You need to provide it for all operations that affect it.
              */
@@ -26204,13 +26204,13 @@ export type PostCloneLinodeInstanceData = {
          *
          * - Can only be provided when cloning to a new Linode.
          */
-        private_ip: boolean;
+        private_ip?: boolean;
         /**
          * This is the Region where the Linode will be deployed. To view all available Regions you can deploy to, run [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions).
          *
          * - Region can only be provided and is required when cloning to a new Linode.
          */
-        region: string;
+        region?: string;
         /**
          * A Linode's Type determines what resources are available to it, including disk space, memory, and virtual cpus. The amounts available to a specific Linode are returned as `specs` on the Linode object.
          *
@@ -26218,7 +26218,7 @@ export type PostCloneLinodeInstanceData = {
          *
          * - Type can only be provided and is required when cloning to a new Linode.
          */
-        type: string;
+        type?: string;
     };
     path: {
         /**
@@ -26926,7 +26926,7 @@ export type PostAddLinodeConfigData = {
         /**
          * Optional field for arbitrary user comments on this configuration.
          */
-        comments: string | null;
+        comments?: string | null;
         /**
          * A dictionary of device disks to use as a device map in a Linode's configuration profile.
          *
@@ -26937,137 +26937,137 @@ export type PostAddLinodeConfigData = {
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sda: {
+            sda?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdb: {
+            sdb?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdc: {
+            sdc?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdd: {
+            sdd?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sde: {
+            sde?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdf: {
+            sdf?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdg: {
+            sdg?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdh: {
+            sdh?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
         };
         /**
          * Helpers enabled when booting to this Linode configuration.
          */
-        helpers: {
+        helpers?: {
             /**
              * Populates the `/dev` directory early during boot without `udev`.  Defaults to `false`.
              */
-            devtmpfs_automount: boolean;
+            devtmpfs_automount?: boolean;
             /**
              * Helps maintain correct `inittab` or `upstart` console device.
              */
-            distro: boolean;
+            distro?: boolean;
             /**
              * Creates a modules dependency file for the kernel you run.
              */
-            modules_dep: boolean;
+            modules_dep?: boolean;
             /**
              * Set to `true` to automatically configure static networking. The `network` option applies only to legacy configuration profile interfaces and does not apply to [Linode interfaces](https://techdocs.akamai.com/linode-api/reference/post-linode-interface).
              */
-            network: boolean | null;
+            network?: boolean | null;
             /**
              * Set to `true` to disable the `updatedb` cron job to avoid disk thrashing.
              */
-            updatedb_disabled: boolean;
+            updatedb_disabled?: boolean;
         };
         /**
          * __Read-only__ The ID of this Config.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * `interfaces` is applicable only to legacy configuration profiles and does not apply to [Linode interfaces](https://techdocs.akamai.com/linode-api/reference/post-linode-interface).
          *
@@ -27094,7 +27094,7 @@ export type PostAddLinodeConfigData = {
          * - Only Next Generation Network (NGN) data centers support VLANs. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view the capabilities of data center regions. If a VLAN is attached to your Linode and you attempt to migrate or clone it to a non-NGN data center, the migration or cloning will not initiate. If a Linode cannot be migrated or cloned because of an incompatibility, you will be prompted to select a different data center or contact support.
          * - See the [VLANs Overview](https://www.linode.com/docs/products/networking/vlans/#technical-specifications) guide to view additional specifications and limitations.
          */
-        interfaces: Array<{
+        interfaces?: Array<{
             /**
              * __Read-only__ Returns `true` if the interface is in use, meaning that the Linode has been booted using the configuration profile to which the interface belongs.
              */
@@ -27174,7 +27174,7 @@ export type PostAddLinodeConfigData = {
                  * >
                  * > You can't set this to a specific IPv4 address when creating a new Linode. During the creation process, the network automatically establishes a public IPv4 address for the Linode. Since this address doesn't exist yet, you can't include a custom IPv4 address to change it. After your Linode is created, you can [update your configuration profile interface](https://www.linode.com/docs/api/linode-instances/#configuration-profile-interface-update) to change the `nat_1_1` address.
                  */
-                nat_1_1: string | 'any' | null;
+                nat_1_1?: string | 'any' | null;
                 /**
                  * The VPC subnet IPv4 address for this interface.
                  *
@@ -27190,7 +27190,7 @@ export type PostAddLinodeConfigData = {
                  *
                  * - If omitted, a valid address within the Subnet IPv4 range is automatically assigned.
                  */
-                vpc: string | null;
+                vpc?: string | null;
             };
             /**
              * __Filterable__ The name of this interface.
@@ -27276,7 +27276,7 @@ export type PostAddLinodeConfigData = {
          *
          * - `linode/direct-disk`. The master boot record (MBR) of the primary disk or root device. Use this in place of a Linux kernel.
          */
-        kernel: string;
+        kernel?: string;
         /**
          * __Filterable__ The name of the configuration for display in Akamai Cloud Manager.
          */
@@ -27284,7 +27284,7 @@ export type PostAddLinodeConfigData = {
         /**
          * Defaults to the total RAM of the Linode.
          */
-        memory_limit: number;
+        memory_limit?: number;
         /**
          * The root device to boot.
          *
@@ -27294,11 +27294,11 @@ export type PostAddLinodeConfigData = {
          *
          * - If you specify a device at the root device location and it's not mounted, the Linode won't boot until a device is mounted.
          */
-        root_device: string;
+        root_device?: string;
         /**
          * Defines the state of your Linode after booting. Defaults to `default`.
          */
-        run_level: 'default' | 'single' | 'binbash';
+        run_level?: 'default' | 'single' | 'binbash';
         /**
          * Controls the virtualization mode. Defaults to `paravirt`.
          *
@@ -27306,7 +27306,7 @@ export type PostAddLinodeConfigData = {
          *
          * - `fullvirt` affords more customization, but is slower because 100% of the VM is virtualized.
          */
-        virt_mode: 'paravirt' | 'fullvirt';
+        virt_mode?: 'paravirt' | 'fullvirt';
     };
     path: {
         /**
@@ -28214,148 +28214,148 @@ export type PutLinodeConfigData = {
         /**
          * Optional field for arbitrary user comments on this configuration.
          */
-        comments: string | null;
+        comments?: string | null;
         /**
          * A dictionary of device disks to use as a device map in a Linode's configuration profile.
          *
          * - An empty device disk dictionary or a dictionary with empty values for device slots is allowed.
          * - If no devices are specified, booting from this configuration will hold until a device exists that allows the boot process to start.
          */
-        devices: {
+        devices?: {
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sda: {
+            sda?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdb: {
+            sdb?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdc: {
+            sdc?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdd: {
+            sdd?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sde: {
+            sde?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdf: {
+            sdf?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdg: {
+            sdg?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdh: {
+            sdh?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
         };
         /**
          * Helpers enabled when booting to this Linode configuration.
          */
-        helpers: {
+        helpers?: {
             /**
              * Populates the `/dev` directory early during boot without `udev`.  Defaults to `false`.
              */
-            devtmpfs_automount: boolean;
+            devtmpfs_automount?: boolean;
             /**
              * Helps maintain correct `inittab` or `upstart` console device.
              */
-            distro: boolean;
+            distro?: boolean;
             /**
              * Creates a modules dependency file for the kernel you run.
              */
-            modules_dep: boolean;
+            modules_dep?: boolean;
             /**
              * Set to `true` to automatically configure static networking. The `network` option applies only to legacy configuration profile interfaces and does not apply to [Linode interfaces](https://techdocs.akamai.com/linode-api/reference/post-linode-interface).
              */
-            network: boolean | null;
+            network?: boolean | null;
             /**
              * Set to `true` to disable the `updatedb` cron job to avoid disk thrashing.
              */
-            updatedb_disabled: boolean;
+            updatedb_disabled?: boolean;
         };
         /**
          * __Read-only__ The ID of this Config.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * `interfaces` is applicable only to legacy configuration profiles and does not apply to [Linode interfaces](https://techdocs.akamai.com/linode-api/reference/post-linode-interface).
          *
@@ -28382,7 +28382,7 @@ export type PutLinodeConfigData = {
          * - Only Next Generation Network (NGN) data centers support VLANs. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view the capabilities of data center regions. If a VLAN is attached to your Linode and you attempt to migrate or clone it to a non-NGN data center, the migration or cloning will not initiate. If a Linode cannot be migrated or cloned because of an incompatibility, you will be prompted to select a different data center or contact support.
          * - See the [VLANs Overview](https://www.linode.com/docs/products/networking/vlans/#technical-specifications) guide to view additional specifications and limitations.
          */
-        interfaces: Array<{
+        interfaces?: Array<{
             /**
              * __Read-only__ Returns `true` if the interface is in use, meaning that the Linode has been booted using the configuration profile to which the interface belongs.
              */
@@ -28462,7 +28462,7 @@ export type PutLinodeConfigData = {
                  * >
                  * > You can't set this to a specific IPv4 address when creating a new Linode. During the creation process, the network automatically establishes a public IPv4 address for the Linode. Since this address doesn't exist yet, you can't include a custom IPv4 address to change it. After your Linode is created, you can [update your configuration profile interface](https://www.linode.com/docs/api/linode-instances/#configuration-profile-interface-update) to change the `nat_1_1` address.
                  */
-                nat_1_1: string | 'any' | null;
+                nat_1_1?: string | 'any' | null;
                 /**
                  * The VPC subnet IPv4 address for this interface.
                  *
@@ -28478,7 +28478,7 @@ export type PutLinodeConfigData = {
                  *
                  * - If omitted, a valid address within the Subnet IPv4 range is automatically assigned.
                  */
-                vpc: string | null;
+                vpc?: string | null;
             };
             /**
              * __Filterable__ The name of this interface.
@@ -28564,15 +28564,15 @@ export type PutLinodeConfigData = {
          *
          * - `linode/direct-disk`. The master boot record (MBR) of the primary disk or root device. Use this in place of a Linux kernel.
          */
-        kernel: string;
+        kernel?: string;
         /**
          * __Filterable__ The name of the configuration for display in Akamai Cloud Manager.
          */
-        label: string;
+        label?: string;
         /**
          * Defaults to the total RAM of the Linode.
          */
-        memory_limit: number;
+        memory_limit?: number;
         /**
          * The root device to boot.
          *
@@ -28582,11 +28582,11 @@ export type PutLinodeConfigData = {
          *
          * - If you specify a device at the root device location and it's not mounted, the Linode won't boot until a device is mounted.
          */
-        root_device: string;
+        root_device?: string;
         /**
          * Defines the state of your Linode after booting. Defaults to `default`.
          */
-        run_level: 'default' | 'single' | 'binbash';
+        run_level?: 'default' | 'single' | 'binbash';
         /**
          * Controls the virtualization mode. Defaults to `paravirt`.
          *
@@ -28594,7 +28594,7 @@ export type PutLinodeConfigData = {
          *
          * - `fullvirt` affords more customization, but is slower because 100% of the VM is virtualized.
          */
-        virt_mode: 'paravirt' | 'fullvirt';
+        virt_mode?: 'paravirt' | 'fullvirt';
     };
     path: {
         /**
@@ -29345,7 +29345,7 @@ export type PostLinodeConfigInterfaceData = {
              * >
              * > You can't set this to a specific IPv4 address when creating a new Linode. During the creation process, the network automatically establishes a public IPv4 address for the Linode. Since this address doesn't exist yet, you can't include a custom IPv4 address to change it. After your Linode is created, you can [update your configuration profile interface](https://www.linode.com/docs/api/linode-instances/#configuration-profile-interface-update) to change the `nat_1_1` address.
              */
-            nat_1_1: string | 'any' | null;
+            nat_1_1?: string | 'any' | null;
             /**
              * The VPC subnet IPv4 address for this interface.
              *
@@ -29361,7 +29361,7 @@ export type PostLinodeConfigInterfaceData = {
              *
              * - If omitted, a valid address within the Subnet IPv4 range is automatically assigned.
              */
-            vpc: string | null;
+            vpc?: string | null;
         };
         /**
          * __Filterable__ The name of this interface.
@@ -30010,7 +30010,7 @@ export type PutLinodeConfigInterfaceData = {
          * >
          * > This only applies to interfaces with a `purpose` of `vpc`.
          */
-        ip_ranges: Array<string>;
+        ip_ranges?: Array<string>;
         /**
          * IPv4 addresses configured for this interface.
          *
@@ -30018,7 +30018,7 @@ export type PutLinodeConfigInterfaceData = {
          * >
          * > This only applies to interfaces with a `purpose` of `vpc`.
          */
-        ipv4: {
+        ipv4?: {
             /**
              * The 1:1 NAT IPv4 address, used to associate a public IPv4 address with the interface's VPC subnet IPv4 address.
              *
@@ -30030,7 +30030,7 @@ export type PutLinodeConfigInterfaceData = {
              *
              * - Omit this object or include it and set it to `null` to leave an existing `nat_1_1` value as is.
              */
-            nat_1_1: string | 'any' | null;
+            nat_1_1?: string | 'any' | null;
             /**
              * The VPC subnet IPv4 address for this interface.
              *
@@ -30040,7 +30040,7 @@ export type PutLinodeConfigInterfaceData = {
              *
              * - If omitted, a valid address within the subnet IPv4 range is automatically assigned.
              */
-            vpc: string | null;
+            vpc?: string | null;
         };
         /**
          * Set to `true` to label this configuration profile interface as the default route to the Linode.
@@ -30049,7 +30049,7 @@ export type PutLinodeConfigInterfaceData = {
          *
          * - If you don't specifically set a `primary`, the first non-`vlan` type interface is automatically treated as the primary.
          */
-        primary: boolean;
+        primary?: boolean;
     };
     path: {
         /**
@@ -30289,11 +30289,11 @@ export type PostAddLinodeDiskData = {
         /**
          * __Write-only__ A list of public SSH keys that will be automatically appended to the root user's `~/.ssh/authorized_keys` file when deploying from an Image.
          */
-        authorized_keys: Array<string>;
+        authorized_keys?: Array<string>;
         /**
          * __Write-only__ A list of usernames for authorized users. Before you can add a user, it needs an SSH key assigned to its profile. See [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) for more information. If the usernames already have associated SSH keys, the keys will be appended to the root users `~/.ssh/authorized_keys` file automatically when deploying from an image.
          */
-        authorized_users: Array<string>;
+        authorized_users?: Array<string>;
         /**
          * The disk's format or file system. A value of `raw` indicates no file system, just a raw binary stream. A value of `swap` indicates a Linux swap area. The values `ext3` or `ext4` represent these Linux journaling file systems. The value `ext2` is the deprecated ext2 Linux file system. Finally, `initrd` indicates the disk is formatted as an uncompressed initial RAM disk.
          *
@@ -30301,17 +30301,17 @@ export type PostAddLinodeDiskData = {
          * >
          * > The `ext2` file system doesn't properly support timestamps and will be removed from Linux support in the near future. Also, `initrd` is a legacy format that no longer applies to most use cases. As a best practice, use the other supported formats or file systems instead.
          */
-        filesystem: 'raw' | 'swap' | 'ext2' | 'ext3' | 'ext4' | 'initrd';
+        filesystem?: 'raw' | 'swap' | 'ext2' | 'ext3' | 'ext4' | 'initrd';
         /**
          * An Image ID to deploy the Linode Disk from.
          *
          * Run the [List images](https://techdocs.akamai.com/linode-api/reference/get-images) operation with authentication to view all available Images. Official Linode Images start with `linode/`, while your Account's Images start with `private/`. Creating a disk from a Private Image requires `read_only` or `read_write` permissions for that Image. Run the [Update a user's grants](https://techdocs.akamai.com/linode-api/reference/put-user-grants) operation to adjust permissions for an Account Image.
          */
-        image: string | null;
+        image?: string | null;
         /**
          * __Filterable__ The name of the disk. This is for display purposes only.
          */
-        label: string;
+        label?: string;
         /**
          * __Write-only__ This sets the root user's password on a newly created Linode Disk when deploying from an Image.
          *
@@ -30319,7 +30319,7 @@ export type PostAddLinodeDiskData = {
          *
          * - Must meet a password strength score requirement that is calculated internally by the API. If the strength requirement is not met, you will receive a `Password does not meet strength requirement` error.
          */
-        root_pass: string;
+        root_pass?: string;
         /**
          * __Filterable__ The size of the Disk in MB.
          *
@@ -30333,13 +30333,13 @@ export type PostAddLinodeDiskData = {
          *
          * Total length cannot exceed 65,535 characters.
          */
-        stackscript_data: {
+        stackscript_data?: {
             [key: string]: unknown;
         };
         /**
          * A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode. A compatible `image` is required to use a StackScript. To get a list of available StackScript and their permitted Images, run [List StackScripts](https://techdocs.akamai.com/linode-api/reference/get-stack-scripts). This field cannot be used when deploying from a Backup or a Private Image.
          */
-        stackscript_id: number;
+        stackscript_id?: number;
     };
     path: {
         /**
@@ -30554,7 +30554,7 @@ export type PutDiskData = {
         /**
          * __Filterable__ The name of the disk. This is for display purposes only.
          */
-        label: string;
+        label?: string;
     };
     path: {
         /**
@@ -31739,53 +31739,53 @@ export type PostLinodeInterfaceData = {
         /**
          * Indicates if the interface serves as the default route when multiple interfaces are eligible for this role. A public interface can have both an IPv4 `default_route` and an IPv6 `default_route`, provided it has at least one IP address of the corresponding type.
          */
-        default_route: {
+        default_route?: {
             /**
              * If set to `true`, the interface is used for the IPv4 `default_route`. Only one interface per Linode can be set as the IPv4 default route.
              */
-            ipv4: boolean | null;
+            ipv4?: boolean | null;
             /**
              * If set to `true`, the interface is used for the IPv6 `default_route`. Only one interface per Linode can have the IPv6 default route.
              */
-            ipv6: boolean | null;
+            ipv6?: boolean | null;
         };
         /**
          * The enabled firewall to secure a VPC or public interface. Not allowed for VLAN interfaces. If a `firewall_id` is not provided for a VPC or a public interface, then its [default interface firewall](https://techdocs.akamai.com/linode-api/reference/get-linode-interface-firewalls) is used. If a default firewall is not available, and `null` is not specified, the request fails. Setting the `firewall_id` as `null` indicates that no firewall device will be attached to the interface.
          */
-        firewall_id: number | null;
+        firewall_id?: number | null;
         /**
          * Public interface settings. A Linode can have only one public interface. A public interface can have both IPv4 and IPv6 configurations.
          */
-        public: {
+        public?: {
             /**
              * IPv4 address settings for this public interface. If omitted, a public IPv4 address is automatically allocated.
              */
-            ipv4: {
+            ipv4?: {
                 /**
                  * List of IPv4 addresses to assign to this interface. Setting any to `auto` allocates a public IPv4 address. To create a public interface that uses IPv6 and no IPv4, set the IPv4 address as an empty list `[]`.
                  */
-                addresses: Array<{
+                addresses?: Array<{
                     /**
                      * The interface's public IPv4 address. You can specify which public IPv4 address to configure for the interface. Setting this to `auto` automatically allocates a public address. To create a public interface that uses IPv6 and no IPv4, set the IPv4 address as an empty list `[]`. If the address is a reserved or automatically assigned, it needs to be reserved or already assigned to a single Linode, and it can’t be assigned to any other interface.
                      */
-                    address: string | 'auto' | string;
+                    address?: string | 'auto' | string;
                     /**
                      * The IPv4 primary address configures the source address for routes within the Linode on the corresponding network interface.
                      * - Don't set this to `false` if there's only one address in the `addresses` array.
                      * - If more than one address is provided, primary can be set to `true` for one address.
                      * - If only one address is present in the `addresses` array, this address is automatically set as the primary address.
                      */
-                    primary: boolean;
+                    primary?: boolean;
                 }>;
             };
             /**
              * IPv6 address settings for the public interface.
              */
-            ipv6: {
+            ipv6?: {
                 /**
                  * IPv6 address ranges to assign to this interface. If omitted, no ranges are assigned.
                  */
-                ranges: Array<{
+                ranges?: Array<{
                     /**
                      * Your assigned IPv6 range in CIDR notation (`2001:0db8::1/64`) or prefix (`/64`).
                      * - The prefix of `/64` or `/56` block of IPv6 addresses.
@@ -31799,34 +31799,34 @@ export type PostLinodeInterfaceData = {
         /**
          * VLAN interface settings. A Linode can have up to three VLAN interfaces, with a unique `vlan_label` for each.
          */
-        vlan: {
+        vlan?: {
             /**
              * This VLAN interface's private IPv4 address in classless inter-domain routing (CIDR) notation.
              */
-            ipam_address: string;
+            ipam_address?: string;
             /**
              * The VLAN's unique label. VLAN interfaces on the same Linode must have a unique `vlan_label`.
              */
-            vlan_label: string;
+            vlan_label?: string;
         } | null;
     } | {
         /**
          * Indicates if the interface is used as the default route when multiple interfaces are eligible for this role. A VPC interface can have an IPv4 `default_route`.
          */
-        default_route: {
+        default_route?: {
             /**
              * If set to `true`, the interface is used for the IPv4 `default_route`. Only one interface per Linode can be set as the IPv4 default route.
              */
-            ipv4: boolean | null;
+            ipv4?: boolean | null;
         };
         /**
          * The enabled firewall to secure a VPC or public interface. Not allowed for VLAN interfaces. If a `firewall_id` is not provided for a VPC or a public interface, then its default interface firewall is used. If a default firewall is not available, and `null` is not specified, the request fails. Setting the `firewall_id` as `null` indicates that no firewall device will be attached to the interface.
          */
-        firewall_id: number | null;
+        firewall_id?: number | null;
         /**
          * VPC interface settings. A Linode can have one VPC interface. The maximum number of interfaces allowed on a Linode is three.
          */
-        vpc: {
+        vpc?: {
             /**
              * Interfaces can be configured with IPv4 addresses or ranges.
              */
@@ -31834,11 +31834,11 @@ export type PostLinodeInterfaceData = {
                 /**
                  * IPv4 address settings for this VPC interface.
                  */
-                addresses: Array<{
+                addresses?: Array<{
                     /**
                      * Specifies which IPv4 address to use in the VPC subnet. You can specify which VPC Ipv4 address in the subnet to configure for the interface. You can't use an IPv4 address taken from another Linode or interface, or the first two or last two addresses in the VPC subnet. When `address` is set to `auto`, an IP address from the subnet is automatically assigned.
                      */
-                    address: string | 'auto';
+                    address?: string | 'auto';
                     /**
                      * The 1:1 NAT IPv4 address used to associate a public IPv4 address with the interface's VPC subnet IPv4 address.
                      * - You can set this to a specific public IPv4 address that's available on the Linode.
@@ -31848,19 +31848,19 @@ export type PostLinodeInterfaceData = {
                      * - If the address is a reserved or an automatically assigned IP, the IP must be reserved or already assigned to a single Linode, and not assigned to an interface.
                      * - If this property is omitted or set to `null`, no 1:1 NAT configuration will be applied to the VPC interface.
                      */
-                    nat_1_1_address: string | 'auto' | null;
+                    nat_1_1_address?: string | 'auto' | null;
                     /**
                      * The IPv4 primary address is used to configure the source address for routes within the Linode on the corresponding network interface.
                      * Should not be set to `false` if there is only one address present in the `addresses` array.
                      * If more than one address is provided, primary must be set to `true` for one address.
                      * If only one address is present in the `addresses` array, this address is automatically set as the primary address.
                      */
-                    primary: boolean | null;
+                    primary?: boolean | null;
                 }>;
                 /**
                  * VPC IPv4 ranges.
                  */
-                ranges: Array<{
+                ranges?: Array<{
                     /**
                      * CIDR notation of a range (`1.2.3.4/24`) or prefix only (`/24`).
                      * - When only the prefix is provided, then an available range of that size within the VPC's subnet is automatically selected.
@@ -32327,28 +32327,28 @@ export type PutLinodeInterfaceSettingsData = {
         /**
          * Interfaces used for the IPv4 `default_route` and IPv6 `default_route` when multiple interfaces are eligible for the role.
          */
-        default_route: {
+        default_route?: {
             /**
              * The VPC or public interface IDs that are eligible to be the IPv4 `default_route` for this Linode. If the `ipv4_eligible_interface_ids` array is empty, this means there are no eligible interfaces eligible for the IPv4 default route role.
              */
-            ipv4_eligible_interface_ids: Array<number>;
+            ipv4_eligible_interface_ids?: Array<number>;
             /**
              * The VPC or public interface ID assigned as the IPv4 `default_route`. The [List Linode interface settings](https://techdocs.akamai.com/linode-api/reference/get-linode-interface-settings) operation provides eligible IPv4 interface IDs.
              */
-            ipv4_interface_id: number | null;
+            ipv4_interface_id?: number | null;
             /**
              * The public interface IDs that are eligible to be the IPv6 `default_route` for this Linode. If the `ipv6_eligible_interface_ids` array is empty, this means there are no eligible interfaces eligible for the IPv6 default route role.
              */
-            ipv6_eligible_interface_ids: Array<number>;
+            ipv6_eligible_interface_ids?: Array<number>;
             /**
              * The public interface ID assigned as the IPv6 `default_route`. The [List Linode interface settings](https://techdocs.akamai.com/linode-api/reference/get-linode-interface-settings) operation provides eligible IPv6 interface IDs.
              */
-            ipv6_interface_id: number | null;
+            ipv6_interface_id?: number | null;
         };
         /**
          * Enables the Network Helper feature. The default value is determined by the `network_helper` setting in the [account settings](https://techdocs.akamai.com/linode-api/reference/get-account-settings). [Power off the Linode](https://techdocs.akamai.com/linode-api/reference/post-shutdown-linode-instance) before disabling or enabling Network Helper.
          */
-        network_helper: boolean;
+        network_helper?: boolean;
     };
     path: {
         /**
@@ -32773,48 +32773,48 @@ export type PutLinodeInterfaceData = {
         /**
          * Defines whether IPv4 and IPv6 default routes are enabled for this interface. Public interfaces can have both an IPv4  and IPv6 `default_route`, provided they have at least one IP address of the corresponding type. If the `default_route` is omitted, (or set to `null`), no changes are made to the `default_route` configuration.
          */
-        default_route: {
+        default_route?: {
             /**
              * If set to `true`, and if the interface has at least one IPv4 address after the PUT request, the `default_route` role is assigned to the interface. If another interface is already configured as the default route, this setting removes that configuration. If the interface has an IPv4 address, the value cannot be set as `false`.
              */
-            ipv4: boolean | null;
+            ipv4?: boolean | null;
             /**
              * If set to `true`, and if the interface has at least one IPv6 address after the PUT request, the `default_route` role is assigned to the interface. If another interface is already configured as the default route, this setting removes that configuration. If the interface has an IPv6 address, the value cannot be set as `false`.
              */
-            ipv6: boolean | null;
+            ipv6?: boolean | null;
         };
         /**
          * Public interface settings.
          */
-        public: {
+        public?: {
             /**
              * IPv4 address settings for this public interface.
              */
-            ipv4: {
+            ipv4?: {
                 /**
                  * List of IPv4 addresses to assign to this interface. When updating the addresses, all addresses must be explicitly listed in the array, and any addresses not included in the update are removed. If omitted or set to `null`, no changes are made to the existing IPv4 configuration.
                  */
-                addresses: Array<{
+                addresses?: Array<{
                     /**
                      * The public IPv4 address configuration for the interface. If set to `auto`, a public IPv4 address is allocated. If the address is a reserved or an automatically assigned public IP, the IP must be reserved or already assigned to a single Linode, and it can’t be already assigned to an interface.
                      */
-                    address: string;
+                    address?: string;
                     /**
                      * The IPv4 primary address for the interface that is used to set up a source address for routes inside the Linode for the corresponding network interface.
                      * Automatically set to `true` and should not be set to `false` if there is only one address present in the addresses array.
                      * If more than one address is provided, primary must be set to `true` for one address.
                      */
-                    primary: boolean | null;
+                    primary?: boolean | null;
                 }>;
             };
             /**
              * IPv6 address settings for the public interface.
              */
-            ipv6: {
+            ipv6?: {
                 /**
                  * List of IPv6 address ranges to assign to this interface. If range is omitted, or set to `null`, no changes are made to the IPv6 ranges of the interface. If range is updated, specify all ranges in this array, otherwise, the currently assigned ranges will be removed.
                  */
-                ranges: Array<{
+                ranges?: Array<{
                     /**
                      * IPv6 range in CIDR notation (`2001:0db8::1/64`) or prefix-only (`/64`).
                      * - The prefix of /64 or /56 block of IPv6 addresses.
@@ -32828,30 +32828,30 @@ export type PutLinodeInterfaceData = {
         /**
          * VLAN interface settings.
          */
-        vlan: {
+        vlan?: {
             /**
              * This VLAN interface's private IPv4 address in classless inter-domain routing (CIDR) notation. The `ipam_address` can't be updated. It needs to be the existing value, or `null`.
              */
-            ipam_address: string | null;
+            ipam_address?: string | null;
             /**
              * The VLAN's label. Once you specify it, you can't update it.
              */
-            vlan_label: string;
+            vlan_label?: string;
         };
     } | {
         /**
          * Indicates if the interface is used as the default route. A VPC interface can have an IPv4 `default_route`.
          */
-        default_route: {
+        default_route?: {
             /**
              * If set to `true`, and if the interface has at least one IPv4 address after the `PUT` request, the `default_route` role is assigned to the interface. If another interface is already configured as the default route, this setting removes that configuration. If the interface has an IPv4 address, the value can't be set to `false`. If this is omitted, or set to `null`, no changes are made to the interface's IPv4 configuration.
              */
-            ipv4: boolean | null;
+            ipv4?: boolean | null;
         };
         /**
          * VPC interface settings.
          */
-        vpc: {
+        vpc?: {
             /**
              * Interfaces can be configured with IPv4 `addresses` or `ranges`. If this is omitted, or set to `null`, no changes are made to the IPv4 configuration.
              */
@@ -32859,7 +32859,7 @@ export type PutLinodeInterfaceData = {
                 /**
                  * IPv4 configuration for this VPC interface. When updating the addresses, all addresses must be explicitly listed in the array, and any addresses not included in the update are removed. If omitted or set to `null`, no changes are made to the existing IPv4 configuration. However, if the `subnet_id` is updated, new default address values are applied.
                  */
-                addresses: Array<{
+                addresses?: Array<{
                     /**
                      * Specifies which IPv4 addresses to use in the VPC subnet. You can't use an IPv4 address taken from another Linode or interface, or the first two or last two addresses in the VPC subnet. Setting `address` to `auto` automatically assigns an IP address from the subnet.
                      */
@@ -32890,13 +32890,13 @@ export type PutLinodeInterfaceData = {
                 /**
                  * VPC IPv4 ranges. If you omit `ranges` or set it to `null`, the interface's IPv4 ranges remain unchanged. But if you update `ranges`, you need to specify all of them, otherwise currently assigned ranges are removed.
                  */
-                ranges: Array<{
+                ranges?: Array<{
                     /**
                      * CIDR notation of a range (`1.2.3.4/28`) or prefix only (`/28`):
                      * - When only the prefix is provided, then an available range of that size within the VPC's subnet is automatically selected.
                      * - If specified as CIDR notation, it must belong to the VPC subnet. All addresses in the range must not be taken by any other Linode or interfaces in the VPC subnet and must not include any of the first two or last two addresses of the VPC subnet.
                      */
-                    range: string | null;
+                    range?: string | null;
                 }>;
             };
             /**
@@ -34320,7 +34320,7 @@ export type PostMigrateLinodeInstanceData = {
          * - The target placement group needs to be in the same `region` you're migrating to.
          * - The placement group needs to have capacity. Run the [Get a region](https://techdocs.akamai.com/linode-api/reference/get-region) operation and note either the `maximum_linodes_per_pg` (strict) or `maximum_linodes_per_flexible_pg` (flexible), based on your selected `placement_group_policy`. These represent the Linode limit per placement group, for each `placement_group_policy` type. You can then run the [Get a placement group](https://techdocs.akamai.com/linode-api/reference/get-placement-group) operation to review the Linodes in that group.
          */
-        placement_group: {
+        placement_group?: {
             /**
              * The placement group's ID. You need to provide it for all operations that affect it.
              */
@@ -34329,7 +34329,7 @@ export type PostMigrateLinodeInstanceData = {
         /**
          * The region to which the Linode will be migrated. Must be a valid region slug. A list of regions can be viewed by running the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation. A cross data center migration will cancel a pending migration that has not yet been initiated. A cross data center migration will initiate a `linode_migrate_datacenter_create` event.
          */
-        region: string;
+        region?: string;
         /**
          * Type of migration used in moving to a new host or Linode type.
          *
@@ -34339,11 +34339,11 @@ export type PostMigrateLinodeInstanceData = {
          * `cold`: the Linode will be powered down and migrated. When the migration
          * is complete, the Linode will be powered on.
          */
-        type: 'warm' | 'cold';
+        type?: 'warm' | 'cold';
         /**
          * When initiating a cross DC migration, setting this value to `true` will also ensure that the Linode is upgraded to the latest generation of hardware that corresponds to your Linode's Type, if any free upgrades are available for it. If no free upgrades are available, and this value is set to `true`, then the endpoint will return a 400 error code and the migration will not be performed. If the data center set in the `region` field does not allow upgrades, then the endpoint will return a 400 error code and the migration will not be performed.
          */
-        upgrade: boolean;
+        upgrade?: boolean;
     };
     path: {
         /**
@@ -34394,7 +34394,7 @@ export type PostMutateLinodeInstanceData = {
         /**
          * Automatically resize disks when resizing a Linode. When resizing down to a smaller plan your Linode's data must fit within the smaller disk size.
          */
-        allow_auto_disk_resize: boolean;
+        allow_auto_disk_resize?: boolean;
     };
     path: {
         /**
@@ -34614,7 +34614,7 @@ export type PostRebootLinodeInstanceData = {
         /**
          * The Linode Config ID to reboot into.  If `null` or omitted, the last booted config will be used.  If there was no last booted config and this Linode only has one config, it will be used.  If a config cannot be determined, an error will be returned.
          */
-        config_id: number | null;
+        config_id?: number | null;
     };
     path: {
         /**
@@ -34665,21 +34665,21 @@ export type PostRebuildLinodeInstanceData = {
         /**
          * __Write-only__ A list of public SSH keys that will be automatically appended to the root user's `~/.ssh/authorized_keys` file when deploying from an Image.
          */
-        authorized_keys: Array<string>;
+        authorized_keys?: Array<string>;
         /**
          * __Write-only__ A list of usernames for authorized users. Before you can add a user, it needs an SSH key assigned to its profile. See [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) for more information. If the usernames already have associated SSH keys, the keys will be appended to the root users `~/.ssh/authorized_keys` file automatically when deploying from an image.
          */
-        authorized_users: Array<string>;
+        authorized_users?: Array<string>;
         /**
          * __Write-only__ This field defaults to `true` if the Linode is created with an Image or from a Backup. If it is deployed from an Image or a Backup and you wish it to remain `offline` after deployment, set this to `false`.
          */
-        booted: boolean;
+        booted?: boolean;
         /**
          * Local disk encryption ensures that your data stored on Linodes is secured. Disk encryption protects against unauthorized data access by keeping the data encrypted if the disk is ever removed from the data center, decommissioned, or disposed of. The platform manages the encryption and decryption for you.
          *
          * By default, encryption is `enabled` on all Linodes. If you opted out of encryption or if the Linode was created prior to local disk encryption support, you can encrypt your data using [Rebuild](https://techdocs.akamai.com/linode-api/reference/post-rebuild-linode-instance).
          */
-        disk_encryption: 'enabled' | 'disabled';
+        disk_encryption?: 'enabled' | 'disabled';
         /**
          * An Image ID to deploy the Linode Disk from.
          *
@@ -34694,11 +34694,11 @@ export type PostRebuildLinodeInstanceData = {
          *
          * Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details.
          */
-        maintenance_policy: 'linode/migrate' | 'linode/power_off_on';
+        maintenance_policy?: 'linode/migrate' | 'linode/power_off_on';
         /**
          * __Write-only__ An object containing user-defined data relevant to the creation of Linodes.
          */
-        metadata: {
+        metadata?: {
             /**
              * Base64-encoded [cloud-config](https://www.linode.com/docs/products/compute/compute-instances/guides/metadata-cloud-config/) data.
              *
@@ -34708,7 +34708,7 @@ export type PostRebuildLinodeInstanceData = {
              *
              * Unencoded data must not exceed 65535 bytes, or about 16kb encoded.
              */
-            user_data: string;
+            user_data?: string;
         };
         /**
          * __Write-only__ This sets the root user's password on a newly created Linode Disk when deploying from an Image.
@@ -34725,18 +34725,18 @@ export type PostRebuildLinodeInstanceData = {
          *
          * Total length cannot exceed 65,535 characters.
          */
-        stackscript_data: {
+        stackscript_data?: {
             [key: string]: unknown;
         };
         /**
          * A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode. A compatible `image` is required to use a StackScript. To get a list of available StackScript and their permitted Images, run [List StackScripts](https://techdocs.akamai.com/linode-api/reference/get-stack-scripts). This field cannot be used when deploying from a Backup or a Private Image.
          */
-        stackscript_id: number;
+        stackscript_id?: number;
     } & {
         /**
          * The ID of the [Linode type](https://techdocs.akamai.com/linode-api/reference/get-linode-types) to resize to with this request.
          */
-        type: string;
+        type?: string;
     };
     path: {
         /**
@@ -35012,97 +35012,97 @@ export type PostRescueLinodeInstanceData = {
      * Optional object of devices to be mounted.
      */
     body?: {
-        devices: {
+        devices?: {
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sda: {
+            sda?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdb: {
+            sdb?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdc: {
+            sdc?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdd: {
+            sdd?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sde: {
+            sde?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdf: {
+            sdf?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
             /**
              * Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
              */
-            sdg: {
+            sdg?: {
                 /**
                  * The Disk ID, or `null` if a Volume is assigned to this slot.
                  */
-                disk_id: number;
+                disk_id?: number;
                 /**
                  * The Volume ID, or `null` if a Disk is assigned to this slot.
                  */
-                volume_id: number | null;
+                volume_id?: number | null;
             };
         };
     };
@@ -35600,13 +35600,13 @@ export type PostUpgradeLinodeInterfacesData = {
          * - If a config_id is not provided and the Linode has only one configuration, the upgrade automatically uses that config_id.
          * - If the Linode has multiple configurations and a config_id is not specified, an error is returned.
          */
-        config_id: number | null;
+        config_id?: number | null;
         /**
          * Before you upgrade interfaces, you can preview the new Linode interface by performing a `dry_run`:
          * - Either omit `dry_run` or set it to `true` to simulate the upgrade process. The response data shows what the Linode interface will look like after the upgrade, but without committing any changes. Since the interface doesn't exist yet, the interface `id` value is 0.
          * - If `dry_run` is set to `false`, the Linode undergoes the actual upgrade, but note you need to first shut down the Linode.
          */
-        dry_run: boolean;
+        dry_run?: boolean;
     } | null;
     path: {
         /**
@@ -36368,23 +36368,23 @@ export type PostAddStackScriptData = {
         /**
          * __Read-only__ The date this StackScript was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ Count of currently active, deployed Linodes created from this StackScript.
          */
-        readonly deployments_active: number;
+        readonly deployments_active?: number;
         /**
          * __Filterable__, __Read-only__ The total number of times this StackScript has been deployed.
          */
-        readonly deployments_total: number;
+        readonly deployments_total?: number;
         /**
          * __Filterable__ A description for the StackScript.
          */
-        description: string;
+        description?: string;
         /**
          * __Read-only__ The unique ID of this StackScript.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * An array of Image IDs. These are the Images that can be deployed with this StackScript.
          *
@@ -36394,7 +36394,7 @@ export type PostAddStackScriptData = {
         /**
          * __Filterable__ This determines whether other users can use your StackScript. __Once a StackScript is made public, it cannot be made private.__
          */
-        is_public: boolean;
+        is_public?: boolean;
         /**
          * __Filterable__ The StackScript's label is for display purposes only.
          */
@@ -36402,11 +36402,11 @@ export type PostAddStackScriptData = {
         /**
          * __Filterable__, __Read-only__ Returns `true` if this StackScript is owned by the account of the user making the request, and the user making the request is unrestricted or has access to this StackScript.
          */
-        readonly mine: boolean;
+        readonly mine?: boolean;
         /**
          * __Filterable__ This field allows you to add notes for the set of revisions made to this StackScript.
          */
-        rev_note: string;
+        rev_note?: string;
         /**
          * The script to execute when provisioning a new Linode with this StackScript.
          */
@@ -36414,11 +36414,11 @@ export type PostAddStackScriptData = {
         /**
          * __Read-only__ The date this StackScript was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
         /**
          * __Read-only__ This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment. See [Declare User-Defined Fields (UDFs)](https://www.linode.com/docs/products/tools/stackscripts/guides/write-a-custom-script/#declare-user-defined-fields-udfs) for more information.
          */
-        readonly user_defined_fields: Array<{
+        readonly user_defined_fields?: Array<{
             /**
              * __Read-only__ The default value.  If not specified, this value will be used.
              */
@@ -36447,11 +36447,11 @@ export type PostAddStackScriptData = {
         /**
          * __Read-only__ The Gravatar ID for the User who created the StackScript.
          */
-        readonly user_gravatar_id: string;
+        readonly user_gravatar_id?: string;
         /**
          * __Read-only__ The User who created the StackScript.
          */
-        readonly username: string;
+        readonly username?: string;
     };
     path?: never;
     query?: never;
@@ -36755,57 +36755,57 @@ export type PutStackScriptData = {
         /**
          * __Read-only__ The date this StackScript was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ Count of currently active, deployed Linodes created from this StackScript.
          */
-        readonly deployments_active: number;
+        readonly deployments_active?: number;
         /**
          * __Filterable__, __Read-only__ The total number of times this StackScript has been deployed.
          */
-        readonly deployments_total: number;
+        readonly deployments_total?: number;
         /**
          * __Filterable__ A description for the StackScript.
          */
-        description: string;
+        description?: string;
         /**
          * __Read-only__ The unique ID of this StackScript.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * An array of Image IDs. These are the Images that can be deployed with this StackScript.
          *
          * `any/all` indicates that all available Images, including private Images, are accepted.
          */
-        images: Array<string>;
+        images?: Array<string>;
         /**
          * __Filterable__ This determines whether other users can use your StackScript. __Once a StackScript is made public, it cannot be made private.__
          */
-        is_public: boolean;
+        is_public?: boolean;
         /**
          * __Filterable__ The StackScript's label is for display purposes only.
          */
-        label: string;
+        label?: string;
         /**
          * __Filterable__, __Read-only__ Returns `true` if this StackScript is owned by the account of the user making the request, and the user making the request is unrestricted or has access to this StackScript.
          */
-        readonly mine: boolean;
+        readonly mine?: boolean;
         /**
          * __Filterable__ This field allows you to add notes for the set of revisions made to this StackScript.
          */
-        rev_note: string;
+        rev_note?: string;
         /**
          * The script to execute when provisioning a new Linode with this StackScript.
          */
-        script: string;
+        script?: string;
         /**
          * __Read-only__ The date this StackScript was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
         /**
          * __Read-only__ This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment. See [Declare User-Defined Fields (UDFs)](https://www.linode.com/docs/products/tools/stackscripts/guides/write-a-custom-script/#declare-user-defined-fields-udfs) for more information.
          */
-        readonly user_defined_fields: Array<{
+        readonly user_defined_fields?: Array<{
             /**
              * __Read-only__ The default value.  If not specified, this value will be used.
              */
@@ -36834,11 +36834,11 @@ export type PutStackScriptData = {
         /**
          * __Read-only__ The Gravatar ID for the User who created the StackScript.
          */
-        readonly user_gravatar_id: string;
+        readonly user_gravatar_id?: string;
         /**
          * __Read-only__ The User who created the StackScript.
          */
-        readonly username: string;
+        readonly username?: string;
     };
     path: {
         /**
@@ -37465,28 +37465,28 @@ export type PostLkeClusterData = {
             /**
              * Defines settings related to the IP-based ACL of the LKE cluster. The object requires the `enabled` and `addresses` keys. It also supports the optional key `revision-id`. The default policy is set to `ALLOW`, so that access controls are disabled. An empty object value (`{}`) sets default elements.
              */
-            acl: {
+            acl?: {
                 /**
                  * Supports keys `ipv4` and `ipv6`. Defaults to `{}`.
                  */
-                addresses: {
+                addresses?: {
                     /**
                      * A list of individual ipv4 addresses or CIDRs to ALLOW. Defaults to `[]`.
                      */
-                    ipv4: Array<string>;
+                    ipv4?: Array<string>;
                     /**
                      * A list of individual ipv6 addresses or CIDRs to ALLOW. Defaults to `[]`.
                      */
-                    ipv6: Array<string>;
+                    ipv6?: Array<string>;
                 };
                 /**
                  * Defines a default policy. A value of `true` results in a default policy of `DENY`. A value of `false` results in a default policy of `ALLOW`, such as for disabled access controls. It defaults to `true`. Creating a cluster with ACL, or upgrading a cluster to use ACL for LKE, is an irreversible change. Once upgraded, you can only toggle access controls with this field.
                  */
-                enabled: boolean;
+                enabled?: boolean;
                 /**
                  * Enables clients to track events related to ACL update requests and enforcements. Optional field. If omitted, defaults to a randomly generated string.
                  */
-                'revision-id': string;
+                'revision-id'?: string;
             };
             /**
              * __Beta__, __LKE Enterprise__ Enables audit logs on the cluster's control plane. These logs provide detailed information about user access and the operations performed on the cluster, which can be useful for security and compliance purposes.
@@ -37495,11 +37495,11 @@ export type PostLkeClusterData = {
              * >
              * > This field is available as part of the beta API and can only be used with accounts that have been enrolled in the LKE Enterprise LA. Call the URL with the `apiVersion` path parameter set to `v4beta`.
              */
-            audit_logs_enabled: boolean;
+            audit_logs_enabled?: boolean;
             /**
              * Enables High Availability for the cluster's control plane components. It defaults to `false`. Enabling High Availability for LKE is an irreversible change.
              */
-            high_availability: boolean;
+            high_availability?: boolean;
         };
         /**
          * __Filterable__ The desired Kubernetes version for this Kubernetes cluster in the format of `<major>.<minor>`. The latest supported patch version is deployed.
@@ -37523,15 +37523,15 @@ export type PostLkeClusterData = {
                 /**
                  * Whether automatic scaling is enabled for this node pool. Defaults to `false`.
                  */
-                enabled: boolean;
+                enabled?: boolean;
                 /**
                  * The maximum number of nodes to automatically scale to. Defaults to the value provided by the `count` field.
                  */
-                max: number;
+                max?: number;
                 /**
                  * The minimum number of nodes to automatically scale to. Defaults to the node pool's `count`.
                  */
-                min: number;
+                min?: number;
             };
             /**
              * The number of nodes in the node pool.
@@ -37560,11 +37560,11 @@ export type PostLkeClusterData = {
                 /**
                  * The size of this custom disk partition in MB. The size of this disk partition can't exceed the capacity of the node's plan type.
                  */
-                size: number;
+                size?: number;
                 /**
                  * This custom disk partition's filesystem type.
                  */
-                type: 'raw' | 'ext4';
+                type?: 'raw' | 'ext4';
             }>;
             /**
              * __Beta__, __LKE Enterprise__ The LKE-specific Kubernetes version to use for the worker nodes within this node pool. This field is required when creating node pools on LKE Enterprise clusters.
@@ -38006,32 +38006,32 @@ export type PutLkeClusterData = {
          *
          * When upgrading pre-existing LKE clusters to use the control plane ACL for the first time, it may take several hours for external clients to respect the access control settings. This is partly due to delays from DNS propagation.
          */
-        control_plane: {
+        control_plane?: {
             /**
              * Defines settings related to the IP-based ACL of the LKE cluster. The object requires the `enabled` and `addresses` keys. It also supports the optional key `revision-id`. The default policy is set to `ALLOW`, so that access controls are disabled. An empty object value (`{}`) sets default elements.
              */
-            acl: {
+            acl?: {
                 /**
                  * Supports keys `ipv4` and `ipv6`. Defaults to `{}`.
                  */
-                addresses: {
+                addresses?: {
                     /**
                      * A list of individual ipv4 addresses or CIDRs to ALLOW. Defaults to `[]`.
                      */
-                    ipv4: Array<string>;
+                    ipv4?: Array<string>;
                     /**
                      * A list of individual ipv6 addresses or CIDRs to ALLOW. Defaults to `[]`.
                      */
-                    ipv6: Array<string>;
+                    ipv6?: Array<string>;
                 };
                 /**
                  * Defines a default policy. A value of `true` results in a default policy of `DENY`. A value of `false` results in a default policy of `ALLOW`, such as for disabled access controls. It defaults to `true`. Creating a cluster with ACL, or upgrading a cluster to use ACL for LKE, is an irreversible change. Once upgraded, you can only toggle access controls with this field.
                  */
-                enabled: boolean;
+                enabled?: boolean;
                 /**
                  * Enables clients to track events related to ACL update requests and enforcements. Optional field. If omitted, defaults to a randomly generated string.
                  */
-                'revision-id': string;
+                'revision-id'?: string;
             };
             /**
              * __Beta__, __LKE Enterprise__ Enables audit logs on the cluster's control plane. These logs provide detailed information about user access and the operations performed on the cluster, which can be useful for security and compliance purposes.
@@ -38040,11 +38040,11 @@ export type PutLkeClusterData = {
              * >
              * > This field is available as part of the beta API and can only be used with accounts that have been enrolled in the LKE Enterprise LA. Call the URL with the `apiVersion` path parameter set to `v4beta`.
              */
-            audit_logs_enabled: boolean;
+            audit_logs_enabled?: boolean;
             /**
              * Enables High Availability for the cluster's control plane components. It defaults to `false`. Enabling High Availability for LKE is an irreversible change.
              */
-            high_availability: boolean;
+            high_availability?: boolean;
         };
         /**
          * The desired Kubernetes version for this Kubernetes cluster in the format of &lt;major&gt;.&lt;minor&gt;. New and recycled Nodes in this cluster will be installed with the latest available patch for the Cluster's Kubernetes version.
@@ -38053,7 +38053,7 @@ export type PutLkeClusterData = {
          *
          * The Kubernetes version of a cluster can not be downgraded.
          */
-        k8s_version: string;
+        k8s_version?: string;
         /**
          * __Filterable__ This Kubernetes cluster's unique label for display purposes only. Labels have the following constraints:
          *
@@ -38063,11 +38063,11 @@ export type PutLkeClusterData = {
          *
          * - If the label is entirely composed of UTF-8 characters, the API response will return the code points using up to 193 1 byte characters.
          */
-        label: string;
+        label?: string;
         /**
          * An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only. To delete a tag, exclude it from your `tags` array.
          */
-        tags: Array<string>;
+        tags?: Array<string>;
     };
     path: {
         /**
@@ -38426,28 +38426,28 @@ export type PutLkeClusterAclData = {
         /**
          * Defines settings related to the IP-based ACL of the LKE cluster. The object requires the `enabled` and `addresses` keys. It also supports the optional key `revision-id`. The default policy is set to `ALLOW`, so that access controls are disabled. An empty object value (`{}`) sets default elements.
          */
-        acl: {
+        acl?: {
             /**
              * Supports keys `ipv4` and `ipv6`. Defaults to `{}`.
              */
-            addresses: {
+            addresses?: {
                 /**
                  * A list of individual ipv4 addresses or CIDRs to ALLOW. Defaults to `[]`.
                  */
-                ipv4: Array<string>;
+                ipv4?: Array<string>;
                 /**
                  * A list of individual ipv6 addresses or CIDRs to ALLOW. Defaults to `[]`.
                  */
-                ipv6: Array<string>;
+                ipv6?: Array<string>;
             };
             /**
              * Defines a default policy. A value of `true` results in a default policy of `DENY`. A value of `false` results in a default policy of `ALLOW`, such as for disabled access controls. It defaults to `true`. Creating a cluster with ACL, or upgrading a cluster to use ACL for LKE, is an irreversible change. Once upgraded, you can only toggle access controls with this field.
              */
-            enabled: boolean;
+            enabled?: boolean;
             /**
              * Enables clients to track events related to ACL update requests and enforcements. Optional field. If omitted, defaults to a randomly generated string.
              */
-            'revision-id': string;
+            'revision-id'?: string;
         };
     };
     path: {
@@ -39026,15 +39026,15 @@ export type PostLkeClusterPoolsData = {
             /**
              * Whether automatic scaling is enabled for this node pool. Defaults to `false`.
              */
-            enabled: boolean;
+            enabled?: boolean;
             /**
              * The maximum number of nodes to automatically scale to. Defaults to the value provided by the `count` field.
              */
-            max: number;
+            max?: number;
             /**
              * The minimum number of nodes to automatically scale to. Defaults to the node pool's `count`.
              */
-            min: number;
+            min?: number;
         };
         /**
          * The number of nodes in the node pool.
@@ -39063,11 +39063,11 @@ export type PostLkeClusterPoolsData = {
             /**
              * The size of this custom disk partition in MB. The size of this disk partition can't exceed the capacity of the node's plan type.
              */
-            size: number;
+            size?: number;
             /**
              * This custom disk partition's filesystem type.
              */
-            type: 'raw' | 'ext4';
+            type?: 'raw' | 'ext4';
         }>;
         /**
          * __Beta__, __LKE Enterprise__ The LKE-specific Kubernetes version to use for the worker nodes within this node pool. This field is required when creating node pools on LKE Enterprise clusters.
@@ -39503,24 +39503,24 @@ export type PutLkeNodePoolData = {
         /**
          * When enabled, the number of nodes automatically scales within the defined minimum and maximum values. When making a request, `max` and `min` require each other.
          */
-        autoscaler: {
+        autoscaler?: {
             /**
              * Whether automatic scaling is enabled for this node pool. Defaults to `false`.
              */
-            enabled: boolean;
+            enabled?: boolean;
             /**
              * The maximum number of nodes to automatically scale to. Defaults to the value provided by the `count` field.
              */
-            max: number;
+            max?: number;
             /**
              * The minimum number of nodes to automatically scale to. Defaults to the node pool's `count`.
              */
-            min: number;
+            min?: number;
         };
         /**
          * The number of nodes in the node pool.
          */
-        count: number;
+        count?: number;
         /**
          * Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and easily select subsets of objects. To learn more, review [Add Labels and Taints to your LKE node pools](https://www.linode.com/docs/products/compute/kubernetes/guides/deploy-and-manage-cluster-with-the-linode-api/#add-labels-and-taints-to-your-lke-node-pools).
          *
@@ -39540,19 +39540,19 @@ export type PutLkeNodePoolData = {
          *
          * - Can be specified as an empty string value with `""`.
          */
-        labels: {
+        labels?: {
             [key: string]: string;
         };
         /**
          * __Filterable__ Organizational tags to apply to this node pool. When you apply tags to LKE Enterprise node pools, they also apply to the nodes (Linodes) within the node pool. Tags don't cascade down to nodes in non-Enterprise node pools.
          */
-        tags: Array<string>;
+        tags?: Array<string>;
         /**
          * Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. To learn more, review [Add labels and taints to your LKE node pools](https://www.linode.com/docs/products/compute/kubernetes/guides/deploy-and-manage-cluster-with-the-linode-api/#add-labels-and-taints-to-your-lke-node-pools).
          *
          * Specifying an empty array (`[]`) removes all previously set taints.
          */
-        taints: Array<{
+        taints?: Array<{
             /**
              * The Kubernetes taint effect. For `NoSchedule`, `PreferNoSchedule` and `NoExecute` descriptions, see [Kubernetes Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
              */
@@ -39810,11 +39810,11 @@ export type PostLkeClusterRegenerateData = {
         /**
          * Whether to delete and regenerate the Kubeconfig file for this Cluster.
          */
-        kubeconfig: boolean;
+        kubeconfig?: boolean;
         /**
          * Whether to delete and regenerate the service access token for this Cluster.
          */
-        servicetoken: boolean;
+        servicetoken?: boolean;
     };
     path: {
         /**
@@ -40335,46 +40335,46 @@ export type PostLongviewClientData = {
          *
          * Returns as `[REDACTED]` if you do not have read-write access to this client.
          */
-        readonly api_key: string;
+        readonly api_key?: string;
         /**
          * __Read-only__ The apps this Client is monitoring on your Linode. This is configured when you install the Longview Client application, and is present here for information purposes only.
          */
-        readonly apps: {
+        readonly apps?: {
             /**
              * __Read-only__ If `true`, the Apache Longview Client module is monitoring Apache on your server.
              */
-            readonly apache: boolean;
+            readonly apache?: boolean;
             /**
              * __Read-only__ If `true`, the MySQL Longview Client modules is monitoring MySQL on your server.
              */
-            readonly mysql: boolean;
+            readonly mysql?: boolean;
             /**
              * __Read-only__ If `true`, the Nginx Longview Client module is monitoring Nginx on your server.
              */
-            readonly nginx: boolean;
+            readonly nginx?: boolean;
         };
         /**
          * __Read-only__ When this Longview Client was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ This Client's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Read-only__ The install code for this Client, used when configuring the Longview Client application on your Linode.
          *
          * Returns as `[REDACTED]` if you do not have read-write access to this client.
          */
-        readonly install_code: string;
+        readonly install_code?: string;
         /**
          * __Filterable__ This Client's unique label. This is for display purposes only.
          */
-        label: string;
+        label?: string;
         /**
          * __Read-only__ When this Longview Client was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
     };
     path?: never;
     query?: never;
@@ -40596,46 +40596,46 @@ export type PutLongviewClientData = {
          *
          * Returns as `[REDACTED]` if you do not have read-write access to this client.
          */
-        readonly api_key: string;
+        readonly api_key?: string;
         /**
          * __Read-only__ The apps this Client is monitoring on your Linode. This is configured when you install the Longview Client application, and is present here for information purposes only.
          */
-        readonly apps: {
+        readonly apps?: {
             /**
              * __Read-only__ If `true`, the Apache Longview Client module is monitoring Apache on your server.
              */
-            readonly apache: boolean;
+            readonly apache?: boolean;
             /**
              * __Read-only__ If `true`, the MySQL Longview Client modules is monitoring MySQL on your server.
              */
-            readonly mysql: boolean;
+            readonly mysql?: boolean;
             /**
              * __Read-only__ If `true`, the Nginx Longview Client module is monitoring Nginx on your server.
              */
-            readonly nginx: boolean;
+            readonly nginx?: boolean;
         };
         /**
          * __Read-only__ When this Longview Client was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ This Client's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Read-only__ The install code for this Client, used when configuring the Longview Client application on your Linode.
          *
          * Returns as `[REDACTED]` if you do not have read-write access to this client.
          */
-        readonly install_code: string;
+        readonly install_code?: string;
         /**
          * __Filterable__ This Client's unique label. This is for display purposes only.
          */
-        label: string;
+        label?: string;
         /**
          * __Read-only__ When this Longview Client was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
     };
     path: {
         /**
@@ -40792,7 +40792,7 @@ export type PutLongviewPlanData = {
         /**
          * The subscription ID for a particular Longview plan. A value of `null` corresponds to Longview Free. You can send a request to the [List Longview subscriptions](https://techdocs.akamai.com/linode-api/reference/get-longview-subscriptions) operation to receive the details of each plan.
          */
-        longview_subscription: 'longview-3' | 'longview-10' | 'longview-40' | 'longview-100';
+        longview_subscription?: 'longview-3' | 'longview-10' | 'longview-40' | 'longview-100';
     };
     path?: never;
     query?: never;
@@ -41277,36 +41277,36 @@ export type PostManagedContactData = {
         /**
          * The address to email this Contact to alert them of issues.
          */
-        email: string;
+        email?: string;
         /**
          * __Filterable__ A grouping for this Contact. This is for display purposes only.
          */
-        group: string | null;
+        group?: string | null;
         /**
          * __Read-only__ This Contact's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * The name of this Contact.
          */
-        name: string;
+        name?: string;
         /**
          * Information about how to reach this Contact by phone.
          */
-        phone: {
+        phone?: {
             /**
              * This Contact's primary phone number.
              */
-            primary: string | null;
+            primary?: string | null;
             /**
              * This Contact's secondary phone number.
              */
-            secondary: string | null;
+            secondary?: string | null;
         };
         /**
          * __Read-only__ When this Contact was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
     };
     path?: never;
     query?: never;
@@ -41502,36 +41502,36 @@ export type PutManagedContactData = {
         /**
          * The address to email this Contact to alert them of issues.
          */
-        email: string;
+        email?: string;
         /**
          * __Filterable__ A grouping for this Contact. This is for display purposes only.
          */
-        group: string | null;
+        group?: string | null;
         /**
          * __Read-only__ This Contact's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * The name of this Contact.
          */
-        name: string;
+        name?: string;
         /**
          * Information about how to reach this Contact by phone.
          */
-        phone: {
+        phone?: {
             /**
              * This Contact's primary phone number.
              */
-            primary: string | null;
+            primary?: string | null;
             /**
              * This Contact's secondary phone number.
              */
-            secondary: string | null;
+            secondary?: string | null;
         };
         /**
          * __Read-only__ When this Contact was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
     };
     path: {
         /**
@@ -41686,7 +41686,7 @@ export type PostManagedCredentialData = {
         /**
          * __Read-only__ This Credential's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * The unique label for this Credential. This is for display purposes only.
          */
@@ -41694,7 +41694,7 @@ export type PostManagedCredentialData = {
         /**
          * __Read-only__ The date this Credential was last decrypted by a member of Linode special forces.
          */
-        readonly last_decrypted: string;
+        readonly last_decrypted?: string;
     } & {
         /**
          * The password to use when accessing the Managed Service.
@@ -41703,7 +41703,7 @@ export type PostManagedCredentialData = {
         /**
          * The username to use when accessing the Managed Service.
          */
-        username: string;
+        username?: string;
     };
     path?: never;
     query?: never;
@@ -41855,15 +41855,15 @@ export type PutManagedCredentialData = {
         /**
          * __Read-only__ This Credential's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * The unique label for this Credential. This is for display purposes only.
          */
-        label: string;
+        label?: string;
         /**
          * __Read-only__ The date this Credential was last decrypted by a member of Linode special forces.
          */
-        readonly last_decrypted: string;
+        readonly last_decrypted?: string;
     };
     path: {
         /**
@@ -42377,41 +42377,41 @@ export type PutManagedLinodeSettingData = {
          *
          * @deprecated
          */
-        readonly group: string;
+        readonly group?: string;
         /**
          * __Read-only__ The ID of the Linode these Settings are for.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Read-only__ The label of the Linode these Settings are for.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * The SSH settings for this Linode.
          */
-        ssh: {
+        ssh?: {
             /**
              * If `true`, Linode special forces may access this Linode over ssh to respond to Issues.
              */
-            access: boolean;
+            access?: boolean;
             /**
              * The IP Linode special forces should use to access this Linode when responding to an Issue.
              *
              * By default, any of a Linode's IP addresses can be used for incident response access.
              */
-            ip: string;
+            ip?: string;
             /**
              * The port Linode special forces should use to access this Linode over ssh to respond to an Issue.
              *
              * The default `null` value corresponds to port 22.
              */
-            port: number | null;
+            port?: number | null;
             /**
              * The specific user, if any, Linode's special forces should use when accessing this Linode to respond to an issue.
              *
              * The default `null` value corresponds to the root user.
              */
-            user: string | null;
+            user?: string | null;
         };
     };
     path: {
@@ -42610,23 +42610,23 @@ export type PostManagedServiceData = {
         /**
          * What to expect to find in the response body for the Service to be considered up.
          */
-        body: string | null;
+        body?: string | null;
         /**
          * The group of ManagedContacts who should be notified or consulted with when an Issue is detected.
          */
-        consultation_group: string;
+        consultation_group?: string;
         /**
          * __Read-only__ When this Managed Service was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * An array of ManagedCredential IDs that should be used when attempting to resolve issues with this Service.
          */
-        credentials: Array<number>;
+        credentials?: Array<number>;
         /**
          * __Read-only__ This Service's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * The label for this Service. This is for display purposes only.
          */
@@ -42634,11 +42634,11 @@ export type PostManagedServiceData = {
         /**
          * Any information relevant to the Service that Linode special forces should know when attempting to resolve Issues.
          */
-        notes: string | null;
+        notes?: string | null;
         /**
          * The Region in which this Service is located. This is required if address is a private IP, and may not be set otherwise.
          */
-        region: string | null;
+        region?: string | null;
         /**
          * How this Service is monitored.
          */
@@ -42646,7 +42646,7 @@ export type PostManagedServiceData = {
         /**
          * __Read-only__ The current status of this Service.
          */
-        status: 'disabled' | 'pending' | 'ok' | 'problem';
+        status?: 'disabled' | 'pending' | 'ok' | 'problem';
         /**
          * How long to wait, in seconds, for a response before considering the Service to be down.
          */
@@ -42654,7 +42654,7 @@ export type PostManagedServiceData = {
         /**
          * __Read-only__ When this Managed Service was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
     };
     path?: never;
     query?: never;
@@ -42888,55 +42888,55 @@ export type PutManagedServiceData = {
         /**
          * The URL at which this Service is monitored. URL parameters such as `?no-cache=1` are preserved. URL fragments/anchors such as `#monitor` are __not__ preserved.
          */
-        address: string;
+        address?: string;
         /**
          * What to expect to find in the response body for the Service to be considered up.
          */
-        body: string | null;
+        body?: string | null;
         /**
          * The group of ManagedContacts who should be notified or consulted with when an Issue is detected.
          */
-        consultation_group: string;
+        consultation_group?: string;
         /**
          * __Read-only__ When this Managed Service was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * An array of ManagedCredential IDs that should be used when attempting to resolve issues with this Service.
          */
-        credentials: Array<number>;
+        credentials?: Array<number>;
         /**
          * __Read-only__ This Service's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * The label for this Service. This is for display purposes only.
          */
-        label: string;
+        label?: string;
         /**
          * Any information relevant to the Service that Linode special forces should know when attempting to resolve Issues.
          */
-        notes: string | null;
+        notes?: string | null;
         /**
          * The Region in which this Service is located. This is required if address is a private IP, and may not be set otherwise.
          */
-        region: string | null;
+        region?: string | null;
         /**
          * How this Service is monitored.
          */
-        service_type: 'url' | 'tcp';
+        service_type?: 'url' | 'tcp';
         /**
          * __Read-only__ The current status of this Service.
          */
-        status: 'disabled' | 'pending' | 'ok' | 'problem';
+        status?: 'disabled' | 'pending' | 'ok' | 'problem';
         /**
          * How long to wait, in seconds, for a response before considering the Service to be down.
          */
-        timeout: number;
+        timeout?: number;
         /**
          * __Read-only__ When this Managed Service was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
     };
     path: {
         /**
@@ -44261,40 +44261,40 @@ export type PostAlertDefinitionForServiceTypeData = {
             /**
              * The individual rules that make up the alert definition.
              */
-            rules: Array<{
+            rules?: Array<{
                 /**
                  * The aggregation function applied to the `metric`. Available values are `avg`, `sum`, `min`, and `max`.
                  */
-                aggregate_function: 'avg' | 'sum' | 'min' | 'max';
+                aggregate_function?: 'avg' | 'sum' | 'min' | 'max';
                 /**
                  * Individual objects that define dimension filters for the rule.
                  */
-                dimension_filters: Array<{
+                dimension_filters?: Array<{
                     /**
                      * The name of the dimension to be used in the filter.
                      */
-                    dimension_label: string;
+                    dimension_label?: string;
                     /**
                      * The operator to apply to the dimension filter. Available values are `eq` for equal, `neq` for not equal, `startswith`, and `endswith`.
                      */
-                    operator: 'eq' | 'neq' | 'startswith' | 'endswith';
+                    operator?: 'eq' | 'neq' | 'startswith' | 'endswith';
                     /**
                      * The value to compare the `dimension_label` against.
                      */
-                    value: string;
+                    value?: string;
                 }>;
                 /**
                  * The metric to query.
                  */
-                metric: string;
+                metric?: string;
                 /**
                  * The operator to apply to the metric. Available values are `eq` for equal, `gt` for greater than, `lt` for less than `gte` for greater than or equal, and `lte` for less than or equal.
                  */
-                operator: 'eq' | 'gt' | 'lt' | 'gte' | 'lte';
+                operator?: 'eq' | 'gt' | 'lt' | 'gte' | 'lte';
                 /**
                  * The predefined value or condition that triggers an alert when met or exceeded. For example, for `avg(cpu_usage) > 80`, the `threshold` is 80.
                  */
-                threshold: number;
+                threshold?: number;
             }>;
         };
         /**
@@ -44308,7 +44308,7 @@ export type PostAlertDefinitionForServiceTypeData = {
             /**
              * Signifies the logical operation applied when multiple metrics are set for an alert definition. For example, if you wanted to apply both `cpu_usage > 90` and `memory_usage > 80`, `ALL` is the `criteria_condition`. Currently, only `ALL` is supported.
              */
-            criteria_condition: 'ALL';
+            criteria_condition?: 'ALL';
             /**
              * The time period over which data is collected before evaluating whether the alert definition's `threshold` has been met or exceeded.
              *
@@ -44316,7 +44316,7 @@ export type PostAlertDefinitionForServiceTypeData = {
              * >
              * > During the beta, only a value of `300` seconds is supported.
              */
-            evaluation_period_seconds: number;
+            evaluation_period_seconds?: number;
             /**
              * The frequency at which the `metric` is checked for a change in state. For example, with `cpu_usage` set as your `metric` and this set to `300`, your `cpu_usage` is checked every 5 minutes for some change in its state.
              *
@@ -44324,11 +44324,11 @@ export type PostAlertDefinitionForServiceTypeData = {
              * >
              * > During the beta, only a value of `300` seconds is supported.
              */
-            polling_interval_seconds: number;
+            polling_interval_seconds?: number;
             /**
              * The minimum number of consecutive `polling_interval_seconds` periods that the `threshold` needs to be breached to trigger the alert.
              */
-            trigger_occurrences: number;
+            trigger_occurrences?: number;
         };
     };
     path: {
@@ -44799,11 +44799,11 @@ export type PutAlertDefinitionData = {
         /**
          * The identifiers for the alert channels to use for the alert. Run the [List alert channels](https://techdocs.akamai.com/linode-api/reference/get-alert-channels) operation and store the `id` for the applicable channels.
          */
-        channel_ids: Array<number>;
+        channel_ids?: Array<number>;
         /**
          * An additional description for the alert definition.
          */
-        description: string;
+        description?: string;
         /**
          * The `id` for each individual entity from a `service_type`. Get this value by running the list operation for the appropriate entity. For example, if your entity is one of your PostgreSQL databases, run the [List PostgreSQL Managed Databases](https://techdocs.akamai.com/linode-api/reference/get-databases-postgre-sql-instances) operation and store the `id` for the appropriate database from the response. You also need `read_only` access to the [scope](https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference) for the `service_type` for each of the `entity_ids`.
          *
@@ -44811,70 +44811,70 @@ export type PutAlertDefinitionData = {
          * >
          * > The format `type` for an `entity_id` may vary, based on the Akamai Cloud `service_type`. For example, the `dbaas` service returns an integer value for an `id`, that you'd use for the `entity_id`. Other services may return a string for their `id`. With the Alerts operations, all of these formats are recognized as an `entity_id`, when you include them as a `string`.
          */
-        entity_ids: Array<string>;
+        entity_ids?: Array<string>;
         /**
          * The name of the alert definition. This is used for display purposes in Akamai Cloud Manager.
          */
-        label: string;
+        label?: string;
         /**
          * Details for the rules required to trigger the alert.
          */
-        rule_criteria: {
+        rule_criteria?: {
             /**
              * The individual rules that make up the alert definition.
              */
-            rules: Array<{
+            rules?: Array<{
                 /**
                  * The aggregation function applied to the `metric`. Available values are `avg`, `sum`, `min`, and `max`.
                  */
-                aggregate_function: 'avg' | 'sum' | 'min' | 'max';
+                aggregate_function?: 'avg' | 'sum' | 'min' | 'max';
                 /**
                  * Individual objects that define dimension filters for the rule.
                  */
-                dimension_filters: Array<{
+                dimension_filters?: Array<{
                     /**
                      * The name of the dimension to be used in the filter.
                      */
-                    dimension_label: string;
+                    dimension_label?: string;
                     /**
                      * The operator to apply to the dimension filter. Available values are `eq` for equal, `neq` for not equal, `startswith`, and `endswith`.
                      */
-                    operator: 'eq' | 'neq' | 'startswith' | 'endswith';
+                    operator?: 'eq' | 'neq' | 'startswith' | 'endswith';
                     /**
                      * The value to compare the `dimension_label` against.
                      */
-                    value: string;
+                    value?: string;
                 }>;
                 /**
                  * The metric to query.
                  */
-                metric: string;
+                metric?: string;
                 /**
                  * The operator to apply to the metric. Available values are `eq` for equal, `gt` for greater than, `lt` for less than, `gte` for greater than or equal, and `lte` for less than or equal.
                  */
-                operator: 'eq' | 'gt' | 'lt' | 'gte' | 'lte';
+                operator?: 'eq' | 'gt' | 'lt' | 'gte' | 'lte';
                 /**
                  * The predefined value or condition that triggers an alert when met or exceeded. For example, for `avg(cpu_usage) > 80`, the `threshold` is 80.
                  */
-                threshold: number;
+                threshold?: number;
             }>;
         };
         /**
          * The severity of the alert. Supported values include `3` for info, `2` for low, `1` for medium, and `0` for severe.
          */
-        severity: 0 | 1 | 2 | 3;
+        severity?: 0 | 1 | 2 | 3;
         /**
          * The current status of the alert. You can set this to `enabled` or `disabled`.
          */
-        status: 'enabled' | 'disabled';
+        status?: 'enabled' | 'disabled';
         /**
          * The conditions that need to be met to send a notification for the alert.
          */
-        trigger_conditions: {
+        trigger_conditions?: {
             /**
              * Signifies the logical operation applied when multiple metrics are set for an alert definition. For example, if you wanted to apply both `cpu_usage > 90` and `memory_usage > 80`, `ALL` is the `criteria_condition`.  Currently, only `ALL` is supported.
              */
-            criteria_condition: 'ALL';
+            criteria_condition?: 'ALL';
             /**
              * The time period over which data is collected before evaluating whether the alert definition's `threshold` has been met or exceeded.
              *
@@ -44882,7 +44882,7 @@ export type PutAlertDefinitionData = {
              * >
              * > During the beta, only a value of `300` seconds is supported.
              */
-            evaluation_period_seconds: number;
+            evaluation_period_seconds?: number;
             /**
              * The frequency at which the `metric` is checked for a change in state. For example, with `cpu_usage` set as your `metric` and this set to `300`, your `cpu_usage` is checked every 5 minutes for some change in its state.
              *
@@ -44890,11 +44890,11 @@ export type PutAlertDefinitionData = {
              * >
              * > During the beta, only a value of `300` seconds is supported.
              */
-            polling_interval_seconds: number;
+            polling_interval_seconds?: number;
             /**
              * The minimum number of consecutive `polling_interval_seconds` periods that the `threshold` needs to be breached to trigger the alert.
              */
-            trigger_occurrences: number;
+            trigger_occurrences?: number;
         };
     };
     path: {
@@ -45244,16 +45244,16 @@ export type GetMonitorInformationData = {
              * All conditions need to be true. Include both `is_alertable` and `metric_type` conditions.
              */
             '+and'?: Array<{
-                is_alertable: boolean;
-                metric_type: 'counter' | 'histogram' | 'gauge' | 'summary';
+                is_alertable?: boolean;
+                metric_type?: 'counter' | 'histogram' | 'gauge' | 'summary';
             }>;
         } | {
             /**
              * At least one condition needs to be true. Include both `is_alertable` and `metric_type` conditions.
              */
             '+or'?: Array<{
-                is_alertable: boolean;
-                metric_type: 'counter' | 'histogram' | 'gauge' | 'summary';
+                is_alertable?: boolean;
+                metric_type?: 'counter' | 'histogram' | 'gauge' | 'summary';
             }>;
         };
     };
@@ -45372,15 +45372,15 @@ export type PostReadMetricData = {
             /**
              * The name of the dimension label to filter on.
              */
-            dimension_label: string;
+            dimension_label?: string;
             /**
              * The operator to apply to the dimension label. Available values are `eq` for equal, `neq` for not equal, `startswith`, and `endswith`.
              */
-            operator: 'eq' | 'neq' | 'startswith' | 'endswith';
+            operator?: 'eq' | 'neq' | 'startswith' | 'endswith';
             /**
              * The value to compare the dimension label against.
              */
-            value: string;
+            value?: string;
         }>;
         /**
          * Categorizes response data based on the specified fields:
@@ -45407,11 +45407,11 @@ export type PostReadMetricData = {
             /**
              * The aggregation function applied to the metric. Available values are `min`, `max`, `avg`, and `sum`.
              */
-            aggregate_function: 'min' | 'max' | 'avg' | 'sum';
+            aggregate_function?: 'min' | 'max' | 'avg' | 'sum';
             /**
              * The metric to query.
              */
-            name: string;
+            name?: string;
         }>;
         /**
          * Allows for an optional time granularity setting for metric data.
@@ -45420,11 +45420,11 @@ export type PostReadMetricData = {
             /**
              * The unit of time granularity for the metric data. Available values are `sec`, `min`, `hr`, and `days`.
              */
-            unit: 'sec' | 'min' | 'hr' | 'days';
+            unit?: 'sec' | 'min' | 'hr' | 'days';
             /**
              * The value that corresponds to the `unit`. Set to `10` with a `unit` of `hr` for 10 hours.
              */
-            value: number;
+            value?: number;
         };
     } & {
         /**
@@ -45434,11 +45434,11 @@ export type PostReadMetricData = {
             /**
              * The unit of time used for the relative duration to query metric data. Available values are `sec`, `min`, `hr`, and `days`.
              */
-            unit: 'sec' | 'min' | 'hr' | 'days';
+            unit?: 'sec' | 'min' | 'hr' | 'days';
             /**
              * The value that corresponds to the `unit`. Set to `30` with a `unit` of `min` for 30 minutes.
              */
-            value: number;
+            value?: number;
         };
     }) | ({
         /**
@@ -45452,15 +45452,15 @@ export type PostReadMetricData = {
             /**
              * The name of the dimension label to filter on.
              */
-            dimension_label: string;
+            dimension_label?: string;
             /**
              * The operator to apply to the dimension label. Available values are `eq` for equal, `neq` for not equal, `startswith`, and `endswith`.
              */
-            operator: 'eq' | 'neq' | 'startswith' | 'endswith';
+            operator?: 'eq' | 'neq' | 'startswith' | 'endswith';
             /**
              * The value to compare the dimension label against.
              */
-            value: string;
+            value?: string;
         }>;
         /**
          * Categorizes response data based on the specified fields:
@@ -45487,11 +45487,11 @@ export type PostReadMetricData = {
             /**
              * The aggregation function applied to the metric. Available values are `min`, `max`, `avg`, and `sum`.
              */
-            aggregate_function: 'min' | 'max' | 'avg' | 'sum';
+            aggregate_function?: 'min' | 'max' | 'avg' | 'sum';
             /**
              * The metric to query.
              */
-            name: string;
+            name?: string;
         }>;
         /**
          * Allows for an optional time granularity setting for metric data.
@@ -45500,11 +45500,11 @@ export type PostReadMetricData = {
             /**
              * The unit of time granularity for the metric data. Available values are `sec`, `min`, `hr`, and `days`.
              */
-            unit: 'sec' | 'min' | 'hr' | 'days';
+            unit?: 'sec' | 'min' | 'hr' | 'days';
             /**
              * The value that corresponds to the `unit`. Set to `10` with a `unit` of `hr` for 10 hours.
              */
-            value: number;
+            value?: number;
         };
     } & {
         /**
@@ -45520,11 +45520,11 @@ export type PostReadMetricData = {
             /**
              * The end time for querying data, in ISO 8601 format, using the UTC time zone.
              */
-            end: string;
+            end?: string;
             /**
              * The start time for querying data, in ISO 8601 format, using the UTC time zone.
              */
-            start: string;
+            start?: string;
         };
     });
     path: {
@@ -46038,57 +46038,57 @@ export type PostFirewallsData = {
         /**
          * __Filterable__, __Read-only__ When this Firewall was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ The Linodes, NodeBalancers, and Linode interfaces this firewall is assigned to.
          */
-        readonly entities: Array<{
+        readonly entities?: Array<{
             /**
              * The entity's ID.
              */
-            id: number;
+            id?: number;
             /**
              * __Read-only__ The entity's label.
              */
-            readonly label: string;
+            readonly label?: string;
             /**
              * __Read-only__ The Linode this `linode_interface` is assigned to. Returns `null` when the entity `type` is `linode` or `nodebalancer`.
              */
-            readonly parent_entity: {
+            readonly parent_entity?: {
                 /**
                  * The ID of the Linode assigned to this `linode_interface`.
                  */
-                id: number;
+                id?: number;
                 /**
                  * The name of the Linode this `linode_interface` is assigned to.
                  */
-                label: string;
+                label?: string;
                 /**
                  * __Read-only__ Currently, no parent entity has a parent of its own. Each `parent_entity` will have its own `parent_entity` set to `null`.
                  */
-                readonly parent_entity: string | null;
+                readonly parent_entity?: string | null;
                 /**
                  * A Linode interface’s `parent_entity` is a `linode`.
                  */
-                type: 'linode';
+                type?: 'linode';
                 /**
                  * The API URL path you can use to access this entity.
                  */
-                url: string;
+                url?: string;
             } | null;
             /**
              * The entity's type.
              */
-            type: 'linode' | 'linode_interface' | 'nodebalancer';
+            type?: 'linode' | 'linode_interface' | 'nodebalancer';
             /**
              * __Read-only__ The API URL path you can use to access this entity.
              */
-            readonly url: string;
+            readonly url?: string;
         }>;
         /**
          * __Filterable__, __Read-only__ The Firewall's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Filterable__ The Firewall's label, for display purposes only.
          *
@@ -46112,42 +46112,42 @@ export type PostFirewallsData = {
             /**
              * __Read-only__ The fingerprint is a 32-bit hash. It represents the firewall rules as an 8 character hex string. You can use `fingerprint` to compare rule versions.
              */
-            readonly fingerprint: string;
+            readonly fingerprint?: string;
             /**
              * The inbound rules for the firewall, as a JSON array.
              */
-            inbound: Array<{
+            inbound?: Array<{
                 /**
                  * Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall's `inbound_policy` if this is an inbound rule, or the `outbound_policy` if this is an outbound rule.
                  */
-                action: 'ACCEPT' | 'DROP';
+                action?: 'ACCEPT' | 'DROP';
                 /**
                  * The IPv4 or IPv6 addresses affected by this rule. A rule can have up to 255 total addresses or networks listed across its `ipv4` and `ipv6` arrays. A network and a single IP are treated as equivalent when accounting for this limit.
                  *
                  * Must contain `ipv4`, `ipv6`, or both.
                  */
-                addresses: {
+                addresses?: {
                     /**
                      * A list of IPv4 addresses or networks. Addresses must be in IP/mask format. Must not be an empty list.
                      *
                      * If `0.0.0.0/0` is included in this list, all IPv4 addresses are affected by this rule.
                      */
-                    ipv4: Array<string>;
+                    ipv4?: Array<string>;
                     /**
                      * A list of IPv6 addresses or networks. Addresses must be in IP/mask format and must not include zone_id notation as described in [RFC 4007](https://www.rfc-editor.org/rfc/rfc4007). Must not be an empty list.
                      *
                      * If `::/0` is included in this list, all IPv6 addresses are affected by this rule.
                      */
-                    ipv6: Array<string>;
+                    ipv6?: Array<string>;
                 };
                 /**
                  * Used to describe this rule. For display purposes only.
                  */
-                description: string;
+                description?: string;
                 /**
                  * Used to identify this rule. For display purposes only.
                  */
-                label: string;
+                label?: string;
                 /**
                  * A string representing the port or ports affected by this rule:
                  *
@@ -46158,51 +46158,51 @@ export type PostFirewallsData = {
                  * - If no ports are configured, all ports are affected.
                  * - Only allowed for the TCP and UDP protocols. Ports are not allowed for the ICMP and IPENCAP protocols.
                  */
-                ports: string | null;
+                ports?: string | null;
                 /**
                  * The type of network traffic affected by this rule.
                  */
-                protocol: 'TCP' | 'UDP' | 'ICMP' | 'IPENCAP';
+                protocol?: 'TCP' | 'UDP' | 'ICMP' | 'IPENCAP';
             }>;
             /**
              * The default behavior for inbound traffic. This setting can be overridden by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `inbound.action` property of the Firewall Rule.
              */
-            inbound_policy: 'ACCEPT' | 'DROP';
+            inbound_policy?: 'ACCEPT' | 'DROP';
             /**
              * The outbound rules for the firewall, as a JSON array.
              */
-            outbound: Array<{
+            outbound?: Array<{
                 /**
                  * Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall's `inbound_policy` if this is an inbound rule, or the `outbound_policy` if this is an outbound rule.
                  */
-                action: 'ACCEPT' | 'DROP';
+                action?: 'ACCEPT' | 'DROP';
                 /**
                  * The IPv4 or IPv6 addresses affected by this rule. A rule can have up to 255 total addresses or networks listed across its `ipv4` and `ipv6` arrays. A network and a single IP are treated as equivalent when accounting for this limit.
                  *
                  * Must contain `ipv4`, `ipv6`, or both.
                  */
-                addresses: {
+                addresses?: {
                     /**
                      * A list of IPv4 addresses or networks. Addresses must be in IP/mask format. Must not be an empty list.
                      *
                      * If `0.0.0.0/0` is included in this list, all IPv4 addresses are affected by this rule.
                      */
-                    ipv4: Array<string>;
+                    ipv4?: Array<string>;
                     /**
                      * A list of IPv6 addresses or networks. Addresses must be in IP/mask format and must not include zone_id notation as described in [RFC 4007](https://www.rfc-editor.org/rfc/rfc4007). Must not be an empty list.
                      *
                      * If `::/0` is included in this list, all IPv6 addresses are affected by this rule.
                      */
-                    ipv6: Array<string>;
+                    ipv6?: Array<string>;
                 };
                 /**
                  * Used to describe this rule. For display purposes only.
                  */
-                description: string;
+                description?: string;
                 /**
                  * Used to identify this rule. For display purposes only.
                  */
-                label: string;
+                label?: string;
                 /**
                  * A string representing the port or ports affected by this rule:
                  *
@@ -46213,20 +46213,20 @@ export type PostFirewallsData = {
                  * - If no ports are configured, all ports are affected.
                  * - Only allowed for the TCP and UDP protocols. Ports are not allowed for the ICMP and IPENCAP protocols.
                  */
-                ports: string | null;
+                ports?: string | null;
                 /**
                  * The type of network traffic affected by this rule.
                  */
-                protocol: 'TCP' | 'UDP' | 'ICMP' | 'IPENCAP';
+                protocol?: 'TCP' | 'UDP' | 'ICMP' | 'IPENCAP';
             }>;
             /**
              * The default behavior for outbound traffic. This setting can be overridden by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `outbound.action` property of the Firewall Rule.
              */
-            outbound_policy: 'ACCEPT' | 'DROP';
+            outbound_policy?: 'ACCEPT' | 'DROP';
             /**
              * __Read-only__ The firewall's rule version. The first version is `1`. The version number is incremented when the firewall's rules change.
              */
-            readonly version: number;
+            readonly version?: number;
         };
         /**
          * __Read-only__ The status of this Firewall.
@@ -46235,15 +46235,15 @@ export type PostFirewallsData = {
          * - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall's status to `enabled` or `disabled`.
          * - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall.
          */
-        status: 'enabled' | 'disabled' | 'deleted';
+        status?: 'enabled' | 'disabled' | 'deleted';
         /**
          * __Filterable__ An array of tags applied to this object. Tags are for organizational purposes only.
          */
-        tags: Array<string>;
+        tags?: Array<string>;
         /**
          * __Filterable__, __Read-only__ When this Firewall was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
     } & {
         /**
          * Devices to create for this firewall. When a device is created, the firewall is assigned to its associated service. Currently, devices can be created for Linodes using legacy configuration profiles, Linode interfaces, and NodeBalancers. Firewall devices can't be created for individual legacy configuration profile interfaces.
@@ -46254,18 +46254,18 @@ export type PostFirewallsData = {
             /**
              * An array of Linode interface IDs. A firewall device is created for each ID. For Linodes using Linode interfaces, firewalls need to be assigned to Linode interfaces and not the Linode.
              */
-            linode_interfaces: Array<number>;
+            linode_interfaces?: Array<number>;
             /**
              * An array of Linode IDs. A firewall device is created for each ID. These Linodes can't use Linode interfaces.
              */
-            linodes: Array<number>;
+            linodes?: Array<number>;
             /**
              * An array containing a NodeBalancer ID. A Firewall device is created for the ID.
              *
              * - A NodeBalancer can have only one Firewall assigned to it.
              * - Firewalls only apply to inbound TCP traffic to NodeBalancers.
              */
-            nodebalancers: Array<number>;
+            nodebalancers?: Array<number>;
         };
         rules: {
             inbound?: unknown;
@@ -46603,23 +46603,23 @@ export type PutFirewallSettingsData = {
         /**
          * The default firewall ID for a `linode`, `nodebalancer`, `public_interface`, or `vpc_interface`. Default firewalls can't be deleted or disabled.
          */
-        default_firewall_ids: {
+        default_firewall_ids?: {
             /**
              * The Linode's default firewall.
              */
-            linode: number;
+            linode?: number;
             /**
              * The NodeBalancer's default firewall.
              */
-            nodebalancer: number;
+            nodebalancer?: number;
             /**
              * The public interface's default firewall.
              */
-            public_interface: number;
+            public_interface?: number;
             /**
              * The VPC interface's default firewall.
              */
-            vpc_interface: number;
+            vpc_interface?: number;
         };
     };
     path?: never;
@@ -47338,7 +47338,7 @@ export type PutFirewallData = {
          * - Must be between 3 and 32 characters.
          * - Must be unique.
          */
-        label: string;
+        label?: string;
         /**
          * The status to be applied to this Firewall.
          *
@@ -47346,11 +47346,11 @@ export type PutFirewallData = {
          * - An assigned default firewall can't be disabled.
          * - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall.
          */
-        status: 'enabled' | 'disabled';
+        status?: 'enabled' | 'disabled';
         /**
          * __Filterable__ An array of tags applied to this object. Tags are for organizational purposes only.
          */
-        tags: Array<string>;
+        tags?: Array<string>;
     };
     path: {
         /**
@@ -47736,31 +47736,31 @@ export type PostFirewallDeviceData = {
         /**
          * __Read-only__ The entity's label.
          */
-        readonly label: string;
+        readonly label?: string;
         /**
          * __Read-only__ The Linode this `linode_interface` is assigned to. Returns `null` when the entity `type` is `linode` or `nodebalancer`.
          */
-        readonly parent_entity: {
+        readonly parent_entity?: {
             /**
              * The ID of the Linode assigned to this `linode_interface`.
              */
-            id: number;
+            id?: number;
             /**
              * The name of the Linode this `linode_interface` is assigned to.
              */
-            label: string;
+            label?: string;
             /**
              * __Read-only__ Currently, no parent entity has a parent of its own. Each `parent_entity` will have its own `parent_entity` set to `null`.
              */
-            readonly parent_entity: string | null;
+            readonly parent_entity?: string | null;
             /**
              * A Linode interface’s `parent_entity` is a Linode.
              */
-            type: 'linode';
+            type?: 'linode';
             /**
              * The API URL path you can use to access this entity.
              */
-            url: string;
+            url?: string;
         } | null;
         /**
          * The entity's type.
@@ -47769,7 +47769,7 @@ export type PostFirewallDeviceData = {
         /**
          * __Read-only__ The API URL path you can use to access this entity.
          */
-        readonly url: string;
+        readonly url?: string;
     };
     path: {
         /**
@@ -48698,42 +48698,42 @@ export type PutFirewallRulesData = {
         /**
          * __Read-only__ The fingerprint is a 32-bit hash. It represents the firewall rules as an 8 character hex string. You can use `fingerprint` to compare rule versions.
          */
-        readonly fingerprint: string;
+        readonly fingerprint?: string;
         /**
          * The inbound rules for the firewall, as a JSON array.
          */
-        inbound: Array<{
+        inbound?: Array<{
             /**
              * Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall's `inbound_policy` if this is an inbound rule, or the `outbound_policy` if this is an outbound rule.
              */
-            action: 'ACCEPT' | 'DROP';
+            action?: 'ACCEPT' | 'DROP';
             /**
              * The IPv4 or IPv6 addresses affected by this rule. A rule can have up to 255 total addresses or networks listed across its `ipv4` and `ipv6` arrays. A network and a single IP are treated as equivalent when accounting for this limit.
              *
              * Must contain `ipv4`, `ipv6`, or both.
              */
-            addresses: {
+            addresses?: {
                 /**
                  * A list of IPv4 addresses or networks. Addresses must be in IP/mask format. Must not be an empty list.
                  *
                  * If `0.0.0.0/0` is included in this list, all IPv4 addresses are affected by this rule.
                  */
-                ipv4: Array<string>;
+                ipv4?: Array<string>;
                 /**
                  * A list of IPv6 addresses or networks. Addresses must be in IP/mask format and must not include zone_id notation as described in [RFC 4007](https://www.rfc-editor.org/rfc/rfc4007). Must not be an empty list.
                  *
                  * If `::/0` is included in this list, all IPv6 addresses are affected by this rule.
                  */
-                ipv6: Array<string>;
+                ipv6?: Array<string>;
             };
             /**
              * Used to describe this rule. For display purposes only.
              */
-            description: string;
+            description?: string;
             /**
              * Used to identify this rule. For display purposes only.
              */
-            label: string;
+            label?: string;
             /**
              * A string representing the port or ports affected by this rule:
              *
@@ -48744,51 +48744,51 @@ export type PutFirewallRulesData = {
              * - If no ports are configured, all ports are affected.
              * - Only allowed for the TCP and UDP protocols. Ports are not allowed for the ICMP and IPENCAP protocols.
              */
-            ports: string | null;
+            ports?: string | null;
             /**
              * The type of network traffic affected by this rule.
              */
-            protocol: 'TCP' | 'UDP' | 'ICMP' | 'IPENCAP';
+            protocol?: 'TCP' | 'UDP' | 'ICMP' | 'IPENCAP';
         }>;
         /**
          * The default behavior for inbound traffic. This setting can be overridden by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `inbound.action` property of the Firewall Rule.
          */
-        inbound_policy: 'ACCEPT' | 'DROP';
+        inbound_policy?: 'ACCEPT' | 'DROP';
         /**
          * The outbound rules for the firewall, as a JSON array.
          */
-        outbound: Array<{
+        outbound?: Array<{
             /**
              * Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall's `inbound_policy` if this is an inbound rule, or the `outbound_policy` if this is an outbound rule.
              */
-            action: 'ACCEPT' | 'DROP';
+            action?: 'ACCEPT' | 'DROP';
             /**
              * The IPv4 or IPv6 addresses affected by this rule. A rule can have up to 255 total addresses or networks listed across its `ipv4` and `ipv6` arrays. A network and a single IP are treated as equivalent when accounting for this limit.
              *
              * Must contain `ipv4`, `ipv6`, or both.
              */
-            addresses: {
+            addresses?: {
                 /**
                  * A list of IPv4 addresses or networks. Addresses must be in IP/mask format. Must not be an empty list.
                  *
                  * If `0.0.0.0/0` is included in this list, all IPv4 addresses are affected by this rule.
                  */
-                ipv4: Array<string>;
+                ipv4?: Array<string>;
                 /**
                  * A list of IPv6 addresses or networks. Addresses must be in IP/mask format and must not include zone_id notation as described in [RFC 4007](https://www.rfc-editor.org/rfc/rfc4007). Must not be an empty list.
                  *
                  * If `::/0` is included in this list, all IPv6 addresses are affected by this rule.
                  */
-                ipv6: Array<string>;
+                ipv6?: Array<string>;
             };
             /**
              * Used to describe this rule. For display purposes only.
              */
-            description: string;
+            description?: string;
             /**
              * Used to identify this rule. For display purposes only.
              */
-            label: string;
+            label?: string;
             /**
              * A string representing the port or ports affected by this rule:
              *
@@ -48799,20 +48799,20 @@ export type PutFirewallRulesData = {
              * - If no ports are configured, all ports are affected.
              * - Only allowed for the TCP and UDP protocols. Ports are not allowed for the ICMP and IPENCAP protocols.
              */
-            ports: string | null;
+            ports?: string | null;
             /**
              * The type of network traffic affected by this rule.
              */
-            protocol: 'TCP' | 'UDP' | 'ICMP' | 'IPENCAP';
+            protocol?: 'TCP' | 'UDP' | 'ICMP' | 'IPENCAP';
         }>;
         /**
          * The default behavior for outbound traffic. This setting can be overridden by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `outbound.action` property of the Firewall Rule.
          */
-        outbound_policy: 'ACCEPT' | 'DROP';
+        outbound_policy?: 'ACCEPT' | 'DROP';
         /**
          * __Read-only__ The firewall's rule version. The first version is `1`. The version number is incremented when the firewall's rules change.
          */
-        readonly version: number;
+        readonly version?: number;
     } & {
         inbound?: unknown;
         outbound?: unknown;
@@ -50391,11 +50391,11 @@ export type PostNodeBalancerData = {
                 /**
                  * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
                  */
-                readonly down: number;
+                readonly down?: number;
                 /**
                  * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
                  */
-                readonly up: number;
+                readonly up?: number;
             };
             /**
              * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -50550,11 +50550,11 @@ export type PostNodeBalancerData = {
                 /**
                  * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
                  */
-                readonly down: number;
+                readonly down?: number;
                 /**
                  * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
                  */
-                readonly up: number;
+                readonly up?: number;
             };
             /**
              * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -50704,11 +50704,11 @@ export type PostNodeBalancerData = {
                 /**
                  * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
                  */
-                readonly down: number;
+                readonly down?: number;
                 /**
                  * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
                  */
-                readonly up: number;
+                readonly up?: number;
             };
             /**
              * This is the port the NodeBalancer listens on for this configuration. Port numbers need to be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced. You may configure your NodeBalancer however you find useful.
@@ -50855,11 +50855,11 @@ export type PostNodeBalancerData = {
                 /**
                  * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
                  */
-                readonly down: number;
+                readonly down?: number;
                 /**
                  * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
                  */
-                readonly up: number;
+                readonly up?: number;
             };
             /**
              * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -51363,85 +51363,85 @@ export type PutNodeBalancerData = {
         /**
          * Throttle TCP connections per second for TCP, HTTP, and HTTPS configurations.  Set to `0` (zero) to disable throttling.
          */
-        client_conn_throttle: number;
+        client_conn_throttle?: number;
         /**
          * __Read-only__ When this NodeBalancer was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ This NodeBalancer's hostname, beginning with its IP address and ending with _.ip.linodeusercontent.com_.
          */
-        readonly hostname: string;
+        readonly hostname?: string;
         /**
          * __Read-only__ This NodeBalancer's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Filterable__, __Read-only__ This NodeBalancer's public IPv4 address.
          */
-        readonly ipv4: string;
+        readonly ipv4?: string;
         /**
          * __Read-only__ This NodeBalancer's public IPv6 address.
          */
-        readonly ipv6: string | null;
+        readonly ipv6?: string | null;
         /**
          * __Filterable__ This NodeBalancer's label. These must be unique on your Account.
          */
-        label: string;
+        label?: string;
         /**
          * __Read-only__ This NodeBalancer's related LKE cluster, if any. The value is `null` if this NodeBalancer isn't related to an LKE cluster.
          */
-        readonly lke_cluster: {
+        readonly lke_cluster?: {
             /**
              * The ID of the related LKE cluster.
              */
-            id: string;
+            id?: string;
             /**
              * The label of the related LKE cluster.
              */
-            label: string;
+            label?: string;
             /**
              * __Read-only__ The type for LKE clusters.
              */
-            readonly type: string;
+            readonly type?: string;
             /**
              * The URL where you can access the related LKE cluster.
              */
-            url: string;
+            url?: string;
         } | null;
         /**
          * __Filterable__, __Read-only__ The Region where this NodeBalancer is located. NodeBalancers only support backends in the same Region.
          */
-        readonly region: string;
+        readonly region?: string;
         /**
          * __Filterable__ An array of Tags applied to this object.  Tags are for organizational purposes only.
          */
-        tags: Array<string>;
+        tags?: Array<string>;
         /**
          * __Read-only__ Information about the amount of transfer this NodeBalancer has had so far this month.
          */
-        readonly transfer: {
+        readonly transfer?: {
             /**
              * __Read-only__ The total outbound transfer, in MB, used for this NodeBalancer this month.
              */
-            readonly in: number | null;
+            readonly in?: number | null;
             /**
              * __Read-only__ The total inbound transfer, in MB, used for this NodeBalancer this month.
              */
-            readonly out: number | null;
+            readonly out?: number | null;
             /**
              * __Read-only__ The total transfer, in MB, used by this NodeBalancer this month.
              */
-            readonly total: number | null;
+            readonly total?: number | null;
         };
         /**
          * __Read-only__ The type of NodeBalancer.
          */
-        type: 'common' | 'premium';
+        type?: 'common' | 'premium';
         /**
          * __Read-only__ When this NodeBalancer was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
     };
     path: {
         /**
@@ -52162,11 +52162,11 @@ export type PostNodeBalancerConfigData = {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -52321,11 +52321,11 @@ export type PostNodeBalancerConfigData = {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -52475,11 +52475,11 @@ export type PostNodeBalancerConfigData = {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers need to be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced. You may configure your NodeBalancer however you find useful.
@@ -52626,11 +52626,11 @@ export type PostNodeBalancerConfigData = {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -52704,15 +52704,15 @@ export type PostNodeBalancerConfigData = {
              * - For non-VPC backend nodes, the public IPv6 address and port where this backend can be reached.
              * - For backend nodes within a VPC, the IPv4 address and port where this backend can be reached.
              */
-            address: string;
+            address?: string;
             /**
              * The unique ID of the Node to update.
              */
-            id: number;
+            id?: number;
             /**
              * The label for this node.  This is for display purposes only.
              */
-            label: string;
+            label?: string;
             /**
              * The mode this NodeBalancer should use when sending traffic to this backend.
              *
@@ -52721,15 +52721,15 @@ export type PostNodeBalancerConfigData = {
              * - If set to `drain` this backend will not receive _new_ traffic, but connections already pinned to it will continue to be routed to it.
              * - If set to `backup`, this backend will only receive traffic if all `accept` nodes are down.
              */
-            mode: 'accept' | 'reject' | 'drain' | 'backup';
+            mode?: 'accept' | 'reject' | 'drain' | 'backup';
             /**
              * Required for VPC backend nodes only. The VPC's subnet. To display information about your VPCs and their subnets, run the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation.
              */
-            subnet_id: number;
+            subnet_id?: number;
             /**
              * Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic.
              */
-            weight: number;
+            weight?: number;
         }>;
     };
     path: {
@@ -53745,7 +53745,7 @@ export type PutNodeBalancerConfigData = {
         /**
          * The algorithm this UDP NodeBalancer uses to route traffic to backends.
          */
-        algorithm: 'roundrobin' | 'leastconn' | 'ring_hash';
+        algorithm?: 'roundrobin' | 'leastconn' | 'ring_hash';
         /**
          * The type of check to perform against backends to ensure they're serving requests. This determines if backends are up or down.
          *
@@ -53753,90 +53753,90 @@ export type PutNodeBalancerConfigData = {
          * - `connection` requires only a connection to the backend to succeed.
          * - `http` and `http_body` rely on the backend serving HTTP, and that the response returned matches what is expected.
          */
-        check: 'none' | 'connection' | 'http' | 'http_body';
+        check?: 'none' | 'connection' | 'http' | 'http_body';
         /**
          * How many times to attempt a check before considering a backend to be down.
          */
-        check_attempts: number;
+        check_attempts?: number;
         /**
          * This value must be present in the check's response body for it to pass. Otherwise the backend is considered to be down.
          */
-        check_body: string;
+        check_body?: string;
         /**
          * Number of seconds between checks to verify that backends are up and serving requests.
          *
          * Must be greater than `check_timeout`.
          */
-        check_interval: number;
+        check_interval?: number;
         /**
          * __Read-only__ Must be `false` for UDP.
          */
-        readonly check_passive: boolean;
+        readonly check_passive?: boolean;
         /**
          * The URL path to check on each backend. If the backend does not respond to this request, it's considered to be down.
          */
-        check_path: string;
+        check_path?: string;
         /**
          * Number of seconds to wait for a check attempt before considering it failed.
          *
          * Must be less than `check_interval`.
          */
-        check_timeout: number;
+        check_timeout?: number;
         /**
          * __Read-only__ Not applicable for UDP configs.
          */
-        readonly cipher_suite: string;
+        readonly cipher_suite?: string;
         /**
          * __Read-only__ This config's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Read-only__ The ID for the NodeBalancer this config belongs to.
          */
-        readonly nodebalancer_id: number;
+        readonly nodebalancer_id?: number;
         /**
          * __Read-only__ Describes the health of the backends for this port. This data updates periodically as checks are performed against backends.
          */
-        readonly nodes_status: {
+        readonly nodes_status?: {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These aren't in rotation, and aren't serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, currently serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally assigned specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
          */
-        port: number;
+        port?: number;
         /**
          * The protocol the port is configured to serve, `udp` in this case.
          *
          * Review our guide on [Available Protocols](https://www.linode.com/docs/products/networking/nodebalancers/guides/protocols/) for information on protocol features.
          */
-        protocol: 'udp';
+        protocol?: 'udp';
         /**
          * __Read-only__ Must be `none` for UDP.
          */
-        readonly proxy_protocol: string;
+        readonly proxy_protocol?: string;
         /**
          * __Read-only__ Not applicable for UDP configs.
          */
-        readonly ssl_cert: string | null;
+        readonly ssl_cert?: string | null;
         /**
          * __Read-only__ Not applicable for UPD configs.
          */
-        readonly ssl_commonname: string;
+        readonly ssl_commonname?: string;
         /**
          * __Read-only__ Not applicable for UDP configs.
          */
-        readonly ssl_fingerprint: string;
+        readonly ssl_fingerprint?: string;
         /**
          * __Read-only__ Not applicable for UDP configs.
          */
-        readonly ssl_key: string | null;
+        readonly ssl_key?: string | null;
         /**
          * Controls how session stickiness is handled on this port:
          *
@@ -53844,20 +53844,20 @@ export type PutNodeBalancerConfigData = {
          * - If set to `session`, all packets with the same session identifiers are routed to the same backend server. Two packets are considered part of the same session if they share the same source and destination IP addresses or ports, and are received within a short time window.
          * - If set to `source_ip`, the NodeBalancer uses the client's source IP address to route all packets from the same client to the same backend server.
          */
-        stickiness: 'none' | 'session' | 'source_ip';
+        stickiness?: 'none' | 'session' | 'source_ip';
         /**
          * UDP NodeBalancers use TCP and HTTP active health checks to ensure back-end nodes can receive traffic. You can specify the health check port that the backend node listens on, which may differ from the UDP port used to serve traffic.
          */
-        udp_check_port: number;
+        udp_check_port?: number;
         /**
          * __Read-only__ The maximum number of seconds a UDP session can be idle before it's closed.
          */
-        readonly udp_session_timeout: number;
+        readonly udp_session_timeout?: number;
     } | {
         /**
          * The algorithm this TCP NodeBalancer uses to route traffic to backends.
          */
-        algorithm: 'roundrobin' | 'leastconn' | 'source';
+        algorithm?: 'roundrobin' | 'leastconn' | 'source';
         /**
          * The type of check to perform against backends to ensure they are serving requests. The `check` is used to determine if backends are up or down.
          *
@@ -53865,70 +53865,70 @@ export type PutNodeBalancerConfigData = {
          * - `connection` requires only a connection to the backend to succeed.
          * - `http` and `http_body` rely on the backend serving HTTP, and that the response returned matches what is expected.
          */
-        check: 'none' | 'connection' | 'http' | 'http_body';
+        check?: 'none' | 'connection' | 'http' | 'http_body';
         /**
          * How many times to attempt a check before considering a backend to be down.
          */
-        check_attempts: number;
+        check_attempts?: number;
         /**
          * This value must be present in the response body of the check in order for it to pass. If this value is not present in the response body of a check request, the backend is considered to be down.
          */
-        check_body: string;
+        check_body?: string;
         /**
          * Number of seconds between checks to verify that backends are up and serving requests.
          *
          * Must be greater than `check_timeout`.
          */
-        check_interval: number;
+        check_interval?: number;
         /**
          * If `true`, any response from this backend with a `5xx` status code will be enough for it to be considered unhealthy and taken out of rotation.
          */
-        check_passive: boolean;
+        check_passive?: boolean;
         /**
          * The URL path to check on each backend. If the backend does not respond to this request it is considered to be down.
          */
-        check_path: string;
+        check_path?: string;
         /**
          * Number of seconds to wait for a check attempt before considering it failed.
          *
          * Must be less than `check_interval`.
          */
-        check_timeout: number;
+        check_timeout?: number;
         /**
          * __Read-only__ Not applicable for TCP configs.
          */
-        readonly cipher_suite: string;
+        readonly cipher_suite?: string;
         /**
          * __Read-only__ This config's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Read-only__ The ID for the NodeBalancer this config belongs to.
          */
-        readonly nodebalancer_id: number;
+        readonly nodebalancer_id?: number;
         /**
          * __Read-only__ Describes the health of the backends for this port. This data updates periodically as checks are performed against backends.
          */
-        readonly nodes_status: {
+        readonly nodes_status?: {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These aren't in rotation, and aren't serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, currently serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally assigned specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
          */
-        port: number;
+        port?: number;
         /**
          * The protocol the port is configured to serve, `tcp` in this case.
          *
          * Review our guide on [Available protocols](https://techdocs.akamai.com/cloud-computing/docs/available-protocols) for information on protocol features.
          */
-        protocol: 'tcp';
+        protocol?: 'tcp';
         /**
          * Proxy protocol is a TCP extension that sends initial TCP connection information such as source or destination IPs and ports to backend devices. Proxy protocol preserves initial TCP information that would be lost otherwise. Backend devices must be configured to work with `proxy_protocol` if enabled.
          *
@@ -53936,35 +53936,35 @@ export type PutNodeBalancerConfigData = {
          * - If set to `v1`, the human-readable header format (Version 1) is used. Requires `tcp` protocol.
          * - If set to `v2`, the binary header format (Version 2) is used. Requires `tcp` protocol.
          */
-        proxy_protocol: 'none' | 'v1' | 'v2';
+        proxy_protocol?: 'none' | 'v1' | 'v2';
         /**
          * __Read-only__ Not applicable for TCP configs.
          */
-        readonly ssl_cert: string | null;
+        readonly ssl_cert?: string | null;
         /**
          * __Read-only__ Not applicable for TCP configs.
          */
-        readonly ssl_commonname: string;
+        readonly ssl_commonname?: string;
         /**
          * __Read-only__ Not applicable for TCP configs.
          */
-        readonly ssl_fingerprint: string;
+        readonly ssl_fingerprint?: string;
         /**
          * __Read-only__ Not applicable for HTTP configs.
          */
-        readonly ssl_key: string | null;
+        readonly ssl_key?: string | null;
         /**
          * __Read-only__ Controls how session stickiness is handled on this port:
          *
          * - If set to `none`, connections will always be assigned a backend based on the algorithm configured.
          * - If set to `table`, sessions from the same remote address will be routed to the same backend.
          */
-        stickiness: 'none' | 'table';
+        stickiness?: 'none' | 'table';
     } | {
         /**
          * The algorithm this HTTP NodeBalancer uses for routing traffic to backends.
          */
-        algorithm: 'roundrobin' | 'leastconn' | 'source';
+        algorithm?: 'roundrobin' | 'leastconn' | 'source';
         /**
          * The type of check to perform against backends to ensure they're serving requests. This determines if backends are up or down.
          *
@@ -53972,90 +53972,90 @@ export type PutNodeBalancerConfigData = {
          * - `connection` requires only a connection to the backend to succeed.
          * - `http` and `http_body` rely on the backend serving HTTP, and that the response returned matches what is expected.
          */
-        check: 'none' | 'connection' | 'http' | 'http_body';
+        check?: 'none' | 'connection' | 'http' | 'http_body';
         /**
          * How many times to attempt a check before considering a backend to be down.
          */
-        check_attempts: number;
+        check_attempts?: number;
         /**
          * Use when the active health `check` type is `http_body`. This value must be present in the response body of the check in order for it to pass. If this value is not present in the response body of a check request, the backend is considered to be down.
          */
-        check_body: string;
+        check_body?: string;
         /**
          * Number of seconds between checks to verify that backends are up and serving requests.
          *
          * Must be greater than `check_timeout`.
          */
-        check_interval: number;
+        check_interval?: number;
         /**
          * If `true`, any response from this backend with a `5xx` status code will be enough for it to be considered unhealthy and taken out of rotation.
          */
-        check_passive: boolean;
+        check_passive?: boolean;
         /**
          * The URL path to check on each backend. Use when the active health `check` type is `http`. If the backend doesn't respond to this request, it's considered to be down.
          */
-        check_path: string;
+        check_path?: string;
         /**
          * Number of seconds to wait for a check attempt before considering it failed.
          *
          * Must be less than `check_interval`.
          */
-        check_timeout: number;
+        check_timeout?: number;
         /**
          * __Read-only__ Not applicable for HTTP configs.
          */
-        readonly cipher_suite: string;
+        readonly cipher_suite?: string;
         /**
          * __Read-only__ This config's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Read-only__ Identifies the NodeBalancer this config belongs to.
          */
-        readonly nodebalancer_id: number;
+        readonly nodebalancer_id?: number;
         /**
          * __Read-only__ Describes the health of the backends for this port. This data updates periodically as checks are performed against backends.
          */
-        readonly nodes_status: {
+        readonly nodes_status?: {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These aren't in rotation, and aren't serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, currently serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers need to be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally assigned specific protocols, this isn't strictly enforced. You may configure your NodeBalancer however you find useful.
          */
-        port: number;
+        port?: number;
         /**
          * The protocol the port is configured to serve, `http` in this case.
          *
          * Review our guide on [Available protocols](https://techdocs.akamai.com/cloud-computing/docs/available-protocols) for information on protocol features.
          */
-        protocol: 'http';
+        protocol?: 'http';
         /**
          * __Read-only__ Not applicable for HTTP configs.
          */
-        readonly proxy_protocol: string;
+        readonly proxy_protocol?: string;
         /**
          * __Read-only__ Not applicable for HTTP configs.
          */
-        readonly ssl_cert: string | null;
+        readonly ssl_cert?: string | null;
         /**
          * __Read-only__ Not applicable for HTTP configs.
          */
-        readonly ssl_commonname: string;
+        readonly ssl_commonname?: string;
         /**
          * __Read-only__ Not applicable for HTTP configs.
          */
-        readonly ssl_fingerprint: string;
+        readonly ssl_fingerprint?: string;
         /**
          * __Read-only__ Not applicable for HTTP configs.
          */
-        readonly ssl_key: string | null;
+        readonly ssl_key?: string | null;
         /**
          * Controls how session stickiness is handled on this port:
          *
@@ -54063,12 +54063,12 @@ export type PutNodeBalancerConfigData = {
          * - If set to `table`, sessions from the same remote address will be routed to the same backend.
          * - If set to `http_cookie`, sessions are routed to the same backend based on a cookie set by the NodeBalancer.
          */
-        stickiness: 'none' | 'table' | 'http_cookie';
+        stickiness?: 'none' | 'table' | 'http_cookie';
     } | {
         /**
          * The algorithm this HTTPS NodeBalancer uses for routing traffic to backends.
          */
-        algorithm: 'roundrobin' | 'leastconn' | 'source';
+        algorithm?: 'roundrobin' | 'leastconn' | 'source';
         /**
          * The type of check to perform against backends to ensure they are serving requests. The `check` is used to determine if backends are up or down.
          *
@@ -54076,66 +54076,66 @@ export type PutNodeBalancerConfigData = {
          * - `connection` requires only a connection to the backend to succeed.
          * - `http` and `http_body` rely on the backend serving HTTP, and that the response returned matches what is expected.
          */
-        check: 'none' | 'connection' | 'http' | 'http_body';
+        check?: 'none' | 'connection' | 'http' | 'http_body';
         /**
          * How many times to attempt a check before considering a backend to be down.
          */
-        check_attempts: number;
+        check_attempts?: number;
         /**
          * Use when the active health `check` type is `http_body`. This value must be present in the response body of the check in order for it to pass. If this value is not present in the response body of a check request, the backend is considered to be down.
          */
-        check_body: string;
+        check_body?: string;
         /**
          * Number of seconds between checks to verify that backends are up and serving requests.
          *
          * Must be greater than `check_timeout`.
          */
-        check_interval: number;
+        check_interval?: number;
         /**
          * If `true`, any response from this backend with a `5xx` status code will be enough for it to be considered unhealthy and taken out of rotation.
          */
-        check_passive: boolean;
+        check_passive?: boolean;
         /**
          * The URL path to check on each backend. Use when the active health `check` type is `http`. If the backend doesn't respond to this request, it's considered to be down.
          */
-        check_path: string;
+        check_path?: string;
         /**
          * Number of seconds to wait for a check attempt before considering it failed.
          *
          * Must be less than `check_interval`.
          */
-        check_timeout: number;
+        check_timeout?: number;
         /**
          * What ciphers to use for SSL connections served by this NodeBalancer.
          *
          * - `legacy` is considered insecure and should only be used if necessary.
          */
-        cipher_suite: 'recommended' | 'legacy';
+        cipher_suite?: 'recommended' | 'legacy';
         /**
          * __Read-only__ This config's unique ID.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Read-only__ The ID for the NodeBalancer this config belongs to.
          */
-        readonly nodebalancer_id: number;
+        readonly nodebalancer_id?: number;
         /**
          * __Read-only__ Describes the health of the backends for this port. This data updates periodically as checks are performed against backends.
          */
-        readonly nodes_status: {
+        readonly nodes_status?: {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These aren't in rotation, and aren't serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, currently serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally assigned specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
          */
-        port: number;
+        port?: number;
         /**
          * The protocol the port is configured to serve, `https` in this case.
          *
@@ -54143,11 +54143,11 @@ export type PutNodeBalancerConfigData = {
          *
          * Review our guide on [Available protocols](https://techdocs.akamai.com/cloud-computing/docs/available-protocols) for information on protocol features.
          */
-        protocol: 'https';
+        protocol?: 'https';
         /**
          * __Read-only__ Not applicable for HTTPS configs.
          */
-        readonly proxy_protocol: string;
+        readonly proxy_protocol?: string;
         /**
          * The PEM-formatted public SSL certificate (or the combined PEM-formatted SSL certificate and Certificate Authority chain) that should be served on this NodeBalancerConfig's port.
          *
@@ -54159,15 +54159,15 @@ export type PutNodeBalancerConfigData = {
          *
          * The read-only `ssl_commonname` and `ssl_fingerprint` fields in a NodeBalancerConfig response are automatically derived from your certificate. Please refer to these fields to verify that the appropriate certificate was assigned to your NodeBalancerConfig.
          */
-        ssl_cert: string | null;
+        ssl_cert?: string | null;
         /**
          * __Read-only__ The read-only common name automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.
          */
-        readonly ssl_commonname: string;
+        readonly ssl_commonname?: string;
         /**
          * __Read-only__ The read-only SHA1-encoded fingerprint automatically derived from the SSL certificate assigned to this NodeBalancer configuration. Please refer to the `ssl_fingerprint` field to verify that the appropriate certificate is assigned to your NodeBalancer configuration.
          */
-        readonly ssl_fingerprint: string;
+        readonly ssl_fingerprint?: string;
         /**
          * The PEM-formatted private key for the SSL certificate set in the `ssl_cert` field.
          *
@@ -54177,7 +54177,7 @@ export type PutNodeBalancerConfigData = {
          *
          * The read-only `ssl_commonname` and `ssl_fingerprint` fields in a NodeBalancerConfig response are automatically derived from your certificate. Please refer to these fields to verify that the appropriate certificate was assigned to your NodeBalancerConfig.
          */
-        ssl_key: string | null;
+        ssl_key?: string | null;
         /**
          * Controls how session stickiness is handled on this port:
          *
@@ -54185,7 +54185,7 @@ export type PutNodeBalancerConfigData = {
          * - If set to `table`, sessions from the same remote address will be routed to the same backend.
          * - For HTTP or HTTPS clients, `http_cookie` allows sessions to be routed to the same backend based on a cookie set by the NodeBalancer.
          */
-        stickiness: 'none' | 'table' | 'http_cookie';
+        stickiness?: 'none' | 'table' | 'http_cookie';
     };
     path: {
         /**
@@ -55532,11 +55532,11 @@ export type PostRebuildNodeBalancerConfigData = {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -55691,11 +55691,11 @@ export type PostRebuildNodeBalancerConfigData = {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -55845,11 +55845,11 @@ export type PostRebuildNodeBalancerConfigData = {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers need to be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced. You may configure your NodeBalancer however you find useful.
@@ -55996,11 +55996,11 @@ export type PostRebuildNodeBalancerConfigData = {
             /**
              * __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
              */
-            readonly down: number;
+            readonly down?: number;
             /**
              * __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
              */
-            readonly up: number;
+            readonly up?: number;
         };
         /**
          * This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -56074,15 +56074,15 @@ export type PostRebuildNodeBalancerConfigData = {
              * - For non-VPC backend nodes, the public IPv6 address and port where this backend can be reached.
              * - For backend nodes within a VPC, the IPv4 address and port where this backend can be reached.
              */
-            address: string;
+            address?: string;
             /**
              * The unique ID of the Node to update.
              */
-            id: number;
+            id?: number;
             /**
              * The label for this node.  This is for display purposes only.
              */
-            label: string;
+            label?: string;
             /**
              * The mode this NodeBalancer should use when sending traffic to this backend.
              *
@@ -56091,15 +56091,15 @@ export type PostRebuildNodeBalancerConfigData = {
              * - If set to `drain` this backend will not receive _new_ traffic, but connections already pinned to it will continue to be routed to it.
              * - If set to `backup`, this backend will only receive traffic if all `accept` nodes are down.
              */
-            mode: 'accept' | 'reject' | 'drain' | 'backup';
+            mode?: 'accept' | 'reject' | 'drain' | 'backup';
             /**
              * Required for VPC backend nodes only. The VPC's subnet. To display information about your VPCs and their subnets, run the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation.
              */
-            subnet_id: number;
+            subnet_id?: number;
             /**
              * Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic.
              */
-            weight: number;
+            weight?: number;
         }>;
     };
     path: {
@@ -57899,11 +57899,11 @@ export type PostObjectStorageBucketAccessData = {
         /**
          * The S3 predefined collection of grantees and permissions set for the bucket, also referred to as a [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
          */
-        acl: 'private' | 'public-read' | 'authenticated-read' | 'public-read-write' | 'custom';
+        acl?: 'private' | 'public-read' | 'authenticated-read' | 'public-read-write' | 'custom';
         /**
          * If `true`, cross-origin resource sharing (CORS) is enabled for all origins in the bucket.
          */
-        cors_enabled: boolean;
+        cors_enabled?: boolean;
     };
     path: {
         /**
@@ -57959,11 +57959,11 @@ export type PutStorageBucketAccessData = {
         /**
          * The S3 predefined collection of grantees and permissions set for the bucket, also referred to as a [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
          */
-        acl: 'private' | 'public-read' | 'authenticated-read' | 'public-read-write' | 'custom';
+        acl?: 'private' | 'public-read' | 'authenticated-read' | 'public-read-write' | 'custom';
         /**
          * If `true`, the API enables cross-origin resource sharing for all origins on the bucket.
          */
-        cors_enabled: boolean;
+        cors_enabled?: boolean;
     };
     path: {
         /**
@@ -58851,24 +58851,24 @@ export type PostObjectStorageKeysData = {
         /**
          * Settings that limit access to specific buckets, each with a specific permission level. See [Create a limited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.
          */
-        bucket_access: Array<{
+        bucket_access?: Array<{
             /**
              * The name of the bucket the key can access in the `region`.
              */
-            bucket_name: string;
+            bucket_name?: string;
             /**
              * The level of access the key grants to the `bucket_name`. Keys with `read_write` access can manage content in the `bucket_name`, while `read_only` can be used to view content.
              */
-            permissions: 'read_write' | 'read_only';
+            permissions?: 'read_write' | 'read_only';
             /**
              * The region where the Object Storage `bucket_name` resides.
              */
-            region: string;
+            region?: string;
         } | {
             /**
              * The name of the bucket the key can access in the `region`.
              */
-            bucket_name: string;
+            bucket_name?: string;
             /**
              * __Deprecated__ For backwards compatibility, this is included to identify the legacy cluster equivalent of the `region` where this key can be used. The key grants access to each specified `bucket_name`, based on the `permissions` set.
              *
@@ -58876,25 +58876,25 @@ export type PostObjectStorageKeysData = {
              * >
              * > Use of clusters in a limited access key has been deprecated. You should use the `region` parameter instead.
              */
-            cluster: string;
+            cluster?: string;
             /**
              * The level of access the key grants to the `bucket_name`. Keys with `read_write` access can manage content in the `bucket_name`, while `read_only` can be used to view content.
              */
-            permissions: 'read_write' | 'read_only';
+            permissions?: 'read_write' | 'read_only';
         }>;
         /**
          * The name for the key. For display purposes only.
          */
-        label: string;
+        label?: string;
     } | {
         /**
          * The name for the key. For display purposes only.
          */
-        label: string;
+        label?: string;
         /**
          * The key can be used in these regions to manage all buckets. See [Create an unlimited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.
          */
-        regions: Array<string>;
+        regions?: Array<string>;
     };
     path?: never;
     query?: never;
@@ -59164,7 +59164,7 @@ export type PutObjectStorageKeyData = {
         /**
          * The label for the Object Storage key. Used for display purposes. Omit this to leave the `label` unchanged.
          */
-        label: string;
+        label?: string;
         /**
          * Replace the current list of `regions` set in a specific key. Include an existing region to keep it, or leave it out to remove it. Omit the `regions` array to leave the existing list unchanged. If you include new `regions` in the key, you can't immediately use the key to manage content in buckets in those regions. You need to grant these keys this access using [bucket policies](https://www.linode.com/docs/products/storage/object-storage/guides/bucket-policies/).
          *
@@ -59176,7 +59176,7 @@ export type PutObjectStorageKeyData = {
          * >
          * > - If you need to remove a specific region from an active limited key, you can [revoke the key](https://techdocs.akamai.com/linode-api/reference/delete-object-storage-key) and create a new Object Storage key, without the specific region.
          */
-        regions: Array<string>;
+        regions?: Array<string>;
     };
     path: {
         /**
@@ -60032,7 +60032,7 @@ export type PutPlacementGroupData = {
          * - It needs to begin and end with an alphanumeric character.
          * - It can only consist of alphanumeric characters, hyphens (`-`), underscores (`_`), or periods (`.`).
          */
-        label: string;
+        label?: string;
     };
     path: {
         /**
@@ -60139,7 +60139,7 @@ export type PostGroupAddLinodeData = {
         /**
          * The `linodeId` values for individual compute instances included in the placement group.
          */
-        linodes: Array<number>;
+        linodes?: Array<number>;
     };
     path: {
         /**
@@ -60246,7 +60246,7 @@ export type PostGroupUnassignData = {
         /**
          * The `linodeId` values for individual compute instances included in the placement group.
          */
-        linodes: Array<number>;
+        linodes?: Array<number>;
     };
     path: {
         /**
@@ -60487,25 +60487,25 @@ export type PutProfileData = {
          *
          * - If a user has used third-party authentication and has since revoked it, the authentication type is `password`.
          */
-        authentication_type: 'password' | 'github';
+        authentication_type?: 'password' | 'github';
         /**
          * Your user can use these SSH Keys to access Lish. This value is ignored if `lish_auth_method` is `disabled`.
          */
-        authorized_keys: Array<string> | null;
+        authorized_keys?: Array<string> | null;
         /**
          * Your email address. We use this address for Akamai Cloud Computing-related communication.
          */
-        email: string;
+        email?: string;
         /**
          * When set to `true`, you will receive email notifications about account activity. When `false`, you may still receive business-critical communications through email.
          */
-        email_notifications: boolean;
+        email_notifications?: boolean;
         /**
          * When set to `true`, your user logins are only allowed from whitelisted IPs. This setting is deprecated, and can't be enabled. If you disable this setting, you won't be able to re-enable it.
          *
          * @deprecated
          */
-        ip_whitelist_enabled: boolean;
+        ip_whitelist_enabled?: boolean;
         /**
          * The authentication methods that you can use when connecting to the [Linode Shell (Lish)](https://www.linode.com/docs/guides/lish/).
          *
@@ -60515,60 +60515,60 @@ export type PutProfileData = {
          *
          * - If this account's Cloud Manager authentication type is set to a third-party authentication method, you can't use `password_keys` as your Lish authentication method. Run the [Get a profile](https://techdocs.akamai.com/linode-api/reference/get-profile) operation to view your account's Cloud Manager `authentication_type` field.
          */
-        lish_auth_method: 'password_keys' | 'keys_only' | 'disabled';
+        lish_auth_method?: 'password_keys' | 'keys_only' | 'disabled';
         /**
          * __Read-only__ Information about your status in our referral program. The API makes this information available after this profile's account has established at least $25.00 USD of total payments.
          */
-        readonly referrals: {
+        readonly referrals?: {
             /**
              * __Read-only__ Your referral code. If others use this when signing up for Linode, you receive an account credit.
              */
-            readonly code: string;
+            readonly code?: string;
             /**
              * __Read-only__ The number of completed sign-ups that used your referral code.
              */
-            readonly completed: number;
+            readonly completed?: number;
             /**
              * __Read-only__ Your referral program account credit in US dollars.
              */
-            readonly credit: number;
+            readonly credit?: number;
             /**
              * __Read-only__ The number of pending sign-ups that used your referral code. Akamai gives you credit for these sign-ups once they've completed.
              */
-            readonly pending: number;
+            readonly pending?: number;
             /**
              * __Read-only__ The number of users who have signed up with your referral code.
              */
-            readonly total: number;
+            readonly total?: number;
             /**
              * __Read-only__ The referral URL that Akamai uses to direct others to sign up for Akamai Cloud Computing with your referral code.
              */
-            readonly url: string;
+            readonly url?: string;
         };
         /**
          * When set to `true`, there are restrictions on what your user can access on your account. Run [List grants](https://techdocs.akamai.com/linode-api/reference/get-profile-grants) to get details on what entities and actions you can access and perform.
          */
-        restricted: boolean;
+        restricted?: boolean;
         /**
          * The time zone you want to display for your Linode assets. This API doesn't directly use this time zone. It's provided for the benefit of clients such as the Akamai Cloud Manager and other clients built on the API. All times returned by the API are in UTC.
          */
-        timezone: string;
+        timezone?: string;
         /**
          * When set to `true`, a login from an untrusted computer requires two-factor authentication. You also need to run [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) to enable two-factor authentication.
          */
-        two_factor_auth: boolean;
+        two_factor_auth?: boolean;
         /**
          * __Read-only__ Your unique ID in our system. This value will never change, and can safely be used to identify your user.
          */
-        readonly uid: number;
+        readonly uid?: number;
         /**
          * __Read-only__ Your username, used for logging in to our system.
          */
-        readonly username: string;
+        readonly username?: string;
         /**
          * __Read-only__ The phone number verified for this profile with the [Verify a phone number](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) operation. Displayed as `null` if the profile doesn't have a verified phone number.
          */
-        readonly verified_phone_number: string | null;
+        readonly verified_phone_number?: string | null;
     };
     path?: never;
     query?: never;
@@ -61781,19 +61781,19 @@ export type PostSecurityQuestionsData = {
         /**
          * Security questions and response objects.
          */
-        security_questions: Array<{
+        security_questions?: Array<{
             /**
              * The ID representing the security question.
              */
-            question_id: number;
+            question_id?: number;
             /**
              * The security question response.
              */
-            response: string;
+            response?: string;
             /**
              * __Read-only__ The security question.
              */
-            readonly security_question: string;
+            readonly security_question?: string;
         }>;
     };
     path?: never;
@@ -61940,15 +61940,15 @@ export type PostAddSshKeyData = {
         /**
          * __Read-only__ The date this key was added.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ The unique identifier of an SSH Key object.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * A label for the SSH Key.
          */
-        label: string;
+        label?: string;
         /**
          * The public SSH Key, which is used to authenticate to the root user of the Linodes you deploy.
          *
@@ -61960,7 +61960,7 @@ export type PostAddSshKeyData = {
          * - ssh-ed25519
          * - sk-ecdsa-sha2-nistp256 (Akamai-specific)
          */
-        ssh_key: string;
+        ssh_key?: string;
     };
     path?: never;
     query?: never;
@@ -62138,7 +62138,7 @@ export type PutSshKeyData = {
         /**
          * A label for the SSH Key.
          */
-        label: string;
+        label?: string;
     };
     path: {
         /**
@@ -62295,7 +62295,7 @@ export type PostTfaConfirmData = {
         /**
          * The Two Factor code you generated with your Two Factor secret. These codes are time-based, so be sure it is current.
          */
-        tfa_code: string;
+        tfa_code?: string;
     };
     path?: never;
     query?: never;
@@ -62419,11 +62419,11 @@ export type PostPersonalAccessTokenData = {
         /**
          * When this token should be valid until.  If omitted, the new token will be valid until it is manually revoked.
          */
-        expiry: string | null;
+        expiry?: string | null;
         /**
          * __Filterable__ This token's label.  This is for display purposes only, but can be used to more easily track what you're using each token for.
          */
-        label: string;
+        label?: string;
         /**
          * The access [scopes](https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference) to grant to the created token. These cannot be changed after creation, and may not exceed the scopes of the acting token.
          *
@@ -62433,7 +62433,7 @@ export type PostPersonalAccessTokenData = {
          *
          * For example, `linodes:read_write account:read_only`.
          */
-        scopes: string;
+        scopes?: string;
     };
     path?: never;
     query?: never;
@@ -62611,27 +62611,27 @@ export type PutPersonalAccessTokenData = {
         /**
          * __Filterable__, __Read-only__ The date and time this token was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ When this token will expire.  Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated.  Tokens may be created with `null` as their expiry and will never expire unless revoked.
          */
-        readonly expiry: string;
+        readonly expiry?: string;
         /**
          * __Read-only__ This token's unique ID, which can be used to revoke it.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Filterable__ This token's label.  This is for display purposes only, but can be used to more easily track what you're using each token for.
          */
-        label: string;
+        label?: string;
         /**
          * __Read-only__ The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the [Linode CLI](https://github.com/linode/linode-cli), require tokens with access to `*`. Tokens with more restrictive scopes are generally more secure.
          */
-        readonly scopes: string;
+        readonly scopes?: string;
         /**
          * __Read-only__ The token used to access the API.  When the token is created, the full token is returned here.  Otherwise, only the first 16 characters are returned.
          */
-        readonly token: string;
+        readonly token?: string;
     };
     path: {
         /**
@@ -64962,47 +64962,47 @@ export type PutVolumeData = {
         /**
          * __Read-only__ When this volume was created.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * __Read-only__ Whether encryption is enabled on this volume.
          */
-        encryption: 'enabled' | 'disabled';
+        encryption?: 'enabled' | 'disabled';
         /**
          * __Read-only__ The full file system path for the volume, based on its `label`. The path is `/dev/disk/by-id/scsi-0Linode_Volume_label`.
          */
-        readonly filesystem_path: string;
+        readonly filesystem_path?: string;
         /**
          * __Read-only__ The storage type of this volume. This can be either `hdd` to emulate a hard disk drive for the volume, or `nvme` to emulate a non-volatile memory express solid state drive.
          */
-        hardware_type: 'hdd' | 'nvme';
+        hardware_type?: 'hdd' | 'nvme';
         /**
          * __Read-only__ The unique identifier for the volume.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Read-only__ Indicates whether the volume is successfully attached to a Linode and ready for read and write operations.
          */
-        readonly io_ready: boolean;
+        readonly io_ready?: boolean;
         /**
          * __Filterable__ The name of the volume. A `label` can be up to 32 characters long and contain alphanumeric characters, hyphens, and underscores. This value is also used in the volume's `filesystem_path`.
          */
-        label: string;
+        label?: string;
         /**
          * The unique identifier of the Linode this volume is attached to, if applicable.
          */
-        linode_id: number | null;
+        linode_id?: number | null;
         /**
          * __Read-only__ The name of the Linode this volume is attached to, if applicable.
          */
-        readonly linode_label: string | null;
+        readonly linode_label?: string | null;
         /**
          * The unique identifier for the region where the volume lives.
          */
-        region: string;
+        region?: string;
         /**
          * The volume's size, in gigabytes.
          */
-        size: number;
+        size?: number;
         /**
          * __Read-only__ The current status of the volume. This can be one of:
          *
@@ -65014,18 +65014,18 @@ export type PutVolumeData = {
          *
          * - `key_rotating`. The volume's encryption keys are being rotated to new values. Requests to resize, delete, or clone a volume fail during encryption key rotation.
          */
-        status: 'creating' | 'active' | 'resizing' | 'key_rotating';
+        status?: 'creating' | 'active' | 'resizing' | 'key_rotating';
         /**
          * __Filterable__ Any tags applied to this object. Use [tags](https://techdocs.akamai.com/linode-api/reference/post-tag) to label and organize your cloud computing resources.
          */
-        tags: Array<string>;
+        tags?: Array<string>;
         /**
          * __Read-only__ When this volume was last updated.
          */
-        readonly updated: string;
+        readonly updated?: string;
     } & {
-        readonly linode_id: unknown;
-        readonly size: unknown;
+        readonly linode_id?: unknown;
+        readonly size?: unknown;
     };
     path: {
         /**
@@ -65695,38 +65695,38 @@ export type PostVpcData = {
         /**
          * __Filterable__, __Read-only__ The date-time of VPC creation.
          */
-        readonly created: string;
+        readonly created?: string;
         /**
          * A written description to help distinguish the VPC.
          */
-        description: string;
+        description?: string;
         /**
          * __Filterable__, __Read-only__ The unique ID of the VPC.
          */
-        readonly id: number;
+        readonly id?: number;
         /**
          * __Filterable__ The VPC's label, for display purposes only.
          *
          * - Needs to be unique among the Account's VPCs.
          * - Can only contain ASCII letters, numbers, and hyphens (`-`). You can't use two consecutive hyphens (`--`).
          */
-        label: string;
+        label?: string;
         /**
          * __Filterable__ The Region for the VPC.
          */
-        region: string;
+        region?: string;
         /**
          * A list of subnets associated with the VPC.
          */
-        subnets: Array<{
+        subnets?: Array<{
             /**
              * __Filterable__, __Read-only__ The date-time of VPC Subnet creation.
              */
-            readonly created: string;
+            readonly created?: string;
             /**
              * __Filterable__, __Read-only__ The unique ID of the VPC Subnet.
              */
-            readonly id: number;
+            readonly id?: number;
             /**
              * IPv4 range in CIDR canonical form.
              *
@@ -65735,51 +65735,51 @@ export type PostVpcData = {
              * - The range must not overlap with 192.168.128.0/17.
              * - The range must not overlap with other Subnets on the same VPC.
              */
-            ipv4: string;
+            ipv4?: string;
             /**
              * __Filterable__ The VPC Subnet's label, for display purposes only.
              *
              * - Must be unique among the VPC's Subnets.
              * - Can only contain ASCII letters, numbers, and hyphens (`-`). You can't use two consecutive hyphens (`--`).
              */
-            label: string;
+            label?: string;
             /**
              * __Read-only__ An array of Linode IDs assigned to the VPC Subnet.
              *
              * A Linode is assigned to a VPC Subnet if it has a Configuration Profile with a `vpc` purpose interface with the subnet's `subnet_id`. Even if the Configuration Profile is not active, meaning the Linode does not have access to the Subnet, the Linode still appears in this array.
              */
-            readonly linodes: Array<{
+            readonly linodes?: Array<{
                 /**
                  * ID of a Linode assigned to the VPC Subnet.
                  */
-                id: number;
+                id?: number;
                 /**
                  * VPC purpose interfaces with the subnet's `subnet_id` assigned to the Linode.
                  */
-                interfaces: Array<{
+                interfaces?: Array<{
                     /**
                      * Returns `true` if the Interface is in use, meaning that the Linode was powered on using the Configuration Profile to which the Interface belongs. Otherwise returns `false`.
                      */
-                    active: boolean;
+                    active?: boolean;
                     /**
                      * The globally general entity identifier for the Linode configuration profile that includes the VPC. If this is a VPC Linode interface, the value is `null`.
                      */
-                    config_id: number | null;
+                    config_id?: number | null;
                     /**
                      * ID of the interface.
                      */
-                    id: number;
+                    id?: number;
                 }>;
             }>;
             /**
              * __Filterable__, __Read-only__ The date-time of the most recent VPC Subnet update.
              */
-            readonly updated: string | null;
+            readonly updated?: string | null;
         }>;
         /**
          * __Filterable__, __Read-only__ The date-time of the most recent VPC update.
          */
-        readonly updated: string | null;
+        readonly updated?: string | null;
     };
     path?: never;
     query?: never;
@@ -66198,14 +66198,14 @@ export type PutVpcData = {
         /**
          * A written description to help distinguish the VPC.
          */
-        description: string;
+        description?: string;
         /**
          * __Filterable__ The VPC's label, for display purposes only.
          *
          * - Needs to be unique among the Account's VPCs.
          * - Can only contain ASCII letters, numbers, and hyphens (`-`). You can't use two consecutive hyphens (`--`).
          */
-        label: string;
+        label?: string;
     };
     path: {
         /**
@@ -66853,7 +66853,7 @@ export type PutVpcSubnetData = {
          * - Must be unique among the VPC's Subnets.
          * - Can only contain ASCII letters, numbers, and hyphens (`-`). You can't use two consecutive hyphens (`--`).
          */
-        label: string;
+        label?: string;
     };
     path: {
         /**
