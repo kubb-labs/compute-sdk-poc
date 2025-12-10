@@ -103,6 +103,22 @@ export const propertiesRequiredByDefaultTransform = ({
         nodeInfo.node &&
         typeof nodeInfo.node === 'object' &&
         'type' in nodeInfo.node &&
+        !nodeInfo.node.nullable &&
+        (
+          ('default' in nodeInfo.node && nodeInfo.node.default === null) ||
+          ('example' in nodeInfo.node && nodeInfo.node.example && Array.isArray(nodeInfo.node.example) && nodeInfo.node.example.includes(null)))
+      ) {
+        if (nodeInfo.key === 'nat_1_1_address') {
+          console.log(nodeInfo.key, ' | ', nodeInfo.node);
+          nodeInfo.node.nullable = true;
+
+        }
+      }
+
+      if (
+        nodeInfo.node &&
+        typeof nodeInfo.node === 'object' &&
+        'type' in nodeInfo.node &&
         nodeInfo.node.type === 'object' &&
         'properties' in nodeInfo.node &&
         nodeInfo.node.properties &&

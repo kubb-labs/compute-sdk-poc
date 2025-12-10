@@ -1,5 +1,6 @@
 import { OpenAPIV3_1 } from "openapi-types";
 import { propertiesRequiredByDefaultTransform } from "./transform";
+import { fixNulls } from "./transform-2";
 
 const OPEN_API_SPEC_URL = 'https://raw.githubusercontent.com/linode/linode-api-docs/refs/heads/development/openapi.json';
 
@@ -23,6 +24,7 @@ for (const path in spec.paths) {
 }
 
 propertiesRequiredByDefaultTransform({ spec });
+fixNulls({ spec });
 
 await Bun.write('./openapi.json', JSON.stringify(spec, null, 2));
 
