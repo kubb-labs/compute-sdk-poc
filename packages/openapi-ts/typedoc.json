@@ -1,0 +1,4 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": ["./src/client.gen.ts", "./src/sdk.gen.ts", "./src/types.gen.ts", "./src/zod.gen.ts"]
+}

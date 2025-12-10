@@ -1,5 +1,5 @@
 import { describe, expect, expectTypeOf, test } from "vitest";
-import { getLinodeInstance, postLinodeInstance } from "../src";
+import { getLinodeInstance, postLinodeInstance } from "../src/sdk.gen";
 import { http, HttpResponse } from 'msw'
 import { server } from "./msw";
 import { postLinodeInstanceRequestSchema } from "../src/zod.gen";

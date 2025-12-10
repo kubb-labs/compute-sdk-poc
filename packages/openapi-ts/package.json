@@ -10,9 +10,16 @@
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.mts"
     },
+    "./types": {
+      "types": "./dist/types.gen.ts"
+    },
     "./zod": {
       "import": "./dist/zod.gen.mjs",
       "types": "./dist/zod.gen.d.mts"
+    },
+    "./sdk": {
+      "import": "./dist/sdk.gen.mjs",
+      "types": "./dist/sdk.gen.d.mts"
     },
     "./client": {
       "import": "./dist/client.gen.mjs",
@@ -23,7 +30,9 @@
     "download": "bun run ./scripts/download.ts",
     "generate": "openapi-ts",
     "build": "tsdown",
+    "build:docs": "bunx typedoc",
     "build:full": "bun run download && bun run generate && bun run build",
+    "docs": "bunx serve docs",
     "typecheck": "tsc",
     "test": "vitest --typecheck"
   },
