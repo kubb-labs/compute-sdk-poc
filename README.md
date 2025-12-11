@@ -1,15 +1,15 @@
-# Comparing tooling that generates TypeScript SDKs from OpenAPI specifications
+# Generating TypeScript SDKs from the Linode OpenAPI specification
 
 This repo contains different attempts for generating TypeScript SDKs from the [Linode OpenAPI spesification](https://github.com/linode/linode-api-docs/blob/development/openapi.json) using different tools.
 
 Each folder in the `packages` directory represents a different tool being used to generate a TypeScript SDK.
 The `examples` directory is just used a manual playground for testing the generated SDKs.
 
-## Tools I Tried
+## Tools Tested
 
 ### [Hey API](https://heyapi.dev/)
 
-You can see API reference docs for this generated SDK [here](https://bnussman-akamai.github.io/compute-sdk-poc/)!
+You can see API reference docs for this generated SDK [here](https://bnussman-akamai.github.io/compute-sdk-poc/types/types.gen.PostLinodeInstanceData.html)!
 
 #### Pros
 - Generated mostly valid code (5 errors in 2 files according to TypeScript) without any patches to the OpenAPI spec
@@ -30,6 +30,8 @@ You can see API reference docs for this generated SDK [here](https://bnussman-ak
 #### Cons
 - Generated lots of invalid code (115 errors in 47 files according to TypeScript)
   - Have not tried patching yet to get this number down
+
+<hr />
 
 ### Comparison Chart
 
