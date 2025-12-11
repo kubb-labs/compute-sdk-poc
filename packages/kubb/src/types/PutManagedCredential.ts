@@ -4,19 +4,7 @@
 */
 
 
-export const putManagedCredentialPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PutManagedCredentialPathParamsApiVersionEnumKey = (typeof putManagedCredentialPathParamsApiVersionEnum)[keyof typeof putManagedCredentialPathParamsApiVersionEnum];
-
 export interface PutManagedCredentialPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PutManagedCredentialPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the Credential to access.
      * @type integer
@@ -30,22 +18,22 @@ export interface PutManagedCredentialPathParams {
 export interface PutManagedCredential200 {
     /**
      * @description __Read-only__ This Credential\'s unique ID.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description The unique label for this Credential. This is for display purposes only.
      * @minLength 2
      * @maxLength 75
      * @pattern [a-zA-Z0-9-_ \.]{2,75}
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description __Read-only__ The date this Credential was last decrypted by a member of Linode special forces.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly last_decrypted?: string;
+    readonly last_decrypted: string;
 }
 
 /**
@@ -53,19 +41,19 @@ export interface PutManagedCredential200 {
 */
 export interface PutManagedCredentialError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetDatabasesMysqlInstanceSslQueryResponse, GetDatabasesMysqlInstanceSslPathParams } from "../types/GetDatabasesMysqlInstanceSsl.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDatabasesMysqlInstanceSslUrl(apiVersion: GetDatabasesMysqlInstanceSslPathParams["apiVersion"], instanceId: GetDatabasesMysqlInstanceSslPathParams["instanceId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/databases/mysql/instances/${instanceId}/ssl` as const }  
+function getGetDatabasesMysqlInstanceSslUrl(instanceId: GetDatabasesMysqlInstanceSslPathParams["instanceId"]) {
+  const res = { method: 'GET', url: `/databases/mysql/instances/${instanceId}/ssl` as const }  
   return res
 }
 
 /**
  * @description Display the SSL CA certificate for an accessible MySQL Managed Database. The database's status needs to be `active`.<<LB>>---- __CLI__.    ```    linode-cli databases mysql-ssl-cert 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    databases:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a MySQL Managed Database SSL certificate
- * {@link /:apiVersion/databases/mysql/instances/:instanceId/ssl}
+ * {@link /databases/mysql/instances/:instanceId/ssl}
  */
-export async function getDatabasesMysqlInstanceSsl(apiVersion: GetDatabasesMysqlInstanceSslPathParams["apiVersion"], instanceId: GetDatabasesMysqlInstanceSslPathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDatabasesMysqlInstanceSsl(instanceId: GetDatabasesMysqlInstanceSslPathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDatabasesMysqlInstanceSslQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesMysqlInstanceSslUrl(apiVersion, instanceId).url.toString(), ... requestConfig })  
+  const res = await request<GetDatabasesMysqlInstanceSslQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesMysqlInstanceSslUrl(instanceId).url.toString(), ... requestConfig })  
   return res.data
 }

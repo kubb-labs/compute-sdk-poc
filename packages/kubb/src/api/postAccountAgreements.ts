@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostAccountAgreementsMutationRequest, PostAccountAgreementsMutationResponse, PostAccountAgreementsPathParams } from "../types/PostAccountAgreements.ts";
+import type { PostAccountAgreementsMutationRequest, PostAccountAgreementsMutationResponse } from "../types/PostAccountAgreements.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostAccountAgreementsUrl(apiVersion: PostAccountAgreementsPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/agreements` as const }  
+function getPostAccountAgreementsUrl() {
+  const res = { method: 'POST', url: `/account/agreements` as const }  
   return res
 }
 
 /**
  * @description Accept required agreements by setting them to `true`. This remains until the content of the agreement changes. If it does, you need to run this operation again to accept it. If you set this to `false`, the API rejects the request and you need to open a [support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) to reset the agreement. Omitted agreements are left unchanged.<<LB>>---- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Acknowledge agreements
- * {@link /:apiVersion/account/agreements}
+ * {@link /account/agreements}
  */
-export async function postAccountAgreements(apiVersion: PostAccountAgreementsPathParams["apiVersion"], data?: PostAccountAgreementsMutationRequest, config: Partial<RequestConfig<PostAccountAgreementsMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postAccountAgreements(data?: PostAccountAgreementsMutationRequest, config: Partial<RequestConfig<PostAccountAgreementsMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostAccountAgreementsMutationResponse, ResponseErrorConfig<Error>, PostAccountAgreementsMutationRequest>({ method : "POST", url : getPostAccountAgreementsUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostAccountAgreementsMutationResponse, ResponseErrorConfig<Error>, PostAccountAgreementsMutationRequest>({ method : "POST", url : getPostAccountAgreementsUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetManagedIssuesPathParams, GetManagedIssuesQueryParams, GetManagedIssues200, GetManagedIssuesError, GetManagedIssuesQueryResponse } from "../types/GetManagedIssues.ts";
+import type { GetManagedIssuesQueryParams, GetManagedIssues200, GetManagedIssuesError, GetManagedIssuesQueryResponse } from "../types/GetManagedIssues.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetManagedIssuesPathParams(data?: Partial<GetManagedIssuesPathParams>): GetManagedIssuesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetManagedIssuesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetManagedIssuesQueryParams(data?: Partial<GetManagedIssuesQueryParams>): GetManagedIssuesQueryParams {
   

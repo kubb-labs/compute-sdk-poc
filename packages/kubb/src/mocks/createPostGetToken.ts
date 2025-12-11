@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostGetTokenPathParams(data?: Partial<PostGetTokenPathParams>): PostGetTokenPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostGetTokenPathParams>["apiVersion"]>(["v4beta"]),"serviceType": faker.string.alpha()},
+  ...{"serviceType": faker.string.alpha()},
   ...data || {}
   }
 }

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostDatabasesPostgreSqlInstanceCredentialsResetPathParams(data?: Partial<PostDatabasesPostgreSqlInstanceCredentialsResetPathParams>): PostDatabasesPostgreSqlInstanceCredentialsResetPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostDatabasesPostgreSqlInstanceCredentialsResetPathParams>["apiVersion"]>(["v4", "v4beta"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

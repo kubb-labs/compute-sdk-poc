@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetManagedStatsPathParams, GetManagedStats200, GetManagedStatsError, GetManagedStatsQueryResponse } from "../types/GetManagedStats.ts";
+import type { GetManagedStats200, GetManagedStatsError, GetManagedStatsQueryResponse } from "../types/GetManagedStats.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetManagedStatsPathParams(data?: Partial<GetManagedStatsPathParams>): GetManagedStatsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetManagedStatsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A list of Managed Stats from the last 24 hours.

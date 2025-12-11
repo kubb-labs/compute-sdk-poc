@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PutUserPreferencesPathParams, PutUserPreferences200, PutUserPreferencesError, PutUserPreferencesMutationRequest, PutUserPreferencesMutationResponse } from "../types/PutUserPreferences.ts";
+import type { PutUserPreferences200, PutUserPreferencesError, PutUserPreferencesMutationRequest, PutUserPreferencesMutationResponse } from "../types/PutUserPreferences.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPutUserPreferencesPathParams(data?: Partial<PutUserPreferencesPathParams>): PutUserPreferencesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutUserPreferencesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns an object of user preferences.

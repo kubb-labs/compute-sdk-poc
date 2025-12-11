@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetUserPreferencesPathParams, GetUserPreferences200, GetUserPreferencesError, GetUserPreferencesQueryResponse } from "../types/GetUserPreferences.ts";
+import type { GetUserPreferences200, GetUserPreferencesError, GetUserPreferencesQueryResponse } from "../types/GetUserPreferences.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetUserPreferencesPathParams(data?: Partial<GetUserPreferencesPathParams>): GetUserPreferencesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetUserPreferencesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns an object of user preferences.

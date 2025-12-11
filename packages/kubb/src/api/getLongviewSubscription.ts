@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLongviewSubscriptionQueryResponse, GetLongviewSubscriptionPathParams } from "../types/GetLongviewSubscription.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLongviewSubscriptionUrl(apiVersion: GetLongviewSubscriptionPathParams["apiVersion"], subscriptionId: GetLongviewSubscriptionPathParams["subscriptionId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/longview/subscriptions/${subscriptionId}` as const }  
+function getGetLongviewSubscriptionUrl(subscriptionId: GetLongviewSubscriptionPathParams["subscriptionId"]) {
+  const res = { method: 'GET', url: `/longview/subscriptions/${subscriptionId}` as const }  
   return res
 }
 
 /**
  * @description Get the Longview plan details as a single `LongviewSubscription` object for the provided subscription ID. This is a public endpoint and requires no authentication.<<LB>>---- __CLI__.    ```    linode-cli longview subscription-view    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Get a Longview subscription
- * {@link /:apiVersion/longview/subscriptions/:subscriptionId}
+ * {@link /longview/subscriptions/:subscriptionId}
  */
-export async function getLongviewSubscription(apiVersion: GetLongviewSubscriptionPathParams["apiVersion"], subscriptionId: GetLongviewSubscriptionPathParams["subscriptionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLongviewSubscription(subscriptionId: GetLongviewSubscriptionPathParams["subscriptionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLongviewSubscriptionQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLongviewSubscriptionUrl(apiVersion, subscriptionId).url.toString(), ... requestConfig })  
+  const res = await request<GetLongviewSubscriptionQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLongviewSubscriptionUrl(subscriptionId).url.toString(), ... requestConfig })  
   return res.data
 }

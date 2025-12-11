@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostAssignIpv4SMutationRequest, PostAssignIpv4SMutationResponse, PostAssignIpv4SPathParams } from "../types/PostAssignIpv4S.ts";
+import type { PostAssignIpv4SMutationRequest, PostAssignIpv4SMutationResponse } from "../types/PostAssignIpv4S.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostAssignIpv4SUrl(apiVersion: PostAssignIpv4SPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/networking/ipv4/assign` as const }  
+function getPostAssignIpv4SUrl() {
+  const res = { method: 'POST', url: `/networking/ipv4/assign` as const }  
   return res
 }
 
 /**
  * @description This operation is equivalent to [Assign IP addresses](https://techdocs.akamai.com/linode-api/reference/post-assign-ips).Assign multiple IPv4 addresses and/or IPv6 ranges to multiple Linodes in one Region. This allows swapping, shuffling, or otherwise reorganizing IPs to your Linodes.The following restrictions apply:- All Linodes involved must have at least one public IPv4 address after assignment.  - For Linode interfaces, the Linode needs to have a public interface, and the address it receives can't be a private IPv4 address.- Linodes may have no more than one assigned private IPv4 address.- Linodes may have no more than one assigned IPv6 range.[Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) to request additional IPv4 addresses or IPv6 ranges beyond standard account limits.> 📘>> Removing an IP address that has been set as a Managed Linode's `ssh.ip` causes the Managed Linode's SSH access settings to reset to their default values.To view and configure Managed Linode SSH settings, use the following operations:- [Get a Linode's managed settings](https://techdocs.akamai.com/linode-api/reference/get-managed-linode-setting)- [Update a Linode's managed settings](https://techdocs.akamai.com/linode-api/reference/put-managed-linode-setting)<<LB>>---- __OAuth scopes__.    ```    ips:read_writelinodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Assign IPv4s to Linodes
- * {@link /:apiVersion/networking/ipv4/assign}
+ * {@link /networking/ipv4/assign}
  */
-export async function postAssignIpv4S(apiVersion: PostAssignIpv4SPathParams["apiVersion"], data: PostAssignIpv4SMutationRequest, config: Partial<RequestConfig<PostAssignIpv4SMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postAssignIpv4S(data: PostAssignIpv4SMutationRequest, config: Partial<RequestConfig<PostAssignIpv4SMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostAssignIpv4SMutationResponse, ResponseErrorConfig<Error>, PostAssignIpv4SMutationRequest>({ method : "POST", url : getPostAssignIpv4SUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostAssignIpv4SMutationResponse, ResponseErrorConfig<Error>, PostAssignIpv4SMutationRequest>({ method : "POST", url : getPostAssignIpv4SUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetNodeBalancersPathParams, GetNodeBalancersQueryParams, GetNodeBalancers200, GetNodeBalancersError, GetNodeBalancersQueryResponse } from "../types/GetNodeBalancers.ts";
+import type { GetNodeBalancersQueryParams, GetNodeBalancers200, GetNodeBalancersError, GetNodeBalancersQueryResponse } from "../types/GetNodeBalancers.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetNodeBalancersPathParams(data?: Partial<GetNodeBalancersPathParams>): GetNodeBalancersPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetNodeBalancersPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetNodeBalancersQueryParams(data?: Partial<GetNodeBalancersQueryParams>): GetNodeBalancersQueryParams {
   

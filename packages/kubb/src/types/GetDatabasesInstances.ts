@@ -4,21 +4,6 @@
 */
 
 
-export const getDatabasesInstancesPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetDatabasesInstancesPathParamsApiVersionEnumKey = (typeof getDatabasesInstancesPathParamsApiVersionEnum)[keyof typeof getDatabasesInstancesPathParamsApiVersionEnum];
-
-export interface GetDatabasesInstancesPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetDatabasesInstancesPathParamsApiVersionEnumKey;
-}
-
 export interface GetDatabasesInstancesQueryParams {
     /**
      * @description The page of a collection to return.
@@ -85,208 +70,208 @@ export type UpdatesFrequencyEnumKey = (typeof updatesFrequencyEnum)[keyof typeof
 export interface GetDatabasesInstances200 {
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description Controls access to the Managed Database.\n\n- Individually included IP addresses or CIDR ranges can access the Managed Database while all other sources are blocked.\n\n- A standalone value of `0.0.0.0/0` allows all IP addresses access to the Managed Database.\n\n- An empty array (`[]`) blocks all public and private connections to the Managed Database.
-         * @type array | undefined
+         * @type array
         */
-        allow_list?: string[];
+        allow_list: string[];
         /**
          * @description The number of Linode instance nodes deployed to the Managed Database.\n\n - Choose `3` nodes to create a high availability cluster that consists of one primary node and two replica nodes.\n\n- A `2` node cluster is only available with a dedicated plan. It consists of one primary node and one replica node.
          * @default 1
-         * @type integer | undefined
+         * @type integer
         */
-        cluster_size?: DataClusterSizeEnumKey;
+        cluster_size: DataClusterSizeEnumKey;
         /**
          * @description __Read-only__ When this Managed Database was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description __Read-only__ Whether the Managed Databases is encrypted. Currently required to be `true`.
          * @default true
-         * @type boolean | undefined
+         * @type boolean
         */
-        readonly encrypted?: boolean;
+        readonly encrypted: boolean;
         /**
          * @description __Filterable__, __Read-only__ The Managed Database engine type.
-         * @type string | undefined
+         * @type string
         */
-        readonly engine?: DataEngineEnumKey;
+        readonly engine: DataEngineEnumKey;
         /**
          * @description Details on the database that was the target of the fork. This only exists if the database was restored by creating a fork from another [MySQL](https://techdocs.akamai.com/linode-api/reference/post-databases-mysql-instances) or [PostgreSQL](https://techdocs.akamai.com/linode-api/reference/post-databases-postgre-sql-instances) database.
-         * @type object | undefined
+         * @type object
         */
-        fork?: {
+        fork: {
             /**
              * @description The database timestamp from which it was restored. This is _not_ when the fork was created.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            restore_time?: string;
+            restore_time: string;
             /**
              * @description The instance id of the database that was forked from.
-             * @type integer | undefined
+             * @type integer
             */
-            source?: number;
+            source: number;
         };
         /**
          * @description __Read-only__ The primary hostname and secondary read-only hostname for the Managed Database. The API assigns these hostnames after it successfully creates the Managed Database.
-         * @type object | undefined
+         * @type object
         */
-        readonly hosts?: {
+        readonly hosts: {
             /**
              * @description The primary hostname for the Managed Database.\n\n> 📘\n>\n> - If you\'ve configured the Managed Database to use a Virtual Private Cloud (VPC) via the `private_network` object ([MySQL](https://techdocs.akamai.com/linode-api/reference/post-databases-mysql-instances) / [PostgreSQL](https://techdocs.akamai.com/linode-api/reference/post-databases-postgre-sql-instances)), this hostname resolves to a private IPv4 address within that VPC subnet\'s address range. Currently, IPv6 addresses aren\'t supported in a VPC.\n>\n> - With `public_access` enabled in a `private_network`, a public version of this hostname is also available. Resolving this hostname returns _publicly_ routable IPv4 and IPv6 addresses.
              * @type string
             */
-            primary?: string | null;
+            primary: string | null;
             /**
              * @description The secondary, read-only hostname for the Managed Database. This can only be used to access a Managed Database cluster from Linodes in the same data center (region). Accessing the cluster through this hostname doesn\'t incur transfer costs.\n\n> 📘\n>\n> - The secondary hostname is publicly visible and accessible.\n>\n> - If you\'ve configured the Managed Database to use a VPC via the `private_network` object ([MySQL](https://techdocs.akamai.com/linode-api/reference/post-databases-mysql-instances) / [PostgreSQL](https://techdocs.akamai.com/linode-api/reference/post-databases-postgre-sql-instances)), this hostname resolves to a private IPv4 address within that VPC subnet\'s address range. Currently, IPv6 addresses aren\'t supported in a VPC. You can also use this hostname for requests between clients within the same VPC to access the cluster over the private network, which avoids transfer costs.\n>\n> - With `public_access` enabled in a `private_network`, a public version of this hostname is also available. Resolving this hostname returns publicly routable IPv4 and IPv6 addresses.
              * @type string
             */
-            secondary?: string | null;
+            secondary: string | null;
         };
         /**
          * @description __Read-only__ A unique ID that can be used to identify and reference the Managed Database.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description __Read-only__ Append this to `https://api.linode.com` to run commands for the Managed Database.
-         * @type string | undefined
+         * @type string
         */
-        readonly instance_uri?: string;
+        readonly instance_uri: string;
         /**
          * @description __Filterable__ A unique, user-defined string referring to the Managed Database. This string needs to be unique per Managed Database engine type.
          * @minLength 3
          * @maxLength 32
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description __Read-only__ A mapping between IP addresses and strings designating them as `primary` or `failover`.
-         * @type object | undefined
+         * @type object
         */
-        readonly members?: object;
+        readonly members: object;
         /**
          * @description __Read-only__ The oldest time to which a database can be restored.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly oldest_restore_time?: string;
+        readonly oldest_restore_time: string;
         /**
          * @description __Filterable__, __Read-only__ The back-end platform for relational databases used by the service.
-         * @type string | undefined
+         * @type string
         */
-        readonly platform?: DataPlatformEnumKey;
+        readonly platform: DataPlatformEnumKey;
         /**
          * @description __Read-only__ The access port for this Managed Database.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly port?: number;
+        readonly port: number;
         /**
          * @description __Filterable__ The unique identifier for the [region](https://techdocs.akamai.com/linode-api/reference/get-regions) where the Managed Database lives.
-         * @type string | undefined
+         * @type string
         */
-        region?: string;
+        region: string;
         /**
          * @description __Filterable__, __Read-only__ The operating status of the Managed Database.
-         * @type string | undefined
+         * @type string
         */
-        readonly status?: DataStatusEnum13Key;
+        readonly status: DataStatusEnum13Key;
         /**
          * @description __Read-only__ The total disk size of the database, in GB.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly total_disk_size_gb?: number;
+        readonly total_disk_size_gb: number;
         /**
          * @description __Filterable__ The Linode Instance type used by the Managed Database for its nodes.
-         * @type string | undefined
+         * @type string
         */
-        type?: string;
+        type: string;
         /**
          * @description __Read-only__ When this Managed Database was last updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly updated?: string;
+        readonly updated: string;
         /**
          * @description Configuration settings for automated patch update maintenance for the Managed Database.
-         * @type object | undefined
+         * @type object
         */
-        updates?: {
+        updates: {
             /**
              * @description The numeric reference for the day of the week to perform maintenance. `1` is Monday, `2` is Tuesday, through to `7` which is Sunday.
              * @minLength 1
              * @maxLength 7
-             * @type integer | undefined
+             * @type integer
             */
-            day_of_week?: number;
+            day_of_week: number;
             /**
              * @description The maximum maintenance window time in hours.
              * @minLength 1
              * @maxLength 3
-             * @type integer | undefined
+             * @type integer
             */
-            duration?: number;
+            duration: number;
             /**
              * @description How frequently maintenance occurs. Currently can only be `weekly`.
              * @default "weekly"
-             * @type string | undefined
+             * @type string
             */
-            frequency?: UpdatesFrequencyEnumKey;
+            frequency: UpdatesFrequencyEnumKey;
             /**
              * @description The hour to begin maintenance based in UTC time.
              * @minLength 0
              * @maxLength 23
-             * @type integer | undefined
+             * @type integer
             */
-            hour_of_day?: number;
+            hour_of_day: number;
             /**
              * @description __Read-only__ An array of pending updates.
-             * @type array | undefined
+             * @type array
             */
-            readonly pending?: {
+            readonly pending: {
                 /**
                  * @description The time when a mandatory update needs to be applied.
                  * @type string, date-time
                 */
-                deadline?: string | null;
+                deadline: string | null;
                 /**
                  * @description A description of the update.
-                 * @type string | undefined
+                 * @type string
                 */
-                description?: string;
+                description: string;
                 /**
                  * @description The date and time a maintenance update will be applied.
                  * @type string, date-time
                 */
-                planned_for?: string | null;
+                planned_for: string | null;
             }[];
         };
         /**
          * @description __Read-only__ The amount of space currently in use in the database, in GB.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly used_disk_size_gb?: number;
+        readonly used_disk_size_gb: number;
         /**
          * @description __Filterable__ The Managed Database engine version.
-         * @type string | undefined
+         * @type string
         */
-        version?: string;
+        version: string;
     }[];
 }
 
@@ -295,19 +280,19 @@ export interface GetDatabasesInstances200 {
 */
 export interface GetDatabasesInstancesError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -315,7 +300,6 @@ export type GetDatabasesInstancesQueryResponse = GetDatabasesInstances200;
 
 export type GetDatabasesInstancesQuery = {
     Response: GetDatabasesInstances200;
-    PathParams: GetDatabasesInstancesPathParams;
     QueryParams: GetDatabasesInstancesQueryParams;
     Errors: any;
 };

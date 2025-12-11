@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostServiceTransferPathParams, PostServiceTransfer200, PostServiceTransferError, PostServiceTransferMutationRequest, PostServiceTransferMutationResponse } from "../types/PostServiceTransfer.ts";
+import type { PostServiceTransfer200, PostServiceTransferError, PostServiceTransferMutationRequest, PostServiceTransferMutationResponse } from "../types/PostServiceTransfer.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostServiceTransferPathParams(data?: Partial<PostServiceTransferPathParams>): PostServiceTransferPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostServiceTransferPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a Service Transfer object for the request.

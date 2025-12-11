@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetObjectStorageEndpointsPathParams, GetObjectStorageEndpoints200, GetObjectStorageEndpointsError, GetObjectStorageEndpointsQueryResponse } from "../types/GetObjectStorageEndpoints.ts";
+import type { GetObjectStorageEndpoints200, GetObjectStorageEndpointsError, GetObjectStorageEndpointsQueryResponse } from "../types/GetObjectStorageEndpoints.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetObjectStorageEndpointsPathParams(data?: Partial<GetObjectStorageEndpointsPathParams>): GetObjectStorageEndpointsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetObjectStorageEndpointsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A paginated list of endpoints you can access.

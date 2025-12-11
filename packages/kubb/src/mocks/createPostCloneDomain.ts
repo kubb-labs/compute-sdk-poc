@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostCloneDomainPathParams(data?: Partial<PostCloneDomainPathParams>): PostCloneDomainPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostCloneDomainPathParams>["apiVersion"]>(["v4", "v4beta"]),"domainId": faker.string.alpha()},
+  ...{"domainId": faker.string.alpha()},
   ...data || {}
   }
 }

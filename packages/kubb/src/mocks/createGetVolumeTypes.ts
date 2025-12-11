@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetVolumeTypesPathParams, GetVolumeTypes200, GetVolumeTypesError, GetVolumeTypesQueryResponse } from "../types/GetVolumeTypes.ts";
+import type { GetVolumeTypes200, GetVolumeTypesError, GetVolumeTypesQueryResponse } from "../types/GetVolumeTypes.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetVolumeTypesPathParams(data?: Partial<GetVolumeTypesPathParams>): GetVolumeTypesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetVolumeTypesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A collection of volume types.

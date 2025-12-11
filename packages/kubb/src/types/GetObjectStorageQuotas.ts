@@ -4,21 +4,6 @@
 */
 
 
-export const getObjectStorageQuotasPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetObjectStorageQuotasPathParamsApiVersionEnumKey = (typeof getObjectStorageQuotasPathParamsApiVersionEnum)[keyof typeof getObjectStorageQuotasPathParamsApiVersionEnum];
-
-export interface GetObjectStorageQuotasPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetObjectStorageQuotasPathParamsApiVersionEnumKey;
-}
-
 export const dataEndpointTypeEnum4 = {
     "E0": "E0",
     "E1": "E1",
@@ -49,60 +34,60 @@ export type DataResourceMetricEnumKey = (typeof dataResourceMetricEnum)[keyof ty
 */
 export interface GetObjectStorageQuotas200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description A description for the Object Storage-related quota.
-         * @type string | undefined
+         * @type string
         */
-        description?: string;
+        description: string;
         /**
          * @description The type of `s3_endpoint`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information.
-         * @type string | undefined
+         * @type string
         */
-        endpoint_type?: DataEndpointTypeEnum4Key;
+        endpoint_type: DataEndpointTypeEnum4Key;
         /**
          * @description Identifies the Object Storage-related quota. Formatted as `obj-<quota_type>-<s3_endpoint>`, where `<quota_type>` is the `resource_metric` in use: `buckets`, `objects` or `bytes`.
-         * @type string | undefined
+         * @type string
         */
-        quota_id?: string;
+        quota_id: string;
         /**
          * @description The maximum quantity of the `resource_metric` allowed by the quota.
-         * @type integer | undefined
+         * @type integer
         */
-        quota_limit?: number;
+        quota_limit: number;
         /**
          * @description __Filterable__ The name of the Object Storage-related quota. This is how the quota displays in Akamai Cloud Manager. This can be `Number of Buckets`, `Number of Objects`, or `Total Capacity`.
-         * @type string | undefined
+         * @type string
         */
-        quota_name?: DataQuotaNameEnumKey;
+        quota_name: DataQuotaNameEnumKey;
         /**
          * @description The specific Object Storage-based resource for the quota. A quota maximum may apply as follows:\n\n- The Object Storage `bucket` quota for a single `s3_endpoint`\n\n- The `object` quota for a single `s3_endpoint`\n\n- The `byte` count quota for content in a single `s3_endpoint`
-         * @type string | undefined
+         * @type string
         */
-        resource_metric?: DataResourceMetricEnumKey;
+        resource_metric: DataResourceMetricEnumKey;
         /**
          * @description __Filterable__ The URL for the s3 endpoint where the quota applies. Every `s3_endpoint` exists in a specific Akamai Cloud Computing data center (`region`). Run the [List Object Storage endpoints](https://techdocs.akamai.com/linode-api/reference/get-object-storage-endpoints) operation to see more specifics on this `s3_endpoint`.
-         * @type string | undefined
+         * @type string
         */
-        s3_endpoint?: string;
+        s3_endpoint: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -110,19 +95,19 @@ export interface GetObjectStorageQuotas200 {
 */
 export interface GetObjectStorageQuotasError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -130,6 +115,5 @@ export type GetObjectStorageQuotasQueryResponse = GetObjectStorageQuotas200;
 
 export type GetObjectStorageQuotasQuery = {
     Response: GetObjectStorageQuotas200;
-    PathParams: GetObjectStorageQuotasPathParams;
     Errors: any;
 };

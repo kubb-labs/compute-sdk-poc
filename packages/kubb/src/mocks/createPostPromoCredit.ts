@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostPromoCreditPathParams, PostPromoCredit200, PostPromoCreditError, PostPromoCreditMutationRequest, PostPromoCreditMutationResponse } from "../types/PostPromoCredit.ts";
+import type { PostPromoCredit200, PostPromoCreditError, PostPromoCreditMutationRequest, PostPromoCreditMutationResponse } from "../types/PostPromoCredit.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostPromoCreditPathParams(data?: Partial<PostPromoCreditPathParams>): PostPromoCreditPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostPromoCreditPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Promo Credit successfully added.

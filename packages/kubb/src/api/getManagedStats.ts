@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetManagedStatsQueryResponse, GetManagedStatsPathParams } from "../types/GetManagedStats.ts";
+import type { GetManagedStatsQueryResponse } from "../types/GetManagedStats.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetManagedStatsUrl(apiVersion: GetManagedStatsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/managed/stats` as const }  
+function getGetManagedStatsUrl() {
+  const res = { method: 'GET', url: `/managed/stats` as const }  
   return res
 }
 
 /**
  * @description Returns a list of metrics for the Linodes on your account in arrays of coordinates (_x_-axis and _y_-axis data points). You can use these data points to plot your own graph visualizations. These metrics reflect the last 24 hours of combined usage across all managed Linodes on your account, giving you a high-level snapshot of data for the following:- CPU- Disk I/O- Swap usage- Network in- Network outThis operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed stats-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List managed stats
- * {@link /:apiVersion/managed/stats}
+ * {@link /managed/stats}
  */
-export async function getManagedStats(apiVersion: GetManagedStatsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getManagedStats(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetManagedStatsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedStatsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetManagedStatsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedStatsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

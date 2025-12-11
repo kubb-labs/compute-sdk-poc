@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetDatabasesMysqlConfigQueryResponse, GetDatabasesMysqlConfigPathParams } from "../types/GetDatabasesMysqlConfig.ts";
+import type { GetDatabasesMysqlConfigQueryResponse } from "../types/GetDatabasesMysqlConfig.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDatabasesMysqlConfigUrl(apiVersion: GetDatabasesMysqlConfigPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/databases/mysql/config` as const }  
+function getGetDatabasesMysqlConfigUrl() {
+  const res = { method: 'GET', url: `/databases/mysql/config` as const }  
   return res
 }
 
 /**
  * @description All advanced parameters you can apply to a MySQL Managed Database, via our partner [Aiven](https://aiven.io/docs/products/mysql/reference/advanced-params).> 📘>> Aiven may offer other parameters, but Akamai Managed Databases only supports the ones listed in this operation.<<LB>>---- __CLI__.    ```    linode-cli databases mysql-config    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    databases:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List MySQL Managed Database advanced parameters
- * {@link /:apiVersion/databases/mysql/config}
+ * {@link /databases/mysql/config}
  */
-export async function getDatabasesMysqlConfig(apiVersion: GetDatabasesMysqlConfigPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDatabasesMysqlConfig(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDatabasesMysqlConfigQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesMysqlConfigUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetDatabasesMysqlConfigQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesMysqlConfigUrl().url.toString(), ... requestConfig })  
   return res.data
 }

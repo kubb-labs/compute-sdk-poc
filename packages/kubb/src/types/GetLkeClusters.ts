@@ -4,21 +4,6 @@
 */
 
 
-export const getLkeClustersPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLkeClustersPathParamsApiVersionEnumKey = (typeof getLkeClustersPathParamsApiVersionEnum)[keyof typeof getLkeClustersPathParamsApiVersionEnum];
-
-export interface GetLkeClustersPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLkeClustersPathParamsApiVersionEnumKey;
-}
-
 export const dataStackTypeEnum = {
     "ipv4": "ipv4",
     "ipv4-ipv6": "ipv4-ipv6"
@@ -38,106 +23,106 @@ export type DataTierEnumKey = (typeof dataTierEnum)[keyof typeof dataTierEnum];
 */
 export interface GetLkeClusters200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Write-once__ Indicates whether the Akamai App Platform is installed during creation of the LKE cluster. It defaults to `false`. If set to `true`, `control_plane.high_availability` also needs to be `true`. Automatic installation of the App Platform is only possible when creating a new cluster (not when modifying existing clusters).
-         * @type boolean | undefined
+         * @type boolean
         */
-        apl_enabled?: boolean;
+        apl_enabled: boolean;
         /**
          * @description Defines settings for the Kubernetes control plane, including enabling High Availability (HA) for the control plane.
-         * @type object | undefined
+         * @type object
         */
-        control_plane?: {
+        control_plane: {
             /**
              * @description __Beta__, __LKE Enterprise__ Enables audit logs on the cluster\'s control plane. These logs provide detailed information about user access and the operations performed on the cluster, which can be useful for security and compliance purposes.\n\n> 🚧\n>\n> This field is available as part of the beta API and can only be used with accounts that have been enrolled in the LKE Enterprise LA. Call the URL with the `apiVersion` path parameter set to `v4beta`.
              * @default false
-             * @type boolean | undefined
+             * @type boolean
             */
-            audit_logs_enabled?: boolean;
+            audit_logs_enabled: boolean;
             /**
              * @description Enables High Availability for the cluster\'s control plane components. It defaults to `false`. Enabling High Availability for LKE is an irreversible change.
              * @default false
-             * @type boolean | undefined
+             * @type boolean
             */
-            high_availability?: boolean;
+            high_availability: boolean;
         };
         /**
          * @description __Read-only__ When this Kubernetes cluster was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description __Read-only__ This Kubernetes cluster\'s unique ID.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description __Filterable__ The desired Kubernetes version for this Kubernetes cluster in the format of `<major>.<minor>`. The latest supported patch version is deployed.
-         * @type string | undefined
+         * @type string
         */
-        k8s_version?: string;
+        k8s_version: string;
         /**
          * @description __Filterable__ This Kubernetes cluster\'s unique label for display purposes only. Labels have the following constraints:\n\n  - UTF-8 characters will be returned by the API using escape sequences of their Unicode code points. For example, the Japanese character _か_ is 3 bytes in UTF-8 (`0xE382AB`). Its Unicode code point is 2 bytes (`0x30AB`). APIv4 supports this character and the API will return it as the escape sequence using six 1 byte characters which represent 2 bytes of Unicode code point (`\"\\u30ab\"`).\n\n  - 4 byte UTF-8 characters are not supported.\n\n  - If the label is entirely composed of UTF-8 characters, the API response will return the code points using up to 193 1 byte characters.
          * @minLength 1
          * @maxLength 32
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description __Filterable__ This Kubernetes cluster\'s location.
-         * @type string | undefined
+         * @type string
         */
-        region?: string;
+        region: string;
         /**
          * @description __Beta__, __LKE Enterprise__ The networking stack type of the Kubernetes cluster. This specifies that the cluster is IPv4 only (default) or supports both IPv4 and IPv6 (dual-stack).\n\n> 🚧\n>\n> This field is available as part of the beta API and can only be used with accounts that have been enrolled in the LKE Enterprise LA. Call the URL with the `apiVersion` path parameter set to `v4beta`.
          * @default "ipv4"
-         * @type string | undefined
+         * @type string
         */
-        stack_type?: DataStackTypeEnumKey;
+        stack_type: DataStackTypeEnumKey;
         /**
          * @description __Beta__, __LKE Enterprise__ The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must have both IPv4 and IPv6 enabled (dual-stack). When this field is specified, the cluster is deployed to the given subnet and its corresponding VPC. To specify a VPC and have a subnet auto-allocated, use `vpc_id` instead. If `subnet_id` and `vpc_id` are both unspecified, a new VPC and subnet are auto-allocated for the cluster.\n\n> 🚧\n>\n> This field is available as part of the beta API and can only be used with accounts that have been enrolled in the LKE Enterprise LA. Call the URL with the `apiVersion` path parameter set to `v4beta`.
-         * @type integer | undefined
+         * @type integer
         */
-        subnet_id?: number;
+        subnet_id: number;
         /**
          * @description __Filterable__ An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
-         * @type array | undefined
+         * @type array
         */
-        tags?: string[];
+        tags: string[];
         /**
          * @description __Beta__, __Filterable__ The desired Kubernetes tier, either `standard` or `enterprise`.\n\n> 🚧\n>\n> This field is available as part of the beta API. Call the URL with the `apiVersion` path parameter set to `v4beta`.
-         * @type string | undefined
+         * @type string
         */
-        tier?: DataTierEnumKey;
+        tier: DataTierEnumKey;
         /**
          * @description __Read-only__ When this Kubernetes cluster was updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly updated?: string;
+        readonly updated: string;
         /**
          * @description __Beta__, __LKE Enterprise__ The ID of the VPC to use for the Kubernetes cluster. An appropriately sized subnet is auto-allocated. To specify an existing subnet, use `subnet_id` instead. If `subnet_id` and `vpc_id` are both unspecified, a new VPC and subnet are auto-allocated for the cluster.\n\n> 🚧\n>\n> This field is available as part of the beta API and can only be used with accounts that have been enrolled in the LKE Enterprise LA. Call the URL with the `apiVersion` path parameter set to `v4beta`.
-         * @type integer | undefined
+         * @type integer
         */
-        vpc_id?: number;
+        vpc_id: number;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -145,19 +130,19 @@ export interface GetLkeClusters200 {
 */
 export interface GetLkeClustersError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -165,6 +150,5 @@ export type GetLkeClustersQueryResponse = GetLkeClusters200;
 
 export type GetLkeClustersQuery = {
     Response: GetLkeClusters200;
-    PathParams: GetLkeClustersPathParams;
     Errors: any;
 };

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostImagePathParams, PostImage200, PostImageError, PostImageMutationRequest, PostImageMutationResponse } from "../types/PostImage.ts";
+import type { PostImage200, PostImageError, PostImageMutationRequest, PostImageMutationResponse } from "../types/PostImage.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostImagePathParams(data?: Partial<PostImagePathParams>): PostImagePathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostImagePathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description New private image created successfully.

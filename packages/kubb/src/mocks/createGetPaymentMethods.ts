@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetPaymentMethodsPathParams, GetPaymentMethodsQueryParams, GetPaymentMethods200, GetPaymentMethodsError, GetPaymentMethodsQueryResponse } from "../types/GetPaymentMethods.ts";
+import type { GetPaymentMethodsQueryParams, GetPaymentMethods200, GetPaymentMethodsError, GetPaymentMethodsQueryResponse } from "../types/GetPaymentMethods.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetPaymentMethodsPathParams(data?: Partial<GetPaymentMethodsPathParams>): GetPaymentMethodsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetPaymentMethodsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetPaymentMethodsQueryParams(data?: Partial<GetPaymentMethodsQueryParams>): GetPaymentMethodsQueryParams {
   

@@ -4,21 +4,6 @@
 */
 
 
-export const getAccountLoginsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetAccountLoginsPathParamsApiVersionEnumKey = (typeof getAccountLoginsPathParamsApiVersionEnum)[keyof typeof getAccountLoginsPathParamsApiVersionEnum];
-
-export interface GetAccountLoginsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetAccountLoginsPathParamsApiVersionEnumKey;
-}
-
 export const dataStatusEnum9 = {
     "successful": "successful",
     "failed": "failed"
@@ -31,55 +16,55 @@ export type DataStatusEnum9Key = (typeof dataStatusEnum9)[keyof typeof dataStatu
 */
 export interface GetAccountLogins200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ When the login was initiated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly datetime?: string;
+        readonly datetime: string;
         /**
          * @description __Read-only__ The unique ID of this login object.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description __Read-only__ The remote IP address that requested the login.
-         * @type string | undefined, ip
+         * @type string, ip
         */
-        readonly ip?: string;
+        readonly ip: string;
         /**
          * @description __Read-only__ True if the User that attempted the login was a restricted User, false otherwise.
-         * @type boolean | undefined
+         * @type boolean
         */
-        readonly restricted?: boolean;
+        readonly restricted: boolean;
         /**
          * @description __Read-only__ Whether the login attempt succeeded or failed.
-         * @type string | undefined
+         * @type string
         */
-        readonly status?: DataStatusEnum9Key;
+        readonly status: DataStatusEnum9Key;
         /**
          * @description __Read-only__ The username of the User that attempted the login.
-         * @type string | undefined
+         * @type string
         */
-        readonly username?: string;
+        readonly username: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -87,19 +72,19 @@ export interface GetAccountLogins200 {
 */
 export interface GetAccountLoginsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -107,6 +92,5 @@ export type GetAccountLoginsQueryResponse = GetAccountLogins200;
 
 export type GetAccountLoginsQuery = {
     Response: GetAccountLogins200;
-    PathParams: GetAccountLoginsPathParams;
     Errors: any;
 };

@@ -4,21 +4,6 @@
 */
 
 
-export const getUsersPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetUsersPathParamsApiVersionEnumKey = (typeof getUsersPathParamsApiVersionEnum)[keyof typeof getUsersPathParamsApiVersionEnum];
-
-export interface GetUsersPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetUsersPathParamsApiVersionEnumKey;
-}
-
 export interface GetUsersQueryParams {
     /**
      * @description The page of a collection to return.
@@ -58,84 +43,84 @@ export type DataUserTypeEnum2Key = (typeof dataUserTypeEnum2)[keyof typeof dataU
 */
 export interface GetUsers200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description This user\'s email address. Akamai uses this address for account management communications.
-         * @type string | undefined, email
+         * @type string, email
         */
-        email?: string;
+        email: string;
         /**
          * @description __Read-only__ Details on this user\'s last login attempt. Returned as `null` if this user hasn\'t attempted a login since it was created. You can run the [List user logins](https://techdocs.akamai.com/linode-api/reference/get-account-logins) operation for additional login information.
          * @type object
         */
-        readonly last_login?: {
+        readonly last_login: {
             /**
              * @description __Read-only__ The date and time of this user\'s most recent login attempt.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            readonly login_datetime?: string;
+            readonly login_datetime: string;
             /**
              * @description __Read-only__ The result of this user\'s most recent login attempt.
-             * @type string | undefined
+             * @type string
             */
-            readonly status?: LastLoginStatusEnum8Key;
+            readonly status: LastLoginStatusEnum8Key;
         } | null;
         /**
          * @description __Read-only__ When this user\'s current password was created. You initially create a password during the account sign-up process, and you can update it using the [Reset Password](https://login.linode.com/forgot/password) webpage. Returned as `null` if this user doesn\'t have a password set.
          * @type string, date-time
         */
-        readonly password_created?: string | null;
+        readonly password_created: string | null;
         /**
          * @description If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user\'s grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.
-         * @type boolean | undefined
+         * @type boolean
         */
-        restricted?: boolean;
+        restricted: boolean;
         /**
          * @description __Read-only__ A list of the labels for SSH keys added by this user. Users can add keys with the [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) operation. These keys are deployed when this user is included in the `authorized_users` field of the following requests:\n\n- [Create a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance)\n\n- [Rebuild a Linode](https://techdocs.akamai.com/linode-api/reference/post-rebuild-linode-instance)\n\n- [Create a disk](https://techdocs.akamai.com/linode-api/reference/post-add-linode-disk)
-         * @type array | undefined
+         * @type array
         */
-        readonly ssh_keys?: string[];
+        readonly ssh_keys: string[];
         /**
          * @description __Read-only__ Whether this user has Two Factor Authentication (TFA) enabled. Run the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation to enable TFA.
-         * @type boolean | undefined
+         * @type boolean
         */
-        readonly tfa_enabled?: boolean;
+        readonly tfa_enabled: boolean;
         /**
          * @description __Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.
          * @minLength 3
          * @maxLength 32
          * @pattern ^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$
-         * @type string | undefined
+         * @type string
         */
-        username?: string;
+        username: string;
         /**
          * @description __Read-only__ The [verified](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) phone number for this user profile. Returned as `null` if the user doesn\'t have a verified phone number.
          * @type string, phone
         */
-        readonly verified_phone_number?: string | null;
+        readonly verified_phone_number: string | null;
         /**
          * @description __Read-only__ If the user belongs to a [parent or child account](https://www.linode.com/docs/guides/parent-child-accounts/) relationship, this defines the user type in the respective account. Possible values include:\n\n- `parent`. This is a user in an Akamai partner account. Akamai partners have a contractual relationship with their end customers, to sell Akamai services. This user can either have full access (a parent account admin user) or limited access. Limited users don\'t have access to manage child accounts, but they can be granted this access by an admin user.\n\n- `child`. This is an Akamai partner\'s end customer user, in a child account. A child user can have either full or limited access. Full access lets the user manage other child users and the proxy user in a child account.\n\n- `proxy`. This is a user on a child account that gives parent account users access to that child account. A parent account user with the `child_account_access` grant can [Create a proxy user token](https://techdocs.akamai.com/linode-api/reference/post-child-account-token) from the parent account. The parent user can use this token to run API operations from the child account, as if they were a child user.\n\n- `default`. This applies to all regular, non-parent-child account users.
-         * @type string | undefined
+         * @type string
         */
-        readonly user_type?: DataUserTypeEnum2Key;
+        readonly user_type: DataUserTypeEnum2Key;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -143,19 +128,19 @@ export interface GetUsers200 {
 */
 export interface GetUsersError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -163,7 +148,6 @@ export type GetUsersQueryResponse = GetUsers200;
 
 export type GetUsersQuery = {
     Response: GetUsers200;
-    PathParams: GetUsersPathParams;
     QueryParams: GetUsersQueryParams;
     Errors: any;
 };

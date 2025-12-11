@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeIpsQueryResponse, GetLinodeIpsPathParams } from "../types/GetLinodeIps.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeIpsUrl(apiVersion: GetLinodeIpsPathParams["apiVersion"], linodeId: GetLinodeIpsPathParams["linodeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/ips` as const }  
+function getGetLinodeIpsUrl(linodeId: GetLinodeIpsPathParams["linodeId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/ips` as const }  
   return res
 }
 
 /**
  * @description Returns networking information for a single Linode.> 📘>> If the target Linode has several configuration profiles that include a Virtual Private Cloud (VPC) interface, the response lists address information for all of the VPCs.<<LB>>---- __CLI__.    ```    linode-cli linodes ips-list 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get networking information
- * {@link /:apiVersion/linode/instances/:linodeId/ips}
+ * {@link /linode/instances/:linodeId/ips}
  */
-export async function getLinodeIps(apiVersion: GetLinodeIpsPathParams["apiVersion"], linodeId: GetLinodeIpsPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeIps(linodeId: GetLinodeIpsPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeIpsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeIpsUrl(apiVersion, linodeId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeIpsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeIpsUrl(linodeId).url.toString(), ... requestConfig })  
   return res.data
 }

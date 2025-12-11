@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteManagedServicePathParams(data?: Partial<DeleteManagedServicePathParams>): DeleteManagedServicePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteManagedServicePathParams>["apiVersion"]>(["v4", "v4beta"]),"serviceId": faker.number.int()},
+  ...{"serviceId": faker.number.int()},
   ...data || {}
   }
 }

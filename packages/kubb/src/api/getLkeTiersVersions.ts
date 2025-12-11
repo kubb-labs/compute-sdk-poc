@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLkeTiersVersionsQueryResponse, GetLkeTiersVersionsPathParams } from "../types/GetLkeTiersVersions.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLkeTiersVersionsUrl(apiVersion: GetLkeTiersVersionsPathParams["apiVersion"], tier: GetLkeTiersVersionsPathParams["tier"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/lke/tiers/${tier}/versions` as const }  
+function getGetLkeTiersVersionsUrl(tier: GetLkeTiersVersionsPathParams["tier"]) {
+  const res = { method: 'GET', url: `/lke/tiers/${tier}/versions` as const }  
   return res
 }
 
 /**
  * @description List LKE Kubernetes versions available for deployment to a Kubernetes cluster (any tier).<<LB>>---- __CLI__.    ```    linode-cli lke tiered-versions-list standard    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List LKE Kubernetes versions (any tier)
- * {@link /:apiVersion/lke/tiers/:tier/versions}
+ * {@link /lke/tiers/:tier/versions}
  */
-export async function getLkeTiersVersions(apiVersion: GetLkeTiersVersionsPathParams["apiVersion"], tier: GetLkeTiersVersionsPathParams["tier"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLkeTiersVersions(tier: GetLkeTiersVersionsPathParams["tier"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLkeTiersVersionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeTiersVersionsUrl(apiVersion, tier).url.toString(), ... requestConfig })  
+  const res = await request<GetLkeTiersVersionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeTiersVersionsUrl(tier).url.toString(), ... requestConfig })  
   return res.data
 }

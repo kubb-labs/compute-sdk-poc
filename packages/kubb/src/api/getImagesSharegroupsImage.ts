@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetImagesSharegroupsImageQueryResponse, GetImagesSharegroupsImagePathParams } from "../types/GetImagesSharegroupsImage.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetImagesSharegroupsImageUrl(apiVersion: GetImagesSharegroupsImagePathParams["apiVersion"], imageId: GetImagesSharegroupsImagePathParams["imageId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/images/${imageId}/sharegroups` as const }  
+function getGetImagesSharegroupsImageUrl(imageId: GetImagesSharegroupsImagePathParams["imageId"]) {
+  const res = { method: 'GET', url: `/images/${imageId}/sharegroups` as const }  
   return res
 }
 
 /**
  * @description Lists all owned share groups where a given private image is currently shared. Run the [List images](https://techdocs.akamai.com/linode-api/reference/get-images) operation. Store the `id` for the target image as your `{imageId}`, for use in this operation's URL path.> 📘>> This operation returns an empty list for shared and distribution image IDs.<<LB>>---- __CLI__.    ```    linode-cli images sharegroups-list private/12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List share groups by image
- * {@link /:apiVersion/images/:imageId/sharegroups}
+ * {@link /images/:imageId/sharegroups}
  */
-export async function getImagesSharegroupsImage(apiVersion: GetImagesSharegroupsImagePathParams["apiVersion"], imageId: GetImagesSharegroupsImagePathParams["imageId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getImagesSharegroupsImage(imageId: GetImagesSharegroupsImagePathParams["imageId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetImagesSharegroupsImageQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetImagesSharegroupsImageUrl(apiVersion, imageId).url.toString(), ... requestConfig })  
+  const res = await request<GetImagesSharegroupsImageQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetImagesSharegroupsImageUrl(imageId).url.toString(), ... requestConfig })  
   return res.data
 }

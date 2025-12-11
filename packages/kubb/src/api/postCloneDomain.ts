@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostCloneDomainMutationRequest, PostCloneDomainMutationResponse, PostCloneDomainPathParams } from "../types/PostCloneDomain.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostCloneDomainUrl(apiVersion: PostCloneDomainPathParams["apiVersion"], domainId: PostCloneDomainPathParams["domainId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/domains/${domainId}/clone` as const }  
+function getPostCloneDomainUrl(domainId: PostCloneDomainPathParams["domainId"]) {
+  const res = { method: 'POST', url: `/domains/${domainId}/clone` as const }  
   return res
 }
 
 /**
  * @description Clones a Domain and all associated DNS records from a Domain that is registered in Linode's DNS manager.<<LB>>---- __CLI__.    ```    linode-cli domains clone 123 --domain example.com    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    domains:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Clone a domain
- * {@link /:apiVersion/domains/:domainId/clone}
+ * {@link /domains/:domainId/clone}
  */
-export async function postCloneDomain(apiVersion: PostCloneDomainPathParams["apiVersion"], domainId: PostCloneDomainPathParams["domainId"], data: PostCloneDomainMutationRequest, config: Partial<RequestConfig<PostCloneDomainMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postCloneDomain(domainId: PostCloneDomainPathParams["domainId"], data: PostCloneDomainMutationRequest, config: Partial<RequestConfig<PostCloneDomainMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostCloneDomainMutationResponse, ResponseErrorConfig<Error>, PostCloneDomainMutationRequest>({ method : "POST", url : getPostCloneDomainUrl(apiVersion, domainId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostCloneDomainMutationResponse, ResponseErrorConfig<Error>, PostCloneDomainMutationRequest>({ method : "POST", url : getPostCloneDomainUrl(domainId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

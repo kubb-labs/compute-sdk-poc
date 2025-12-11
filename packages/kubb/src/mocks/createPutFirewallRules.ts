@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutFirewallRulesPathParams(data?: Partial<PutFirewallRulesPathParams>): PutFirewallRulesPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutFirewallRulesPathParams>["apiVersion"]>(["v4", "v4beta"]),"firewallId": faker.number.int()},
+  ...{"firewallId": faker.number.int()},
   ...data || {}
   }
 }

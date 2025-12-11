@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostLinodeConfigInterfacePathParams(data?: Partial<PostLinodeConfigInterfacePathParams>): PostLinodeConfigInterfacePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostLinodeConfigInterfacePathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int(),"configId": faker.number.int()},
+  ...{"linodeId": faker.number.int(),"configId": faker.number.int()},
   ...data || {}
   }
 }
@@ -38,7 +38,7 @@ export function createPostLinodeConfigInterfaceError(data?: Partial<PostLinodeCo
 
 export function createPostLinodeConfigInterfaceMutationRequest(data?: Partial<PostLinodeConfigInterfaceMutationRequest>): PostLinodeConfigInterfaceMutationRequest {
   
-  return Object.assign({}, undefined, {"active": faker.datatype.boolean(),"id": faker.number.int(),"ip_ranges": faker.helpers.multiple(() => (faker.string.alpha())),"ipam_address": faker.string.alpha(),"ipv4": {"nat_1_1": faker.helpers.arrayElement<any>([faker.string.alpha(), faker.helpers.arrayElement<NonNullable<NonNullable<PostLinodeConfigInterfaceMutationRequest>["ipv4"]>["nat_1_1"]>(["any"])]),"vpc": faker.string.alpha()},"label": faker.helpers.fromRegExp("[a-zA-Z0-9-]+"),"primary": faker.datatype.boolean(),"purpose": faker.helpers.arrayElement<NonNullable<PostLinodeConfigInterfaceMutationRequest>["purpose"]>(["public", "vlan", "vpc"]),"subnet_id": faker.number.int(),"vpc_id": faker.number.int()})
+  return Object.assign({}, {"active": faker.datatype.boolean(),"id": faker.number.int(),"ip_ranges": faker.helpers.multiple(() => (faker.string.alpha())),"ipam_address": faker.string.alpha(),"ipv4": {"nat_1_1": faker.helpers.arrayElement<any>([faker.string.alpha(), faker.helpers.arrayElement<NonNullable<NonNullable<PostLinodeConfigInterfaceMutationRequest>["ipv4"]>["nat_1_1"]>(["any"])]),"vpc": faker.string.alpha()},"label": faker.helpers.fromRegExp("[a-zA-Z0-9-]+"),"primary": faker.datatype.boolean(),"purpose": faker.helpers.arrayElement<NonNullable<PostLinodeConfigInterfaceMutationRequest>["purpose"]>(["public", "vlan", "vpc"]),"subnet_id": faker.number.int(),"vpc_id": faker.number.int()})
 }
 
 export function createPostLinodeConfigInterfaceMutationResponse(data?: Partial<PostLinodeConfigInterfaceMutationResponse>): PostLinodeConfigInterfaceMutationResponse {

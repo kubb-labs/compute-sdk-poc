@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostAssignIpsPathParams, PostAssignIps200, PostAssignIpsError, PostAssignIpsMutationRequest, PostAssignIpsMutationResponse } from "../types/PostAssignIps.ts";
+import type { PostAssignIps200, PostAssignIpsError, PostAssignIpsMutationRequest, PostAssignIpsMutationResponse } from "../types/PostAssignIps.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostAssignIpsPathParams(data?: Partial<PostAssignIpsPathParams>): PostAssignIpsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostAssignIpsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description All assignments completed successfully.

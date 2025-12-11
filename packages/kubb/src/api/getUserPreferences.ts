@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetUserPreferencesQueryResponse, GetUserPreferencesPathParams } from "../types/GetUserPreferences.ts";
+import type { GetUserPreferencesQueryResponse } from "../types/GetUserPreferences.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetUserPreferencesUrl(apiVersion: GetUserPreferencesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/preferences` as const }  
+function getGetUserPreferencesUrl() {
+  const res = { method: 'GET', url: `/profile/preferences` as const }  
   return res
 }
 
 /**
  * @description View a list of user preferences tied to the OAuth client that generated the token making the request. The user preferences endpoints allow consumers of the API to store arbitrary JSON data, such as a user's font size preference or preferred display name. User preferences are available for each OAuth client registered to your account, and as such an account can have multiple user preferences.<<LB>>---- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get user preferences
- * {@link /:apiVersion/profile/preferences}
+ * {@link /profile/preferences}
  */
-export async function getUserPreferences(apiVersion: GetUserPreferencesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getUserPreferences(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetUserPreferencesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetUserPreferencesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetUserPreferencesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetUserPreferencesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutVpcPathParams(data?: Partial<PutVpcPathParams>): PutVpcPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutVpcPathParams>["apiVersion"]>(["v4", "v4beta"]),"vpcId": faker.number.int()},
+  ...{"vpcId": faker.number.int()},
   ...data || {}
   }
 }

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostMakePaymentMethodDefaultPathParams(data?: Partial<PostMakePaymentMethodDefaultPathParams>): PostMakePaymentMethodDefaultPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostMakePaymentMethodDefaultPathParams>["apiVersion"]>(["v4", "v4beta"]),"paymentMethodId": faker.number.int()},
+  ...{"paymentMethodId": faker.number.int()},
   ...data || {}
   }
 }

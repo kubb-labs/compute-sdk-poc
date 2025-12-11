@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutLkeNodePoolMutationRequest, PutLkeNodePoolMutationResponse, PutLkeNodePoolPathParams } from "../types/PutLkeNodePool.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutLkeNodePoolUrl(apiVersion: PutLkeNodePoolPathParams["apiVersion"], clusterId: PutLkeNodePoolPathParams["clusterId"], poolId: PutLkeNodePoolPathParams["poolId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/lke/clusters/${clusterId}/pools/${poolId}` as const }  
+function getPutLkeNodePoolUrl(clusterId: PutLkeNodePoolPathParams["clusterId"], poolId: PutLkeNodePoolPathParams["poolId"]) {
+  const res = { method: 'PUT', url: `/lke/clusters/${clusterId}/pools/${poolId}` as const }  
   return res
 }
 
 /**
  * @description Updates a node pool's count, labels and taints, and autoscaler configuration.Linodes are created or deleted to match changes to the Node Pool's count.Specifying labels or taints on update overwrites any previous values, and updates existing nodes with the new values without a recycle.__Any local storage on deleted Linodes (such as `hostPath` and `emptyDir` volumes, or `local` PersistentVolumes) will be erased.__<<LB>>---- __CLI__.    ```    linode-cli lke pool-update 12345 456 \  --count 6 \  --autoscaler.enabled true \  --autoscaler.max 12 \  --autoscaler.min 3 \  --labels '{ "example.com/my-app":"team1", "env":"staging" }' \  --taints.effect "NoSchedule" \  --taints.key "example.com/my-app" \  --taints.value "teamA"    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a node pool
- * {@link /:apiVersion/lke/clusters/:clusterId/pools/:poolId}
+ * {@link /lke/clusters/:clusterId/pools/:poolId}
  */
-export async function putLkeNodePool(apiVersion: PutLkeNodePoolPathParams["apiVersion"], clusterId: PutLkeNodePoolPathParams["clusterId"], poolId: PutLkeNodePoolPathParams["poolId"], data?: PutLkeNodePoolMutationRequest, config: Partial<RequestConfig<PutLkeNodePoolMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putLkeNodePool(clusterId: PutLkeNodePoolPathParams["clusterId"], poolId: PutLkeNodePoolPathParams["poolId"], data?: PutLkeNodePoolMutationRequest, config: Partial<RequestConfig<PutLkeNodePoolMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutLkeNodePoolMutationResponse, ResponseErrorConfig<Error>, PutLkeNodePoolMutationRequest>({ method : "PUT", url : getPutLkeNodePoolUrl(apiVersion, clusterId, poolId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutLkeNodePoolMutationResponse, ResponseErrorConfig<Error>, PutLkeNodePoolMutationRequest>({ method : "PUT", url : getPutLkeNodePoolUrl(clusterId, poolId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

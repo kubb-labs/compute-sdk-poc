@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetDashboardsByIdQueryResponse, GetDashboardsByIdPathParams } from "../types/GetDashboardsById.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDashboardsByIdUrl(apiVersion: GetDashboardsByIdPathParams["apiVersion"], dashboardId: GetDashboardsByIdPathParams["dashboardId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/monitor/dashboards/${dashboardId}` as const }  
+function getGetDashboardsByIdUrl(dashboardId: GetDashboardsByIdPathParams["dashboardId"]) {
+  const res = { method: 'GET', url: `/monitor/dashboards/${dashboardId}` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns a specific dashboard, based on its unique identifier.> 📘>> This operation is beta. Call it using the `v4beta` path in its URL.<<LB>>---- __CLI__.    ```    linode-cli monitor dashboards-view 1    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    monitor:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a dashboard
- * {@link /:apiVersion/monitor/dashboards/:dashboardId}
+ * {@link /monitor/dashboards/:dashboardId}
  */
-export async function getDashboardsById(apiVersion: GetDashboardsByIdPathParams["apiVersion"], dashboardId: GetDashboardsByIdPathParams["dashboardId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDashboardsById(dashboardId: GetDashboardsByIdPathParams["dashboardId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDashboardsByIdQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDashboardsByIdUrl(apiVersion, dashboardId).url.toString(), ... requestConfig })  
+  const res = await request<GetDashboardsByIdQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDashboardsByIdUrl(dashboardId).url.toString(), ... requestConfig })  
   return res.data
 }

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetObjectStorageQuotasPathParams, GetObjectStorageQuotas200, GetObjectStorageQuotasError, GetObjectStorageQuotasQueryResponse } from "../types/GetObjectStorageQuotas.ts";
+import type { GetObjectStorageQuotas200, GetObjectStorageQuotasError, GetObjectStorageQuotasQueryResponse } from "../types/GetObjectStorageQuotas.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetObjectStorageQuotasPathParams(data?: Partial<GetObjectStorageQuotasPathParams>): GetObjectStorageQuotasPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetObjectStorageQuotasPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A paginated list of Object Storage-related quotas applied to your account.

@@ -4,21 +4,6 @@
 */
 
 
-export const getLongviewClientsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLongviewClientsPathParamsApiVersionEnumKey = (typeof getLongviewClientsPathParamsApiVersionEnum)[keyof typeof getLongviewClientsPathParamsApiVersionEnum];
-
-export interface GetLongviewClientsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLongviewClientsPathParamsApiVersionEnumKey;
-}
-
 export interface GetLongviewClientsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -42,79 +27,79 @@ export interface GetLongviewClientsQueryParams {
 */
 export interface GetLongviewClients200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ The API key for this Client, used when configuring the Longview Client application on your Linode.\n\nReturns as `[REDACTED]` if you do not have read-write access to this client.
-         * @type string | undefined
+         * @type string
         */
-        readonly api_key?: string;
+        readonly api_key: string;
         /**
          * @description __Read-only__ The apps this Client is monitoring on your Linode. This is configured when you install the Longview Client application, and is present here for information purposes only.
-         * @type object | undefined
+         * @type object
         */
-        readonly apps?: {
+        readonly apps: {
             /**
              * @description __Read-only__ If `true`, the Apache Longview Client module is monitoring Apache on your server.
-             * @type boolean | undefined
+             * @type boolean
             */
-            readonly apache?: boolean;
+            readonly apache: boolean;
             /**
              * @description __Read-only__ If `true`, the MySQL Longview Client modules is monitoring MySQL on your server.
-             * @type boolean | undefined
+             * @type boolean
             */
-            readonly mysql?: boolean;
+            readonly mysql: boolean;
             /**
              * @description __Read-only__ If `true`, the Nginx Longview Client module is monitoring Nginx on your server.
-             * @type boolean | undefined
+             * @type boolean
             */
-            readonly nginx?: boolean;
+            readonly nginx: boolean;
         };
         /**
          * @description __Read-only__ When this Longview Client was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description __Read-only__ This Client\'s unique ID.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description __Read-only__ The install code for this Client, used when configuring the Longview Client application on your Linode.\n\nReturns as `[REDACTED]` if you do not have read-write access to this client.
-         * @type string | undefined
+         * @type string
         */
-        readonly install_code?: string;
+        readonly install_code: string;
         /**
          * @description __Filterable__ This Client\'s unique label. This is for display purposes only.
          * @minLength 3
          * @maxLength 32
          * @pattern [a-zA-Z0-9-_]{3,32}
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description __Read-only__ When this Longview Client was last updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly updated?: string;
+        readonly updated: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -122,19 +107,19 @@ export interface GetLongviewClients200 {
 */
 export interface GetLongviewClientsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -142,7 +127,6 @@ export type GetLongviewClientsQueryResponse = GetLongviewClients200;
 
 export type GetLongviewClientsQuery = {
     Response: GetLongviewClients200;
-    PathParams: GetLongviewClientsPathParams;
     QueryParams: GetLongviewClientsQueryParams;
     Errors: any;
 };

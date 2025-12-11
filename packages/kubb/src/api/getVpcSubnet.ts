@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetVpcSubnetQueryResponse, GetVpcSubnetPathParams } from "../types/GetVpcSubnet.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetVpcSubnetUrl(apiVersion: GetVpcSubnetPathParams["apiVersion"], vpcId: GetVpcSubnetPathParams["vpcId"], vpcSubnetId: GetVpcSubnetPathParams["vpcSubnetId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/vpcs/${vpcId}/subnets/${vpcSubnetId}` as const }  
+function getGetVpcSubnetUrl(vpcId: GetVpcSubnetPathParams["vpcId"], vpcSubnetId: GetVpcSubnetPathParams["vpcSubnetId"]) {
+  const res = { method: 'GET', url: `/vpcs/${vpcId}/subnets/${vpcSubnetId}` as const }  
   return res
 }
 
 /**
  * @description Get information about a single VPC Subnet.<<LB>>---- __CLI__.    ```    linode-cli vpcs subnet-view $vpcId $vpcSubnetId    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Get a VPC subnet
- * {@link /:apiVersion/vpcs/:vpcId/subnets/:vpcSubnetId}
+ * {@link /vpcs/:vpcId/subnets/:vpcSubnetId}
  */
-export async function getVpcSubnet(apiVersion: GetVpcSubnetPathParams["apiVersion"], vpcId: GetVpcSubnetPathParams["vpcId"], vpcSubnetId: GetVpcSubnetPathParams["vpcSubnetId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getVpcSubnet(vpcId: GetVpcSubnetPathParams["vpcId"], vpcSubnetId: GetVpcSubnetPathParams["vpcSubnetId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetVpcSubnetQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVpcSubnetUrl(apiVersion, vpcId, vpcSubnetId).url.toString(), ... requestConfig })  
+  const res = await request<GetVpcSubnetQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVpcSubnetUrl(vpcId, vpcSubnetId).url.toString(), ... requestConfig })  
   return res.data
 }

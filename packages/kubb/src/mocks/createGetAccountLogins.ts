@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetAccountLoginsPathParams, GetAccountLogins200, GetAccountLoginsError, GetAccountLoginsQueryResponse } from "../types/GetAccountLogins.ts";
+import type { GetAccountLogins200, GetAccountLoginsError, GetAccountLoginsQueryResponse } from "../types/GetAccountLogins.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetAccountLoginsPathParams(data?: Partial<GetAccountLoginsPathParams>): GetAccountLoginsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetAccountLoginsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A collection of successful logins for all users on the account during the last 90 days.

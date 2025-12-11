@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetLinodeInstancesPathParams, GetLinodeInstancesQueryParams, GetLinodeInstancesHeaderParams, GetLinodeInstances200, GetLinodeInstancesError, GetLinodeInstancesQueryResponse } from "../types/GetLinodeInstances.ts";
+import type { GetLinodeInstancesQueryParams, GetLinodeInstancesHeaderParams, GetLinodeInstances200, GetLinodeInstancesError, GetLinodeInstancesQueryResponse } from "../types/GetLinodeInstances.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetLinodeInstancesPathParams(data?: Partial<GetLinodeInstancesPathParams>): GetLinodeInstancesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLinodeInstancesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetLinodeInstancesQueryParams(data?: Partial<GetLinodeInstancesQueryParams>): GetLinodeInstancesQueryParams {
   

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetFirewallTemplateQueryResponse, GetFirewallTemplatePathParams, GetFirewallTemplateQueryParams } from "../types/GetFirewallTemplate.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetFirewallTemplateUrl(apiVersion: GetFirewallTemplatePathParams["apiVersion"], slug: GetFirewallTemplatePathParams["slug"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/firewalls/templates/${slug}` as const }  
+function getGetFirewallTemplateUrl(slug: GetFirewallTemplatePathParams["slug"]) {
+  const res = { method: 'GET', url: `/networking/firewalls/templates/${slug}` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Gets a `vpc` or `public` firewall template you can use with Linode VPC and public interfaces. Firewall templates come with some protection rules already configured.The public interface's firewall template allows for login with SSH, and regular networking control data. You should further strengthen these rules by limiting the allowed IPv4 and IPv6 ranges.The VPC interface's firewall template allows for login with SSH, regular networking control data, and inbound traffic from the VPC address space. You should further strengthen these rules by limiting the allowed IPv4 and IPv6 ranges.<<LB>>---- __CLI__.    ```    linode-cli firewalls template-view vpc    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    firewall:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a firewall template
- * {@link /:apiVersion/networking/firewalls/templates/:slug}
+ * {@link /networking/firewalls/templates/:slug}
  */
-export async function getFirewallTemplate(apiVersion: GetFirewallTemplatePathParams["apiVersion"], slug: GetFirewallTemplatePathParams["slug"], params?: GetFirewallTemplateQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getFirewallTemplate(slug: GetFirewallTemplatePathParams["slug"], params?: GetFirewallTemplateQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetFirewallTemplateQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallTemplateUrl(apiVersion, slug).url.toString(), params, ... requestConfig })  
+  const res = await request<GetFirewallTemplateQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallTemplateUrl(slug).url.toString(), params, ... requestConfig })  
   return res.data
 }

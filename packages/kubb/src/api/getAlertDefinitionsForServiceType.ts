@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetAlertDefinitionsForServiceTypeQueryResponse, GetAlertDefinitionsForServiceTypePathParams } from "../types/GetAlertDefinitionsForServiceType.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAlertDefinitionsForServiceTypeUrl(apiVersion: GetAlertDefinitionsForServiceTypePathParams["apiVersion"], serviceType: GetAlertDefinitionsForServiceTypePathParams["serviceType"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/monitor/services/${serviceType}/alert-definitions` as const }  
+function getGetAlertDefinitionsForServiceTypeUrl(serviceType: GetAlertDefinitionsForServiceTypePathParams["serviceType"]) {
+  const res = { method: 'GET', url: `/monitor/services/${serviceType}/alert-definitions` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns all available alert definitions for a specific service type.> 📘>> This operation is beta. Call it using the `v4beta` path in its URL.<<LB>>---- __OAuth scopes__.    ```    monitor:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)- __CLI__.    ```    linode-cli alerts service-definitions-list dbaas    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List alert definitions for a service type
- * {@link /:apiVersion/monitor/services/:serviceType/alert-definitions}
+ * {@link /monitor/services/:serviceType/alert-definitions}
  */
-export async function getAlertDefinitionsForServiceType(apiVersion: GetAlertDefinitionsForServiceTypePathParams["apiVersion"], serviceType: GetAlertDefinitionsForServiceTypePathParams["serviceType"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAlertDefinitionsForServiceType(serviceType: GetAlertDefinitionsForServiceTypePathParams["serviceType"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAlertDefinitionsForServiceTypeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAlertDefinitionsForServiceTypeUrl(apiVersion, serviceType).url.toString(), ... requestConfig })  
+  const res = await request<GetAlertDefinitionsForServiceTypeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAlertDefinitionsForServiceTypeUrl(serviceType).url.toString(), ... requestConfig })  
   return res.data
 }

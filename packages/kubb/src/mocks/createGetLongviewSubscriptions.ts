@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetLongviewSubscriptionsPathParams, GetLongviewSubscriptionsQueryParams, GetLongviewSubscriptions200, GetLongviewSubscriptionsError, GetLongviewSubscriptionsQueryResponse } from "../types/GetLongviewSubscriptions.ts";
+import type { GetLongviewSubscriptionsQueryParams, GetLongviewSubscriptions200, GetLongviewSubscriptionsError, GetLongviewSubscriptionsQueryResponse } from "../types/GetLongviewSubscriptions.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetLongviewSubscriptionsPathParams(data?: Partial<GetLongviewSubscriptionsPathParams>): GetLongviewSubscriptionsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLongviewSubscriptionsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetLongviewSubscriptionsQueryParams(data?: Partial<GetLongviewSubscriptionsQueryParams>): GetLongviewSubscriptionsQueryParams {
   

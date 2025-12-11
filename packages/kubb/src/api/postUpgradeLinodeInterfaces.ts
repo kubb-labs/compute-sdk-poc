@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostUpgradeLinodeInterfacesMutationRequest, PostUpgradeLinodeInterfacesMutationResponse, PostUpgradeLinodeInterfacesPathParams } from "../types/PostUpgradeLinodeInterfaces.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostUpgradeLinodeInterfacesUrl(apiVersion: PostUpgradeLinodeInterfacesPathParams["apiVersion"], linodeId: PostUpgradeLinodeInterfacesPathParams["linodeId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/instances/${linodeId}/upgrade-interfaces` as const }  
+function getPostUpgradeLinodeInterfacesUrl(linodeId: PostUpgradeLinodeInterfacesPathParams["linodeId"]) {
+  const res = { method: 'POST', url: `/linode/instances/${linodeId}/upgrade-interfaces` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Automatically upgrades all legacy config interfaces of a single configuration profile to Linode interfaces. A Linode interface is directly associated with the Linode, rather than being tied to a configuration profile.Firewalls are applied to the Linode interface, not directly to the Linode itself.> ❗️ This upgrade is irreversible>> Once you upgrade a Linode to use Linode interfaces, you can't use legacy config interfaces. This means you can no longer use the Linode with any Linode products that require private IPs, such as NodeBalancer. You can use `dry_run` to preview the upgrade.Before upgrading interfaces, you can check the new Linode interface configuration by performing a dry run, where you set `dry_run` to `true` or omit it. A `dry_run` runs the upgrade logic and returns a JSON representation of what the interface configuration will be after the upgrade without committing any changes.When you run this operation with `dry_run` set to `false`, the following occurs:  - It creates matching interfaces on the Linode based on the interfaces present on the `config_id`.  - All firewalls are removed from the Linode. Any firewalls that were originally attached to the Linode are now applied to the public and VPC interfaces. If the Linode has no firewalls attached, then default firewalls are not used.  - If no legacy config interfaces are defined (`legacy_config`) in the `config_id`, a public interface is created using the public IPv4 assigned to the Linode. The same is the case if the Linode has no config defined.  - For public interfaces, the Linode's current MAC address and SLAAC address are conserved. The MAC address won't change.  - It deletes all legacy config interfaces from all configs.  - It returns the list of interfaces for the Linode.Requirements:  - The `config_id` for the legacy config interfaces can't use a public interface private IPv4 address.  - The Linode needs a MAC address in the database if it's IPv6 enabled. If it doesn't, an error message tells you what to do.  - The Linode must be in a region that supports Linode interfaces. Run [Get a region](https://techdocs.akamai.com/linode-api/reference/get-region).  - Your account must allow creation of Linodes with Linode interfaces, run [Get account settings](https://techdocs.akamai.com/linode-api/reference/get-account-settings).  - If the Linode has a user with a non-standard username, it can't be upgraded.<<LB>>---- __CLI__.    ```    linode-cli linodes interfaces-upgrade $linodeId    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Upgrade to Linode interfaces
- * {@link /:apiVersion/linode/instances/:linodeId/upgrade-interfaces}
+ * {@link /linode/instances/:linodeId/upgrade-interfaces}
  */
-export async function postUpgradeLinodeInterfaces(apiVersion: PostUpgradeLinodeInterfacesPathParams["apiVersion"], linodeId: PostUpgradeLinodeInterfacesPathParams["linodeId"], data?: PostUpgradeLinodeInterfacesMutationRequest, config: Partial<RequestConfig<PostUpgradeLinodeInterfacesMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postUpgradeLinodeInterfaces(linodeId: PostUpgradeLinodeInterfacesPathParams["linodeId"], data?: PostUpgradeLinodeInterfacesMutationRequest, config: Partial<RequestConfig<PostUpgradeLinodeInterfacesMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostUpgradeLinodeInterfacesMutationResponse, ResponseErrorConfig<Error>, PostUpgradeLinodeInterfacesMutationRequest>({ method : "POST", url : getPostUpgradeLinodeInterfacesUrl(apiVersion, linodeId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostUpgradeLinodeInterfacesMutationResponse, ResponseErrorConfig<Error>, PostUpgradeLinodeInterfacesMutationRequest>({ method : "POST", url : getPostUpgradeLinodeInterfacesUrl(linodeId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteLkeClusterKubeconfigMutationResponse, DeleteLkeClusterKubeconfigPathParams } from "../types/DeleteLkeClusterKubeconfig.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteLkeClusterKubeconfigUrl(apiVersion: DeleteLkeClusterKubeconfigPathParams["apiVersion"], clusterId: DeleteLkeClusterKubeconfigPathParams["clusterId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/lke/clusters/${clusterId}/kubeconfig` as const }  
+function getDeleteLkeClusterKubeconfigUrl(clusterId: DeleteLkeClusterKubeconfigPathParams["clusterId"]) {
+  const res = { method: 'DELETE', url: `/lke/clusters/${clusterId}/kubeconfig` as const }  
   return res
 }
 
 /**
  * @description Delete and regenerate the Kubeconfig file for a Cluster.<<LB>>---- __CLI__.    ```    linode-cli lke kubeconfig-delete 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a Kubeconfig
- * {@link /:apiVersion/lke/clusters/:clusterId/kubeconfig}
+ * {@link /lke/clusters/:clusterId/kubeconfig}
  */
-export async function deleteLkeClusterKubeconfig(apiVersion: DeleteLkeClusterKubeconfigPathParams["apiVersion"], clusterId: DeleteLkeClusterKubeconfigPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteLkeClusterKubeconfig(clusterId: DeleteLkeClusterKubeconfigPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteLkeClusterKubeconfigMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteLkeClusterKubeconfigUrl(apiVersion, clusterId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteLkeClusterKubeconfigMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteLkeClusterKubeconfigUrl(clusterId).url.toString(), ... requestConfig })  
   return res.data
 }

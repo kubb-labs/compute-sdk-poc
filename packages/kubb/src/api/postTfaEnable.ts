@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostTfaEnableMutationResponse, PostTfaEnablePathParams } from "../types/PostTfaEnable.ts";
+import type { PostTfaEnableMutationResponse } from "../types/PostTfaEnable.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostTfaEnableUrl(apiVersion: PostTfaEnablePathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/profile/tfa-enable` as const }  
+function getPostTfaEnableUrl() {
+  const res = { method: 'POST', url: `/profile/tfa-enable` as const }  
   return res
 }
 
 /**
  * @description Generates a secret key for your user. To enable two-factor authentication (2FA), enter this secret into your third-party authenticator application. To complete the 2FA setup, use the [Enable two-factor authentication](https://techdocs.akamai.com/linode-api/reference/post-tfa-confirm) operation to enter a one-time passcode (OTP) from your authenticator app. Once enabled, logins from untrusted computers are required to provide an OTP before they are successful.Run the [Answer security questions](https://techdocs.akamai.com/linode-api/reference/post-security-questions) operation.<<LB>>---- __CLI__.    ```    linode-cli profile tfa-enable    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Generate a secret key for two-factor authentication
- * {@link /:apiVersion/profile/tfa-enable}
+ * {@link /profile/tfa-enable}
  */
-export async function postTfaEnable(apiVersion: PostTfaEnablePathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postTfaEnable(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostTfaEnableMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostTfaEnableUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<PostTfaEnableMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostTfaEnableUrl().url.toString(), ... requestConfig })  
   return res.data
 }

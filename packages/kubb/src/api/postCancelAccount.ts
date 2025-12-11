@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostCancelAccountMutationRequest, PostCancelAccountMutationResponse, PostCancelAccountPathParams, PostCancelAccount409, PostCancelAccount504 } from "../types/PostCancelAccount.ts";
+import type { PostCancelAccountMutationRequest, PostCancelAccountMutationResponse, PostCancelAccount409, PostCancelAccount504 } from "../types/PostCancelAccount.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostCancelAccountUrl(apiVersion: PostCancelAccountPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/cancel` as const }  
+function getPostCancelAccountUrl() {
+  const res = { method: 'POST', url: `/account/cancel` as const }  
   return res
 }
 
 /**
  * @description Deletes an active account. Akamai attempts to charge the credit card on file for any remaining balance. An error occurs if this charge fails.> 🚧>> - This operation permanently deletes your account and it _can't_ be recovered. Also, there is no warning prompt after you execute this operation.>> - Only account users with _unrestricted_ access can run this operation.__Parent and child accounts__In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:- A child account user can't remove a child account.- You can't remove a parent account if it has an active child account.- You need to work with your Akamai account team to dissolve any parent-child account relationships before you can fully remove a child or parent account.<<LB>>---- __CLI__.    ```    linode-cli account cancel \  --comments "I'm consolidating my accounts"    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete your account
- * {@link /:apiVersion/account/cancel}
+ * {@link /account/cancel}
  */
-export async function postCancelAccount(apiVersion: PostCancelAccountPathParams["apiVersion"], data?: PostCancelAccountMutationRequest, config: Partial<RequestConfig<PostCancelAccountMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postCancelAccount(data?: PostCancelAccountMutationRequest, config: Partial<RequestConfig<PostCancelAccountMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostCancelAccountMutationResponse, ResponseErrorConfig<PostCancelAccount409 | PostCancelAccount504>, PostCancelAccountMutationRequest>({ method : "POST", url : getPostCancelAccountUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostCancelAccountMutationResponse, ResponseErrorConfig<PostCancelAccount409 | PostCancelAccount504>, PostCancelAccountMutationRequest>({ method : "POST", url : getPostCancelAccountUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

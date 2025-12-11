@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostTfaConfirmMutationRequest, PostTfaConfirmMutationResponse, PostTfaConfirmPathParams } from "../types/PostTfaConfirm.ts";
+import type { PostTfaConfirmMutationRequest, PostTfaConfirmMutationResponse } from "../types/PostTfaConfirm.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostTfaConfirmUrl(apiVersion: PostTfaConfirmPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/profile/tfa-enable-confirm` as const }  
+function getPostTfaConfirmUrl() {
+  const res = { method: 'POST', url: `/profile/tfa-enable-confirm` as const }  
   return res
 }
 
 /**
  * @description Confirms that you can successfully generate one-time codes. Once confirmed, 2FA is enabled on your account. Login attempts from untrusted computers will be required to provide a one-time code before they are successful.<<LB>>---- __CLI__.    ```    linode-cli profile tfa-confirm \  --tfa_code 213456    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Enable two-factor authentication
- * {@link /:apiVersion/profile/tfa-enable-confirm}
+ * {@link /profile/tfa-enable-confirm}
  */
-export async function postTfaConfirm(apiVersion: PostTfaConfirmPathParams["apiVersion"], data?: PostTfaConfirmMutationRequest, config: Partial<RequestConfig<PostTfaConfirmMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postTfaConfirm(data?: PostTfaConfirmMutationRequest, config: Partial<RequestConfig<PostTfaConfirmMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostTfaConfirmMutationResponse, ResponseErrorConfig<Error>, PostTfaConfirmMutationRequest>({ method : "POST", url : getPostTfaConfirmUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostTfaConfirmMutationResponse, ResponseErrorConfig<Error>, PostTfaConfirmMutationRequest>({ method : "POST", url : getPostTfaConfirmUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

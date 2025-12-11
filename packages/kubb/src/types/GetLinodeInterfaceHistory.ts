@@ -4,19 +4,7 @@
 */
 
 
-export const getLinodeInterfaceHistoryPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLinodeInterfaceHistoryPathParamsApiVersionEnumKey = (typeof getLinodeInterfaceHistoryPathParamsApiVersionEnum)[keyof typeof getLinodeInterfaceHistoryPathParamsApiVersionEnum];
-
 export interface GetLinodeInterfaceHistoryPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLinodeInterfaceHistoryPathParamsApiVersionEnumKey;
     /**
      * @description The `id` of the Linode.
      * @type integer
@@ -29,55 +17,55 @@ export interface GetLinodeInterfaceHistoryPathParams {
 */
 export interface GetLinodeInterfaceHistory200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Filterable__, __Read-only__ When this version was created. Use `created` to determine which settings an interface prevously had.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description The JSON body returned in response to a successful `PUT`, `POST`, or `DELETE` operation on the interface.
-         * @type string | undefined
+         * @type string
         */
-        interface_data?: string;
+        interface_data: string;
         /**
          * @description __Filterable__, __Read-only__ The unique ID for this history version.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly interface_history_id?: number;
+        readonly interface_history_id: number;
         /**
          * @description __Filterable__, __Read-only__ The network interface defined in the `version`.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly interface_id?: number;
+        readonly interface_id: number;
         /**
          * @description __Filterable__, __Read-only__ The Linode the `interface_id` belongs to.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly linode_id?: number;
+        readonly linode_id: number;
         /**
          * @description __Filterable__, __Read-only__ The network interface\'s version. The first version from a `POST` is `1`. The version number is incremented when the network interface configuration is changed.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly version?: number;
+        readonly version: number;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -85,19 +73,19 @@ export interface GetLinodeInterfaceHistory200 {
 */
 export interface GetLinodeInterfaceHistoryError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostSharegroupImagesPathParams(data?: Partial<PostSharegroupImagesPathParams>): PostSharegroupImagesPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostSharegroupImagesPathParams>["apiVersion"]>(["v4", "v4beta"]),"sharegroupId": faker.number.int()},
+  ...{"sharegroupId": faker.number.int()},
   ...data || {}
   }
 }

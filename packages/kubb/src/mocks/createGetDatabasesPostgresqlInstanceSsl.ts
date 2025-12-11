@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetDatabasesPostgresqlInstanceSslPathParams(data?: Partial<GetDatabasesPostgresqlInstanceSslPathParams>): GetDatabasesPostgresqlInstanceSslPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDatabasesPostgresqlInstanceSslPathParams>["apiVersion"]>(["v4", "v4beta"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

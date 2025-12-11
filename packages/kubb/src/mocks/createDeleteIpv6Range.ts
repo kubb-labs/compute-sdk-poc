@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteIpv6RangePathParams(data?: Partial<DeleteIpv6RangePathParams>): DeleteIpv6RangePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteIpv6RangePathParams>["apiVersion"]>(["v4", "v4beta"]),"range": faker.internet.url()},
+  ...{"range": faker.internet.url()},
   ...data || {}
   }
 }

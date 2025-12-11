@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetVpcIpsPathParams(data?: Partial<GetVpcIpsPathParams>): GetVpcIpsPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetVpcIpsPathParams>["apiVersion"]>(["v4", "v4beta"]),"vpcId": faker.number.int()},
+  ...{"vpcId": faker.number.int()},
   ...data || {}
   }
 }

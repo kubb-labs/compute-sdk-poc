@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetTagsQueryResponse, GetTagsPathParams, GetTagsQueryParams } from "../types/GetTags.ts";
+import type { GetTagsQueryResponse, GetTagsQueryParams } from "../types/GetTags.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetTagsUrl(apiVersion: GetTagsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/tags` as const }  
+function getGetTagsUrl() {
+  const res = { method: 'GET', url: `/tags` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of tags you've [created](https://techdocs.akamai.com/linode-api/reference/post-tag) on your account.> 📘>> This operation can only be accessed by account users with _unrestricted_ access. Talk to your local account administrator about access management.<<LB>>---- __CLI__.    ```    linode-cli tags listlinode-cli tags ls    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List tags
- * {@link /:apiVersion/tags}
+ * {@link /tags}
  */
-export async function getTags(apiVersion: GetTagsPathParams["apiVersion"], params?: GetTagsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getTags(params?: GetTagsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetTagsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTagsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetTagsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTagsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

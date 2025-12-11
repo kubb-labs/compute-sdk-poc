@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteLkeServiceTokenMutationResponse, DeleteLkeServiceTokenPathParams } from "../types/DeleteLkeServiceToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteLkeServiceTokenUrl(apiVersion: DeleteLkeServiceTokenPathParams["apiVersion"], clusterId: DeleteLkeServiceTokenPathParams["clusterId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/lke/clusters/${clusterId}/servicetoken` as const }  
+function getDeleteLkeServiceTokenUrl(clusterId: DeleteLkeServiceTokenPathParams["clusterId"]) {
+  const res = { method: 'DELETE', url: `/lke/clusters/${clusterId}/servicetoken` as const }  
   return res
 }
 
 /**
  * @description Delete and regenerate the service account token for a Cluster.> 📘>> When you regenerate a service account token, the cluster's control plane components and Linode CSI drivers are also restarted and configured with the new token. High availability clusters shouldn't experience any disruption, while standard clusters may experience brief control plane downtime while components are restarted.<<LB>>---- __CLI__.    ```    linode-cli lke service-token-delete 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a service token
- * {@link /:apiVersion/lke/clusters/:clusterId/servicetoken}
+ * {@link /lke/clusters/:clusterId/servicetoken}
  */
-export async function deleteLkeServiceToken(apiVersion: DeleteLkeServiceTokenPathParams["apiVersion"], clusterId: DeleteLkeServiceTokenPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteLkeServiceToken(clusterId: DeleteLkeServiceTokenPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteLkeServiceTokenMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteLkeServiceTokenUrl(apiVersion, clusterId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteLkeServiceTokenMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteLkeServiceTokenUrl(clusterId).url.toString(), ... requestConfig })  
   return res.data
 }

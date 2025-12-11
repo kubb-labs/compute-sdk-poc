@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostCloneVolumeMutationRequest, PostCloneVolumeMutationResponse, PostCloneVolumePathParams } from "../types/PostCloneVolume.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostCloneVolumeUrl(apiVersion: PostCloneVolumePathParams["apiVersion"], volumeId: PostCloneVolumePathParams["volumeId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/volumes/${volumeId}/clone` as const }  
+function getPostCloneVolumeUrl(volumeId: PostCloneVolumePathParams["volumeId"]) {
+  const res = { method: 'POST', url: `/volumes/${volumeId}/clone` as const }  
   return res
 }
 
 /**
  * @description Target an existing Block Storage volume to create a new one, that's the same size and includes the same data. A new volume will incur a charge on your account.> 📘>> - To run this operation, your user needs the `add_volume` [grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants).>> - Only a volume with a `status` of `active` can be cloned. Run the [List volumes](https://techdocs.akamai.com/linode-api/reference/get-volumes) operation to view the `status` of each of your volumes.<<LB>>---- __CLI__.    ```    linode-cli volumes clone 12345 \  --label my-volume    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    volumes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Clone a volume
- * {@link /:apiVersion/volumes/:volumeId/clone}
+ * {@link /volumes/:volumeId/clone}
  */
-export async function postCloneVolume(apiVersion: PostCloneVolumePathParams["apiVersion"], volumeId: PostCloneVolumePathParams["volumeId"], data: PostCloneVolumeMutationRequest, config: Partial<RequestConfig<PostCloneVolumeMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postCloneVolume(volumeId: PostCloneVolumePathParams["volumeId"], data: PostCloneVolumeMutationRequest, config: Partial<RequestConfig<PostCloneVolumeMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostCloneVolumeMutationResponse, ResponseErrorConfig<Error>, PostCloneVolumeMutationRequest>({ method : "POST", url : getPostCloneVolumeUrl(apiVersion, volumeId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostCloneVolumeMutationResponse, ResponseErrorConfig<Error>, PostCloneVolumeMutationRequest>({ method : "POST", url : getPostCloneVolumeUrl(volumeId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

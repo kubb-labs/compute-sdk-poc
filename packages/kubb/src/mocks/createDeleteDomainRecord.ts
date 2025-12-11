@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteDomainRecordPathParams(data?: Partial<DeleteDomainRecordPathParams>): DeleteDomainRecordPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteDomainRecordPathParams>["apiVersion"]>(["v4", "v4beta"]),"domainId": faker.number.int(),"recordId": faker.number.int()},
+  ...{"domainId": faker.number.int(),"recordId": faker.number.int()},
   ...data || {}
   }
 }

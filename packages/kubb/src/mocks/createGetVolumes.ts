@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetVolumesPathParams, GetVolumesQueryParams, GetVolumes200, GetVolumesError, GetVolumesQueryResponse } from "../types/GetVolumes.ts";
+import type { GetVolumesQueryParams, GetVolumes200, GetVolumesError, GetVolumesQueryResponse } from "../types/GetVolumes.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetVolumesPathParams(data?: Partial<GetVolumesPathParams>): GetVolumesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetVolumesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetVolumesQueryParams(data?: Partial<GetVolumesQueryParams>): GetVolumesQueryParams {
   

@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostAddLinodeIpMutationRequest, PostAddLinodeIpMutationResponse, PostAddLinodeIpPathParams } from "../types/PostAddLinodeIp.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostAddLinodeIpUrl(apiVersion: PostAddLinodeIpPathParams["apiVersion"], linodeId: PostAddLinodeIpPathParams["linodeId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/instances/${linodeId}/ips` as const }  
+function getPostAddLinodeIpUrl(linodeId: PostAddLinodeIpPathParams["linodeId"]) {
+  const res = { method: 'POST', url: `/linode/instances/${linodeId}/ips` as const }  
   return res
 }
 
 /**
  * @description Allocates a public or private IPv4 address to a Linode. Public IP Addresses, after the one included with each Linode, incur an additional monthly charge. If you need an additional public IP Address you must request one - please [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket). You may not add more than one private IPv4 address to a single Linode.<<LB>>---- __CLI__.    ```    linode-cli linodes ip-add 123 \  --type ipv4 \  --public true    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Allocate an IPv4 address
- * {@link /:apiVersion/linode/instances/:linodeId/ips}
+ * {@link /linode/instances/:linodeId/ips}
  */
-export async function postAddLinodeIp(apiVersion: PostAddLinodeIpPathParams["apiVersion"], linodeId: PostAddLinodeIpPathParams["linodeId"], data: PostAddLinodeIpMutationRequest, config: Partial<RequestConfig<PostAddLinodeIpMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postAddLinodeIp(linodeId: PostAddLinodeIpPathParams["linodeId"], data: PostAddLinodeIpMutationRequest, config: Partial<RequestConfig<PostAddLinodeIpMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostAddLinodeIpMutationResponse, ResponseErrorConfig<Error>, PostAddLinodeIpMutationRequest>({ method : "POST", url : getPostAddLinodeIpUrl(apiVersion, linodeId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostAddLinodeIpMutationResponse, ResponseErrorConfig<Error>, PostAddLinodeIpMutationRequest>({ method : "POST", url : getPostAddLinodeIpUrl(linodeId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

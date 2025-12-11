@@ -4,21 +4,6 @@
 */
 
 
-export const getNotificationsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetNotificationsPathParamsApiVersionEnumKey = (typeof getNotificationsPathParamsApiVersionEnum)[keyof typeof getNotificationsPathParamsApiVersionEnum];
-
-export interface GetNotificationsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetNotificationsPathParamsApiVersionEnumKey;
-}
-
 export const entityTypeEnum7 = {
     "account": "account",
     "entity_transfer": "entity_transfer",
@@ -65,86 +50,86 @@ export type DataTypeEnum7Key = (typeof dataTypeEnum7)[keyof typeof dataTypeEnum7
 */
 export interface GetNotifications200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description A full description of this notification, in markdown format. Not all notifications include a `body`. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          * @type string
         */
-        body?: string | null;
+        body: string | null;
         /**
          * @description Detailed information about the notification. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          * @type object
         */
-        entity?: {
+        entity: {
             /**
              * @description The unique ID of the notification\'s entity, based on the entity type. Returns `null` for an `account` or `promotion` entity.
              * @type integer
             */
-            id?: number | null;
+            id: number | null;
             /**
              * @description The current name of this notification\'s entity. Returns `null` for the following `entity` types:\n\n- `entity_transfer`\n\n- `promotion`\n\n- `region`
              * @type string
             */
-            label?: string | null;
+            label: string | null;
             /**
              * @description __Filterable__ The type of entity this is related to. An entity can be product or service-specific, such as a `linode`, `loadbalancers`, or `nodebalancers`. It can apply to a specific component, such as your `account`, a specific `promotion` your participating in, a data center (`region`) where you\'re using services, a transfer from one component to another (an `entity_transfer`), a support `ticket` you\'ve opened, or a `volume` on a specific Linode.
-             * @type string | undefined
+             * @type string
             */
-            type?: EntityTypeEnum7Key;
+            type: EntityTypeEnum7Key;
             /**
              * @description The URL where you can access the notification\'s object. The URL is relative to the domain where you retrieved the notification. This value is `null` for the `promotion` entity type.
              * @type string
             */
-            url?: string | null;
+            url: string | null;
         } | null;
         /**
          * @description A short description of this notification.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description A human-readable description of the notification.
-         * @type string | undefined
+         * @type string
         */
-        message?: string;
+        message: string;
         /**
          * @description The severity of this notification. This field determines how prominently the notification is displayed and the color of the display text.
-         * @type string | undefined
+         * @type string
         */
-        severity?: DataSeverityEnum2Key;
+        severity: DataSeverityEnum2Key;
         /**
          * @description __Filterable__ The type of notification.\n\n> 📘\n>\n> A `security_reboot_maintenance_scheduled` event is a global notice that a Linode needs to be rebooted for QEMU upgrade maintenance. Have a look at [this workflow](https://techdocs.akamai.com/linode-api/reference/reboot-your-linodes-for-qemu-maintenance) for guidance on reboooting your Linodes for this maintenance.
-         * @type string | undefined
+         * @type string
         */
-        type?: DataTypeEnum7Key;
+        type: DataTypeEnum7Key;
         /**
          * @description If this notification has a duration, this is when the event or action will complete. For example, if there\'s scheduled maintenance for one of our systems, `until` represents the end of the maintenance window. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          * @type string, date-time
         */
-        until?: string | null;
+        until: string | null;
         /**
          * @description If this notification is for an event in the future, this specifies when the action occurs. For example, if a compute instance needs to migrate in response to a security advisory, this field sets the approximate time the compute instance will be taken offline for migration. Returned as `null` for an event `type` of `security_reboot_maintenance_scheduled`.
          * @type string, date-time
         */
-        when?: string | null;
+        when: string | null;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -152,19 +137,19 @@ export interface GetNotifications200 {
 */
 export interface GetNotificationsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -172,6 +157,5 @@ export type GetNotificationsQueryResponse = GetNotifications200;
 
 export type GetNotificationsQuery = {
     Response: GetNotifications200;
-    PathParams: GetNotificationsPathParams;
     Errors: any;
 };

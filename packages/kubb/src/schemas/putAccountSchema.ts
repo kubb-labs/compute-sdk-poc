@@ -5,56 +5,52 @@
 
 import { z } from "zod/v4";
 
-export const putAccountPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description The updated account.
  */
 export const putAccount200Schema = z.object({
-    "active_promotions": z.optional(z.array(z.object({
-    "credit_monthly_cap": z.optional(z.string().describe("The amount available to spend per month.")),
-"credit_remaining": z.optional(z.string().describe("The total amount of credit left for this promotion.")),
-"description": z.optional(z.string().describe("A detailed description of this promotion.")),
-"expire_dt": z.optional(z.string().describe("When this promotion's credits expire.")),
-"image_url": z.optional(z.string().describe("The location of an image for this promotion.")),
-"service_type": z.optional(z.enum(["all", "backup", "blockstorage", "db_mysql", "ip_v4", "linode", "linode_disk", "linode_memory", "longview", "managed", "nodebalancer", "objectstorage", "placement_group", "transfer_tx"]).describe("The service to which this promotion applies.")),
-"summary": z.optional(z.string().describe("Short details of this promotion.")),
-"this_month_credit_remaining": z.optional(z.string().describe("The amount of credit left for this month for this promotion."))
-    }).describe("__Read-only__ Promotions generally offer a set amount of credit that can be used toward your Linode services, and the promotion expires after a specified date. As well, a monthly cap on the promotional offer is set.\n\nSimply put, a promotion offers a certain amount of credit  month, until either the expiration date is passed, or until the total promotional credit is used, whichever comes first."))),
-"active_since": z.optional(z.string().datetime().describe("__Read-only__ The date and time the account was activated.")),
-"address_1": z.optional(z.string().max(64).describe("The first line of this account's billing address.")),
-"address_2": z.optional(z.string().max(64).describe("The second line of this account's billing address.")),
-"balance": z.optional(z.number().describe("__Read-only__ This account's balance, in US dollars.")),
-"balance_uninvoiced": z.optional(z.number().describe("__Read-only__ This account's current estimated invoice in US dollars. This is not your final invoice balance. Transfer charges are not included in the estimate.")),
-"billing_source": z.optional(z.enum(["akamai", "linode"]).describe("__Read-only__ The source of service charges for this account. Accounts that are associated with Akamai-specific customers return a value of `akamai`. All other accounts return a value of `linode`.")),
-"capabilities": z.optional(z.array(z.string()).describe("__Read-only__ The Akamai Cloud Computing services your account supports.")),
-"city": z.optional(z.string().max(24).describe("The city for this account's `address`.")),
-"company": z.optional(z.string().max(128).describe("The company name assigned to this account. This value can't include the characters, `<` `>` `(` `)` `\"` `=`.")),
-"country": z.optional(z.string().describe("The two-letter ISO 3166 country code for this account's `address`.")),
-"credit_card": z.optional(z.object({
-    "expiry": z.optional(z.string().describe("The expiration month and year of the `credit_card`.")),
-"last_four": z.optional(z.string().describe("The last four digits of the `credit_card` assigned to this account."))
-    }).describe("__Read-only__ The credit card information assigned to this account.")),
-"email": z.optional(z.string().max(128).describe("The email address of the person assigned to this account.")),
-"euuid": z.optional(z.uuid().describe("__Read-only__ An external unique identifier for this account.")),
-"first_name": z.optional(z.string().max(50).describe("The first name of the person assigned to this account. This value can't include the characters, `<` `>` `(` `)` `\"` `=`.")),
-"last_name": z.optional(z.string().max(50).describe("The last name of the person assigned to this account. This value can't include the characters, `<` `>` `(` `)` `\"` `=`.")),
-"phone": z.optional(z.string().max(32).describe("The phone number assigned to this account.")),
-"state": z.optional(z.string().max(24).describe("The state or province for the `address` set for your account, if applicable.\n\n- If the `address` is in the United States (US) or Canada (CA), this is the two-letter ISO 3166 code for the state or province.\n\n- If it's a US military `address`, this is the abbreviation for that territory. This includes `AA` for Armed Forces Americas (excluding Canada), `AE` for Armed Forces Africa, Europe, Middle East, and Canada, or `AP` for Armed Forces Pacific.\n\n- If outside the US or CA, this is the province associated with the account's `address`.")),
-"tax_id": z.optional(z.string().max(25).describe("The tax identification number (TIN) assigned to this account, used for tax calculations. A TIN is set by the national authorities in your `country`, based on your `address_1`, and it may be named differently between countries. Set to an empty string (`\"\"`) if a TIN doesn't apply or for countries that don't collect tax.\n\n> 📘\n>\n> This value is externally validated. If the validation is successful, a `tax_id_valid` [event](https://techdocs.akamai.com/linode-api/reference/get-events) is triggered. If unsuccessful, a `tax_id_invalid` event is triggered and an error response is issued for an operation that included it.")),
-"zip": z.optional(z.string().describe("The zip code for this account's `address`.\n\n- It can only contain ASCII letters, numbers, and dashes (`-`).\n\n- It can't contain more than nine letter or number characters."))
+    "active_promotions": z.array(z.object({
+    "credit_monthly_cap": z.string().describe("The amount available to spend per month."),
+"credit_remaining": z.string().describe("The total amount of credit left for this promotion."),
+"description": z.string().describe("A detailed description of this promotion."),
+"expire_dt": z.string().describe("When this promotion's credits expire."),
+"image_url": z.string().describe("The location of an image for this promotion."),
+"service_type": z.enum(["all", "backup", "blockstorage", "db_mysql", "ip_v4", "linode", "linode_disk", "linode_memory", "longview", "managed", "nodebalancer", "objectstorage", "placement_group", "transfer_tx"]).describe("The service to which this promotion applies."),
+"summary": z.string().describe("Short details of this promotion."),
+"this_month_credit_remaining": z.string().describe("The amount of credit left for this month for this promotion.")
+    }).describe("__Read-only__ Promotions generally offer a set amount of credit that can be used toward your Linode services, and the promotion expires after a specified date. As well, a monthly cap on the promotional offer is set.\n\nSimply put, a promotion offers a certain amount of credit  month, until either the expiration date is passed, or until the total promotional credit is used, whichever comes first.")),
+"active_since": z.string().datetime().describe("__Read-only__ The date and time the account was activated."),
+"address_1": z.string().max(64).describe("The first line of this account's billing address."),
+"address_2": z.string().max(64).describe("The second line of this account's billing address."),
+"balance": z.number().describe("__Read-only__ This account's balance, in US dollars."),
+"balance_uninvoiced": z.number().describe("__Read-only__ This account's current estimated invoice in US dollars. This is not your final invoice balance. Transfer charges are not included in the estimate."),
+"billing_source": z.enum(["akamai", "linode"]).describe("__Read-only__ The source of service charges for this account. Accounts that are associated with Akamai-specific customers return a value of `akamai`. All other accounts return a value of `linode`."),
+"capabilities": z.array(z.string()).describe("__Read-only__ The Akamai Cloud Computing services your account supports."),
+"city": z.string().max(24).describe("The city for this account's `address`."),
+"company": z.string().max(128).describe("The company name assigned to this account. This value can't include the characters, `<` `>` `(` `)` `\"` `=`."),
+"country": z.string().describe("The two-letter ISO 3166 country code for this account's `address`."),
+"credit_card": z.object({
+    "expiry": z.string().describe("The expiration month and year of the `credit_card`."),
+"last_four": z.string().describe("The last four digits of the `credit_card` assigned to this account.")
+    }).describe("__Read-only__ The credit card information assigned to this account."),
+"email": z.string().max(128).describe("The email address of the person assigned to this account."),
+"euuid": z.uuid().describe("__Read-only__ An external unique identifier for this account."),
+"first_name": z.string().max(50).describe("The first name of the person assigned to this account. This value can't include the characters, `<` `>` `(` `)` `\"` `=`."),
+"last_name": z.string().max(50).describe("The last name of the person assigned to this account. This value can't include the characters, `<` `>` `(` `)` `\"` `=`."),
+"phone": z.string().max(32).describe("The phone number assigned to this account."),
+"state": z.string().max(24).describe("The state or province for the `address` set for your account, if applicable.\n\n- If the `address` is in the United States (US) or Canada (CA), this is the two-letter ISO 3166 code for the state or province.\n\n- If it's a US military `address`, this is the abbreviation for that territory. This includes `AA` for Armed Forces Americas (excluding Canada), `AE` for Armed Forces Africa, Europe, Middle East, and Canada, or `AP` for Armed Forces Pacific.\n\n- If outside the US or CA, this is the province associated with the account's `address`."),
+"tax_id": z.string().max(25).describe("The tax identification number (TIN) assigned to this account, used for tax calculations. A TIN is set by the national authorities in your `country`, based on your `address_1`, and it may be named differently between countries. Set to an empty string (`\"\"`) if a TIN doesn't apply or for countries that don't collect tax.\n\n> 📘\n>\n> This value is externally validated. If the validation is successful, a `tax_id_valid` [event](https://techdocs.akamai.com/linode-api/reference/get-events) is triggered. If unsuccessful, a `tax_id_invalid` event is triggered and an error response is issued for an operation that included it."),
+"zip": z.string().describe("The zip code for this account's `address`.\n\n- It can only contain ASCII letters, numbers, and dashes (`-`).\n\n- It can't contain more than nine letter or number characters.")
     }).describe("Account object.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const putAccountErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 /**

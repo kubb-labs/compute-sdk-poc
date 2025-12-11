@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostShareIpsPathParams, PostShareIps200, PostShareIpsError, PostShareIpsMutationRequest, PostShareIpsMutationResponse } from "../types/PostShareIps.ts";
+import type { PostShareIps200, PostShareIpsError, PostShareIpsMutationRequest, PostShareIpsMutationResponse } from "../types/PostShareIps.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostShareIpsPathParams(data?: Partial<PostShareIpsPathParams>): PostShareIpsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostShareIpsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description IP Address sharing successful.

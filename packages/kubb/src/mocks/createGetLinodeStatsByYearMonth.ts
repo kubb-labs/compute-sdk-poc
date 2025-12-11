@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetLinodeStatsByYearMonthPathParams(data?: Partial<GetLinodeStatsByYearMonthPathParams>): GetLinodeStatsByYearMonthPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLinodeStatsByYearMonthPathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int(),"year": faker.number.int({ min: 2000, max: 2037 }),"month": faker.number.int({ min: 1, max: 12 })},
+  ...{"linodeId": faker.number.int(),"year": faker.number.int({ min: 2000, max: 2037 }),"month": faker.number.int({ min: 1, max: 12 })},
   ...data || {}
   }
 }

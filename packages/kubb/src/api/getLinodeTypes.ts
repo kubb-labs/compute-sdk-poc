@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetLinodeTypesQueryResponse, GetLinodeTypesPathParams } from "../types/GetLinodeTypes.ts";
+import type { GetLinodeTypesQueryResponse } from "../types/GetLinodeTypes.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeTypesUrl(apiVersion: GetLinodeTypesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/types` as const }  
+function getGetLinodeTypesUrl() {
+  const res = { method: 'GET', url: `/linode/types` as const }  
   return res
 }
 
 /**
  * @description Returns Linode Types, including pricing and specifications for each Type. Use these when [creating](https://techdocs.akamai.com/linode-api/reference/post-linode-instance) or [resizing](https://techdocs.akamai.com/linode-api/reference/post-resize-linode-instance) Linodes.<<LB>>---- __CLI__.    ```    linode-cli linodes types    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List types
- * {@link /:apiVersion/linode/types}
+ * {@link /linode/types}
  */
-export async function getLinodeTypes(apiVersion: GetLinodeTypesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeTypes(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeTypesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeTypesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

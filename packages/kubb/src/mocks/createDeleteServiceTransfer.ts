@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteServiceTransferPathParams(data?: Partial<DeleteServiceTransferPathParams>): DeleteServiceTransferPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteServiceTransferPathParams>["apiVersion"]>(["v4", "v4beta"]),"token": faker.string.uuid()},
+  ...{"token": faker.string.uuid()},
   ...data || {}
   }
 }

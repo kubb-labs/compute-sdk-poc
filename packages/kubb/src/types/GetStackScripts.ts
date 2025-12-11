@@ -4,21 +4,6 @@
 */
 
 
-export const getStackScriptsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetStackScriptsPathParamsApiVersionEnumKey = (typeof getStackScriptsPathParamsApiVersionEnum)[keyof typeof getStackScriptsPathParamsApiVersionEnum];
-
-export interface GetStackScriptsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetStackScriptsPathParamsApiVersionEnumKey;
-}
-
 export interface GetStackScriptsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -42,76 +27,76 @@ export interface GetStackScriptsQueryParams {
 */
 export interface GetStackScripts200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ The date this StackScript was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description __Read-only__ Count of currently active, deployed Linodes created from this StackScript.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly deployments_active?: number;
+        readonly deployments_active: number;
         /**
          * @description __Filterable__, __Read-only__ The total number of times this StackScript has been deployed.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly deployments_total?: number;
+        readonly deployments_total: number;
         /**
          * @description __Filterable__ A description for the StackScript.
-         * @type string | undefined
+         * @type string
         */
-        description?: string;
+        description: string;
         /**
          * @description __Read-only__ The unique ID of this StackScript.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description An array of Image IDs. These are the Images that can be deployed with this StackScript.\n\n`any/all` indicates that all available Images, including private Images, are accepted.
-         * @type array | undefined
+         * @type array
         */
-        images?: string[];
+        images: string[];
         /**
          * @description __Filterable__ This determines whether other users can use your StackScript. __Once a StackScript is made public, it cannot be made private.__
-         * @type boolean | undefined
+         * @type boolean
         */
-        is_public?: boolean;
+        is_public: boolean;
         /**
          * @description __Filterable__ The StackScript\'s label is for display purposes only.
          * @minLength 3
          * @maxLength 128
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description __Filterable__, __Read-only__ Returns `true` if this StackScript is owned by the account of the user making the request, and the user making the request is unrestricted or has access to this StackScript.
-         * @type boolean | undefined
+         * @type boolean
         */
-        readonly mine?: boolean;
+        readonly mine: boolean;
         /**
          * @description __Filterable__ This field allows you to add notes for the set of revisions made to this StackScript.
-         * @type string | undefined
+         * @type string
         */
-        rev_note?: string;
+        rev_note: string;
         /**
          * @description The script to execute when provisioning a new Linode with this StackScript.
-         * @type string | undefined
+         * @type string
         */
-        script?: string;
+        script: string;
         /**
          * @description __Read-only__ The date this StackScript was last updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly updated?: string;
+        readonly updated: string;
         /**
          * @description __Read-only__ This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment. See [Declare User-Defined Fields (UDFs)](https://www.linode.com/docs/products/tools/stackscripts/guides/write-a-custom-script/#declare-user-defined-fields-udfs) for more information.
-         * @type array | undefined
+         * @type array
         */
-        readonly user_defined_fields?: {
+        readonly user_defined_fields: {
             /**
              * @description __Read-only__ The default value.  If not specified, this value will be used.
              * @type string | undefined
@@ -145,30 +130,30 @@ export interface GetStackScripts200 {
         }[];
         /**
          * @description __Read-only__ The Gravatar ID for the User who created the StackScript.
-         * @type string | undefined
+         * @type string
         */
-        readonly user_gravatar_id?: string;
+        readonly user_gravatar_id: string;
         /**
          * @description __Read-only__ The User who created the StackScript.
-         * @type string | undefined
+         * @type string
         */
-        readonly username?: string;
+        readonly username: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -176,19 +161,19 @@ export interface GetStackScripts200 {
 */
 export interface GetStackScriptsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -196,7 +181,6 @@ export type GetStackScriptsQueryResponse = GetStackScripts200;
 
 export type GetStackScriptsQuery = {
     Response: GetStackScripts200;
-    PathParams: GetStackScriptsPathParams;
     QueryParams: GetStackScriptsQueryParams;
     Errors: any;
 };

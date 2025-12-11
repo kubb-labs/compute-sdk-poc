@@ -5,29 +5,25 @@
 
 import { z } from "zod/v4";
 
-export const getSecurityQuestionsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description Returns a list of security questions.
  */
 export const getSecurityQuestions200Schema = z.object({
-    "security_questions": z.optional(z.array(z.object({
-    "id": z.optional(z.int().describe("The ID representing the security question.")),
-"question": z.optional(z.string().describe("__Read-only__ The security question.")),
-"response": z.optional(z.string().min(3).max(17).describe("The security question response."))
-    }).describe("Single security question and response object for GET operation.")).describe("Security questions and response objects."))
+    "security_questions": z.array(z.object({
+    "id": z.int().describe("The ID representing the security question."),
+"question": z.string().describe("__Read-only__ The security question."),
+"response": z.string().min(3).max(17).describe("The security question response.")
+    }).describe("Single security question and response object for GET operation.")).describe("Security questions and response objects.")
     }).describe("Security questions and responses object for GET operation.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getSecurityQuestionsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getSecurityQuestionsQueryResponseSchema = z.lazy(() => getSecurityQuestions200Schema)

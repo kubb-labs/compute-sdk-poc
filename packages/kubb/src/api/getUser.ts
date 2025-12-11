@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetUserQueryResponse, GetUserPathParams } from "../types/GetUser.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetUserUrl(apiVersion: GetUserPathParams["apiVersion"], username: GetUserPathParams["username"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/users/${username}` as const }  
+function getGetUserUrl(username: GetUserPathParams["username"]) {
+  const res = { method: 'GET', url: `/account/users/${username}` as const }  
   return res
 }
 
 /**
  * @description Returns information about a single user on your account.> 📘>> This operation can only be accessed by account users with _unrestricted_ access. Talk to your local account administrator about access management.<<LB>>---- __CLI__.    ```    linode-cli users view example_user    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a user
- * {@link /:apiVersion/account/users/:username}
+ * {@link /account/users/:username}
  */
-export async function getUser(apiVersion: GetUserPathParams["apiVersion"], username: GetUserPathParams["username"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getUser(username: GetUserPathParams["username"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetUserQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetUserUrl(apiVersion, username).url.toString(), ... requestConfig })  
+  const res = await request<GetUserQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetUserUrl(username).url.toString(), ... requestConfig })  
   return res.data
 }

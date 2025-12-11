@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetPersonalAccessTokensPathParams, GetPersonalAccessTokens200, GetPersonalAccessTokensError, GetPersonalAccessTokensQueryResponse } from "../types/GetPersonalAccessTokens.ts";
+import type { GetPersonalAccessTokens200, GetPersonalAccessTokensError, GetPersonalAccessTokensQueryResponse } from "../types/GetPersonalAccessTokens.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetPersonalAccessTokensPathParams(data?: Partial<GetPersonalAccessTokensPathParams>): GetPersonalAccessTokensPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetPersonalAccessTokensPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A paginated list of active tokens.

@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetStackScriptsQueryResponse, GetStackScriptsPathParams, GetStackScriptsQueryParams } from "../types/GetStackScripts.ts";
+import type { GetStackScriptsQueryResponse, GetStackScriptsQueryParams } from "../types/GetStackScripts.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetStackScriptsUrl(apiVersion: GetStackScriptsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/stackscripts` as const }  
+function getGetStackScriptsUrl() {
+  const res = { method: 'GET', url: `/linode/stackscripts` as const }  
   return res
 }
 
 /**
  * @description If the request is not authenticated, only public StackScripts are returned.For more information on StackScripts, please read our [StackScripts documentation](https://www.linode.com/docs/products/tools/stackscripts/).<<LB>>---- __CLI__.    ```    linode-cli stackscripts list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    stackscripts:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List StackScripts
- * {@link /:apiVersion/linode/stackscripts}
+ * {@link /linode/stackscripts}
  */
-export async function getStackScripts(apiVersion: GetStackScriptsPathParams["apiVersion"], params?: GetStackScriptsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getStackScripts(params?: GetStackScriptsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetStackScriptsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetStackScriptsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetStackScriptsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetStackScriptsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

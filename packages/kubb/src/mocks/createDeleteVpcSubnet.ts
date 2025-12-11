@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteVpcSubnetPathParams(data?: Partial<DeleteVpcSubnetPathParams>): DeleteVpcSubnetPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteVpcSubnetPathParams>["apiVersion"]>(["v4", "v4beta"]),"vpcId": faker.number.int(),"vpcSubnetId": faker.number.int()},
+  ...{"vpcId": faker.number.int(),"vpcSubnetId": faker.number.int()},
   ...data || {}
   }
 }

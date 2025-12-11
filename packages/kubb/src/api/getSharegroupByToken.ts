@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetSharegroupByTokenQueryResponse, GetSharegroupByTokenPathParams } from "../types/GetSharegroupByToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetSharegroupByTokenUrl(apiVersion: GetSharegroupByTokenPathParams["apiVersion"], tokenUuid: GetSharegroupByTokenPathParams["tokenUuid"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/images/sharegroups/tokens/${tokenUuid}/sharegroup` as const }  
+function getGetSharegroupByTokenUrl(tokenUuid: GetSharegroupByTokenPathParams["tokenUuid"]) {
+  const res = { method: 'GET', url: `/images/sharegroups/tokens/${tokenUuid}/sharegroup` as const }  
   return res
 }
 
 /**
  * @description Gets details about a share group you're a member of. To get the `token_uuid`, run the [Get a token](https://techdocs.akamai.com/linode-api/reference/get-sharegroup-token) or [Create a token](https://techdocs.akamai.com/linode-api/reference/post-sharegroup-tokens) for the share group you want to join and share it with the group owner. You have to be accepted as a share group member before running this operation.<<LB>>---- __CLI__.    ```    linode-cli image-sharegroups view-by-token abc123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a token's share group
- * {@link /:apiVersion/images/sharegroups/tokens/:tokenUuid/sharegroup}
+ * {@link /images/sharegroups/tokens/:tokenUuid/sharegroup}
  */
-export async function getSharegroupByToken(apiVersion: GetSharegroupByTokenPathParams["apiVersion"], tokenUuid: GetSharegroupByTokenPathParams["tokenUuid"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getSharegroupByToken(tokenUuid: GetSharegroupByTokenPathParams["tokenUuid"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetSharegroupByTokenQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSharegroupByTokenUrl(apiVersion, tokenUuid).url.toString(), ... requestConfig })  
+  const res = await request<GetSharegroupByTokenQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSharegroupByTokenUrl(tokenUuid).url.toString(), ... requestConfig })  
   return res.data
 }

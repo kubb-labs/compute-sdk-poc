@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostManagedContactPathParams, PostManagedContact200, PostManagedContactError, PostManagedContactMutationRequest, PostManagedContactMutationResponse } from "../types/PostManagedContact.ts";
+import type { PostManagedContact200, PostManagedContactError, PostManagedContactMutationRequest, PostManagedContactMutationResponse } from "../types/PostManagedContact.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostManagedContactPathParams(data?: Partial<PostManagedContactPathParams>): PostManagedContactPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostManagedContactPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Contact created.

@@ -6,18 +6,18 @@
 
 export interface DeprecatedResponse {
     /**
-     * @type array | undefined
+     * @type array
     */
-    warnings?: {
+    warnings: {
         /**
          * @description Specific information related to the warning.
-         * @type string | undefined
+         * @type string
         */
-        details?: string;
+        details: string;
         /**
          * @description The general warning message.
-         * @type string | undefined
+         * @type string
         */
-        title?: string;
+        title: string;
     }[];
 }

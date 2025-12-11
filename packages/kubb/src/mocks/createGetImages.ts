@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetImagesPathParams, GetImagesQueryParams, GetImages200, GetImagesError, GetImagesQueryResponse } from "../types/GetImages.ts";
+import type { GetImagesQueryParams, GetImages200, GetImagesError, GetImagesQueryResponse } from "../types/GetImages.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetImagesPathParams(data?: Partial<GetImagesPathParams>): GetImagesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetImagesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetImagesQueryParams(data?: Partial<GetImagesQueryParams>): GetImagesQueryParams {
   

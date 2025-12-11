@@ -4,21 +4,6 @@
 */
 
 
-export const getObjectStorageBucketsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetObjectStorageBucketsPathParamsApiVersionEnumKey = (typeof getObjectStorageBucketsPathParamsApiVersionEnum)[keyof typeof getObjectStorageBucketsPathParamsApiVersionEnum];
-
-export interface GetObjectStorageBucketsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetObjectStorageBucketsPathParamsApiVersionEnumKey;
-}
-
 export const dataEndpointTypeEnum = {
     "E0": "E0",
     "E1": "E1",
@@ -33,71 +18,71 @@ export type DataEndpointTypeEnumKey = (typeof dataEndpointTypeEnum)[keyof typeof
 */
 export interface GetObjectStorageBuckets200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Deprecated__ The legacy `clusterId` equivalent for the `regionId` where this bucket lives. The API maintains this for backward compatibility.\n\n> 📘\n>\n> - This value and the `regionId` are interchangeable when used in requests. Best practice is to use the `regionId`.\n>\n> - This value is empty for newer regions that don\'t have a legacy `clusterId`.
          * @deprecated
-         * @type string | undefined
+         * @type string
         */
-        cluster?: string;
+        cluster: string;
         /**
          * @description When this bucket was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        created?: string;
+        created: string;
         /**
          * @description The type of `s3_endpoint` available to the active `user` in this `region`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information.
-         * @type string | undefined
+         * @type string
         */
-        endpoint_type?: DataEndpointTypeEnumKey;
+        endpoint_type: DataEndpointTypeEnumKey;
         /**
          * @description The hostname where this bucket can be accessed. This hostname can be accessed through a browser if the bucket is made public.
-         * @type string | undefined
+         * @type string
         */
-        hostname?: string;
+        hostname: string;
         /**
          * @description The name of this bucket.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description The number of objects stored in this bucket.
-         * @type integer | undefined
+         * @type integer
         */
-        objects?: number;
+        objects: number;
         /**
          * @description The `id` of the [region](https://techdocs.akamai.com/linode-api/reference/get-regions) where this Object Storage bucket lives.
-         * @type string | undefined
+         * @type string
         */
-        region?: string;
+        region: string;
         /**
          * @description The active user\'s S3-compatible endpoint URL, based on the `endpoint_type` and `region`.
-         * @type string | undefined
+         * @type string
         */
-        s3_endpoint?: string;
+        s3_endpoint: string;
         /**
          * @description The size of the bucket in bytes.
-         * @type integer | undefined
+         * @type integer
         */
-        size?: number;
+        size: number;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -105,19 +90,19 @@ export interface GetObjectStorageBuckets200 {
 */
 export interface GetObjectStorageBucketsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -125,6 +110,5 @@ export type GetObjectStorageBucketsQueryResponse = GetObjectStorageBuckets200;
 
 export type GetObjectStorageBucketsQuery = {
     Response: GetObjectStorageBuckets200;
-    PathParams: GetObjectStorageBucketsPathParams;
     Errors: any;
 };

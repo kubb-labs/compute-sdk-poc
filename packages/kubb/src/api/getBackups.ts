@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetBackupsQueryResponse, GetBackupsPathParams } from "../types/GetBackups.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetBackupsUrl(apiVersion: GetBackupsPathParams["apiVersion"], linodeId: GetBackupsPathParams["linodeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/backups` as const }  
+function getGetBackupsUrl(linodeId: GetBackupsPathParams["linodeId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/backups` as const }  
   return res
 }
 
 /**
  * @description Returns information about this Linode's available backups.<<LB>>---- __CLI__.    ```    linode-cli linodes backups-list 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List backups
- * {@link /:apiVersion/linode/instances/:linodeId/backups}
+ * {@link /linode/instances/:linodeId/backups}
  */
-export async function getBackups(apiVersion: GetBackupsPathParams["apiVersion"], linodeId: GetBackupsPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getBackups(linodeId: GetBackupsPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetBackupsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetBackupsUrl(apiVersion, linodeId).url.toString(), ... requestConfig })  
+  const res = await request<GetBackupsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetBackupsUrl(linodeId).url.toString(), ... requestConfig })  
   return res.data
 }

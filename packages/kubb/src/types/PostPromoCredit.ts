@@ -4,21 +4,6 @@
 */
 
 
-export const postPromoCreditPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostPromoCreditPathParamsApiVersionEnumKey = (typeof postPromoCreditPathParamsApiVersionEnum)[keyof typeof postPromoCreditPathParamsApiVersionEnum];
-
-export interface PostPromoCreditPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostPromoCreditPathParamsApiVersionEnumKey;
-}
-
 export const postPromoCredit200ServiceTypeEnum = {
     "all": "all",
     "backup": "backup",
@@ -44,44 +29,44 @@ export type PostPromoCredit200ServiceTypeEnumKey = (typeof postPromoCredit200Ser
 export interface PostPromoCredit200 {
     /**
      * @description The amount available to spend per month.
-     * @type string | undefined
+     * @type string
     */
-    credit_monthly_cap?: string;
+    credit_monthly_cap: string;
     /**
      * @description The total amount of credit left for this promotion.
-     * @type string | undefined
+     * @type string
     */
-    credit_remaining?: string;
+    credit_remaining: string;
     /**
      * @description A detailed description of this promotion.
-     * @type string | undefined
+     * @type string
     */
-    description?: string;
+    description: string;
     /**
      * @description When this promotion\'s credits expire.
-     * @type string | undefined
+     * @type string
     */
-    expire_dt?: string;
+    expire_dt: string;
     /**
      * @description The location of an image for this promotion.
-     * @type string | undefined
+     * @type string
     */
-    image_url?: string;
+    image_url: string;
     /**
      * @description The service to which this promotion applies.
-     * @type string | undefined
+     * @type string
     */
-    service_type?: PostPromoCredit200ServiceTypeEnumKey;
+    service_type: PostPromoCredit200ServiceTypeEnumKey;
     /**
      * @description Short details of this promotion.
-     * @type string | undefined
+     * @type string
     */
-    summary?: string;
+    summary: string;
     /**
      * @description The amount of credit left for this month for this promotion.
-     * @type string | undefined
+     * @type string
     */
-    this_month_credit_remaining?: string;
+    this_month_credit_remaining: string;
 }
 
 /**
@@ -89,19 +74,19 @@ export interface PostPromoCredit200 {
 */
 export interface PostPromoCreditError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -123,6 +108,5 @@ export type PostPromoCreditMutationResponse = PostPromoCredit200;
 export type PostPromoCreditMutation = {
     Response: PostPromoCredit200;
     Request: PostPromoCreditMutationRequest;
-    PathParams: PostPromoCreditPathParams;
     Errors: any;
 };

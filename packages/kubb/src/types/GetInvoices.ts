@@ -4,21 +4,6 @@
 */
 
 
-export const getInvoicesPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetInvoicesPathParamsApiVersionEnumKey = (typeof getInvoicesPathParamsApiVersionEnum)[keyof typeof getInvoicesPathParamsApiVersionEnum];
-
-export interface GetInvoicesPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetInvoicesPathParamsApiVersionEnumKey;
-}
-
 export interface GetInvoicesQueryParams {
     /**
      * @description The page of a collection to return.
@@ -115,76 +100,76 @@ export type DataBillingSourceEnum4Key = (typeof dataBillingSourceEnum4)[keyof ty
 */
 export interface GetInvoices200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Filterable__, __Read-only__ The source of service charges for this invoice. A value of `akamai` indicates an invoice generated according to the terms of an agreement between the customer and Akamai. A value of `linode` indicates an invoice was generated according to the default terms, prices, and discounts.
-         * @type string | undefined
+         * @type string
         */
-        readonly billing_source?: DataBillingSourceEnum4Key;
+        readonly billing_source: DataBillingSourceEnum4Key;
         /**
          * @description __Filterable__, __Read-only__ When this Invoice was generated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly date?: string;
+        readonly date: string;
         /**
          * @description __Read-only__ The Invoice\'s unique ID.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description __Filterable__, __Read-only__ The Invoice\'s display label.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Read-only__ The amount of the Invoice before taxes in US Dollars.
-         * @type number | undefined
+         * @type number
         */
-        readonly subtotal?: number;
+        readonly subtotal: number;
         /**
          * @description __Read-only__ The amount of tax levied on the Invoice in US Dollars.
-         * @type number | undefined
+         * @type number
         */
-        readonly tax?: number;
+        readonly tax: number;
         /**
          * @description __Read-only__ The amount of tax broken down into subtotals by source.
-         * @type array | undefined
+         * @type array
         */
-        readonly tax_summary?: {
+        readonly tax_summary: {
             /**
              * @description The source of this tax subtotal.
-             * @type string | undefined
+             * @type string
             */
-            name?: string;
+            name: string;
             /**
              * @description The amount of tax subtotal attributable to this source.
-             * @type number | undefined
+             * @type number
             */
-            tax?: number;
+            tax: number;
         }[];
         /**
          * @description __Filterable__, __Read-only__ The amount of the Invoice after taxes in US Dollars.
-         * @type number | undefined
+         * @type number
         */
-        readonly total?: number;
+        readonly total: number;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -192,19 +177,19 @@ export interface GetInvoices200 {
 */
 export interface GetInvoicesError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -212,7 +197,6 @@ export type GetInvoicesQueryResponse = GetInvoices200;
 
 export type GetInvoicesQuery = {
     Response: GetInvoices200;
-    PathParams: GetInvoicesPathParams;
     QueryParams: GetInvoicesQueryParams;
     HeaderParams: GetInvoicesHeaderParams;
     Errors: any;

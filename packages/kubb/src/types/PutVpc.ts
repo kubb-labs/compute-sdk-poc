@@ -4,19 +4,7 @@
 */
 
 
-export const putVpcPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PutVpcPathParamsApiVersionEnumKey = (typeof putVpcPathParamsApiVersionEnum)[keyof typeof putVpcPathParamsApiVersionEnum];
-
 export interface PutVpcPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PutVpcPathParamsApiVersionEnumKey;
     /**
      * @description The `id` of the VPC.
      * @type integer
@@ -30,103 +18,103 @@ export interface PutVpcPathParams {
 export interface PutVpc200 {
     /**
      * @description __Filterable__, __Read-only__ The date-time of VPC creation.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description A written description to help distinguish the VPC.
      * @maxLength 255
      * @default ""
-     * @type string | undefined
+     * @type string
     */
-    description?: string;
+    description: string;
     /**
      * @description __Filterable__, __Read-only__ The unique ID of the VPC.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description __Filterable__ The VPC\'s label, for display purposes only.\n\n- Needs to be unique among the Account\'s VPCs.\n- Can only contain ASCII letters, numbers, and hyphens (`-`). You can\'t use two consecutive hyphens (`--`).
      * @minLength 1
      * @maxLength 64
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description __Filterable__ The Region for the VPC.
-     * @type string | undefined
+     * @type string
     */
-    region?: string;
+    region: string;
     /**
      * @description A list of subnets associated with the VPC.
-     * @type array | undefined
+     * @type array
     */
-    subnets?: {
+    subnets: {
         /**
          * @description __Filterable__, __Read-only__ The date-time of VPC Subnet creation.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description __Filterable__, __Read-only__ The unique ID of the VPC Subnet.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description IPv4 range in CIDR canonical form.\n\n- The range must belong to a private address space as defined in [RFC1918](https://datatracker.ietf.org/doc/html/rfc1918).\n- Allowed prefix lengths: 1-29.\n- The range must not overlap with 192.168.128.0/17.\n- The range must not overlap with other Subnets on the same VPC.
-         * @type string | undefined, ip
+         * @type string, ip
         */
-        ipv4?: string;
+        ipv4: string;
         /**
          * @description __Filterable__ The VPC Subnet\'s label, for display purposes only.\n\n- Must be unique among the VPC\'s Subnets.\n- Can only contain ASCII letters, numbers, and hyphens (`-`). You can\'t use two consecutive hyphens (`--`).
          * @minLength 1
          * @maxLength 64
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description __Read-only__ An array of Linode IDs assigned to the VPC Subnet.\n\nA Linode is assigned to a VPC Subnet if it has a Configuration Profile with a `vpc` purpose interface with the subnet\'s `subnet_id`. Even if the Configuration Profile is not active, meaning the Linode does not have access to the Subnet, the Linode still appears in this array.
-         * @type array | undefined
+         * @type array
         */
-        readonly linodes?: {
+        readonly linodes: {
             /**
              * @description ID of a Linode assigned to the VPC Subnet.
-             * @type integer | undefined
+             * @type integer
             */
-            id?: number;
+            id: number;
             /**
              * @description VPC purpose interfaces with the subnet\'s `subnet_id` assigned to the Linode.
-             * @type array | undefined
+             * @type array
             */
-            interfaces?: {
+            interfaces: {
                 /**
                  * @description Returns `true` if the Interface is in use, meaning that the Linode was powered on using the Configuration Profile to which the Interface belongs. Otherwise returns `false`.
-                 * @type boolean | undefined
+                 * @type boolean
                 */
-                active?: boolean;
+                active: boolean;
                 /**
                  * @description The globally general entity identifier for the Linode configuration profile that includes the VPC. If this is a VPC Linode interface, the value is `null`.
                  * @type integer
                 */
-                config_id?: number | null;
+                config_id: number | null;
                 /**
                  * @description ID of the interface.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                id?: number;
+                id: number;
             }[];
         }[];
         /**
          * @description __Filterable__, __Read-only__ The date-time of the most recent VPC Subnet update.
          * @type string, date-time
         */
-        readonly updated?: string | null;
+        readonly updated: string | null;
     }[];
     /**
      * @description __Filterable__, __Read-only__ The date-time of the most recent VPC update.
      * @type string, date-time
     */
-    readonly updated?: string | null;
+    readonly updated: string | null;
 }
 
 /**
@@ -134,19 +122,19 @@ export interface PutVpc200 {
 */
 export interface PutVpcError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

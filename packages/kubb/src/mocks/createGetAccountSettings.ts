@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetAccountSettingsPathParams, GetAccountSettings200, GetAccountSettingsError, GetAccountSettingsQueryResponse } from "../types/GetAccountSettings.ts";
+import type { GetAccountSettings200, GetAccountSettingsError, GetAccountSettingsQueryResponse } from "../types/GetAccountSettings.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetAccountSettingsPathParams(data?: Partial<GetAccountSettingsPathParams>): GetAccountSettingsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetAccountSettingsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a single Account settings object.

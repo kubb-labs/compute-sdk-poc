@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetLongviewClientsPathParams, GetLongviewClientsQueryParams, GetLongviewClients200, GetLongviewClientsError, GetLongviewClientsQueryResponse } from "../types/GetLongviewClients.ts";
+import type { GetLongviewClientsQueryParams, GetLongviewClients200, GetLongviewClientsError, GetLongviewClientsQueryResponse } from "../types/GetLongviewClients.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetLongviewClientsPathParams(data?: Partial<GetLongviewClientsPathParams>): GetLongviewClientsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLongviewClientsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetLongviewClientsQueryParams(data?: Partial<GetLongviewClientsQueryParams>): GetLongviewClientsQueryParams {
   

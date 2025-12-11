@@ -4,19 +4,7 @@
 */
 
 
-export const getLongviewSubscriptionPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLongviewSubscriptionPathParamsApiVersionEnumKey = (typeof getLongviewSubscriptionPathParamsApiVersionEnum)[keyof typeof getLongviewSubscriptionPathParamsApiVersionEnum];
-
 export interface GetLongviewSubscriptionPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLongviewSubscriptionPathParamsApiVersionEnumKey;
     /**
      * @description The Longview Subscription to look up.
      * @type string
@@ -39,34 +27,34 @@ export type GetLongviewSubscription200IdEnumKey = (typeof getLongviewSubscriptio
 export interface GetLongviewSubscription200 {
     /**
      * @description __Read-only__ The number of Longview Clients that may be created with this Subscription tier.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly clients_included?: number;
+    readonly clients_included: number;
     /**
      * @description __Read-only__ The unique ID of this Subscription tier.
-     * @type string | undefined
+     * @type string
     */
-    readonly id?: GetLongviewSubscription200IdEnumKey;
+    readonly id: GetLongviewSubscription200IdEnumKey;
     /**
      * @description __Read-only__ A display name for this Subscription tier.
-     * @type string | undefined
+     * @type string
     */
-    readonly label?: string;
+    readonly label: string;
     /**
      * @description __Read-only__ Pricing information about this Subscription tier.
-     * @type object | undefined
+     * @type object
     */
-    readonly price?: {
+    readonly price: {
         /**
          * @description __Read-only__ The hourly price, in US dollars, for this Subscription tier.
-         * @type number | undefined
+         * @type number
         */
-        readonly hourly?: number;
+        readonly hourly: number;
         /**
          * @description __Read-only__ The maximum monthly price in US Dollars for this Subscription tier. You will never be charged more than this amount per month for this subscription.
-         * @type number | undefined
+         * @type number
         */
-        readonly monthly?: number;
+        readonly monthly: number;
     };
 }
 
@@ -75,19 +63,19 @@ export interface GetLongviewSubscription200 {
 */
 export interface GetLongviewSubscriptionError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

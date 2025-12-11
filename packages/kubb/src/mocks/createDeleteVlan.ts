@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteVlanPathParams(data?: Partial<DeleteVlanPathParams>): DeleteVlanPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteVlanPathParams>["apiVersion"]>(["v4", "v4beta"]),"label": faker.string.alpha(),"regionId": faker.string.alpha()},
+  ...{"label": faker.string.alpha(),"regionId": faker.string.alpha()},
   ...data || {}
   }
 }

@@ -6,31 +6,30 @@
 import { z } from "zod/v4";
 
 export const getProfileAppPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"appId": z.coerce.number().int().describe("The authorized app ID to manage.")
+    "appId": z.coerce.number().int().describe("The authorized app ID to manage.")
     })
 
 /**
  * @description The app requested.
  */
 export const getProfileApp200Schema = z.object({
-    "created": z.optional(z.string().datetime().describe("__Filterable__, __Read-only__ When this app was authorized.")),
-"expiry": z.string().datetime().describe("__Filterable__, __Read-only__ When the app's access to your account expires. If `null`, the app's access must be revoked manually.").nullish(),
-"id": z.optional(z.int().describe("__Read-only__ This authorization's ID, used for revoking access.")),
-"label": z.optional(z.string().describe("__Filterable__, __Read-only__ The name of the application you've authorized.")),
-"scopes": z.optional(z.string().describe("__Read-only__ The OAuth scopes this app was authorized with.  This defines what parts of your Account the app is allowed to access.")),
-"thumbnail_url": z.string().describe("__Read-only__ The URL at which this app's thumbnail may be accessed.").nullish(),
-"website": z.optional(z.string().describe("__Read-only__ The website where you can get more information about this app."))
+    "created": z.string().datetime().describe("__Filterable__, __Read-only__ When this app was authorized."),
+"expiry": z.nullable(z.string().datetime().describe("__Filterable__, __Read-only__ When the app's access to your account expires. If `null`, the app's access must be revoked manually.")),
+"id": z.int().describe("__Read-only__ This authorization's ID, used for revoking access."),
+"label": z.string().describe("__Filterable__, __Read-only__ The name of the application you've authorized."),
+"scopes": z.string().describe("__Read-only__ The OAuth scopes this app was authorized with.  This defines what parts of your Account the app is allowed to access."),
+"thumbnail_url": z.nullable(z.string().describe("__Read-only__ The URL at which this app's thumbnail may be accessed.")),
+"website": z.string().describe("__Read-only__ The website where you can get more information about this app.")
     }).describe("An application you have authorized access to your Account through OAuth.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getProfileAppErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getProfileAppQueryResponseSchema = z.lazy(() => getProfileApp200Schema)

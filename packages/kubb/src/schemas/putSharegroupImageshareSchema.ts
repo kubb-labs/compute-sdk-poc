@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const putSharegroupImagesharePathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"sharegroupId": z.coerce.number().int().describe("The share group's unique identifier assigned after creating it. Not to be confused with the group's `uuid`."),
+    "sharegroupId": z.coerce.number().int().describe("The share group's unique identifier assigned after creating it. Not to be confused with the group's `uuid`."),
 "imageId": z.string().describe("Slug identifier assigned to the shared image upon sharing.")
     })
 
@@ -24,22 +23,22 @@ export const putSharegroupImageshare200Schema = z.object({
 "expiry": z.nullable(z.string().datetime().describe("__Read-only__ Only images created automatically from a deleted compute instance (`type=automatic`) expire, `null` for private images.")),
 "id": z.string().describe("__Read-only__ The shared image’s unique slug identifier."),
 "image_sharing": z.object({
-    "shared_by": z.optional(z.object({
+    "shared_by": z.object({
     "sharegroup_id": z.int().describe("__Read-only__ The share group's numeric identifier, used primarily as path parameters in URLs."),
 "sharegroup_label": z.string().describe("The share group's descriptive name."),
 "sharegroup_uuid": z.uuid().describe("__Read-only__ The share group's unique identifier used for membership token management."),
 "source_image_id": z.string().describe("__Read-only__ The source image's slug identifier.")
-    })),
-"shared_with": z.object({
+    }),
+"shared_with": z.nullable(z.object({
     
-    }).describe("The share group's and source image details.").nullish()
+    }).describe("The share group's and source image details."))
     }).describe("__Read-only__ The image's sharing details, including the share group and source image data. "),
 "is_public": z.boolean().describe("__Read-only__ A `true` value if the image is a public distribution image. A `false` value indicates private, account-specific images."),
 "is_shared": z.nullable(z.enum(["true", "false", "none"]).describe("__Read-only__ A `true` value for shared private images. `none` for images shared within a group.")),
 "label": z.string().describe("The shared image's name."),
 "regions": z.array(z.object({
-    "region": z.optional(z.string().describe("The unique identifier for the core compute region where this image is stored.")),
-"status": z.optional(z.enum(["available", "creating", "pending", "pending deletion", "pending replication", "replicating"]).describe("The status of the image in this `region`. Possible values are `available`, `creating`, `pending`, `pending deletion`, `pending replication`, or `replicating`."))
+    "region": z.string().describe("The unique identifier for the core compute region where this image is stored."),
+"status": z.enum(["available", "creating", "pending", "pending deletion", "pending replication", "replicating"]).describe("The status of the image in this `region`. Possible values are `available`, `creating`, `pending`, `pending deletion`, `pending replication`, or `replicating`.")
     })).describe("__Read-only__ Details on the regions where this image is stored. See [Regions and images](https://techdocs.akamai.com/cloud-computing/docs/images#regions-and-images) for full details on support for `regions`."),
 "size": z.int().describe("__Read-only__ The minimum size in MB this image needs to deploy."),
 "status": z.enum(["creating", "pending_upload", "available"]).describe("__Read-only__ The current status of the image. Possible values are `available`, `creating`, and `pending_upload`."),
@@ -54,10 +53,10 @@ export const putSharegroupImageshare200Schema = z.object({
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const putSharegroupImageshareErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const putSharegroupImageshareMutationRequestSchema = z.object({

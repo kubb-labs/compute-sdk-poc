@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetAlertDefinitionsForServiceTypePathParams(data?: Partial<GetAlertDefinitionsForServiceTypePathParams>): GetAlertDefinitionsForServiceTypePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetAlertDefinitionsForServiceTypePathParams>["apiVersion"]>(["v4beta"]),"serviceType": faker.string.alpha()},
+  ...{"serviceType": faker.string.alpha()},
   ...data || {}
   }
 }

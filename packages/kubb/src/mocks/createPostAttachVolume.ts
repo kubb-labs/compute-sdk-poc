@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostAttachVolumePathParams(data?: Partial<PostAttachVolumePathParams>): PostAttachVolumePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostAttachVolumePathParams>["apiVersion"]>(["v4", "v4beta"]),"volumeId": faker.number.int()},
+  ...{"volumeId": faker.number.int()},
   ...data || {}
   }
 }

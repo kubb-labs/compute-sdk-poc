@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PutFirewallSettingsPathParams, PutFirewallSettings200, PutFirewallSettingsError, PutFirewallSettingsMutationRequest, PutFirewallSettingsMutationResponse } from "../types/PutFirewallSettings.ts";
+import type { PutFirewallSettings200, PutFirewallSettingsError, PutFirewallSettingsMutationRequest, PutFirewallSettingsMutationResponse } from "../types/PutFirewallSettings.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPutFirewallSettingsPathParams(data?: Partial<PutFirewallSettingsPathParams>): PutFirewallSettingsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutFirewallSettingsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description The updated default firewalls.

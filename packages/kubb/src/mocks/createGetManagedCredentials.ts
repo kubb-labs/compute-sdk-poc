@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetManagedCredentialsPathParams, GetManagedCredentialsQueryParams, GetManagedCredentials200, GetManagedCredentialsError, GetManagedCredentialsQueryResponse } from "../types/GetManagedCredentials.ts";
+import type { GetManagedCredentialsQueryParams, GetManagedCredentials200, GetManagedCredentialsError, GetManagedCredentialsQueryResponse } from "../types/GetManagedCredentials.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetManagedCredentialsPathParams(data?: Partial<GetManagedCredentialsPathParams>): GetManagedCredentialsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetManagedCredentialsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetManagedCredentialsQueryParams(data?: Partial<GetManagedCredentialsQueryParams>): GetManagedCredentialsQueryParams {
   

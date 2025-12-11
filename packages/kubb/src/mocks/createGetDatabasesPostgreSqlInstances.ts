@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetDatabasesPostgreSqlInstancesPathParams, GetDatabasesPostgreSqlInstancesQueryParams, GetDatabasesPostgreSqlInstances200, GetDatabasesPostgreSqlInstancesError, GetDatabasesPostgreSqlInstancesQueryResponse } from "../types/GetDatabasesPostgreSqlInstances.ts";
+import type { GetDatabasesPostgreSqlInstancesQueryParams, GetDatabasesPostgreSqlInstances200, GetDatabasesPostgreSqlInstancesError, GetDatabasesPostgreSqlInstancesQueryResponse } from "../types/GetDatabasesPostgreSqlInstances.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetDatabasesPostgreSqlInstancesPathParams(data?: Partial<GetDatabasesPostgreSqlInstancesPathParams>): GetDatabasesPostgreSqlInstancesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDatabasesPostgreSqlInstancesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetDatabasesPostgreSqlInstancesQueryParams(data?: Partial<GetDatabasesPostgreSqlInstancesQueryParams>): GetDatabasesPostgreSqlInstancesQueryParams {
   

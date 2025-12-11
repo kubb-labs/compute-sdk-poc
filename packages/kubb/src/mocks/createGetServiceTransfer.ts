@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetServiceTransferPathParams(data?: Partial<GetServiceTransferPathParams>): GetServiceTransferPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetServiceTransferPathParams>["apiVersion"]>(["v4", "v4beta"]),"token": faker.string.uuid()},
+  ...{"token": faker.string.uuid()},
   ...data || {}
   }
 }

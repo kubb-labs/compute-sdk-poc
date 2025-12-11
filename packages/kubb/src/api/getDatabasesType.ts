@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetDatabasesTypeQueryResponse, GetDatabasesTypePathParams, GetDatabasesTypeQueryParams } from "../types/GetDatabasesType.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDatabasesTypeUrl(apiVersion: GetDatabasesTypePathParams["apiVersion"], typeId: GetDatabasesTypePathParams["typeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/databases/types/${typeId}` as const }  
+function getGetDatabasesTypeUrl(typeId: GetDatabasesTypePathParams["typeId"]) {
+  const res = { method: 'GET', url: `/databases/types/${typeId}` as const }  
   return res
 }
 
 /**
  * @description Display the details of a single Managed Databases node type. The type and number of nodes determine the resources and price of a Managed Databases instance. Run the [List Managed Databases type](https://techdocs.akamai.com/linode-api/reference/get-databases-types) operation and store the `id` for the applicable database node type.<<LB>>---- __CLI__.    ```    linode-cli databases type-view    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Get a Managed Databases type
- * {@link /:apiVersion/databases/types/:typeId}
+ * {@link /databases/types/:typeId}
  */
-export async function getDatabasesType(apiVersion: GetDatabasesTypePathParams["apiVersion"], typeId: GetDatabasesTypePathParams["typeId"], params?: GetDatabasesTypeQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDatabasesType(typeId: GetDatabasesTypePathParams["typeId"], params?: GetDatabasesTypeQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDatabasesTypeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesTypeUrl(apiVersion, typeId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetDatabasesTypeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesTypeUrl(typeId).url.toString(), params, ... requestConfig })  
   return res.data
 }

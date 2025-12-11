@@ -4,18 +4,7 @@
 */
 
 
-export const resumeDatabasesMysqlInstancePathParamsApiVersionEnum = {
-    "v4": "v4"
-} as const;
-
-export type ResumeDatabasesMysqlInstancePathParamsApiVersionEnumKey = (typeof resumeDatabasesMysqlInstancePathParamsApiVersionEnum)[keyof typeof resumeDatabasesMysqlInstancePathParamsApiVersionEnum];
-
 export interface ResumeDatabasesMysqlInstancePathParams {
-    /**
-     * @description __Enum__ Call the `v4` URL.
-     * @type string
-    */
-    apiVersion: ResumeDatabasesMysqlInstancePathParamsApiVersionEnumKey;
     /**
      * @description The ID of the Managed PostgreSQL Database.
      * @type integer
@@ -33,19 +22,19 @@ export type ResumeDatabasesMysqlInstance200 = object;
 */
 export interface ResumeDatabasesMysqlInstanceError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

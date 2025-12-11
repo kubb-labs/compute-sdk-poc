@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutDiskMutationRequest, PutDiskMutationResponse, PutDiskPathParams } from "../types/PutDisk.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutDiskUrl(apiVersion: PutDiskPathParams["apiVersion"], linodeId: PutDiskPathParams["linodeId"], diskId: PutDiskPathParams["diskId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/linode/instances/${linodeId}/disks/${diskId}` as const }  
+function getPutDiskUrl(linodeId: PutDiskPathParams["linodeId"], diskId: PutDiskPathParams["diskId"]) {
+  const res = { method: 'PUT', url: `/linode/instances/${linodeId}/disks/${diskId}` as const }  
   return res
 }
 
 /**
  * @description Updates a Disk that you have permission to `read_write`.<<LB>>---- __CLI__.    ```    linode-cli linodes disk-update 123 25674 \  --label "Debian 9 Disk"    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a disk
- * {@link /:apiVersion/linode/instances/:linodeId/disks/:diskId}
+ * {@link /linode/instances/:linodeId/disks/:diskId}
  */
-export async function putDisk(apiVersion: PutDiskPathParams["apiVersion"], linodeId: PutDiskPathParams["linodeId"], diskId: PutDiskPathParams["diskId"], data?: PutDiskMutationRequest, config: Partial<RequestConfig<PutDiskMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putDisk(linodeId: PutDiskPathParams["linodeId"], diskId: PutDiskPathParams["diskId"], data?: PutDiskMutationRequest, config: Partial<RequestConfig<PutDiskMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutDiskMutationResponse, ResponseErrorConfig<Error>, PutDiskMutationRequest>({ method : "PUT", url : getPutDiskUrl(apiVersion, linodeId, diskId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutDiskMutationResponse, ResponseErrorConfig<Error>, PutDiskMutationRequest>({ method : "PUT", url : getPutDiskUrl(linodeId, diskId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

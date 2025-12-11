@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetDevicesQueryResponse, GetDevicesPathParams } from "../types/GetDevices.ts";
+import type { GetDevicesQueryResponse } from "../types/GetDevices.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDevicesUrl(apiVersion: GetDevicesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/devices` as const }  
+function getGetDevicesUrl() {
+  const res = { method: 'GET', url: `/profile/devices` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of active trusted devices for your user. Browsers with an active Remember Me Session are logged into your account until the session expires or is revoked.<<LB>>---- __CLI__.    ```    linode-cli profile devices-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List trusted devices
- * {@link /:apiVersion/profile/devices}
+ * {@link /profile/devices}
  */
-export async function getDevices(apiVersion: GetDevicesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDevices(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDevicesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDevicesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetDevicesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDevicesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

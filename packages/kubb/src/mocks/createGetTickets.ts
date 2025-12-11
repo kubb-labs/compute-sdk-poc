@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetTicketsPathParams, GetTicketsQueryParams, GetTickets200, GetTicketsError, GetTicketsQueryResponse } from "../types/GetTickets.ts";
+import type { GetTicketsQueryParams, GetTickets200, GetTicketsError, GetTicketsQueryResponse } from "../types/GetTickets.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetTicketsPathParams(data?: Partial<GetTicketsPathParams>): GetTicketsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetTicketsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetTicketsQueryParams(data?: Partial<GetTicketsQueryParams>): GetTicketsQueryParams {
   

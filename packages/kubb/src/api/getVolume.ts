@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetVolumeQueryResponse, GetVolumePathParams, GetVolumeQueryParams } from "../types/GetVolume.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetVolumeUrl(apiVersion: GetVolumePathParams["apiVersion"], volumeId: GetVolumePathParams["volumeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/volumes/${volumeId}` as const }  
+function getGetVolumeUrl(volumeId: GetVolumePathParams["volumeId"]) {
+  const res = { method: 'GET', url: `/volumes/${volumeId}` as const }  
   return res
 }
 
 /**
  * @description Get information about a specific Block Storage volume.<<LB>>---- __CLI__.    ```    linode-cli volumes view 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    volumes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a volume
- * {@link /:apiVersion/volumes/:volumeId}
+ * {@link /volumes/:volumeId}
  */
-export async function getVolume(apiVersion: GetVolumePathParams["apiVersion"], volumeId: GetVolumePathParams["volumeId"], params?: GetVolumeQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getVolume(volumeId: GetVolumePathParams["volumeId"], params?: GetVolumeQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetVolumeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVolumeUrl(apiVersion, volumeId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetVolumeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVolumeUrl(volumeId).url.toString(), params, ... requestConfig })  
   return res.data
 }

@@ -4,25 +4,25 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostCreditCardMutationRequest, PostCreditCardMutationResponse, PostCreditCardPathParams } from "../types/PostCreditCard.ts";
+import type { PostCreditCardMutationRequest, PostCreditCardMutationResponse } from "../types/PostCreditCard.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostCreditCardUrl(apiVersion: PostCreditCardPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/credit-card` as const }  
+function getPostCreditCardUrl() {
+  const res = { method: 'POST', url: `/account/credit-card` as const }  
   return res
 }
 
 /**
  * @description __Deprecated__ Please run [Add a payment method](https://techdocs.akamai.com/linode-api/reference/post-payment-method).Adds a credit card Payment Method to your account and sets it as the default method.<<LB>>---- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Add or edit a credit card
- * {@link /:apiVersion/account/credit-card}
+ * {@link /account/credit-card}
  * @deprecated
  */
-export async function postCreditCard(apiVersion: PostCreditCardPathParams["apiVersion"], data: PostCreditCardMutationRequest, config: Partial<RequestConfig<PostCreditCardMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postCreditCard(data: PostCreditCardMutationRequest, config: Partial<RequestConfig<PostCreditCardMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostCreditCardMutationResponse, ResponseErrorConfig<Error>, PostCreditCardMutationRequest>({ method : "POST", url : getPostCreditCardUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostCreditCardMutationResponse, ResponseErrorConfig<Error>, PostCreditCardMutationRequest>({ method : "POST", url : getPostCreditCardUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

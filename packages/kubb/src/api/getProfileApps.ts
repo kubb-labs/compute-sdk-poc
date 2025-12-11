@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetProfileAppsQueryResponse, GetProfileAppsPathParams, GetProfileAppsQueryParams } from "../types/GetProfileApps.ts";
+import type { GetProfileAppsQueryResponse, GetProfileAppsQueryParams } from "../types/GetProfileApps.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetProfileAppsUrl(apiVersion: GetProfileAppsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/apps` as const }  
+function getGetProfileAppsUrl() {
+  const res = { method: 'GET', url: `/profile/apps` as const }  
   return res
 }
 
 /**
  * @description This is a collection of OAuth apps that you've given access to your account, and includes the level of access granted.<<LB>>---- __CLI__.    ```    linode-cli profile apps-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List authorized apps
- * {@link /:apiVersion/profile/apps}
+ * {@link /profile/apps}
  */
-export async function getProfileApps(apiVersion: GetProfileAppsPathParams["apiVersion"], params?: GetProfileAppsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getProfileApps(params?: GetProfileAppsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetProfileAppsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetProfileAppsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetProfileAppsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetProfileAppsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

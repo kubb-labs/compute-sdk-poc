@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostTfaConfirmPathParams, PostTfaConfirm200, PostTfaConfirmError, PostTfaConfirmMutationRequest, PostTfaConfirmMutationResponse } from "../types/PostTfaConfirm.ts";
+import type { PostTfaConfirm200, PostTfaConfirmError, PostTfaConfirmMutationRequest, PostTfaConfirmMutationResponse } from "../types/PostTfaConfirm.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostTfaConfirmPathParams(data?: Partial<PostTfaConfirmPathParams>): PostTfaConfirmPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostTfaConfirmPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description TFA enabled successfully.

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutDatabasesPostgreSqlInstancePathParams(data?: Partial<PutDatabasesPostgreSqlInstancePathParams>): PutDatabasesPostgreSqlInstancePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutDatabasesPostgreSqlInstancePathParams>["apiVersion"]>(["v4", "v4beta"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

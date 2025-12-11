@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetVpcIpsQueryResponse, GetVpcIpsPathParams, GetVpcIpsQueryParams } from "../types/GetVpcIps.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetVpcIpsUrl(apiVersion: GetVpcIpsPathParams["apiVersion"], vpcId: GetVpcIpsPathParams["vpcId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/vpcs/${vpcId}/ips` as const }  
+function getGetVpcIpsUrl(vpcId: GetVpcIpsPathParams["vpcId"]) {
+  const res = { method: 'GET', url: `/vpcs/${vpcId}/ips` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of IP addresses for a single VPC.<<LB>>---- __CLI__.    ```    linode-cli vpcs ip-list 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    ips:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List a VPC's IP addresses
- * {@link /:apiVersion/vpcs/:vpcId/ips}
+ * {@link /vpcs/:vpcId/ips}
  */
-export async function getVpcIps(apiVersion: GetVpcIpsPathParams["apiVersion"], vpcId: GetVpcIpsPathParams["vpcId"], params?: GetVpcIpsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getVpcIps(vpcId: GetVpcIpsPathParams["vpcId"], params?: GetVpcIpsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetVpcIpsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVpcIpsUrl(apiVersion, vpcId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetVpcIpsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVpcIpsUrl(vpcId).url.toString(), params, ... requestConfig })  
   return res.data
 }

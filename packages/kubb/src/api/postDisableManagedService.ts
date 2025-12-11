@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostDisableManagedServiceMutationResponse, PostDisableManagedServicePathParams } from "../types/PostDisableManagedService.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostDisableManagedServiceUrl(apiVersion: PostDisableManagedServicePathParams["apiVersion"], serviceId: PostDisableManagedServicePathParams["serviceId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/managed/services/${serviceId}/disable` as const }  
+function getPostDisableManagedServiceUrl(serviceId: PostDisableManagedServicePathParams["serviceId"]) {
+  const res = { method: 'POST', url: `/managed/services/${serviceId}/disable` as const }  
   return res
 }
 
 /**
  * @description Temporarily disables monitoring of a service on a managed Linode.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed service-disable 9994    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Disable a managed service monitor
- * {@link /:apiVersion/managed/services/:serviceId/disable}
+ * {@link /managed/services/:serviceId/disable}
  */
-export async function postDisableManagedService(apiVersion: PostDisableManagedServicePathParams["apiVersion"], serviceId: PostDisableManagedServicePathParams["serviceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postDisableManagedService(serviceId: PostDisableManagedServicePathParams["serviceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostDisableManagedServiceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostDisableManagedServiceUrl(apiVersion, serviceId).url.toString(), ... requestConfig })  
+  const res = await request<PostDisableManagedServiceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostDisableManagedServiceUrl(serviceId).url.toString(), ... requestConfig })  
   return res.data
 }

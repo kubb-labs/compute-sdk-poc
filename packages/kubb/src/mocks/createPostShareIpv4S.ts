@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostShareIpv4SPathParams, PostShareIpv4S200, PostShareIpv4SError, PostShareIpv4SMutationRequest, PostShareIpv4SMutationResponse } from "../types/PostShareIpv4S.ts";
+import type { PostShareIpv4S200, PostShareIpv4SError, PostShareIpv4SMutationRequest, PostShareIpv4SMutationResponse } from "../types/PostShareIpv4S.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostShareIpv4SPathParams(data?: Partial<PostShareIpv4SPathParams>): PostShareIpv4SPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostShareIpv4SPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Sharing configured successfully.

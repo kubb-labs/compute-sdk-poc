@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetNotificationsPathParams, GetNotifications200, GetNotificationsError, GetNotificationsQueryResponse } from "../types/GetNotifications.ts";
+import type { GetNotifications200, GetNotificationsError, GetNotificationsQueryResponse } from "../types/GetNotifications.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetNotificationsPathParams(data?: Partial<GetNotificationsPathParams>): GetNotificationsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetNotificationsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a paginated list of notification objects.

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostDetachVolumePathParams(data?: Partial<PostDetachVolumePathParams>): PostDetachVolumePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostDetachVolumePathParams>["apiVersion"]>(["v4", "v4beta"]),"volumeId": faker.number.int()},
+  ...{"volumeId": faker.number.int()},
   ...data || {}
   }
 }

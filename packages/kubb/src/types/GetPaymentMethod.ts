@@ -4,19 +4,7 @@
 */
 
 
-export const getPaymentMethodPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetPaymentMethodPathParamsApiVersionEnumKey = (typeof getPaymentMethodPathParamsApiVersionEnum)[keyof typeof getPaymentMethodPathParamsApiVersionEnum];
-
 export interface GetPaymentMethodPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetPaymentMethodPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the Payment Method to look up.
      * @type integer
@@ -38,68 +26,68 @@ export type GetPaymentMethod200TypeEnumKey = (typeof getPaymentMethod200TypeEnum
 export interface GetPaymentMethod200 {
     /**
      * @description __Read-only__ When the Payment Method was added to the Account.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
-    data?: ({
+    readonly created: string;
+    data: ({
         /**
          * @description __Read-only__ The type of credit card.
-         * @type string | undefined
+         * @type string
         */
-        readonly card_type?: string;
+        readonly card_type: string;
         /**
          * @description __Read-only__ The expiration month and year of the credit card.
-         * @type string | undefined, MM/YYYY
+         * @type string, MM/YYYY
         */
-        readonly expiry?: string;
+        readonly expiry: string;
         /**
          * @description __Read-only__ The last four digits of the credit card number.
-         * @type string | undefined
+         * @type string
         */
-        readonly last_four?: string;
+        readonly last_four: string;
     } | {
         /**
          * @description __Read-only__ The type of credit card.
-         * @type string | undefined
+         * @type string
         */
-        readonly card_type?: string;
+        readonly card_type: string;
         /**
          * @description __Read-only__ The expiration month and year of the credit card.
-         * @type string | undefined, MM/YYYY
+         * @type string, MM/YYYY
         */
-        readonly expiry?: string;
+        readonly expiry: string;
         /**
          * @description __Read-only__ The last four digits of the credit card number.
-         * @type string | undefined
+         * @type string
         */
-        readonly last_four?: string;
+        readonly last_four: string;
     } | {
         /**
          * @description __Read-only__ The email address associated with your PayPal account.
-         * @type string | undefined
+         * @type string
         */
-        readonly email?: string;
+        readonly email: string;
         /**
          * @description __Read-only__ PayPal Merchant ID associated with your PayPal account.
-         * @type string | undefined
+         * @type string
         */
-        readonly paypal_id?: string;
+        readonly paypal_id: string;
     });
     /**
      * @description The unique ID of this Payment Method.
-     * @type integer | undefined
+     * @type integer
     */
-    id?: number;
+    id: number;
     /**
      * @description Whether this Payment Method is the default method for automatically processing service charges.
-     * @type boolean | undefined
+     * @type boolean
     */
-    is_default?: boolean;
+    is_default: boolean;
     /**
      * @description The type of Payment Method.
-     * @type string | undefined
+     * @type string
     */
-    type?: GetPaymentMethod200TypeEnumKey;
+    type: GetPaymentMethod200TypeEnumKey;
 }
 
 /**
@@ -107,19 +95,19 @@ export interface GetPaymentMethod200 {
 */
 export interface GetPaymentMethodError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

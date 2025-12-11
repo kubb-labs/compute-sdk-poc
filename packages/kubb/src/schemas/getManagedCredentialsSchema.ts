@@ -5,10 +5,6 @@
 
 import { z } from "zod/v4";
 
-export const getManagedCredentialsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 export const getManagedCredentialsQueryParamsSchema = z.object({
     "page": z.coerce.number().int().min(1).default(1).describe("The page of a collection to return."),
 "page_size": z.coerce.number().int().min(25).max(500).default(100).describe("The number of items to return per page.")
@@ -18,24 +14,24 @@ export const getManagedCredentialsQueryParamsSchema = z.object({
  * @description A paginated list of ManagedCredentials.
  */
 export const getManagedCredentials200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "id": z.optional(z.int().describe("__Read-only__ This Credential's unique ID.")),
-"label": z.optional(z.string().regex(/[a-zA-Z0-9-_ \.]{2,75}/).describe("The unique label for this Credential. This is for display purposes only.")),
-"last_decrypted": z.optional(z.string().datetime().describe("__Read-only__ The date this Credential was last decrypted by a member of Linode special forces."))
-    }).describe("A securely stored Credential that allows Linode's special forces to access a Managed server to respond to Issues."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    "data": z.array(z.object({
+    "id": z.int().describe("__Read-only__ This Credential's unique ID."),
+"label": z.string().regex(/[a-zA-Z0-9-_ \.]{2,75}/).describe("The unique label for this Credential. This is for display purposes only."),
+"last_decrypted": z.string().datetime().describe("__Read-only__ The date this Credential was last decrypted by a member of Linode special forces.")
+    }).describe("A securely stored Credential that allows Linode's special forces to access a Managed server to respond to Issues.")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getManagedCredentialsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getManagedCredentialsQueryResponseSchema = z.lazy(() => getManagedCredentials200Schema)

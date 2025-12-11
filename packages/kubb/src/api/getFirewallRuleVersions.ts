@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetFirewallRuleVersionsQueryResponse, GetFirewallRuleVersionsPathParams } from "../types/GetFirewallRuleVersions.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetFirewallRuleVersionsUrl(apiVersion: GetFirewallRuleVersionsPathParams["apiVersion"], firewallId: GetFirewallRuleVersionsPathParams["firewallId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/firewalls/${firewallId}/history` as const }  
+function getGetFirewallRuleVersionsUrl(firewallId: GetFirewallRuleVersionsPathParams["firewallId"]) {
+  const res = { method: 'GET', url: `/networking/firewalls/${firewallId}/history` as const }  
   return res
 }
 
 /**
  * @description Lists the current and historical rules of the firewall (that is not deleted), using `version`. Whenever rules update, the `version` increments from `1`.<<LB>>---- __CLI__.    ```    linode-cli firewalls versions-list 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    firewall:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List firewall rule versions
- * {@link /:apiVersion/networking/firewalls/:firewallId/history}
+ * {@link /networking/firewalls/:firewallId/history}
  */
-export async function getFirewallRuleVersions(apiVersion: GetFirewallRuleVersionsPathParams["apiVersion"], firewallId: GetFirewallRuleVersionsPathParams["firewallId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getFirewallRuleVersions(firewallId: GetFirewallRuleVersionsPathParams["firewallId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetFirewallRuleVersionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallRuleVersionsUrl(apiVersion, firewallId).url.toString(), ... requestConfig })  
+  const res = await request<GetFirewallRuleVersionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallRuleVersionsUrl(firewallId).url.toString(), ... requestConfig })  
   return res.data
 }

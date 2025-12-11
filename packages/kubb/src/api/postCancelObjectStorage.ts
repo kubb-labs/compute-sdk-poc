@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostCancelObjectStorageMutationResponse, PostCancelObjectStoragePathParams } from "../types/PostCancelObjectStorage.ts";
+import type { PostCancelObjectStorageMutationResponse } from "../types/PostCancelObjectStorage.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostCancelObjectStorageUrl(apiVersion: PostCancelObjectStoragePathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/object-storage/cancel` as const }  
+function getPostCancelObjectStorageUrl() {
+  const res = { method: 'POST', url: `/object-storage/cancel` as const }  
   return res
 }
 
 /**
  * @description Cancel Object Storage on an Account.> 🚧>> This removes all buckets and their contents from your Account. This data is irretrievable once removed.<<LB>>---- __CLI__.    ```    linode-cli object-storage cancel    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    object_storage:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Cancel Object Storage
- * {@link /:apiVersion/object-storage/cancel}
+ * {@link /object-storage/cancel}
  */
-export async function postCancelObjectStorage(apiVersion: PostCancelObjectStoragePathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postCancelObjectStorage(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostCancelObjectStorageMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostCancelObjectStorageUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<PostCancelObjectStorageMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostCancelObjectStorageUrl().url.toString(), ... requestConfig })  
   return res.data
 }

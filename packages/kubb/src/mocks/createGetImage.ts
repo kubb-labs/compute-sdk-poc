@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetImagePathParams(data?: Partial<GetImagePathParams>): GetImagePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetImagePathParams>["apiVersion"]>(["v4", "v4beta"]),"imageId": faker.string.alpha()},
+  ...{"imageId": faker.string.alpha()},
   ...data || {}
   }
 }

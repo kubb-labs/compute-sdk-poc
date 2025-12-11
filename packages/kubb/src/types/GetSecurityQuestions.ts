@@ -4,47 +4,32 @@
 */
 
 
-export const getSecurityQuestionsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetSecurityQuestionsPathParamsApiVersionEnumKey = (typeof getSecurityQuestionsPathParamsApiVersionEnum)[keyof typeof getSecurityQuestionsPathParamsApiVersionEnum];
-
-export interface GetSecurityQuestionsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetSecurityQuestionsPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description Returns a list of security questions.
 */
 export interface GetSecurityQuestions200 {
     /**
      * @description Security questions and response objects.
-     * @type array | undefined
+     * @type array
     */
-    security_questions?: {
+    security_questions: {
         /**
          * @description The ID representing the security question.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The security question.
-         * @type string | undefined
+         * @type string
         */
-        readonly question?: string;
+        readonly question: string;
         /**
          * @description The security question response.
          * @minLength 3
          * @maxLength 17
-         * @type string | undefined
+         * @type string
         */
-        response?: string;
+        response: string;
     }[];
 }
 
@@ -53,19 +38,19 @@ export interface GetSecurityQuestions200 {
 */
 export interface GetSecurityQuestionsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -73,6 +58,5 @@ export type GetSecurityQuestionsQueryResponse = GetSecurityQuestions200;
 
 export type GetSecurityQuestionsQuery = {
     Response: GetSecurityQuestions200;
-    PathParams: GetSecurityQuestionsPathParams;
     Errors: any;
 };

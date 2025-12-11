@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetSharegroupImagesByTokenQueryResponse, GetSharegroupImagesByTokenPathParams } from "../types/GetSharegroupImagesByToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetSharegroupImagesByTokenUrl(apiVersion: GetSharegroupImagesByTokenPathParams["apiVersion"], tokenUuid: GetSharegroupImagesByTokenPathParams["tokenUuid"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/images/sharegroups/tokens/${tokenUuid}/sharegroup/images` as const }  
+function getGetSharegroupImagesByTokenUrl(tokenUuid: GetSharegroupImagesByTokenPathParams["tokenUuid"]) {
+  const res = { method: 'GET', url: `/images/sharegroups/tokens/${tokenUuid}/sharegroup/images` as const }  
   return res
 }
 
 /**
  * @description Lists all the shared images a member can access within a share group, using a membership token. To get the `token_uuid`, run the [Get a token](https://techdocs.akamai.com/linode-api/reference/get-sharegroup-token) operation.<<LB>>---- __CLI__.    ```    linode-cli image-sharegroups images-list-by-token abc123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List images by token
- * {@link /:apiVersion/images/sharegroups/tokens/:tokenUuid/sharegroup/images}
+ * {@link /images/sharegroups/tokens/:tokenUuid/sharegroup/images}
  */
-export async function getSharegroupImagesByToken(apiVersion: GetSharegroupImagesByTokenPathParams["apiVersion"], tokenUuid: GetSharegroupImagesByTokenPathParams["tokenUuid"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getSharegroupImagesByToken(tokenUuid: GetSharegroupImagesByTokenPathParams["tokenUuid"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetSharegroupImagesByTokenQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSharegroupImagesByTokenUrl(apiVersion, tokenUuid).url.toString(), ... requestConfig })  
+  const res = await request<GetSharegroupImagesByTokenQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSharegroupImagesByTokenUrl(tokenUuid).url.toString(), ... requestConfig })  
   return res.data
 }

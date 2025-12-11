@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetStackScriptsPathParams, GetStackScriptsQueryParams, GetStackScripts200, GetStackScriptsError, GetStackScriptsQueryResponse } from "../types/GetStackScripts.ts";
+import type { GetStackScriptsQueryParams, GetStackScripts200, GetStackScriptsError, GetStackScriptsQueryResponse } from "../types/GetStackScripts.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetStackScriptsPathParams(data?: Partial<GetStackScriptsPathParams>): GetStackScriptsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetStackScriptsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetStackScriptsQueryParams(data?: Partial<GetStackScriptsQueryParams>): GetStackScriptsQueryParams {
   

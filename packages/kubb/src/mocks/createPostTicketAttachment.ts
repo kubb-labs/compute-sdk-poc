@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostTicketAttachmentPathParams(data?: Partial<PostTicketAttachmentPathParams>): PostTicketAttachmentPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostTicketAttachmentPathParams>["apiVersion"]>(["v4", "v4beta"]),"ticketId": faker.number.int()},
+  ...{"ticketId": faker.number.int()},
   ...data || {}
   }
 }

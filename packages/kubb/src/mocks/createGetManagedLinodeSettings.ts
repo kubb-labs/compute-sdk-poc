@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetManagedLinodeSettingsPathParams, GetManagedLinodeSettingsQueryParams, GetManagedLinodeSettings200, GetManagedLinodeSettingsError, GetManagedLinodeSettingsQueryResponse } from "../types/GetManagedLinodeSettings.ts";
+import type { GetManagedLinodeSettingsQueryParams, GetManagedLinodeSettings200, GetManagedLinodeSettingsError, GetManagedLinodeSettingsQueryResponse } from "../types/GetManagedLinodeSettings.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetManagedLinodeSettingsPathParams(data?: Partial<GetManagedLinodeSettingsPathParams>): GetManagedLinodeSettingsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetManagedLinodeSettingsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetManagedLinodeSettingsQueryParams(data?: Partial<GetManagedLinodeSettingsQueryParams>): GetManagedLinodeSettingsQueryParams {
   

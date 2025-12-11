@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetDomainsPathParams, GetDomainsQueryParams, GetDomains200, GetDomainsError, GetDomainsQueryResponse } from "../types/GetDomains.ts";
+import type { GetDomainsQueryParams, GetDomains200, GetDomainsError, GetDomainsQueryResponse } from "../types/GetDomains.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetDomainsPathParams(data?: Partial<GetDomainsPathParams>): GetDomainsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDomainsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetDomainsQueryParams(data?: Partial<GetDomainsQueryParams>): GetDomainsQueryParams {
   

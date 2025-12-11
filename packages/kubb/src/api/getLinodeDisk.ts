@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeDiskQueryResponse, GetLinodeDiskPathParams } from "../types/GetLinodeDisk.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeDiskUrl(apiVersion: GetLinodeDiskPathParams["apiVersion"], linodeId: GetLinodeDiskPathParams["linodeId"], diskId: GetLinodeDiskPathParams["diskId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/disks/${diskId}` as const }  
+function getGetLinodeDiskUrl(linodeId: GetLinodeDiskPathParams["linodeId"], diskId: GetLinodeDiskPathParams["diskId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/disks/${diskId}` as const }  
   return res
 }
 
 /**
  * @description View Disk information for a Disk associated with this Linode.<<LB>>---- __CLI__.    ```    linode-cli linodes disk-view 123 25674    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a disk
- * {@link /:apiVersion/linode/instances/:linodeId/disks/:diskId}
+ * {@link /linode/instances/:linodeId/disks/:diskId}
  */
-export async function getLinodeDisk(apiVersion: GetLinodeDiskPathParams["apiVersion"], linodeId: GetLinodeDiskPathParams["linodeId"], diskId: GetLinodeDiskPathParams["diskId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeDisk(linodeId: GetLinodeDiskPathParams["linodeId"], diskId: GetLinodeDiskPathParams["diskId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeDiskQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeDiskUrl(apiVersion, linodeId, diskId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeDiskQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeDiskUrl(linodeId, diskId).url.toString(), ... requestConfig })  
   return res.data
 }

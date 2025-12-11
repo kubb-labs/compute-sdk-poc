@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostCloneLinodeDiskPathParams(data?: Partial<PostCloneLinodeDiskPathParams>): PostCloneLinodeDiskPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostCloneLinodeDiskPathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int(),"diskId": faker.number.int()},
+  ...{"linodeId": faker.number.int(),"diskId": faker.number.int()},
   ...data || {}
   }
 }

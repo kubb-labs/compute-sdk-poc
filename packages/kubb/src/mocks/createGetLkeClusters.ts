@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetLkeClustersPathParams, GetLkeClusters200, GetLkeClustersError, GetLkeClustersQueryResponse } from "../types/GetLkeClusters.ts";
+import type { GetLkeClusters200, GetLkeClustersError, GetLkeClustersQueryResponse } from "../types/GetLkeClusters.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetLkeClustersPathParams(data?: Partial<GetLkeClustersPathParams>): GetLkeClustersPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLkeClustersPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns an array of all Kubernetes clusters on your Account.

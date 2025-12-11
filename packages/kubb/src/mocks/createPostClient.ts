@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostClientPathParams, PostClient200, PostClientError, PostClientMutationRequest, PostClientMutationResponse } from "../types/PostClient.ts";
+import type { PostClient200, PostClientError, PostClientMutationRequest, PostClientMutationResponse } from "../types/PostClient.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostClientPathParams(data?: Partial<PostClientPathParams>): PostClientPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostClientPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Client created successfully.

@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutIpMutationRequest, PutIpMutationResponse, PutIpPathParams } from "../types/PutIp.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutIpUrl(apiVersion: PutIpPathParams["apiVersion"], address: PutIpPathParams["address"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/networking/ips/${address}` as const }  
+function getPutIpUrl(address: PutIpPathParams["address"]) {
+  const res = { method: 'PUT', url: `/networking/ips/${address}` as const }  
   return res
 }
 
 /**
  * @description Sets RDNS on an IP Address. Forward DNS must already be set up for reverse DNS to be applied. If you set the RDNS to `null` for public IPv4 addresses, it will be reset to the default _ip.linodeusercontent.com_ RDNS value.<<LB>>---- __CLI__.    ```    linode-cli networking ip-update \  203.0.113.1 \  --rdns "test.example.org"    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    ips:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update an IP address's RDNS
- * {@link /:apiVersion/networking/ips/:address}
+ * {@link /networking/ips/:address}
  */
-export async function putIp(apiVersion: PutIpPathParams["apiVersion"], address: PutIpPathParams["address"], data: PutIpMutationRequest, config: Partial<RequestConfig<PutIpMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putIp(address: PutIpPathParams["address"], data: PutIpMutationRequest, config: Partial<RequestConfig<PutIpMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutIpMutationResponse, ResponseErrorConfig<Error>, PutIpMutationRequest>({ method : "PUT", url : getPutIpUrl(apiVersion, address).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutIpMutationResponse, ResponseErrorConfig<Error>, PutIpMutationRequest>({ method : "PUT", url : getPutIpUrl(address).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

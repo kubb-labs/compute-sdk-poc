@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostAccountAgreementsPathParams, PostAccountAgreements200, PostAccountAgreementsError, PostAccountAgreementsMutationRequest, PostAccountAgreementsMutationResponse } from "../types/PostAccountAgreements.ts";
+import type { PostAccountAgreements200, PostAccountAgreementsError, PostAccountAgreementsMutationRequest, PostAccountAgreementsMutationResponse } from "../types/PostAccountAgreements.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostAccountAgreementsPathParams(data?: Partial<PostAccountAgreementsPathParams>): PostAccountAgreementsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostAccountAgreementsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Agreements updated successfully.

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteLinodeInterfaceMutationResponse, DeleteLinodeInterfacePathParams } from "../types/DeleteLinodeInterface.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteLinodeInterfaceUrl(apiVersion: DeleteLinodeInterfacePathParams["apiVersion"], linodeId: DeleteLinodeInterfacePathParams["linodeId"], interfaceId: DeleteLinodeInterfacePathParams["interfaceId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/linode/instances/${linodeId}/interfaces/${interfaceId}` as const }  
+function getDeleteLinodeInterfaceUrl(linodeId: DeleteLinodeInterfacePathParams["linodeId"], interfaceId: DeleteLinodeInterfacePathParams["interfaceId"]) {
+  const res = { method: 'DELETE', url: `/linode/instances/${linodeId}/interfaces/${interfaceId}` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Deletes a Linode interface on a specific Linode. To access this operation, you need the `read_write` [grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for the Linode. You can't delete an active interface. First, you need to shut down the associated Linode.<<LB>>---- __CLI__.    ```    linode-cli linodes interface-delete $linodeId $interfaceId    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a Linode interface
- * {@link /:apiVersion/linode/instances/:linodeId/interfaces/:interfaceId}
+ * {@link /linode/instances/:linodeId/interfaces/:interfaceId}
  */
-export async function deleteLinodeInterface(apiVersion: DeleteLinodeInterfacePathParams["apiVersion"], linodeId: DeleteLinodeInterfacePathParams["linodeId"], interfaceId: DeleteLinodeInterfacePathParams["interfaceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteLinodeInterface(linodeId: DeleteLinodeInterfacePathParams["linodeId"], interfaceId: DeleteLinodeInterfacePathParams["interfaceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteLinodeInterfaceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteLinodeInterfaceUrl(apiVersion, linodeId, interfaceId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteLinodeInterfaceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteLinodeInterfaceUrl(linodeId, interfaceId).url.toString(), ... requestConfig })  
   return res.data
 }

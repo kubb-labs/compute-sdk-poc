@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostVolumeMutationRequest, PostVolumeMutationResponse, PostVolumePathParams } from "../types/PostVolume.ts";
+import type { PostVolumeMutationRequest, PostVolumeMutationResponse } from "../types/PostVolume.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostVolumeUrl(apiVersion: PostVolumePathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/volumes` as const }  
+function getPostVolumeUrl() {
+  const res = { method: 'POST', url: `/volumes` as const }  
   return res
 }
 
 /**
  * @description Creates a [Block Storage](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-block-storage) volume on your account. Creating a new volume accrues additional charges on your account.> 📘>> To run this operation, your user needs the `add_volume` [grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants).<<LB>>---- __CLI__.    ```    linode-cli volumes create \  --label my-volume \  --size 20 \  --linode_id 12346 \  --encryption enabled \  --no-defaults    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    volumes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a volume
- * {@link /:apiVersion/volumes}
+ * {@link /volumes}
  */
-export async function postVolume(apiVersion: PostVolumePathParams["apiVersion"], data: PostVolumeMutationRequest, config: Partial<RequestConfig<PostVolumeMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postVolume(data: PostVolumeMutationRequest, config: Partial<RequestConfig<PostVolumeMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostVolumeMutationResponse, ResponseErrorConfig<Error>, PostVolumeMutationRequest>({ method : "POST", url : getPostVolumeUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostVolumeMutationResponse, ResponseErrorConfig<Error>, PostVolumeMutationRequest>({ method : "POST", url : getPostVolumeUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

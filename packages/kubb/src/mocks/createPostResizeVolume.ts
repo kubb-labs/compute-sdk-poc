@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostResizeVolumePathParams(data?: Partial<PostResizeVolumePathParams>): PostResizeVolumePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostResizeVolumePathParams>["apiVersion"]>(["v4", "v4beta"]),"volumeId": faker.number.int()},
+  ...{"volumeId": faker.number.int()},
   ...data || {}
   }
 }

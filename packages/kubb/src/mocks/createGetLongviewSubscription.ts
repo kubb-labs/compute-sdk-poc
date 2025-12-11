@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetLongviewSubscriptionPathParams(data?: Partial<GetLongviewSubscriptionPathParams>): GetLongviewSubscriptionPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLongviewSubscriptionPathParams>["apiVersion"]>(["v4", "v4beta"]),"subscriptionId": faker.string.alpha()},
+  ...{"subscriptionId": faker.string.alpha()},
   ...data || {}
   }
 }

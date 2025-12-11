@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutClientThumbnailMutationRequest, PutClientThumbnailMutationResponse, PutClientThumbnailPathParams } from "../types/PutClientThumbnail.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutClientThumbnailUrl(apiVersion: PutClientThumbnailPathParams["apiVersion"], clientId: PutClientThumbnailPathParams["clientId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/account/oauth-clients/${clientId}/thumbnail` as const }  
+function getPutClientThumbnailUrl(clientId: PutClientThumbnailPathParams["clientId"]) {
+  const res = { method: 'PUT', url: `/account/oauth-clients/${clientId}/thumbnail` as const }  
   return res
 }
 
 /**
  * @description Upload a thumbnail for a client you own. You need to upload a PNG image file that the Linode API returns when the thumbnail is retrieved. This image is publicly viewable.<<LB>>---- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update the OAuth client's thumbnail
- * {@link /:apiVersion/account/oauth-clients/:clientId/thumbnail}
+ * {@link /account/oauth-clients/:clientId/thumbnail}
  */
-export async function putClientThumbnail(apiVersion: PutClientThumbnailPathParams["apiVersion"], clientId: PutClientThumbnailPathParams["clientId"], data?: PutClientThumbnailMutationRequest, config: Partial<RequestConfig<PutClientThumbnailMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putClientThumbnail(clientId: PutClientThumbnailPathParams["clientId"], data?: PutClientThumbnailMutationRequest, config: Partial<RequestConfig<PutClientThumbnailMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutClientThumbnailMutationResponse, ResponseErrorConfig<Error>, PutClientThumbnailMutationRequest>({ method : "PUT", url : getPutClientThumbnailUrl(apiVersion, clientId).url.toString(), data : requestData, ... requestConfig, headers : { 'Content-Type': 'image/png', ...requestConfig.headers } })  
+  const res = await request<PutClientThumbnailMutationResponse, ResponseErrorConfig<Error>, PutClientThumbnailMutationRequest>({ method : "PUT", url : getPutClientThumbnailUrl(clientId).url.toString(), data : requestData, ... requestConfig, headers : { 'Content-Type': 'image/png', ...requestConfig.headers } })  
   return res.data
 }

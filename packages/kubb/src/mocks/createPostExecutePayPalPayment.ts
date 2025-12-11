@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostExecutePayPalPaymentPathParams, PostExecutePayPalPayment200, PostExecutePayPalPayment202, PostExecutePayPalPayment299, PostExecutePayPalPaymentError, PostExecutePayPalPaymentMutationRequest, PostExecutePayPalPaymentMutationResponse } from "../types/PostExecutePayPalPayment.ts";
+import type { PostExecutePayPalPayment200, PostExecutePayPalPayment202, PostExecutePayPalPayment299, PostExecutePayPalPaymentError, PostExecutePayPalPaymentMutationRequest, PostExecutePayPalPaymentMutationResponse } from "../types/PostExecutePayPalPayment.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostExecutePayPalPaymentPathParams(data?: Partial<PostExecutePayPalPaymentPathParams>): PostExecutePayPalPaymentPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostExecutePayPalPaymentPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description PayPal Payment executed.

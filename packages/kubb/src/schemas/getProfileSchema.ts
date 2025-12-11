@@ -5,44 +5,40 @@
 
 import { z } from "zod/v4";
 
-export const getProfilePathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description Profile response.
  */
 export const getProfile200Schema = z.object({
-    "authentication_type": z.optional(z.enum(["password", "github"]).describe("__Read-only__ This account's Cloud Manager authentication type. You choose an authentication type in Cloud Manager and Akamai authorizes it when you log into your account. Authentication types include your user's password (in conjunction with your username), or the name of your identity provider, such as GitHub. Here are some examples:\n\n- If a user has never used third-party authentication, the authentication type will be `password`.\n\n- If a user is using third-party authentication, the name of their identity provider is used for the authentication type, for example, `github`.\n\n- If a user has used third-party authentication and has since revoked it, the authentication type is `password`.")),
-"authorized_keys": z.array(z.string()).describe("Your user can use these SSH Keys to access Lish. This value is ignored if `lish_auth_method` is `disabled`.").nullish(),
-"email": z.optional(z.email().describe("Your email address. We use this address for Akamai Cloud Computing-related communication.")),
-"email_notifications": z.optional(z.boolean().describe("When set to `true`, you will receive email notifications about account activity. When `false`, you may still receive business-critical communications through email.")),
-"ip_whitelist_enabled": z.optional(z.boolean().describe("When set to `true`, your user logins are only allowed from whitelisted IPs. This setting is deprecated, and can't be enabled. If you disable this setting, you won't be able to re-enable it.")),
-"lish_auth_method": z.optional(z.enum(["password_keys", "keys_only", "disabled"]).describe("The authentication methods that you can use when connecting to the [Linode Shell (Lish)](https://www.linode.com/docs/guides/lish/).\n\n- `keys_only` is the most secure if you intend to use Lish.\n\n- `disabled` is recommended if you don't want to use Lish.\n\n- If this account's Cloud Manager authentication type is set to a third-party authentication method, you can't use `password_keys` as your Lish authentication method. Run the [Get a profile](https://techdocs.akamai.com/linode-api/reference/get-profile) operation to view your account's Cloud Manager `authentication_type` field.")),
-"referrals": z.optional(z.object({
-    "code": z.optional(z.string().describe("__Read-only__ Your referral code. If others use this when signing up for Linode, you receive an account credit.")),
-"completed": z.optional(z.int().describe("__Read-only__ The number of completed sign-ups that used your referral code.")),
-"credit": z.optional(z.int().describe("__Read-only__ Your referral program account credit in US dollars.")),
-"pending": z.optional(z.int().describe("__Read-only__ The number of pending sign-ups that used your referral code. Akamai gives you credit for these sign-ups once they've completed.")),
-"total": z.optional(z.int().describe("__Read-only__ The number of users who have signed up with your referral code.")),
-"url": z.optional(z.string().describe("__Read-only__ The referral URL that Akamai uses to direct others to sign up for Akamai Cloud Computing with your referral code."))
-    }).describe("__Read-only__ Information about your status in our referral program. The API makes this information available after this profile's account has established at least $25.00 USD of total payments.")),
-"restricted": z.optional(z.boolean().describe("When set to `true`, there are restrictions on what your user can access on your account. Run [List grants](https://techdocs.akamai.com/linode-api/reference/get-profile-grants) to get details on what entities and actions you can access and perform.")),
-"timezone": z.optional(z.string().describe("The time zone you want to display for your Linode assets. This API doesn't directly use this time zone. It's provided for the benefit of clients such as the Akamai Cloud Manager and other clients built on the API. All times returned by the API are in UTC.")),
-"two_factor_auth": z.optional(z.boolean().describe("When set to `true`, a login from an untrusted computer requires two-factor authentication. You also need to run [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) to enable two-factor authentication.")),
-"uid": z.optional(z.int().describe("__Read-only__ Your unique ID in our system. This value will never change, and can safely be used to identify your user.")),
-"username": z.optional(z.string().describe("__Read-only__ Your username, used for logging in to our system.")),
-"verified_phone_number": z.string().describe("__Read-only__ The phone number verified for this profile with the [Verify a phone number](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) operation. Displayed as `null` if the profile doesn't have a verified phone number.").nullish()
+    "authentication_type": z.enum(["password", "github"]).describe("__Read-only__ This account's Cloud Manager authentication type. You choose an authentication type in Cloud Manager and Akamai authorizes it when you log into your account. Authentication types include your user's password (in conjunction with your username), or the name of your identity provider, such as GitHub. Here are some examples:\n\n- If a user has never used third-party authentication, the authentication type will be `password`.\n\n- If a user is using third-party authentication, the name of their identity provider is used for the authentication type, for example, `github`.\n\n- If a user has used third-party authentication and has since revoked it, the authentication type is `password`."),
+"authorized_keys": z.nullable(z.array(z.string()).describe("Your user can use these SSH Keys to access Lish. This value is ignored if `lish_auth_method` is `disabled`.")),
+"email": z.email().describe("Your email address. We use this address for Akamai Cloud Computing-related communication."),
+"email_notifications": z.boolean().describe("When set to `true`, you will receive email notifications about account activity. When `false`, you may still receive business-critical communications through email."),
+"ip_whitelist_enabled": z.boolean().describe("When set to `true`, your user logins are only allowed from whitelisted IPs. This setting is deprecated, and can't be enabled. If you disable this setting, you won't be able to re-enable it."),
+"lish_auth_method": z.enum(["password_keys", "keys_only", "disabled"]).describe("The authentication methods that you can use when connecting to the [Linode Shell (Lish)](https://www.linode.com/docs/guides/lish/).\n\n- `keys_only` is the most secure if you intend to use Lish.\n\n- `disabled` is recommended if you don't want to use Lish.\n\n- If this account's Cloud Manager authentication type is set to a third-party authentication method, you can't use `password_keys` as your Lish authentication method. Run the [Get a profile](https://techdocs.akamai.com/linode-api/reference/get-profile) operation to view your account's Cloud Manager `authentication_type` field."),
+"referrals": z.object({
+    "code": z.string().describe("__Read-only__ Your referral code. If others use this when signing up for Linode, you receive an account credit."),
+"completed": z.int().describe("__Read-only__ The number of completed sign-ups that used your referral code."),
+"credit": z.int().describe("__Read-only__ Your referral program account credit in US dollars."),
+"pending": z.int().describe("__Read-only__ The number of pending sign-ups that used your referral code. Akamai gives you credit for these sign-ups once they've completed."),
+"total": z.int().describe("__Read-only__ The number of users who have signed up with your referral code."),
+"url": z.string().describe("__Read-only__ The referral URL that Akamai uses to direct others to sign up for Akamai Cloud Computing with your referral code.")
+    }).describe("__Read-only__ Information about your status in our referral program. The API makes this information available after this profile's account has established at least $25.00 USD of total payments."),
+"restricted": z.boolean().describe("When set to `true`, there are restrictions on what your user can access on your account. Run [List grants](https://techdocs.akamai.com/linode-api/reference/get-profile-grants) to get details on what entities and actions you can access and perform."),
+"timezone": z.string().describe("The time zone you want to display for your Linode assets. This API doesn't directly use this time zone. It's provided for the benefit of clients such as the Akamai Cloud Manager and other clients built on the API. All times returned by the API are in UTC."),
+"two_factor_auth": z.boolean().describe("When set to `true`, a login from an untrusted computer requires two-factor authentication. You also need to run [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) to enable two-factor authentication."),
+"uid": z.int().describe("__Read-only__ Your unique ID in our system. This value will never change, and can safely be used to identify your user."),
+"username": z.string().describe("__Read-only__ Your username, used for logging in to our system."),
+"verified_phone_number": z.nullable(z.string().describe("__Read-only__ The phone number verified for this profile with the [Verify a phone number](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) operation. Displayed as `null` if the profile doesn't have a verified phone number."))
     }).describe("A profile represents your user in our system. This is where you can change information about your user. This information is available to any OAuth client regardless of requested scopes, and you can use it to populate user information in third-party applications.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getProfileErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getProfileQueryResponseSchema = z.lazy(() => getProfile200Schema)

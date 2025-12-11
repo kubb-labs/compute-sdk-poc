@@ -4,23 +4,23 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetObjectStorageClustersQueryResponse, GetObjectStorageClustersPathParams } from "../types/GetObjectStorageClusters.ts";
+import type { GetObjectStorageClustersQueryResponse } from "../types/GetObjectStorageClusters.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageClustersUrl(apiVersion: GetObjectStorageClustersPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/clusters` as const }  
+function getGetObjectStorageClustersUrl() {
+  const res = { method: 'GET', url: `/object-storage/clusters` as const }  
   return res
 }
 
 /**
  * @description __Deprecated__ Returns a paginated list of available Object Storage legacy clusters.> 📘>> This displays deprecated `clusterId` values that represent regions used with older versions of the API. It's maintained for backward compatibility. Run [Get a region](https://techdocs.akamai.com/linode-api/reference/get-region) instead.<<LB>>---- __CLI__.    ```    linode-cli object-storage clusters-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List clusters
- * {@link /:apiVersion/object-storage/clusters}
+ * {@link /object-storage/clusters}
  * @deprecated
  */
-export async function getObjectStorageClusters(apiVersion: GetObjectStorageClustersPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageClusters(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageClustersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageClustersUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageClustersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageClustersUrl().url.toString(), ... requestConfig })  
   return res.data
 }

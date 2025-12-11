@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostCloseTicketPathParams(data?: Partial<PostCloseTicketPathParams>): PostCloseTicketPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostCloseTicketPathParams>["apiVersion"]>(["v4", "v4beta"]),"ticketId": faker.number.int()},
+  ...{"ticketId": faker.number.int()},
   ...data || {}
   }
 }

@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostPaymentMethodMutationRequest, PostPaymentMethodMutationResponse, PostPaymentMethodPathParams } from "../types/PostPaymentMethod.ts";
+import type { PostPaymentMethodMutationRequest, PostPaymentMethodMutationResponse } from "../types/PostPaymentMethod.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostPaymentMethodUrl(apiVersion: PostPaymentMethodPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/payment-methods` as const }  
+function getPostPaymentMethodUrl() {
+  const res = { method: 'POST', url: `/account/payment-methods` as const }  
   return res
 }
 
 /**
  * @description Adds a Payment Method to your Account with the option to set it as the default method.- Adding a default Payment Method removes the default status from any other Payment Method.- An Account can have up to 6 active Payment Methods.- Up to 60 Payment Methods can be added each day.- Prior to adding a Payment Method, ensure that your billing address information is up-to-date with a valid `zip` by running the [Update your account](https://techdocs.akamai.com/linode-api/reference/put-account) operation.- A `payment_method_add` event is generated when a payment is successfully submitted.__Parent and child accounts__In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:- Child account users can't run this operation. These users don't have access to billing-related operations.<<LB>>---- __CLI__.    ```    linode-cli payment-methods add \  --type credit_card \  --is_default true \  --data.card_number 4111111111111111 \  --data.expiry_month 11 \  --data.expiry_year 2020 \  --data.cvv 111    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Add a payment method
- * {@link /:apiVersion/account/payment-methods}
+ * {@link /account/payment-methods}
  */
-export async function postPaymentMethod(apiVersion: PostPaymentMethodPathParams["apiVersion"], data: PostPaymentMethodMutationRequest, config: Partial<RequestConfig<PostPaymentMethodMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postPaymentMethod(data: PostPaymentMethodMutationRequest, config: Partial<RequestConfig<PostPaymentMethodMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostPaymentMethodMutationResponse, ResponseErrorConfig<Error>, PostPaymentMethodMutationRequest>({ method : "POST", url : getPostPaymentMethodUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostPaymentMethodMutationResponse, ResponseErrorConfig<Error>, PostPaymentMethodMutationRequest>({ method : "POST", url : getPostPaymentMethodUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

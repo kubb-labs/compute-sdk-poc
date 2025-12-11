@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetFirewallSettingsQueryResponse, GetFirewallSettingsPathParams, GetFirewallSettingsQueryParams } from "../types/GetFirewallSettings.ts";
+import type { GetFirewallSettingsQueryResponse, GetFirewallSettingsQueryParams } from "../types/GetFirewallSettings.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetFirewallSettingsUrl(apiVersion: GetFirewallSettingsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/firewalls/settings` as const }  
+function getGetFirewallSettingsUrl() {
+  const res = { method: 'GET', url: `/networking/firewalls/settings` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns default firewalls for Linodes, Linode VPC and public interfaces, and NodeBalancers.<<LB>>---- __CLI__.    ```    linode-cli firewalls firewall-settings-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    firewall:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List default firewalls
- * {@link /:apiVersion/networking/firewalls/settings}
+ * {@link /networking/firewalls/settings}
  */
-export async function getFirewallSettings(apiVersion: GetFirewallSettingsPathParams["apiVersion"], params?: GetFirewallSettingsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getFirewallSettings(params?: GetFirewallSettingsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetFirewallSettingsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallSettingsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetFirewallSettingsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallSettingsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeInterfaceHistoryQueryResponse, GetLinodeInterfaceHistoryPathParams } from "../types/GetLinodeInterfaceHistory.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeInterfaceHistoryUrl(apiVersion: GetLinodeInterfaceHistoryPathParams["apiVersion"], linodeId: GetLinodeInterfaceHistoryPathParams["linodeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/interfaces/history` as const }  
+function getGetLinodeInterfaceHistoryUrl(linodeId: GetLinodeInterfaceHistoryPathParams["linodeId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/interfaces/history` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Lists the history of network interfaces by version for a Linode. This operation is for Linode interfaces, and not for legacy configuration profile interfaces.<<LB>>---- __CLI__.    ```    linode-cli linodes interface-history-list $linodeId    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List a Linode's network interface history
- * {@link /:apiVersion/linode/instances/:linodeId/interfaces/history}
+ * {@link /linode/instances/:linodeId/interfaces/history}
  */
-export async function getLinodeInterfaceHistory(apiVersion: GetLinodeInterfaceHistoryPathParams["apiVersion"], linodeId: GetLinodeInterfaceHistoryPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeInterfaceHistory(linodeId: GetLinodeInterfaceHistoryPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeInterfaceHistoryQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeInterfaceHistoryUrl(apiVersion, linodeId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeInterfaceHistoryQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeInterfaceHistoryUrl(linodeId).url.toString(), ... requestConfig })  
   return res.data
 }

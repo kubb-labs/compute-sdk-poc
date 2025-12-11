@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetIpsPathParams, GetIpsQueryParams, GetIps200, GetIpsError, GetIpsQueryResponse } from "../types/GetIps.ts";
+import type { GetIpsQueryParams, GetIps200, GetIpsError, GetIpsQueryResponse } from "../types/GetIps.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetIpsPathParams(data?: Partial<GetIpsPathParams>): GetIpsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetIpsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetIpsQueryParams(data?: Partial<GetIpsQueryParams>): GetIpsQueryParams {
   

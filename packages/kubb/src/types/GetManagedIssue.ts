@@ -4,19 +4,7 @@
 */
 
 
-export const getManagedIssuePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetManagedIssuePathParamsApiVersionEnumKey = (typeof getManagedIssuePathParamsApiVersionEnum)[keyof typeof getManagedIssuePathParamsApiVersionEnum];
-
 export interface GetManagedIssuePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetManagedIssuePathParamsApiVersionEnumKey;
     /**
      * @description The Issue to look up.
      * @type integer
@@ -36,45 +24,45 @@ export type EntityTypeEnum9Key = (typeof entityTypeEnum9)[keyof typeof entityTyp
 export interface GetManagedIssue200 {
     /**
      * @description __Read-only__ When this Issue was created. Issues are created in response to issues detected with Managed Services, so this is also when the Issue was detected.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description __Read-only__ The ticket this Managed Issue opened.
-     * @type object | undefined
+     * @type object
     */
-    readonly entity?: {
+    readonly entity: {
         /**
          * @description __Read-only__ This ticket\'s ID.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description __Read-only__ The summary for this Ticket.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Read-only__ The type of entity this is. In this case, it is always a Ticket.
-         * @type string | undefined
+         * @type string
         */
-        readonly type?: EntityTypeEnum9Key;
+        readonly type: EntityTypeEnum9Key;
         /**
          * @description __Read-only__ The relative URL where you can access this Ticket.
-         * @type string | undefined, url
+         * @type string, url
         */
-        readonly url?: string;
+        readonly url: string;
     };
     /**
      * @description __Read-only__ This Issue\'s unique ID.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description __Read-only__ An array of Managed Service IDs that were affected by this Issue.
-     * @type array | undefined
+     * @type array
     */
-    readonly services?: number[];
+    readonly services: number[];
 }
 
 /**
@@ -82,19 +70,19 @@ export interface GetManagedIssue200 {
 */
 export interface GetManagedIssueError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

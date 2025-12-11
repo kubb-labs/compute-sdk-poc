@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetDatabasesPostgresqlConfigPathParams, GetDatabasesPostgresqlConfig200, GetDatabasesPostgresqlConfigError, GetDatabasesPostgresqlConfigQueryResponse } from "../types/GetDatabasesPostgresqlConfig.ts";
+import type { GetDatabasesPostgresqlConfig200, GetDatabasesPostgresqlConfigError, GetDatabasesPostgresqlConfigQueryResponse } from "../types/GetDatabasesPostgresqlConfig.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetDatabasesPostgresqlConfigPathParams(data?: Partial<GetDatabasesPostgresqlConfigPathParams>): GetDatabasesPostgresqlConfigPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDatabasesPostgresqlConfigPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description PostgreSQL Managed Database advanced parameters.

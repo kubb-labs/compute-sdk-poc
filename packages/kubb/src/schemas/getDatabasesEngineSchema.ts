@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const getDatabasesEnginePathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"engineId": z.string().describe("The ID of the Managed Database engine.")
+    "engineId": z.string().describe("The ID of the Managed Database engine.")
     })
 
 export const getDatabasesEngineQueryParamsSchema = z.object({
@@ -19,19 +18,19 @@ export const getDatabasesEngineQueryParamsSchema = z.object({
  * @description Returns information for a single Managed Databases engine type and version.
  */
 export const getDatabasesEngine200Schema = z.object({
-    "engine": z.optional(z.string().describe("__Filterable__ The Managed Database engine type.")),
-"id": z.optional(z.string().describe("The Managed Database engine ID in engine/version format.")),
-"version": z.optional(z.string().describe("__Filterable__ The Managed Database engine version."))
+    "engine": z.string().describe("__Filterable__ The Managed Database engine type."),
+"id": z.string().describe("The Managed Database engine ID in engine/version format."),
+"version": z.string().describe("__Filterable__ The Managed Database engine version.")
     }).describe("Managed Database engine object.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getDatabasesEngineErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getDatabasesEngineQueryResponseSchema = z.lazy(() => getDatabasesEngine200Schema)

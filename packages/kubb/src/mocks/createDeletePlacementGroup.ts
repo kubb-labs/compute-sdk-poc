@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeletePlacementGroupPathParams(data?: Partial<DeletePlacementGroupPathParams>): DeletePlacementGroupPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeletePlacementGroupPathParams>["apiVersion"]>(["v4", "v4beta"]),"groupId": faker.number.int()},
+  ...{"groupId": faker.number.int()},
   ...data || {}
   }
 }

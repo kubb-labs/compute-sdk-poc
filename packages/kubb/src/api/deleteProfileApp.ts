@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteProfileAppMutationResponse, DeleteProfileAppPathParams } from "../types/DeleteProfileApp.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteProfileAppUrl(apiVersion: DeleteProfileAppPathParams["apiVersion"], appId: DeleteProfileAppPathParams["appId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/profile/apps/${appId}` as const }  
+function getDeleteProfileAppUrl(appId: DeleteProfileAppPathParams["appId"]) {
+  const res = { method: 'DELETE', url: `/profile/apps/${appId}` as const }  
   return res
 }
 
 /**
  * @description Expires this app token. This token can no longer be used to access your account.<<LB>>---- __CLI__.    ```    linode-cli profile app-delete 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Revoke app access
- * {@link /:apiVersion/profile/apps/:appId}
+ * {@link /profile/apps/:appId}
  */
-export async function deleteProfileApp(apiVersion: DeleteProfileAppPathParams["apiVersion"], appId: DeleteProfileAppPathParams["appId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteProfileApp(appId: DeleteProfileAppPathParams["appId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteProfileAppMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteProfileAppUrl(apiVersion, appId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteProfileAppMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteProfileAppUrl(appId).url.toString(), ... requestConfig })  
   return res.data
 }

@@ -6,133 +6,132 @@
 import { z } from "zod/v4";
 
 export const getLinodeIpsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"linodeId": z.coerce.number().int().describe("ID of the Linode to look up.")
+    "linodeId": z.coerce.number().int().describe("ID of the Linode to look up.")
     })
 
 /**
  * @description Requested Linode\'s networking configuration.
  */
 export const getLinodeIps200Schema = z.object({
-    "ipv4": z.optional(z.object({
-    "private": z.optional(z.array(z.object({
-    "address": z.optional(z.string().describe("__Read-only__ The private IPv4 address.")),
-"gateway": z.string().describe("__Read-only__ The default gateway for this address.").nullish(),
-"linode_id": z.optional(z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to.")),
-"prefix": z.optional(z.int().describe("__Read-only__ The number of bits set in the subnet mask.")),
-"public": z.optional(z.boolean().describe("__Read-only__ Whether this is a public or private IP address.")),
-"rdns": z.string().describe("The reverse DNS assigned to this address.").nullish(),
-"region": z.optional(z.string().describe("__Read-only__ The Region this address resides in.")),
-"subnet_mask": z.optional(z.string().describe("__Read-only__ The mask that separates host bits from network bits for this address.")),
-"type": z.optional(z.string().describe("__Read-only__ The type of address this is."))
-    }).describe("A private IPv4 address that exists in Linode's system.")).describe("__Read-only__ A list of private IP Address objects belonging to this Linode.")),
-"public": z.optional(z.array(z.object({
-    "address": z.optional(z.string().describe("__Read-only__ The IP address.")),
-"gateway": z.string().describe("__Read-only__ The default gateway for this address.").nullish(),
-"interface_id": z.int().describe("__Beta__, __Read-only__ The Linode interface ID that this IP address is assigned to. This value is `null` if a Linode interface is not assigned, or if the IP is assigned to a legacy configuration profile interface.").nullish(),
-"linode_id": z.optional(z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to. For IPv4 addresses, this is by default the Linode that this address was assigned to on creation, and these addresses may be moved using the [Assign IPv4s to Linodes](https://techdocs.akamai.com/linode-api/reference/post-assign-ipv4s) operation. For SLAAC and link-local addresses, this value can't be changed.")),
-"prefix": z.optional(z.int().describe("__Read-only__ The number of bits set in the subnet mask.")),
-"public": z.optional(z.boolean().describe("__Read-only__ Whether this is a public or private IP address.")),
-"rdns": z.string().describe("The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.").nullish(),
-"region": z.optional(z.string().describe("__Read-only__ The Region this IP address resides in.")),
-"subnet_mask": z.optional(z.string().describe("__Read-only__ The mask that separates host bits from network bits for this address.")),
-"type": z.optional(z.enum(["ipv4", "ipv6", "ipv6/pool", "ipv6/range"]).describe("__Read-only__ The type of address this is.")),
-"vpc_nat_1_1": z.optional(z.object({
-    "address": z.optional(z.url().describe("The IPv4 address that is configured as a 1:1 NAT for this VPC interface.")),
-"subnet_id": z.optional(z.int().describe("The `id` of the VPC Subnet for this interface.")),
-"vpc_id": z.optional(z.int().describe("__Read-only__ The `id` of the VPC configured for this interface."))
-    }).describe("IPv4 address configured as a 1:1 NAT for this Interface. If no address is configured as a 1:1 NAT, `null` is returned.\n\n> 📘\n>\n> Only allowed for `vpc` type interfaces."))
-    }).describe("An IP address that exists in Linode's system, either IPv4 or IPv6.")).describe("__Read-only__ A list of public IP Address objects belonging to this Linode.")),
-"reserved": z.optional(z.array(z.object({
-    "address": z.optional(z.string().describe("__Read-only__ The IP address.")),
-"gateway": z.string().describe("__Read-only__ The default gateway for this address.").nullish(),
-"interface_id": z.int().describe("__Beta__, __Read-only__ The Linode interface ID that this IP address is assigned to. This value is `null` if a Linode interface is not assigned, or if the IP is assigned to a legacy configuration profile interface.").nullish(),
-"linode_id": z.optional(z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to. For IPv4 addresses, this is by default the Linode that this address was assigned to on creation, and these addresses may be moved using the [Assign IPv4s to Linodes](https://techdocs.akamai.com/linode-api/reference/post-assign-ipv4s) operation. For SLAAC and link-local addresses, this value can't be changed.")),
-"prefix": z.optional(z.int().describe("__Read-only__ The number of bits set in the subnet mask.")),
-"public": z.optional(z.boolean().describe("__Read-only__ Whether this is a public or private IP address.")),
-"rdns": z.string().describe("The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.").nullish(),
-"region": z.optional(z.string().describe("__Read-only__ The Region this IP address resides in.")),
-"subnet_mask": z.optional(z.string().describe("__Read-only__ The mask that separates host bits from network bits for this address.")),
-"type": z.optional(z.enum(["ipv4", "ipv6", "ipv6/pool", "ipv6/range"]).describe("__Read-only__ The type of address this is.")),
-"vpc_nat_1_1": z.optional(z.object({
-    "address": z.optional(z.url().describe("The IPv4 address that is configured as a 1:1 NAT for this VPC interface.")),
-"subnet_id": z.optional(z.int().describe("The `id` of the VPC Subnet for this interface.")),
-"vpc_id": z.optional(z.int().describe("__Read-only__ The `id` of the VPC configured for this interface."))
-    }).describe("IPv4 address configured as a 1:1 NAT for this Interface. If no address is configured as a 1:1 NAT, `null` is returned.\n\n> 📘\n>\n> Only allowed for `vpc` type interfaces."))
-    }).describe("An IP address that exists in Linode's system, either IPv4 or IPv6.")).describe("__Read-only__ A list of reserved IP Address objects belonging to this Linode.")),
-"shared": z.optional(z.array(z.object({
-    "address": z.optional(z.string().describe("__Read-only__ The IP address.")),
-"gateway": z.string().describe("__Read-only__ The default gateway for this address.").nullish(),
-"interface_id": z.int().describe("__Beta__, __Read-only__ The Linode interface ID that this IP address is assigned to. This value is `null` if a Linode interface is not assigned, or if the IP is assigned to a legacy configuration profile interface.").nullish(),
-"linode_id": z.optional(z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to. For IPv4 addresses, this is by default the Linode that this address was assigned to on creation, and these addresses may be moved using the [Assign IPv4s to Linodes](https://techdocs.akamai.com/linode-api/reference/post-assign-ipv4s) operation. For SLAAC and link-local addresses, this value can't be changed.")),
-"prefix": z.optional(z.int().describe("__Read-only__ The number of bits set in the subnet mask.")),
-"public": z.optional(z.boolean().describe("__Read-only__ Whether this is a public or private IP address.")),
-"rdns": z.string().describe("The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.").nullish(),
-"region": z.optional(z.string().describe("__Read-only__ The Region this IP address resides in.")),
-"subnet_mask": z.optional(z.string().describe("__Read-only__ The mask that separates host bits from network bits for this address.")),
-"type": z.optional(z.enum(["ipv4", "ipv6", "ipv6/pool", "ipv6/range"]).describe("__Read-only__ The type of address this is.")),
-"vpc_nat_1_1": z.optional(z.object({
-    "address": z.optional(z.url().describe("The IPv4 address that is configured as a 1:1 NAT for this VPC interface.")),
-"subnet_id": z.optional(z.int().describe("The `id` of the VPC Subnet for this interface.")),
-"vpc_id": z.optional(z.int().describe("__Read-only__ The `id` of the VPC configured for this interface."))
-    }).describe("IPv4 address configured as a 1:1 NAT for this Interface. If no address is configured as a 1:1 NAT, `null` is returned.\n\n> 📘\n>\n> Only allowed for `vpc` type interfaces."))
-    }).describe("An IP address that exists in Linode's system, either IPv4 or IPv6.")).describe("__Read-only__ A list of shared IP Address objects assigned to this Linode.")),
-"vpc": z.optional(z.array(z.object({
-    "active": z.optional(z.boolean().describe("__Filterable__, __Read-only__ Returns `true` if the VPC interface is in use, meaning that the Linode was powered on using the `config_id` to which the interface belongs. Otherwise returns `false`.")),
-"address": z.string().describe("__Read-only__ An IPv4 address configured for this VPC interface. These follow the [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private address format. Displayed as `null` if an `address_range`.").nullish(),
-"address_range": z.string().describe("__Read-only__ A range of IPv4 addresses configured for this VPC interface. Displayed as `null` if a single `address`.").nullish(),
-"config_id": z.int().describe("__Filterable__, __Read-only__ The globally general entity identifier for the Linode configuration profile that includes the VPC. If this is a VPC Linode interface, the value is `null`.").nullish(),
-"gateway": z.string().describe("__Read-only__ The default gateway for the VPC subnet that the IP or IP range belongs to.").nullish(),
-"interface_id": z.optional(z.int().describe("__Beta__, __Read-only__ The globally general API entity identifier for the Linode interface.")),
-"linode_id": z.optional(z.int().describe("__Filterable__, __Read-only__ The identifier for the Linode the VPC interface currently belongs to.")),
-"nat_1_1": z.optional(z.string().describe("__Read-only__ The public IP address used for NAT 1:1 with the VPC. This is empty if NAT 1:1 isn't used.")),
-"prefix": z.int().describe("__Read-only__ The number of bits set in the `subnet_mask`.").nullish(),
-"region": z.optional(z.string().describe("__Filterable__, __Read-only__ The region of the VPC.")),
-"subnet_id": z.optional(z.int().describe("The `id` of the VPC Subnet for this interface.")),
-"subnet_mask": z.optional(z.string().describe("__Read-only__ The mask that separates host bits from network bits for the `address` or `address_range`.")),
-"vpc_id": z.optional(z.int().describe("__Filterable__, __Read-only__ The unique globally general API entity identifier for the VPC."))
-    }).describe("A VPC IP address that exists in Linode's system, specific to the response for the [List VPC IP addresses](https://techdocs.akamai.com/linode-api/reference/get-vpcs-ips) operation. Returned as an empty set for Linodes that are not part of a VPC.")).describe("__Read-only__ A list of Virtual Private Cloud (VPC)-specific addresses or ranges for the Linode."))
-    }).describe("__Read-only__ Information about this Linode's IPv4 addresses.")),
-"ipv6": z.optional(z.object({
-    "global": z.optional(z.array(z.object({
-    "prefix": z.optional(z.int().describe("The prefix length of the address. The total number of addresses that can be assigned from this range is calculated as 2<sup>(128 - prefix length)</sup>.")),
-"range": z.optional(z.string().describe("__Read-only__ The IPv6 address of this range.")),
-"region": z.optional(z.string().describe("__Read-only__ The region for this range of IPv6 addresses.")),
-"route_target": z.optional(z.string().describe("The IPv6 SLAAC address."))
-    }).describe("An object representing an IPv6 range.")).describe("A list of IPv6 range objects assigned to this Linode.")),
-"link_local": z.optional(z.object({
-    "address": z.optional(z.string().describe("__Read-only__ The IPv6 link-local address.")),
-"gateway": z.optional(z.string().describe("__Read-only__ The default gateway for this address.")),
-"linode_id": z.optional(z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to.")),
-"prefix": z.optional(z.int().describe("__Read-only__ The network prefix.")),
-"public": z.optional(z.boolean().describe("__Read-only__ Whether this is a public or private IP address.")),
-"rdns": z.string().describe("The reverse DNS assigned to this address.").nullish(),
-"region": z.optional(z.string().describe("__Filterable__, __Read-only__ The Region this address resides in.")),
-"subnet_mask": z.optional(z.string().describe("__Read-only__ The subnet mask.")),
-"type": z.optional(z.string().describe("__Read-only__ The type of address this is."))
-    }).describe("A link-local IPv6 address that exists in Linode's system.")),
-"slaac": z.optional(z.object({
-    "address": z.optional(z.string().describe("__Read-only__ The address.")),
-"gateway": z.optional(z.string().describe("__Read-only__ The default gateway for this address.")),
-"linode_id": z.optional(z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to.")),
-"prefix": z.optional(z.int().describe("__Read-only__ The network prefix.")),
-"public": z.optional(z.boolean().describe("__Read-only__ Whether this is a public or private IP address.")),
-"rdns": z.string().describe("The reverse DNS assigned to this address.").nullish(),
-"region": z.optional(z.string().describe("__Filterable__, __Read-only__ The Region this address resides in.")),
-"subnet_mask": z.optional(z.string().describe("__Read-only__ The subnet mask.")),
-"type": z.optional(z.string().describe("__Read-only__ The type of address this is."))
-    }).describe("A SLAAC IPv6 address that exists in Linode's system."))
-    }).describe("__Read-only__ Information about this Linode's IPv6 addresses."))
+    "ipv4": z.object({
+    "private": z.array(z.object({
+    "address": z.string().describe("__Read-only__ The private IPv4 address."),
+"gateway": z.nullable(z.string().describe("__Read-only__ The default gateway for this address.")),
+"linode_id": z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to."),
+"prefix": z.int().describe("__Read-only__ The number of bits set in the subnet mask."),
+"public": z.boolean().describe("__Read-only__ Whether this is a public or private IP address."),
+"rdns": z.nullable(z.string().describe("The reverse DNS assigned to this address.")),
+"region": z.string().describe("__Read-only__ The Region this address resides in."),
+"subnet_mask": z.string().describe("__Read-only__ The mask that separates host bits from network bits for this address."),
+"type": z.string().describe("__Read-only__ The type of address this is.")
+    }).describe("A private IPv4 address that exists in Linode's system.")).describe("__Read-only__ A list of private IP Address objects belonging to this Linode."),
+"public": z.array(z.object({
+    "address": z.string().describe("__Read-only__ The IP address."),
+"gateway": z.nullable(z.string().describe("__Read-only__ The default gateway for this address.")),
+"interface_id": z.nullable(z.int().describe("__Beta__, __Read-only__ The Linode interface ID that this IP address is assigned to. This value is `null` if a Linode interface is not assigned, or if the IP is assigned to a legacy configuration profile interface.")),
+"linode_id": z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to. For IPv4 addresses, this is by default the Linode that this address was assigned to on creation, and these addresses may be moved using the [Assign IPv4s to Linodes](https://techdocs.akamai.com/linode-api/reference/post-assign-ipv4s) operation. For SLAAC and link-local addresses, this value can't be changed."),
+"prefix": z.int().describe("__Read-only__ The number of bits set in the subnet mask."),
+"public": z.boolean().describe("__Read-only__ Whether this is a public or private IP address."),
+"rdns": z.nullable(z.string().describe("The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.")),
+"region": z.string().describe("__Read-only__ The Region this IP address resides in."),
+"subnet_mask": z.string().describe("__Read-only__ The mask that separates host bits from network bits for this address."),
+"type": z.enum(["ipv4", "ipv6", "ipv6/pool", "ipv6/range"]).describe("__Read-only__ The type of address this is."),
+"vpc_nat_1_1": z.object({
+    "address": z.url().describe("The IPv4 address that is configured as a 1:1 NAT for this VPC interface."),
+"subnet_id": z.int().describe("The `id` of the VPC Subnet for this interface."),
+"vpc_id": z.int().describe("__Read-only__ The `id` of the VPC configured for this interface.")
+    }).describe("IPv4 address configured as a 1:1 NAT for this Interface. If no address is configured as a 1:1 NAT, `null` is returned.\n\n> 📘\n>\n> Only allowed for `vpc` type interfaces.")
+    }).describe("An IP address that exists in Linode's system, either IPv4 or IPv6.")).describe("__Read-only__ A list of public IP Address objects belonging to this Linode."),
+"reserved": z.array(z.object({
+    "address": z.string().describe("__Read-only__ The IP address."),
+"gateway": z.nullable(z.string().describe("__Read-only__ The default gateway for this address.")),
+"interface_id": z.nullable(z.int().describe("__Beta__, __Read-only__ The Linode interface ID that this IP address is assigned to. This value is `null` if a Linode interface is not assigned, or if the IP is assigned to a legacy configuration profile interface.")),
+"linode_id": z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to. For IPv4 addresses, this is by default the Linode that this address was assigned to on creation, and these addresses may be moved using the [Assign IPv4s to Linodes](https://techdocs.akamai.com/linode-api/reference/post-assign-ipv4s) operation. For SLAAC and link-local addresses, this value can't be changed."),
+"prefix": z.int().describe("__Read-only__ The number of bits set in the subnet mask."),
+"public": z.boolean().describe("__Read-only__ Whether this is a public or private IP address."),
+"rdns": z.nullable(z.string().describe("The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.")),
+"region": z.string().describe("__Read-only__ The Region this IP address resides in."),
+"subnet_mask": z.string().describe("__Read-only__ The mask that separates host bits from network bits for this address."),
+"type": z.enum(["ipv4", "ipv6", "ipv6/pool", "ipv6/range"]).describe("__Read-only__ The type of address this is."),
+"vpc_nat_1_1": z.object({
+    "address": z.url().describe("The IPv4 address that is configured as a 1:1 NAT for this VPC interface."),
+"subnet_id": z.int().describe("The `id` of the VPC Subnet for this interface."),
+"vpc_id": z.int().describe("__Read-only__ The `id` of the VPC configured for this interface.")
+    }).describe("IPv4 address configured as a 1:1 NAT for this Interface. If no address is configured as a 1:1 NAT, `null` is returned.\n\n> 📘\n>\n> Only allowed for `vpc` type interfaces.")
+    }).describe("An IP address that exists in Linode's system, either IPv4 or IPv6.")).describe("__Read-only__ A list of reserved IP Address objects belonging to this Linode."),
+"shared": z.array(z.object({
+    "address": z.string().describe("__Read-only__ The IP address."),
+"gateway": z.nullable(z.string().describe("__Read-only__ The default gateway for this address.")),
+"interface_id": z.nullable(z.int().describe("__Beta__, __Read-only__ The Linode interface ID that this IP address is assigned to. This value is `null` if a Linode interface is not assigned, or if the IP is assigned to a legacy configuration profile interface.")),
+"linode_id": z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to. For IPv4 addresses, this is by default the Linode that this address was assigned to on creation, and these addresses may be moved using the [Assign IPv4s to Linodes](https://techdocs.akamai.com/linode-api/reference/post-assign-ipv4s) operation. For SLAAC and link-local addresses, this value can't be changed."),
+"prefix": z.int().describe("__Read-only__ The number of bits set in the subnet mask."),
+"public": z.boolean().describe("__Read-only__ Whether this is a public or private IP address."),
+"rdns": z.nullable(z.string().describe("The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.")),
+"region": z.string().describe("__Read-only__ The Region this IP address resides in."),
+"subnet_mask": z.string().describe("__Read-only__ The mask that separates host bits from network bits for this address."),
+"type": z.enum(["ipv4", "ipv6", "ipv6/pool", "ipv6/range"]).describe("__Read-only__ The type of address this is."),
+"vpc_nat_1_1": z.object({
+    "address": z.url().describe("The IPv4 address that is configured as a 1:1 NAT for this VPC interface."),
+"subnet_id": z.int().describe("The `id` of the VPC Subnet for this interface."),
+"vpc_id": z.int().describe("__Read-only__ The `id` of the VPC configured for this interface.")
+    }).describe("IPv4 address configured as a 1:1 NAT for this Interface. If no address is configured as a 1:1 NAT, `null` is returned.\n\n> 📘\n>\n> Only allowed for `vpc` type interfaces.")
+    }).describe("An IP address that exists in Linode's system, either IPv4 or IPv6.")).describe("__Read-only__ A list of shared IP Address objects assigned to this Linode."),
+"vpc": z.array(z.object({
+    "active": z.boolean().describe("__Filterable__, __Read-only__ Returns `true` if the VPC interface is in use, meaning that the Linode was powered on using the `config_id` to which the interface belongs. Otherwise returns `false`."),
+"address": z.nullable(z.string().describe("__Read-only__ An IPv4 address configured for this VPC interface. These follow the [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private address format. Displayed as `null` if an `address_range`.")),
+"address_range": z.nullable(z.string().describe("__Read-only__ A range of IPv4 addresses configured for this VPC interface. Displayed as `null` if a single `address`.")),
+"config_id": z.nullable(z.int().describe("__Filterable__, __Read-only__ The globally general entity identifier for the Linode configuration profile that includes the VPC. If this is a VPC Linode interface, the value is `null`.")),
+"gateway": z.nullable(z.string().describe("__Read-only__ The default gateway for the VPC subnet that the IP or IP range belongs to.")),
+"interface_id": z.int().describe("__Beta__, __Read-only__ The globally general API entity identifier for the Linode interface."),
+"linode_id": z.int().describe("__Filterable__, __Read-only__ The identifier for the Linode the VPC interface currently belongs to."),
+"nat_1_1": z.string().describe("__Read-only__ The public IP address used for NAT 1:1 with the VPC. This is empty if NAT 1:1 isn't used."),
+"prefix": z.nullable(z.int().describe("__Read-only__ The number of bits set in the `subnet_mask`.")),
+"region": z.string().describe("__Filterable__, __Read-only__ The region of the VPC."),
+"subnet_id": z.int().describe("The `id` of the VPC Subnet for this interface."),
+"subnet_mask": z.string().describe("__Read-only__ The mask that separates host bits from network bits for the `address` or `address_range`."),
+"vpc_id": z.int().describe("__Filterable__, __Read-only__ The unique globally general API entity identifier for the VPC.")
+    }).describe("A VPC IP address that exists in Linode's system, specific to the response for the [List VPC IP addresses](https://techdocs.akamai.com/linode-api/reference/get-vpcs-ips) operation. Returned as an empty set for Linodes that are not part of a VPC.")).describe("__Read-only__ A list of Virtual Private Cloud (VPC)-specific addresses or ranges for the Linode.")
+    }).describe("__Read-only__ Information about this Linode's IPv4 addresses."),
+"ipv6": z.object({
+    "global": z.array(z.object({
+    "prefix": z.int().describe("The prefix length of the address. The total number of addresses that can be assigned from this range is calculated as 2<sup>(128 - prefix length)</sup>."),
+"range": z.string().describe("__Read-only__ The IPv6 address of this range."),
+"region": z.string().describe("__Read-only__ The region for this range of IPv6 addresses."),
+"route_target": z.string().describe("The IPv6 SLAAC address.")
+    }).describe("An object representing an IPv6 range.")).describe("A list of IPv6 range objects assigned to this Linode."),
+"link_local": z.object({
+    "address": z.string().describe("__Read-only__ The IPv6 link-local address."),
+"gateway": z.string().describe("__Read-only__ The default gateway for this address."),
+"linode_id": z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to."),
+"prefix": z.int().describe("__Read-only__ The network prefix."),
+"public": z.boolean().describe("__Read-only__ Whether this is a public or private IP address."),
+"rdns": z.nullable(z.string().describe("The reverse DNS assigned to this address.")),
+"region": z.string().describe("__Filterable__, __Read-only__ The Region this address resides in."),
+"subnet_mask": z.string().describe("__Read-only__ The subnet mask."),
+"type": z.string().describe("__Read-only__ The type of address this is.")
+    }).describe("A link-local IPv6 address that exists in Linode's system."),
+"slaac": z.object({
+    "address": z.string().describe("__Read-only__ The address."),
+"gateway": z.string().describe("__Read-only__ The default gateway for this address."),
+"linode_id": z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to."),
+"prefix": z.int().describe("__Read-only__ The network prefix."),
+"public": z.boolean().describe("__Read-only__ Whether this is a public or private IP address."),
+"rdns": z.nullable(z.string().describe("The reverse DNS assigned to this address.")),
+"region": z.string().describe("__Filterable__, __Read-only__ The Region this address resides in."),
+"subnet_mask": z.string().describe("__Read-only__ The subnet mask."),
+"type": z.string().describe("__Read-only__ The type of address this is.")
+    }).describe("A SLAAC IPv6 address that exists in Linode's system.")
+    }).describe("__Read-only__ Information about this Linode's IPv6 addresses.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getLinodeIpsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getLinodeIpsQueryResponseSchema = z.lazy(() => getLinodeIps200Schema)

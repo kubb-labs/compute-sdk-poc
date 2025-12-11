@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteEntityTransferPathParams(data?: Partial<DeleteEntityTransferPathParams>): DeleteEntityTransferPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteEntityTransferPathParams>["apiVersion"]>(["v4", "v4beta"]),"token": faker.string.uuid()},
+  ...{"token": faker.string.uuid()},
   ...data || {}
   }
 }

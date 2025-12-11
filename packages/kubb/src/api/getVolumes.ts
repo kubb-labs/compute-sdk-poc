@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetVolumesQueryResponse, GetVolumesPathParams, GetVolumesQueryParams } from "../types/GetVolumes.ts";
+import type { GetVolumesQueryResponse, GetVolumesQueryParams } from "../types/GetVolumes.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetVolumesUrl(apiVersion: GetVolumesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/volumes` as const }  
+function getGetVolumesUrl() {
+  const res = { method: 'GET', url: `/volumes` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of the Block Storage volumes that you have permission to view.<<LB>>---- __CLI__.    ```    linode-cli volumes list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    volumes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List volumes
- * {@link /:apiVersion/volumes}
+ * {@link /volumes}
  */
-export async function getVolumes(apiVersion: GetVolumesPathParams["apiVersion"], params?: GetVolumesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getVolumes(params?: GetVolumesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetVolumesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVolumesUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetVolumesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVolumesUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

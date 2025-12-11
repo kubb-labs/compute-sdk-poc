@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetVlansPathParams, GetVlansQueryParams, GetVlans200, GetVlansError, GetVlansQueryResponse } from "../types/GetVlans.ts";
+import type { GetVlansQueryParams, GetVlans200, GetVlansError, GetVlansQueryResponse } from "../types/GetVlans.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetVlansPathParams(data?: Partial<GetVlansPathParams>): GetVlansPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetVlansPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetVlansQueryParams(data?: Partial<GetVlansQueryParams>): GetVlansQueryParams {
   

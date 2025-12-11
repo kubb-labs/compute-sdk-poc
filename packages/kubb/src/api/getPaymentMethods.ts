@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetPaymentMethodsQueryResponse, GetPaymentMethodsPathParams, GetPaymentMethodsQueryParams } from "../types/GetPaymentMethods.ts";
+import type { GetPaymentMethodsQueryResponse, GetPaymentMethodsQueryParams } from "../types/GetPaymentMethods.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetPaymentMethodsUrl(apiVersion: GetPaymentMethodsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/payment-methods` as const }  
+function getGetPaymentMethodsUrl() {
+  const res = { method: 'GET', url: `/account/payment-methods` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of Payment Methods for this Account.<<LB>>---- __CLI__.    ```    linode-cli payment-methods list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List payment methods
- * {@link /:apiVersion/account/payment-methods}
+ * {@link /account/payment-methods}
  */
-export async function getPaymentMethods(apiVersion: GetPaymentMethodsPathParams["apiVersion"], params?: GetPaymentMethodsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getPaymentMethods(params?: GetPaymentMethodsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetPaymentMethodsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPaymentMethodsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetPaymentMethodsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPaymentMethodsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

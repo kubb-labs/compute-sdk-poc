@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetInvoicesPathParams, GetInvoicesQueryParams, GetInvoicesHeaderParams, GetInvoices200, GetInvoicesError, GetInvoicesQueryResponse } from "../types/GetInvoices.ts";
+import type { GetInvoicesQueryParams, GetInvoicesHeaderParams, GetInvoices200, GetInvoicesError, GetInvoicesQueryResponse } from "../types/GetInvoices.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetInvoicesPathParams(data?: Partial<GetInvoicesPathParams>): GetInvoicesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetInvoicesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetInvoicesQueryParams(data?: Partial<GetInvoicesQueryParams>): GetInvoicesQueryParams {
   

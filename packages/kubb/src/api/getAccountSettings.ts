@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetAccountSettingsQueryResponse, GetAccountSettingsPathParams } from "../types/GetAccountSettings.ts";
+import type { GetAccountSettingsQueryResponse } from "../types/GetAccountSettings.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAccountSettingsUrl(apiVersion: GetAccountSettingsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/settings` as const }  
+function getGetAccountSettingsUrl() {
+  const res = { method: 'GET', url: `/account/settings` as const }  
   return res
 }
 
 /**
  * @description Returns information related to your Account settings: Managed service subscription, interface settings for new Linodes, Longview subscription, and Network Helper.<<LB>>---- __CLI__.    ```    linode-cli account settings    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get account settings
- * {@link /:apiVersion/account/settings}
+ * {@link /account/settings}
  */
-export async function getAccountSettings(apiVersion: GetAccountSettingsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAccountSettings(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAccountSettingsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountSettingsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetAccountSettingsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountSettingsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

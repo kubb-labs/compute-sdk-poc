@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetNodeBalancerVpcConfigQueryResponse, GetNodeBalancerVpcConfigPathParams } from "../types/GetNodeBalancerVpcConfig.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetNodeBalancerVpcConfigUrl(apiVersion: GetNodeBalancerVpcConfigPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerVpcConfigPathParams["nodeBalancerId"], nodeBalancerVpcConfigId: GetNodeBalancerVpcConfigPathParams["nodeBalancerVpcConfigId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/nodebalancers/${nodeBalancerId}/vpcs/${nodeBalancerVpcConfigId}` as const }  
+function getGetNodeBalancerVpcConfigUrl(nodeBalancerId: GetNodeBalancerVpcConfigPathParams["nodeBalancerId"], nodeBalancerVpcConfigId: GetNodeBalancerVpcConfigPathParams["nodeBalancerVpcConfigId"]) {
+  const res = { method: 'GET', url: `/nodebalancers/${nodeBalancerId}/vpcs/${nodeBalancerVpcConfigId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single VPC configuration for the NodeBalancer ID.<<LB>>---- __CLI__.    ```    linode-cli nodebalancers vpcs-view \  12345 7    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    nodebalancers:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a VPC configuration
- * {@link /:apiVersion/nodebalancers/:nodeBalancerId/vpcs/:nodeBalancerVpcConfigId}
+ * {@link /nodebalancers/:nodeBalancerId/vpcs/:nodeBalancerVpcConfigId}
  */
-export async function getNodeBalancerVpcConfig(apiVersion: GetNodeBalancerVpcConfigPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerVpcConfigPathParams["nodeBalancerId"], nodeBalancerVpcConfigId: GetNodeBalancerVpcConfigPathParams["nodeBalancerVpcConfigId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getNodeBalancerVpcConfig(nodeBalancerId: GetNodeBalancerVpcConfigPathParams["nodeBalancerId"], nodeBalancerVpcConfigId: GetNodeBalancerVpcConfigPathParams["nodeBalancerVpcConfigId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetNodeBalancerVpcConfigQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerVpcConfigUrl(apiVersion, nodeBalancerId, nodeBalancerVpcConfigId).url.toString(), ... requestConfig })  
+  const res = await request<GetNodeBalancerVpcConfigQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerVpcConfigUrl(nodeBalancerId, nodeBalancerVpcConfigId).url.toString(), ... requestConfig })  
   return res.data
 }

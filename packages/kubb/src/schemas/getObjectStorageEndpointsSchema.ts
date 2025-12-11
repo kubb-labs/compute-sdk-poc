@@ -5,32 +5,28 @@
 
 import { z } from "zod/v4";
 
-export const getObjectStorageEndpointsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description A paginated list of endpoints you can access.
  */
 export const getObjectStorageEndpoints200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "endpoint_type": z.optional(z.enum(["E0", "E1", "E2", "E3"]).describe("The type of `s3_endpoint` available to the active `user` in this `region`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information.")),
-"region": z.optional(z.string().describe("The Akamai cloud computing region, represented by its slug value. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view all regions and their slugs.")),
-"s3_endpoint": z.string().describe("Your S3-compatible endpoint URL, based on the `endpoint_type` and `region`. Displayed as `null` if you haven't assigned an endpoint for your user.").nullish()
-    }).describe("Object Storage endpoints object."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    "data": z.array(z.object({
+    "endpoint_type": z.enum(["E0", "E1", "E2", "E3"]).describe("The type of `s3_endpoint` available to the active `user` in this `region`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information."),
+"region": z.string().describe("The Akamai cloud computing region, represented by its slug value. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view all regions and their slugs."),
+"s3_endpoint": z.nullable(z.string().describe("Your S3-compatible endpoint URL, based on the `endpoint_type` and `region`. Displayed as `null` if you haven't assigned an endpoint for your user."))
+    }).describe("Object Storage endpoints object.")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getObjectStorageEndpointsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getObjectStorageEndpointsQueryResponseSchema = z.lazy(() => getObjectStorageEndpoints200Schema)

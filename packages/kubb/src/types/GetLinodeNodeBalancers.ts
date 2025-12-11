@@ -4,19 +4,7 @@
 */
 
 
-export const getLinodeNodeBalancersPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLinodeNodeBalancersPathParamsApiVersionEnumKey = (typeof getLinodeNodeBalancersPathParamsApiVersionEnum)[keyof typeof getLinodeNodeBalancersPathParamsApiVersionEnum];
-
 export interface GetLinodeNodeBalancersPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLinodeNodeBalancersPathParamsApiVersionEnumKey;
     /**
      * @description ID of the Linode to look up.
      * @type integer
@@ -36,132 +24,132 @@ export type DataTypeEnum14Key = (typeof dataTypeEnum14)[keyof typeof dataTypeEnu
 */
 export interface GetLinodeNodeBalancers200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description Throttle TCP connections per second for TCP, HTTP, and HTTPS configurations.  Set to `0` (zero) to disable throttling.
          * @minLength 0
          * @maxLength 20
-         * @type integer | undefined
+         * @type integer
         */
-        client_conn_throttle?: number;
+        client_conn_throttle: number;
         /**
          * @description __Read-only__ When this NodeBalancer was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description __Read-only__ This NodeBalancer\'s hostname, beginning with its IP address and ending with _.ip.linodeusercontent.com_.
-         * @type string | undefined
+         * @type string
         */
-        readonly hostname?: string;
+        readonly hostname: string;
         /**
          * @description __Read-only__ This NodeBalancer\'s unique ID.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description __Filterable__, __Read-only__ This NodeBalancer\'s public IPv4 address.
-         * @type string | undefined, ip
+         * @type string, ip
         */
-        readonly ipv4?: string;
+        readonly ipv4: string;
         /**
          * @description __Read-only__ This NodeBalancer\'s public IPv6 address.
          * @type string, ip
         */
-        readonly ipv6?: string | null;
+        readonly ipv6: string | null;
         /**
          * @description __Filterable__ This NodeBalancer\'s label. These must be unique on your Account.
          * @minLength 3
          * @maxLength 32
          * @pattern [a-zA-Z0-9-_]{3,32}
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description __Read-only__ This NodeBalancer\'s related LKE cluster, if any. The value is `null` if this NodeBalancer isn\'t related to an LKE cluster.
          * @type object
         */
-        readonly lke_cluster?: {
+        readonly lke_cluster: {
             /**
              * @description The ID of the related LKE cluster.
-             * @type string | undefined
+             * @type string
             */
-            id?: string;
+            id: string;
             /**
              * @description The label of the related LKE cluster.
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description __Read-only__ The type for LKE clusters.
-             * @type string | undefined
+             * @type string
             */
-            readonly type?: string;
+            readonly type: string;
             /**
              * @description The URL where you can access the related LKE cluster.
-             * @type string | undefined
+             * @type string
             */
-            url?: string;
+            url: string;
         } | null;
         /**
          * @description __Filterable__, __Read-only__ The Region where this NodeBalancer is located. NodeBalancers only support backends in the same Region.
-         * @type string | undefined
+         * @type string
         */
-        readonly region?: string;
+        readonly region: string;
         /**
          * @description __Filterable__ An array of Tags applied to this object.  Tags are for organizational purposes only.
-         * @type array | undefined
+         * @type array
         */
-        tags?: string[];
+        tags: string[];
         /**
          * @description __Read-only__ Information about the amount of transfer this NodeBalancer has had so far this month.
-         * @type object | undefined
+         * @type object
         */
-        readonly transfer?: {
+        readonly transfer: {
             /**
              * @description __Read-only__ The total outbound transfer, in MB, used for this NodeBalancer this month.
              * @type number
             */
-            readonly in?: number | null;
+            readonly in: number | null;
             /**
              * @description __Read-only__ The total inbound transfer, in MB, used for this NodeBalancer this month.
              * @type number
             */
-            readonly out?: number | null;
+            readonly out: number | null;
             /**
              * @description __Read-only__ The total transfer, in MB, used by this NodeBalancer this month.
              * @type number
             */
-            readonly total?: number | null;
+            readonly total: number | null;
         };
         /**
          * @description __Read-only__ The type of NodeBalancer.
-         * @type string | undefined
+         * @type string
         */
-        readonly type?: DataTypeEnum14Key;
+        readonly type: DataTypeEnum14Key;
         /**
          * @description __Read-only__ When this NodeBalancer was last updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly updated?: string;
+        readonly updated: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 export type GetLinodeNodeBalancersQueryResponse = GetLinodeNodeBalancers200;

@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostDatabasesMysqlInstancesMutationRequest, PostDatabasesMysqlInstancesMutationResponse, PostDatabasesMysqlInstancesPathParams } from "../types/PostDatabasesMysqlInstances.ts";
+import type { PostDatabasesMysqlInstancesMutationRequest, PostDatabasesMysqlInstancesMutationResponse } from "../types/PostDatabasesMysqlInstances.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostDatabasesMysqlInstancesUrl(apiVersion: PostDatabasesMysqlInstancesPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/databases/mysql/instances` as const }  
+function getPostDatabasesMysqlInstancesUrl() {
+  const res = { method: 'POST', url: `/databases/mysql/instances` as const }  
   return res
 }
 
 /**
  * @description **Provision a MySQL Managed Database**Use this operation to create a new MySQL Managed Database.- Restricted users need the `add_databases` [user grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants).- New instances can take 10 to 15 minutes to deploy.- When you create a new MySQL Managed Database, our partner [Aiven](https://aiven.io/docs/platform/concepts/cloud-security#data-encryption) automatically enables disk encryption on each cluster.- All Managed Databases include automatic, daily backups. Up to seven backups are automatically stored for each Managed Database, providing restore points for each day of the past week.- All Managed Databases include automatic updates, which apply security patches to the underlying operating system of the MySQL Managed Database. Configure the maintenance window for these updates with the [Update a managed MySQL database](https://techdocs.akamai.com/linode-api/reference/put-databases-mysql-instance) operation.- If your database cluster is configured with a single node, downtime occurs during maintenance updates. You should adjust the window to match a time that's the least disruptive to your application and users. Also consider upgrading to a [high availability](https://techdocs.akamai.com/cloud-computing/docs/aiven-database-clusters#high-availability) plan to avoid any maintenance downtime.- Major upgrades are optional until the service reaches end of service, and can be done in place.- A successful request triggers a `database_create` [event](https://techdocs.akamai.com/linode-api/reference/get-events).**Beta** **Virtual Private Cloud (VPC) support**You can create a MySQL Managed Database in a VPC using the `private_network` object in the request. Talk to your Akamai account team for more details.> 📘>> Currently, VPC subnets associated with Managed Database instances don't automatically block outbound connections outside the subnet. To limit network exposure, you should configure Cloud Firewall rules to explicitly deny outbound connections beyond the intended subnet. For more details on configuring rules, see the [Cloud Firewall](https://techdocs.akamai.com/cloud-computing/docs/cloud-firewall) documentation.**Restore a MySQL Managed Database**Include the `fork` object in the request to target a backed-up database. Your user needs `read_write` access to the target database and its status can be `active`, `degraded`, or `failed`.> 📘>> Restoring from a backup creates a second running cluster, which incurs billing. Delete the first cluster after the restore is complete, to avoid this billing.<<LB>>---- __CLI for create operation__.    ```    linode-cli databases mysql-create \  --label example-db1 \  --region us-east \  --type g6-dedicated-2 \  --cluster_size 3 \  --engine mysql/8.0.26 \  --engine_config.binlog_retention_period 60 \  --engine_config.mysql.connect_timeout 10 \  --engine_config.mysql.default_time_zone +03:00 \  --ssl_connection true \  --allow_list 203.0.113.1 \  --allow_list 192.0.1.0/24    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    databases:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create or restore a MySQL Managed Database
- * {@link /:apiVersion/databases/mysql/instances}
+ * {@link /databases/mysql/instances}
  */
-export async function postDatabasesMysqlInstances(apiVersion: PostDatabasesMysqlInstancesPathParams["apiVersion"], data: PostDatabasesMysqlInstancesMutationRequest, config: Partial<RequestConfig<PostDatabasesMysqlInstancesMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postDatabasesMysqlInstances(data: PostDatabasesMysqlInstancesMutationRequest, config: Partial<RequestConfig<PostDatabasesMysqlInstancesMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostDatabasesMysqlInstancesMutationResponse, ResponseErrorConfig<Error>, PostDatabasesMysqlInstancesMutationRequest>({ method : "POST", url : getPostDatabasesMysqlInstancesUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostDatabasesMysqlInstancesMutationResponse, ResponseErrorConfig<Error>, PostDatabasesMysqlInstancesMutationRequest>({ method : "POST", url : getPostDatabasesMysqlInstancesUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteObjectStorageSslMutationResponse, DeleteObjectStorageSslPathParams } from "../types/DeleteObjectStorageSsl.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteObjectStorageSslUrl(apiVersion: DeleteObjectStorageSslPathParams["apiVersion"], regionId: DeleteObjectStorageSslPathParams["regionId"], bucket: DeleteObjectStorageSslPathParams["bucket"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/object-storage/buckets/${regionId}/${bucket}/ssl` as const }  
+function getDeleteObjectStorageSslUrl(regionId: DeleteObjectStorageSslPathParams["regionId"], bucket: DeleteObjectStorageSslPathParams["bucket"]) {
+  const res = { method: 'DELETE', url: `/object-storage/buckets/${regionId}/${bucket}/ssl` as const }  
   return res
 }
 
 /**
  * @description Deletes this Object Storage bucket's user uploaded TLS/SSL certificate and private key.<<LB>>---- __CLI__.    ```    linode-cli object-storage ssl-delete \  us-east-1 example-bucket    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    object_storage:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete an Object Storage TLS/SSL certificate
- * {@link /:apiVersion/object-storage/buckets/:regionId/:bucket/ssl}
+ * {@link /object-storage/buckets/:regionId/:bucket/ssl}
  */
-export async function deleteObjectStorageSsl(apiVersion: DeleteObjectStorageSslPathParams["apiVersion"], regionId: DeleteObjectStorageSslPathParams["regionId"], bucket: DeleteObjectStorageSslPathParams["bucket"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteObjectStorageSsl(regionId: DeleteObjectStorageSslPathParams["regionId"], bucket: DeleteObjectStorageSslPathParams["bucket"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteObjectStorageSslMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteObjectStorageSslUrl(apiVersion, regionId, bucket).url.toString(), ... requestConfig })  
+  const res = await request<DeleteObjectStorageSslMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteObjectStorageSslUrl(regionId, bucket).url.toString(), ... requestConfig })  
   return res.data
 }

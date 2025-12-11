@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteIpv6RangeMutationResponse, DeleteIpv6RangePathParams } from "../types/DeleteIpv6Range.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteIpv6RangeUrl(apiVersion: DeleteIpv6RangePathParams["apiVersion"], range: DeleteIpv6RangePathParams["range"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/networking/ipv6/ranges/${range}` as const }  
+function getDeleteIpv6RangeUrl(range: DeleteIpv6RangePathParams["range"]) {
+  const res = { method: 'DELETE', url: `/networking/ipv6/ranges/${range}` as const }  
   return res
 }
 
 /**
  * @description Removes this IPv6 range from your account and disconnects the range from any assigned Linodes.> 📘>> You can't delete shared IPv6 ranges. Contact Customer Support for assistance.<<LB>>---- __CLI__.    ```    linode-cli networking v6-range-delete 2001:0db8::    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    ips:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete an IPv6 range
- * {@link /:apiVersion/networking/ipv6/ranges/:range}
+ * {@link /networking/ipv6/ranges/:range}
  */
-export async function deleteIpv6Range(apiVersion: DeleteIpv6RangePathParams["apiVersion"], range: DeleteIpv6RangePathParams["range"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteIpv6Range(range: DeleteIpv6RangePathParams["range"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteIpv6RangeMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteIpv6RangeUrl(apiVersion, range).url.toString(), ... requestConfig })  
+  const res = await request<DeleteIpv6RangeMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteIpv6RangeUrl(range).url.toString(), ... requestConfig })  
   return res.data
 }

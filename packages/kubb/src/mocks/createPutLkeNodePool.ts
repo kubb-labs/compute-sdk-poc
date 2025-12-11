@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutLkeNodePoolPathParams(data?: Partial<PutLkeNodePoolPathParams>): PutLkeNodePoolPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutLkeNodePoolPathParams>["apiVersion"]>(["v4", "v4beta"]),"clusterId": faker.number.int(),"poolId": faker.number.int()},
+  ...{"clusterId": faker.number.int(),"poolId": faker.number.int()},
   ...data || {}
   }
 }

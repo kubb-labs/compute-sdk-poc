@@ -5,36 +5,32 @@
 
 import { z } from "zod/v4";
 
-export const getObjectStorageQuotasPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description A paginated list of Object Storage-related quotas applied to your account.
  */
 export const getObjectStorageQuotas200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "description": z.optional(z.string().describe("A description for the Object Storage-related quota.")),
-"endpoint_type": z.optional(z.enum(["E0", "E1", "E2", "E3"]).describe("The type of `s3_endpoint`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information.")),
-"quota_id": z.optional(z.string().describe("Identifies the Object Storage-related quota. Formatted as `obj-<quota_type>-<s3_endpoint>`, where `<quota_type>` is the `resource_metric` in use: `buckets`, `objects` or `bytes`.")),
-"quota_limit": z.optional(z.int().describe("The maximum quantity of the `resource_metric` allowed by the quota.")),
-"quota_name": z.optional(z.enum(["Number of Objects", "Number of Buckets", "Total Capacity"]).describe("__Filterable__ The name of the Object Storage-related quota. This is how the quota displays in Akamai Cloud Manager. This can be `Number of Buckets`, `Number of Objects`, or `Total Capacity`.")),
-"resource_metric": z.optional(z.enum(["bucket", "object", "byte"]).describe("The specific Object Storage-based resource for the quota. A quota maximum may apply as follows:\n\n- The Object Storage `bucket` quota for a single `s3_endpoint`\n\n- The `object` quota for a single `s3_endpoint`\n\n- The `byte` count quota for content in a single `s3_endpoint`")),
-"s3_endpoint": z.optional(z.string().describe("__Filterable__ The URL for the s3 endpoint where the quota applies. Every `s3_endpoint` exists in a specific Akamai Cloud Computing data center (`region`). Run the [List Object Storage endpoints](https://techdocs.akamai.com/linode-api/reference/get-object-storage-endpoints) operation to see more specifics on this `s3_endpoint`."))
-    }).describe("The current Object Storage-related quotas on your account."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    "data": z.array(z.object({
+    "description": z.string().describe("A description for the Object Storage-related quota."),
+"endpoint_type": z.enum(["E0", "E1", "E2", "E3"]).describe("The type of `s3_endpoint`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information."),
+"quota_id": z.string().describe("Identifies the Object Storage-related quota. Formatted as `obj-<quota_type>-<s3_endpoint>`, where `<quota_type>` is the `resource_metric` in use: `buckets`, `objects` or `bytes`."),
+"quota_limit": z.int().describe("The maximum quantity of the `resource_metric` allowed by the quota."),
+"quota_name": z.enum(["Number of Objects", "Number of Buckets", "Total Capacity"]).describe("__Filterable__ The name of the Object Storage-related quota. This is how the quota displays in Akamai Cloud Manager. This can be `Number of Buckets`, `Number of Objects`, or `Total Capacity`."),
+"resource_metric": z.enum(["bucket", "object", "byte"]).describe("The specific Object Storage-based resource for the quota. A quota maximum may apply as follows:\n\n- The Object Storage `bucket` quota for a single `s3_endpoint`\n\n- The `object` quota for a single `s3_endpoint`\n\n- The `byte` count quota for content in a single `s3_endpoint`"),
+"s3_endpoint": z.string().describe("__Filterable__ The URL for the s3 endpoint where the quota applies. Every `s3_endpoint` exists in a specific Akamai Cloud Computing data center (`region`). Run the [List Object Storage endpoints](https://techdocs.akamai.com/linode-api/reference/get-object-storage-endpoints) operation to see more specifics on this `s3_endpoint`.")
+    }).describe("The current Object Storage-related quotas on your account.")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getObjectStorageQuotasErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getObjectStorageQuotasQueryResponseSchema = z.lazy(() => getObjectStorageQuotas200Schema)

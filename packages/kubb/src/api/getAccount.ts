@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetAccountQueryResponse, GetAccountPathParams } from "../types/GetAccount.ts";
+import type { GetAccountQueryResponse } from "../types/GetAccount.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAccountUrl(apiVersion: GetAccountPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account` as const }  
+function getGetAccountUrl() {
+  const res = { method: 'GET', url: `/account` as const }  
   return res
 }
 
 /**
  * @description Returns the contact and billing information related to your account.<<LB>>---- __CLI__.    ```    linode-cli account view    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get your account
- * {@link /:apiVersion/account}
+ * {@link /account}
  */
-export async function getAccount(apiVersion: GetAccountPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAccount(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAccountQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetAccountQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountUrl().url.toString(), ... requestConfig })  
   return res.data
 }

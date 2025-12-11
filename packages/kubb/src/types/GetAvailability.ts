@@ -4,21 +4,6 @@
 */
 
 
-export const getAvailabilityPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetAvailabilityPathParamsApiVersionEnumKey = (typeof getAvailabilityPathParamsApiVersionEnum)[keyof typeof getAvailabilityPathParamsApiVersionEnum];
-
-export interface GetAvailabilityPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetAvailabilityPathParamsApiVersionEnumKey;
-}
-
 export interface GetAvailabilityQueryParams {
     /**
      * @description The page of a collection to return.
@@ -42,40 +27,40 @@ export interface GetAvailabilityQueryParams {
 */
 export interface GetAvailability200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ A list of services _available_ to your account in the `region`.
-         * @type array | undefined
+         * @type array
         */
-        readonly available?: string[];
+        readonly available: string[];
         /**
          * @description __Read-only__ The Akamai cloud computing data center (region), represented by a slug value. You can view a full list of regions and their associated slugs with the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation.
-         * @type string | undefined
+         * @type string
         */
-        readonly region?: string;
+        readonly region: string;
         /**
          * @description __Read-only__ A list of services _unavailable_ to your account in the `region`.
-         * @type array | undefined
+         * @type array
         */
-        readonly unavailable?: string[];
+        readonly unavailable: string[];
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -83,19 +68,19 @@ export interface GetAvailability200 {
 */
 export interface GetAvailabilityError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -103,7 +88,6 @@ export type GetAvailabilityQueryResponse = GetAvailability200;
 
 export type GetAvailabilityQuery = {
     Response: GetAvailability200;
-    PathParams: GetAvailabilityPathParams;
     QueryParams: GetAvailabilityQueryParams;
     Errors: any;
 };

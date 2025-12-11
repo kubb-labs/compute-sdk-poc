@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetChildAccountQueryResponse, GetChildAccountPathParams } from "../types/GetChildAccount.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetChildAccountUrl(apiVersion: GetChildAccountPathParams["apiVersion"], euuId: GetChildAccountPathParams["euuId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/child-accounts/${euuId}` as const }  
+function getGetChildAccountUrl(euuId: GetChildAccountPathParams["euuId"]) {
+  const res = { method: 'GET', url: `/account/child-accounts/${euuId}` as const }  
   return res
 }
 
 /**
  * @description View a specific child account. See [Parent and Child Accounts for Akamai Partners](https://www.linode.com/docs/guides/parent-child-accounts/) for details on these accounts.> 📘>> This operation can only be accessed by an unrestricted user, or restricted user with the `child_account_access` grant.<<LB>>---- __CLI__.    ```    linode-cli child-account view A1BC2DEF-34GH-567I-J890KLMN12O34P56    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    child_account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a child account
- * {@link /:apiVersion/account/child-accounts/:euuId}
+ * {@link /account/child-accounts/:euuId}
  */
-export async function getChildAccount(apiVersion: GetChildAccountPathParams["apiVersion"], euuId: GetChildAccountPathParams["euuId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getChildAccount(euuId: GetChildAccountPathParams["euuId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetChildAccountQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetChildAccountUrl(apiVersion, euuId).url.toString(), ... requestConfig })  
+  const res = await request<GetChildAccountQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetChildAccountUrl(euuId).url.toString(), ... requestConfig })  
   return res.data
 }

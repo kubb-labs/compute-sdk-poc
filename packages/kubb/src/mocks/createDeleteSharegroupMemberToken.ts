@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteSharegroupMemberTokenPathParams(data?: Partial<DeleteSharegroupMemberTokenPathParams>): DeleteSharegroupMemberTokenPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteSharegroupMemberTokenPathParams>["apiVersion"]>(["v4", "v4beta"]),"sharegroupId": faker.number.int(),"tokenUuid": faker.string.uuid()},
+  ...{"sharegroupId": faker.number.int(),"tokenUuid": faker.string.uuid()},
   ...data || {}
   }
 }

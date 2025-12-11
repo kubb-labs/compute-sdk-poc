@@ -5,33 +5,29 @@
 
 import { z } from "zod/v4";
 
-export const getTransferPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description Returns a single Transfer object.
  */
 export const getTransfer200Schema = z.object({
-    "billable": z.optional(z.int().describe("__Read-only__ The amount of your transfer pool that is billable this billing cycle.")),
-"quota": z.optional(z.int().describe("__Read-only__ The amount of network usage allowed this billing cycle.")),
-"region_transfers": z.optional(z.array(z.object({
-    "billable": z.optional(z.int().describe("__Read-only__ The amount of your transfer pool that is billable this billing cycle for this Region.")),
-"id": z.optional(z.string().describe("The Region ID for this network utilization data.")),
-"quota": z.optional(z.int().describe("__Read-only__ The amount of network usage allowed this billing cycle for this Region.")),
-"used": z.optional(z.int().describe("__Read-only__ The amount of network usage you have used this billing cycle for this Region."))
-    }))),
-"used": z.optional(z.int().describe("__Read-only__ The amount of network usage you have used this billing cycle."))
+    "billable": z.int().describe("__Read-only__ The amount of your transfer pool that is billable this billing cycle."),
+"quota": z.int().describe("__Read-only__ The amount of network usage allowed this billing cycle."),
+"region_transfers": z.array(z.object({
+    "billable": z.int().describe("__Read-only__ The amount of your transfer pool that is billable this billing cycle for this Region."),
+"id": z.string().describe("The Region ID for this network utilization data."),
+"quota": z.int().describe("__Read-only__ The amount of network usage allowed this billing cycle for this Region."),
+"used": z.int().describe("__Read-only__ The amount of network usage you have used this billing cycle for this Region.")
+    })),
+"used": z.int().describe("__Read-only__ The amount of network usage you have used this billing cycle.")
     }).describe("An object representing your network utilization for the current month, in Gigabytes.\n\nCertain Regions have separate utilization quotas and rates. For Region-specific network utilization data, see `region_transfers`.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getTransferErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getTransferQueryResponseSchema = z.lazy(() => getTransfer200Schema)

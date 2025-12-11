@@ -4,21 +4,6 @@
 */
 
 
-export const getLinodeTypesPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLinodeTypesPathParamsApiVersionEnumKey = (typeof getLinodeTypesPathParamsApiVersionEnum)[keyof typeof getLinodeTypesPathParamsApiVersionEnum];
-
-export interface GetLinodeTypesPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLinodeTypesPathParamsApiVersionEnumKey;
-}
-
 export const dataClassEnum2 = {
     "nanode": "nanode",
     "standard": "standard",
@@ -37,159 +22,159 @@ export type DataClassEnum2Key = (typeof dataClassEnum2)[keyof typeof dataClassEn
 export interface GetLinodeTypes200 {
     /**
      * @description The Linode types.
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ Optional add-on services for Linodes and their associated cost.
-         * @type object | undefined
+         * @type object
         */
-        readonly addons?: {
+        readonly addons: {
             /**
              * @description __Read-only__ Details on the optional backup service available with a Linode.
-             * @type object | undefined
+             * @type object
             */
-            readonly backups?: {
+            readonly backups: {
                 /**
                  * @description The default cost to enable the Backups service for this Linode type. Prices are in U.S. dollars, broken down into hourly and monthly charges. Different prices apply in different regions. For region-specific prices, see `region_prices`.
-                 * @type object | undefined
+                 * @type object
                 */
-                price?: {
+                price: {
                     /**
                      * @description The hourly cost for the Backups service, in U.S. dollars.
-                     * @type number | undefined
+                     * @type number
                     */
-                    hourly?: number;
+                    hourly: number;
                     /**
                      * @description The monthly cost for the Backups service, in U.S. dollars.
-                     * @type number | undefined
+                     * @type number
                     */
-                    monthly?: number;
+                    monthly: number;
                 };
                 /**
-                 * @type array | undefined
+                 * @type array
                 */
-                region_prices?: {
+                region_prices: {
                     /**
                      * @description The hourly cost for the Backups service in this region, in U.S. dollars.
-                     * @type number | undefined
+                     * @type number
                     */
-                    hourly?: number;
+                    hourly: number;
                     /**
                      * @description The unique identifier for the region.
-                     * @type string | undefined
+                     * @type string
                     */
-                    id?: string;
+                    id: string;
                     /**
                      * @description The monthly cost for the Backups service in this region, in U.S. dollars.
-                     * @type number | undefined
+                     * @type number
                     */
-                    monthly?: number;
+                    monthly: number;
                 }[];
             };
         };
         /**
          * @description __Filterable__, __Read-only__ The class of the Linode type.\n\n- `nanode`. These instances are good for low-duty workloads, where performance isn\'t critical.\n\n- `standard`. These instances are good for medium-duty workloads, and offer a good mix of performance, resources, and price.\n\n- `dedicated`. These instances are good for full-duty workloads where consistent performance is important.\n\n- `premium` (limited regions). This includes the features of a `dedicated` instance as well as the latest AMD EPYC&trade; CPUs. This ensures your applications are running on the latest hardware with consistently high performance. Only available in [regions](https://techdocs.akamai.com/linode-api/reference/get-regions) with \"Premium Plans\" in their `capabilities`.\n\n- `gpu` (limited regions). Linodes with dedicated NVIDIA Quadro&reg; RTX 6000 GPUs accelerate highly specialized applications such as machine learning, AI, and video transcoding. Only available in [regions](https://techdocs.akamai.com/linode-api/reference/get-regions) with `GPU Linodes` in their `capabilities`.\n\n- `accelerated` (limited regions). These leverage the power of dedicated, application-specific integrated circuits (ASIC), starting with NETINT Video Processing Units (VPUs). They\'re ideal for video transcoding, media processing, and other compute-heavy workloads. Designed to offload specialized tasks, these instances deliver faster processing times and greater efficiency than traditional CPU-based solutions. Only available in [regions](https://techdocs.akamai.com/linode-api/reference/get-regions) with `Accelerated` in their `capabilities`.\n\n- `highmem`. High Memory instances favor RAM over other resources, and can be good for memory hungry use cases like caching and in-memory databases. All High Memory plans contain dedicated CPU cores.\n\n> 📘\n>\n> - A `nanode` class is listed as a 1 GB Linode in Cloud Manager. The API, the CLI, and billing continue to refer to these as a Nanode.\n>\n> - A `standard` class is listed as a Shared Linode in Cloud Manager. The API, the CLI, and billing still refer to these as Standard.
-         * @type string | undefined
+         * @type string
         */
-        readonly class?: DataClassEnum2Key;
+        readonly class: DataClassEnum2Key;
         /**
          * @description __Filterable__, __Read-only__ The Linode type\'s disk size in MB.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly disk?: number;
+        readonly disk: number;
         /**
          * @description __Filterable__, __Read-only__ The number of GPUs this Linode type offers.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly gpus?: number;
+        readonly gpus: number;
         /**
          * @description __Read-only__ The ID representing the Linode type.
-         * @type string | undefined
+         * @type string
         */
-        readonly id?: string;
+        readonly id: string;
         /**
          * @description __Filterable__, __Read-only__ The display name for the Linode type.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Filterable__, __Read-only__ Amount of RAM included in this Linode type.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly memory?: number;
+        readonly memory: number;
         /**
          * @description __Filterable__, __Read-only__ The Mbits outbound bandwidth allocation.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly network_out?: number;
+        readonly network_out: number;
         /**
          * @description __Read-only__ The default cost of provisioning this Linode type. Prices are in U.S. dollars, broken down into hourly and monthly charges. Certain regions have different prices. For region-specific pricing, see `region_prices`.
-         * @type object | undefined
+         * @type object
         */
-        readonly price?: {
+        readonly price: {
             /**
              * @description The cost per hour in U.S. dollars.
-             * @type number | undefined
+             * @type number
             */
-            hourly?: number;
+            hourly: number;
             /**
              * @description The cost per month in U.S. dollars.
-             * @type number | undefined
+             * @type number
             */
-            monthly?: number;
+            monthly: number;
         };
         /**
-         * @type array | undefined
+         * @type array
         */
-        region_prices?: {
+        region_prices: {
             /**
              * @description The cost per hour for this region in U.S. dollars.
-             * @type number | undefined
+             * @type number
             */
-            hourly?: number;
+            hourly: number;
             /**
              * @description The unique identifier for the region.
-             * @type string | undefined
+             * @type string
             */
-            id?: string;
+            id: string;
             /**
              * @description The cost per month for this region in U.S. dollars.
-             * @type number | undefined
+             * @type number
             */
-            monthly?: number;
+            monthly: number;
         }[];
         /**
          * @description __Read-only__ After a [mutate](https://techdocs.akamai.com/linode-api/reference/post-mutate-linode-instance), the Linode is upgraded to this Linode type. If `null`, this Linode type can\'t be mutated.
          * @type string
         */
-        readonly successor?: string | null;
+        readonly successor: string | null;
         /**
          * @description __Filterable__, __Read-only__ The monthly outbound transfer amount in MB.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly transfer?: number;
+        readonly transfer: number;
         /**
          * @description __Filterable__, __Read-only__ The number of VCPU cores this Linode type offers.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly vcpus?: number;
+        readonly vcpus: number;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -197,19 +182,19 @@ export interface GetLinodeTypes200 {
 */
 export interface GetLinodeTypesError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -217,6 +202,5 @@ export type GetLinodeTypesQueryResponse = GetLinodeTypes200;
 
 export type GetLinodeTypesQuery = {
     Response: GetLinodeTypes200;
-    PathParams: GetLinodeTypesPathParams;
     Errors: any;
 };

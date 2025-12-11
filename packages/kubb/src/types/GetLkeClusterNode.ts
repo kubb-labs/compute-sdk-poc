@@ -4,19 +4,7 @@
 */
 
 
-export const getLkeClusterNodePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLkeClusterNodePathParamsApiVersionEnumKey = (typeof getLkeClusterNodePathParamsApiVersionEnum)[keyof typeof getLkeClusterNodePathParamsApiVersionEnum];
-
 export interface GetLkeClusterNodePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLkeClusterNodePathParamsApiVersionEnumKey;
     /**
      * @description ID of the Kubernetes cluster containing the Node.
      * @type integer
@@ -42,19 +30,19 @@ export type GetLkeClusterNode200StatusEnumKey = (typeof getLkeClusterNode200Stat
 export interface GetLkeClusterNode200 {
     /**
      * @description The Node\'s ID.
-     * @type string | undefined
+     * @type string
     */
-    id?: string;
+    id: string;
     /**
      * @description The Linode\'s ID. When no Linode is currently provisioned for this Node, this will be `null`.
      * @type integer
     */
-    instance_id?: number | null;
+    instance_id: number | null;
     /**
      * @description The creation status of this Node. This status is distinct from this Node\'s readiness as a Kubernetes Node Object as determined by the command `kubectl get nodes`.\n\n`not_ready` indicates that the Linode is still being created.\n\n`ready` indicates that the Linode has successfully been created and is running Kubernetes software.
-     * @type string | undefined
+     * @type string
     */
-    status?: GetLkeClusterNode200StatusEnumKey;
+    status: GetLkeClusterNode200StatusEnumKey;
 }
 
 /**
@@ -62,19 +50,19 @@ export interface GetLkeClusterNode200 {
 */
 export interface GetLkeClusterNodeError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

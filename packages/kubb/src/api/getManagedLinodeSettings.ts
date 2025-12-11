@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetManagedLinodeSettingsQueryResponse, GetManagedLinodeSettingsPathParams, GetManagedLinodeSettingsQueryParams } from "../types/GetManagedLinodeSettings.ts";
+import type { GetManagedLinodeSettingsQueryResponse, GetManagedLinodeSettingsQueryParams } from "../types/GetManagedLinodeSettings.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetManagedLinodeSettingsUrl(apiVersion: GetManagedLinodeSettingsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/managed/linode-settings` as const }  
+function getGetManagedLinodeSettingsUrl() {
+  const res = { method: 'GET', url: `/managed/linode-settings` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of managed settings for your Linodes (one entry per Linode).This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed linode-settings-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List managed Linode settings
- * {@link /:apiVersion/managed/linode-settings}
+ * {@link /managed/linode-settings}
  */
-export async function getManagedLinodeSettings(apiVersion: GetManagedLinodeSettingsPathParams["apiVersion"], params?: GetManagedLinodeSettingsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getManagedLinodeSettings(params?: GetManagedLinodeSettingsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetManagedLinodeSettingsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedLinodeSettingsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetManagedLinodeSettingsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedLinodeSettingsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

@@ -5,37 +5,33 @@
 
 import { z } from "zod/v4";
 
-export const postPaymentPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description Payment submitted successfully.
  */
 export const postPayment200Schema = z.object({
-    "date": z.optional(z.string().datetime().describe("__Filterable__, __Read-only__ When the payment was made.")),
-"id": z.optional(z.int().describe("__Read-only__ The unique ID of the payment.")),
-"usd": z.optional(z.int().describe("__Filterable__, __Read-only__ The amount, in US dollars, of the payment."))
+    "date": z.string().datetime().describe("__Filterable__, __Read-only__ When the payment was made."),
+"id": z.int().describe("__Read-only__ The unique ID of the payment."),
+"usd": z.int().describe("__Filterable__, __Read-only__ The amount, in US dollars, of the payment.")
     }).describe("Payment object response.")
 
 /**
  * @description Accepted with warning.\n\nA warnings array is included with the standard 200 response body.
  */
 export const postPayment202Schema = z.object({
-    "warnings": z.optional(z.array(z.object({
-    "details": z.optional(z.string().describe("Specific information related to the warning.")),
-"title": z.optional(z.string().describe("The general warning message."))
-    }).describe("An object for describing a single warning associated with a response.")))
+    "warnings": z.array(z.object({
+    "details": z.string().describe("Specific information related to the warning."),
+"title": z.string().describe("The general warning message.")
+    }).describe("An object for describing a single warning associated with a response."))
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const postPaymentErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 /**

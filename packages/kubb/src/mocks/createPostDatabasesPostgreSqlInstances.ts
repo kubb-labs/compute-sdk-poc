@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostDatabasesPostgreSqlInstancesPathParams, PostDatabasesPostgreSqlInstances200, PostDatabasesPostgreSqlInstancesError, PostDatabasesPostgreSqlInstancesMutationRequest, PostDatabasesPostgreSqlInstancesMutationResponse } from "../types/PostDatabasesPostgreSqlInstances.ts";
+import type { PostDatabasesPostgreSqlInstances200, PostDatabasesPostgreSqlInstancesError, PostDatabasesPostgreSqlInstancesMutationRequest, PostDatabasesPostgreSqlInstancesMutationResponse } from "../types/PostDatabasesPostgreSqlInstances.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostDatabasesPostgreSqlInstancesPathParams(data?: Partial<PostDatabasesPostgreSqlInstancesPathParams>): PostDatabasesPostgreSqlInstancesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostDatabasesPostgreSqlInstancesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A new PostgreSQL Managed Database is provisioning.

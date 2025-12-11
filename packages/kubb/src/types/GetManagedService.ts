@@ -4,19 +4,7 @@
 */
 
 
-export const getManagedServicePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetManagedServicePathParamsApiVersionEnumKey = (typeof getManagedServicePathParamsApiVersionEnum)[keyof typeof getManagedServicePathParamsApiVersionEnum];
-
 export interface GetManagedServicePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetManagedServicePathParamsApiVersionEnumKey;
     /**
      * @description The ID of the Managed Service to access.
      * @type integer
@@ -48,78 +36,78 @@ export interface GetManagedService200 {
      * @description The URL at which this Service is monitored. URL parameters such as `?no-cache=1` are preserved. URL fragments/anchors such as `#monitor` are __not__ preserved.
      * @minLength 3
      * @maxLength 100
-     * @type string | undefined, url
+     * @type string, url
     */
-    address?: string;
+    address: string;
     /**
      * @description What to expect to find in the response body for the Service to be considered up.
      * @minLength 0
      * @maxLength 100
      * @type string
     */
-    body?: string | null;
+    body: string | null;
     /**
      * @description The group of ManagedContacts who should be notified or consulted with when an Issue is detected.
      * @minLength 0
      * @maxLength 50
-     * @type string | undefined
+     * @type string
     */
-    consultation_group?: string;
+    consultation_group: string;
     /**
      * @description __Read-only__ When this Managed Service was created.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description An array of ManagedCredential IDs that should be used when attempting to resolve issues with this Service.
-     * @type array | undefined
+     * @type array
     */
-    credentials?: number[];
+    credentials: number[];
     /**
      * @description __Read-only__ This Service\'s unique ID.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description The label for this Service. This is for display purposes only.
      * @minLength 3
      * @maxLength 64
      * @pattern [a-zA-Z0-9-_ \.]{3,64}
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description Any information relevant to the Service that Linode special forces should know when attempting to resolve Issues.
      * @type string
     */
-    notes?: string | null;
+    notes: string | null;
     /**
      * @description The Region in which this Service is located. This is required if address is a private IP, and may not be set otherwise.
      * @type string
     */
-    region?: string | null;
+    region: string | null;
     /**
      * @description How this Service is monitored.
-     * @type string | undefined
+     * @type string
     */
-    service_type?: GetManagedService200ServiceTypeEnumKey;
+    service_type: GetManagedService200ServiceTypeEnumKey;
     /**
      * @description __Read-only__ The current status of this Service.
-     * @type string | undefined
+     * @type string
     */
-    readonly status?: GetManagedService200StatusEnumKey;
+    readonly status: GetManagedService200StatusEnumKey;
     /**
      * @description How long to wait, in seconds, for a response before considering the Service to be down.
      * @minLength 1
      * @maxLength 255
-     * @type integer | undefined
+     * @type integer
     */
-    timeout?: number;
+    timeout: number;
     /**
      * @description __Read-only__ When this Managed Service was last updated.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly updated?: string;
+    readonly updated: string;
 }
 
 /**
@@ -127,19 +115,19 @@ export interface GetManagedService200 {
 */
 export interface GetManagedServiceError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

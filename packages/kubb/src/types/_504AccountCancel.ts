@@ -6,13 +6,13 @@
 
 export interface _504AccountCancel {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description A string explaining that the account is taking longer to close than expected.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }

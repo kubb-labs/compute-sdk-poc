@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostDatabasesMysqlInstancesPathParams, PostDatabasesMysqlInstances200, PostDatabasesMysqlInstancesError, PostDatabasesMysqlInstancesMutationRequest, PostDatabasesMysqlInstancesMutationResponse } from "../types/PostDatabasesMysqlInstances.ts";
+import type { PostDatabasesMysqlInstances200, PostDatabasesMysqlInstancesError, PostDatabasesMysqlInstancesMutationRequest, PostDatabasesMysqlInstancesMutationResponse } from "../types/PostDatabasesMysqlInstances.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostDatabasesMysqlInstancesPathParams(data?: Partial<PostDatabasesMysqlInstancesPathParams>): PostDatabasesMysqlInstancesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostDatabasesMysqlInstancesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A new MySQL Managed Database is deploying.

@@ -4,19 +4,7 @@
 */
 
 
-export const getObjectStorageBucketAccessPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetObjectStorageBucketAccessPathParamsApiVersionEnumKey = (typeof getObjectStorageBucketAccessPathParamsApiVersionEnum)[keyof typeof getObjectStorageBucketAccessPathParamsApiVersionEnum];
-
 export interface GetObjectStorageBucketAccessPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetObjectStorageBucketAccessPathParamsApiVersionEnumKey;
     /**
      * @description Identifies a region where this bucket lives.\n\n> 📘\n>\n> You can use a `clusterId` in place of `regionId` in requests for buckets that you created using the legacy version of the API. Run [List clusters](https://techdocs.akamai.com/linode-api/reference/get-object-storage-clusters) to see each cluster `id`.
      * @type string
@@ -45,24 +33,24 @@ export type GetObjectStorageBucketAccess200AclEnumKey = (typeof getObjectStorage
 export interface GetObjectStorageBucketAccess200 {
     /**
      * @description The S3 predefined collection of grantees and permissions set for the bucket, also referred to as a [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
-     * @type string | undefined
+     * @type string
     */
-    acl?: GetObjectStorageBucketAccess200AclEnumKey;
+    acl: GetObjectStorageBucketAccess200AclEnumKey;
     /**
      * @description The full XML of the object\'s ACL policy.
-     * @type string | undefined
+     * @type string
     */
-    acl_xml?: string;
+    acl_xml: string;
     /**
      * @description If `true`, cross-origin resource sharing (CORS) is enabled for all origins in the bucket. Returned as `null` for `E2` and `E3` [endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) because CORS is not supported.
      * @type boolean
     */
-    cors_enabled?: boolean | null;
+    cors_enabled: boolean | null;
     /**
      * @description The full XML of the bucket\'s CORS policy. Returned as an empty object if `cors_enabled` is `false`, and `null` for `E2` and `E3` [endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types). CORS is not supported with these endpoint types.
      * @type string
     */
-    cors_xml?: string | null;
+    cors_xml: string | null;
 }
 
 /**
@@ -70,19 +58,19 @@ export interface GetObjectStorageBucketAccess200 {
 */
 export interface GetObjectStorageBucketAccessError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

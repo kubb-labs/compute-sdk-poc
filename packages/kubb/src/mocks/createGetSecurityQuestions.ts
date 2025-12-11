@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetSecurityQuestionsPathParams, GetSecurityQuestions200, GetSecurityQuestionsError, GetSecurityQuestionsQueryResponse } from "../types/GetSecurityQuestions.ts";
+import type { GetSecurityQuestions200, GetSecurityQuestionsError, GetSecurityQuestionsQueryResponse } from "../types/GetSecurityQuestions.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetSecurityQuestionsPathParams(data?: Partial<GetSecurityQuestionsPathParams>): GetSecurityQuestionsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetSecurityQuestionsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a list of security questions.

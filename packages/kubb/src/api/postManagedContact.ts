@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostManagedContactMutationRequest, PostManagedContactMutationResponse, PostManagedContactPathParams } from "../types/PostManagedContact.ts";
+import type { PostManagedContactMutationRequest, PostManagedContactMutationResponse } from "../types/PostManagedContact.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostManagedContactUrl(apiVersion: PostManagedContactPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/managed/contacts` as const }  
+function getPostManagedContactUrl() {
+  const res = { method: 'POST', url: `/managed/contacts` as const }  
   return res
 }
 
 /**
  * @description Creates a managed contact. When investigating or resolving an issue with a service monitor, Akamai Support may reach out to this contact.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed contact-create \  --name "John Doe" \  --email "john.doe@example.org" \  --phone.primary "123-456-7890"    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a managed contact
- * {@link /:apiVersion/managed/contacts}
+ * {@link /managed/contacts}
  */
-export async function postManagedContact(apiVersion: PostManagedContactPathParams["apiVersion"], data?: PostManagedContactMutationRequest, config: Partial<RequestConfig<PostManagedContactMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postManagedContact(data?: PostManagedContactMutationRequest, config: Partial<RequestConfig<PostManagedContactMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostManagedContactMutationResponse, ResponseErrorConfig<Error>, PostManagedContactMutationRequest>({ method : "POST", url : getPostManagedContactUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostManagedContactMutationResponse, ResponseErrorConfig<Error>, PostManagedContactMutationRequest>({ method : "POST", url : getPostManagedContactUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostRebootLinodeInstanceMutationRequest, PostRebootLinodeInstanceMutationResponse, PostRebootLinodeInstancePathParams } from "../types/PostRebootLinodeInstance.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostRebootLinodeInstanceUrl(apiVersion: PostRebootLinodeInstancePathParams["apiVersion"], linodeId: PostRebootLinodeInstancePathParams["linodeId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/instances/${linodeId}/reboot` as const }  
+function getPostRebootLinodeInstanceUrl(linodeId: PostRebootLinodeInstancePathParams["linodeId"]) {
+  const res = { method: 'POST', url: `/linode/instances/${linodeId}/reboot` as const }  
   return res
 }
 
 /**
  * @description Reboots a Linode you have permission to modify. If any actions are currently running or queued, those actions must be completed first before you can initiate a reboot.If the Linode is using Linode interfaces, where `interface_generation` is set as `linode`, an error is returned if the Linode has to reboot without any interface defined.<<LB>>---- __CLI__.    ```    linode-cli linodes reboot 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Reboot a Linode
- * {@link /:apiVersion/linode/instances/:linodeId/reboot}
+ * {@link /linode/instances/:linodeId/reboot}
  */
-export async function postRebootLinodeInstance(apiVersion: PostRebootLinodeInstancePathParams["apiVersion"], linodeId: PostRebootLinodeInstancePathParams["linodeId"], data?: PostRebootLinodeInstanceMutationRequest, config: Partial<RequestConfig<PostRebootLinodeInstanceMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postRebootLinodeInstance(linodeId: PostRebootLinodeInstancePathParams["linodeId"], data?: PostRebootLinodeInstanceMutationRequest, config: Partial<RequestConfig<PostRebootLinodeInstanceMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostRebootLinodeInstanceMutationResponse, ResponseErrorConfig<Error>, PostRebootLinodeInstanceMutationRequest>({ method : "POST", url : getPostRebootLinodeInstanceUrl(apiVersion, linodeId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostRebootLinodeInstanceMutationResponse, ResponseErrorConfig<Error>, PostRebootLinodeInstanceMutationRequest>({ method : "POST", url : getPostRebootLinodeInstanceUrl(linodeId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

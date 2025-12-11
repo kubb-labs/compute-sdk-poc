@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetManagedServiceQueryResponse, GetManagedServicePathParams } from "../types/GetManagedService.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetManagedServiceUrl(apiVersion: GetManagedServicePathParams["apiVersion"], serviceId: GetManagedServicePathParams["serviceId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/managed/services/${serviceId}` as const }  
+function getGetManagedServiceUrl(serviceId: GetManagedServicePathParams["serviceId"]) {
+  const res = { method: 'GET', url: `/managed/services/${serviceId}` as const }  
   return res
 }
 
 /**
  * @description Returns the configuration settings for a single service monitor.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed service-view 9994    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a managed service monitor
- * {@link /:apiVersion/managed/services/:serviceId}
+ * {@link /managed/services/:serviceId}
  */
-export async function getManagedService(apiVersion: GetManagedServicePathParams["apiVersion"], serviceId: GetManagedServicePathParams["serviceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getManagedService(serviceId: GetManagedServicePathParams["serviceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetManagedServiceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedServiceUrl(apiVersion, serviceId).url.toString(), ... requestConfig })  
+  const res = await request<GetManagedServiceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedServiceUrl(serviceId).url.toString(), ... requestConfig })  
   return res.data
 }

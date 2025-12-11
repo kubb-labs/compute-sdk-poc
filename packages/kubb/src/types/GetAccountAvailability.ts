@@ -4,19 +4,7 @@
 */
 
 
-export const getAccountAvailabilityPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetAccountAvailabilityPathParamsApiVersionEnumKey = (typeof getAccountAvailabilityPathParamsApiVersionEnum)[keyof typeof getAccountAvailabilityPathParamsApiVersionEnum];
-
 export interface GetAccountAvailabilityPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetAccountAvailabilityPathParamsApiVersionEnumKey;
     /**
      * @description The abbreviated value (\"slug\") for the applicable data center. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view the slug for each data center.
      * @type string
@@ -30,19 +18,19 @@ export interface GetAccountAvailabilityPathParams {
 export interface GetAccountAvailability200 {
     /**
      * @description __Read-only__ A list of services _available_ to your account in the `region`.
-     * @type array | undefined
+     * @type array
     */
-    readonly available?: string[];
+    readonly available: string[];
     /**
      * @description __Read-only__ The Akamai cloud computing data center (region), represented by a slug value. You can view a full list of regions and their associated slugs with the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation.
-     * @type string | undefined
+     * @type string
     */
-    readonly region?: string;
+    readonly region: string;
     /**
      * @description __Read-only__ A list of services _unavailable_ to your account in the `region`.
-     * @type array | undefined
+     * @type array
     */
-    readonly unavailable?: string[];
+    readonly unavailable: string[];
 }
 
 /**
@@ -50,19 +38,19 @@ export interface GetAccountAvailability200 {
 */
 export interface GetAccountAvailabilityError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetLkeTypesPathParams, GetLkeTypes200, GetLkeTypesError, GetLkeTypesQueryResponse } from "../types/GetLkeTypes.ts";
+import type { GetLkeTypes200, GetLkeTypesError, GetLkeTypesQueryResponse } from "../types/GetLkeTypes.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetLkeTypesPathParams(data?: Partial<GetLkeTypesPathParams>): GetLkeTypesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLkeTypesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A collection of Kubernetes types.

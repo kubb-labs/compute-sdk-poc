@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetLkeVersionsQueryResponse, GetLkeVersionsPathParams } from "../types/GetLkeVersions.ts";
+import type { GetLkeVersionsQueryResponse } from "../types/GetLkeVersions.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLkeVersionsUrl(apiVersion: GetLkeVersionsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/lke/versions` as const }  
+function getGetLkeVersionsUrl() {
+  const res = { method: 'GET', url: `/lke/versions` as const }  
   return res
 }
 
 /**
  * @description List LKE Kubernetes versions available for deployment to a standard-tier Kubernetes cluster.<<LB>>---- __CLI__.    ```    linode-cli lke versions-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List LKE Kubernetes versions (non-enterprise)
- * {@link /:apiVersion/lke/versions}
+ * {@link /lke/versions}
  */
-export async function getLkeVersions(apiVersion: GetLkeVersionsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLkeVersions(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLkeVersionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeVersionsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetLkeVersionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeVersionsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

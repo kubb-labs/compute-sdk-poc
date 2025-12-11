@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutSharegroupImageshareMutationRequest, PutSharegroupImageshareMutationResponse, PutSharegroupImagesharePathParams } from "../types/PutSharegroupImageshare.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutSharegroupImageshareUrl(apiVersion: PutSharegroupImagesharePathParams["apiVersion"], sharegroupId: PutSharegroupImagesharePathParams["sharegroupId"], imageId: PutSharegroupImagesharePathParams["imageId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/images/sharegroups/${sharegroupId}/images/${imageId}` as const }  
+function getPutSharegroupImageshareUrl(sharegroupId: PutSharegroupImagesharePathParams["sharegroupId"], imageId: PutSharegroupImagesharePathParams["imageId"]) {
+  const res = { method: 'PUT', url: `/images/sharegroups/${sharegroupId}/images/${imageId}` as const }  
   return res
 }
 
 /**
  * @description Updates the details of an image shared within a share group. Run this operation to edit the `label` and `description` of a particular shared image.- Run the [List share groups](https://techdocs.akamai.com/linode-api/reference/get-sharegroups) operation to get the `id` you should use as the `(sharegroupId)` path parameter that identifies an existing share group. To get the `imageID`, run the [List shared images by group](https://techdocs.akamai.com/linode-api/reference/get-sharegroup-images) operation.- You can update either of the fields, but when you provide a new `label`, make sure that it's not an empty string.<<LB>>---- __CLI__.    ```    linode-cli image-sharegroups image-update 123 1234 --label "new_label" --description "A new description."    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a shared image
- * {@link /:apiVersion/images/sharegroups/:sharegroupId/images/:imageId}
+ * {@link /images/sharegroups/:sharegroupId/images/:imageId}
  */
-export async function putSharegroupImageshare(apiVersion: PutSharegroupImagesharePathParams["apiVersion"], sharegroupId: PutSharegroupImagesharePathParams["sharegroupId"], imageId: PutSharegroupImagesharePathParams["imageId"], data?: PutSharegroupImageshareMutationRequest, config: Partial<RequestConfig<PutSharegroupImageshareMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putSharegroupImageshare(sharegroupId: PutSharegroupImagesharePathParams["sharegroupId"], imageId: PutSharegroupImagesharePathParams["imageId"], data?: PutSharegroupImageshareMutationRequest, config: Partial<RequestConfig<PutSharegroupImageshareMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutSharegroupImageshareMutationResponse, ResponseErrorConfig<Error>, PutSharegroupImageshareMutationRequest>({ method : "PUT", url : getPutSharegroupImageshareUrl(apiVersion, sharegroupId, imageId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutSharegroupImageshareMutationResponse, ResponseErrorConfig<Error>, PutSharegroupImageshareMutationRequest>({ method : "PUT", url : getPutSharegroupImageshareUrl(sharegroupId, imageId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

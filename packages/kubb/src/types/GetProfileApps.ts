@@ -4,21 +4,6 @@
 */
 
 
-export const getProfileAppsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetProfileAppsPathParamsApiVersionEnumKey = (typeof getProfileAppsPathParamsApiVersionEnum)[keyof typeof getProfileAppsPathParamsApiVersionEnum];
-
-export interface GetProfileAppsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetProfileAppsPathParamsApiVersionEnumKey;
-}
-
 export interface GetProfileAppsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -42,60 +27,60 @@ export interface GetProfileAppsQueryParams {
 */
 export interface GetProfileApps200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Filterable__, __Read-only__ When this app was authorized.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description __Filterable__, __Read-only__ When the app\'s access to your account expires. If `null`, the app\'s access must be revoked manually.
          * @type string, date-time
         */
-        readonly expiry?: string | null;
+        readonly expiry: string | null;
         /**
          * @description __Read-only__ This authorization\'s ID, used for revoking access.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description __Filterable__, __Read-only__ The name of the application you\'ve authorized.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Read-only__ The OAuth scopes this app was authorized with.  This defines what parts of your Account the app is allowed to access.
-         * @type string | undefined, oauth-scopes
+         * @type string, oauth-scopes
         */
-        readonly scopes?: string;
+        readonly scopes: string;
         /**
          * @description __Read-only__ The URL at which this app\'s thumbnail may be accessed.
          * @type string, url
         */
-        readonly thumbnail_url?: string | null;
+        readonly thumbnail_url: string | null;
         /**
          * @description __Read-only__ The website where you can get more information about this app.
-         * @type string | undefined, url
+         * @type string, url
         */
-        readonly website?: string;
+        readonly website: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -103,19 +88,19 @@ export interface GetProfileApps200 {
 */
 export interface GetProfileAppsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -123,7 +108,6 @@ export type GetProfileAppsQueryResponse = GetProfileApps200;
 
 export type GetProfileAppsQuery = {
     Response: GetProfileApps200;
-    PathParams: GetProfileAppsPathParams;
     QueryParams: GetProfileAppsQueryParams;
     Errors: any;
 };

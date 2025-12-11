@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetUserGrantsQueryResponse, GetUserGrantsPathParams } from "../types/GetUserGrants.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetUserGrantsUrl(apiVersion: GetUserGrantsPathParams["apiVersion"], username: GetUserGrantsPathParams["username"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/users/${username}/grants` as const }  
+function getGetUserGrantsUrl(username: GetUserGrantsPathParams["username"]) {
+  const res = { method: 'GET', url: `/account/users/${username}/grants` as const }  
   return res
 }
 
 /**
  * @description Returns the full grants structure for an account username you specify. This includes all entities on the account, and the level of access this user has to each of them.This doesn't apply to the account owner or the current authenticated user. You can run the [List grants](https://techdocs.akamai.com/linode-api/reference/get-profile-grants) operation to view those grants. However, this doesn't show the entities that they _don't_ have access to.> 📘>> This operation can only be accessed by account users with _unrestricted_ access. Talk to your local account administrator about access management.<<LB>>---- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List a user's grants
- * {@link /:apiVersion/account/users/:username/grants}
+ * {@link /account/users/:username/grants}
  */
-export async function getUserGrants(apiVersion: GetUserGrantsPathParams["apiVersion"], username: GetUserGrantsPathParams["username"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getUserGrants(username: GetUserGrantsPathParams["username"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetUserGrantsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetUserGrantsUrl(apiVersion, username).url.toString(), ... requestConfig })  
+  const res = await request<GetUserGrantsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetUserGrantsUrl(username).url.toString(), ... requestConfig })  
   return res.data
 }

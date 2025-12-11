@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetIpv6RangesPathParams, GetIpv6RangesQueryParams, GetIpv6Ranges200, GetIpv6RangesError, GetIpv6RangesQueryResponse } from "../types/GetIpv6Ranges.ts";
+import type { GetIpv6RangesQueryParams, GetIpv6Ranges200, GetIpv6RangesError, GetIpv6RangesQueryResponse } from "../types/GetIpv6Ranges.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetIpv6RangesPathParams(data?: Partial<GetIpv6RangesPathParams>): GetIpv6RangesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetIpv6RangesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetIpv6RangesQueryParams(data?: Partial<GetIpv6RangesQueryParams>): GetIpv6RangesQueryParams {
   

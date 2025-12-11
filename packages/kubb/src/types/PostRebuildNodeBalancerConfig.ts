@@ -4,19 +4,7 @@
 */
 
 
-export const postRebuildNodeBalancerConfigPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostRebuildNodeBalancerConfigPathParamsApiVersionEnumKey = (typeof postRebuildNodeBalancerConfigPathParamsApiVersionEnum)[keyof typeof postRebuildNodeBalancerConfigPathParamsApiVersionEnum];
-
 export interface PostRebuildNodeBalancerConfigPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostRebuildNodeBalancerConfigPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the NodeBalancer.
      * @type integer
@@ -246,14 +234,14 @@ export type PostRebuildNodeBalancerConfig200 = ({
     readonly nodes_status?: {
         /**
          * @description __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly down?: number;
+        readonly down: number;
         /**
          * @description __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly up?: number;
+        readonly up: number;
     };
     /**
      * @description This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can\'t be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn\'t strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -392,14 +380,14 @@ export type PostRebuildNodeBalancerConfig200 = ({
     readonly nodes_status?: {
         /**
          * @description __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly down?: number;
+        readonly down: number;
         /**
          * @description __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly up?: number;
+        readonly up: number;
     };
     /**
      * @description This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can\'t be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn\'t strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -523,14 +511,14 @@ export type PostRebuildNodeBalancerConfig200 = ({
     readonly nodes_status?: {
         /**
          * @description __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly down?: number;
+        readonly down: number;
         /**
          * @description __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly up?: number;
+        readonly up: number;
     };
     /**
      * @description This is the port the NodeBalancer listens on for this configuration. Port numbers need to be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can\'t be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn\'t strictly enforced. You may configure your NodeBalancer however you find useful.
@@ -655,14 +643,14 @@ export type PostRebuildNodeBalancerConfig200 = ({
     readonly nodes_status?: {
         /**
          * @description __Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly down?: number;
+        readonly down: number;
         /**
          * @description __Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly up?: number;
+        readonly up: number;
     };
     /**
      * @description This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can\'t be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn\'t strictly enforced, and you may configure your NodeBalancer however you find useful.
@@ -717,19 +705,19 @@ export type PostRebuildNodeBalancerConfig200 = ({
 */
 export interface PostRebuildNodeBalancerConfigError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

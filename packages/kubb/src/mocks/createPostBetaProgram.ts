@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostBetaProgramPathParams, PostBetaProgram200, PostBetaProgramError, PostBetaProgramMutationRequest, PostBetaProgramMutationResponse } from "../types/PostBetaProgram.ts";
+import type { PostBetaProgram200, PostBetaProgramError, PostBetaProgramMutationRequest, PostBetaProgramMutationResponse } from "../types/PostBetaProgram.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostBetaProgramPathParams(data?: Partial<PostBetaProgramPathParams>): PostBetaProgramPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostBetaProgramPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Enrollment request successful.

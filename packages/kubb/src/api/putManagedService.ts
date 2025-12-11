@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutManagedServiceMutationRequest, PutManagedServiceMutationResponse, PutManagedServicePathParams } from "../types/PutManagedService.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutManagedServiceUrl(apiVersion: PutManagedServicePathParams["apiVersion"], serviceId: PutManagedServicePathParams["serviceId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/managed/services/${serviceId}` as const }  
+function getPutManagedServiceUrl(serviceId: PutManagedServicePathParams["serviceId"]) {
+  const res = { method: 'PUT', url: `/managed/services/${serviceId}` as const }  
   return res
 }
 
 /**
  * @description Updates a service monitor's configuration settings.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed service-update 9994 \  --service_type url \  --label prod-1 \  --address "https://example.org" \  --timeout 30 \  --body "it worked" \  --consultation_group on-call \  --notes "The service name is my-cool-application" \  --credentials 9991    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a managed service monitor
- * {@link /:apiVersion/managed/services/:serviceId}
+ * {@link /managed/services/:serviceId}
  */
-export async function putManagedService(apiVersion: PutManagedServicePathParams["apiVersion"], serviceId: PutManagedServicePathParams["serviceId"], data?: PutManagedServiceMutationRequest, config: Partial<RequestConfig<PutManagedServiceMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putManagedService(serviceId: PutManagedServicePathParams["serviceId"], data?: PutManagedServiceMutationRequest, config: Partial<RequestConfig<PutManagedServiceMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutManagedServiceMutationResponse, ResponseErrorConfig<Error>, PutManagedServiceMutationRequest>({ method : "PUT", url : getPutManagedServiceUrl(apiVersion, serviceId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutManagedServiceMutationResponse, ResponseErrorConfig<Error>, PutManagedServiceMutationRequest>({ method : "PUT", url : getPutManagedServiceUrl(serviceId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostDetachVolumeMutationResponse, PostDetachVolumePathParams } from "../types/PostDetachVolume.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostDetachVolumeUrl(apiVersion: PostDetachVolumePathParams["apiVersion"], volumeId: PostDetachVolumePathParams["volumeId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/volumes/${volumeId}/detach` as const }  
+function getPostDetachVolumeUrl(volumeId: PostDetachVolumePathParams["volumeId"]) {
+  const res = { method: 'POST', url: `/volumes/${volumeId}/detach` as const }  
   return res
 }
 
 /**
  * @description Detach a Block Storage volume from a Linode. When you [delete](https://techdocs.akamai.com/linode-api/reference/delete-linode-instance) a Linode, any volumes attached to it are automatically detached.> 📘>> To run this operation, your user needs the `read-write` permission to both the volume and the Linode you want to detach it from.<<LB>>---- __CLI__.    ```    linode-cli volumes detach 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    volumes:read_writelinodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Detach a volume
- * {@link /:apiVersion/volumes/:volumeId/detach}
+ * {@link /volumes/:volumeId/detach}
  */
-export async function postDetachVolume(apiVersion: PostDetachVolumePathParams["apiVersion"], volumeId: PostDetachVolumePathParams["volumeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postDetachVolume(volumeId: PostDetachVolumePathParams["volumeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostDetachVolumeMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostDetachVolumeUrl(apiVersion, volumeId).url.toString(), ... requestConfig })  
+  const res = await request<PostDetachVolumeMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostDetachVolumeUrl(volumeId).url.toString(), ... requestConfig })  
   return res.data
 }

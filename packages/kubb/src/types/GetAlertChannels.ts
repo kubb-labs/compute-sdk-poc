@@ -4,20 +4,6 @@
 */
 
 
-export const getAlertChannelsPathParamsApiVersionEnum = {
-    "v4beta": "v4beta"
-} as const;
-
-export type GetAlertChannelsPathParamsApiVersionEnumKey = (typeof getAlertChannelsPathParamsApiVersionEnum)[keyof typeof getAlertChannelsPathParamsApiVersionEnum];
-
-export interface GetAlertChannelsPathParams {
-    /**
-     * @description __Enum__ Call the `v4beta` URL for operations still only in beta.
-     * @type string
-    */
-    apiVersion: GetAlertChannelsPathParamsApiVersionEnumKey;
-}
-
 export const dataChannelTypeEnum = {
     "email": "email"
 } as const;
@@ -36,108 +22,108 @@ export type DataTypeEnum16Key = (typeof dataTypeEnum16)[keyof typeof dataTypeEnu
 */
 export interface GetAlertChannels200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description Details about the alerts where you\'ve applied this alert channel.
-         * @type array | undefined
+         * @type array
         */
-        alerts?: {
+        alerts: {
             /**
              * @description The unique identifier for the alert.
-             * @type integer | undefined
+             * @type integer
             */
-            id?: number;
+            id: number;
             /**
              * @description The name of the alert.
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description The entity type of the alert.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
             /**
              * @description The URL to access the alert.
-             * @type string | undefined, url
+             * @type string, url
             */
-            url?: string;
+            url: string;
         }[];
         /**
          * @description The type of notification used with the alert channel. Currently, only `email` is supported.
-         * @type string | undefined
+         * @type string
         */
-        channel_type?: DataChannelTypeEnumKey;
+        channel_type: DataChannelTypeEnumKey;
         /**
          * @description The configuration of the alert channel.
-         * @type object | undefined
+         * @type object
         */
-        content?: {
+        content: {
             /**
              * @description An alert channel set up to deliver an email for an alert.
-             * @type object | undefined
+             * @type object
             */
-            email?: {
+            email: {
                 /**
                  * @description Email addresses that receive the message for the alert. For a `user` alert, these are the email addresses you defined in the alert channel. For a `system` alert, this is returned as `Users-with-read-write-access-to-resources`. This represents all users on your account that have read-write access to the object that triggered the alert.\n\n> 📘\n>\n> Currently, only `system` alert channels are supported for use.
-                 * @type array | undefined
+                 * @type array
                 */
-                email_addresses?: string[];
+                email_addresses: string[];
             };
         };
         /**
          * @description When the alert channel was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        created?: string;
+        created: string;
         /**
          * @description For a `user` alert channel, this is the user on your account that created it. For a `system` alert channel, this value is returned as `system`.\n\n> 📘\n>\n> Currently, only `system` alert channels are supported for use. This value will always return a value of `system`.
-         * @type string | undefined
+         * @type string
         */
-        created_by?: string;
+        created_by: string;
         /**
          * @description __Filterable__ The unique identifier for the alert channel.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Filterable__ The name of the alert channel, used to display it in Akamai Cloud Manager.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description The type of alert channel. This can be either `system` for a channel provided by Akamai, or `user` for one you\'ve created.\n\n> 📘\n>\n> Currently, only `system` alert channels are supported for use. This value will always return a value of `system`.
-         * @type string | undefined
+         * @type string
         */
-        type?: DataTypeEnum16Key;
+        type: DataTypeEnum16Key;
         /**
          * @description When the alert channel was last updated. This is the same as `created` if the channel hasn\'t been updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        updated?: string;
+        updated: string;
         /**
          * @description For a `user` alert channel, this is the user on your account that last updated it. For a `system` alert channel, this is returned as `system`. If it hasn\'t been updated, this value is the same as `created_by`.\n\n> 📘\n>\n> Currently, only `system` alert channels are supported for use. This value will always return a value of `system`.
-         * @type string | undefined
+         * @type string
         */
-        updated_by?: string;
+        updated_by: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -145,19 +131,19 @@ export interface GetAlertChannels200 {
 */
 export interface GetAlertChannelsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -165,6 +151,5 @@ export type GetAlertChannelsQueryResponse = GetAlertChannels200;
 
 export type GetAlertChannelsQuery = {
     Response: GetAlertChannels200;
-    PathParams: GetAlertChannelsPathParams;
     Errors: any;
 };

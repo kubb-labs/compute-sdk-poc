@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostSharegroupsMutationRequest, PostSharegroupsMutationResponse, PostSharegroupsPathParams } from "../types/PostSharegroups.ts";
+import type { PostSharegroupsMutationRequest, PostSharegroupsMutationResponse } from "../types/PostSharegroups.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostSharegroupsUrl(apiVersion: PostSharegroupsPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/images/sharegroups` as const }  
+function getPostSharegroupsUrl() {
+  const res = { method: 'POST', url: `/images/sharegroups` as const }  
   return res
 }
 
 /**
  * @description Creates a group to share images with other users. - Include existing `images` in the request or [Add images to a share group](https://techdocs.akamai.com/linode-api/reference/post-sharegroup-images) later. Run the [Get an image](https://techdocs.akamai.com/linode-api/reference/get-image) operation to see the existing images' `id` values. If needed, [Create an image](https://techdocs.akamai.com/linode-api/reference/post-image) or [Upload an image](https://techdocs.akamai.com/linode-api/reference/post-upload-image).- You can set a `label` and `description` for the group and each image, visible to all group members. - If omitted, the shared image keeps the original `label` and `description`. Note that when you [Update the original image](https://techdocs.akamai.com/linode-api/reference/put-image), it has no effect on shared image's details within any groups.- Run the [Add members to a share group](https://techdocs.akamai.com/linode-api/reference/post-sharegroup-members) to include other users in the group. Use the group's `uuid` from the response to [Create a token](https://techdocs.akamai.com/linode-api/reference/post-sharegroup-tokens) for user authentication.<<LB>>---- __CLI__.    ```    linode-cli image-sharegroups create --label "my_label" --description "my_description" \  --images '[{"id": "private/15", "label": "Linux Debian", "description": "Official Debian Linux image for server deployment"}]'    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a share group
- * {@link /:apiVersion/images/sharegroups}
+ * {@link /images/sharegroups}
  */
-export async function postSharegroups(apiVersion: PostSharegroupsPathParams["apiVersion"], data: PostSharegroupsMutationRequest, config: Partial<RequestConfig<PostSharegroupsMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postSharegroups(data: PostSharegroupsMutationRequest, config: Partial<RequestConfig<PostSharegroupsMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostSharegroupsMutationResponse, ResponseErrorConfig<Error>, PostSharegroupsMutationRequest>({ method : "POST", url : getPostSharegroupsUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostSharegroupsMutationResponse, ResponseErrorConfig<Error>, PostSharegroupsMutationRequest>({ method : "POST", url : getPostSharegroupsUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

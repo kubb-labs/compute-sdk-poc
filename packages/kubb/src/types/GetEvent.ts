@@ -4,19 +4,7 @@
 */
 
 
-export const getEventPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetEventPathParamsApiVersionEnumKey = (typeof getEventPathParamsApiVersionEnum)[keyof typeof getEventPathParamsApiVersionEnum];
-
 export interface GetEventPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetEventPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the Event.
      * @type integer
@@ -272,147 +260,147 @@ export type GetEvent200StatusEnumKey = (typeof getEvent200StatusEnum)[keyof type
 export interface GetEvent200 {
     /**
      * @description __Read-only__ The action that caused this event. New actions may be added in the future.
-     * @type string | undefined
+     * @type string
     */
-    readonly action?: GetEvent200ActionEnumKey;
+    readonly action: GetEvent200ActionEnumKey;
     /**
      * @description __Read-only__ When the system created this event.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description __Beta__, __Read-only__ Maintenance details for this event, if any.
-     * @type object | undefined
+     * @type object
     */
-    readonly details?: {
+    readonly details: {
         /**
          * @description The time the maintenance completed. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:\n\n- A single ISO 8601 timestamp (`yyyy-mm-ddThh:mm:ss`), which returns only matches for that value.\n\n- Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        complete_time?: string;
+        complete_time: string;
         /**
          * @description Differentiates between scheduled and emergency maintenance.
-         * @type string | undefined
+         * @type string
         */
-        description?: DetailsDescriptionEnum4Key;
+        description: DetailsDescriptionEnum4Key;
         /**
          * @description The maintenance policy the user configures for this event.
-         * @type string | undefined
+         * @type string
         */
-        maintenance_policy_set?: string;
+        maintenance_policy_set: string;
         /**
          * @description The scheduled start time for the event. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:\n\n- A single ISO 8601 timestamp (`yyyy-mm-ddThh:mm:ss`), which returns only matches for that value.\n\n- Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        not_before?: string;
+        not_before: string;
         /**
          * @description The origin of the event. A `platform` source indicates that the event was initiated by Akamai. A `user` source indicates that the event was initiated by the user.
-         * @type string | undefined
+         * @type string
         */
-        source?: DetailsSourceEnum4Key;
+        source: DetailsSourceEnum4Key;
         /**
          * @description The actual start time for the event. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:\n\n- A single ISO 8601 timestamp (`yyyy-mm-ddThh:mm:ss`), which returns only matches for that value.\n\n- Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        start_time?: string;
+        start_time: string;
     };
     /**
      * @description __Read-only__ The number of seconds that it takes for the event to complete.
-     * @type number | undefined
+     * @type number
     */
-    readonly duration?: number;
+    readonly duration: number;
     /**
      * @description __Read-only__ Detailed information about the entity that triggered this event.
-     * @type object | undefined
+     * @type object
     */
-    readonly entity?: {
+    readonly entity: {
         /**
          * @description The unique identifier assigned to the entity.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description The name of the entity. The label may reflect changes that occur with this event.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description __Read-only__ The type of entity that is being referenced by the event.
-         * @type string | undefined
+         * @type string
         */
-        readonly type?: EntityTypeEnum6Key;
+        readonly type: EntityTypeEnum6Key;
         /**
          * @description The URL where you can access this event\'s entity. If it\'s a relative URL, it\'s relative to the domain where you retrieved the event.
-         * @type string | undefined
+         * @type string
         */
-        url?: string;
+        url: string;
     };
     /**
      * @description __Read-only__ The unique ID of this event.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description Additional information about the event. This can be a more detailed representation of an event that can help you diagnose non-obvious failures.
      * @type string
     */
-    message?: string | null;
+    message: string | null;
     /**
      * @description __Read-only__ A percentage estimating the amount of time remaining for an event. Returned as `null` for notification events.
      * @type integer
     */
-    readonly percent_complete?: number | null;
+    readonly percent_complete: number | null;
     /**
      * @description __Read-only__ The rate of completion of the event. Only some events return a `rate`, such as the `migration` and `resize` events.
      * @type string
     */
-    readonly rate?: string | null;
+    readonly rate: string | null;
     /**
      * @description __Read-only__ Detailed information about the event\'s secondary entity, if applicable.
-     * @type object | undefined
+     * @type object
     */
-    readonly secondary_entity?: {
+    readonly secondary_entity: {
         /**
          * @description The identifier for the secondary entity object.
-         * @type string | undefined
+         * @type string
         */
-        id?: string;
+        id: string;
         /**
          * @description The name of the secondary entity object.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description __Read-only__ The type of secondary entity object that\'s being referenced by the event.
-         * @type string | undefined
+         * @type string
         */
-        readonly type?: string;
+        readonly type: string;
         /**
          * @description The URL where you can access this event\'s secondary entity object. If it\'s a relative URL, it\'s relative to the domain where you retrieved the event.
-         * @type string | undefined
+         * @type string
         */
-        url?: string;
+        url: string;
     };
     /**
      * @description __Read-only__ If a user on your account has [marked an event as seen](https://techdocs.akamai.com/linode-api/reference/post-event-seen).
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly seen?: boolean;
+    readonly seen: boolean;
     /**
      * @description __Read-only__ The current status of this event.
-     * @type string | undefined
+     * @type string
     */
-    readonly status?: GetEvent200StatusEnumKey;
+    readonly status: GetEvent200StatusEnumKey;
     /**
      * @description __Read-only__ The estimated time remaining until the event completes. This is only returned for some in-progress migration events. Otherwise, `percent_complete` indicates how long until completion.
      * @type string
     */
-    readonly time_remaining?: string | null;
+    readonly time_remaining: string | null;
     /**
      * @description __Read-only__ The name of the user whose action caused the event.
      * @type string
     */
-    readonly username?: string | null;
+    readonly username: string | null;
 }
 
 /**
@@ -420,19 +408,19 @@ export interface GetEvent200 {
 */
 export interface GetEventError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

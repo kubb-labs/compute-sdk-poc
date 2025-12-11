@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetStackScriptPathParams(data?: Partial<GetStackScriptPathParams>): GetStackScriptPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetStackScriptPathParams>["apiVersion"]>(["v4", "v4beta"]),"stackscriptId": faker.string.alpha()},
+  ...{"stackscriptId": faker.string.alpha()},
   ...data || {}
   }
 }

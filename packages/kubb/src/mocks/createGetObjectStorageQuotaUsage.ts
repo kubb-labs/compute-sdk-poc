@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetObjectStorageQuotaUsagePathParams(data?: Partial<GetObjectStorageQuotaUsagePathParams>): GetObjectStorageQuotaUsagePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetObjectStorageQuotaUsagePathParams>["apiVersion"]>(["v4", "v4beta"]),"objQuotaId": faker.string.alpha()},
+  ...{"objQuotaId": faker.string.alpha()},
   ...data || {}
   }
 }

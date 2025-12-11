@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetVpcsPathParams, GetVpcsQueryParams, GetVpcs200, GetVpcsError, GetVpcsQueryResponse } from "../types/GetVpcs.ts";
+import type { GetVpcsQueryParams, GetVpcs200, GetVpcsError, GetVpcsQueryResponse } from "../types/GetVpcs.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetVpcsPathParams(data?: Partial<GetVpcsPathParams>): GetVpcsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetVpcsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetVpcsQueryParams(data?: Partial<GetVpcsQueryParams>): GetVpcsQueryParams {
   

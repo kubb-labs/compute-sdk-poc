@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostCancelBackupsMutationResponse, PostCancelBackupsPathParams } from "../types/PostCancelBackups.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostCancelBackupsUrl(apiVersion: PostCancelBackupsPathParams["apiVersion"], linodeId: PostCancelBackupsPathParams["linodeId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/instances/${linodeId}/backups/cancel` as const }  
+function getPostCancelBackupsUrl(linodeId: PostCancelBackupsPathParams["linodeId"]) {
+  const res = { method: 'POST', url: `/linode/instances/${linodeId}/backups/cancel` as const }  
   return res
 }
 
 /**
  * @description Cancels the Backup service on the given Linode. Deletes all of this Linode's existing backups forever.<<LB>>---- __CLI__.    ```    linode-cli linodes backups-cancel 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Cancel backups
- * {@link /:apiVersion/linode/instances/:linodeId/backups/cancel}
+ * {@link /linode/instances/:linodeId/backups/cancel}
  */
-export async function postCancelBackups(apiVersion: PostCancelBackupsPathParams["apiVersion"], linodeId: PostCancelBackupsPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postCancelBackups(linodeId: PostCancelBackupsPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostCancelBackupsMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostCancelBackupsUrl(apiVersion, linodeId).url.toString(), ... requestConfig })  
+  const res = await request<PostCancelBackupsMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostCancelBackupsUrl(linodeId).url.toString(), ... requestConfig })  
   return res.data
 }

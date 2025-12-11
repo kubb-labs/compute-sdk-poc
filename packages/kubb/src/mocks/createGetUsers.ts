@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetUsersPathParams, GetUsersQueryParams, GetUsers200, GetUsersError, GetUsersQueryResponse } from "../types/GetUsers.ts";
+import type { GetUsersQueryParams, GetUsers200, GetUsersError, GetUsersQueryResponse } from "../types/GetUsers.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetUsersPathParams(data?: Partial<GetUsersPathParams>): GetUsersPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetUsersPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetUsersQueryParams(data?: Partial<GetUsersQueryParams>): GetUsersQueryParams {
   

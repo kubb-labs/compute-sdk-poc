@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetDashboardsAllPathParams, GetDashboardsAll200, GetDashboardsAllError, GetDashboardsAllQueryResponse } from "../types/GetDashboardsAll.ts";
+import type { GetDashboardsAll200, GetDashboardsAllError, GetDashboardsAllQueryResponse } from "../types/GetDashboardsAll.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetDashboardsAllPathParams(data?: Partial<GetDashboardsAllPathParams>): GetDashboardsAllPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDashboardsAllPathParams>["apiVersion"]>(["v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a paginated list of dashboards.

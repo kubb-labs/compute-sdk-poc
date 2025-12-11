@@ -6,36 +6,35 @@
 import { z } from "zod/v4";
 
 export const putUserPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"username": z.string().describe("The username to look up.")
+    "username": z.string().describe("The username to look up.")
     })
 
 /**
  * @description User updated successfully.
  */
 export const putUser200Schema = z.object({
-    "email": z.optional(z.email().describe("This user's email address. Akamai uses this address for account management communications.")),
-"last_login": z.object({
-    "login_datetime": z.optional(z.string().datetime().describe("__Read-only__ The date and time of this user's most recent login attempt.")),
-"status": z.optional(z.enum(["successful", "failed"]).describe("__Read-only__ The result of this user's most recent login attempt."))
-    }).describe("__Read-only__ Details on this user's last login attempt. Returned as `null` if this user hasn't attempted a login since it was created. You can run the [List user logins](https://techdocs.akamai.com/linode-api/reference/get-account-logins) operation for additional login information.").nullish(),
-"password_created": z.string().datetime().describe("__Read-only__ When this user's current password was created. You initially create a password during the account sign-up process, and you can update it using the [Reset Password](https://login.linode.com/forgot/password) webpage. Returned as `null` if this user doesn't have a password set.").nullish(),
-"restricted": z.optional(z.boolean().describe("If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user.")),
-"ssh_keys": z.optional(z.array(z.string()).describe("__Read-only__ A list of the labels for SSH keys added by this user. Users can add keys with the [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) operation. These keys are deployed when this user is included in the `authorized_users` field of the following requests:\n\n- [Create a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance)\n\n- [Rebuild a Linode](https://techdocs.akamai.com/linode-api/reference/post-rebuild-linode-instance)\n\n- [Create a disk](https://techdocs.akamai.com/linode-api/reference/post-add-linode-disk)")),
-"tfa_enabled": z.optional(z.boolean().describe("__Read-only__ Whether this user has Two Factor Authentication (TFA) enabled. Run the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation to enable TFA.")),
-"username": z.optional(z.string().regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/).describe("__Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts.")),
-"verified_phone_number": z.string().describe("__Read-only__ The [verified](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) phone number for this user profile. Returned as `null` if the user doesn't have a verified phone number.").nullish(),
-"user_type": z.optional(z.enum(["parent", "child", "proxy", "default"]).describe("__Read-only__ If the user belongs to a [parent or child account](https://www.linode.com/docs/guides/parent-child-accounts/) relationship, this defines the user type in the respective account. Possible values include:\n\n- `parent`. This is a user in an Akamai partner account. Akamai partners have a contractual relationship with their end customers, to sell Akamai services. This user can either have full access (a parent account admin user) or limited access. Limited users don't have access to manage child accounts, but they can be granted this access by an admin user.\n\n- `child`. This is an Akamai partner's end customer user, in a child account. A child user can have either full or limited access. Full access lets the user manage other child users and the proxy user in a child account.\n\n- `proxy`. This is a user on a child account that gives parent account users access to that child account. A parent account user with the `child_account_access` grant can [Create a proxy user token](https://techdocs.akamai.com/linode-api/reference/post-child-account-token) from the parent account. The parent user can use this token to run API operations from the child account, as if they were a child user.\n\n- `default`. This applies to all regular, non-parent-child account users."))
+    "email": z.email().describe("This user's email address. Akamai uses this address for account management communications."),
+"last_login": z.nullable(z.object({
+    "login_datetime": z.string().datetime().describe("__Read-only__ The date and time of this user's most recent login attempt."),
+"status": z.enum(["successful", "failed"]).describe("__Read-only__ The result of this user's most recent login attempt.")
+    }).describe("__Read-only__ Details on this user's last login attempt. Returned as `null` if this user hasn't attempted a login since it was created. You can run the [List user logins](https://techdocs.akamai.com/linode-api/reference/get-account-logins) operation for additional login information.")),
+"password_created": z.nullable(z.string().datetime().describe("__Read-only__ When this user's current password was created. You initially create a password during the account sign-up process, and you can update it using the [Reset Password](https://login.linode.com/forgot/password) webpage. Returned as `null` if this user doesn't have a password set.")),
+"restricted": z.boolean().describe("If `true`, this user needs specific access granted to perform actions or access entities on your account. Run [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for details on how to configure grants for a restricted user."),
+"ssh_keys": z.array(z.string()).describe("__Read-only__ A list of the labels for SSH keys added by this user. Users can add keys with the [Add an SSH key](https://techdocs.akamai.com/linode-api/reference/post-add-ssh-key) operation. These keys are deployed when this user is included in the `authorized_users` field of the following requests:\n\n- [Create a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance)\n\n- [Rebuild a Linode](https://techdocs.akamai.com/linode-api/reference/post-rebuild-linode-instance)\n\n- [Create a disk](https://techdocs.akamai.com/linode-api/reference/post-add-linode-disk)"),
+"tfa_enabled": z.boolean().describe("__Read-only__ Whether this user has Two Factor Authentication (TFA) enabled. Run the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation to enable TFA."),
+"username": z.string().regex(/^[a-zA-Z0-9]((?![_-]{2,})[a-zA-Z0-9-_])+[a-zA-Z0-9]$/).describe("__Filterable__ The name of this user. This user needs to use this value to log in. It may also display alongside actions this user performs, including events or public StackScripts."),
+"verified_phone_number": z.nullable(z.string().describe("__Read-only__ The [verified](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) phone number for this user profile. Returned as `null` if the user doesn't have a verified phone number.")),
+"user_type": z.enum(["parent", "child", "proxy", "default"]).describe("__Read-only__ If the user belongs to a [parent or child account](https://www.linode.com/docs/guides/parent-child-accounts/) relationship, this defines the user type in the respective account. Possible values include:\n\n- `parent`. This is a user in an Akamai partner account. Akamai partners have a contractual relationship with their end customers, to sell Akamai services. This user can either have full access (a parent account admin user) or limited access. Limited users don't have access to manage child accounts, but they can be granted this access by an admin user.\n\n- `child`. This is an Akamai partner's end customer user, in a child account. A child user can have either full or limited access. Full access lets the user manage other child users and the proxy user in a child account.\n\n- `proxy`. This is a user on a child account that gives parent account users access to that child account. A parent account user with the `child_account_access` grant can [Create a proxy user token](https://techdocs.akamai.com/linode-api/reference/post-child-account-token) from the parent account. The parent user can use this token to run API operations from the child account, as if they were a child user.\n\n- `default`. This applies to all regular, non-parent-child account users.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const putUserErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 /**

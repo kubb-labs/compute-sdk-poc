@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createResumeDatabasesMysqlInstancePathParams(data?: Partial<ResumeDatabasesMysqlInstancePathParams>): ResumeDatabasesMysqlInstancePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<ResumeDatabasesMysqlInstancePathParams>["apiVersion"]>(["v4"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

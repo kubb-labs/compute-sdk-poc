@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostPaymentMethodPathParams, PostPaymentMethod200, PostPaymentMethodError, PostPaymentMethodMutationRequest, PostPaymentMethodMutationResponse } from "../types/PostPaymentMethod.ts";
+import type { PostPaymentMethod200, PostPaymentMethodError, PostPaymentMethodMutationRequest, PostPaymentMethodMutationResponse } from "../types/PostPaymentMethod.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostPaymentMethodPathParams(data?: Partial<PostPaymentMethodPathParams>): PostPaymentMethodPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostPaymentMethodPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Payment Method added.

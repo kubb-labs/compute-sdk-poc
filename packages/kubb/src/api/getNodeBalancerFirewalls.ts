@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetNodeBalancerFirewallsQueryResponse, GetNodeBalancerFirewallsPathParams } from "../types/GetNodeBalancerFirewalls.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetNodeBalancerFirewallsUrl(apiVersion: GetNodeBalancerFirewallsPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerFirewallsPathParams["nodeBalancerId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/nodebalancers/${nodeBalancerId}/firewalls` as const }  
+function getGetNodeBalancerFirewallsUrl(nodeBalancerId: GetNodeBalancerFirewallsPathParams["nodeBalancerId"]) {
+  const res = { method: 'GET', url: `/nodebalancers/${nodeBalancerId}/firewalls` as const }  
   return res
 }
 
 /**
  * @description View information for Firewalls assigned to this NodeBalancer.<<LB>>---- __CLI__.    ```    linode-cli nodebalancers firewalls $nodeBalancerId    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    nodebalancers:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List NodeBalancer firewalls
- * {@link /:apiVersion/nodebalancers/:nodeBalancerId/firewalls}
+ * {@link /nodebalancers/:nodeBalancerId/firewalls}
  */
-export async function getNodeBalancerFirewalls(apiVersion: GetNodeBalancerFirewallsPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerFirewallsPathParams["nodeBalancerId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getNodeBalancerFirewalls(nodeBalancerId: GetNodeBalancerFirewallsPathParams["nodeBalancerId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetNodeBalancerFirewallsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerFirewallsUrl(apiVersion, nodeBalancerId).url.toString(), ... requestConfig })  
+  const res = await request<GetNodeBalancerFirewallsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerFirewallsUrl(nodeBalancerId).url.toString(), ... requestConfig })  
   return res.data
 }

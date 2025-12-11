@@ -4,21 +4,6 @@
 */
 
 
-export const getKernelsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetKernelsPathParamsApiVersionEnumKey = (typeof getKernelsPathParamsApiVersionEnum)[keyof typeof getKernelsPathParamsApiVersionEnum];
-
-export interface GetKernelsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetKernelsPathParamsApiVersionEnumKey;
-}
-
 export interface GetKernelsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -49,65 +34,65 @@ export type DataArchitectureEnumKey = (typeof dataArchitectureEnum)[keyof typeof
 */
 export interface GetKernels200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Filterable__, __Read-only__ The architecture of this Kernel.
-         * @type string | undefined
+         * @type string
         */
-        readonly architecture?: DataArchitectureEnumKey;
+        readonly architecture: DataArchitectureEnumKey;
         /**
          * @description __Read-only__ The date on which this Kernel was built.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly built?: string;
+        readonly built: string;
         /**
          * @description __Filterable__, __Read-only__ If this Kernel is marked as deprecated, this field has a value of `true`; otherwise, this field is `false`.
-         * @type boolean | undefined
+         * @type boolean
         */
-        readonly deprecated?: boolean;
+        readonly deprecated: boolean;
         /**
          * @description __Read-only__ The unique ID of this Kernel.
-         * @type string | undefined
+         * @type string
         */
-        readonly id?: string;
+        readonly id: string;
         /**
          * @description __Filterable__, __Read-only__ If this Kernel is suitable for KVM Linodes.
-         * @type boolean | undefined
+         * @type boolean
         */
-        readonly kvm?: boolean;
+        readonly kvm: boolean;
         /**
          * @description __Filterable__, __Read-only__ The friendly name of this Kernel.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Filterable__, __Read-only__ If this Kernel is suitable for paravirtualized operations.
-         * @type boolean | undefined
+         * @type boolean
         */
-        readonly pvops?: boolean;
+        readonly pvops: boolean;
         /**
          * @description __Filterable__, __Read-only__ Linux Kernel version.
-         * @type string | undefined
+         * @type string
         */
-        readonly version?: string;
+        readonly version: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -115,19 +100,19 @@ export interface GetKernels200 {
 */
 export interface GetKernelsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -135,7 +120,6 @@ export type GetKernelsQueryResponse = GetKernels200;
 
 export type GetKernelsQuery = {
     Response: GetKernels200;
-    PathParams: GetKernelsPathParams;
     QueryParams: GetKernelsQueryParams;
     Errors: any;
 };

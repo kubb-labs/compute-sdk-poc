@@ -4,21 +4,6 @@
 */
 
 
-export const getEnrolledBetaProgramsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetEnrolledBetaProgramsPathParamsApiVersionEnumKey = (typeof getEnrolledBetaProgramsPathParamsApiVersionEnum)[keyof typeof getEnrolledBetaProgramsPathParamsApiVersionEnum];
-
-export interface GetEnrolledBetaProgramsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetEnrolledBetaProgramsPathParamsApiVersionEnumKey;
-}
-
 export interface GetEnrolledBetaProgramsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -43,53 +28,53 @@ export interface GetEnrolledBetaProgramsQueryParams {
 export interface GetEnrolledBetaPrograms200 {
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ Additional details regarding the Beta Program.
          * @type string
         */
-        readonly description?: string | null;
+        readonly description: string | null;
         /**
          * @description __Filterable__, __Read-only__ The date-time that the Beta Program ended.\n\n`null` indicates that the Beta Program is ongoing.
          * @type string, date-time
         */
-        readonly ended?: string | null;
+        readonly ended: string | null;
         /**
          * @description __Filterable__, __Read-only__ The date-time of Account enrollment to the Beta Program.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly enrolled?: string;
+        readonly enrolled: string;
         /**
          * @description The unique identifier of the Beta Program.
-         * @type string | undefined
+         * @type string
         */
-        id?: string;
+        id: string;
         /**
          * @description __Filterable__, __Read-only__ The name of the Beta Program.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Filterable__, __Read-only__ The start date-time of the Beta Program.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly started?: string;
+        readonly started: string;
     }[];
 }
 
@@ -98,19 +83,19 @@ export interface GetEnrolledBetaPrograms200 {
 */
 export interface GetEnrolledBetaProgramsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -118,7 +103,6 @@ export type GetEnrolledBetaProgramsQueryResponse = GetEnrolledBetaPrograms200;
 
 export type GetEnrolledBetaProgramsQuery = {
     Response: GetEnrolledBetaPrograms200;
-    PathParams: GetEnrolledBetaProgramsPathParams;
     QueryParams: GetEnrolledBetaProgramsQueryParams;
     Errors: any;
 };

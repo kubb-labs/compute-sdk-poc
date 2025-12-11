@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetEnrolledBetaProgramsPathParams, GetEnrolledBetaProgramsQueryParams, GetEnrolledBetaPrograms200, GetEnrolledBetaProgramsError, GetEnrolledBetaProgramsQueryResponse } from "../types/GetEnrolledBetaPrograms.ts";
+import type { GetEnrolledBetaProgramsQueryParams, GetEnrolledBetaPrograms200, GetEnrolledBetaProgramsError, GetEnrolledBetaProgramsQueryResponse } from "../types/GetEnrolledBetaPrograms.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetEnrolledBetaProgramsPathParams(data?: Partial<GetEnrolledBetaProgramsPathParams>): GetEnrolledBetaProgramsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetEnrolledBetaProgramsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetEnrolledBetaProgramsQueryParams(data?: Partial<GetEnrolledBetaProgramsQueryParams>): GetEnrolledBetaProgramsQueryParams {
   

@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetMaintenancePoliciesQueryResponse, GetMaintenancePoliciesPathParams } from "../types/GetMaintenancePolicies.ts";
+import type { GetMaintenancePoliciesQueryResponse } from "../types/GetMaintenancePolicies.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetMaintenancePoliciesUrl(apiVersion: GetMaintenancePoliciesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/maintenance/policies` as const }  
+function getGetMaintenancePoliciesUrl() {
+  const res = { method: 'GET', url: `/maintenance/policies` as const }  
   return res
 }
 
 /**
  * @description __Beta__ List all available maintenance policies that can be applied to your Linodes.> 📘>> This operation is beta and only works when using the beta API. Call the URL with the `apiVersion` path parameter set to `v4beta`.<<LB>>---- __CLI__.    ```    linode-cli maintenance policies-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List maintenance policies
- * {@link /:apiVersion/maintenance/policies}
+ * {@link /maintenance/policies}
  */
-export async function getMaintenancePolicies(apiVersion: GetMaintenancePoliciesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getMaintenancePolicies(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetMaintenancePoliciesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetMaintenancePoliciesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetMaintenancePoliciesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetMaintenancePoliciesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

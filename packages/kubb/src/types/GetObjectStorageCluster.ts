@@ -4,19 +4,7 @@
 */
 
 
-export const getObjectStorageClusterPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetObjectStorageClusterPathParamsApiVersionEnumKey = (typeof getObjectStorageClusterPathParamsApiVersionEnum)[keyof typeof getObjectStorageClusterPathParamsApiVersionEnum];
-
 export interface GetObjectStorageClusterPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetObjectStorageClusterPathParamsApiVersionEnumKey;
     /**
      * @description Identifies a cluster where this bucket lives. For backward compatibility with Object Storage in this API.\n\n> 📘\n>\n> You can use the applicable `regionId`, for example `us-west`, in place of the `clusterId`, for example, `us-west-1`. Run [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) to see all regions.
      * @type string
@@ -37,29 +25,29 @@ export type GetObjectStorageCluster200StatusEnumKey = (typeof getObjectStorageCl
 export interface GetObjectStorageCluster200 {
     /**
      * @description The base URL for this cluster, used for connecting with third-party clients.
-     * @type string | undefined
+     * @type string
     */
-    domain?: string;
+    domain: string;
     /**
      * @description The unique ID for this cluster.
-     * @type string | undefined
+     * @type string
     */
-    id?: string;
+    id: string;
     /**
      * @description The region where this cluster is located.
-     * @type string | undefined
+     * @type string
     */
-    region?: string;
+    region: string;
     /**
      * @description The base URL for this cluster used when hosting static sites.
-     * @type string | undefined
+     * @type string
     */
-    static_site_domain?: string;
+    static_site_domain: string;
     /**
      * @description This cluster\'s status.
-     * @type string | undefined
+     * @type string
     */
-    status?: GetObjectStorageCluster200StatusEnumKey;
+    status: GetObjectStorageCluster200StatusEnumKey;
 }
 
 /**
@@ -67,19 +55,19 @@ export interface GetObjectStorageCluster200 {
 */
 export interface GetObjectStorageClusterError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

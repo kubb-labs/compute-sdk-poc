@@ -5,15 +5,11 @@
 
 import { z } from "zod/v4";
 
-export const postUploadImagePathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description Image Upload object including the upload URL and image object.
  */
 export const postUploadImage200Schema = z.object({
-    "image": z.optional(z.object({
+    "image": z.object({
     "capabilities": z.array(z.string()).describe("__Read-only__ A list of the possible capabilities of this image.\n\n- `cloud-init`. The image supports the cloud-init multi-distribution method with our [Metadata service](https://www.linode.com/docs/products/compute/compute-instances/guides/metadata/#troubleshoot-metadata-and-cloud-init). This only applies to public images.\n\n- `distributed-sites`. Whether the image can be used in distributed compute regions. Compared to a core compute region, distributed compute regions offer limited functionality, but they're globally distributed. Your image can be geographically closer to you, potentially letting you deploy it quicker. See [Regions and images](https://techdocs.akamai.com/cloud-computing/docs/images#regions-and-images) for complete details."),
 "created": z.string().datetime().describe("__Read-only__ When this image was created."),
 "created_by": z.string().describe("__Read-only__ The name of the user who created this image, or `linode` for public images."),
@@ -45,8 +41,8 @@ export const postUploadImage200Schema = z.object({
 "is_shared": z.enum(["true", "false", "none"]).describe("__Filterable__, __Read-only__ A `true` value for shared private images. `none` for images shared within a group."),
 "label": z.string().describe("__Filterable__ A short description of the image."),
 "regions": z.array(z.object({
-    "region": z.optional(z.string().describe("The unique identifier for the core compute region where this image is stored.")),
-"status": z.optional(z.enum(["available", "creating", "pending", "pending deletion", "pending replication", "replicating"]).describe("The status of the image in this `region`. Possible values are `available`, `creating`, `pending`, `pending deletion`, `pending replication`, or `replicating`."))
+    "region": z.string().describe("The unique identifier for the core compute region where this image is stored."),
+"status": z.enum(["available", "creating", "pending", "pending deletion", "pending replication", "replicating"]).describe("The status of the image in this `region`. Possible values are `available`, `creating`, `pending`, `pending deletion`, `pending replication`, or `replicating`.")
     })).describe("__Read-only__ Details on the regions where this image is stored. See [Regions and images](https://techdocs.akamai.com/cloud-computing/docs/images#regions-and-images) for full details on support for `regions`."),
 "size": z.int().describe("__Filterable__, __Read-only__ The minimum size in MB this image needs to deploy."),
 "status": z.enum(["creating", "pending_upload", "available"]).describe("__Filterable__, __Read-only__ The current status of the image. Possible values are `available`, `creating`, and `pending_upload`.\n\n> 📘\n>\n> The `+order_by` and `+order` operators are not available when [filtering](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) on this key."),
@@ -55,18 +51,18 @@ export const postUploadImage200Schema = z.object({
 "type": z.enum(["manual", "automatic", "shared"]).describe("__Filterable__, __Read-only__ How the image was created. Create a `manual` image at any time. An `automatic` image is created automatically from a deleted compute instance. Other users within share groups can access a `shared` image."),
 "updated": z.string().datetime().describe("__Read-only__ When this image was last updated."),
 "vendor": z.nullable(z.string().describe("__Filterable__, __Read-only__ The upstream distribution vendor. This is `null` for private images."))
-    }).describe("Image object.")),
-"upload_to": z.optional(z.string().describe("The URL to upload the Image to."))
+    }).describe("Image object."),
+"upload_to": z.string().describe("The URL to upload the Image to.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const postUploadImageErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 /**

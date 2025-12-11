@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteDatabasesMysqlInstanceMutationResponse, DeleteDatabasesMysqlInstancePathParams } from "../types/DeleteDatabasesMysqlInstance.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteDatabasesMysqlInstanceUrl(apiVersion: DeleteDatabasesMysqlInstancePathParams["apiVersion"], instanceId: DeleteDatabasesMysqlInstancePathParams["instanceId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/databases/mysql/instances/${instanceId}` as const }  
+function getDeleteDatabasesMysqlInstanceUrl(instanceId: DeleteDatabasesMysqlInstancePathParams["instanceId"]) {
+  const res = { method: 'DELETE', url: `/databases/mysql/instances/${instanceId}` as const }  
   return res
 }
 
 /**
  * @description Remove a MySQL Managed Database from your account.- The user needs `read_write` [user grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants) access to the database.- The database's status can be `active`, `failed`, or `degraded`.- Only unrestricted users can access this operation. They have access regardless of the acting token's OAuth scopes.<<LB>>---- __CLI__.    ```    linode-cli databases mysql-delete 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    databases:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a MySQL Managed Database
- * {@link /:apiVersion/databases/mysql/instances/:instanceId}
+ * {@link /databases/mysql/instances/:instanceId}
  */
-export async function deleteDatabasesMysqlInstance(apiVersion: DeleteDatabasesMysqlInstancePathParams["apiVersion"], instanceId: DeleteDatabasesMysqlInstancePathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteDatabasesMysqlInstance(instanceId: DeleteDatabasesMysqlInstancePathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteDatabasesMysqlInstanceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteDatabasesMysqlInstanceUrl(apiVersion, instanceId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteDatabasesMysqlInstanceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteDatabasesMysqlInstanceUrl(instanceId).url.toString(), ... requestConfig })  
   return res.data
 }

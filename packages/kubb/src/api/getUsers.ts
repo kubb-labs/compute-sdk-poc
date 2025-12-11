@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetUsersQueryResponse, GetUsersPathParams, GetUsersQueryParams } from "../types/GetUsers.ts";
+import type { GetUsersQueryResponse, GetUsersQueryParams } from "../types/GetUsers.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetUsersUrl(apiVersion: GetUsersPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/users` as const }  
+function getGetUsersUrl() {
+  const res = { method: 'GET', url: `/account/users` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of all users on your account.> 📘>> This operation can only be accessed by account users with _unrestricted_ access. Talk to your local account administrator about access management.A user can access all or part of an account based on their access status and grants:- __Unrestricted access__. These users can access everything on an account.- __Restricted access__. These users can only access entities or perform actions they've been given specific grants to.<<LB>>---- __CLI__.    ```    linode-cli users list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List users
- * {@link /:apiVersion/account/users}
+ * {@link /account/users}
  */
-export async function getUsers(apiVersion: GetUsersPathParams["apiVersion"], params?: GetUsersQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getUsers(params?: GetUsersQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetUsersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetUsersUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetUsersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetUsersUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

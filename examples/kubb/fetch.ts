@@ -7,7 +7,8 @@ setConfig({
   },
 })
 
-// Should we move the API version (v4 / v4beta) into the baseURL rather than having it as a parameter on each request?
-const linode = await getLinodeInstance('v4', 100);
+const linodeId = 1;
+
+const linode = await getLinodeInstance(linodeId);
 
 console.log("Linode Response:", linode)

@@ -4,20 +4,6 @@
 */
 
 
-export const getMonitorServicesPathParamsApiVersionEnum = {
-    "v4beta": "v4beta"
-} as const;
-
-export type GetMonitorServicesPathParamsApiVersionEnumKey = (typeof getMonitorServicesPathParamsApiVersionEnum)[keyof typeof getMonitorServicesPathParamsApiVersionEnum];
-
-export interface GetMonitorServicesPathParams {
-    /**
-     * @description __Enum__ Call the `v4beta` URL for operations still only in beta.
-     * @type string
-    */
-    apiVersion: GetMonitorServicesPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description Returns a paginated list of metric definitions.
 */
@@ -28,14 +14,14 @@ export interface GetMonitorServices200 {
     data: {
         /**
          * @description The full name of Akamai Cloud Computing service. This is used for display purposes in Akamai Cloud Manager.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description The identifier for the Akamai Cloud Computing service. Use this value to call out the service in other Monitor operations in the API.
-         * @type string | undefined
+         * @type string
         */
-        service_type?: string;
+        service_type: string;
     }[];
     /**
      * @description The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
@@ -59,19 +45,19 @@ export interface GetMonitorServices200 {
 */
 export interface GetMonitorServicesError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -79,6 +65,5 @@ export type GetMonitorServicesQueryResponse = GetMonitorServices200;
 
 export type GetMonitorServicesQuery = {
     Response: GetMonitorServices200;
-    PathParams: GetMonitorServicesPathParams;
     Errors: any;
 };

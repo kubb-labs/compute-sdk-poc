@@ -4,19 +4,7 @@
 */
 
 
-export const getNodeBalancerVpcsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetNodeBalancerVpcsPathParamsApiVersionEnumKey = (typeof getNodeBalancerVpcsPathParamsApiVersionEnum)[keyof typeof getNodeBalancerVpcsPathParamsApiVersionEnum];
-
 export interface GetNodeBalancerVpcsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetNodeBalancerVpcsPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the NodeBalancer.
      * @type integer
@@ -47,9 +35,9 @@ export interface GetNodeBalancerVpcsQueryParams {
 */
 export interface GetNodeBalancerVpcs200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ Identifies the VPC configuration for this NodeBalancer.
          * @type integer | undefined
@@ -84,19 +72,19 @@ export interface GetNodeBalancerVpcs200 {
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -104,19 +92,19 @@ export interface GetNodeBalancerVpcs200 {
 */
 export interface GetNodeBalancerVpcsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

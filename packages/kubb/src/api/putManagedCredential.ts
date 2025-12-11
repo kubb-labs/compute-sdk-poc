@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutManagedCredentialMutationRequest, PutManagedCredentialMutationResponse, PutManagedCredentialPathParams } from "../types/PutManagedCredential.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutManagedCredentialUrl(apiVersion: PutManagedCredentialPathParams["apiVersion"], credentialId: PutManagedCredentialPathParams["credentialId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/managed/credentials/${credentialId}` as const }  
+function getPutManagedCredentialUrl(credentialId: PutManagedCredentialPathParams["credentialId"]) {
+  const res = { method: 'PUT', url: `/managed/credentials/${credentialId}` as const }  
   return res
 }
 
 /**
  * @description Updates the label of a Managed Credential. This operation does not update the username and password for a Managed Credential. To do this, run the [Update a managed credential's username and password](https://techdocs.akamai.com/linode-api/reference/post-managed-credential-username-password)) operation instead. This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed credential-update 9991 \  --label prod-password-1    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a managed credential
- * {@link /:apiVersion/managed/credentials/:credentialId}
+ * {@link /managed/credentials/:credentialId}
  */
-export async function putManagedCredential(apiVersion: PutManagedCredentialPathParams["apiVersion"], credentialId: PutManagedCredentialPathParams["credentialId"], data?: PutManagedCredentialMutationRequest, config: Partial<RequestConfig<PutManagedCredentialMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putManagedCredential(credentialId: PutManagedCredentialPathParams["credentialId"], data?: PutManagedCredentialMutationRequest, config: Partial<RequestConfig<PutManagedCredentialMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutManagedCredentialMutationResponse, ResponseErrorConfig<Error>, PutManagedCredentialMutationRequest>({ method : "PUT", url : getPutManagedCredentialUrl(apiVersion, credentialId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutManagedCredentialMutationResponse, ResponseErrorConfig<Error>, PutManagedCredentialMutationRequest>({ method : "PUT", url : getPutManagedCredentialUrl(credentialId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

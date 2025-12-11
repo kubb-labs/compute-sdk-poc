@@ -4,21 +4,6 @@
 */
 
 
-export const getProfileGrantsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetProfileGrantsPathParamsApiVersionEnumKey = (typeof getProfileGrantsPathParamsApiVersionEnum)[keyof typeof getProfileGrantsPathParamsApiVersionEnum];
-
-export interface GetProfileGrantsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetProfileGrantsPathParamsApiVersionEnumKey;
-}
-
 export const databasePermissionsEnum5 = {
     "read_only": "read_only",
     "read_write": "read_write"
@@ -102,289 +87,289 @@ export type VpcPermissionsEnum5Key = (typeof vpcPermissionsEnum5)[keyof typeof v
 export interface GetProfileGrants200 {
     /**
      * @description The grants this user has for individual Managed Databases on this account.
-     * @type array | undefined
+     * @type array
     */
-    database?: {
+    database: {
         /**
          * @description The unique identifier of the resource this grant applies to.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description The level of access this user has to this entity. If `null`, this user has no access.
          * @type string
         */
-        permissions?: DatabasePermissionsEnum5Key | null;
+        permissions: DatabasePermissionsEnum5Key | null;
     }[];
     /**
      * @description The grants this user has for individual domains on this account.
-     * @type array | undefined
+     * @type array
     */
-    domain?: {
+    domain: {
         /**
          * @description The unique identifier of the resource this grant applies to.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description The level of access this user has to this entity. If `null`, this user has no access.
          * @type string
         */
-        permissions?: DomainPermissionsEnum5Key | null;
+        permissions: DomainPermissionsEnum5Key | null;
     }[];
     /**
      * @description The grants this user has for individual firewalls on this account.
-     * @type array | undefined
+     * @type array
     */
-    firewall?: {
+    firewall: {
         /**
          * @description The unique identifier of the resource this grant applies to.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description The level of access this user has to this entity. If `null`, this user has no access.
          * @type string
         */
-        permissions?: FirewallPermissionsEnum5Key | null;
+        permissions: FirewallPermissionsEnum5Key | null;
     }[];
     /**
      * @description The grants the user has to all resources on your account.
-     * @type object | undefined
+     * @type object
     */
-    global?: {
+    global: {
         /**
          * @description The level of access this user has to account-level actions, like billing information and user management.\n\n> 📘\n>\n> A `restricted` user can\'t be used to manage users, even if this is set to `read-write`. Only unrestricted users can manage other users on an account.\n\n__Parent and child accounts__\n\nIn a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, this grant can be added to a child account user, to give the user `read-write` access. This gives the child user unrestricted access to expected management operations, such as creating other child users. However, child users don\'t have write access to billing operations. The API issues a specific error message if a write operation is attempted by a child user.
          * @type string
         */
-        account_access?: GlobalAccountAccessEnum5Key | null;
+        account_access: GlobalAccountAccessEnum5Key | null;
         /**
          * @description Whether this user can add Managed Databases on the account.
-         * @type boolean | undefined
+         * @type boolean
         */
-        add_databases?: boolean;
+        add_databases: boolean;
         /**
          * @description Whether this user can add domains on the account.
-         * @type boolean | undefined
+         * @type boolean
         */
-        add_domains?: boolean;
+        add_domains: boolean;
         /**
          * @description Whether this user can add Firewalls on the account.
-         * @type boolean | undefined
+         * @type boolean
         */
-        add_firewalls?: boolean;
+        add_firewalls: boolean;
         /**
          * @description Whether this user can create images from disks on your Linodes, on the account.
-         * @type boolean | undefined
+         * @type boolean
         */
-        add_images?: boolean;
+        add_images: boolean;
         /**
          * @description Whether this user can create Linodes.
-         * @type boolean | undefined
+         * @type boolean
         */
-        add_linodes?: boolean;
+        add_linodes: boolean;
         /**
          * @description Whether this user can create Longview clients and view the current plan.
-         * @type boolean | undefined
+         * @type boolean
         */
-        add_longview?: boolean;
+        add_longview: boolean;
         /**
          * @description Whether this user can add NodeBalancers on the account.
-         * @type boolean | undefined
+         * @type boolean
         */
-        add_nodebalancers?: boolean;
+        add_nodebalancers: boolean;
         /**
          * @description Whether this user can add StackScripts on the account.
-         * @type boolean | undefined
+         * @type boolean
         */
-        add_stackscripts?: boolean;
+        add_stackscripts: boolean;
         /**
          * @description Whether this user can add volumes on the account.
-         * @type boolean | undefined
+         * @type boolean
         */
-        add_volumes?: boolean;
+        add_volumes: boolean;
         /**
          * @description Whether this user can add Virtual Private Clouds (VPCs) on the account.
-         * @type boolean | undefined
+         * @type boolean
         */
-        add_vpcs?: boolean;
+        add_vpcs: boolean;
         /**
          * @description Whether this user can cancel the entire account.
-         * @type boolean | undefined
+         * @type boolean
         */
-        cancel_account?: boolean;
+        cancel_account: boolean;
         /**
          * @description In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, this gives a parent account access to operations that can be used to manage child accounts. Unrestricted parent account users have access to this grant, while restricted parent users don\'t. An unrestricted parent user can set this to `true` to add this grant to a restricted parent user. Displayed as `null` for all non-parent accounts.
          * @type boolean
         */
-        child_account_access?: boolean | null;
+        child_account_access: boolean | null;
         /**
          * @description Whether this user can manage your account\'s Longview subscription.
-         * @type boolean | undefined
+         * @type boolean
         */
-        longview_subscription?: boolean;
+        longview_subscription: boolean;
     };
     /**
      * @description The grants this user has for individual images on this account.
-     * @type array | undefined
+     * @type array
     */
-    image?: {
+    image: {
         /**
          * @description The unique identifier of the resource this grant applies to.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description The level of access this user has to this entity. If `null`, this user has no access.
          * @type string
         */
-        permissions?: ImagePermissionsEnum5Key | null;
+        permissions: ImagePermissionsEnum5Key | null;
     }[];
     /**
      * @description The grants this user has for individual Linodes on this account.
-     * @type array | undefined
+     * @type array
     */
-    linode?: {
+    linode: {
         /**
          * @description The unique identifier of the resource this grant applies to.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description The level of access this user has to this entity. If `null`, this user has no access.
          * @type string
         */
-        permissions?: LinodePermissionsEnum5Key | null;
+        permissions: LinodePermissionsEnum5Key | null;
     }[];
     /**
      * @description The grants this user has for individual Longview Clients on this account.
-     * @type array | undefined
+     * @type array
     */
-    longview?: {
+    longview: {
         /**
          * @description The unique identifier of the resource this grant applies to.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description The level of access this user has to this entity. If `null`, this user has no access.
          * @type string
         */
-        permissions?: LongviewPermissionsEnum5Key | null;
+        permissions: LongviewPermissionsEnum5Key | null;
     }[];
     /**
      * @description The grants this user has for individual NodeBalancers on this account.
-     * @type array | undefined
+     * @type array
     */
-    nodebalancer?: {
+    nodebalancer: {
         /**
          * @description The unique identifier of the resource this grant applies to.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description The level of access this user has to this entity. If `null`, this user has no access.
          * @type string
         */
-        permissions?: NodebalancerPermissionsEnum5Key | null;
+        permissions: NodebalancerPermissionsEnum5Key | null;
     }[];
     /**
      * @description The grants this User has for individual StackScripts on this account.
-     * @type array | undefined
+     * @type array
     */
-    stackscript?: {
+    stackscript: {
         /**
          * @description The unique identifier of the resource this grant applies to.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description The level of access this user has to this entity. If `null`, this user has no access.
          * @type string
         */
-        permissions?: StackscriptPermissionsEnum5Key | null;
+        permissions: StackscriptPermissionsEnum5Key | null;
     }[];
     /**
      * @description The grants this user has individual Block Storage Volumes on this account.
-     * @type array | undefined
+     * @type array
     */
-    volume?: {
+    volume: {
         /**
          * @description The unique identifier of the resource this grant applies to.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description The level of access this user has to this entity. If `null`, this user has no access.
          * @type string
         */
-        permissions?: VolumePermissionsEnum5Key | null;
+        permissions: VolumePermissionsEnum5Key | null;
     }[];
     /**
      * @description The grants this user has individual Virtual Private Clouds (VPCs) on this account.
-     * @type array | undefined
+     * @type array
     */
-    vpc?: {
+    vpc: {
         /**
          * @description The unique identifier of the resource this grant applies to.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The name of the entity this grant applies to. This is only for display purposes.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description The level of access this user has to this entity. If `null`, this user has no access.
          * @type string
         */
-        permissions?: VpcPermissionsEnum5Key | null;
+        permissions: VpcPermissionsEnum5Key | null;
     }[];
 }
 
@@ -398,19 +383,19 @@ export type GetProfileGrants204 = any;
 */
 export interface GetProfileGrantsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -418,6 +403,5 @@ export type GetProfileGrantsQueryResponse = (GetProfileGrants200 | GetProfileGra
 
 export type GetProfileGrantsQuery = {
     Response: GetProfileGrants200 | GetProfileGrants204;
-    PathParams: GetProfileGrantsPathParams;
     Errors: any;
 };

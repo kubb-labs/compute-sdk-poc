@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostAcceptEntityTransferPathParams(data?: Partial<PostAcceptEntityTransferPathParams>): PostAcceptEntityTransferPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostAcceptEntityTransferPathParams>["apiVersion"]>(["v4", "v4beta"]),"token": faker.string.uuid()},
+  ...{"token": faker.string.uuid()},
   ...data || {}
   }
 }

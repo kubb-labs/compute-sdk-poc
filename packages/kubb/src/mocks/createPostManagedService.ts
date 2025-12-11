@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostManagedServicePathParams, PostManagedService200, PostManagedServiceError, PostManagedServiceMutationRequest, PostManagedServiceMutationResponse } from "../types/PostManagedService.ts";
+import type { PostManagedService200, PostManagedServiceError, PostManagedServiceMutationRequest, PostManagedServiceMutationResponse } from "../types/PostManagedService.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostManagedServicePathParams(data?: Partial<PostManagedServicePathParams>): PostManagedServicePathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostManagedServicePathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Service created.

@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutPersonalAccessTokenMutationRequest, PutPersonalAccessTokenMutationResponse, PutPersonalAccessTokenPathParams } from "../types/PutPersonalAccessToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutPersonalAccessTokenUrl(apiVersion: PutPersonalAccessTokenPathParams["apiVersion"], tokenId: PutPersonalAccessTokenPathParams["tokenId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/profile/tokens/${tokenId}` as const }  
+function getPutPersonalAccessTokenUrl(tokenId: PutPersonalAccessTokenPathParams["tokenId"]) {
+  const res = { method: 'PUT', url: `/profile/tokens/${tokenId}` as const }  
   return res
 }
 
 /**
  * @description Updates a Personal Access Token.<<LB>>---- __CLI__.    ```    linode-cli profile token-update 123 \  --label linode-cli    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a personal access token
- * {@link /:apiVersion/profile/tokens/:tokenId}
+ * {@link /profile/tokens/:tokenId}
  */
-export async function putPersonalAccessToken(apiVersion: PutPersonalAccessTokenPathParams["apiVersion"], tokenId: PutPersonalAccessTokenPathParams["tokenId"], data?: PutPersonalAccessTokenMutationRequest, config: Partial<RequestConfig<PutPersonalAccessTokenMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putPersonalAccessToken(tokenId: PutPersonalAccessTokenPathParams["tokenId"], data?: PutPersonalAccessTokenMutationRequest, config: Partial<RequestConfig<PutPersonalAccessTokenMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutPersonalAccessTokenMutationResponse, ResponseErrorConfig<Error>, PutPersonalAccessTokenMutationRequest>({ method : "PUT", url : getPutPersonalAccessTokenUrl(apiVersion, tokenId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutPersonalAccessTokenMutationResponse, ResponseErrorConfig<Error>, PutPersonalAccessTokenMutationRequest>({ method : "PUT", url : getPutPersonalAccessTokenUrl(tokenId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

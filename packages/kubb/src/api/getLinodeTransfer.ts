@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeTransferQueryResponse, GetLinodeTransferPathParams } from "../types/GetLinodeTransfer.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeTransferUrl(apiVersion: GetLinodeTransferPathParams["apiVersion"], linodeId: GetLinodeTransferPathParams["linodeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/transfer` as const }  
+function getGetLinodeTransferUrl(linodeId: GetLinodeTransferPathParams["linodeId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/transfer` as const }  
   return res
 }
 
 /**
  * @description Returns a Linode's network transfer pool statistics for the current month.<<LB>>---- __CLI__.    ```    linode-cli linodes transfer-view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get this month's network transfer stats
- * {@link /:apiVersion/linode/instances/:linodeId/transfer}
+ * {@link /linode/instances/:linodeId/transfer}
  */
-export async function getLinodeTransfer(apiVersion: GetLinodeTransferPathParams["apiVersion"], linodeId: GetLinodeTransferPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeTransfer(linodeId: GetLinodeTransferPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeTransferQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeTransferUrl(apiVersion, linodeId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeTransferQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeTransferUrl(linodeId).url.toString(), ... requestConfig })  
   return res.data
 }

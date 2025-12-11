@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetRegionsAvailabilityPathParams, GetRegionsAvailability200, GetRegionsAvailabilityError, GetRegionsAvailabilityQueryResponse } from "../types/GetRegionsAvailability.ts";
+import type { GetRegionsAvailability200, GetRegionsAvailabilityError, GetRegionsAvailabilityQueryResponse } from "../types/GetRegionsAvailability.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetRegionsAvailabilityPathParams(data?: Partial<GetRegionsAvailabilityPathParams>): GetRegionsAvailabilityPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetRegionsAvailabilityPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a Region Availability object.

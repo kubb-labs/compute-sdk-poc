@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteLkeClusterKubeconfigPathParams(data?: Partial<DeleteLkeClusterKubeconfigPathParams>): DeleteLkeClusterKubeconfigPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteLkeClusterKubeconfigPathParams>["apiVersion"]>(["v4", "v4beta"]),"clusterId": faker.number.int()},
+  ...{"clusterId": faker.number.int()},
   ...data || {}
   }
 }

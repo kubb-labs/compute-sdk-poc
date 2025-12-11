@@ -5,35 +5,31 @@
 
 import { z } from "zod/v4";
 
-export const getMaintenancePoliciesPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4beta"]).describe("__Enum__ Call the `v4beta` URL for operations still only in beta.")
-    })
-
 /**
  * @description Returns a paginated list of maintenance policy objects.
  */
 export const getMaintenancePolicies200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "description": z.optional(z.string().describe("A brief explanation of the maintenance policy's intended behavior.")),
-"is_default": z.optional(z.boolean().describe("Indicates whether this policy is the default one applied when creating a Linode.")),
-"label": z.optional(z.string().describe("The display name for the maintenance policy.")),
-"notification_period_sec": z.optional(z.int().describe("__Filterable__ Number of seconds before the maintenance event triggers. A value of 0 means no prior notification.")),
-"slug": z.optional(z.string().describe("Unique identifier for the maintenance policy. System policies are prefixed with `linode/`.")),
-"type": z.optional(z.enum(["migrate", "power_off_on"]).describe("The type of policy."))
-    }).describe("Information about maintenance policies."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    "data": z.array(z.object({
+    "description": z.string().describe("A brief explanation of the maintenance policy's intended behavior."),
+"is_default": z.boolean().describe("Indicates whether this policy is the default one applied when creating a Linode."),
+"label": z.string().describe("The display name for the maintenance policy."),
+"notification_period_sec": z.int().describe("__Filterable__ Number of seconds before the maintenance event triggers. A value of 0 means no prior notification."),
+"slug": z.string().describe("Unique identifier for the maintenance policy. System policies are prefixed with `linode/`."),
+"type": z.enum(["migrate", "power_off_on"]).describe("The type of policy.")
+    }).describe("Information about maintenance policies.")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getMaintenancePoliciesErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getMaintenancePoliciesQueryResponseSchema = z.lazy(() => getMaintenancePolicies200Schema)

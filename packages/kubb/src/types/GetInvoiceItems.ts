@@ -4,19 +4,7 @@
 */
 
 
-export const getInvoiceItemsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetInvoiceItemsPathParamsApiVersionEnumKey = (typeof getInvoiceItemsPathParamsApiVersionEnum)[keyof typeof getInvoiceItemsPathParamsApiVersionEnum];
-
 export interface GetInvoiceItemsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetInvoiceItemsPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the Invoice.
      * @type integer
@@ -54,75 +42,75 @@ export type DataTypeEnum5Key = (typeof dataTypeEnum5)[keyof typeof dataTypeEnum5
 */
 export interface GetInvoiceItems200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ The price, in US dollars, of the Invoice Item. Equal to the unit price multiplied by quantity.
-         * @type number | undefined
+         * @type number
         */
-        readonly amount?: number;
+        readonly amount: number;
         /**
          * @description __Read-only__ The date the Invoice Item started, based on month.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly from?: string;
+        readonly from: string;
         /**
          * @description __Read-only__ The Invoice Item\'s display label.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Read-only__ The quantity of this Item for the specified Invoice.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly quantity?: number;
+        readonly quantity: number;
         /**
          * @description __Read-only__ The ID of the applicable Region associated with this Invoice Item.\n\n`null` if there is no applicable Region.
          * @type string
         */
-        readonly region?: string | null;
+        readonly region: string | null;
         /**
          * @description __Read-only__ The amount of tax levied on this Item in US Dollars.
-         * @type number | undefined
+         * @type number
         */
-        readonly tax?: number;
+        readonly tax: number;
         /**
          * @description __Read-only__ The date the Invoice Item ended, based on month.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly to?: string;
+        readonly to: string;
         /**
          * @description __Read-only__ The price of this Item after taxes in US Dollars.
-         * @type number | undefined
+         * @type number
         */
-        readonly total?: number;
+        readonly total: number;
         /**
          * @description __Read-only__ The type of service, ether `hourly` or `misc`.
-         * @type string | undefined
+         * @type string
         */
-        readonly type?: DataTypeEnum5Key;
+        readonly type: DataTypeEnum5Key;
         /**
          * @description __Read-only__ The monthly service fee in US Dollars for this Item.
-         * @type string | undefined
+         * @type string
         */
-        readonly unit_price?: string;
+        readonly unit_price: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -130,19 +118,19 @@ export interface GetInvoiceItems200 {
 */
 export interface GetInvoiceItemsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

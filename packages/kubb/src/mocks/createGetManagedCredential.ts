@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetManagedCredentialPathParams(data?: Partial<GetManagedCredentialPathParams>): GetManagedCredentialPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetManagedCredentialPathParams>["apiVersion"]>(["v4", "v4beta"]),"credentialId": faker.number.int()},
+  ...{"credentialId": faker.number.int()},
   ...data || {}
   }
 }

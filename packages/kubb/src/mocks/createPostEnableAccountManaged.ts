@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostEnableAccountManagedPathParams, PostEnableAccountManaged200, PostEnableAccountManagedError, PostEnableAccountManagedMutationResponse } from "../types/PostEnableAccountManaged.ts";
+import type { PostEnableAccountManaged200, PostEnableAccountManagedError, PostEnableAccountManagedMutationResponse } from "../types/PostEnableAccountManaged.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostEnableAccountManagedPathParams(data?: Partial<PostEnableAccountManagedPathParams>): PostEnableAccountManagedPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostEnableAccountManagedPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Managed services enabled for account.

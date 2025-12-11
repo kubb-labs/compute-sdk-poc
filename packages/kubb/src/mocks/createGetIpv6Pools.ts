@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetIpv6PoolsPathParams, GetIpv6PoolsQueryParams, GetIpv6Pools200, GetIpv6PoolsError, GetIpv6PoolsQueryResponse } from "../types/GetIpv6Pools.ts";
+import type { GetIpv6PoolsQueryParams, GetIpv6Pools200, GetIpv6PoolsError, GetIpv6PoolsQueryResponse } from "../types/GetIpv6Pools.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetIpv6PoolsPathParams(data?: Partial<GetIpv6PoolsPathParams>): GetIpv6PoolsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetIpv6PoolsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetIpv6PoolsQueryParams(data?: Partial<GetIpv6PoolsQueryParams>): GetIpv6PoolsQueryParams {
   

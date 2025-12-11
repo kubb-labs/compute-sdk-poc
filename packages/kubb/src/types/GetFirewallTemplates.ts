@@ -4,21 +4,6 @@
 */
 
 
-export const getFirewallTemplatesPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetFirewallTemplatesPathParamsApiVersionEnumKey = (typeof getFirewallTemplatesPathParamsApiVersionEnum)[keyof typeof getFirewallTemplatesPathParamsApiVersionEnum];
-
-export interface GetFirewallTemplatesPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetFirewallTemplatesPathParamsApiVersionEnumKey;
-}
-
 export interface GetFirewallTemplatesQueryParams {
     /**
      * @description The page of a collection to return.
@@ -95,148 +80,148 @@ export type DataSlugEnumKey = (typeof dataSlugEnum)[keyof typeof dataSlugEnum];
 */
 export interface GetFirewallTemplates200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description The inbound and outbound access rules for the VPC firewall template.\n\nA firewall can have up to 25 rules across its inbound and outbound rule sets. Multiple rules are applied in order. If two rules conflict, the first rule takes precedence. For example, if the first rule accepts inbound traffic from an address, and the second rule drops inbound traffic from the same address, the first rule applies, and inbound traffic from that address is accepted.
-         * @type object | undefined
+         * @type object
         */
-        rules?: {
+        rules: {
             /**
              * @description The inbound rules for the firewall.
-             * @type array | undefined
+             * @type array
             */
-            inbound?: {
+            inbound: {
                 /**
                  * @description Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall\'s `inbound_policy` if this is an inbound rule, or the `outbound_policy` if this is an outbound rule.
-                 * @type string | undefined
+                 * @type string
                 */
-                action?: InboundActionEnum7Key;
+                action: InboundActionEnum7Key;
                 /**
                  * @description The IPv4 or IPv6 addresses affected by this rule. A rule can have up to 255 total addresses or networks listed across its `ipv4` and `ipv6` arrays. A network and a single IP are treated as equivalent when accounting for this limit.\n\nMust contain `ipv4`, `ipv6`, or both.
-                 * @type object | undefined
+                 * @type object
                 */
-                addresses?: {
+                addresses: {
                     /**
                      * @description A list of IPv4 addresses or networks. Addresses must be in IP/mask format. Must not be an empty list.\n\nIf `0.0.0.0/0` is included in this list, all IPv4 addresses are affected by this rule.
-                     * @type array | undefined
+                     * @type array
                     */
-                    ipv4?: string[];
+                    ipv4: string[];
                     /**
                      * @description A list of IPv6 addresses or networks. Addresses must be in IP/mask format and must not include zone_id notation as described in [RFC 4007](https://www.rfc-editor.org/rfc/rfc4007). Must not be an empty list.\n\nIf `::/0` is included in this list, all IPv6 addresses are affected by this rule.
-                     * @type array | undefined
+                     * @type array
                     */
-                    ipv6?: string[];
+                    ipv6: string[];
                 };
                 /**
                  * @description Used to describe this rule. For display purposes only.
                  * @minLength 1
                  * @maxLength 100
-                 * @type string | undefined
+                 * @type string
                 */
-                description?: string;
+                description: string;
                 /**
                  * @description Used to identify this rule. For display purposes only.
                  * @minLength 3
                  * @maxLength 32
-                 * @type string | undefined
+                 * @type string
                 */
-                label?: string;
+                label: string;
                 /**
                  * @description A string representing the port or ports affected by this rule:\n\n- The string may be a single port, a range of ports, or a comma-separated list of single ports and port ranges. A space is permitted following each comma.\n- A range of ports is inclusive of the start and end values for the range. The end value of the range must be greater than the start value.\n- Ports must be within 1 and 65535, and may not contain any leading zeroes. For example, port `080` is not allowed.\n- The ports string can have up to 15 _pieces_, where a single port is treated as one piece, and a port range is treated as two pieces. For example, the string \"22-24, 80, 443\" has four pieces.\n- If no ports are configured, all ports are affected.\n- Only allowed for the TCP and UDP protocols. Ports are not allowed for the ICMP and IPENCAP protocols.
                  * @type string
                 */
-                ports?: string | null;
+                ports: string | null;
                 /**
                  * @description The type of network traffic affected by this rule.
-                 * @type string | undefined
+                 * @type string
                 */
-                protocol?: InboundProtocolEnum7Key;
+                protocol: InboundProtocolEnum7Key;
             }[];
             /**
              * @description The default behavior for inbound traffic. You can override this setting by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `inbound` object\'s `action` field.
-             * @type string | undefined
+             * @type string
             */
-            inbound_policy?: RulesInboundPolicyEnum7Key;
+            inbound_policy: RulesInboundPolicyEnum7Key;
             /**
              * @description The outbound rules for the firewall.
-             * @type array | undefined
+             * @type array
             */
-            outbound?: {
+            outbound: {
                 /**
                  * @description Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall\'s `inbound_policy` if this is an inbound rule, or the `outbound_policy` if this is an outbound rule.
-                 * @type string | undefined
+                 * @type string
                 */
-                action?: OutboundActionEnum7Key;
+                action: OutboundActionEnum7Key;
                 /**
                  * @description The IPv4 or IPv6 addresses affected by this rule. A rule can have up to 255 total addresses or networks listed across its `ipv4` and `ipv6` arrays. A network and a single IP are treated as equivalent when accounting for this limit.\n\nMust contain `ipv4`, `ipv6`, or both.
-                 * @type object | undefined
+                 * @type object
                 */
-                addresses?: {
+                addresses: {
                     /**
                      * @description A list of IPv4 addresses or networks. Addresses must be in IP/mask format. Must not be an empty list.\n\nIf `0.0.0.0/0` is included in this list, all IPv4 addresses are affected by this rule.
-                     * @type array | undefined
+                     * @type array
                     */
-                    ipv4?: string[];
+                    ipv4: string[];
                     /**
                      * @description A list of IPv6 addresses or networks. Addresses must be in IP/mask format and must not include zone_id notation as described in [RFC 4007](https://www.rfc-editor.org/rfc/rfc4007). Must not be an empty list.\n\nIf `::/0` is included in this list, all IPv6 addresses are affected by this rule.
-                     * @type array | undefined
+                     * @type array
                     */
-                    ipv6?: string[];
+                    ipv6: string[];
                 };
                 /**
                  * @description Used to describe this rule. For display purposes only.
                  * @minLength 1
                  * @maxLength 100
-                 * @type string | undefined
+                 * @type string
                 */
-                description?: string;
+                description: string;
                 /**
                  * @description Used to identify this rule. For display purposes only.
                  * @minLength 3
                  * @maxLength 32
-                 * @type string | undefined
+                 * @type string
                 */
-                label?: string;
+                label: string;
                 /**
                  * @description A string representing the port or ports affected by this rule:\n\n- The string may be a single port, a range of ports, or a comma-separated list of single ports and port ranges. A space is permitted following each comma.\n- A range of ports is inclusive of the start and end values for the range. The end value of the range must be greater than the start value.\n- Ports must be within 1 and 65535, and may not contain any leading zeroes. For example, port `080` is not allowed.\n- The ports string can have up to 15 _pieces_, where a single port is treated as one piece, and a port range is treated as two pieces. For example, the string \"22-24, 80, 443\" has four pieces.\n- If no ports are configured, all ports are affected.\n- Only allowed for the TCP and UDP protocols. Ports are not allowed for the ICMP and IPENCAP protocols.
                  * @type string
                 */
-                ports?: string | null;
+                ports: string | null;
                 /**
                  * @description The type of network traffic affected by this rule.
-                 * @type string | undefined
+                 * @type string
                 */
-                protocol?: OutboundProtocolEnum7Key;
+                protocol: OutboundProtocolEnum7Key;
             }[];
             /**
              * @description The default behavior for outbound traffic. You can override this setting by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `outbound` object\'s `action` fields.
-             * @type string | undefined
+             * @type string
             */
-            outbound_policy?: RulesOutboundPolicyEnum7Key;
+            outbound_policy: RulesOutboundPolicyEnum7Key;
         };
         /**
          * @description __Read-only__ The firewall template types available for VPC and public Linode interfaces.
-         * @type array | undefined
+         * @type array
         */
-        readonly slug?: DataSlugEnumKey;
+        readonly slug: DataSlugEnumKey;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -244,19 +229,19 @@ export interface GetFirewallTemplates200 {
 */
 export interface GetFirewallTemplatesError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -264,7 +249,6 @@ export type GetFirewallTemplatesQueryResponse = GetFirewallTemplates200;
 
 export type GetFirewallTemplatesQuery = {
     Response: GetFirewallTemplates200;
-    PathParams: GetFirewallTemplatesPathParams;
     QueryParams: GetFirewallTemplatesQueryParams;
     Errors: any;
 };

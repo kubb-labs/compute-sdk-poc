@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutNodeBalancerFirewallsPathParams(data?: Partial<PutNodeBalancerFirewallsPathParams>): PutNodeBalancerFirewallsPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutNodeBalancerFirewallsPathParams>["apiVersion"]>(["v4", "v4beta"]),"nodeBalancerId": faker.number.int()},
+  ...{"nodeBalancerId": faker.number.int()},
   ...data || {}
   }
 }

@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostVpcSubnetMutationRequest, PostVpcSubnetMutationResponse, PostVpcSubnetPathParams } from "../types/PostVpcSubnet.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostVpcSubnetUrl(apiVersion: PostVpcSubnetPathParams["apiVersion"], vpcId: PostVpcSubnetPathParams["vpcId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/vpcs/${vpcId}/subnets` as const }  
+function getPostVpcSubnetUrl(vpcId: PostVpcSubnetPathParams["vpcId"]) {
+  const res = { method: 'POST', url: `/vpcs/${vpcId}/subnets` as const }  
   return res
 }
 
 /**
  * @description Create a VPC Subnet.- The User accessing this operation must have `read_write` grants to the VPC.- A successful request triggers a `subnet_create` event.Once a VPC Subnet is created, it can be attached to a Linode by assigning the Subnet to one of the Linode's Configuration Profile Interfaces. This step can be accomplished with the following operations:- [Create a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance)- [Create a config profile](https://techdocs.akamai.com/linode-api/reference/post-add-linode-config)- [Update a config profile](https://techdocs.akamai.com/linode-api/reference/put-linode-config)- [Add a configuration profile interface](https://techdocs.akamai.com/linode-api/reference/post-linode-config-interface)<<LB>>---- __CLI__.    ```    linode-cli vpcs subnet-create $vpcId \  --label cool-vpc-subnet \  --ipv4 10.0.1.0/24    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    vpc:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a VPC subnet
- * {@link /:apiVersion/vpcs/:vpcId/subnets}
+ * {@link /vpcs/:vpcId/subnets}
  */
-export async function postVpcSubnet(apiVersion: PostVpcSubnetPathParams["apiVersion"], vpcId: PostVpcSubnetPathParams["vpcId"], data: PostVpcSubnetMutationRequest, config: Partial<RequestConfig<PostVpcSubnetMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postVpcSubnet(vpcId: PostVpcSubnetPathParams["vpcId"], data: PostVpcSubnetMutationRequest, config: Partial<RequestConfig<PostVpcSubnetMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostVpcSubnetMutationResponse, ResponseErrorConfig<Error>, PostVpcSubnetMutationRequest>({ method : "POST", url : getPostVpcSubnetUrl(apiVersion, vpcId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostVpcSubnetMutationResponse, ResponseErrorConfig<Error>, PostVpcSubnetMutationRequest>({ method : "POST", url : getPostVpcSubnetUrl(vpcId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

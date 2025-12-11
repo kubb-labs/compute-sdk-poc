@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetPaymentQueryResponse, GetPaymentPathParams } from "../types/GetPayment.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetPaymentUrl(apiVersion: GetPaymentPathParams["apiVersion"], paymentId: GetPaymentPathParams["paymentId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/payments/${paymentId}` as const }  
+function getGetPaymentUrl(paymentId: GetPaymentPathParams["paymentId"]) {
+  const res = { method: 'GET', url: `/account/payments/${paymentId}` as const }  
   return res
 }
 
 /**
  * @description Returns information about a specific Payment.<<LB>>---- __CLI__.    ```    linode-cli account payment-view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a payment
- * {@link /:apiVersion/account/payments/:paymentId}
+ * {@link /account/payments/:paymentId}
  */
-export async function getPayment(apiVersion: GetPaymentPathParams["apiVersion"], paymentId: GetPaymentPathParams["paymentId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getPayment(paymentId: GetPaymentPathParams["paymentId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetPaymentQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPaymentUrl(apiVersion, paymentId).url.toString(), ... requestConfig })  
+  const res = await request<GetPaymentQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPaymentUrl(paymentId).url.toString(), ... requestConfig })  
   return res.data
 }

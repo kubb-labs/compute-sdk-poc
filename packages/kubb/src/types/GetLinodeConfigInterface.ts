@@ -4,19 +4,7 @@
 */
 
 
-export const getLinodeConfigInterfacePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLinodeConfigInterfacePathParamsApiVersionEnumKey = (typeof getLinodeConfigInterfacePathParamsApiVersionEnum)[keyof typeof getLinodeConfigInterfacePathParamsApiVersionEnum];
-
 export interface GetLinodeConfigInterfacePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLinodeConfigInterfacePathParamsApiVersionEnumKey;
     /**
      * @description The `id` of the Linode.
      * @type integer
@@ -81,12 +69,12 @@ export interface GetLinodeConfigInterface200 {
          * @description The 1:1 NAT IPv4 address, used to associate a public IPv4 address with the interface\'s VPC subnet IPv4 address.\n\n- Only supported for interfaces with a `purpose` of `vpc`.\n\n- Returned as `null` if no 1:1 NAT is set for a `vpc` type interface.\n\n- Returned as an empty string (`\"\"`) for non-`vpc` type interfaces.\n\nWhen included in a request:\n\n- You can set this to a specific, public IPv4 address that\'s available on the Linode. You can also use the `any` keyword to enable the Linode\'s assigned public IPv4 address.\n\n- A specified address can\'t be shared with another Linode.\n\n- Omit this object or include it and set it to `null` or an empty string (`\"\"`) to block creation of a 1:1 NAT.\n\n<<LB>>\n\n> 📘\n>\n> You can\'t set this to a specific IPv4 address when creating a new Linode. During the creation process, the network automatically establishes a public IPv4 address for the Linode. Since this address doesn\'t exist yet, you can\'t include a custom IPv4 address to change it. After your Linode is created, you can [update your configuration profile interface](https://www.linode.com/docs/api/linode-instances/#configuration-profile-interface-update) to change the `nat_1_1` address.
          * @type string
         */
-        nat_1_1?: (string | Ipv4Nat11Enum11Key) | null;
+        nat_1_1: (string | Ipv4Nat11Enum11Key) | null;
         /**
          * @description The VPC subnet IPv4 address for this interface.\n\n- This only applies to interfaces with a `purpose` of `vpc`.\n\n- Returned as an empty string (`\"\"`) for non-`vpc` type interfaces.\n\nWhen included in a request:\n\n- The `vpc` can\'t be assigned to an existing Linode as an address or in a range.\n\n- The target address can\'t be the first two or last two addresses in the subnet IPv4 range.\n\n- If omitted, a valid address within the Subnet IPv4 range is automatically assigned.
          * @type string, ip
         */
-        vpc?: string | null;
+        vpc: string | null;
     };
     /**
      * @description __Filterable__ The name of this interface.\n\nFor interfaces with a `purpose` of `vlan`:\n\n- Required.\n\n- This needs to be unique among a Linode\'s interfaces. A Linode can\'t be attached to the same VLAN multiple times.\n\n- This can only contain ASCII letters, numbers, and dashes (`-`). You can\'t use two consecutive dashes (`--`).\n\n- If the VLAN label is new, a VLAN is created. Up to 10 VLANs can be created in each data center `region`. To view your active VLANs, run the [List VLANs](https://techdocs.akamai.com/linode-api/reference/get-vlans) operation.\n\nFor interfaces with a `purpose` of `public`:\n\n- If you include this in a request, set it to an empty string (`\"\"`) or `null`.\n\n- Returned as `null` in a response.\n\nFor interfaces with a `purpose` of `vpc`:\n\n- If you include this in a request, set it to an empty string (`\"\"`) or `null`.\n\n- Returned as `null` in a response.
@@ -123,19 +111,19 @@ export interface GetLinodeConfigInterface200 {
 */
 export interface GetLinodeConfigInterfaceError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetIpv6PoolsQueryResponse, GetIpv6PoolsPathParams, GetIpv6PoolsQueryParams } from "../types/GetIpv6Pools.ts";
+import type { GetIpv6PoolsQueryResponse, GetIpv6PoolsQueryParams } from "../types/GetIpv6Pools.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetIpv6PoolsUrl(apiVersion: GetIpv6PoolsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/ipv6/pools` as const }  
+function getGetIpv6PoolsUrl() {
+  const res = { method: 'GET', url: `/networking/ipv6/pools` as const }  
   return res
 }
 
 /**
  * @description Displays the IPv6 pools on your Account. A pool of IPv6 addresses are routed to all of your Linodes in a single [region](https://techdocs.akamai.com/linode-api/reference/get-regions). Any Linode on your Account may bring up any address in this pool at any time, with no external configuration required.<<LB>>---- __CLI__.    ```    linode-cli networking v6-pools    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    ips:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List IPv6 pools
- * {@link /:apiVersion/networking/ipv6/pools}
+ * {@link /networking/ipv6/pools}
  */
-export async function getIpv6Pools(apiVersion: GetIpv6PoolsPathParams["apiVersion"], params?: GetIpv6PoolsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getIpv6Pools(params?: GetIpv6PoolsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetIpv6PoolsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetIpv6PoolsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetIpv6PoolsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetIpv6PoolsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

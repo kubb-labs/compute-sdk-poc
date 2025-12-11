@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutObjectStorageBucketAclPathParams(data?: Partial<PutObjectStorageBucketAclPathParams>): PutObjectStorageBucketAclPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutObjectStorageBucketAclPathParams>["apiVersion"]>(["v4", "v4beta"]),"regionId": faker.string.alpha(),"bucket": faker.string.alpha()},
+  ...{"regionId": faker.string.alpha(),"bucket": faker.string.alpha()},
   ...data || {}
   }
 }

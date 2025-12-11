@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetObjectStorageBucketsQueryResponse, GetObjectStorageBucketsPathParams } from "../types/GetObjectStorageBuckets.ts";
+import type { GetObjectStorageBucketsQueryResponse } from "../types/GetObjectStorageBuckets.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageBucketsUrl(apiVersion: GetObjectStorageBucketsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/buckets` as const }  
+function getGetObjectStorageBucketsUrl() {
+  const res = { method: 'GET', url: `/object-storage/buckets` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of all Object Storage buckets available in your account.> 📘>> You can use an outside API, such as the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/serviceops/#list-buckets) for more options.<<LB>>---- __OAuth scopes__.    ```    object_storage:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List Object Storage buckets
- * {@link /:apiVersion/object-storage/buckets}
+ * {@link /object-storage/buckets}
  */
-export async function getObjectStorageBuckets(apiVersion: GetObjectStorageBucketsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageBuckets(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageBucketsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageBucketsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageBucketsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageBucketsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

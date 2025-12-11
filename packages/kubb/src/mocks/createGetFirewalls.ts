@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetFirewallsPathParams, GetFirewallsQueryParams, GetFirewalls200, GetFirewallsError, GetFirewallsQueryResponse } from "../types/GetFirewalls.ts";
+import type { GetFirewallsQueryParams, GetFirewalls200, GetFirewallsError, GetFirewallsQueryResponse } from "../types/GetFirewalls.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetFirewallsPathParams(data?: Partial<GetFirewallsPathParams>): GetFirewallsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetFirewallsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetFirewallsQueryParams(data?: Partial<GetFirewallsQueryParams>): GetFirewallsQueryParams {
   

@@ -4,19 +4,7 @@
 */
 
 
-export const getLkeClusterAclPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLkeClusterAclPathParamsApiVersionEnumKey = (typeof getLkeClusterAclPathParamsApiVersionEnum)[keyof typeof getLkeClusterAclPathParamsApiVersionEnum];
-
 export interface GetLkeClusterAclPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLkeClusterAclPathParamsApiVersionEnumKey;
     /**
      * @description ID of the Kubernetes cluster to look up.
      * @type integer
@@ -29,17 +17,17 @@ export interface GetLkeClusterAclPathParams {
 */
 export interface GetLkeClusterAcl200 {
     /**
-     * @type object | undefined
+     * @type object
     */
-    acl?: {
+    acl: {
         /**
-         * @type object | undefined
+         * @type object
         */
-        addresses?: {
-            ipv4?: any;
-            ipv6?: any;
+        addresses: {
+            ipv4: any;
+            ipv6: any;
         };
-        "revision-id"?: any;
+        "revision-id": any;
     };
 }
 
@@ -48,19 +36,19 @@ export interface GetLkeClusterAcl200 {
 */
 export interface GetLkeClusterAcl400 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description A string explaining that the cluster does not support Control Plane ACL.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -69,19 +57,19 @@ export interface GetLkeClusterAcl400 {
 */
 export interface GetLkeClusterAcl404 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description A string explaining that the cluster does not exist.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -90,19 +78,19 @@ export interface GetLkeClusterAcl404 {
 */
 export interface GetLkeClusterAclError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

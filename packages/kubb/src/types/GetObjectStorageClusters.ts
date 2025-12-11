@@ -4,21 +4,6 @@
 */
 
 
-export const getObjectStorageClustersPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetObjectStorageClustersPathParamsApiVersionEnumKey = (typeof getObjectStorageClustersPathParamsApiVersionEnum)[keyof typeof getObjectStorageClustersPathParamsApiVersionEnum];
-
-export interface GetObjectStorageClustersPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetObjectStorageClustersPathParamsApiVersionEnumKey;
-}
-
 export const dataStatusEnum36 = {
     "available": "available",
     "unavailable": "unavailable"
@@ -31,50 +16,50 @@ export type DataStatusEnum36Key = (typeof dataStatusEnum36)[keyof typeof dataSta
 */
 export interface GetObjectStorageClusters200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description The base URL for this cluster, used for connecting with third-party clients.
-         * @type string | undefined
+         * @type string
         */
-        domain?: string;
+        domain: string;
         /**
          * @description The unique ID for this cluster.
-         * @type string | undefined
+         * @type string
         */
-        id?: string;
+        id: string;
         /**
          * @description The region where this cluster is located.
-         * @type string | undefined
+         * @type string
         */
-        region?: string;
+        region: string;
         /**
          * @description The base URL for this cluster used when hosting static sites.
-         * @type string | undefined
+         * @type string
         */
-        static_site_domain?: string;
+        static_site_domain: string;
         /**
          * @description This cluster\'s status.
-         * @type string | undefined
+         * @type string
         */
-        status?: DataStatusEnum36Key;
+        status: DataStatusEnum36Key;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -82,19 +67,19 @@ export interface GetObjectStorageClusters200 {
 */
 export interface GetObjectStorageClustersError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -102,6 +87,5 @@ export type GetObjectStorageClustersQueryResponse = GetObjectStorageClusters200;
 
 export type GetObjectStorageClustersQuery = {
     Response: GetObjectStorageClusters200;
-    PathParams: GetObjectStorageClustersPathParams;
     Errors: any;
 };

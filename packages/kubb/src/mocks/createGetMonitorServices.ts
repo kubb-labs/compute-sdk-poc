@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetMonitorServicesPathParams, GetMonitorServices200, GetMonitorServicesError, GetMonitorServicesQueryResponse } from "../types/GetMonitorServices.ts";
+import type { GetMonitorServices200, GetMonitorServicesError, GetMonitorServicesQueryResponse } from "../types/GetMonitorServices.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetMonitorServicesPathParams(data?: Partial<GetMonitorServicesPathParams>): GetMonitorServicesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetMonitorServicesPathParams>["apiVersion"]>(["v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a paginated list of metric definitions.

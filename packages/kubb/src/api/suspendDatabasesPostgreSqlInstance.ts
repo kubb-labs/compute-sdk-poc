@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { SuspendDatabasesPostgreSqlInstanceMutationResponse, SuspendDatabasesPostgreSqlInstancePathParams } from "../types/SuspendDatabasesPostgreSqlInstance.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getSuspendDatabasesPostgreSqlInstanceUrl(apiVersion: SuspendDatabasesPostgreSqlInstancePathParams["apiVersion"], instanceId: SuspendDatabasesPostgreSqlInstancePathParams["instanceId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/databases/postgresql/instances/${instanceId}/suspend` as const }  
+function getSuspendDatabasesPostgreSqlInstanceUrl(instanceId: SuspendDatabasesPostgreSqlInstancePathParams["instanceId"]) {
+  const res = { method: 'POST', url: `/databases/postgresql/instances/${instanceId}/suspend` as const }  
   return res
 }
 
 /**
  * @description Suspend a PostgreSQL Managed Database from your account, releasing idle resources and keeping only necessary data. All service data is lost if there are no backups available. This halts billing for the cluster.- The user needs `read_write` [user grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants) access to the database.- The database's status needs to be `active`.- Akamai deletes suspended clusters after 180 days.- A successful request triggers a `database_suspend` [event](https://techdocs.akamai.com/linode-api/reference/get-events).<<LB>>---- __OAuth scopes__.    ```    databases:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Suspend a PostgreSQL Managed Database
- * {@link /:apiVersion/databases/postgresql/instances/:instanceId/suspend}
+ * {@link /databases/postgresql/instances/:instanceId/suspend}
  */
-export async function suspendDatabasesPostgreSqlInstance(apiVersion: SuspendDatabasesPostgreSqlInstancePathParams["apiVersion"], instanceId: SuspendDatabasesPostgreSqlInstancePathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function suspendDatabasesPostgreSqlInstance(instanceId: SuspendDatabasesPostgreSqlInstancePathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<SuspendDatabasesPostgreSqlInstanceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getSuspendDatabasesPostgreSqlInstanceUrl(apiVersion, instanceId).url.toString(), ... requestConfig })  
+  const res = await request<SuspendDatabasesPostgreSqlInstanceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getSuspendDatabasesPostgreSqlInstanceUrl(instanceId).url.toString(), ... requestConfig })  
   return res.data
 }

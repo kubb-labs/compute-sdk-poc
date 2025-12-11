@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteImagePathParams(data?: Partial<DeleteImagePathParams>): DeleteImagePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteImagePathParams>["apiVersion"]>(["v4", "v4beta"]),"imageId": faker.string.alpha()},
+  ...{"imageId": faker.string.alpha()},
   ...data || {}
   }
 }

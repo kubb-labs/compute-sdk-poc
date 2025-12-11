@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetBetaProgramsQueryResponse, GetBetaProgramsPathParams, GetBetaProgramsQueryParams } from "../types/GetBetaPrograms.ts";
+import type { GetBetaProgramsQueryResponse, GetBetaProgramsQueryParams } from "../types/GetBetaPrograms.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetBetaProgramsUrl(apiVersion: GetBetaProgramsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/betas` as const }  
+function getGetBetaProgramsUrl() {
+  const res = { method: 'GET', url: `/betas` as const }  
   return res
 }
 
 /**
  * @description Display all active Beta Programs.Only unrestricted Users can access this operation.<<LB>>---- __CLI__.    ```    linode-cli betas list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List Beta programs
- * {@link /:apiVersion/betas}
+ * {@link /betas}
  */
-export async function getBetaPrograms(apiVersion: GetBetaProgramsPathParams["apiVersion"], params?: GetBetaProgramsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getBetaPrograms(params?: GetBetaProgramsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetBetaProgramsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetBetaProgramsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetBetaProgramsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetBetaProgramsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

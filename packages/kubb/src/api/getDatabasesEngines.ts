@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetDatabasesEnginesQueryResponse, GetDatabasesEnginesPathParams, GetDatabasesEnginesQueryParams } from "../types/GetDatabasesEngines.ts";
+import type { GetDatabasesEnginesQueryResponse, GetDatabasesEnginesQueryParams } from "../types/GetDatabasesEngines.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDatabasesEnginesUrl(apiVersion: GetDatabasesEnginesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/databases/engines` as const }  
+function getGetDatabasesEnginesUrl() {
+  const res = { method: 'GET', url: `/databases/engines` as const }  
   return res
 }
 
 /**
  * @description Display all available Managed Databases engine types and versions. Use an engine's `id` to create a new Managed Databases instance.<<LB>>---- __CLI__.    ```    linode-cli databases engines    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List Managed Databases engines
- * {@link /:apiVersion/databases/engines}
+ * {@link /databases/engines}
  */
-export async function getDatabasesEngines(apiVersion: GetDatabasesEnginesPathParams["apiVersion"], params?: GetDatabasesEnginesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDatabasesEngines(params?: GetDatabasesEnginesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDatabasesEnginesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesEnginesUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetDatabasesEnginesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesEnginesUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutSharegroupMemberTokenMutationRequest, PutSharegroupMemberTokenMutationResponse, PutSharegroupMemberTokenPathParams } from "../types/PutSharegroupMemberToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutSharegroupMemberTokenUrl(apiVersion: PutSharegroupMemberTokenPathParams["apiVersion"], sharegroupId: PutSharegroupMemberTokenPathParams["sharegroupId"], tokenUuid: PutSharegroupMemberTokenPathParams["tokenUuid"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/images/sharegroups/${sharegroupId}/members/${tokenUuid}` as const }  
+function getPutSharegroupMemberTokenUrl(sharegroupId: PutSharegroupMemberTokenPathParams["sharegroupId"], tokenUuid: PutSharegroupMemberTokenPathParams["tokenUuid"]) {
+  const res = { method: 'PUT', url: `/images/sharegroups/${sharegroupId}/members/${tokenUuid}` as const }  
   return res
 }
 
 /**
  * @description Updates an existing membership token for a group owner. You can change each token's `label` that will be visible only to you, such as when you [Get members by share group](https://techdocs.akamai.com/linode-api/reference/get-sharegroup-members).- Run the [List share groups](https://techdocs.akamai.com/linode-api/reference/get-sharegroups) operation to get the `id` you should use as the `(sharegroupId)` path parameter that identifies an existing share group.- Run the [List members by share group](https://techdocs.akamai.com/linode-api/reference/get-sharegroup-members) operation to get the `token_uuid` for a current group member.<<LB>>---- __CLI__.    ```    linode-cli image-sharegroups member-update 123 abc123 --label "new_label"    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a membership token
- * {@link /:apiVersion/images/sharegroups/:sharegroupId/members/:tokenUuid}
+ * {@link /images/sharegroups/:sharegroupId/members/:tokenUuid}
  */
-export async function putSharegroupMemberToken(apiVersion: PutSharegroupMemberTokenPathParams["apiVersion"], sharegroupId: PutSharegroupMemberTokenPathParams["sharegroupId"], tokenUuid: PutSharegroupMemberTokenPathParams["tokenUuid"], data: PutSharegroupMemberTokenMutationRequest, config: Partial<RequestConfig<PutSharegroupMemberTokenMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putSharegroupMemberToken(sharegroupId: PutSharegroupMemberTokenPathParams["sharegroupId"], tokenUuid: PutSharegroupMemberTokenPathParams["tokenUuid"], data: PutSharegroupMemberTokenMutationRequest, config: Partial<RequestConfig<PutSharegroupMemberTokenMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutSharegroupMemberTokenMutationResponse, ResponseErrorConfig<Error>, PutSharegroupMemberTokenMutationRequest>({ method : "PUT", url : getPutSharegroupMemberTokenUrl(apiVersion, sharegroupId, tokenUuid).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutSharegroupMemberTokenMutationResponse, ResponseErrorConfig<Error>, PutSharegroupMemberTokenMutationRequest>({ method : "PUT", url : getPutSharegroupMemberTokenUrl(sharegroupId, tokenUuid).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

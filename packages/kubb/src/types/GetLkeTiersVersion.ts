@@ -4,12 +4,6 @@
 */
 
 
-export const getLkeTiersVersionPathParamsApiVersionEnum = {
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLkeTiersVersionPathParamsApiVersionEnumKey = (typeof getLkeTiersVersionPathParamsApiVersionEnum)[keyof typeof getLkeTiersVersionPathParamsApiVersionEnum];
-
 export const getLkeTiersVersionPathParamsTierEnum = {
     "standard": "standard",
     "enterprise": "enterprise"
@@ -18,11 +12,6 @@ export const getLkeTiersVersionPathParamsTierEnum = {
 export type GetLkeTiersVersionPathParamsTierEnumKey = (typeof getLkeTiersVersionPathParamsTierEnum)[keyof typeof getLkeTiersVersionPathParamsTierEnum];
 
 export interface GetLkeTiersVersionPathParams {
-    /**
-     * @description __Enum__ Call the `v4beta` URL for operations still only in beta.
-     * @type string
-    */
-    apiVersion: GetLkeTiersVersionPathParamsApiVersionEnumKey;
     /**
      * @description __Enum__ The LKE tier to use.
      * @type string
@@ -64,19 +53,19 @@ export interface GetLkeTiersVersion200 {
 */
 export interface GetLkeTiersVersionError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

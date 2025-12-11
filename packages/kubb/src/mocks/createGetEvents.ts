@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetEventsPathParams, GetEventsQueryParams, GetEventsHeaderParams, GetEvents200, GetEventsError, GetEventsQueryResponse } from "../types/GetEvents.ts";
+import type { GetEventsQueryParams, GetEventsHeaderParams, GetEvents200, GetEventsError, GetEventsQueryResponse } from "../types/GetEvents.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetEventsPathParams(data?: Partial<GetEventsPathParams>): GetEventsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetEventsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetEventsQueryParams(data?: Partial<GetEventsQueryParams>): GetEventsQueryParams {
   

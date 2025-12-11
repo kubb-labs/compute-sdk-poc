@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteStackScriptMutationResponse, DeleteStackScriptPathParams } from "../types/DeleteStackScript.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteStackScriptUrl(apiVersion: DeleteStackScriptPathParams["apiVersion"], stackscriptId: DeleteStackScriptPathParams["stackscriptId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/linode/stackscripts/${stackscriptId}` as const }  
+function getDeleteStackScriptUrl(stackscriptId: DeleteStackScriptPathParams["stackscriptId"]) {
+  const res = { method: 'DELETE', url: `/linode/stackscripts/${stackscriptId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a private StackScript you have permission to `read_write`. You cannot delete a public StackScript.<<LB>>---- __CLI__.    ```    linode-cli stackscripts delete 10079    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    stackscripts:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a StackScript
- * {@link /:apiVersion/linode/stackscripts/:stackscriptId}
+ * {@link /linode/stackscripts/:stackscriptId}
  */
-export async function deleteStackScript(apiVersion: DeleteStackScriptPathParams["apiVersion"], stackscriptId: DeleteStackScriptPathParams["stackscriptId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteStackScript(stackscriptId: DeleteStackScriptPathParams["stackscriptId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteStackScriptMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteStackScriptUrl(apiVersion, stackscriptId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteStackScriptMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteStackScriptUrl(stackscriptId).url.toString(), ... requestConfig })  
   return res.data
 }

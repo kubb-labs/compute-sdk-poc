@@ -4,21 +4,6 @@
 */
 
 
-export const putAccountSettingsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PutAccountSettingsPathParamsApiVersionEnumKey = (typeof putAccountSettingsPathParamsApiVersionEnum)[keyof typeof putAccountSettingsPathParamsApiVersionEnum];
-
-export interface PutAccountSettingsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PutAccountSettingsPathParamsApiVersionEnumKey;
-}
-
 export const putAccountSettings200InterfacesForNewLinodesEnum = {
     "legacy_config_only": "legacy_config_only",
     "legacy_config_default_but_linode_allowed": "legacy_config_default_but_linode_allowed",
@@ -49,40 +34,40 @@ export type PutAccountSettings200ObjectStorageEnumKey = (typeof putAccountSettin
 export interface PutAccountSettings200 {
     /**
      * @description Account-wide backups default.  If `true`, all Linodes created will automatically be enrolled in the Backups service.  If `false`, Linodes will not be enrolled by default, but may still be enrolled on creation or later.
-     * @type boolean | undefined
+     * @type boolean
     */
-    backups_enabled?: boolean;
+    backups_enabled: boolean;
     /**
      * @description __Beta__ Defines if new Linodes can use legacy configuration interfaces:\n- `legacy_config_only`. All new Linodes need to use legacy configuration interfaces. Prevously created Linodes with Linode Interfaces can still exist. Linodes using legacy configuration interfaces can\'t be upgraded to use Linode Interfaces.\n- `legacy_config_default_but_linode_allowed`. New Linodes can use legacy configuration interfaces or Linode Interfaces, depending on the `interface_generation` setting specified when creating the Linode. By default, new Linodes use legacy configuration interfaces unless otherwise specified. Linodes that use legacy configuration interfaces can upgrade to Linode Interfaces. This is the default setting for existing accounts.\n- `linode_default_but_legacy_config_allowed`. New Linodes can use legacy configuration interfaces or Linode Interfaces, depending on the `interface_generation` setting specified when creating the Linode. By default, new Linodes use Linode Interfaces unless otherwise specified. Linodes that use legacy configuration interfaces can upgrade to Linode interfaces. This is the default setting for new accounts.\n- `linode_only`. All new Linodes need to use Linode Interfaces. Prevously created Linodes with legacy configuration profile interfaces can still exist if they were created under a previous setting. Linodes using legacy configuration interfaces can be upgraded to Linode Interfaces.
-     * @type string | undefined
+     * @type string
     */
-    interfaces_for_new_linodes?: PutAccountSettings200InterfacesForNewLinodesEnumKey;
+    interfaces_for_new_linodes: PutAccountSettings200InterfacesForNewLinodesEnumKey;
     /**
      * @description __Read-only__ The Longview Pro tier you are currently subscribed to. The value must be a [Longview subscription](https://techdocs.akamai.com/linode-api/reference/get-longview-subscriptions) ID or `null` for Longview Free.
-     * @type string | undefined
+     * @type string
     */
-    readonly longview_subscription?: string;
+    readonly longview_subscription: string;
     /**
      * @description __Beta__ Defines the default maintenance policy for new Linodes created on this account. Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details.
-     * @type string | undefined
+     * @type string
     */
-    maintenance_policy?: PutAccountSettings200MaintenancePolicyEnumKey;
+    maintenance_policy: PutAccountSettings200MaintenancePolicyEnumKey;
     /**
      * @description __Read-only__ Our 24/7 incident response service. This robust, multi-homed monitoring system distributes monitoring checks to ensure that your servers remain online and available at all times. Linode Managed can monitor any service or software stack reachable over TCP or HTTP. Once you add a service to Linode Managed, we\'ll monitor it for connectivity, response, and total request time.
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly managed?: boolean;
+    readonly managed: boolean;
     /**
      * @description Enables network helper across all users by default for new Linodes and Linode Configs.
-     * @type boolean | undefined
+     * @type boolean
     */
-    network_helper?: boolean;
+    network_helper: boolean;
     /**
      * @description __Read-only__ A string describing the status of this account\'s Object Storage service enrollment.
      * @default "disabled"
-     * @type string | undefined
+     * @type string
     */
-    readonly object_storage?: PutAccountSettings200ObjectStorageEnumKey;
+    readonly object_storage: PutAccountSettings200ObjectStorageEnumKey;
 }
 
 /**
@@ -90,19 +75,19 @@ export interface PutAccountSettings200 {
 */
 export interface PutAccountSettingsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -177,6 +162,5 @@ export type PutAccountSettingsMutationResponse = PutAccountSettings200;
 export type PutAccountSettingsMutation = {
     Response: PutAccountSettings200;
     Request: PutAccountSettingsMutationRequest;
-    PathParams: PutAccountSettingsPathParams;
     Errors: any;
 };

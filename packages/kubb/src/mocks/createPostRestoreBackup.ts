@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostRestoreBackupPathParams(data?: Partial<PostRestoreBackupPathParams>): PostRestoreBackupPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostRestoreBackupPathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int(),"backupId": faker.number.int()},
+  ...{"linodeId": faker.number.int(),"backupId": faker.number.int()},
   ...data || {}
   }
 }

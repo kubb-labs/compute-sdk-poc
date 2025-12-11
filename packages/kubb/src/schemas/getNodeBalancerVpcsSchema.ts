@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const getNodeBalancerVpcsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"nodeBalancerId": z.coerce.number().int().describe("The ID of the NodeBalancer.")
+    "nodeBalancerId": z.coerce.number().int().describe("The ID of the NodeBalancer.")
     })
 
 export const getNodeBalancerVpcsQueryParamsSchema = z.object({
@@ -19,27 +18,27 @@ export const getNodeBalancerVpcsQueryParamsSchema = z.object({
  * @description A paginated list of NodeBalancer VPC configurations.
  */
 export const getNodeBalancerVpcs200Schema = z.object({
-    "data": z.optional(z.array(z.object({
+    "data": z.array(z.object({
     "id": z.optional(z.int().describe("__Read-only__ Identifies the VPC configuration for this NodeBalancer.")),
 "ipv4_range": z.optional(z.string().describe("A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.")),
 "ipv4_range_auto_assign": z.boolean().default(false).describe("Enables the use of a larger `ipv4_range` subnet for multiple NodeBalancers within the same VPC by allocating smaller `/30` subnets for each NodeBalancer's backends.\n\n- When set to `true`, the system automatically allocates the smallest possible subnet (`/30`) from the provided `ipv4_range` for the NodeBalancer's backend interface. If the specified range doesn't have enough available IPs to allocate a `/30` subnet, the creation fails.\n\n- When set to `false`, the NodeBalancer is created using the entire `ipv4_range` as specified, without attempting to allocate a `/30` subnet.").nullish(),
 "nodebalancer_id": z.optional(z.int().describe("__Read-only__ Identifies the NodeBalancer.")),
 "subnet_id": z.int().describe("The VPC's subnet. Run the [List VPCs](https://techdocs.akamai.com/linode-api/reference/get-vpcs) operation provides data for your VPCs and their subnets."),
 "vpc_id": z.int().describe("__Read-only__ The `id` of the VPC configured for this NodeBalancer.").nullish()
-    }).describe("You can have only one VPC in a NodeBalancer configuration. If any of your backend nodes are VPC Linodes, specify the VPC subnet and CIDR range. NodeBalancer routes traffic to backend VPC nodes through this subnet. Once the NodeBalancer is created, its VPC cannot be changed."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    }).describe("You can have only one VPC in a NodeBalancer configuration. If any of your backend nodes are VPC Linodes, specify the VPC subnet and CIDR range. NodeBalancer routes traffic to backend VPC nodes through this subnet. Once the NodeBalancer is created, its VPC cannot be changed.")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getNodeBalancerVpcsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getNodeBalancerVpcsQueryResponseSchema = z.lazy(() => getNodeBalancerVpcs200Schema)

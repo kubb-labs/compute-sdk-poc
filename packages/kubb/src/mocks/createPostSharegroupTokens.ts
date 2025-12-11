@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostSharegroupTokensPathParams, PostSharegroupTokens200, PostSharegroupTokensError, PostSharegroupTokensMutationRequest, PostSharegroupTokensMutationResponse } from "../types/PostSharegroupTokens.ts";
+import type { PostSharegroupTokens200, PostSharegroupTokensError, PostSharegroupTokensMutationRequest, PostSharegroupTokensMutationResponse } from "../types/PostSharegroupTokens.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostSharegroupTokensPathParams(data?: Partial<PostSharegroupTokensPathParams>): PostSharegroupTokensPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostSharegroupTokensPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Token generated successfully.

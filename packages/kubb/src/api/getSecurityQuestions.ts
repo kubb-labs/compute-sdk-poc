@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetSecurityQuestionsQueryResponse, GetSecurityQuestionsPathParams } from "../types/GetSecurityQuestions.ts";
+import type { GetSecurityQuestionsQueryResponse } from "../types/GetSecurityQuestions.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetSecurityQuestionsUrl(apiVersion: GetSecurityQuestionsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/security-questions` as const }  
+function getGetSecurityQuestionsUrl() {
+  const res = { method: 'GET', url: `/profile/security-questions` as const }  
   return res
 }
 
 /**
  * @description Returns a collection of security questions and their responses, if any, for your User Profile.<<LB>>---- __CLI__.    ```    linode-cli security-questions list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List security questions
- * {@link /:apiVersion/profile/security-questions}
+ * {@link /profile/security-questions}
  */
-export async function getSecurityQuestions(apiVersion: GetSecurityQuestionsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getSecurityQuestions(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetSecurityQuestionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSecurityQuestionsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetSecurityQuestionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSecurityQuestionsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

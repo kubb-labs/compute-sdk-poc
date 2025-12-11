@@ -4,21 +4,6 @@
 */
 
 
-export const getMaintenancePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetMaintenancePathParamsApiVersionEnumKey = (typeof getMaintenancePathParamsApiVersionEnum)[keyof typeof getMaintenancePathParamsApiVersionEnum];
-
-export interface GetMaintenancePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetMaintenancePathParamsApiVersionEnumKey;
-}
-
 export const dataDescriptionEnum2 = {
     "Scheduled Maintenance": "Scheduled Maintenance",
     "Emergency Maintenance": "Emergency Maintenance"
@@ -59,101 +44,101 @@ export type DataTypeEnum6Key = (typeof dataTypeEnum6)[keyof typeof dataTypeEnum6
 */
 export interface GetMaintenance200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Beta__, __Filterable__ The time the maintenance completed. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:\n\n- A single ISO 8601 timestamp (`yyyy-mm-ddThh:mm:ss`), which returns only matches for that value.\n\n- Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        complete_time?: string;
+        complete_time: string;
         /**
          * @description __Beta__ Differentiates between scheduled and emergency maintenance.
-         * @type string | undefined
+         * @type string
         */
-        description?: DataDescriptionEnum2Key;
+        description: DataDescriptionEnum2Key;
         /**
          * @description The entity affected by the maintenance.
-         * @type object | undefined
+         * @type object
         */
-        entity?: {
+        entity: {
             /**
              * @description The unique identifier of the entity targeted by the maintenance.
-             * @type number | undefined
+             * @type number
             */
-            id?: number;
+            id: number;
             /**
              * @description The name of the entity targeted by the maintenance.
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description The type of entity.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
             /**
              * @description A combination of the API operation prefix and the entity\'s `id` that can be used to review the entity.
-             * @type string | undefined
+             * @type string
             */
-            url?: string;
+            url: string;
         };
         /**
          * @description __Beta__, __Filterable__ The maintenance policy configured by the user.
-         * @type string | undefined
+         * @type string
         */
-        maintenance_policy_set?: string;
+        maintenance_policy_set: string;
         /**
          * @description __Beta__, __Filterable__ The earliest time when the maintenance can start. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:\n\n- A single ISO 8601 timestamp (`yyyy-mm-ddThh:mm:ss`), which returns only matches for that value.\n\n- Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        not_before?: string;
+        not_before: string;
         /**
          * @description The reason maintenance is being performed.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
         /**
          * @description __Beta__ The origin of the maintenance. A `platform` source indicates that the maintenance was initiated by Akamai. A `user` source indicates that the maintenance was initiated by the user.
-         * @type string | undefined
+         * @type string
         */
-        source?: DataSourceEnum2Key;
+        source: DataSourceEnum2Key;
         /**
          * @description __Beta__, __Filterable__ The time the maintenance started. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:\n\n- A single ISO 8601 timestamp (`yyyy-mm-ddThh:mm:ss`), which returns only matches for that value.\n\n- Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        start_time?: string;
+        start_time: string;
         /**
          * @description __Filterable__ The maintenance status. Maintenance progress follows the sequence `pending`, `scheduled`, `started`, and `completed`. A `scheduled` status is unique to Linodes that require a reboot for [QEMU maintenance](https://techdocs.akamai.com/linode-api/reference/reboot-your-linodes-for-qemu-maintenance).
-         * @type string | undefined
+         * @type string
         */
-        status?: DataStatusEnum10Key;
+        status: DataStatusEnum10Key;
         /**
          * @description __Filterable__ The type of maintenance.
-         * @type string | undefined
+         * @type string
         */
-        type?: DataTypeEnum6Key;
+        type: DataTypeEnum6Key;
         /**
          * @description __Filterable__ The start time for the maintenance. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:\n\n- A single ISO 8601 timestamp (yyyy-mm-ddThh:mm:ss), which returns only matches for that value.\n\n- Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and single ISO 8601 timestamp. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        when?: string;
+        when: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -161,19 +146,19 @@ export interface GetMaintenance200 {
 */
 export interface GetMaintenanceError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -181,6 +166,5 @@ export type GetMaintenanceQueryResponse = GetMaintenance200;
 
 export type GetMaintenanceQuery = {
     Response: GetMaintenance200;
-    PathParams: GetMaintenancePathParams;
     Errors: any;
 };

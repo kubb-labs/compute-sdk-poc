@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetKernelsPathParams, GetKernelsQueryParams, GetKernels200, GetKernelsError, GetKernelsQueryResponse } from "../types/GetKernels.ts";
+import type { GetKernelsQueryParams, GetKernels200, GetKernelsError, GetKernelsQueryResponse } from "../types/GetKernels.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetKernelsPathParams(data?: Partial<GetKernelsPathParams>): GetKernelsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetKernelsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetKernelsQueryParams(data?: Partial<GetKernelsQueryParams>): GetKernelsQueryParams {
   

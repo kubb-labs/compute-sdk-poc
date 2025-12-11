@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteImageMutationResponse, DeleteImagePathParams } from "../types/DeleteImage.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteImageUrl(apiVersion: DeleteImagePathParams["apiVersion"], imageId: DeleteImagePathParams["imageId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/images/${imageId}` as const }  
+function getDeleteImageUrl(imageId: DeleteImagePathParams["imageId"]) {
+  const res = { method: 'DELETE', url: `/images/${imageId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a private image you have permission to `read_write`.> 🚧>> - You can't undo this delete action.>> - When you delete an image, all [replicated instances](https://techdocs.akamai.com/linode-api/reference/post-replicate-image) of that image are also deleted.<<LB>>---- __CLI__.    ```    linode-cli images delete 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete an image
- * {@link /:apiVersion/images/:imageId}
+ * {@link /images/:imageId}
  */
-export async function deleteImage(apiVersion: DeleteImagePathParams["apiVersion"], imageId: DeleteImagePathParams["imageId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteImage(imageId: DeleteImagePathParams["imageId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteImageMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteImageUrl(apiVersion, imageId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteImageMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteImageUrl(imageId).url.toString(), ... requestConfig })  
   return res.data
 }

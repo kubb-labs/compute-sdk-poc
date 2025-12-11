@@ -6,46 +6,45 @@
 import { z } from "zod/v4";
 
 export const putStackScriptPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"stackscriptId": z.string().describe("The ID of the StackScript to look up.")
+    "stackscriptId": z.string().describe("The ID of the StackScript to look up.")
     })
 
 /**
  * @description StackScript was successfully modified.
  */
 export const putStackScript200Schema = z.object({
-    "created": z.optional(z.string().datetime().describe("__Read-only__ The date this StackScript was created.")),
-"deployments_active": z.optional(z.int().describe("__Read-only__ Count of currently active, deployed Linodes created from this StackScript.")),
-"deployments_total": z.optional(z.int().describe("__Filterable__, __Read-only__ The total number of times this StackScript has been deployed.")),
-"description": z.optional(z.string().describe("__Filterable__ A description for the StackScript.")),
-"id": z.optional(z.int().describe("__Read-only__ The unique ID of this StackScript.")),
-"images": z.optional(z.array(z.string()).describe("An array of Image IDs. These are the Images that can be deployed with this StackScript.\n\n`any/all` indicates that all available Images, including private Images, are accepted.")),
-"is_public": z.optional(z.boolean().describe("__Filterable__ This determines whether other users can use your StackScript. __Once a StackScript is made public, it cannot be made private.__")),
-"label": z.optional(z.string().min(3).max(128).describe("__Filterable__ The StackScript's label is for display purposes only.")),
-"mine": z.optional(z.boolean().describe("__Filterable__, __Read-only__ Returns `true` if this StackScript is owned by the account of the user making the request, and the user making the request is unrestricted or has access to this StackScript.")),
-"rev_note": z.optional(z.string().describe("__Filterable__ This field allows you to add notes for the set of revisions made to this StackScript.")),
-"script": z.optional(z.string().describe("The script to execute when provisioning a new Linode with this StackScript.")),
-"updated": z.optional(z.string().datetime().describe("__Read-only__ The date this StackScript was last updated.")),
-"user_defined_fields": z.optional(z.array(z.object({
+    "created": z.string().datetime().describe("__Read-only__ The date this StackScript was created."),
+"deployments_active": z.int().describe("__Read-only__ Count of currently active, deployed Linodes created from this StackScript."),
+"deployments_total": z.int().describe("__Filterable__, __Read-only__ The total number of times this StackScript has been deployed."),
+"description": z.string().describe("__Filterable__ A description for the StackScript."),
+"id": z.int().describe("__Read-only__ The unique ID of this StackScript."),
+"images": z.array(z.string()).describe("An array of Image IDs. These are the Images that can be deployed with this StackScript.\n\n`any/all` indicates that all available Images, including private Images, are accepted."),
+"is_public": z.boolean().describe("__Filterable__ This determines whether other users can use your StackScript. __Once a StackScript is made public, it cannot be made private.__"),
+"label": z.string().min(3).max(128).describe("__Filterable__ The StackScript's label is for display purposes only."),
+"mine": z.boolean().describe("__Filterable__, __Read-only__ Returns `true` if this StackScript is owned by the account of the user making the request, and the user making the request is unrestricted or has access to this StackScript."),
+"rev_note": z.string().describe("__Filterable__ This field allows you to add notes for the set of revisions made to this StackScript."),
+"script": z.string().describe("The script to execute when provisioning a new Linode with this StackScript."),
+"updated": z.string().datetime().describe("__Read-only__ The date this StackScript was last updated."),
+"user_defined_fields": z.array(z.object({
     "default": z.optional(z.string().describe("__Read-only__ The default value.  If not specified, this value will be used.")),
 "example": z.string().describe("__Read-only__ An example value for the field."),
 "label": z.string().describe("__Read-only__ A human-readable label for the field that will serve as the input prompt for entering the value during deployment."),
 "manyOf": z.optional(z.string().describe("__Read-only__ A list of acceptable values for the field in any quantity, combination or order.")),
 "name": z.string().describe("__Read-only__ The name of the field."),
 "oneOf": z.optional(z.string().describe("__Read-only__ A list of acceptable single values for the field."))
-    }).describe("A custom field defined by the User with a special syntax within a StackScript. Derived from the contents of the script.")).describe("__Read-only__ This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment. See [Declare User-Defined Fields (UDFs)](https://www.linode.com/docs/products/tools/stackscripts/guides/write-a-custom-script/#declare-user-defined-fields-udfs) for more information.")),
-"user_gravatar_id": z.optional(z.string().describe("__Read-only__ The Gravatar ID for the User who created the StackScript.")),
-"username": z.optional(z.string().describe("__Read-only__ The User who created the StackScript."))
+    }).describe("A custom field defined by the User with a special syntax within a StackScript. Derived from the contents of the script.")).describe("__Read-only__ This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment. See [Declare User-Defined Fields (UDFs)](https://www.linode.com/docs/products/tools/stackscripts/guides/write-a-custom-script/#declare-user-defined-fields-udfs) for more information."),
+"user_gravatar_id": z.string().describe("__Read-only__ The Gravatar ID for the User who created the StackScript."),
+"username": z.string().describe("__Read-only__ The User who created the StackScript.")
     }).describe("A StackScript enables you to quickly deploy a fully configured application in an automated manner.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const putStackScriptErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 /**

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteObjectStorageBucketPathParams(data?: Partial<DeleteObjectStorageBucketPathParams>): DeleteObjectStorageBucketPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteObjectStorageBucketPathParams>["apiVersion"]>(["v4", "v4beta"]),"regionId": faker.string.alpha(),"bucket": faker.string.alpha()},
+  ...{"regionId": faker.string.alpha(),"bucket": faker.string.alpha()},
   ...data || {}
   }
 }

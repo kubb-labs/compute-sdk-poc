@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetNetworkTransferPricesPathParams, GetNetworkTransferPrices200, GetNetworkTransferPricesError, GetNetworkTransferPricesQueryResponse } from "../types/GetNetworkTransferPrices.ts";
+import type { GetNetworkTransferPrices200, GetNetworkTransferPricesError, GetNetworkTransferPricesQueryResponse } from "../types/GetNetworkTransferPrices.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetNetworkTransferPricesPathParams(data?: Partial<GetNetworkTransferPricesPathParams>): GetNetworkTransferPricesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetNetworkTransferPricesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A collection of network transfer prices.

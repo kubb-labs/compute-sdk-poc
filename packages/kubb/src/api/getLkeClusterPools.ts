@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLkeClusterPoolsQueryResponse, GetLkeClusterPoolsPathParams } from "../types/GetLkeClusterPools.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLkeClusterPoolsUrl(apiVersion: GetLkeClusterPoolsPathParams["apiVersion"], clusterId: GetLkeClusterPoolsPathParams["clusterId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/lke/clusters/${clusterId}/pools` as const }  
+function getGetLkeClusterPoolsUrl(clusterId: GetLkeClusterPoolsPathParams["clusterId"]) {
+  const res = { method: 'GET', url: `/lke/clusters/${clusterId}/pools` as const }  
   return res
 }
 
 /**
  * @description Returns all active Node Pools on a Kubernetes cluster.<<LB>>---- __CLI__.    ```    linode-cli lke pools-list 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List node pools
- * {@link /:apiVersion/lke/clusters/:clusterId/pools}
+ * {@link /lke/clusters/:clusterId/pools}
  */
-export async function getLkeClusterPools(apiVersion: GetLkeClusterPoolsPathParams["apiVersion"], clusterId: GetLkeClusterPoolsPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLkeClusterPools(clusterId: GetLkeClusterPoolsPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLkeClusterPoolsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeClusterPoolsUrl(apiVersion, clusterId).url.toString(), ... requestConfig })  
+  const res = await request<GetLkeClusterPoolsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeClusterPoolsUrl(clusterId).url.toString(), ... requestConfig })  
   return res.data
 }

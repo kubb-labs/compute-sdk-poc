@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetInvoiceItemsQueryResponse, GetInvoiceItemsPathParams, GetInvoiceItemsQueryParams } from "../types/GetInvoiceItems.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetInvoiceItemsUrl(apiVersion: GetInvoiceItemsPathParams["apiVersion"], invoiceId: GetInvoiceItemsPathParams["invoiceId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/invoices/${invoiceId}/items` as const }  
+function getGetInvoiceItemsUrl(invoiceId: GetInvoiceItemsPathParams["invoiceId"]) {
+  const res = { method: 'GET', url: `/account/invoices/${invoiceId}/items` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of Invoice items.<<LB>>---- __CLI__.    ```    linode-cli account invoice-items 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List invoice items
- * {@link /:apiVersion/account/invoices/:invoiceId/items}
+ * {@link /account/invoices/:invoiceId/items}
  */
-export async function getInvoiceItems(apiVersion: GetInvoiceItemsPathParams["apiVersion"], invoiceId: GetInvoiceItemsPathParams["invoiceId"], params?: GetInvoiceItemsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getInvoiceItems(invoiceId: GetInvoiceItemsPathParams["invoiceId"], params?: GetInvoiceItemsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetInvoiceItemsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetInvoiceItemsUrl(apiVersion, invoiceId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetInvoiceItemsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetInvoiceItemsUrl(invoiceId).url.toString(), params, ... requestConfig })  
   return res.data
 }

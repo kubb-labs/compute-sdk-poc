@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeConfigsQueryResponse, GetLinodeConfigsPathParams, GetLinodeConfigsQueryParams } from "../types/GetLinodeConfigs.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeConfigsUrl(apiVersion: GetLinodeConfigsPathParams["apiVersion"], linodeId: GetLinodeConfigsPathParams["linodeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/configs` as const }  
+function getGetLinodeConfigsUrl(linodeId: GetLinodeConfigsPathParams["linodeId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/configs` as const }  
   return res
 }
 
 /**
  * @description Lists configuration profiles associated with a Linode.<<LB>>---- __CLI__.    ```    linode-cli linodes configs-list 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List configuration profiles
- * {@link /:apiVersion/linode/instances/:linodeId/configs}
+ * {@link /linode/instances/:linodeId/configs}
  */
-export async function getLinodeConfigs(apiVersion: GetLinodeConfigsPathParams["apiVersion"], linodeId: GetLinodeConfigsPathParams["linodeId"], params?: GetLinodeConfigsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeConfigs(linodeId: GetLinodeConfigsPathParams["linodeId"], params?: GetLinodeConfigsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeConfigsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeConfigsUrl(apiVersion, linodeId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetLinodeConfigsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeConfigsUrl(linodeId).url.toString(), params, ... requestConfig })  
   return res.data
 }

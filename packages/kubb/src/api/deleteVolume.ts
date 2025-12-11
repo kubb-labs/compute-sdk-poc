@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteVolumeMutationResponse, DeleteVolumePathParams } from "../types/DeleteVolume.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteVolumeUrl(apiVersion: DeleteVolumePathParams["apiVersion"], volumeId: DeleteVolumePathParams["volumeId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/volumes/${volumeId}` as const }  
+function getDeleteVolumeUrl(volumeId: DeleteVolumePathParams["volumeId"]) {
+  const res = { method: 'DELETE', url: `/volumes/${volumeId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a specified Block Storage volume that you have permission to `read_write`.- Deleting a volume can't be undone.- Deleting stops billing for the volume. You'll be billed for the time the volume was active during the current billing period.- You can't delete a volume that's currently being migrated. You need to wait for the migration to complete.<<LB>>---- __CLI__.    ```    linode-cli volumes delete 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    volumes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a volume
- * {@link /:apiVersion/volumes/:volumeId}
+ * {@link /volumes/:volumeId}
  */
-export async function deleteVolume(apiVersion: DeleteVolumePathParams["apiVersion"], volumeId: DeleteVolumePathParams["volumeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteVolume(volumeId: DeleteVolumePathParams["volumeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteVolumeMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteVolumeUrl(apiVersion, volumeId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteVolumeMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteVolumeUrl(volumeId).url.toString(), ... requestConfig })  
   return res.data
 }

@@ -4,19 +4,7 @@
 */
 
 
-export const postCloneDomainPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostCloneDomainPathParamsApiVersionEnumKey = (typeof postCloneDomainPathParamsApiVersionEnum)[keyof typeof postCloneDomainPathParamsApiVersionEnum];
-
 export interface PostCloneDomainPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostCloneDomainPathParamsApiVersionEnumKey;
     /**
      * @description ID of the Domain to clone.
      * @type string
@@ -44,30 +32,30 @@ export type PostCloneDomain200TypeEnumKey = (typeof postCloneDomain200TypeEnum)[
 export interface PostCloneDomain200 {
     /**
      * @description The list of IPs that may perform a zone transfer for this domain. The total combined length of all data within this array cannot exceed 1000 characters.\n\n> 📘\n>\n> This is potentially dangerous, and should be set to an empty list unless you intend to use it.
-     * @type array | undefined
+     * @type array
     */
-    axfr_ips?: string[];
+    axfr_ips: string[];
     /**
      * @description A description for this domain. This is for display purposes only.
      * @minLength 1
      * @maxLength 253
      * @type string
     */
-    description?: string | null;
+    description: string | null;
     /**
      * @description __Filterable__ The domain this domain represents. domain labels cannot be longer than 63 characters and must conform to [RFC1035](https://tools.ietf.org/html/rfc1035). domains must be unique on Linode\'s platform, including across different Linode accounts; there cannot be two domains representing the same domain.
      * @minLength 1
      * @maxLength 253
      * @pattern ^(\*\.)?([a-zA-Z0-9-_]{1,63}\.)+([a-zA-Z]{2,3}\.)?([a-zA-Z]{2,16}|xn--[a-zA-Z0-9]+)$
-     * @type string | undefined
+     * @type string
     */
-    domain?: string;
+    domain: string;
     /**
      * @description The amount of time in seconds that may pass before this domain is no longer authoritative.\n\n- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.\n\n- Any other value is rounded up to the nearest valid value.\n\n- A value of 0 is equivalent to the default value of 1209600.
      * @default 0
-     * @type integer | undefined
+     * @type integer
     */
-    expire_sec?: number;
+    expire_sec: number;
     /**
      * @description __Filterable__ The group this domain belongs to.  This is for display purposes only.
      * @deprecated
@@ -75,56 +63,56 @@ export interface PostCloneDomain200 {
      * @maxLength 50
      * @type string
     */
-    group?: string | null;
+    group: string | null;
     /**
      * @description __Read-only__ This domain\'s unique ID.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description The IP addresses representing the master DNS for this domain. At least one value is required for `type` slave domains. The total combined length of all data within this array cannot exceed 1000 characters.
-     * @type array | undefined
+     * @type array
     */
-    master_ips?: string[];
+    master_ips: string[];
     /**
      * @description The amount of time in seconds before this domain should be refreshed.\n\n- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.\n\n- Any other value is rounded up to the nearest valid value.\n\n- A value of 0 is equivalent to the default value of 14400.
      * @default 0
-     * @type integer | undefined
+     * @type integer
     */
-    refresh_sec?: number;
+    refresh_sec: number;
     /**
      * @description The interval, in seconds, at which a failed refresh should be retried.\n\n- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.\n\n- Any other value is rounded up to the nearest valid value.\n\n- A value of 0 is equivalent to the default value of 14400.
      * @default 0
-     * @type integer | undefined
+     * @type integer
     */
-    retry_sec?: number;
+    retry_sec: number;
     /**
      * @description Start of Authority email address. This is required for `type` master domains.
-     * @type string | undefined, email
+     * @type string, email
     */
-    soa_email?: string;
+    soa_email: string;
     /**
      * @description Used to control whether this domain is currently being rendered.
      * @default "active"
-     * @type string | undefined
+     * @type string
     */
-    status?: PostCloneDomain200StatusEnumKey;
+    status: PostCloneDomain200StatusEnumKey;
     /**
      * @description __Filterable__ An array of tags applied to this object.  Tags are for organizational purposes only.
-     * @type array | undefined
+     * @type array
     */
-    tags?: string[];
+    tags: string[];
     /**
      * @description \"Time to Live\" - the amount of time in seconds that this domain\'s records may be cached by resolvers or other domain servers.\n\n- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.\n\n- Any other value is rounded up to the nearest valid value.\n\n- A value of 0 is equivalent to the default value of 86400.
      * @default 0
-     * @type integer | undefined
+     * @type integer
     */
-    ttl_sec?: number;
+    ttl_sec: number;
     /**
      * @description Whether this domain represents the authoritative source of information for the domain it describes (`master`), or whether it is a read-only copy of a master (`slave`).
-     * @type string | undefined
+     * @type string
     */
-    type?: PostCloneDomain200TypeEnumKey;
+    type: PostCloneDomain200TypeEnumKey;
 }
 
 /**
@@ -132,19 +120,19 @@ export interface PostCloneDomain200 {
 */
 export interface PostCloneDomainError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

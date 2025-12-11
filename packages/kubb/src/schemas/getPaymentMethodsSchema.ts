@@ -5,10 +5,6 @@
 
 import { z } from "zod/v4";
 
-export const getPaymentMethodsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 export const getPaymentMethodsQueryParamsSchema = z.object({
     "page": z.coerce.number().int().min(1).default(1).describe("The page of a collection to return."),
 "page_size": z.coerce.number().int().min(25).max(500).default(100).describe("The number of items to return per page.")
@@ -18,37 +14,37 @@ export const getPaymentMethodsQueryParamsSchema = z.object({
  * @description Returns a paginated list of Payment Method objects.
  */
 export const getPaymentMethods200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "created": z.optional(z.string().datetime().describe("__Read-only__ When the Payment Method was added to the Account.")),
-"data": z.optional(z.union([z.object({
-    "card_type": z.optional(z.string().describe("__Read-only__ The type of credit card.")),
-"expiry": z.optional(z.string().describe("__Read-only__ The expiration month and year of the credit card.")),
-"last_four": z.optional(z.string().describe("__Read-only__ The last four digits of the credit card number."))
+    "data": z.array(z.object({
+    "created": z.string().datetime().describe("__Read-only__ When the Payment Method was added to the Account."),
+"data": z.union([z.object({
+    "card_type": z.string().describe("__Read-only__ The type of credit card."),
+"expiry": z.string().describe("__Read-only__ The expiration month and year of the credit card."),
+"last_four": z.string().describe("__Read-only__ The last four digits of the credit card number.")
     }), z.object({
-    "card_type": z.optional(z.string().describe("__Read-only__ The type of credit card.")),
-"expiry": z.optional(z.string().describe("__Read-only__ The expiration month and year of the credit card.")),
-"last_four": z.optional(z.string().describe("__Read-only__ The last four digits of the credit card number."))
+    "card_type": z.string().describe("__Read-only__ The type of credit card."),
+"expiry": z.string().describe("__Read-only__ The expiration month and year of the credit card."),
+"last_four": z.string().describe("__Read-only__ The last four digits of the credit card number.")
     }), z.object({
-    "email": z.optional(z.string().describe("__Read-only__ The email address associated with your PayPal account.")),
-"paypal_id": z.optional(z.string().describe("__Read-only__ PayPal Merchant ID associated with your PayPal account."))
-    })])),
-"id": z.optional(z.int().describe("The unique ID of this Payment Method.")),
-"is_default": z.optional(z.boolean().describe("Whether this Payment Method is the default method for automatically processing service charges.")),
-"type": z.optional(z.enum(["credit_card", "google_pay", "paypal"]).describe("The type of Payment Method."))
-    }).describe("Payment Method Response Object."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    "email": z.string().describe("__Read-only__ The email address associated with your PayPal account."),
+"paypal_id": z.string().describe("__Read-only__ PayPal Merchant ID associated with your PayPal account.")
+    })]),
+"id": z.int().describe("The unique ID of this Payment Method."),
+"is_default": z.boolean().describe("Whether this Payment Method is the default method for automatically processing service charges."),
+"type": z.enum(["credit_card", "google_pay", "paypal"]).describe("The type of Payment Method.")
+    }).describe("Payment Method Response Object.")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getPaymentMethodsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getPaymentMethodsQueryResponseSchema = z.lazy(() => getPaymentMethods200Schema)

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetSshKeysPathParams, GetSshKeysQueryParams, GetSshKeys200, GetSshKeysError, GetSshKeysQueryResponse } from "../types/GetSshKeys.ts";
+import type { GetSshKeysQueryParams, GetSshKeys200, GetSshKeysError, GetSshKeysQueryResponse } from "../types/GetSshKeys.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetSshKeysPathParams(data?: Partial<GetSshKeysPathParams>): GetSshKeysPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetSshKeysPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetSshKeysQueryParams(data?: Partial<GetSshKeysQueryParams>): GetSshKeysQueryParams {
   

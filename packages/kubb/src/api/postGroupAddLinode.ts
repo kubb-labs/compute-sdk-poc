@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostGroupAddLinodeMutationRequest, PostGroupAddLinodeMutationResponse, PostGroupAddLinodePathParams } from "../types/PostGroupAddLinode.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostGroupAddLinodeUrl(apiVersion: PostGroupAddLinodePathParams["apiVersion"], groupId: PostGroupAddLinodePathParams["groupId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/placement/groups/${groupId}/assign` as const }  
+function getPostGroupAddLinodeUrl(groupId: PostGroupAddLinodePathParams["groupId"]) {
+  const res = { method: 'POST', url: `/placement/groups/${groupId}/assign` as const }  
   return res
 }
 
 /**
  * @description Add a Linode to your placement group. Check out our [example API workflow](https://techdocs.akamai.com/linode-api/reference/create-a-placement-group) to create a placement group and add Linodes.> 📘>> Your user needs the `add_linodes` [grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants) and `read-write` [permission](https://techdocs.akamai.com/linode-api/reference/get-user-grants) to the Linodes you want to add to the group. Talk to your local account administrator about grant and permissions management.<<LB>>---- __CLI__.    ```    linode-cli placement assign-linode 528 \  --linodes 123 456 \  --non-compliant true    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Assign a placement group
- * {@link /:apiVersion/placement/groups/:groupId/assign}
+ * {@link /placement/groups/:groupId/assign}
  */
-export async function postGroupAddLinode(apiVersion: PostGroupAddLinodePathParams["apiVersion"], groupId: PostGroupAddLinodePathParams["groupId"], data?: PostGroupAddLinodeMutationRequest, config: Partial<RequestConfig<PostGroupAddLinodeMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postGroupAddLinode(groupId: PostGroupAddLinodePathParams["groupId"], data?: PostGroupAddLinodeMutationRequest, config: Partial<RequestConfig<PostGroupAddLinodeMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostGroupAddLinodeMutationResponse, ResponseErrorConfig<Error>, PostGroupAddLinodeMutationRequest>({ method : "POST", url : getPostGroupAddLinodeUrl(apiVersion, groupId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostGroupAddLinodeMutationResponse, ResponseErrorConfig<Error>, PostGroupAddLinodeMutationRequest>({ method : "POST", url : getPostGroupAddLinodeUrl(groupId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

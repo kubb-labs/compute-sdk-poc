@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostTfaEnablePathParams, PostTfaEnable200, PostTfaEnableError, PostTfaEnableMutationResponse } from "../types/PostTfaEnable.ts";
+import type { PostTfaEnable200, PostTfaEnableError, PostTfaEnableMutationResponse } from "../types/PostTfaEnable.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostTfaEnablePathParams(data?: Partial<PostTfaEnablePathParams>): PostTfaEnablePathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostTfaEnablePathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Secret key generated.

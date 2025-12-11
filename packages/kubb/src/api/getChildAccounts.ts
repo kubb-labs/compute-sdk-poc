@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetChildAccountsQueryResponse, GetChildAccountsPathParams, GetChildAccountsQueryParams } from "../types/GetChildAccounts.ts";
+import type { GetChildAccountsQueryResponse, GetChildAccountsQueryParams } from "../types/GetChildAccounts.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetChildAccountsUrl(apiVersion: GetChildAccountsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/child-accounts` as const }  
+function getGetChildAccountsUrl() {
+  const res = { method: 'GET', url: `/account/child-accounts` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of basic information for the child accounts that exist for your parent account. See [Parent and Child Accounts for Akamai Partners](https://www.linode.com/docs/guides/parent-child-accounts/) for details on these accounts.> 📘>> This operation can only be accessed by an unrestricted parent user, or restricted parent user with the `child_account_access` grant.<<LB>>---- __CLI__.    ```    linode-cli child-account list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    child_account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List child accounts
- * {@link /:apiVersion/account/child-accounts}
+ * {@link /account/child-accounts}
  */
-export async function getChildAccounts(apiVersion: GetChildAccountsPathParams["apiVersion"], params?: GetChildAccountsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getChildAccounts(params?: GetChildAccountsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetChildAccountsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetChildAccountsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetChildAccountsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetChildAccountsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

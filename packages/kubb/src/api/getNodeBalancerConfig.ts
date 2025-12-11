@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetNodeBalancerConfigQueryResponse, GetNodeBalancerConfigPathParams } from "../types/GetNodeBalancerConfig.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetNodeBalancerConfigUrl(apiVersion: GetNodeBalancerConfigPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerConfigPathParams["nodeBalancerId"], configId: GetNodeBalancerConfigPathParams["configId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/nodebalancers/${nodeBalancerId}/configs/${configId}` as const }  
+function getGetNodeBalancerConfigUrl(nodeBalancerId: GetNodeBalancerConfigPathParams["nodeBalancerId"], configId: GetNodeBalancerConfigPathParams["configId"]) {
+  const res = { method: 'GET', url: `/nodebalancers/${nodeBalancerId}/configs/${configId}` as const }  
   return res
 }
 
 /**
  * @description Returns configuration information for a single port of this NodeBalancer.<<LB>>---- __CLI__.    ```    linode-cli nodebalancers config-view \  12345 4567    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    nodebalancers:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a config
- * {@link /:apiVersion/nodebalancers/:nodeBalancerId/configs/:configId}
+ * {@link /nodebalancers/:nodeBalancerId/configs/:configId}
  */
-export async function getNodeBalancerConfig(apiVersion: GetNodeBalancerConfigPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerConfigPathParams["nodeBalancerId"], configId: GetNodeBalancerConfigPathParams["configId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getNodeBalancerConfig(nodeBalancerId: GetNodeBalancerConfigPathParams["nodeBalancerId"], configId: GetNodeBalancerConfigPathParams["configId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetNodeBalancerConfigQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerConfigUrl(apiVersion, nodeBalancerId, configId).url.toString(), ... requestConfig })  
+  const res = await request<GetNodeBalancerConfigQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerConfigUrl(nodeBalancerId, configId).url.toString(), ... requestConfig })  
   return res.data
 }

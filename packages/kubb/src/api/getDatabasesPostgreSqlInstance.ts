@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetDatabasesPostgreSqlInstanceQueryResponse, GetDatabasesPostgreSqlInstancePathParams } from "../types/GetDatabasesPostgreSqlInstance.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDatabasesPostgreSqlInstanceUrl(apiVersion: GetDatabasesPostgreSqlInstancePathParams["apiVersion"], instanceId: GetDatabasesPostgreSqlInstancePathParams["instanceId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/databases/postgresql/instances/${instanceId}` as const }  
+function getGetDatabasesPostgreSqlInstanceUrl(instanceId: GetDatabasesPostgreSqlInstancePathParams["instanceId"]) {
+  const res = { method: 'GET', url: `/databases/postgresql/instances/${instanceId}` as const }  
   return res
 }
 
 /**
  * @description Display information for a single, accessible PostgreSQL Managed Database.<<LB>>---- __CLI__.    ```    linode-cli databases postgresql-view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    databases:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a PostgreSQL Managed Database
- * {@link /:apiVersion/databases/postgresql/instances/:instanceId}
+ * {@link /databases/postgresql/instances/:instanceId}
  */
-export async function getDatabasesPostgreSqlInstance(apiVersion: GetDatabasesPostgreSqlInstancePathParams["apiVersion"], instanceId: GetDatabasesPostgreSqlInstancePathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDatabasesPostgreSqlInstance(instanceId: GetDatabasesPostgreSqlInstancePathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDatabasesPostgreSqlInstanceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesPostgreSqlInstanceUrl(apiVersion, instanceId).url.toString(), ... requestConfig })  
+  const res = await request<GetDatabasesPostgreSqlInstanceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesPostgreSqlInstanceUrl(instanceId).url.toString(), ... requestConfig })  
   return res.data
 }

@@ -4,19 +4,7 @@
 */
 
 
-export const getNodeBalancerFirewallsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetNodeBalancerFirewallsPathParamsApiVersionEnumKey = (typeof getNodeBalancerFirewallsPathParamsApiVersionEnum)[keyof typeof getNodeBalancerFirewallsPathParamsApiVersionEnum];
-
 export interface GetNodeBalancerFirewallsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetNodeBalancerFirewallsPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the NodeBalancer.
      * @type integer
@@ -98,241 +86,241 @@ export type DataStatusEnum34Key = (typeof dataStatusEnum34)[keyof typeof dataSta
 export interface GetNodeBalancerFirewalls200 {
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Filterable__, __Read-only__ When this Firewall was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description __Read-only__ The Linodes, NodeBalancers, and Linode interfaces this firewall is assigned to.
-         * @type array | undefined
+         * @type array
         */
-        readonly entities?: {
+        readonly entities: {
             /**
              * @description The entity\'s ID.
-             * @type integer | undefined
+             * @type integer
             */
-            id?: number;
+            id: number;
             /**
              * @description __Read-only__ The entity\'s label.
-             * @type string | undefined
+             * @type string
             */
-            readonly label?: string;
+            readonly label: string;
             /**
              * @description __Read-only__ The Linode this `linode_interface` is assigned to. Returns `null` when the entity `type` is `linode` or `nodebalancer`.
              * @type object
             */
-            readonly parent_entity?: {
+            readonly parent_entity: {
                 /**
                  * @description The ID of the Linode assigned to this `linode_interface`.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                id?: number;
+                id: number;
                 /**
                  * @description The name of the Linode this `linode_interface` is assigned to.
-                 * @type string | undefined
+                 * @type string
                 */
-                label?: string;
+                label: string;
                 /**
                  * @description __Read-only__ Currently, no parent entity has a parent of its own. Each `parent_entity` will have its own `parent_entity` set to `null`.
                  * @type string
                 */
-                readonly parent_entity?: string | null;
+                readonly parent_entity: string | null;
                 /**
                  * @description A Linode interface’s `parent_entity` is a `linode`.
-                 * @type string | undefined
+                 * @type string
                 */
-                type?: ParentEntityTypeEnum15Key;
+                type: ParentEntityTypeEnum15Key;
                 /**
                  * @description The API URL path you can use to access this entity.
-                 * @type string | undefined, url
+                 * @type string, url
                 */
-                url?: string;
+                url: string;
             } | null;
             /**
              * @description The entity\'s type.
-             * @type string | undefined
+             * @type string
             */
-            type?: EntitiesTypeEnum11Key;
+            type: EntitiesTypeEnum11Key;
             /**
              * @description __Read-only__ The API URL path you can use to access this entity.
-             * @type string | undefined, url
+             * @type string, url
             */
-            readonly url?: string;
+            readonly url: string;
         }[];
         /**
          * @description __Filterable__, __Read-only__ The Firewall\'s unique ID.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description __Filterable__ The Firewall\'s label, for display purposes only.\n\nFirewall labels have the following constraints:\n\n  - Must begin and end with an alphanumeric character.\n  - May only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).\n  - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.\n  - Must be between 3 and 32 characters.\n  - Must be unique.
          * @minLength 3
          * @maxLength 32
          * @pattern ^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description The inbound and outbound access rules to apply to the Firewall.\n\nA Firewall may have up to 25 rules across its inbound and outbound rulesets.\n\nMultiple rules are applied in order. If two rules conflict, the first rule takes precedence. For example, if the first rule accepts inbound traffic from an address, and the second rule drops inbound traffic the same address, the first rule applies and inbound traffic from that address is accepted.
-         * @type object | undefined
+         * @type object
         */
-        rules?: {
+        rules: {
             /**
              * @description __Read-only__ The fingerprint is a 32-bit hash. It represents the firewall rules as an 8 character hex string. You can use `fingerprint` to compare rule versions.
-             * @type string | undefined
+             * @type string
             */
-            readonly fingerprint?: string;
+            readonly fingerprint: string;
             /**
              * @description The inbound rules for the firewall, as a JSON array.
-             * @type array | undefined
+             * @type array
             */
-            inbound?: {
+            inbound: {
                 /**
                  * @description Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall\'s `inbound_policy` if this is an inbound rule, or the `outbound_policy` if this is an outbound rule.
-                 * @type string | undefined
+                 * @type string
                 */
-                action?: InboundActionEnum16Key;
+                action: InboundActionEnum16Key;
                 /**
                  * @description The IPv4 or IPv6 addresses affected by this rule. A rule can have up to 255 total addresses or networks listed across its `ipv4` and `ipv6` arrays. A network and a single IP are treated as equivalent when accounting for this limit.\n\nMust contain `ipv4`, `ipv6`, or both.
-                 * @type object | undefined
+                 * @type object
                 */
-                addresses?: {
+                addresses: {
                     /**
                      * @description A list of IPv4 addresses or networks. Addresses must be in IP/mask format. Must not be an empty list.\n\nIf `0.0.0.0/0` is included in this list, all IPv4 addresses are affected by this rule.
-                     * @type array | undefined
+                     * @type array
                     */
-                    ipv4?: string[];
+                    ipv4: string[];
                     /**
                      * @description A list of IPv6 addresses or networks. Addresses must be in IP/mask format and must not include zone_id notation as described in [RFC 4007](https://www.rfc-editor.org/rfc/rfc4007). Must not be an empty list.\n\nIf `::/0` is included in this list, all IPv6 addresses are affected by this rule.
-                     * @type array | undefined
+                     * @type array
                     */
-                    ipv6?: string[];
+                    ipv6: string[];
                 };
                 /**
                  * @description Used to describe this rule. For display purposes only.
                  * @minLength 1
                  * @maxLength 100
-                 * @type string | undefined
+                 * @type string
                 */
-                description?: string;
+                description: string;
                 /**
                  * @description Used to identify this rule. For display purposes only.
                  * @minLength 3
                  * @maxLength 32
-                 * @type string | undefined
+                 * @type string
                 */
-                label?: string;
+                label: string;
                 /**
                  * @description A string representing the port or ports affected by this rule:\n\n- The string may be a single port, a range of ports, or a comma-separated list of single ports and port ranges. A space is permitted following each comma.\n- A range of ports is inclusive of the start and end values for the range. The end value of the range must be greater than the start value.\n- Ports must be within 1 and 65535, and may not contain any leading zeroes. For example, port `080` is not allowed.\n- The ports string can have up to 15 _pieces_, where a single port is treated as one piece, and a port range is treated as two pieces. For example, the string \"22-24, 80, 443\" has four pieces.\n- If no ports are configured, all ports are affected.\n- Only allowed for the TCP and UDP protocols. Ports are not allowed for the ICMP and IPENCAP protocols.
                  * @type string
                 */
-                ports?: string | null;
+                ports: string | null;
                 /**
                  * @description The type of network traffic affected by this rule.
-                 * @type string | undefined
+                 * @type string
                 */
-                protocol?: InboundProtocolEnum16Key;
+                protocol: InboundProtocolEnum16Key;
             }[];
             /**
              * @description The default behavior for inbound traffic. This setting can be overridden by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `inbound.action` property of the Firewall Rule.
-             * @type string | undefined
+             * @type string
             */
-            inbound_policy?: RulesInboundPolicyEnum13Key;
+            inbound_policy: RulesInboundPolicyEnum13Key;
             /**
              * @description The outbound rules for the firewall, as a JSON array.
-             * @type array | undefined
+             * @type array
             */
-            outbound?: {
+            outbound: {
                 /**
                  * @description Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall\'s `inbound_policy` if this is an inbound rule, or the `outbound_policy` if this is an outbound rule.
-                 * @type string | undefined
+                 * @type string
                 */
-                action?: OutboundActionEnum16Key;
+                action: OutboundActionEnum16Key;
                 /**
                  * @description The IPv4 or IPv6 addresses affected by this rule. A rule can have up to 255 total addresses or networks listed across its `ipv4` and `ipv6` arrays. A network and a single IP are treated as equivalent when accounting for this limit.\n\nMust contain `ipv4`, `ipv6`, or both.
-                 * @type object | undefined
+                 * @type object
                 */
-                addresses?: {
+                addresses: {
                     /**
                      * @description A list of IPv4 addresses or networks. Addresses must be in IP/mask format. Must not be an empty list.\n\nIf `0.0.0.0/0` is included in this list, all IPv4 addresses are affected by this rule.
-                     * @type array | undefined
+                     * @type array
                     */
-                    ipv4?: string[];
+                    ipv4: string[];
                     /**
                      * @description A list of IPv6 addresses or networks. Addresses must be in IP/mask format and must not include zone_id notation as described in [RFC 4007](https://www.rfc-editor.org/rfc/rfc4007). Must not be an empty list.\n\nIf `::/0` is included in this list, all IPv6 addresses are affected by this rule.
-                     * @type array | undefined
+                     * @type array
                     */
-                    ipv6?: string[];
+                    ipv6: string[];
                 };
                 /**
                  * @description Used to describe this rule. For display purposes only.
                  * @minLength 1
                  * @maxLength 100
-                 * @type string | undefined
+                 * @type string
                 */
-                description?: string;
+                description: string;
                 /**
                  * @description Used to identify this rule. For display purposes only.
                  * @minLength 3
                  * @maxLength 32
-                 * @type string | undefined
+                 * @type string
                 */
-                label?: string;
+                label: string;
                 /**
                  * @description A string representing the port or ports affected by this rule:\n\n- The string may be a single port, a range of ports, or a comma-separated list of single ports and port ranges. A space is permitted following each comma.\n- A range of ports is inclusive of the start and end values for the range. The end value of the range must be greater than the start value.\n- Ports must be within 1 and 65535, and may not contain any leading zeroes. For example, port `080` is not allowed.\n- The ports string can have up to 15 _pieces_, where a single port is treated as one piece, and a port range is treated as two pieces. For example, the string \"22-24, 80, 443\" has four pieces.\n- If no ports are configured, all ports are affected.\n- Only allowed for the TCP and UDP protocols. Ports are not allowed for the ICMP and IPENCAP protocols.
                  * @type string
                 */
-                ports?: string | null;
+                ports: string | null;
                 /**
                  * @description The type of network traffic affected by this rule.
-                 * @type string | undefined
+                 * @type string
                 */
-                protocol?: OutboundProtocolEnum16Key;
+                protocol: OutboundProtocolEnum16Key;
             }[];
             /**
              * @description The default behavior for outbound traffic. This setting can be overridden by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `outbound.action` property of the Firewall Rule.
-             * @type string | undefined
+             * @type string
             */
-            outbound_policy?: RulesOutboundPolicyEnum13Key;
+            outbound_policy: RulesOutboundPolicyEnum13Key;
             /**
              * @description __Read-only__ The firewall\'s rule version. The first version is `1`. The version number is incremented when the firewall\'s rules change.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly version?: number;
+            readonly version: number;
         };
         /**
          * @description __Read-only__ The status of this Firewall.\n\n  - When a Firewall is first created its status is `enabled`.\n  - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall\'s status to `enabled` or `disabled`.\n  - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall.
-         * @type string | undefined
+         * @type string
         */
-        readonly status?: DataStatusEnum34Key;
+        readonly status: DataStatusEnum34Key;
         /**
          * @description __Filterable__ An array of tags applied to this object. Tags are for organizational purposes only.
-         * @type array | undefined
+         * @type array
         */
-        tags?: string[];
+        tags: string[];
         /**
          * @description __Filterable__, __Read-only__ When this Firewall was last updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly updated?: string;
+        readonly updated: string;
     }[];
 }
 
@@ -341,19 +329,19 @@ export interface GetNodeBalancerFirewalls200 {
 */
 export interface GetNodeBalancerFirewallsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetLkeTiersVersionPathParams(data?: Partial<GetLkeTiersVersionPathParams>): GetLkeTiersVersionPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLkeTiersVersionPathParams>["apiVersion"]>(["v4beta"]),"tier": faker.helpers.arrayElement<NonNullable<GetLkeTiersVersionPathParams>["tier"]>(["standard", "enterprise"]),"version": faker.string.alpha()},
+  ...{"tier": faker.helpers.arrayElement<NonNullable<GetLkeTiersVersionPathParams>["tier"]>(["standard", "enterprise"]),"version": faker.string.alpha()},
   ...data || {}
   }
 }

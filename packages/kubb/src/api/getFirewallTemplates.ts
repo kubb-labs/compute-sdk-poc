@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetFirewallTemplatesQueryResponse, GetFirewallTemplatesPathParams, GetFirewallTemplatesQueryParams } from "../types/GetFirewallTemplates.ts";
+import type { GetFirewallTemplatesQueryResponse, GetFirewallTemplatesQueryParams } from "../types/GetFirewallTemplates.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetFirewallTemplatesUrl(apiVersion: GetFirewallTemplatesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/firewalls/templates` as const }  
+function getGetFirewallTemplatesUrl() {
+  const res = { method: 'GET', url: `/networking/firewalls/templates` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns a paginated list of a firewall templates. There are firewall templates specifically for VPC interfaces and public interfaces. Firewall templates come with some protection rules already configured.<<LB>>---- __CLI__.    ```    linode-cli firewalls templates-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    firewall:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List firewall templates
- * {@link /:apiVersion/networking/firewalls/templates}
+ * {@link /networking/firewalls/templates}
  */
-export async function getFirewallTemplates(apiVersion: GetFirewallTemplatesPathParams["apiVersion"], params?: GetFirewallTemplatesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getFirewallTemplates(params?: GetFirewallTemplatesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetFirewallTemplatesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallTemplatesUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetFirewallTemplatesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallTemplatesUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

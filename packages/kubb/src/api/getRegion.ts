@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetRegionQueryResponse, GetRegionPathParams } from "../types/GetRegion.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetRegionUrl(apiVersion: GetRegionPathParams["apiVersion"], regionId: GetRegionPathParams["regionId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/regions/${regionId}` as const }  
+function getGetRegionUrl(regionId: GetRegionPathParams["regionId"]) {
+  const res = { method: 'GET', url: `/regions/${regionId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single Region.<<LB>>---- __CLI__.    ```    linode-cli regions view us-east    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Get a region
- * {@link /:apiVersion/regions/:regionId}
+ * {@link /regions/:regionId}
  */
-export async function getRegion(apiVersion: GetRegionPathParams["apiVersion"], regionId: GetRegionPathParams["regionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getRegion(regionId: GetRegionPathParams["regionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetRegionQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetRegionUrl(apiVersion, regionId).url.toString(), ... requestConfig })  
+  const res = await request<GetRegionQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetRegionUrl(regionId).url.toString(), ... requestConfig })  
   return res.data
 }

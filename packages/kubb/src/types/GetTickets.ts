@@ -4,21 +4,6 @@
 */
 
 
-export const getTicketsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetTicketsPathParamsApiVersionEnumKey = (typeof getTicketsPathParamsApiVersionEnum)[keyof typeof getTicketsPathParamsApiVersionEnum];
-
-export interface GetTicketsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetTicketsPathParamsApiVersionEnumKey;
-}
-
 export interface GetTicketsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -73,120 +58,120 @@ export type DataStatusEnum39Key = (typeof dataStatusEnum39)[keyof typeof dataSta
 */
 export interface GetTickets200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ A list of filenames representing attached files associated with this ticket.
-         * @type array | undefined
+         * @type array
         */
-        readonly attachments?: string[];
+        readonly attachments: string[];
         /**
          * @description Whether the ticket can be closed.
-         * @type boolean | undefined
+         * @type boolean
         */
-        closable?: boolean;
+        closable: boolean;
         /**
          * @description __Filterable__, __Read-only__ When this ticket was closed.
          * @type string, date-time
         */
-        readonly closed?: string | null;
+        readonly closed: string | null;
         /**
          * @description __Read-only__ The full details of the issue or question.
          * @minLength 1
          * @maxLength 65000
-         * @type string | undefined
+         * @type string
         */
-        readonly description?: string;
+        readonly description: string;
         /**
          * @description __Read-only__ The ticket was opened for this entity. An entity represents a specific object you\'ve created, such as a Linode or a Managed Database.
          * @type object
         */
-        readonly entity?: {
+        readonly entity: {
             /**
              * @description __Read-only__ The unique ID for this ticket\'s entity. Empty if the targeted entity doesn\'t use an `id`.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly id?: number;
+            readonly id: number;
             /**
              * @description __Read-only__ The current label of this entity.
-             * @type string | undefined
+             * @type string
             */
-            readonly label?: string;
+            readonly label: string;
             /**
              * @description __Read-only__ The type of entity.
-             * @type string | undefined
+             * @type string
             */
-            readonly type?: EntityTypeEnum14Key;
+            readonly type: EntityTypeEnum14Key;
             /**
              * @description __Read-only__ The URL where you can access the `entity`. If this is a relative URL, it\'s relative to the domain for the entity.
-             * @type string | undefined
+             * @type string
             */
-            readonly url?: string;
+            readonly url: string;
         } | null;
         /**
          * @description __Read-only__ The Gravatar ID of the user who opened this ticket.
-         * @type string | undefined
+         * @type string
         */
-        readonly gravatar_id?: string;
+        readonly gravatar_id: string;
         /**
          * @description __Read-only__ The ID of the support ticket.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description __Filterable__, __Read-only__ When this ticket was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly opened?: string;
+        readonly opened: string;
         /**
          * @description __Filterable__, __Read-only__ The user who opened this ticket.
-         * @type string | undefined
+         * @type string
         */
-        readonly opened_by?: string;
+        readonly opened_by: string;
         /**
          * @description __Read-only__ The severity of this ticket.
          * @type string
         */
-        readonly severity?: DataSeverityEnum5Key | null;
+        readonly severity: DataSeverityEnum5Key | null;
         /**
          * @description __Filterable__, __Read-only__ The current status of this ticket.
-         * @type string | undefined
+         * @type string
         */
-        readonly status?: DataStatusEnum39Key;
+        readonly status: DataStatusEnum39Key;
         /**
          * @description __Read-only__ The summary or title for this ticket.
          * @minLength 1
          * @maxLength 64
-         * @type string | undefined
+         * @type string
         */
-        readonly summary?: string;
+        readonly summary: string;
         /**
          * @description __Filterable__, __Read-only__ When this ticket was last updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly updated?: string;
+        readonly updated: string;
         /**
          * @description __Read-only__ The user who last updated this ticket.
          * @type string
         */
-        readonly updated_by?: string | null;
+        readonly updated_by: string | null;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -194,19 +179,19 @@ export interface GetTickets200 {
 */
 export interface GetTicketsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -214,7 +199,6 @@ export type GetTicketsQueryResponse = GetTickets200;
 
 export type GetTicketsQuery = {
     Response: GetTickets200;
-    PathParams: GetTicketsPathParams;
     QueryParams: GetTicketsQueryParams;
     Errors: any;
 };

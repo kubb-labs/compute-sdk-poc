@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostLongviewClientPathParams, PostLongviewClient200, PostLongviewClientError, PostLongviewClientMutationRequest, PostLongviewClientMutationResponse } from "../types/PostLongviewClient.ts";
+import type { PostLongviewClient200, PostLongviewClientError, PostLongviewClientMutationRequest, PostLongviewClientMutationResponse } from "../types/PostLongviewClient.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostLongviewClientPathParams(data?: Partial<PostLongviewClientPathParams>): PostLongviewClientPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostLongviewClientPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Longview Client created successfully.

@@ -4,19 +4,7 @@
 */
 
 
-export const getServiceTransferPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetServiceTransferPathParamsApiVersionEnumKey = (typeof getServiceTransferPathParamsApiVersionEnum)[keyof typeof getServiceTransferPathParamsApiVersionEnum];
-
 export interface GetServiceTransferPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetServiceTransferPathParamsApiVersionEnumKey;
     /**
      * @description The UUID of the Service Transfer.
      * @type string, uuid
@@ -41,45 +29,45 @@ export type GetServiceTransfer200StatusEnumKey = (typeof getServiceTransfer200St
 export interface GetServiceTransfer200 {
     /**
      * @description When this transfer was created.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    created?: string;
+    created: string;
     /**
      * @description A collection of the services to include in this transfer request, separated by type.
-     * @type object | undefined
+     * @type object
     */
-    entities?: {
+    entities: {
         /**
          * @description An array containing the IDs of each of the Linodes included in this transfer.
-         * @type array | undefined
+         * @type array
         */
-        linodes?: number[];
+        linodes: number[];
     };
     /**
      * @description When this transfer expires. Transfers will automatically expire 24 hours after creation.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    expiry?: string;
+    expiry: string;
     /**
      * @description __Filterable__ If the requesting account created this transfer.
-     * @type boolean | undefined
+     * @type boolean
     */
-    is_sender?: boolean;
+    is_sender: boolean;
     /**
      * @description __Filterable__ The status of the transfer request.\n\n`accepted`: The transfer has been accepted by another user and is currently in progress.\nTransfers can take up to 3 hours to complete.\n\n`canceled`: The transfer has been canceled by the sender.\n\n`completed`: The transfer has completed successfully.\n\n`failed`: The transfer has failed after initiation.\n\n`pending`: The transfer is ready to be accepted.\n\n`stale`: The transfer has exceeded its expiration date. It can no longer be accepted or\ncanceled.
-     * @type string | undefined
+     * @type string
     */
-    status?: GetServiceTransfer200StatusEnumKey;
+    status: GetServiceTransfer200StatusEnumKey;
     /**
      * @description The token used to identify and accept or cancel this transfer.
-     * @type string | undefined, uuid
+     * @type string, uuid
     */
-    token?: string;
+    token: string;
     /**
      * @description When this transfer was last updated.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    updated?: string;
+    updated: string;
 }
 
 /**
@@ -87,19 +75,19 @@ export interface GetServiceTransfer200 {
 */
 export interface GetServiceTransferError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

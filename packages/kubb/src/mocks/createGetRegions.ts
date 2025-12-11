@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetRegionsPathParams, GetRegions200, GetRegionsError, GetRegionsQueryResponse } from "../types/GetRegions.ts";
+import type { GetRegions200, GetRegionsError, GetRegionsQueryResponse } from "../types/GetRegions.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetRegionsPathParams(data?: Partial<GetRegionsPathParams>): GetRegionsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetRegionsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns an array of regions.

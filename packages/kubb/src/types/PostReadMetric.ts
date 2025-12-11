@@ -4,23 +4,12 @@
 */
 
 
-export const postReadMetricPathParamsApiVersionEnum = {
-    "v2beta": "v2beta"
-} as const;
-
-export type PostReadMetricPathParamsApiVersionEnumKey = (typeof postReadMetricPathParamsApiVersionEnum)[keyof typeof postReadMetricPathParamsApiVersionEnum];
-
 export interface PostReadMetricPathParams {
     /**
      * @description The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`.
      * @type string
     */
     serviceType: string;
-    /**
-     * @description __Enum__ Call the `v2beta` URL to use the version 2 beta operation.
-     * @type string
-    */
-    apiVersion: PostReadMetricPathParamsApiVersionEnumKey;
 }
 
 export const dataResultTypeEnum = {
@@ -40,27 +29,27 @@ export interface PostReadMetric200 {
     data: {
         /**
          * @description Pairs of a specific `metric` and its corresponding `values`.
-         * @type array | undefined
+         * @type array
         */
-        result?: {
+        result: {
             /**
              * @description A mapping of labels where keys and values are strings representing details for the metric.
-             * @type object | undefined
+             * @type object
             */
-            metric?: {
+            metric: {
                 [key: string]: string;
             };
             /**
              * @description Pairs that consist of an epoch timestamp and a corresponding metric value.
-             * @type array | undefined
+             * @type array
             */
-            values?: (number | string)[][];
+            values: (number | string)[][];
         }[];
         /**
          * @description The type of result, which will always be `matrix` in this context.
-         * @type string | undefined
+         * @type string
         */
-        resultType?: DataResultTypeEnumKey;
+        resultType: DataResultTypeEnumKey;
     };
     /**
      * @description Indicates whether the result is partial. A result of `false` indicates the response is complete, while `true` indicates a partial response.
@@ -75,15 +64,15 @@ export interface PostReadMetric200 {
         /**
          * @description The time taken to execute the query, in milliseconds.
          * @minLength 0
-         * @type integer | undefined
+         * @type integer
         */
-        executionTimeMsec?: number;
+        executionTimeMsec: number;
         /**
          * @description The number of metric series fetched in the query.
          * @minLength 1
-         * @type string | undefined
+         * @type string
         */
-        seriesFetched?: string;
+        seriesFetched: string;
     };
     /**
      * @description The status of the query execution, such as `success`.
@@ -97,19 +86,19 @@ export interface PostReadMetric200 {
 */
 export interface PostReadMetricError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

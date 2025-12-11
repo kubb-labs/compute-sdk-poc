@@ -4,19 +4,7 @@
 */
 
 
-export const getTaggedObjectsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetTaggedObjectsPathParamsApiVersionEnumKey = (typeof getTaggedObjectsPathParamsApiVersionEnum)[keyof typeof getTaggedObjectsPathParamsApiVersionEnum];
-
 export interface GetTaggedObjectsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetTaggedObjectsPathParamsApiVersionEnumKey;
     /**
      * @description The `label` of the tag to access.
      * @type string
@@ -183,270 +171,270 @@ export type DataTypeEnum25Key = (typeof dataTypeEnum25)[keyof typeof dataTypeEnu
 */
 export interface GetTaggedObjects200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description Details on the the specific object `type` the tag is assigned to.
         */
-        data?: ({
+        data: ({
             /**
-             * @type object | undefined
+             * @type object
             */
-            alerts?: {
+            alerts: {
                 /**
                  * @description The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we\'ll send you an alert. Your Linode\'s total CPU capacity is represented as 100%, multiplied by its number of cores.\n\nFor example, a two core Linode\'s CPU capacity is represented as 200%. If you want to be alerted at 90% of a two core Linode\'s CPU capacity, set the alert value to `180`.\n\nThe default value is 90% multiplied by the number of cores.\n\nIf the value is set to `0` (zero), the alert is disabled.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                cpu?: number;
+                cpu: number;
                 /**
                  * @description The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we\'ll send you an alert. If set to `0` (zero), this alert is disabled.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                io?: number;
+                io: number;
                 /**
                  * @description The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we\'ll send you an alert. If this is set to `0` (zero), the alert is disabled.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                network_in?: number;
+                network_in: number;
                 /**
                  * @description The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we\'ll send you an alert. If this is set to `0` (zero), the alert is disabled.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                network_out?: number;
+                network_out: number;
                 /**
                  * @description The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we\'ll alert you. If this is set to `0` (zero), the alert is disabled.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                transfer_quota?: number;
+                transfer_quota: number;
             };
             /**
              * @description Information about this Linode\'s backups status. For information about available backups, run [List backups](https://techdocs.akamai.com/linode-api/reference/get-backups).
-             * @type object | undefined
+             * @type object
             */
-            backups?: {
+            backups: {
                 /**
                  * @description __Read-only__ Whether Backups for this Linode are available for restoration.\n\nBackups undergoing maintenance are not available for restoration.
-                 * @type boolean | undefined
+                 * @type boolean
                 */
-                readonly available?: boolean;
+                readonly available: boolean;
                 /**
                  * @description __Read-only__ If this Linode has the Backup service enabled. To enable backups, run [Enable backups](https://techdocs.akamai.com/linode-api/reference/post-enable-backups).
-                 * @type boolean | undefined
+                 * @type boolean
                 */
-                readonly enabled?: boolean;
+                readonly enabled: boolean;
                 /**
                  * @description __Read-only__ The last successful backup time. Displayed as `null` if there was no previous backup.
-                 * @type string | undefined, date-time
+                 * @type string, date-time
                 */
-                readonly last_successful?: string;
+                readonly last_successful: string;
                 /**
-                 * @type object | undefined
+                 * @type object
                 */
-                schedule?: {
+                schedule: {
                     /**
                      * @description The day of the week that your Linode\'s weekly backup is taken. If not set manually, a day will be chosen for you. Backups are taken every day, but backups taken on this day are preferred when selecting backups to retain for a longer period.\n\nIf not set manually, then when backups are initially enabled, this may come back as `Scheduling` until the `day` is automatically selected.
                      * @type string
                     */
-                    day?: ScheduleDayEnum8Key | null;
+                    day: ScheduleDayEnum8Key | null;
                     /**
                      * @description When your backups will be taken, in UTC. A backups window is a two-hour span of time in which the backup may occur.\n\nFor example, `W10` indicates that your backups should be taken between 10:00 and 12:00. If you don\'t choose a backup window, the API automatically assigns one.\n\nIf not set manually, when backups are initially enabled this may come back as `Scheduling` until the `window` is automatically selected.
                      * @type string
                     */
-                    window?: ScheduleWindowEnum8Key | null;
+                    window: ScheduleWindowEnum8Key | null;
                 };
             };
             /**
              * @description __Limited availability__, __Read-only__ A list of capabilities this compute instance supports.
-             * @type array | undefined
+             * @type array
             */
-            readonly capabilities?: string[];
+            readonly capabilities: string[];
             /**
              * @description __Read-only__ When this Linode was created.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            readonly created?: string;
+            readonly created: string;
             /**
              * @description __Read-only__ Indicates the local disk encryption setting for this Linode. If the Linode is part of an LKE cluster, the value is `null`.
              * @default "enabled"
              * @type string
             */
-            readonly disk_encryption?: string | null;
+            readonly disk_encryption: string | null;
             /**
              * @description __Deprecated__, __Filterable__ The group label for this Linode.
              * @deprecated
-             * @type string | undefined
+             * @type string
             */
-            group?: string;
+            group: string;
             /**
              * @description __Read-only__ Whether this compute instance was provisioned with `user_data` provided via the Metadata service. See the [Create a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance) description for more information on Metadata.
-             * @type boolean | undefined
+             * @type boolean
             */
-            readonly has_user_data?: boolean;
+            readonly has_user_data: boolean;
             /**
              * @description __Read-only__ The Linode\'s host machine, as a UUID.
-             * @type string | undefined, uuid
+             * @type string, uuid
             */
-            readonly host_uuid?: string;
+            readonly host_uuid: string;
             /**
              * @description __Read-only__ The virtualization software powering this Linode.
-             * @type string | undefined
+             * @type string
             */
-            readonly hypervisor?: DataHypervisorEnum2Key;
+            readonly hypervisor: DataHypervisorEnum2Key;
             /**
              * @description __Filterable__, __Read-only__ This Linode\'s ID which must be provided for all operations impacting this Linode.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly id?: number;
-            readonly image?: string;
+            readonly id: number;
+            readonly image: string;
             /**
              * @description __Filterable__, __Read-only__ Indicates if the Linode is configured to use Linode interfaces (`linode`) or legacy configuration profile interfaces (`legacy_config`).
-             * @type string | undefined
+             * @type string
             */
-            readonly interface_generation?: DataInterfaceGenerationEnum2Key;
+            readonly interface_generation: DataInterfaceGenerationEnum2Key;
             /**
              * @description __Filterable__, __Read-only__ This Linode\'s IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) to get additional IPv4 addresses.\n\nIPv4 addresses may be reassigned between your Linodes, or shared with other Linodes. See the [networking](https://techdocs.akamai.com/linode-api/reference/post-firewalls) operations for details.
-             * @type array | undefined, ipv4
+             * @type array, ipv4
             */
-            readonly ipv4?: string;
+            readonly ipv4: string;
             /**
              * @description __Read-only__ This Linode\'s IPv6 SLAAC address. This address is specific to a Linode, and may not be shared. If the Linode has not been assigned an IPv6 address, the return value will be `null`.
              * @type string, ipv6/128
             */
-            readonly ipv6?: string | null;
+            readonly ipv6: string | null;
             /**
              * @description __Filterable__ Provides a name for the Linode. If not provided, the API generates one for it.\n\nLinode labels have the following constraints:\n\n- It needs to begin and end with an alphanumeric character.\n- It can only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).\n- Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.
              * @minLength 3
              * @maxLength 64
              * @pattern ^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description __Read-only__ The ID of the Kubernetes cluster if the Linode is part of cluster.
              * @type integer
             */
-            readonly lke_cluster_id?: number | null;
+            readonly lke_cluster_id: number | null;
             /**
              * @description __Beta__ The maintenance policy configured by the user for this Linode. Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details.
-             * @type string | undefined
+             * @type string
             */
-            maintenance_policy?: DataMaintenancePolicyEnum2Key;
+            maintenance_policy: DataMaintenancePolicyEnum2Key;
             /**
              * @description __Read-only__ Details on the [placement group](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/) that this Linode belongs to. Empty if the Linode isn\'t in a placement group.
              * @type object
             */
-            readonly placement_group?: {
+            readonly placement_group: {
                 /**
                  * @description The placement group\'s ID. You need to provide it for all operations that affect it.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                id?: number;
+                id: number;
                 /**
                  * @description __Filterable__ The unique name set for the placement group. A label has these constraints:\n\n- It needs to begin and end with an alphanumeric character.\n- It can only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).
                  * @minLength 1
-                 * @type string | undefined
+                 * @type string
                 */
-                label?: string;
+                label: string;
                 /**
                  * @description How requests to add future compute instances to your placement group are handled, and whether it remains compliant:\n\n- `strict`. Don\'t assign a new compute instance if it breaks the grouped-together or spread-apart model set by the `placement_group_type`. Use this to ensure the placement group stays compliant (`is_compliant: true`).\n- `flexible`. Assign a new compute instance, even if it breaks the grouped-together or spread-apart model set by the `placement_group_type`. This makes the group non-compliant (`is_compliant: false`). You need to wait for Akamai to move the offending compute instance to make it compliant again, once the necessary capacity is available in the region. Offers flexibility to add future compute instances if compliance isn\'t an immediate concern.\n\n<<LB>>\n\n> 📘\n>\n> In rare cases, non-compliance can occur with a `strict` placement group if Akamai needs to failover or migrate your compute instances for maintenance. Fixing non-compliance for a `strict` placement group is prioritized over a `flexible` group.
-                 * @type string | undefined
+                 * @type string
                 */
-                placement_group_policy?: PlacementGroupPlacementGroupPolicyEnum8Key;
+                placement_group_policy: PlacementGroupPlacementGroupPolicyEnum8Key;
                 /**
                  * @description __Filterable__, __Read-only__ How compute instances are distributed in your placement group. A `placement_group_type` using anti-affinity (`anti-affinity:local`) places compute instances in separate hosts, but still in the same region. This best supports the spread-apart model for high availability. A `placement_group_type` using affinity places compute instances physically close together, possibly on the same host. This supports the grouped-together model for low-latency.\n\n> 📘\n>\n> Currently, only `anti_affinity:local` is available for `placement_group_type`.
-                 * @type string | undefined
+                 * @type string
                 */
-                readonly placement_group_type?: PlacementGroupPlacementGroupTypeEnum8Key;
+                readonly placement_group_type: PlacementGroupPlacementGroupTypeEnum8Key;
             } | null;
             /**
              * @description __Filterable__, __Read-only__ The [region](https://techdocs.akamai.com/linode-api/reference/get-regions) where the Linode deployed. A Linode\'s region can only be changed by initiating a [cross data center migration](https://techdocs.akamai.com/linode-api/reference/post-migrate-linode-instance).
-             * @type string | undefined
+             * @type string
             */
-            readonly region?: string;
+            readonly region: string;
             /**
              * @description __Read-only__ Information about the resources available to this Linode.
-             * @type object | undefined
+             * @type object
             */
-            readonly specs?: {
+            readonly specs: {
                 /**
                  * @description __Read-only__ The amount of storage space, in MB, this Linode has access to. A typical Linode divides this space between a primary disk with an `image` deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an `image` through [Create a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance). While this configuration is suitable for 99% of use cases, if you need finer control over your Linode\'s disks, see the [List disks](https://techdocs.akamai.com/linode-api/reference/get-linode-disks) operations.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                readonly disk?: number;
+                readonly disk: number;
                 /**
                  * @description __Read-only__ The number of GPUs this Linode has access to.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                readonly gpus?: number;
+                readonly gpus: number;
                 /**
                  * @description __Read-only__ The amount of RAM, in MB, this Linode has access to.\n\nTypically, a Linode boots with all of its available RAM, but this can be configured in a config profile. See the [List config profiles](https://techdocs.akamai.com/linode-api/reference/get-linode-configs) operation for more information.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                readonly memory?: number;
+                readonly memory: number;
                 /**
                  * @description __Read-only__ The amount of network transfer this Linode is allotted each month.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                readonly transfer?: number;
+                readonly transfer: number;
                 /**
                  * @description __Read-only__ The number of VCPUs this Linode has access to.
-                 * @type integer | undefined
+                 * @type integer
                 */
-                readonly vcpus?: number;
+                readonly vcpus: number;
             };
             /**
              * @description __Read-only__ A brief description of this Linode\'s current state. This field may change without direct action from you. For example, when a compute instance goes into maintenance mode, its status is `stopped`. Status is generally self-explanatory, based on its name.\n\n- `busy` indicates you\'ve assigned the compute instance to a [placement group](https://techdocs.akamai.com/cloud-computing/docs/work-with-placement-groups), but the compute instance is currently booting. Once the boot completes, the API completes the assignment and updates the compute instance\'s `status` accordingly.\n- `provisioning` indicates that the API is applying operating system or Marketplace applications on the compute instance.\n- `billing_suspension` indicates that payment is past due on the compute instance, so we\'ve suspended its use.
-             * @type string | undefined
+             * @type string
             */
-            readonly status?: DataStatusEnum40Key;
+            readonly status: DataStatusEnum40Key;
             /**
              * @description __Filterable__ Tags to help you organize your content.
-             * @type array | undefined
+             * @type array
             */
-            tags?: string[];
+            tags: string[];
             /**
              * @description __Read-only__ This is the [Linode type](https://techdocs.akamai.com/linode-api/reference/get-linode-types) that this Linode was deployed with. To change a Linode\'s type, use [Resize a Linode](https://techdocs.akamai.com/linode-api/reference/post-resize-linode-instance).
-             * @type string | undefined
+             * @type string
             */
-            readonly type?: string;
+            readonly type: string;
             /**
              * @description __Read-only__ When this Linode was last updated.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            readonly updated?: string;
+            readonly updated: string;
             /**
              * @description The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and reboots it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie gives up if there have been more than 5 boot jobs issued within 15 minutes.
-             * @type boolean | undefined
+             * @type boolean
             */
-            watchdog_enabled?: boolean;
+            watchdog_enabled: boolean;
         } | {
             /**
              * @description The list of IPs that may perform a zone transfer for this domain. The total combined length of all data within this array cannot exceed 1000 characters.\n\n> 📘\n>\n> This is potentially dangerous, and should be set to an empty list unless you intend to use it.
-             * @type array | undefined
+             * @type array
             */
-            axfr_ips?: string[];
+            axfr_ips: string[];
             /**
              * @description A description for this domain. This is for display purposes only.
              * @minLength 1
              * @maxLength 253
              * @type string
             */
-            description?: string | null;
+            description: string | null;
             /**
              * @description __Filterable__ The domain this domain represents. domain labels cannot be longer than 63 characters and must conform to [RFC1035](https://tools.ietf.org/html/rfc1035). domains must be unique on Linode\'s platform, including across different Linode accounts; there cannot be two domains representing the same domain.
              * @minLength 1
              * @maxLength 253
              * @pattern ^(\*\.)?([a-zA-Z0-9-_]{1,63}\.)+([a-zA-Z]{2,3}\.)?([a-zA-Z]{2,16}|xn--[a-zA-Z0-9]+)$
-             * @type string | undefined
+             * @type string
             */
-            domain?: string;
+            domain: string;
             /**
              * @description The amount of time in seconds that may pass before this domain is no longer authoritative.\n\n- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.\n\n- Any other value is rounded up to the nearest valid value.\n\n- A value of 0 is equivalent to the default value of 1209600.
              * @default 0
-             * @type integer | undefined
+             * @type integer
             */
-            expire_sec?: number;
+            expire_sec: number;
             /**
              * @description __Filterable__ The group this domain belongs to.  This is for display purposes only.
              * @deprecated
@@ -454,261 +442,261 @@ export interface GetTaggedObjects200 {
              * @maxLength 50
              * @type string
             */
-            group?: string | null;
+            group: string | null;
             /**
              * @description __Read-only__ This domain\'s unique ID.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly id?: number;
+            readonly id: number;
             /**
              * @description The IP addresses representing the master DNS for this domain. At least one value is required for `type` slave domains. The total combined length of all data within this array cannot exceed 1000 characters.
-             * @type array | undefined
+             * @type array
             */
-            master_ips?: string[];
+            master_ips: string[];
             /**
              * @description The amount of time in seconds before this domain should be refreshed.\n\n- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.\n\n- Any other value is rounded up to the nearest valid value.\n\n- A value of 0 is equivalent to the default value of 14400.
              * @default 0
-             * @type integer | undefined
+             * @type integer
             */
-            refresh_sec?: number;
+            refresh_sec: number;
             /**
              * @description The interval, in seconds, at which a failed refresh should be retried.\n\n- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.\n\n- Any other value is rounded up to the nearest valid value.\n\n- A value of 0 is equivalent to the default value of 14400.
              * @default 0
-             * @type integer | undefined
+             * @type integer
             */
-            retry_sec?: number;
+            retry_sec: number;
             /**
              * @description Start of Authority email address. This is required for `type` master domains.
-             * @type string | undefined, email
+             * @type string, email
             */
-            soa_email?: string;
+            soa_email: string;
             /**
              * @description Used to control whether this domain is currently being rendered.
              * @default "active"
-             * @type string | undefined
+             * @type string
             */
-            status?: DataStatusEnum41Key;
+            status: DataStatusEnum41Key;
             /**
              * @description __Filterable__ An array of tags applied to this object.  Tags are for organizational purposes only.
-             * @type array | undefined
+             * @type array
             */
-            tags?: string[];
+            tags: string[];
             /**
              * @description \"Time to Live\" - the amount of time in seconds that this domain\'s records may be cached by resolvers or other domain servers.\n\n- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.\n\n- Any other value is rounded up to the nearest valid value.\n\n- A value of 0 is equivalent to the default value of 86400.
              * @default 0
-             * @type integer | undefined
+             * @type integer
             */
-            ttl_sec?: number;
+            ttl_sec: number;
             /**
              * @description Whether this domain represents the authoritative source of information for the domain it describes (`master`), or whether it is a read-only copy of a master (`slave`).
-             * @type string | undefined
+             * @type string
             */
-            type?: DataTypeEnum23Key;
+            type: DataTypeEnum23Key;
         } | {
             /**
              * @description __Read-only__ When this volume was created.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            readonly created?: string;
+            readonly created: string;
             /**
              * @description __Read-only__ Whether encryption is enabled on this volume.
-             * @type string | undefined
+             * @type string
             */
-            readonly encryption?: DataEncryptionEnum2Key;
+            readonly encryption: DataEncryptionEnum2Key;
             /**
              * @description __Read-only__ The full file system path for the volume, based on its `label`. The path is `/dev/disk/by-id/scsi-0Linode_Volume_label`.
-             * @type string | undefined
+             * @type string
             */
-            readonly filesystem_path?: string;
+            readonly filesystem_path: string;
             /**
              * @description __Read-only__ The storage type of this volume. This can be either `hdd` to emulate a hard disk drive for the volume, or `nvme` to emulate a non-volatile memory express solid state drive.
-             * @type string | undefined
+             * @type string
             */
-            readonly hardware_type?: DataHardwareTypeEnum2Key;
+            readonly hardware_type: DataHardwareTypeEnum2Key;
             /**
              * @description __Read-only__ The unique identifier for the volume.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly id?: number;
+            readonly id: number;
             /**
              * @description __Read-only__ Indicates whether the volume is successfully attached to a Linode and ready for read and write operations.
-             * @type boolean | undefined
+             * @type boolean
             */
-            readonly io_ready?: boolean;
+            readonly io_ready: boolean;
             /**
              * @description __Filterable__ The name of the volume. A `label` can be up to 32 characters long and contain alphanumeric characters, hyphens, and underscores. This value is also used in the volume\'s `filesystem_path`.
              * @minLength 1
              * @maxLength 32
              * @pattern ^[a-zA-Z]((?!--|__)[a-zA-Z0-9-_])+$
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description The unique identifier of the Linode this volume is attached to, if applicable.
              * @type integer
             */
-            linode_id?: number | null;
+            linode_id: number | null;
             /**
              * @description __Read-only__ The name of the Linode this volume is attached to, if applicable.
              * @type string
             */
-            readonly linode_label?: string | null;
+            readonly linode_label: string | null;
             /**
              * @description The unique identifier for the region where the volume lives.
-             * @type string | undefined
+             * @type string
             */
-            region?: string;
+            region: string;
             /**
              * @description The volume\'s size, in gigabytes.
              * @maxLength 10240
-             * @type integer | undefined
+             * @type integer
             */
-            size?: number;
+            size: number;
             /**
              * @description __Read-only__ The current status of the volume. This can be one of:\n\n- `creating`. The API is creating the volume and it\'s not ready for use.\n\n- `active`. The volume is online and ready for use.\n\n- `resizing`. The volume\'s capacity is being upgraded.\n\n- `key_rotating`. The volume\'s encryption keys are being rotated to new values. Requests to resize, delete, or clone a volume fail during encryption key rotation.
-             * @type string | undefined
+             * @type string
             */
-            readonly status?: DataStatusEnum42Key;
+            readonly status: DataStatusEnum42Key;
             /**
              * @description __Filterable__ Any tags applied to this object. Use [tags](https://techdocs.akamai.com/linode-api/reference/post-tag) to label and organize your cloud computing resources.
-             * @type array | undefined
+             * @type array
             */
-            tags?: string[];
+            tags: string[];
             /**
              * @description __Read-only__ When this volume was last updated.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            readonly updated?: string;
+            readonly updated: string;
         } | {
             /**
              * @description Throttle TCP connections per second for TCP, HTTP, and HTTPS configurations.  Set to `0` (zero) to disable throttling.
              * @minLength 0
              * @maxLength 20
-             * @type integer | undefined
+             * @type integer
             */
-            client_conn_throttle?: number;
+            client_conn_throttle: number;
             /**
              * @description __Read-only__ When this NodeBalancer was created.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            readonly created?: string;
+            readonly created: string;
             /**
              * @description __Read-only__ This NodeBalancer\'s hostname, beginning with its IP address and ending with _.ip.linodeusercontent.com_.
-             * @type string | undefined
+             * @type string
             */
-            readonly hostname?: string;
+            readonly hostname: string;
             /**
              * @description __Read-only__ This NodeBalancer\'s unique ID.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly id?: number;
+            readonly id: number;
             /**
              * @description __Filterable__, __Read-only__ This NodeBalancer\'s public IPv4 address.
-             * @type string | undefined, ip
+             * @type string, ip
             */
-            readonly ipv4?: string;
+            readonly ipv4: string;
             /**
              * @description __Read-only__ This NodeBalancer\'s public IPv6 address.
              * @type string, ip
             */
-            readonly ipv6?: string | null;
+            readonly ipv6: string | null;
             /**
              * @description __Filterable__ This NodeBalancer\'s label. These must be unique on your Account.
              * @minLength 3
              * @maxLength 32
              * @pattern [a-zA-Z0-9-_]{3,32}
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description __Read-only__ This NodeBalancer\'s related LKE cluster, if any. The value is `null` if this NodeBalancer isn\'t related to an LKE cluster.
              * @type object
             */
-            readonly lke_cluster?: {
+            readonly lke_cluster: {
                 /**
                  * @description The ID of the related LKE cluster.
-                 * @type string | undefined
+                 * @type string
                 */
-                id?: string;
+                id: string;
                 /**
                  * @description The label of the related LKE cluster.
-                 * @type string | undefined
+                 * @type string
                 */
-                label?: string;
+                label: string;
                 /**
                  * @description __Read-only__ The type for LKE clusters.
-                 * @type string | undefined
+                 * @type string
                 */
-                readonly type?: string;
+                readonly type: string;
                 /**
                  * @description The URL where you can access the related LKE cluster.
-                 * @type string | undefined
+                 * @type string
                 */
-                url?: string;
+                url: string;
             } | null;
             /**
              * @description __Filterable__, __Read-only__ The Region where this NodeBalancer is located. NodeBalancers only support backends in the same Region.
-             * @type string | undefined
+             * @type string
             */
-            readonly region?: string;
+            readonly region: string;
             /**
              * @description __Filterable__ An array of Tags applied to this object.  Tags are for organizational purposes only.
-             * @type array | undefined
+             * @type array
             */
-            tags?: string[];
+            tags: string[];
             /**
              * @description __Read-only__ Information about the amount of transfer this NodeBalancer has had so far this month.
-             * @type object | undefined
+             * @type object
             */
-            readonly transfer?: {
+            readonly transfer: {
                 /**
                  * @description __Read-only__ The total outbound transfer, in MB, used for this NodeBalancer this month.
                  * @type number
                 */
-                readonly in?: number | null;
+                readonly in: number | null;
                 /**
                  * @description __Read-only__ The total inbound transfer, in MB, used for this NodeBalancer this month.
                  * @type number
                 */
-                readonly out?: number | null;
+                readonly out: number | null;
                 /**
                  * @description __Read-only__ The total transfer, in MB, used by this NodeBalancer this month.
                  * @type number
                 */
-                readonly total?: number | null;
+                readonly total: number | null;
             };
             /**
              * @description __Read-only__ The type of NodeBalancer.
-             * @type string | undefined
+             * @type string
             */
-            readonly type?: DataTypeEnum24Key;
+            readonly type: DataTypeEnum24Key;
             /**
              * @description __Read-only__ When this NodeBalancer was last updated.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            readonly updated?: string;
+            readonly updated: string;
         });
         /**
          * @description The type of object the tag is applied to.
-         * @type string | undefined
+         * @type string
         */
-        type?: DataTypeEnum25Key;
+        type: DataTypeEnum25Key;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -716,19 +704,19 @@ export interface GetTaggedObjects200 {
 */
 export interface GetTaggedObjectsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

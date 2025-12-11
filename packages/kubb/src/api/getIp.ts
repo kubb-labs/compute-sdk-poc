@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetIpQueryResponse, GetIpPathParams } from "../types/GetIp.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetIpUrl(apiVersion: GetIpPathParams["apiVersion"], address: GetIpPathParams["address"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/ips/${address}` as const }  
+function getGetIpUrl(address: GetIpPathParams["address"]) {
+  const res = { method: 'GET', url: `/networking/ips/${address}` as const }  
   return res
 }
 
 /**
  * @description Returns information about a single IP Address on your Account.<<LB>>---- __CLI__.    ```    linode-cli networking ip-view 97.107.143.141    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    ips:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an IP address
- * {@link /:apiVersion/networking/ips/:address}
+ * {@link /networking/ips/:address}
  */
-export async function getIp(apiVersion: GetIpPathParams["apiVersion"], address: GetIpPathParams["address"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getIp(address: GetIpPathParams["address"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetIpQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetIpUrl(apiVersion, address).url.toString(), ... requestConfig })  
+  const res = await request<GetIpQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetIpUrl(address).url.toString(), ... requestConfig })  
   return res.data
 }

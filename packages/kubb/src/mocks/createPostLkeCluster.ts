@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostLkeClusterPathParams, PostLkeCluster200, PostLkeClusterError, PostLkeClusterMutationRequest, PostLkeClusterMutationResponse } from "../types/PostLkeCluster.ts";
+import type { PostLkeCluster200, PostLkeClusterError, PostLkeClusterMutationRequest, PostLkeClusterMutationResponse } from "../types/PostLkeCluster.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostLkeClusterPathParams(data?: Partial<PostLkeClusterPathParams>): PostLkeClusterPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostLkeClusterPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Kubernetes cluster creation has started.

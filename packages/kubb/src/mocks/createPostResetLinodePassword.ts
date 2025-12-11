@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostResetLinodePasswordPathParams(data?: Partial<PostResetLinodePasswordPathParams>): PostResetLinodePasswordPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostResetLinodePasswordPathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int()},
+  ...{"linodeId": faker.number.int()},
   ...data || {}
   }
 }

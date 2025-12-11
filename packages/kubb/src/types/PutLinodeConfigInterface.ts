@@ -4,19 +4,7 @@
 */
 
 
-export const putLinodeConfigInterfacePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PutLinodeConfigInterfacePathParamsApiVersionEnumKey = (typeof putLinodeConfigInterfacePathParamsApiVersionEnum)[keyof typeof putLinodeConfigInterfacePathParamsApiVersionEnum];
-
 export interface PutLinodeConfigInterfacePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PutLinodeConfigInterfacePathParamsApiVersionEnumKey;
     /**
      * @description The `id` of the Linode.
      * @type integer
@@ -75,12 +63,12 @@ export interface PutLinodeConfigInterface200 {
          * @description The 1:1 NAT IPv4 address, used to associate a public IPv4 address with the interface\'s VPC subnet IPv4 address. This only applies to interfaces with a `purpose` of `vpc`. Returned as `null` if no 1:1 NAT is set for a `vpc` interface. Returned as an empty string (`\"\"`) if the interface has a `purpose` of `public` or `vlan`.
          * @type string, ip
         */
-        nat_1_1?: string | null;
+        nat_1_1: string | null;
         /**
          * @description The VPC subnet IPv4 address for this interface. This only applies to interfaces with a `purpose` of `vpc`. Returned as an empty string (`\"\"`) if the interface has a `purpose` of `public` or `vlan`.
          * @type string, ip
         */
-        vpc?: string | null;
+        vpc: string | null;
     };
     /**
      * @description __Filterable__ The name set for an interface with a `purpose` of `vlan`. Returned as `null` if the interface has a `purpose` of `public` or `vpc`.
@@ -117,19 +105,19 @@ export interface PutLinodeConfigInterface200 {
 */
 export interface PutLinodeConfigInterfaceError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

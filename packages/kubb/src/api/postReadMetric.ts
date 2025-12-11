@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostReadMetricMutationRequest, PostReadMetricMutationResponse, PostReadMetricPathParams } from "../types/PostReadMetric.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostReadMetricUrl(serviceType: PostReadMetricPathParams["serviceType"], apiVersion: PostReadMetricPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/monitor/services/${serviceType}/metrics` as const }  
+function getPostReadMetricUrl(serviceType: PostReadMetricPathParams["serviceType"]) {
+  const res = { method: 'POST', url: `/monitor/services/${serviceType}/metrics` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns metrics information for the individual entities within a specific service type. Thi operation also requires an `authorization: Bearer` [token](https://techdocs.akamai.com/linode-api/reference/post-get-token) you've created for this `serviceType`.> 📘>> - This operation uses a different URL and version from standard Linode API operations. Verify you're using the URL with the `monitor-api.linode.com` hostname and include `v2beta` as the version in the URL.>> - For more details on the metrics available for each service, see the [Metrics reference](https://techdocs.akamai.com/cloud-computing/docs/metrics-dimensions-parameters).
  * @summary Get an entity's metrics
- * {@link /:apiVersion/monitor/services/:serviceType/metrics}
+ * {@link /monitor/services/:serviceType/metrics}
  */
-export async function postReadMetric(serviceType: PostReadMetricPathParams["serviceType"], apiVersion: PostReadMetricPathParams["apiVersion"], data?: PostReadMetricMutationRequest, config: Partial<RequestConfig<PostReadMetricMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postReadMetric(serviceType: PostReadMetricPathParams["serviceType"], data?: PostReadMetricMutationRequest, config: Partial<RequestConfig<PostReadMetricMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostReadMetricMutationResponse, ResponseErrorConfig<Error>, PostReadMetricMutationRequest>({ method : "POST", url : getPostReadMetricUrl(serviceType, apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostReadMetricMutationResponse, ResponseErrorConfig<Error>, PostReadMetricMutationRequest>({ method : "POST", url : getPostReadMetricUrl(serviceType).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

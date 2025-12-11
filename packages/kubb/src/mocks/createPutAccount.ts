@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PutAccountPathParams, PutAccount200, PutAccountError, PutAccountMutationRequest, PutAccountMutationResponse } from "../types/PutAccount.ts";
+import type { PutAccount200, PutAccountError, PutAccountMutationRequest, PutAccountMutationResponse } from "../types/PutAccount.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPutAccountPathParams(data?: Partial<PutAccountPathParams>): PutAccountPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutAccountPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description The updated account.

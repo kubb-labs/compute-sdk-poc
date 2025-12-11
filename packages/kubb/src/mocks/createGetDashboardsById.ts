@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetDashboardsByIdPathParams(data?: Partial<GetDashboardsByIdPathParams>): GetDashboardsByIdPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDashboardsByIdPathParams>["apiVersion"]>(["v4beta"]),"dashboardId": faker.number.int()},
+  ...{"dashboardId": faker.number.int()},
   ...data || {}
   }
 }

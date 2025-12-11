@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostTicketPathParams, PostTicket200, PostTicketError, PostTicketMutationRequest, PostTicketMutationResponse } from "../types/PostTicket.ts";
+import type { PostTicket200, PostTicketError, PostTicketMutationRequest, PostTicketMutationResponse } from "../types/PostTicket.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostTicketPathParams(data?: Partial<PostTicketPathParams>): PostTicketPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostTicketPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Support ticket opened.

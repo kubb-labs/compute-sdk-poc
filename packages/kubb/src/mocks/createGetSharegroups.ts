@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetSharegroupsPathParams, GetSharegroupsQueryParams, GetSharegroups200, GetSharegroupsError, GetSharegroupsQueryResponse } from "../types/GetSharegroups.ts";
+import type { GetSharegroupsQueryParams, GetSharegroups200, GetSharegroupsError, GetSharegroupsQueryResponse } from "../types/GetSharegroups.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetSharegroupsPathParams(data?: Partial<GetSharegroupsPathParams>): GetSharegroupsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetSharegroupsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetSharegroupsQueryParams(data?: Partial<GetSharegroupsQueryParams>): GetSharegroupsQueryParams {
   

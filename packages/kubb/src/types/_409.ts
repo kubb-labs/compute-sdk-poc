@@ -6,13 +6,13 @@
 
 export interface _409 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description A string explaining that the account could not be canceled because there is an outstanding balance on the account that must be paid first.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }

@@ -5,10 +5,6 @@
 
 import { z } from "zod/v4";
 
-export const getIpsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 export const getIpsQueryParamsSchema = z.object({
     "skip_ipv6_rdns": z.boolean().default(false).describe("When `true`, the `rdns` property for any `ipv6` type addresses always returns `null` regardless of whether RDNS data exists for the address.")
     })
@@ -17,36 +13,36 @@ export const getIpsQueryParamsSchema = z.object({
  * @description A paginated list of IP Addresses.
  */
 export const getIps200Schema = z.object({
-    "page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results.")),
-"data": z.optional(z.array(z.object({
-    "address": z.optional(z.string().describe("__Filterable__, __Read-only__ The IP address.")),
-"gateway": z.string().describe("__Read-only__ The default gateway for this address.").nullish(),
-"interface_id": z.int().describe("__Beta__, __Read-only__ The Linode interface ID this public IP address is assigned to. This value is `null` if a Linode interface is not assigned, or if the IP is assigned to a legacy configuration profile interface.").nullish(),
-"linode_id": z.optional(z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to. For IPv4 addresses, this defaults to the Linode that this address was assigned to on creation. IPv4 addresses may be moved using the [Assign IPv4s to Linodes](https://techdocs.akamai.com/linode-api/reference/post-assign-ipv4s) operation. For SLAAC and link-local addresses, this value may not be changed.")),
-"prefix": z.optional(z.int().describe("__Filterable__, __Read-only__ The number of bits set in the subnet mask.")),
-"public": z.optional(z.boolean().describe("__Read-only__ Whether this is a public or private IP address.")),
-"rdns": z.string().describe("__Filterable__ The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.").nullish(),
-"region": z.optional(z.string().describe("__Filterable__, __Read-only__ The Region this IP address resides in.")),
-"subnet_mask": z.optional(z.string().describe("__Read-only__ The mask that separates host bits from network bits for this address.")),
-"type": z.optional(z.enum(["ipv4", "ipv6", "ipv6/pool", "ipv6/range"]).describe("__Filterable__, __Read-only__ The type of address this is.")),
-"vpc_nat_1_1": z.optional(z.object({
-    "address": z.optional(z.url().describe("The IPv4 address that is configured as a 1:1 NAT for this VPC interface.")),
-"subnet_id": z.optional(z.int().describe("The `id` of the VPC Subnet for this interface.")),
-"vpc_id": z.optional(z.int().describe("__Read-only__ The `id` of the VPC configured for this Interface."))
-    }).describe("IPv4 address configured as a 1:1 NAT for this interface. Empty if no address is configured as a 1:1 NAT.\n\n> 📘\n>\n> Only allowed for `vpc` type interfaces."))
-    }).describe("An IP address that exists in Linode's system, either IPv4 or IPv6, specific to the response for the [List IP addresses](https://techdocs.akamai.com/linode-api/reference/get-ips) operation.")).describe("IP addresses that exist in Linode's system, either IPv4 or IPv6, specific to the response for the [List IP addresses](https://techdocs.akamai.com/linode-api/reference/get-ips) operation."))
+    "page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results."),
+"data": z.array(z.object({
+    "address": z.string().describe("__Filterable__, __Read-only__ The IP address."),
+"gateway": z.nullable(z.string().describe("__Read-only__ The default gateway for this address.")),
+"interface_id": z.nullable(z.int().describe("__Beta__, __Read-only__ The Linode interface ID this public IP address is assigned to. This value is `null` if a Linode interface is not assigned, or if the IP is assigned to a legacy configuration profile interface.")),
+"linode_id": z.int().describe("__Read-only__ The ID of the Linode this address currently belongs to. For IPv4 addresses, this defaults to the Linode that this address was assigned to on creation. IPv4 addresses may be moved using the [Assign IPv4s to Linodes](https://techdocs.akamai.com/linode-api/reference/post-assign-ipv4s) operation. For SLAAC and link-local addresses, this value may not be changed."),
+"prefix": z.int().describe("__Filterable__, __Read-only__ The number of bits set in the subnet mask."),
+"public": z.boolean().describe("__Read-only__ Whether this is a public or private IP address."),
+"rdns": z.nullable(z.string().describe("__Filterable__ The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.")),
+"region": z.string().describe("__Filterable__, __Read-only__ The Region this IP address resides in."),
+"subnet_mask": z.string().describe("__Read-only__ The mask that separates host bits from network bits for this address."),
+"type": z.enum(["ipv4", "ipv6", "ipv6/pool", "ipv6/range"]).describe("__Filterable__, __Read-only__ The type of address this is."),
+"vpc_nat_1_1": z.object({
+    "address": z.url().describe("The IPv4 address that is configured as a 1:1 NAT for this VPC interface."),
+"subnet_id": z.int().describe("The `id` of the VPC Subnet for this interface."),
+"vpc_id": z.int().describe("__Read-only__ The `id` of the VPC configured for this Interface.")
+    }).describe("IPv4 address configured as a 1:1 NAT for this interface. Empty if no address is configured as a 1:1 NAT.\n\n> 📘\n>\n> Only allowed for `vpc` type interfaces.")
+    }).describe("An IP address that exists in Linode's system, either IPv4 or IPv6, specific to the response for the [List IP addresses](https://techdocs.akamai.com/linode-api/reference/get-ips) operation.")).describe("IP addresses that exist in Linode's system, either IPv4 or IPv6, specific to the response for the [List IP addresses](https://techdocs.akamai.com/linode-api/reference/get-ips) operation.")
     }).describe("The response data for the [List IP addresses](https://techdocs.akamai.com/linode-api/reference/get-ips) operation.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getIpsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getIpsQueryResponseSchema = z.lazy(() => getIps200Schema)

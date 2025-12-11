@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostSnapshotPathParams(data?: Partial<PostSnapshotPathParams>): PostSnapshotPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostSnapshotPathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int()},
+  ...{"linodeId": faker.number.int()},
   ...data || {}
   }
 }

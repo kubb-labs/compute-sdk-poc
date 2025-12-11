@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetChildAccountsPathParams, GetChildAccountsQueryParams, GetChildAccounts200, GetChildAccountsError, GetChildAccountsQueryResponse } from "../types/GetChildAccounts.ts";
+import type { GetChildAccountsQueryParams, GetChildAccounts200, GetChildAccountsError, GetChildAccountsQueryResponse } from "../types/GetChildAccounts.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetChildAccountsPathParams(data?: Partial<GetChildAccountsPathParams>): GetChildAccountsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetChildAccountsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetChildAccountsQueryParams(data?: Partial<GetChildAccountsQueryParams>): GetChildAccountsQueryParams {
   

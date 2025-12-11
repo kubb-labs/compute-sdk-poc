@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostPersonalAccessTokenPathParams, PostPersonalAccessToken200, PostPersonalAccessTokenError, PostPersonalAccessTokenMutationRequest, PostPersonalAccessTokenMutationResponse } from "../types/PostPersonalAccessToken.ts";
+import type { PostPersonalAccessToken200, PostPersonalAccessTokenError, PostPersonalAccessTokenMutationRequest, PostPersonalAccessTokenMutationResponse } from "../types/PostPersonalAccessToken.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostPersonalAccessTokenPathParams(data?: Partial<PostPersonalAccessTokenPathParams>): PostPersonalAccessTokenPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostPersonalAccessTokenPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Token created successfully.

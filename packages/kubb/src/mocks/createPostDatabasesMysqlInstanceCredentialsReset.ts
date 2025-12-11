@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostDatabasesMysqlInstanceCredentialsResetPathParams(data?: Partial<PostDatabasesMysqlInstanceCredentialsResetPathParams>): PostDatabasesMysqlInstanceCredentialsResetPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostDatabasesMysqlInstanceCredentialsResetPathParams>["apiVersion"]>(["v4", "v4beta"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetSharegroupTokenQueryResponse, GetSharegroupTokenPathParams } from "../types/GetSharegroupToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetSharegroupTokenUrl(apiVersion: GetSharegroupTokenPathParams["apiVersion"], tokenUuid: GetSharegroupTokenPathParams["tokenUuid"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/images/sharegroups/tokens/${tokenUuid}` as const }  
+function getGetSharegroupTokenUrl(tokenUuid: GetSharegroupTokenPathParams["tokenUuid"]) {
+  const res = { method: 'GET', url: `/images/sharegroups/tokens/${tokenUuid}` as const }  
   return res
 }
 
 /**
  * @description Get details about a membership token as a share group member. Run this operation to check the `status` of a pending membership request or your current group membership.- To get the `token_uuid`, run the [List tokens](https://techdocs.akamai.com/linode-api/reference/get-user-tokens) or [Create a token](https://techdocs.akamai.com/linode-api/reference/post-sharegroup-tokens) operation to generate one for the share group you want to join.<<LB>>---- __CLI__.    ```    linode-cli image-sharegroups token-view abc123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a token
- * {@link /:apiVersion/images/sharegroups/tokens/:tokenUuid}
+ * {@link /images/sharegroups/tokens/:tokenUuid}
  */
-export async function getSharegroupToken(apiVersion: GetSharegroupTokenPathParams["apiVersion"], tokenUuid: GetSharegroupTokenPathParams["tokenUuid"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getSharegroupToken(tokenUuid: GetSharegroupTokenPathParams["tokenUuid"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetSharegroupTokenQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSharegroupTokenUrl(apiVersion, tokenUuid).url.toString(), ... requestConfig })  
+  const res = await request<GetSharegroupTokenQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSharegroupTokenUrl(tokenUuid).url.toString(), ... requestConfig })  
   return res.data
 }

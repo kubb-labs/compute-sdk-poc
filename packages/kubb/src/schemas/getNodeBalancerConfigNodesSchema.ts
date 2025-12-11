@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const getNodeBalancerConfigNodesPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"nodeBalancerId": z.coerce.number().int().describe("The ID of the NodeBalancer."),
+    "nodeBalancerId": z.coerce.number().int().describe("The ID of the NodeBalancer."),
 "configId": z.coerce.number().int().describe("The ID of the NodeBalancer config to access.")
     })
 
@@ -20,7 +19,7 @@ export const getNodeBalancerConfigNodesQueryParamsSchema = z.object({
  * @description A paginated list of NodeBalancer nodes.
  */
 export const getNodeBalancerConfigNodes200Schema = z.object({
-    "data": z.optional(z.array(z.union([z.object({
+    "data": z.array(z.union([z.object({
     "address": z.optional(z.string().describe("The address and port where this backend can be reached: either the Linode’s private IPv4, public IPv6, or the VPC's IPv4 address.")),
 "config_id": z.optional(z.int().describe("__Read-only__ The NodeBalancer Config ID that this Node belongs to.")),
 "id": z.optional(z.int().describe("__Read-only__ This node's unique ID.")),
@@ -40,20 +39,20 @@ export const getNodeBalancerConfigNodes200Schema = z.object({
 "status": z.optional(z.enum(["Unknown", "UP", "DOWN"]).describe("__Read-only__ The current status of this node, based on the configured checks of its NodeBalancer config.")),
 "vpc_config_id": z.int().describe("__Read-only__ For VPC backends, the `vpc_config_id` can be used to [get VPC IDs and VPC subnet IDs](https://techdocs.akamai.com/linode-api/reference/get-node-balancer-vpc-config). Returns a `null` value if the backend is not a VPC node. Included only when the `apiVersion` is `v4beta`.").nullish(),
 "weight": z.optional(z.int().min(1).max(255).describe("Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic."))
-    })]).describe("A NodeBalancer node represents a single backend serving requests for a single port on a NodeBalancer. Nodes are tied to NodeBalancer configurations, and serve traffic over their private IPv4 address, IPv6 address, or VPC IPv4 address. If the same Linode is serving traffic for more than one port on the same NodeBalancer, one NodeBalancer node is required for each config (port) it should serve requests on.  For example, if you have four backends, and each should respond to both HTTP and HTTPS requests, you will need two NodeBalancer configs (port 80 and port 443) and four backends each, one for each of the Linodes serving requests for that port."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    })]).describe("A NodeBalancer node represents a single backend serving requests for a single port on a NodeBalancer. Nodes are tied to NodeBalancer configurations, and serve traffic over their private IPv4 address, IPv6 address, or VPC IPv4 address. If the same Linode is serving traffic for more than one port on the same NodeBalancer, one NodeBalancer node is required for each config (port) it should serve requests on.  For example, if you have four backends, and each should respond to both HTTP and HTTPS requests, you will need two NodeBalancer configs (port 80 and port 443) and four backends each, one for each of the Linodes serving requests for that port.")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getNodeBalancerConfigNodesErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getNodeBalancerConfigNodesQueryResponseSchema = z.lazy(() => getNodeBalancerConfigNodes200Schema)

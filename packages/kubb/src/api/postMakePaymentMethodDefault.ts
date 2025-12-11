@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostMakePaymentMethodDefaultMutationResponse, PostMakePaymentMethodDefaultPathParams } from "../types/PostMakePaymentMethodDefault.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostMakePaymentMethodDefaultUrl(apiVersion: PostMakePaymentMethodDefaultPathParams["apiVersion"], paymentMethodId: PostMakePaymentMethodDefaultPathParams["paymentMethodId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/payment-methods/${paymentMethodId}/make-default` as const }  
+function getPostMakePaymentMethodDefaultUrl(paymentMethodId: PostMakePaymentMethodDefaultPathParams["paymentMethodId"]) {
+  const res = { method: 'POST', url: `/account/payment-methods/${paymentMethodId}/make-default` as const }  
   return res
 }
 
 /**
  * @description Make the specified Payment Method the default method for automatically processing payments. Removes the default status from any other Payment Method.__Parent and child accounts__In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:- Child account users can't run this operation. These users don't have access to billing-related operations.<<LB>>---- __CLI__.    ```    linode-cli payment-methods default 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Set a default payment method
- * {@link /:apiVersion/account/payment-methods/:paymentMethodId/make-default}
+ * {@link /account/payment-methods/:paymentMethodId/make-default}
  */
-export async function postMakePaymentMethodDefault(apiVersion: PostMakePaymentMethodDefaultPathParams["apiVersion"], paymentMethodId: PostMakePaymentMethodDefaultPathParams["paymentMethodId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postMakePaymentMethodDefault(paymentMethodId: PostMakePaymentMethodDefaultPathParams["paymentMethodId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostMakePaymentMethodDefaultMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostMakePaymentMethodDefaultUrl(apiVersion, paymentMethodId).url.toString(), ... requestConfig })  
+  const res = await request<PostMakePaymentMethodDefaultMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostMakePaymentMethodDefaultUrl(paymentMethodId).url.toString(), ... requestConfig })  
   return res.data
 }

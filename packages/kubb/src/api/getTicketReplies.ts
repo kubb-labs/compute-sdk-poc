@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetTicketRepliesQueryResponse, GetTicketRepliesPathParams, GetTicketRepliesQueryParams } from "../types/GetTicketReplies.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetTicketRepliesUrl(apiVersion: GetTicketRepliesPathParams["apiVersion"], ticketId: GetTicketRepliesPathParams["ticketId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/support/tickets/${ticketId}/replies` as const }  
+function getGetTicketRepliesUrl(ticketId: GetTicketRepliesPathParams["ticketId"]) {
+  const res = { method: 'GET', url: `/support/tickets/${ticketId}/replies` as const }  
   return res
 }
 
 /**
  * @description Returns a collection of replies to a support ticket on your account.<<LB>>---- __CLI__.    ```    linode-cli tickets replies 11223344    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List replies
- * {@link /:apiVersion/support/tickets/:ticketId/replies}
+ * {@link /support/tickets/:ticketId/replies}
  */
-export async function getTicketReplies(apiVersion: GetTicketRepliesPathParams["apiVersion"], ticketId: GetTicketRepliesPathParams["ticketId"], params?: GetTicketRepliesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getTicketReplies(ticketId: GetTicketRepliesPathParams["ticketId"], params?: GetTicketRepliesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetTicketRepliesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTicketRepliesUrl(apiVersion, ticketId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetTicketRepliesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTicketRepliesUrl(ticketId).url.toString(), params, ... requestConfig })  
   return res.data
 }

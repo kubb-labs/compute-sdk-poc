@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetKernelQueryResponse, GetKernelPathParams } from "../types/GetKernel.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetKernelUrl(apiVersion: GetKernelPathParams["apiVersion"], kernelId: GetKernelPathParams["kernelId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/kernels/${kernelId}` as const }  
+function getGetKernelUrl(kernelId: GetKernelPathParams["kernelId"]) {
+  const res = { method: 'GET', url: `/linode/kernels/${kernelId}` as const }  
   return res
 }
 
 /**
  * @description Returns information about a single Kernel.<<LB>>---- __CLI__.    ```    linode-cli kernels view latest-64bit    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Get a kernel
- * {@link /:apiVersion/linode/kernels/:kernelId}
+ * {@link /linode/kernels/:kernelId}
  */
-export async function getKernel(apiVersion: GetKernelPathParams["apiVersion"], kernelId: GetKernelPathParams["kernelId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getKernel(kernelId: GetKernelPathParams["kernelId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetKernelQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetKernelUrl(apiVersion, kernelId).url.toString(), ... requestConfig })  
+  const res = await request<GetKernelQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetKernelUrl(kernelId).url.toString(), ... requestConfig })  
   return res.data
 }

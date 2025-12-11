@@ -4,30 +4,15 @@
 */
 
 
-export const postTfaConfirmPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostTfaConfirmPathParamsApiVersionEnumKey = (typeof postTfaConfirmPathParamsApiVersionEnum)[keyof typeof postTfaConfirmPathParamsApiVersionEnum];
-
-export interface PostTfaConfirmPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostTfaConfirmPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description TFA enabled successfully.
 */
 export interface PostTfaConfirm200 {
     /**
      * @description A one-use code that can be used in place of your Two Factor code, in case you are unable to generate one.  Keep this in a safe place to avoid being locked out of your Account.
-     * @type string | undefined
+     * @type string
     */
-    scratch?: string;
+    scratch: string;
 }
 
 /**
@@ -35,19 +20,19 @@ export interface PostTfaConfirm200 {
 */
 export interface PostTfaConfirmError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -67,6 +52,5 @@ export type PostTfaConfirmMutationResponse = PostTfaConfirm200;
 export type PostTfaConfirmMutation = {
     Response: PostTfaConfirm200;
     Request: PostTfaConfirmMutationRequest;
-    PathParams: PostTfaConfirmPathParams;
     Errors: any;
 };

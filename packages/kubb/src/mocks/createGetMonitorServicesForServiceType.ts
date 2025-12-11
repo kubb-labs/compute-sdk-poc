@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetMonitorServicesForServiceTypePathParams(data?: Partial<GetMonitorServicesForServiceTypePathParams>): GetMonitorServicesForServiceTypePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetMonitorServicesForServiceTypePathParams>["apiVersion"]>(["v4beta"]),"serviceType": faker.string.alpha()},
+  ...{"serviceType": faker.string.alpha()},
   ...data || {}
   }
 }

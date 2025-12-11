@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostVpcPathParams, PostVpc200, PostVpcError, PostVpcMutationRequest, PostVpcMutationResponse } from "../types/PostVpc.ts";
+import type { PostVpc200, PostVpcError, PostVpcMutationRequest, PostVpcMutationResponse } from "../types/PostVpc.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostVpcPathParams(data?: Partial<PostVpcPathParams>): PostVpcPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostVpcPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description The new VPC.
@@ -41,7 +33,7 @@ export function createPostVpcError(data?: Partial<PostVpcError>): PostVpcError {
  */
 export function createPostVpcMutationRequest(data?: Partial<PostVpcMutationRequest>): PostVpcMutationRequest {
   
-  return Object.assign({}, undefined, {"subnets": faker.helpers.multiple(() => ({"created": faker.date.anytime().toISOString(),"id": faker.number.int(),"ipv4": faker.string.alpha(),"label": faker.string.alpha({ length: { min: 1, max: 64 } }),"linodes": faker.helpers.multiple(() => ({"id": faker.number.int(),"interfaces": faker.helpers.multiple(() => ({"active": faker.datatype.boolean(),"config_id": faker.number.int(),"id": faker.number.int()}))})),"updated": faker.date.anytime().toISOString()})),"created": faker.date.anytime().toISOString(),"description": faker.string.alpha({ length: 255 }),"id": faker.number.int(),"label": faker.string.alpha({ length: { min: 1, max: 64 } }),"region": faker.string.alpha(),"updated": faker.date.anytime().toISOString()})
+  return Object.assign({}, {"subnets": faker.helpers.multiple(() => ({"created": faker.date.anytime().toISOString(),"id": faker.number.int(),"ipv4": faker.string.alpha(),"label": faker.string.alpha({ length: { min: 1, max: 64 } }),"linodes": faker.helpers.multiple(() => ({"id": faker.number.int(),"interfaces": faker.helpers.multiple(() => ({"active": faker.datatype.boolean(),"config_id": faker.number.int(),"id": faker.number.int()}))})),"updated": faker.date.anytime().toISOString()})),"created": faker.date.anytime().toISOString(),"description": faker.string.alpha({ length: 255 }),"id": faker.number.int(),"label": faker.string.alpha({ length: { min: 1, max: 64 } }),"region": faker.string.alpha(),"updated": faker.date.anytime().toISOString()})
 }
 
 export function createPostVpcMutationResponse(data?: Partial<PostVpcMutationResponse>): PostVpcMutationResponse {

@@ -6,30 +6,29 @@
 import { z } from "zod/v4";
 
 export const postTicketReplyPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"ticketId": z.coerce.number().int().describe("The ID of the support ticket.")
+    "ticketId": z.coerce.number().int().describe("The ID of the support ticket.")
     })
 
 /**
  * @description Reply created.
  */
 export const postTicketReply200Schema = z.object({
-    "created": z.optional(z.string().datetime().describe("__Read-only__ When this ticket reply was created.")),
-"created_by": z.optional(z.string().describe("__Read-only__ The user who submitted this reply.")),
-"description": z.optional(z.string().describe("__Read-only__ The body of this support ticket reply.")),
-"from_linode": z.optional(z.boolean().describe("__Read-only__ If `true`, this reply came from a Linode employee.")),
-"gravatar_id": z.optional(z.string().describe("__Read-only__ The Gravatar ID of the user who created this reply.")),
-"id": z.optional(z.int().describe("__Read-only__ The unique ID of this support ticket reply."))
+    "created": z.string().datetime().describe("__Read-only__ When this ticket reply was created."),
+"created_by": z.string().describe("__Read-only__ The user who submitted this reply."),
+"description": z.string().describe("__Read-only__ The body of this support ticket reply."),
+"from_linode": z.boolean().describe("__Read-only__ If `true`, this reply came from a Linode employee."),
+"gravatar_id": z.string().describe("__Read-only__ The Gravatar ID of the user who created this reply."),
+"id": z.int().describe("__Read-only__ The unique ID of this support ticket reply.")
     }).describe("An object representing a reply to a support ticket.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const postTicketReplyErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const postTicketReplyMutationRequestSchema = z.object({

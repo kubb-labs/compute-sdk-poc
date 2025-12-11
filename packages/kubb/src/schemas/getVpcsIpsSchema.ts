@@ -5,10 +5,6 @@
 
 import { z } from "zod/v4";
 
-export const getVpcsIpsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 export const getVpcsIpsQueryParamsSchema = z.object({
     "page": z.coerce.number().int().min(1).default(1).describe("The page of a collection to return."),
 "page_size": z.coerce.number().int().min(25).max(500).default(100).describe("The number of items to return per page.")
@@ -18,23 +14,23 @@ export const getVpcsIpsQueryParamsSchema = z.object({
  * @description A paginated list of VPC interface IP addresses.
  */
 export const getVpcsIps200Schema = z.object({
-    "page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results.")),
+    "page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results."),
 "data": z.optional(z.array(z.object({
-    "active": z.optional(z.boolean().describe("__Filterable__, __Read-only__ Returns `true` if the VPC interface is in use, meaning that the Linode was powered on using the `config_id` to which the interface belongs. Otherwise returns `false`.")),
-"address": z.string().describe("__Read-only__ An IPv4 address configured for this VPC interface. These follow the [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private address format. Displayed as `null` if an `address_range`.").nullish(),
-"address_range": z.string().describe("__Read-only__ A range of IPv4 addresses configured for this VPC interface. Displayed as `null` if a single `address`.").nullish(),
-"config_id": z.int().describe("__Filterable__, __Read-only__ The globally general entity identifier for the Linode configuration profile that includes the VPC. If this is a VPC Linode interface, the value is `null`.").nullish(),
-"gateway": z.string().describe("__Read-only__ The default gateway for the VPC subnet that the IP or IP range belongs to.").nullish(),
-"interface_id": z.optional(z.int().describe("__Beta__, __Read-only__ The globally general API entity identifier for the Linode interface.")),
-"linode_id": z.optional(z.int().describe("__Filterable__, __Read-only__ The identifier for the Linode the VPC interface currently belongs to.")),
-"nat_1_1": z.optional(z.string().describe("__Read-only__ The public IP address used for NAT 1:1 with the VPC. This is empty if NAT 1:1 isn't used.")),
-"prefix": z.int().describe("__Read-only__ The number of bits set in the `subnet_mask`.").nullish(),
-"region": z.optional(z.string().describe("__Filterable__, __Read-only__ The region of the VPC.")),
-"subnet_id": z.optional(z.int().describe("The `id` of the VPC Subnet for this interface.")),
-"subnet_mask": z.optional(z.string().describe("__Read-only__ The mask that separates host bits from network bits for the `address` or `address_range`.")),
-"vpc_id": z.optional(z.int().describe("__Filterable__, __Read-only__ The unique globally general API entity identifier for the VPC."))
+    "active": z.boolean().describe("__Filterable__, __Read-only__ Returns `true` if the VPC interface is in use, meaning that the Linode was powered on using the `config_id` to which the interface belongs. Otherwise returns `false`."),
+"address": z.nullable(z.string().describe("__Read-only__ An IPv4 address configured for this VPC interface. These follow the [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private address format. Displayed as `null` if an `address_range`.")),
+"address_range": z.nullable(z.string().describe("__Read-only__ A range of IPv4 addresses configured for this VPC interface. Displayed as `null` if a single `address`.")),
+"config_id": z.nullable(z.int().describe("__Filterable__, __Read-only__ The globally general entity identifier for the Linode configuration profile that includes the VPC. If this is a VPC Linode interface, the value is `null`.")),
+"gateway": z.nullable(z.string().describe("__Read-only__ The default gateway for the VPC subnet that the IP or IP range belongs to.")),
+"interface_id": z.int().describe("__Beta__, __Read-only__ The globally general API entity identifier for the Linode interface."),
+"linode_id": z.int().describe("__Filterable__, __Read-only__ The identifier for the Linode the VPC interface currently belongs to."),
+"nat_1_1": z.string().describe("__Read-only__ The public IP address used for NAT 1:1 with the VPC. This is empty if NAT 1:1 isn't used."),
+"prefix": z.nullable(z.int().describe("__Read-only__ The number of bits set in the `subnet_mask`.")),
+"region": z.string().describe("__Filterable__, __Read-only__ The region of the VPC."),
+"subnet_id": z.int().describe("The `id` of the VPC Subnet for this interface."),
+"subnet_mask": z.string().describe("__Read-only__ The mask that separates host bits from network bits for the `address` or `address_range`."),
+"vpc_id": z.int().describe("__Filterable__, __Read-only__ The unique globally general API entity identifier for the VPC.")
     }).describe("A VPC IP address that exists in Linode's system, specific to the response for the [List VPC IP addresses](https://techdocs.akamai.com/linode-api/reference/get-vpcs-ips) operation. Returned as an empty set for Linodes that are not part of a VPC.")))
     })
 
@@ -42,10 +38,10 @@ export const getVpcsIps200Schema = z.object({
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getVpcsIpsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getVpcsIpsQueryResponseSchema = z.lazy(() => getVpcsIps200Schema)

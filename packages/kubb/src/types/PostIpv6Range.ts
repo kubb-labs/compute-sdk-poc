@@ -4,35 +4,20 @@
 */
 
 
-export const postIpv6RangePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostIpv6RangePathParamsApiVersionEnumKey = (typeof postIpv6RangePathParamsApiVersionEnum)[keyof typeof postIpv6RangePathParamsApiVersionEnum];
-
-export interface PostIpv6RangePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostIpv6RangePathParamsApiVersionEnumKey;
-}
-
 /**
  * @description IPv6 range created successfully.
 */
 export interface PostIpv6Range200 {
     /**
      * @description The IPv6 network range, including subnet and prefix length.
-     * @type string | undefined, ipv6/prefix_length
+     * @type string, ipv6/prefix_length
     */
-    range?: string;
+    range: string;
     /**
      * @description The route target IPV6 SLAAC address for this range. Does not include the prefix length.
-     * @type string | undefined, ipv6
+     * @type string, ipv6
     */
-    route_target?: string;
+    route_target: string;
 }
 
 /**
@@ -40,19 +25,19 @@ export interface PostIpv6Range200 {
 */
 export interface PostIpv6RangeError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -89,6 +74,5 @@ export type PostIpv6RangeMutationResponse = PostIpv6Range200;
 export type PostIpv6RangeMutation = {
     Response: PostIpv6Range200;
     Request: PostIpv6RangeMutationRequest;
-    PathParams: PostIpv6RangePathParams;
     Errors: any;
 };

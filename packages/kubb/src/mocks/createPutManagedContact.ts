@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutManagedContactPathParams(data?: Partial<PutManagedContactPathParams>): PutManagedContactPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutManagedContactPathParams>["apiVersion"]>(["v4", "v4beta"]),"contactId": faker.number.int()},
+  ...{"contactId": faker.number.int()},
   ...data || {}
   }
 }

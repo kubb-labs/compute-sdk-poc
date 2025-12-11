@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetLongviewTypesPathParams, GetLongviewTypes200, GetLongviewTypesError, GetLongviewTypesQueryResponse } from "../types/GetLongviewTypes.ts";
+import type { GetLongviewTypes200, GetLongviewTypesError, GetLongviewTypesQueryResponse } from "../types/GetLongviewTypes.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetLongviewTypesPathParams(data?: Partial<GetLongviewTypesPathParams>): GetLongviewTypesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLongviewTypesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A collection of Longview types.

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetNodeBalancerVpcsQueryResponse, GetNodeBalancerVpcsPathParams, GetNodeBalancerVpcsQueryParams } from "../types/GetNodeBalancerVpcs.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetNodeBalancerVpcsUrl(apiVersion: GetNodeBalancerVpcsPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerVpcsPathParams["nodeBalancerId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/nodebalancers/${nodeBalancerId}/vpcs` as const }  
+function getGetNodeBalancerVpcsUrl(nodeBalancerId: GetNodeBalancerVpcsPathParams["nodeBalancerId"]) {
+  const res = { method: 'GET', url: `/nodebalancers/${nodeBalancerId}/vpcs` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of VPC configurations for the NodeBalancer.<<LB>>---- __CLI__.    ```    linode-cli nodebalancers vpcs-list 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    nodebalancers:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List VPC configurations
- * {@link /:apiVersion/nodebalancers/:nodeBalancerId/vpcs}
+ * {@link /nodebalancers/:nodeBalancerId/vpcs}
  */
-export async function getNodeBalancerVpcs(apiVersion: GetNodeBalancerVpcsPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerVpcsPathParams["nodeBalancerId"], params?: GetNodeBalancerVpcsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getNodeBalancerVpcs(nodeBalancerId: GetNodeBalancerVpcsPathParams["nodeBalancerId"], params?: GetNodeBalancerVpcsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetNodeBalancerVpcsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerVpcsUrl(apiVersion, nodeBalancerId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetNodeBalancerVpcsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerVpcsUrl(nodeBalancerId).url.toString(), params, ... requestConfig })  
   return res.data
 }

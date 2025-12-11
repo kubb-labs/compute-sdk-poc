@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostManagedCredentialMutationRequest, PostManagedCredentialMutationResponse, PostManagedCredentialPathParams } from "../types/PostManagedCredential.ts";
+import type { PostManagedCredentialMutationRequest, PostManagedCredentialMutationResponse } from "../types/PostManagedCredential.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostManagedCredentialUrl(apiVersion: PostManagedCredentialPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/managed/credentials` as const }  
+function getPostManagedCredentialUrl() {
+  const res = { method: 'POST', url: `/managed/credentials` as const }  
   return res
 }
 
 /**
  * @description Creates a managed credential to store usernames and passwords for applications running on your Linode. Akamai Support can use these credentials to access your applications when investigating or resolving issues.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed credential-create \  --label prod-password-1 \  --username johndoe \  --password s3cur3P@ssw0rd    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a managed credential
- * {@link /:apiVersion/managed/credentials}
+ * {@link /managed/credentials}
  */
-export async function postManagedCredential(apiVersion: PostManagedCredentialPathParams["apiVersion"], data: PostManagedCredentialMutationRequest, config: Partial<RequestConfig<PostManagedCredentialMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postManagedCredential(data: PostManagedCredentialMutationRequest, config: Partial<RequestConfig<PostManagedCredentialMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostManagedCredentialMutationResponse, ResponseErrorConfig<Error>, PostManagedCredentialMutationRequest>({ method : "POST", url : getPostManagedCredentialUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostManagedCredentialMutationResponse, ResponseErrorConfig<Error>, PostManagedCredentialMutationRequest>({ method : "POST", url : getPostManagedCredentialUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

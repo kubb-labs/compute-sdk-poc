@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteServiceTransferMutationResponse, DeleteServiceTransferPathParams } from "../types/DeleteServiceTransfer.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteServiceTransferUrl(apiVersion: DeleteServiceTransferPathParams["apiVersion"], token: DeleteServiceTransferPathParams["token"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/account/service-transfers/${token}` as const }  
+function getDeleteServiceTransferUrl(token: DeleteServiceTransferPathParams["token"]) {
+  const res = { method: 'DELETE', url: `/account/service-transfers/${token}` as const }  
   return res
 }
 
 /**
  * @description Cancels the Service Transfer for the provided token. Once canceled, a transfer cannot be accepted or otherwise acted on in any way. If canceled in error, the transfer must be [created](https://techdocs.akamai.com/linode-api/reference/post-service-transfer) again.When canceled, an email notification for the cancellation is sent to the account that created this transfer. Transfers can not be canceled if they are expired or have been accepted.This operation can only be accessed by the unrestricted users of the account that created this transfer.<<LB>>---- __CLI__.    ```    linode-cli service-transfers \  cancel 123E4567-E89B-12D3-A456-426614174000    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Cancel a service transfer
- * {@link /:apiVersion/account/service-transfers/:token}
+ * {@link /account/service-transfers/:token}
  */
-export async function deleteServiceTransfer(apiVersion: DeleteServiceTransferPathParams["apiVersion"], token: DeleteServiceTransferPathParams["token"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteServiceTransfer(token: DeleteServiceTransferPathParams["token"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteServiceTransferMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteServiceTransferUrl(apiVersion, token).url.toString(), ... requestConfig })  
+  const res = await request<DeleteServiceTransferMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteServiceTransferUrl(token).url.toString(), ... requestConfig })  
   return res.data
 }

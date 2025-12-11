@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostReadMetricPathParams(data?: Partial<PostReadMetricPathParams>): PostReadMetricPathParams {
   
   return {
-  ...{"serviceType": faker.string.alpha(),"apiVersion": faker.helpers.arrayElement<NonNullable<PostReadMetricPathParams>["apiVersion"]>(["v2beta"])},
+  ...{"serviceType": faker.string.alpha()},
   ...data || {}
   }
 }

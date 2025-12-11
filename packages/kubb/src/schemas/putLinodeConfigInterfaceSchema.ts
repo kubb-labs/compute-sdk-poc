@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const putLinodeConfigInterfacePathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"linodeId": z.coerce.number().int().describe("The `id` of the Linode."),
+    "linodeId": z.coerce.number().int().describe("The `id` of the Linode."),
 "configId": z.coerce.number().int().describe("The `id` of the Configuration Profile."),
 "interfaceId": z.coerce.number().int().describe("The `id` of the Linode Configuration Profile Interface.")
     })
@@ -21,8 +20,8 @@ export const putLinodeConfigInterface200Schema = z.object({
 "ip_ranges": z.array(z.string()).describe("IPv4 CIDR VPC subnet ranges that are routed to this interface. This only applies to interfaces with a `purpose` of `vpc`. Returned as an empty string (`\"\"`) if the interface has a `purpose` of `public` or `vlan`.").nullish(),
 "ipam_address": z.string().describe("The interface's private IP address, in classless inter-domain routing (CIDR) notation. Only applies to interfaces with a `purpose` of `vlan`. Returned as `null` if the interface has a `purpose` of `public` or `vpc`.\n\n> 📘\n>\n> If Network Helper is enabled, the Linode's interface is automatically configured to use this address after the Linode is rebooted. If Network Helper is disabled, enable the address using [manual static IP configuration](https://www.linode.com/docs/guides/manual-network-configuration/).").nullish(),
 "ipv4": z.optional(z.object({
-    "nat_1_1": z.string().describe("The 1:1 NAT IPv4 address, used to associate a public IPv4 address with the interface's VPC subnet IPv4 address. This only applies to interfaces with a `purpose` of `vpc`. Returned as `null` if no 1:1 NAT is set for a `vpc` interface. Returned as an empty string (`\"\"`) if the interface has a `purpose` of `public` or `vlan`.").nullish(),
-"vpc": z.string().describe("The VPC subnet IPv4 address for this interface. This only applies to interfaces with a `purpose` of `vpc`. Returned as an empty string (`\"\"`) if the interface has a `purpose` of `public` or `vlan`.").nullish()
+    "nat_1_1": z.nullable(z.string().describe("The 1:1 NAT IPv4 address, used to associate a public IPv4 address with the interface's VPC subnet IPv4 address. This only applies to interfaces with a `purpose` of `vpc`. Returned as `null` if no 1:1 NAT is set for a `vpc` interface. Returned as an empty string (`\"\"`) if the interface has a `purpose` of `public` or `vlan`.")),
+"vpc": z.nullable(z.string().describe("The VPC subnet IPv4 address for this interface. This only applies to interfaces with a `purpose` of `vpc`. Returned as an empty string (`\"\"`) if the interface has a `purpose` of `public` or `vlan`."))
     }).describe("IPv4 addresses configured for this interface. Only applies to interfaces with a `purpose` of `vpc`. Returned as `null` if the interface has a `purpose` of `public` or `vlan`.")),
 "label": z.string().regex(/[a-zA-Z0-9-]+/).describe("__Filterable__ The name set for an interface with a `purpose` of `vlan`. Returned as `null` if the interface has a `purpose` of `public` or `vpc`.").nullish(),
 "primary": z.optional(z.boolean().describe("The default route to the Linode. Each Linode can have one interface set as its `primary`. Defaults to the first non-`vlan` type interface, if you haven't specifically set a `primary`.\n\n> 📘\n>\n> The value needs to `false` for any interface that uses `vlan` as its `purpose`.")),
@@ -35,10 +34,10 @@ export const putLinodeConfigInterface200Schema = z.object({
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const putLinodeConfigInterfaceErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const putLinodeConfigInterfaceMutationRequestSchema = z.object({

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeInstanceQueryResponse, GetLinodeInstancePathParams } from "../types/GetLinodeInstance.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeInstanceUrl(apiVersion: GetLinodeInstancePathParams["apiVersion"], linodeId: GetLinodeInstancePathParams["linodeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}` as const }  
+function getGetLinodeInstanceUrl(linodeId: GetLinodeInstancePathParams["linodeId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}` as const }  
   return res
 }
 
 /**
  * @description Get a specific Linode by ID.<<LB>>---- __CLI__.    ```    linode-cli linodes view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a Linode
- * {@link /:apiVersion/linode/instances/:linodeId}
+ * {@link /linode/instances/:linodeId}
  */
-export async function getLinodeInstance(apiVersion: GetLinodeInstancePathParams["apiVersion"], linodeId: GetLinodeInstancePathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeInstance(linodeId: GetLinodeInstancePathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeInstanceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeInstanceUrl(apiVersion, linodeId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeInstanceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeInstanceUrl(linodeId).url.toString(), ... requestConfig })  
   return res.data
 }

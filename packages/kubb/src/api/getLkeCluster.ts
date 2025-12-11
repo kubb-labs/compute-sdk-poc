@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLkeClusterQueryResponse, GetLkeClusterPathParams } from "../types/GetLkeCluster.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLkeClusterUrl(apiVersion: GetLkeClusterPathParams["apiVersion"], clusterId: GetLkeClusterPathParams["clusterId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/lke/clusters/${clusterId}` as const }  
+function getGetLkeClusterUrl(clusterId: GetLkeClusterPathParams["clusterId"]) {
+  const res = { method: 'GET', url: `/lke/clusters/${clusterId}` as const }  
   return res
 }
 
 /**
  * @description Get a specific Cluster by ID.<<LB>>---- __CLI__.    ```    linode-cli lke cluster-view 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a Kubernetes cluster
- * {@link /:apiVersion/lke/clusters/:clusterId}
+ * {@link /lke/clusters/:clusterId}
  */
-export async function getLkeCluster(apiVersion: GetLkeClusterPathParams["apiVersion"], clusterId: GetLkeClusterPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLkeCluster(clusterId: GetLkeClusterPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLkeClusterQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeClusterUrl(apiVersion, clusterId).url.toString(), ... requestConfig })  
+  const res = await request<GetLkeClusterQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeClusterUrl(clusterId).url.toString(), ... requestConfig })  
   return res.data
 }

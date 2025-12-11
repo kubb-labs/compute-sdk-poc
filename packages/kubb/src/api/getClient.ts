@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetClientQueryResponse, GetClientPathParams } from "../types/GetClient.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetClientUrl(apiVersion: GetClientPathParams["apiVersion"], clientId: GetClientPathParams["clientId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/oauth-clients/${clientId}` as const }  
+function getGetClientUrl(clientId: GetClientPathParams["clientId"]) {
+  const res = { method: 'GET', url: `/account/oauth-clients/${clientId}` as const }  
   return res
 }
 
 /**
  * @description Returns information about a single OAuth client.<<LB>>---- __CLI__.    ```    linode-cli account client-view \  edc6790ea9db4d224c5c    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an OAuth client
- * {@link /:apiVersion/account/oauth-clients/:clientId}
+ * {@link /account/oauth-clients/:clientId}
  */
-export async function getClient(apiVersion: GetClientPathParams["apiVersion"], clientId: GetClientPathParams["clientId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getClient(clientId: GetClientPathParams["clientId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetClientQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetClientUrl(apiVersion, clientId).url.toString(), ... requestConfig })  
+  const res = await request<GetClientQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetClientUrl(clientId).url.toString(), ... requestConfig })  
   return res.data
 }

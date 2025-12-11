@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostManagedCredentialPathParams, PostManagedCredential200, PostManagedCredentialError, PostManagedCredentialMutationRequest, PostManagedCredentialMutationResponse } from "../types/PostManagedCredential.ts";
+import type { PostManagedCredential200, PostManagedCredentialError, PostManagedCredentialMutationRequest, PostManagedCredentialMutationResponse } from "../types/PostManagedCredential.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostManagedCredentialPathParams(data?: Partial<PostManagedCredentialPathParams>): PostManagedCredentialPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostManagedCredentialPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Credential created.

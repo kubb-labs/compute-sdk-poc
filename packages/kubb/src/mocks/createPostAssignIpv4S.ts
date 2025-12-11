@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostAssignIpv4SPathParams, PostAssignIpv4S200, PostAssignIpv4SError, PostAssignIpv4SMutationRequest, PostAssignIpv4SMutationResponse } from "../types/PostAssignIpv4S.ts";
+import type { PostAssignIpv4S200, PostAssignIpv4SError, PostAssignIpv4SMutationRequest, PostAssignIpv4SMutationResponse } from "../types/PostAssignIpv4S.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostAssignIpv4SPathParams(data?: Partial<PostAssignIpv4SPathParams>): PostAssignIpv4SPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostAssignIpv4SPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description All assignments completed successfully.

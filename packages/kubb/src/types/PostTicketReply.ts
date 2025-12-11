@@ -4,19 +4,7 @@
 */
 
 
-export const postTicketReplyPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostTicketReplyPathParamsApiVersionEnumKey = (typeof postTicketReplyPathParamsApiVersionEnum)[keyof typeof postTicketReplyPathParamsApiVersionEnum];
-
 export interface PostTicketReplyPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostTicketReplyPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the support ticket.
      * @type integer
@@ -30,34 +18,34 @@ export interface PostTicketReplyPathParams {
 export interface PostTicketReply200 {
     /**
      * @description __Read-only__ When this ticket reply was created.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description __Read-only__ The user who submitted this reply.
-     * @type string | undefined
+     * @type string
     */
-    readonly created_by?: string;
+    readonly created_by: string;
     /**
      * @description __Read-only__ The body of this support ticket reply.
-     * @type string | undefined
+     * @type string
     */
-    readonly description?: string;
+    readonly description: string;
     /**
      * @description __Read-only__ If `true`, this reply came from a Linode employee.
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly from_linode?: boolean;
+    readonly from_linode: boolean;
     /**
      * @description __Read-only__ The Gravatar ID of the user who created this reply.
-     * @type string | undefined
+     * @type string
     */
-    readonly gravatar_id?: string;
+    readonly gravatar_id: string;
     /**
      * @description __Read-only__ The unique ID of this support ticket reply.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
 }
 
 /**
@@ -65,19 +53,19 @@ export interface PostTicketReply200 {
 */
 export interface PostTicketReplyError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

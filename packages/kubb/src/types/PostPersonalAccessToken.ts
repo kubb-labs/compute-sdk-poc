@@ -4,57 +4,42 @@
 */
 
 
-export const postPersonalAccessTokenPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostPersonalAccessTokenPathParamsApiVersionEnumKey = (typeof postPersonalAccessTokenPathParamsApiVersionEnum)[keyof typeof postPersonalAccessTokenPathParamsApiVersionEnum];
-
-export interface PostPersonalAccessTokenPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostPersonalAccessTokenPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description Token created successfully.
 */
 export interface PostPersonalAccessToken200 {
     /**
      * @description __Filterable__, __Read-only__ The date and time this token was created.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description __Read-only__ When this token will expire.  Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated.  Tokens may be created with `null` as their expiry and will never expire unless revoked.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly expiry?: string;
+    readonly expiry: string;
     /**
      * @description __Read-only__ This token\'s unique ID, which can be used to revoke it.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description __Filterable__ This token\'s label.  This is for display purposes only, but can be used to more easily track what you\'re using each token for.
      * @minLength 1
      * @maxLength 100
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description __Read-only__ The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the [Linode CLI](https://github.com/linode/linode-cli), require tokens with access to `*`. Tokens with more restrictive scopes are generally more secure.
-     * @type string | undefined, oauth-scopes
+     * @type string, oauth-scopes
     */
-    readonly scopes?: string;
+    readonly scopes: string;
     /**
      * @description __Read-only__ The token used to access the API.  When the token is created, the full token is returned here.  Otherwise, only the first 16 characters are returned.
-     * @type string | undefined
+     * @type string
     */
-    readonly token?: string;
+    readonly token: string;
 }
 
 /**
@@ -62,19 +47,19 @@ export interface PostPersonalAccessToken200 {
 */
 export interface PostPersonalAccessTokenError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -106,6 +91,5 @@ export type PostPersonalAccessTokenMutationResponse = PostPersonalAccessToken200
 export type PostPersonalAccessTokenMutation = {
     Response: PostPersonalAccessToken200;
     Request: PostPersonalAccessTokenMutationRequest;
-    PathParams: PostPersonalAccessTokenPathParams;
     Errors: any;
 };

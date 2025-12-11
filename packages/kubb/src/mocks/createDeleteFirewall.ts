@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteFirewallPathParams(data?: Partial<DeleteFirewallPathParams>): DeleteFirewallPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteFirewallPathParams>["apiVersion"]>(["v4", "v4beta"]),"firewallId": faker.number.int()},
+  ...{"firewallId": faker.number.int()},
   ...data || {}
   }
 }

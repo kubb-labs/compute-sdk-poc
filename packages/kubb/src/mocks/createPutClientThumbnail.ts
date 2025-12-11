@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutClientThumbnailPathParams(data?: Partial<PutClientThumbnailPathParams>): PutClientThumbnailPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutClientThumbnailPathParams>["apiVersion"]>(["v4", "v4beta"]),"clientId": faker.string.alpha()},
+  ...{"clientId": faker.string.alpha()},
   ...data || {}
   }
 }

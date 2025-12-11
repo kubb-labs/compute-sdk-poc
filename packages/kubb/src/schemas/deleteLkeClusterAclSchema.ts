@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const deleteLkeClusterAclPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"clusterId": z.coerce.number().int().describe("ID of the Kubernetes cluster to look up.")
+    "clusterId": z.coerce.number().int().describe("ID of the Kubernetes cluster to look up.")
     })
 
 /**
@@ -21,30 +20,30 @@ export const deleteLkeClusterAcl200Schema = z.object({
  * @description If the cluster was not created or updated to enable the ACL feature, this request returns a 400 (Bad Request) error with an appropriate message, such as `Cluster does not support Control Plane ACL`.
  */
 export const deleteLkeClusterAcl400Schema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("A string explaining that the cluster does not support Control Plane ACL."))
-    })))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("A string explaining that the cluster does not support Control Plane ACL.")
+    }))
     })
 
 /**
  * @description If the cluster does not exist, this request returns a 404 (Not Found) error.
  */
 export const deleteLkeClusterAcl404Schema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("A string explaining that the cluster does not exist."))
-    })))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("A string explaining that the cluster does not exist.")
+    }))
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const deleteLkeClusterAclErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const deleteLkeClusterAclMutationResponseSchema = z.lazy(() => deleteLkeClusterAcl200Schema)

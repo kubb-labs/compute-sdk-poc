@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostLkeClusterRecycleMutationResponse, PostLkeClusterRecyclePathParams } from "../types/PostLkeClusterRecycle.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostLkeClusterRecycleUrl(apiVersion: PostLkeClusterRecyclePathParams["apiVersion"], clusterId: PostLkeClusterRecyclePathParams["clusterId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/lke/clusters/${clusterId}/recycle` as const }  
+function getPostLkeClusterRecycleUrl(clusterId: PostLkeClusterRecyclePathParams["clusterId"]) {
+  const res = { method: 'POST', url: `/lke/clusters/${clusterId}/recycle` as const }  
   return res
 }
 
 /**
  * @description Recycles all nodes in all pools of a designated Kubernetes Cluster. All Linodes within the Cluster will be deleted and replaced with new Linodes on a rolling basis, which may take several minutes. Replacement Nodes are installed with the latest available patch version for the Cluster's current Kubernetes minor release.__Any local storage on deleted Linodes (such as `hostPath` and `emptyDir` volumes, or `local` PersistentVolumes) will be erased.__<<LB>>---- __CLI__.    ```    linode-cli lke cluster-nodes-recycle 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Recycle cluster nodes
- * {@link /:apiVersion/lke/clusters/:clusterId/recycle}
+ * {@link /lke/clusters/:clusterId/recycle}
  */
-export async function postLkeClusterRecycle(apiVersion: PostLkeClusterRecyclePathParams["apiVersion"], clusterId: PostLkeClusterRecyclePathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postLkeClusterRecycle(clusterId: PostLkeClusterRecyclePathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostLkeClusterRecycleMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostLkeClusterRecycleUrl(apiVersion, clusterId).url.toString(), ... requestConfig })  
+  const res = await request<PostLkeClusterRecycleMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostLkeClusterRecycleUrl(clusterId).url.toString(), ... requestConfig })  
   return res.data
 }

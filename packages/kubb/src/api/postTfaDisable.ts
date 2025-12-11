@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostTfaDisableMutationResponse, PostTfaDisablePathParams } from "../types/PostTfaDisable.ts";
+import type { PostTfaDisableMutationResponse } from "../types/PostTfaDisable.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostTfaDisableUrl(apiVersion: PostTfaDisablePathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/profile/tfa-disable` as const }  
+function getPostTfaDisableUrl() {
+  const res = { method: 'POST', url: `/profile/tfa-disable` as const }  
   return res
 }
 
 /**
  * @description Disables two-factor authentication (2FA) for your user. Once successful, login attempts from untrusted computers will only require a password. Keep 2FA enabled to protect your account.<<LB>>---- __CLI__.    ```    linode-cli profile tfa-disable    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Disable two-factor authentication
- * {@link /:apiVersion/profile/tfa-disable}
+ * {@link /profile/tfa-disable}
  */
-export async function postTfaDisable(apiVersion: PostTfaDisablePathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postTfaDisable(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostTfaDisableMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostTfaDisableUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<PostTfaDisableMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostTfaDisableUrl().url.toString(), ... requestConfig })  
   return res.data
 }

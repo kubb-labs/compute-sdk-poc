@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostProfilePhoneNumberVerifyPathParams, PostProfilePhoneNumberVerify200, PostProfilePhoneNumberVerifyError, PostProfilePhoneNumberVerifyMutationRequest, PostProfilePhoneNumberVerifyMutationResponse } from "../types/PostProfilePhoneNumberVerify.ts";
+import type { PostProfilePhoneNumberVerify200, PostProfilePhoneNumberVerifyError, PostProfilePhoneNumberVerifyMutationRequest, PostProfilePhoneNumberVerifyMutationResponse } from "../types/PostProfilePhoneNumberVerify.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostProfilePhoneNumberVerifyPathParams(data?: Partial<PostProfilePhoneNumberVerifyPathParams>): PostProfilePhoneNumberVerifyPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostProfilePhoneNumberVerifyPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Phone number verification successful.

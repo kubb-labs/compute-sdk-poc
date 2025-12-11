@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetAccountAgreementsPathParams, GetAccountAgreements200, GetAccountAgreementsError, GetAccountAgreementsQueryResponse } from "../types/GetAccountAgreements.ts";
+import type { GetAccountAgreements200, GetAccountAgreementsError, GetAccountAgreementsQueryResponse } from "../types/GetAccountAgreements.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetAccountAgreementsPathParams(data?: Partial<GetAccountAgreementsPathParams>): GetAccountAgreementsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetAccountAgreementsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description The status of each acceptance agreement for your account.

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createResumeDatabasesPostgreSqlInstancePathParams(data?: Partial<ResumeDatabasesPostgreSqlInstancePathParams>): ResumeDatabasesPostgreSqlInstancePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<ResumeDatabasesPostgreSqlInstancePathParams>["apiVersion"]>(["v4"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

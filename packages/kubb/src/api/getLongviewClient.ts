@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLongviewClientQueryResponse, GetLongviewClientPathParams } from "../types/GetLongviewClient.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLongviewClientUrl(apiVersion: GetLongviewClientPathParams["apiVersion"], clientId: GetLongviewClientPathParams["clientId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/longview/clients/${clientId}` as const }  
+function getGetLongviewClientUrl(clientId: GetLongviewClientPathParams["clientId"]) {
+  const res = { method: 'GET', url: `/longview/clients/${clientId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single Longview Client you can access.<<LB>>---- __CLI__.    ```    linode-cli longview view 789    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    longview:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a Longview client
- * {@link /:apiVersion/longview/clients/:clientId}
+ * {@link /longview/clients/:clientId}
  */
-export async function getLongviewClient(apiVersion: GetLongviewClientPathParams["apiVersion"], clientId: GetLongviewClientPathParams["clientId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLongviewClient(clientId: GetLongviewClientPathParams["clientId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLongviewClientQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLongviewClientUrl(apiVersion, clientId).url.toString(), ... requestConfig })  
+  const res = await request<GetLongviewClientQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLongviewClientUrl(clientId).url.toString(), ... requestConfig })  
   return res.data
 }

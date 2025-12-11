@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetSshKeyPathParams(data?: Partial<GetSshKeyPathParams>): GetSshKeyPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetSshKeyPathParams>["apiVersion"]>(["v4", "v4beta"]),"sshKeyId": faker.number.int()},
+  ...{"sshKeyId": faker.number.int()},
   ...data || {}
   }
 }

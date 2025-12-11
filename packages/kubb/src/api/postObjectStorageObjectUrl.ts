@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostObjectStorageObjectUrlMutationRequest, PostObjectStorageObjectUrlMutationResponse, PostObjectStorageObjectUrlPathParams } from "../types/PostObjectStorageObjectUrl.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostObjectStorageObjectUrlUrl(apiVersion: PostObjectStorageObjectUrlPathParams["apiVersion"], regionId: PostObjectStorageObjectUrlPathParams["regionId"], bucket: PostObjectStorageObjectUrlPathParams["bucket"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/object-storage/buckets/${regionId}/${bucket}/object-url` as const }  
+function getPostObjectStorageObjectUrlUrl(regionId: PostObjectStorageObjectUrlPathParams["regionId"], bucket: PostObjectStorageObjectUrlPathParams["bucket"]) {
+  const res = { method: 'POST', url: `/object-storage/buckets/${regionId}/${bucket}/object-url` as const }  
   return res
 }
 
 /**
  * @description Creates a pre-signed URL to access a single object in a bucket. Use it to share, create, or delete objects by using the appropriate HTTP method in your request body's `method` parameter.> 📘>> You can use an outside API, such as the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/) for more options.<<LB>>---- __OAuth scopes__.    ```    object_storage:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a URL for an object
- * {@link /:apiVersion/object-storage/buckets/:regionId/:bucket/object-url}
+ * {@link /object-storage/buckets/:regionId/:bucket/object-url}
  */
-export async function postObjectStorageObjectUrl(apiVersion: PostObjectStorageObjectUrlPathParams["apiVersion"], regionId: PostObjectStorageObjectUrlPathParams["regionId"], bucket: PostObjectStorageObjectUrlPathParams["bucket"], data: PostObjectStorageObjectUrlMutationRequest, config: Partial<RequestConfig<PostObjectStorageObjectUrlMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postObjectStorageObjectUrl(regionId: PostObjectStorageObjectUrlPathParams["regionId"], bucket: PostObjectStorageObjectUrlPathParams["bucket"], data: PostObjectStorageObjectUrlMutationRequest, config: Partial<RequestConfig<PostObjectStorageObjectUrlMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostObjectStorageObjectUrlMutationResponse, ResponseErrorConfig<Error>, PostObjectStorageObjectUrlMutationRequest>({ method : "POST", url : getPostObjectStorageObjectUrlUrl(apiVersion, regionId, bucket).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostObjectStorageObjectUrlMutationResponse, ResponseErrorConfig<Error>, PostObjectStorageObjectUrlMutationRequest>({ method : "POST", url : getPostObjectStorageObjectUrlUrl(regionId, bucket).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

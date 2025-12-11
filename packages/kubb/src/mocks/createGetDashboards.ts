@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetDashboardsPathParams(data?: Partial<GetDashboardsPathParams>): GetDashboardsPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDashboardsPathParams>["apiVersion"]>(["v4beta"]),"serviceType": faker.string.alpha()},
+  ...{"serviceType": faker.string.alpha()},
   ...data || {}
   }
 }

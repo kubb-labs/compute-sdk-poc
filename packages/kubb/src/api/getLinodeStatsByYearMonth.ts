@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeStatsByYearMonthQueryResponse, GetLinodeStatsByYearMonthPathParams } from "../types/GetLinodeStatsByYearMonth.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeStatsByYearMonthUrl(apiVersion: GetLinodeStatsByYearMonthPathParams["apiVersion"], linodeId: GetLinodeStatsByYearMonthPathParams["linodeId"], year: GetLinodeStatsByYearMonthPathParams["year"], month: GetLinodeStatsByYearMonthPathParams["month"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/stats/${year}/${month}` as const }  
+function getGetLinodeStatsByYearMonthUrl(linodeId: GetLinodeStatsByYearMonthPathParams["linodeId"], year: GetLinodeStatsByYearMonthPathParams["year"], month: GetLinodeStatsByYearMonthPathParams["month"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/stats/${year}/${month}` as const }  
   return res
 }
 
 /**
  * @description Returns CPU, IO, IPv4, and IPv6 statistics for your Linode for a specific month. If the `{year}` and `{month}` are set to the current month, the API returns statistics for the past 30 days.<<LB>>---- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a month's Linode statistics
- * {@link /:apiVersion/linode/instances/:linodeId/stats/:year/:month}
+ * {@link /linode/instances/:linodeId/stats/:year/:month}
  */
-export async function getLinodeStatsByYearMonth(apiVersion: GetLinodeStatsByYearMonthPathParams["apiVersion"], linodeId: GetLinodeStatsByYearMonthPathParams["linodeId"], year: GetLinodeStatsByYearMonthPathParams["year"], month: GetLinodeStatsByYearMonthPathParams["month"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeStatsByYearMonth(linodeId: GetLinodeStatsByYearMonthPathParams["linodeId"], year: GetLinodeStatsByYearMonthPathParams["year"], month: GetLinodeStatsByYearMonthPathParams["month"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeStatsByYearMonthQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeStatsByYearMonthUrl(apiVersion, linodeId, year, month).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeStatsByYearMonthQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeStatsByYearMonthUrl(linodeId, year, month).url.toString(), ... requestConfig })  
   return res.data
 }

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostAddSshKeyPathParams, PostAddSshKey200, PostAddSshKeyError, PostAddSshKeyMutationRequest, PostAddSshKeyMutationResponse } from "../types/PostAddSshKey.ts";
+import type { PostAddSshKey200, PostAddSshKeyError, PostAddSshKeyMutationRequest, PostAddSshKeyMutationResponse } from "../types/PostAddSshKey.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostAddSshKeyPathParams(data?: Partial<PostAddSshKeyPathParams>): PostAddSshKeyPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostAddSshKeyPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description SSH Key associated successfully.

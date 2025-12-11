@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostCloneLinodeInstanceMutationRequest, PostCloneLinodeInstanceMutationResponse, PostCloneLinodeInstancePathParams } from "../types/PostCloneLinodeInstance.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostCloneLinodeInstanceUrl(apiVersion: PostCloneLinodeInstancePathParams["apiVersion"], linodeId: PostCloneLinodeInstancePathParams["linodeId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/instances/${linodeId}/clone` as const }  
+function getPostCloneLinodeInstanceUrl(linodeId: PostCloneLinodeInstancePathParams["linodeId"]) {
+  const res = { method: 'POST', url: `/linode/instances/${linodeId}/clone` as const }  
   return res
 }
 
 /**
  * @description You can clone your Linode's existing disks, configuration profiles and interfaces to another Linode on your account. In order for this request to complete successfully, you need the `add_linodes` grant.For Linodes using Linode interfaces, the clone needs to be located in a region that supports Linode interfaces (see [GET a region](https://techdocs.akamai.com/linode-api/reference/get-region)). The [account settings](https://techdocs.akamai.com/linode-api/reference/get-account-settings) need to allow creation of Linodes with Linode interfaces.Cloning to a new Linode incurs a charge on your account.If cloning to an existing Linode, any actions currently running or queued must be completed first before you can clone to it.Up to five clone operations from any given source Linode can be run concurrently. If more concurrent clones are attempted, an HTTP 400 error will be returned by this operation.Any [tags](https://techdocs.akamai.com/linode-api/reference/get-tags) existing on the source Linode will be cloned to the target Linode.Linodes utilizing Metadata (`"has_user_data": true`) must be cloned to a new Linode with `metadata.user_data` included with the clone request.`vpc` details- If the Linode you're cloning has a `vpc` interface on its active legacy configuration profile that includes a 1:1 NAT, the resulting clone is configured with an `any` 1:1 NAT.- See the [VPC documentation](https://www.linode.com/docs/products/networking/vpc/#technical-specifications) guide for its specifications and limitations.`vlan` details- Only Next Generation Network (NGN) data centers support VLANs. If a VLAN is attached to your Linode and you attempt clone it to a non-NGN data center, the cloning will not initiate. If a Linode cannot be cloned because of an incompatibility, you will be prompted to select a different data center or contact support.- See the [VLANs Overview](https://www.linode.com/docs/products/networking/vlans/#technical-specifications) guide to view additional specifications and limitations.<<LB>>---- __CLI__.    ```    linode-cli linodes clone 123 \  --linode_id 124 \  --region us-east \  --type g6-standard-2 \  --label cloned-linode \  --backups_enabled true \  --placement_group.id 528 \  --disks 25674 \  --configs 23456 \  --private_ip true \  --metadata.user_data I2Nsb3VkLWNvbmZpZw==    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Clone a Linode
- * {@link /:apiVersion/linode/instances/:linodeId/clone}
+ * {@link /linode/instances/:linodeId/clone}
  */
-export async function postCloneLinodeInstance(apiVersion: PostCloneLinodeInstancePathParams["apiVersion"], linodeId: PostCloneLinodeInstancePathParams["linodeId"], data?: PostCloneLinodeInstanceMutationRequest, config: Partial<RequestConfig<PostCloneLinodeInstanceMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postCloneLinodeInstance(linodeId: PostCloneLinodeInstancePathParams["linodeId"], data?: PostCloneLinodeInstanceMutationRequest, config: Partial<RequestConfig<PostCloneLinodeInstanceMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostCloneLinodeInstanceMutationResponse, ResponseErrorConfig<Error>, PostCloneLinodeInstanceMutationRequest>({ method : "POST", url : getPostCloneLinodeInstanceUrl(apiVersion, linodeId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostCloneLinodeInstanceMutationResponse, ResponseErrorConfig<Error>, PostCloneLinodeInstanceMutationRequest>({ method : "POST", url : getPostCloneLinodeInstanceUrl(linodeId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

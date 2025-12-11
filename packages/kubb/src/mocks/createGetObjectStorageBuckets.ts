@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetObjectStorageBucketsPathParams, GetObjectStorageBuckets200, GetObjectStorageBucketsError, GetObjectStorageBucketsQueryResponse } from "../types/GetObjectStorageBuckets.ts";
+import type { GetObjectStorageBuckets200, GetObjectStorageBucketsError, GetObjectStorageBucketsQueryResponse } from "../types/GetObjectStorageBuckets.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetObjectStorageBucketsPathParams(data?: Partial<GetObjectStorageBucketsPathParams>): GetObjectStorageBucketsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetObjectStorageBucketsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A paginated list of buckets you own.

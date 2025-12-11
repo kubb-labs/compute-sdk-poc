@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeDisksQueryResponse, GetLinodeDisksPathParams, GetLinodeDisksQueryParams } from "../types/GetLinodeDisks.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeDisksUrl(apiVersion: GetLinodeDisksPathParams["apiVersion"], linodeId: GetLinodeDisksPathParams["linodeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/disks` as const }  
+function getGetLinodeDisksUrl(linodeId: GetLinodeDisksPathParams["linodeId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/disks` as const }  
   return res
 }
 
 /**
  * @description View Disk information for Disks associated with this Linode.<<LB>>---- __CLI__.    ```    linode-cli linodes disks-list 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List disks
- * {@link /:apiVersion/linode/instances/:linodeId/disks}
+ * {@link /linode/instances/:linodeId/disks}
  */
-export async function getLinodeDisks(apiVersion: GetLinodeDisksPathParams["apiVersion"], linodeId: GetLinodeDisksPathParams["linodeId"], params?: GetLinodeDisksQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeDisks(linodeId: GetLinodeDisksPathParams["linodeId"], params?: GetLinodeDisksQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeDisksQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeDisksUrl(apiVersion, linodeId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetLinodeDisksQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeDisksUrl(linodeId).url.toString(), params, ... requestConfig })  
   return res.data
 }

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteDatabasesPostgreSqlInstancePathParams(data?: Partial<DeleteDatabasesPostgreSqlInstancePathParams>): DeleteDatabasesPostgreSqlInstancePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteDatabasesPostgreSqlInstancePathParams>["apiVersion"]>(["v4", "v4beta"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

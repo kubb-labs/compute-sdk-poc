@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetSharegroupByTokenPathParams(data?: Partial<GetSharegroupByTokenPathParams>): GetSharegroupByTokenPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetSharegroupByTokenPathParams>["apiVersion"]>(["v4", "v4beta"]),"tokenUuid": faker.string.uuid()},
+  ...{"tokenUuid": faker.string.uuid()},
   ...data || {}
   }
 }

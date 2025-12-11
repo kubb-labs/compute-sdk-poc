@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostIpv6RangePathParams, PostIpv6Range200, PostIpv6RangeError, PostIpv6RangeMutationRequest, PostIpv6RangeMutationResponse } from "../types/PostIpv6Range.ts";
+import type { PostIpv6Range200, PostIpv6RangeError, PostIpv6RangeMutationRequest, PostIpv6RangeMutationResponse } from "../types/PostIpv6Range.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostIpv6RangePathParams(data?: Partial<PostIpv6RangePathParams>): PostIpv6RangePathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostIpv6RangePathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description IPv6 range created successfully.

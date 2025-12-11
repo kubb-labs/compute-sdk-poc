@@ -4,50 +4,35 @@
 */
 
 
-export const putFirewallSettingsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PutFirewallSettingsPathParamsApiVersionEnumKey = (typeof putFirewallSettingsPathParamsApiVersionEnum)[keyof typeof putFirewallSettingsPathParamsApiVersionEnum];
-
-export interface PutFirewallSettingsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PutFirewallSettingsPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description The updated default firewalls.
 */
 export interface PutFirewallSettings200 {
     /**
      * @description The default firewall ID for a `linode`, `nodebalancer`, `public_interface`, or `vpc_interface`. Default firewalls can\'t be deleted or disabled.
-     * @type object | undefined
+     * @type object
     */
-    default_firewall_ids?: {
+    default_firewall_ids: {
         /**
          * @description The Linode\'s default firewall.
-         * @type integer | undefined
+         * @type integer
         */
-        linode?: number;
+        linode: number;
         /**
          * @description The NodeBalancer\'s default firewall.
-         * @type integer | undefined
+         * @type integer
         */
-        nodebalancer?: number;
+        nodebalancer: number;
         /**
          * @description The public interface\'s default firewall.
-         * @type integer | undefined
+         * @type integer
         */
-        public_interface?: number;
+        public_interface: number;
         /**
          * @description The VPC interface\'s default firewall.
-         * @type integer | undefined
+         * @type integer
         */
-        vpc_interface?: number;
+        vpc_interface: number;
     };
 }
 
@@ -56,19 +41,19 @@ export interface PutFirewallSettings200 {
 */
 export interface PutFirewallSettingsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -109,6 +94,5 @@ export type PutFirewallSettingsMutationResponse = PutFirewallSettings200;
 export type PutFirewallSettingsMutation = {
     Response: PutFirewallSettings200;
     Request: PutFirewallSettingsMutationRequest;
-    PathParams: PutFirewallSettingsPathParams;
     Errors: any;
 };

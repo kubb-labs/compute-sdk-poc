@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetRegionAvailabilityQueryResponse, GetRegionAvailabilityPathParams } from "../types/GetRegionAvailability.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetRegionAvailabilityUrl(apiVersion: GetRegionAvailabilityPathParams["apiVersion"], regionId: GetRegionAvailabilityPathParams["regionId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/regions/${regionId}/availability` as const }  
+function getGetRegionAvailabilityUrl(regionId: GetRegionAvailabilityPathParams["regionId"]) {
+  const res = { method: 'GET', url: `/regions/${regionId}/availability` as const }  
   return res
 }
 
 /**
  * @description Returns availability data for a single Region.<<LB>>---- __CLI__.    ```    linode-cli regions view-avail us-east    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Get a region's availability
- * {@link /:apiVersion/regions/:regionId/availability}
+ * {@link /regions/:regionId/availability}
  */
-export async function getRegionAvailability(apiVersion: GetRegionAvailabilityPathParams["apiVersion"], regionId: GetRegionAvailabilityPathParams["regionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getRegionAvailability(regionId: GetRegionAvailabilityPathParams["regionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetRegionAvailabilityQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetRegionAvailabilityUrl(apiVersion, regionId).url.toString(), ... requestConfig })  
+  const res = await request<GetRegionAvailabilityQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetRegionAvailabilityUrl(regionId).url.toString(), ... requestConfig })  
   return res.data
 }

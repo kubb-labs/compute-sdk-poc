@@ -6,7 +6,7 @@
 import { z } from "zod/v4";
 
 export const _409Schema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "reason": z.optional(z.string().describe("A string explaining that the account could not be canceled because there is an outstanding balance on the account that must be paid first."))
-    })))
+    "errors": z.array(z.object({
+    "reason": z.string().describe("A string explaining that the account could not be canceled because there is an outstanding balance on the account that must be paid first.")
+    }))
     })

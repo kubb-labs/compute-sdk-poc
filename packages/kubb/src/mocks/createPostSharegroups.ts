@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostSharegroupsPathParams, PostSharegroups200, PostSharegroupsError, PostSharegroupsMutationRequest, PostSharegroupsMutationResponse } from "../types/PostSharegroups.ts";
+import type { PostSharegroups200, PostSharegroupsError, PostSharegroupsMutationRequest, PostSharegroupsMutationResponse } from "../types/PostSharegroups.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostSharegroupsPathParams(data?: Partial<PostSharegroupsPathParams>): PostSharegroupsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostSharegroupsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description New share group created successfully.

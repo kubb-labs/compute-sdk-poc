@@ -5,46 +5,42 @@
 
 import { z } from "zod/v4";
 
-export const postNodeBalancerPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description NodeBalancer created successfully.
  */
 export const postNodeBalancer200Schema = z.object({
-    "client_conn_throttle": z.optional(z.int().min(0).max(20).describe("Throttle TCP connections per second for TCP, HTTP, and HTTPS configurations.  Set to `0` (zero) to disable throttling.")),
-"created": z.optional(z.string().datetime().describe("__Read-only__ When this NodeBalancer was created.")),
-"hostname": z.optional(z.string().describe("__Read-only__ This NodeBalancer's hostname, beginning with its IP address and ending with _.ip.linodeusercontent.com_.")),
-"id": z.optional(z.int().describe("__Read-only__ This NodeBalancer's unique ID.")),
-"ipv4": z.optional(z.string().describe("__Filterable__, __Read-only__ This NodeBalancer's public IPv4 address.")),
-"ipv6": z.string().describe("__Read-only__ This NodeBalancer's public IPv6 address.").nullish(),
-"label": z.optional(z.string().regex(/[a-zA-Z0-9-_]{3,32}/).describe("__Filterable__ This NodeBalancer's label. These must be unique on your Account.")),
-"lke_cluster": z.object({
-    "id": z.optional(z.string().describe("The ID of the related LKE cluster.")),
-"label": z.optional(z.string().describe("The label of the related LKE cluster.")),
-"type": z.optional(z.string().describe("__Read-only__ The type for LKE clusters.")),
-"url": z.optional(z.string().describe("The URL where you can access the related LKE cluster."))
-    }).describe("__Read-only__ This NodeBalancer's related LKE cluster, if any. The value is `null` if this NodeBalancer isn't related to an LKE cluster.").nullish(),
-"region": z.optional(z.string().describe("__Filterable__, __Read-only__ The Region where this NodeBalancer is located. NodeBalancers only support backends in the same Region.")),
-"tags": z.optional(z.array(z.string()).describe("__Filterable__ An array of Tags applied to this object.  Tags are for organizational purposes only.")),
-"transfer": z.optional(z.object({
-    "in": z.number().describe("__Read-only__ The total outbound transfer, in MB, used for this NodeBalancer this month.").nullish(),
-"out": z.number().describe("__Read-only__ The total inbound transfer, in MB, used for this NodeBalancer this month.").nullish(),
-"total": z.number().describe("__Read-only__ The total transfer, in MB, used by this NodeBalancer this month.").nullish()
-    }).describe("__Read-only__ Information about the amount of transfer this NodeBalancer has had so far this month.")),
-"type": z.optional(z.enum(["common", "premium"]).describe("__Read-only__ The type of NodeBalancer.")),
-"updated": z.optional(z.string().datetime().describe("__Read-only__ When this NodeBalancer was last updated."))
+    "client_conn_throttle": z.int().min(0).max(20).describe("Throttle TCP connections per second for TCP, HTTP, and HTTPS configurations.  Set to `0` (zero) to disable throttling."),
+"created": z.string().datetime().describe("__Read-only__ When this NodeBalancer was created."),
+"hostname": z.string().describe("__Read-only__ This NodeBalancer's hostname, beginning with its IP address and ending with _.ip.linodeusercontent.com_."),
+"id": z.int().describe("__Read-only__ This NodeBalancer's unique ID."),
+"ipv4": z.string().describe("__Filterable__, __Read-only__ This NodeBalancer's public IPv4 address."),
+"ipv6": z.nullable(z.string().describe("__Read-only__ This NodeBalancer's public IPv6 address.")),
+"label": z.string().regex(/[a-zA-Z0-9-_]{3,32}/).describe("__Filterable__ This NodeBalancer's label. These must be unique on your Account."),
+"lke_cluster": z.nullable(z.object({
+    "id": z.string().describe("The ID of the related LKE cluster."),
+"label": z.string().describe("The label of the related LKE cluster."),
+"type": z.string().describe("__Read-only__ The type for LKE clusters."),
+"url": z.string().describe("The URL where you can access the related LKE cluster.")
+    }).describe("__Read-only__ This NodeBalancer's related LKE cluster, if any. The value is `null` if this NodeBalancer isn't related to an LKE cluster.")),
+"region": z.string().describe("__Filterable__, __Read-only__ The Region where this NodeBalancer is located. NodeBalancers only support backends in the same Region."),
+"tags": z.array(z.string()).describe("__Filterable__ An array of Tags applied to this object.  Tags are for organizational purposes only."),
+"transfer": z.object({
+    "in": z.nullable(z.number().describe("__Read-only__ The total outbound transfer, in MB, used for this NodeBalancer this month.")),
+"out": z.nullable(z.number().describe("__Read-only__ The total inbound transfer, in MB, used for this NodeBalancer this month.")),
+"total": z.nullable(z.number().describe("__Read-only__ The total transfer, in MB, used by this NodeBalancer this month."))
+    }).describe("__Read-only__ Information about the amount of transfer this NodeBalancer has had so far this month."),
+"type": z.enum(["common", "premium"]).describe("__Read-only__ The type of NodeBalancer."),
+"updated": z.string().datetime().describe("__Read-only__ When this NodeBalancer was last updated.")
     }).describe("Linode's load balancing solution. Can handle multiple ports, SSL termination, and any number of backends. NodeBalancer ports are configured with NodeBalancer configs, and each config is given one or more NodeBalancer nodes that accepts traffic.  The traffic should be routed to the NodeBalancer's IP address, for the NodeBalancer to handle routing individual requests to backends.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const postNodeBalancerErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 /**

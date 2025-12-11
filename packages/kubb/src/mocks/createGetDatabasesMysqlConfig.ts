@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetDatabasesMysqlConfigPathParams, GetDatabasesMysqlConfig200, GetDatabasesMysqlConfigError, GetDatabasesMysqlConfigQueryResponse } from "../types/GetDatabasesMysqlConfig.ts";
+import type { GetDatabasesMysqlConfig200, GetDatabasesMysqlConfigError, GetDatabasesMysqlConfigQueryResponse } from "../types/GetDatabasesMysqlConfig.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetDatabasesMysqlConfigPathParams(data?: Partial<GetDatabasesMysqlConfigPathParams>): GetDatabasesMysqlConfigPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDatabasesMysqlConfigPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description MySQL Managed Database advanced parameters.

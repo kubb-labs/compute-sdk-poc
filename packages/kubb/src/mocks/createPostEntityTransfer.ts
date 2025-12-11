@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostEntityTransferPathParams, PostEntityTransfer200, PostEntityTransferError, PostEntityTransferMutationRequest, PostEntityTransferMutationResponse } from "../types/PostEntityTransfer.ts";
+import type { PostEntityTransfer200, PostEntityTransferError, PostEntityTransferMutationRequest, PostEntityTransferMutationResponse } from "../types/PostEntityTransfer.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostEntityTransferPathParams(data?: Partial<PostEntityTransferPathParams>): PostEntityTransferPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostEntityTransferPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns an Entity Transfer object for the request.

@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const getNodeBalancerConfigPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"nodeBalancerId": z.coerce.number().int().describe("The ID of the NodeBalancer."),
+    "nodeBalancerId": z.coerce.number().int().describe("The ID of the NodeBalancer."),
 "configId": z.coerce.number().int().describe("The ID of the Config to access.")
     })
 
@@ -27,8 +26,8 @@ export const getNodeBalancerConfig200Schema = z.union([z.object({
 "id": z.optional(z.int().describe("__Read-only__ This config's unique ID.")),
 "nodebalancer_id": z.optional(z.int().describe("__Read-only__ The ID for the NodeBalancer this config belongs to.")),
 "nodes_status": z.optional(z.object({
-    "down": z.optional(z.int().describe("__Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.")),
-"up": z.optional(z.int().describe("__Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests."))
+    "down": z.int().describe("__Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests."),
+"up": z.int().describe("__Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.")
     }).describe("__Read-only__ Describes the health of the backends for this port. This data updates periodically as checks are performed against backends.")),
 "port": z.optional(z.int().min(1).max(65535).default(80).describe("This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.")),
 "protocol": z.optional(z.enum(["udp"]).default("http").describe("The protocol the port is configured to serve, `udp` in this case. Review our guide on [Available Protocols](https://www.linode.com/docs/products/networking/nodebalancers/guides/protocols/) for information on protocol features.")),
@@ -53,8 +52,8 @@ export const getNodeBalancerConfig200Schema = z.union([z.object({
 "id": z.optional(z.int().describe("__Read-only__ This config's unique ID.")),
 "nodebalancer_id": z.optional(z.int().describe("__Read-only__ The ID for the NodeBalancer this config belongs to.")),
 "nodes_status": z.optional(z.object({
-    "down": z.optional(z.int().describe("__Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.")),
-"up": z.optional(z.int().describe("__Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests."))
+    "down": z.int().describe("__Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests."),
+"up": z.int().describe("__Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.")
     }).describe("__Read-only__ Describes the health of the backends for this port. This data updates periodically as checks are performed against backends.")),
 "port": z.optional(z.int().min(1).max(65535).default(80).describe("This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.")),
 "protocol": z.optional(z.enum(["tcp"]).default("http").describe("The protocol the port is configured to serve, `tcp` in this case. Review our guide on [Available protocols](https://techdocs.akamai.com/cloud-computing/docs/available-protocols) for information on protocol features.")),
@@ -77,8 +76,8 @@ export const getNodeBalancerConfig200Schema = z.union([z.object({
 "id": z.optional(z.int().describe("__Read-only__ This config's unique ID.")),
 "nodebalancer_id": z.optional(z.int().describe("__Read-only__ Identifies the NodeBalancer this config belongs to.")),
 "nodes_status": z.optional(z.object({
-    "down": z.optional(z.int().describe("__Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.")),
-"up": z.optional(z.int().describe("__Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests."))
+    "down": z.int().describe("__Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests."),
+"up": z.int().describe("__Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.")
     }).describe("__Read-only__ Describes the health of the backends for this port. This data updates periodically as checks are performed against backends.")),
 "port": z.optional(z.int().min(1).max(65535).default(80).describe("This is the port the NodeBalancer listens on for this configuration. Port numbers need to be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced. You may configure your NodeBalancer however you find useful.")),
 "protocol": z.optional(z.enum(["http"]).default("http").describe("The protocol the port is configured to serve, `http` in this case. Review our guide on [Available protocols](https://techdocs.akamai.com/cloud-computing/docs/available-protocols) for information on protocol features.")),
@@ -101,8 +100,8 @@ export const getNodeBalancerConfig200Schema = z.union([z.object({
 "id": z.optional(z.int().describe("__Read-only__ This config's unique ID.")),
 "nodebalancer_id": z.optional(z.int().describe("__Read-only__ The ID for the NodeBalancer this config belongs to.")),
 "nodes_status": z.optional(z.object({
-    "down": z.optional(z.int().describe("__Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests.")),
-"up": z.optional(z.int().describe("__Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests."))
+    "down": z.int().describe("__Read-only__ The number of backends considered to be `DOWN` and unhealthy.  These are not in rotation, and not serving requests."),
+"up": z.int().describe("__Read-only__ The number of backends considered to be `UP` and healthy, and that are serving requests.")
     }).describe("__Read-only__ Describes the health of the backends for this port. This data updates periodically as checks are performed against backends.")),
 "port": z.optional(z.int().min(1).max(65535).default(80).describe("This is the port the NodeBalancer listens on for this configuration. Port numbers must be unique across TCP, HTTP, and HTTPS configurations on a single NodeBalancer. However, ports assigned to TCP, HTTP, or HTTPS configurations can also be reused for UDP configurations. For example, Port 80 can simultaneously serve a TCP and a UDP configuration on the same NodeBalancer, but it can't be shared by both a TCP and an HTTP configuration. Although certain ports are traditionally associated with specific protocols, this isn't strictly enforced, and you may configure your NodeBalancer however you find useful.")),
 "protocol": z.optional(z.enum(["https"]).default("http").describe("The protocol the port is configured to serve, `https` in this case. Review our guide on [Available protocols](https://techdocs.akamai.com/cloud-computing/docs/available-protocols) for information on protocol features. The `https` protocol needs to be specified with both `ssl_cert` and `ssl_key`.")),
@@ -118,10 +117,10 @@ export const getNodeBalancerConfig200Schema = z.union([z.object({
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getNodeBalancerConfigErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getNodeBalancerConfigQueryResponseSchema = z.lazy(() => getNodeBalancerConfig200Schema)

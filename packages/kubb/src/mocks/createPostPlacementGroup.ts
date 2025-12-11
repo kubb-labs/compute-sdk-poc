@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostPlacementGroupPathParams, PostPlacementGroup200, PostPlacementGroupError, PostPlacementGroupMutationRequest, PostPlacementGroupMutationResponse } from "../types/PostPlacementGroup.ts";
+import type { PostPlacementGroup200, PostPlacementGroupError, PostPlacementGroupMutationRequest, PostPlacementGroupMutationResponse } from "../types/PostPlacementGroup.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostPlacementGroupPathParams(data?: Partial<PostPlacementGroupPathParams>): PostPlacementGroupPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostPlacementGroupPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A new placement group is being created.

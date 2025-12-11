@@ -4,21 +4,6 @@
 */
 
 
-export const getVlansPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetVlansPathParamsApiVersionEnumKey = (typeof getVlansPathParamsApiVersionEnum)[keyof typeof getVlansPathParamsApiVersionEnum];
-
-export interface GetVlansPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetVlansPathParamsApiVersionEnumKey;
-}
-
 export interface GetVlansQueryParams {
     /**
      * @description The page of a collection to return.
@@ -42,45 +27,45 @@ export interface GetVlansQueryParams {
 */
 export interface GetVlans200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ The date this VLAN was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description __Filterable__, __Read-only__ The name of this VLAN.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Read-only__ An array of Linode IDs attached to this VLAN.
-         * @type array | undefined
+         * @type array
         */
-        readonly linodes?: number[];
+        readonly linodes: number[];
         /**
          * @description __Filterable__, __Read-only__ This VLAN\'s data center region.\n\n> 📘\n>\n> Currently, a VLAN can only be assigned to a Linode within the same data center region.
-         * @type string | undefined
+         * @type string
         */
-        readonly region?: string;
+        readonly region: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -88,19 +73,19 @@ export interface GetVlans200 {
 */
 export interface GetVlansError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -108,7 +93,6 @@ export type GetVlansQueryResponse = GetVlans200;
 
 export type GetVlansQuery = {
     Response: GetVlans200;
-    PathParams: GetVlansPathParams;
     QueryParams: GetVlansQueryParams;
     Errors: any;
 };

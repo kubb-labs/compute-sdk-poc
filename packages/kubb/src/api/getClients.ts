@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetClientsQueryResponse, GetClientsPathParams, GetClientsQueryParams } from "../types/GetClients.ts";
+import type { GetClientsQueryResponse, GetClientsQueryParams } from "../types/GetClients.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetClientsUrl(apiVersion: GetClientsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/oauth-clients` as const }  
+function getGetClientsUrl() {
+  const res = { method: 'GET', url: `/account/oauth-clients` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of OAuth Clients registered to your Account.  OAuth Clients allow users to log into applications you write or host using their Linode Account, and may allow them to grant some level of access to their Linodes or other entities to your application.<<LB>>---- __CLI__.    ```    linode-cli account clients-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List OAuth clients
- * {@link /:apiVersion/account/oauth-clients}
+ * {@link /account/oauth-clients}
  */
-export async function getClients(apiVersion: GetClientsPathParams["apiVersion"], params?: GetClientsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getClients(params?: GetClientsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetClientsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetClientsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetClientsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetClientsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

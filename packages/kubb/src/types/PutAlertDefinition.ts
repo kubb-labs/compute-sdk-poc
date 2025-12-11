@@ -4,18 +4,7 @@
 */
 
 
-export const putAlertDefinitionPathParamsApiVersionEnum = {
-    "v4beta": "v4beta"
-} as const;
-
-export type PutAlertDefinitionPathParamsApiVersionEnumKey = (typeof putAlertDefinitionPathParamsApiVersionEnum)[keyof typeof putAlertDefinitionPathParamsApiVersionEnum];
-
 export interface PutAlertDefinitionPathParams {
-    /**
-     * @description __Enum__ Call the `v4beta` URL for operations still only in beta.
-     * @type string
-    */
-    apiVersion: PutAlertDefinitionPathParamsApiVersionEnumKey;
     /**
      * @description The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`.
      * @type string
@@ -120,194 +109,194 @@ export type PutAlertDefinition200TypeEnumKey = (typeof putAlertDefinition200Type
 export interface PutAlertDefinition200 {
     /**
      * @description The alert channels set up for use with this alert. Run the [List alert channels](https://techdocs.akamai.com/linode-api/reference/get-alert-channels) operation to see all of the available channels.
-     * @type array | undefined
+     * @type array
     */
-    alert_channels?: {
+    alert_channels: {
         /**
          * @description The unique identifier for this alert channel on your account.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description The name of the channel, used to display it in Akamai Cloud Manager.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description The type of notification used with the channel. For a `user` alert definition, only `email` is supported.
-         * @type string | undefined
+         * @type string
         */
-        type?: AlertChannelsTypeEnum5Key;
+        type: AlertChannelsTypeEnum5Key;
         /**
          * @description The URL for the channel that ends in the channel\'s `id`.
-         * @type string | undefined, url
+         * @type string, url
         */
-        url?: string;
+        url: string;
     }[];
     /**
      * @description The plan type for the Managed Database cluster, either `shared` or `dedicated`. This only applies to a `system` alert for a `service_type` of `dbaas` (Managed Databases). For `user` alerts for `dbaas`, this is returned as `null`.
      * @type string
     */
-    class?: PutAlertDefinition200ClassEnumKey | null;
+    class: PutAlertDefinition200ClassEnumKey | null;
     /**
      * @description When the alert definition was created.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    created?: string;
+    created: string;
     /**
      * @description For a `user` alert definition, this is the user on your account that [created](https://techdocs.akamai.com/linode-api/reference/post-alert-definition-for-service-type) it. For a `system` alert definition, this is returned as `system`.
-     * @type string | undefined
+     * @type string
     */
-    created_by?: string;
+    created_by: string;
     /**
      * @description An additional description for the alert definition.
-     * @type string | undefined
+     * @type string
     */
-    description?: string;
+    description: string;
     /**
      * @description The `id` for each individual entity from a `service_type`. Get this value by running the list operation for the appropriate entity. For example, if your entity is one of your PostgreSQL databases, run the [List PostgreSQL Managed Databases](https://techdocs.akamai.com/linode-api/reference/get-databases-postgre-sql-instances) operation and store the `id` for the appropriate database from the response.\n\n> 📘\n>\n> The format `type` for an `entity_id` may vary, based on the Akamai Cloud `service_type`. For example, the `dbaas` service returns an integer value for an `id`, that you\'d use for the `entity_id`. Other services may return a string for their `id`. With the Alerts operations, all of these formats are recognized as an `entity_id`, when you include them as a `string`.
-     * @type array | undefined
+     * @type array
     */
-    entity_ids?: string[];
+    entity_ids: string[];
     /**
      * @description Whether there are additional `entity_ids` associated with the alert for which the user doesn\'t have at least `read-only` access.
-     * @type boolean | undefined
+     * @type boolean
     */
-    has_more_resources?: boolean;
+    has_more_resources: boolean;
     /**
      * @description __Filterable__ The unique identifier for the alert definition.
-     * @type integer | undefined
+     * @type integer
     */
-    id?: number;
+    id: number;
     /**
      * @description __Filterable__ The name of the alert definition. This is used for display purposes in Akamai Cloud Manager.
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description Details for the rules required to trigger the alert.
-     * @type object | undefined
+     * @type object
     */
-    rule_criteria?: {
+    rule_criteria: {
         /**
          * @description The individual rules that make up the alert definition.
-         * @type array | undefined
+         * @type array
         */
-        rules?: {
+        rules: {
             /**
              * @description The aggregation function applied to the `metric`. Available values are `avg`, `sum`, `min`, and `max`.
-             * @type string | undefined
+             * @type string
             */
-            aggregate_function?: RulesAggregateFunctionEnum6Key;
+            aggregate_function: RulesAggregateFunctionEnum6Key;
             /**
              * @description Dimension filters for the rule.
-             * @type array | undefined
+             * @type array
             */
-            dimension_filters?: {
+            dimension_filters: {
                 /**
                  * @description The name of the dimension to be used in the filter.
-                 * @type string | undefined
+                 * @type string
                 */
-                dimension_label?: string;
+                dimension_label: string;
                 /**
                  * @description The name of the dimension filter. Used for display purposes.
-                 * @type string | undefined
+                 * @type string
                 */
-                label?: string;
+                label: string;
                 /**
                  * @description The operator to apply to the dimension filter. Available values are `eq` for equal, `neq` for not equal, `startswith`, and `endswith`.
-                 * @type string | undefined
+                 * @type string
                 */
-                operator?: DimensionFiltersOperatorEnum6Key;
+                operator: DimensionFiltersOperatorEnum6Key;
                 /**
                  * @description The value to compare the `dimension_label` against.
-                 * @type string | undefined
+                 * @type string
                 */
-                value?: string;
+                value: string;
             }[];
             /**
              * @description The name of the individual rule. This is used for display purposes in Akamai Cloud Manager.
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description The metric to query.
-             * @type string | undefined
+             * @type string
             */
-            metric?: string;
+            metric: string;
             /**
              * @description The operator to apply to the metric. Available values are `eq` for equal, `gt` for greater than, `lt` for less than, `gte` for greater than or equal, and `lte` for less than or equal.
-             * @type string | undefined
+             * @type string
             */
-            operator?: RulesOperatorEnum6Key;
+            operator: RulesOperatorEnum6Key;
             /**
              * @description The predefined value or condition that triggers an alert when met or exceeded. For example, for `avg(cpu_usage) > 80`, the `threshold` is 80.
-             * @type number | undefined, float
+             * @type number, float
             */
-            threshold?: number;
+            threshold: number;
             /**
              * @description The unit of the metric. This can be values like `percent` for percentage or `GB` for gigabyte.
-             * @type string | undefined
+             * @type string
             */
-            unit?: RulesUnitEnum5Key;
+            unit: RulesUnitEnum5Key;
         }[];
     };
     /**
      * @description The identifier for the Akamai Cloud Computing service. Use this value to call out the service in other Monitor operations in the API.
-     * @type string | undefined
+     * @type string
     */
-    service_type?: string;
+    service_type: string;
     /**
      * @description The severity of the alert. Supported values include `3` for info, `2` for low, `1` for medium, and `0` for severe.
-     * @type integer | undefined
+     * @type integer
     */
-    severity?: PutAlertDefinition200SeverityEnumKey;
+    severity: PutAlertDefinition200SeverityEnumKey;
     /**
      * @description __Filterable__ The current status of the alert. This can be either `enabled`, `disabled`, `in progress`, or `failed`.
-     * @type string | undefined
+     * @type string
     */
-    status?: PutAlertDefinition200StatusEnumKey;
+    status: PutAlertDefinition200StatusEnumKey;
     /**
      * @description The conditions that need to be met to send a notification for the alert.
-     * @type object | undefined
+     * @type object
     */
-    trigger_conditions?: {
+    trigger_conditions: {
         /**
          * @description Signifies the logical operation applied when multiple metrics are set for an alert definition. For example, if you wanted to apply both `cpu_usage > 90` and `memory_usage > 80`, `ALL` is the `criteria_condition`.  Currently, only `ALL` is supported.
-         * @type string | undefined
+         * @type string
         */
-        criteria_condition?: TriggerConditionsCriteriaConditionEnum6Key;
+        criteria_condition: TriggerConditionsCriteriaConditionEnum6Key;
         /**
          * @description The time period over which data is collected before evaluating whether the alert definition\'s `threshold` has been met or exceeded.\n\n> 📘\n>\n> During the beta, only a value of `300` seconds is supported.
-         * @type integer | undefined
+         * @type integer
         */
-        evaluation_period_seconds?: number;
+        evaluation_period_seconds: number;
         /**
          * @description The frequency at which the `metric` is checked for a change in state. For example, with `cpu_usage` set as your `metric` and this set to `300`, your `cpu_usage` is checked every 5 minutes for some change in its state.\n\n> 📘\n>\n> During the beta, only a value of `300` seconds is supported.
-         * @type integer | undefined
+         * @type integer
         */
-        polling_interval_seconds?: number;
+        polling_interval_seconds: number;
         /**
          * @description The minimum number of consecutive `polling_interval_seconds` periods that the `threshold` needs to be breached to trigger the alert.
-         * @type integer | undefined
+         * @type integer
         */
-        trigger_occurrences?: number;
+        trigger_occurrences: number;
     };
     /**
      * @description __Filterable__ The type of alert. This can be either `user` for an alert specific to the current user, or `system` for one that applies to all users on your account.
-     * @type string | undefined
+     * @type string
     */
-    type?: PutAlertDefinition200TypeEnumKey;
+    type: PutAlertDefinition200TypeEnumKey;
     /**
      * @description When the alert definition was last updated. This is the same as `created` if the alert definition hasn\'t been updated.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    updated?: string;
+    updated: string;
     /**
      * @description For a `user` alert definition, this is the user on your account that last [updated](https://techdocs.akamai.com/linode-api/reference/put-alert-definition) it. For a `system` alert definition, this is returned as `system`. If it hasn\'t been updated, this value is the same as `created_by`.
-     * @type string | undefined
+     * @type string
     */
-    updated_by?: string;
+    updated_by: string;
 }
 
 /**
@@ -315,19 +304,19 @@ export interface PutAlertDefinition200 {
 */
 export interface PutAlertDefinitionError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

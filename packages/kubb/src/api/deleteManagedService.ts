@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteManagedServiceMutationResponse, DeleteManagedServicePathParams } from "../types/DeleteManagedService.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteManagedServiceUrl(apiVersion: DeleteManagedServicePathParams["apiVersion"], serviceId: DeleteManagedServicePathParams["serviceId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/managed/services/${serviceId}` as const }  
+function getDeleteManagedServiceUrl(serviceId: DeleteManagedServicePathParams["serviceId"]) {
+  const res = { method: 'DELETE', url: `/managed/services/${serviceId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a service monitor, so that the service is no longer monitored by Linode Managed.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed service-delete 9994    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a managed service monitor
- * {@link /:apiVersion/managed/services/:serviceId}
+ * {@link /managed/services/:serviceId}
  */
-export async function deleteManagedService(apiVersion: DeleteManagedServicePathParams["apiVersion"], serviceId: DeleteManagedServicePathParams["serviceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteManagedService(serviceId: DeleteManagedServicePathParams["serviceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteManagedServiceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteManagedServiceUrl(apiVersion, serviceId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteManagedServiceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteManagedServiceUrl(serviceId).url.toString(), ... requestConfig })  
   return res.data
 }

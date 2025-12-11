@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetObjectStorageQuotaQueryResponse, GetObjectStorageQuotaPathParams } from "../types/GetObjectStorageQuota.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageQuotaUrl(apiVersion: GetObjectStorageQuotaPathParams["apiVersion"], objQuotaId: GetObjectStorageQuotaPathParams["objQuotaId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/quotas/${objQuotaId}` as const }  
+function getGetObjectStorageQuotaUrl(objQuotaId: GetObjectStorageQuotaPathParams["objQuotaId"]) {
+  const res = { method: 'GET', url: `/object-storage/quotas/${objQuotaId}` as const }  
   return res
 }
 
 /**
  * @description Returns information about a specific Object Storage-related quota on your account. The operation includes any quota overrides in the response.<<LB>>---- __CLI__.    ```    linode-cli object-storage quota-view obj-objects-us-ord-1    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    object_storage:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an Object Storage quota
- * {@link /:apiVersion/object-storage/quotas/:objQuotaId}
+ * {@link /object-storage/quotas/:objQuotaId}
  */
-export async function getObjectStorageQuota(apiVersion: GetObjectStorageQuotaPathParams["apiVersion"], objQuotaId: GetObjectStorageQuotaPathParams["objQuotaId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageQuota(objQuotaId: GetObjectStorageQuotaPathParams["objQuotaId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageQuotaQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageQuotaUrl(apiVersion, objQuotaId).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageQuotaQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageQuotaUrl(objQuotaId).url.toString(), ... requestConfig })  
   return res.data
 }

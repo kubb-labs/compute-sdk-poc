@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetRegionAvailabilityPathParams(data?: Partial<GetRegionAvailabilityPathParams>): GetRegionAvailabilityPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetRegionAvailabilityPathParams>["apiVersion"]>(["v4", "v4beta"]),"regionId": faker.string.alpha()},
+  ...{"regionId": faker.string.alpha()},
   ...data || {}
   }
 }

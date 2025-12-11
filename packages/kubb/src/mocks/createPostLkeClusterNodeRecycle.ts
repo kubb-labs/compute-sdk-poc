@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostLkeClusterNodeRecyclePathParams(data?: Partial<PostLkeClusterNodeRecyclePathParams>): PostLkeClusterNodeRecyclePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostLkeClusterNodeRecyclePathParams>["apiVersion"]>(["v4", "v4beta"]),"clusterId": faker.number.int(),"nodeId": faker.string.alpha()},
+  ...{"clusterId": faker.number.int(),"nodeId": faker.string.alpha()},
   ...data || {}
   }
 }

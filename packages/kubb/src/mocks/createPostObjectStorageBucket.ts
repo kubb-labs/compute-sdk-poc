@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostObjectStorageBucketPathParams, PostObjectStorageBucket200, PostObjectStorageBucketError, PostObjectStorageBucketMutationRequest, PostObjectStorageBucketMutationResponse } from "../types/PostObjectStorageBucket.ts";
+import type { PostObjectStorageBucket200, PostObjectStorageBucketError, PostObjectStorageBucketMutationRequest, PostObjectStorageBucketMutationResponse } from "../types/PostObjectStorageBucket.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostObjectStorageBucketPathParams(data?: Partial<PostObjectStorageBucketPathParams>): PostObjectStorageBucketPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostObjectStorageBucketPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description The bucket created successfully.

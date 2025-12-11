@@ -4,19 +4,7 @@
 */
 
 
-export const postFirewallDevicePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostFirewallDevicePathParamsApiVersionEnumKey = (typeof postFirewallDevicePathParamsApiVersionEnum)[keyof typeof postFirewallDevicePathParamsApiVersionEnum];
-
 export interface PostFirewallDevicePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostFirewallDevicePathParamsApiVersionEnumKey;
     /**
      * @description ID of the Firewall to access.
      * @type integer
@@ -44,76 +32,76 @@ export type EntityTypeEnum10Key = (typeof entityTypeEnum10)[keyof typeof entityT
 export interface PostFirewallDevice200 {
     /**
      * @description __Filterable__, __Read-only__ When this device was created.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description The Linode, NodeBalancer, or Linode interface this firewall is assigned to.
-     * @type object | undefined
+     * @type object
     */
-    entity?: {
+    entity: {
         /**
          * @description The entity\'s ID.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description __Read-only__ The entity\'s label.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Read-only__ The Linode this `linode_interface` is assigned to. Returns `null` when the entity `type` is `linode` or `nodebalancer`.
          * @type object
         */
-        readonly parent_entity?: {
+        readonly parent_entity: {
             /**
              * @description The ID of the Linode assigned to this `linode_interface`.
-             * @type integer | undefined
+             * @type integer
             */
-            id?: number;
+            id: number;
             /**
              * @description The name of the Linode this `linode_interface` is assigned to.
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description __Read-only__ Currently, no parent entity has a parent of its own. Each `parent_entity` will have its own `parent_entity` set to `null`.
              * @type string
             */
-            readonly parent_entity?: string | null;
+            readonly parent_entity: string | null;
             /**
              * @description A Linode interface’s `parent_entity` is a Linode.
-             * @type string | undefined
+             * @type string
             */
-            type?: ParentEntityTypeEnum9Key;
+            type: ParentEntityTypeEnum9Key;
             /**
              * @description The API URL path you can use to access this entity.
-             * @type string | undefined, url
+             * @type string, url
             */
-            url?: string;
+            url: string;
         } | null;
         /**
          * @description The entity\'s type.
-         * @type string | undefined
+         * @type string
         */
-        type?: EntityTypeEnum10Key;
+        type: EntityTypeEnum10Key;
         /**
          * @description __Read-only__ The API URL path you can use to access this entity.
-         * @type string | undefined, url
+         * @type string, url
         */
-        readonly url?: string;
+        readonly url: string;
     };
     /**
      * @description __Filterable__ The device\'s unique ID.
-     * @type integer | undefined
+     * @type integer
     */
-    id?: number;
+    id: number;
     /**
      * @description __Filterable__, __Read-only__ When this device was last updated.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly updated?: string;
+    readonly updated: string;
 }
 
 /**
@@ -121,19 +109,19 @@ export interface PostFirewallDevice200 {
 */
 export interface PostFirewallDeviceError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

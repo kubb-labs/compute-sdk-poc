@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PutFirewallSettingsMutationRequest, PutFirewallSettingsMutationResponse, PutFirewallSettingsPathParams } from "../types/PutFirewallSettings.ts";
+import type { PutFirewallSettingsMutationRequest, PutFirewallSettingsMutationResponse } from "../types/PutFirewallSettings.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutFirewallSettingsUrl(apiVersion: PutFirewallSettingsPathParams["apiVersion"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/networking/firewalls/settings` as const }  
+function getPutFirewallSettingsUrl() {
+  const res = { method: 'PUT', url: `/networking/firewalls/settings` as const }  
   return res
 }
 
 /**
  * @description __Beta__ You can update or add a default firewall to:- Linodes using legacy config profile interfaces- Linode VPC interfaces and Linode public interfaces- NodeBalancersIf a firewall isn't provided during service creation, a default firewall is assigned, unless you have opted out of firewall protection.> 📘>> Default firewalls on Linodes with Linode interfaces are applied to the interfaces, not the Linode itself.>> Default firewalls on Linodes with legacy configuration profile interfaces are applied directly to the Linode, not its interfaces.<<LB>>---- __CLI__.    ```    linode-cli firewalls firewall-settings-update \  --default_firewall_ids.vpc_interface 1 \  --default_firewall_ids.public_interface 2 \  --default_firewall_ids.nodebalancer 3 \  --default_firewall_ids.linode 5    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update default firewalls
- * {@link /:apiVersion/networking/firewalls/settings}
+ * {@link /networking/firewalls/settings}
  */
-export async function putFirewallSettings(apiVersion: PutFirewallSettingsPathParams["apiVersion"], data?: PutFirewallSettingsMutationRequest, config: Partial<RequestConfig<PutFirewallSettingsMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putFirewallSettings(data?: PutFirewallSettingsMutationRequest, config: Partial<RequestConfig<PutFirewallSettingsMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutFirewallSettingsMutationResponse, ResponseErrorConfig<Error>, PutFirewallSettingsMutationRequest>({ method : "PUT", url : getPutFirewallSettingsUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutFirewallSettingsMutationResponse, ResponseErrorConfig<Error>, PutFirewallSettingsMutationRequest>({ method : "PUT", url : getPutFirewallSettingsUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

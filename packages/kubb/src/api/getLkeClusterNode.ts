@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLkeClusterNodeQueryResponse, GetLkeClusterNodePathParams } from "../types/GetLkeClusterNode.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLkeClusterNodeUrl(apiVersion: GetLkeClusterNodePathParams["apiVersion"], clusterId: GetLkeClusterNodePathParams["clusterId"], nodeId: GetLkeClusterNodePathParams["nodeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/lke/clusters/${clusterId}/nodes/${nodeId}` as const }  
+function getGetLkeClusterNodeUrl(clusterId: GetLkeClusterNodePathParams["clusterId"], nodeId: GetLkeClusterNodePathParams["nodeId"]) {
+  const res = { method: 'GET', url: `/lke/clusters/${clusterId}/nodes/${nodeId}` as const }  
   return res
 }
 
 /**
  * @description Returns the values for a specified node object.<<LB>>---- __CLI__.    ```    linode-cli lke node-view 123456 12345-6aa78910bc    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a node
- * {@link /:apiVersion/lke/clusters/:clusterId/nodes/:nodeId}
+ * {@link /lke/clusters/:clusterId/nodes/:nodeId}
  */
-export async function getLkeClusterNode(apiVersion: GetLkeClusterNodePathParams["apiVersion"], clusterId: GetLkeClusterNodePathParams["clusterId"], nodeId: GetLkeClusterNodePathParams["nodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLkeClusterNode(clusterId: GetLkeClusterNodePathParams["clusterId"], nodeId: GetLkeClusterNodePathParams["nodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLkeClusterNodeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeClusterNodeUrl(apiVersion, clusterId, nodeId).url.toString(), ... requestConfig })  
+  const res = await request<GetLkeClusterNodeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeClusterNodeUrl(clusterId, nodeId).url.toString(), ... requestConfig })  
   return res.data
 }

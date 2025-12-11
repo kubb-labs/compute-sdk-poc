@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetDatabasesPostgresqlConfigQueryResponse, GetDatabasesPostgresqlConfigPathParams } from "../types/GetDatabasesPostgresqlConfig.ts";
+import type { GetDatabasesPostgresqlConfigQueryResponse } from "../types/GetDatabasesPostgresqlConfig.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDatabasesPostgresqlConfigUrl(apiVersion: GetDatabasesPostgresqlConfigPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/databases/postgresql/config` as const }  
+function getGetDatabasesPostgresqlConfigUrl() {
+  const res = { method: 'GET', url: `/databases/postgresql/config` as const }  
   return res
 }
 
 /**
  * @description All advanced parameters you can apply to a PostgreSQL Managed Database, via our partner [Aiven](https://aiven.io/docs/products/postgresql/reference/advanced-params).> 📘>> Aiven may offer other parameters, but Akamai Managed Databases only supports the ones listed in this operation.<<LB>>---- __CLI__.    ```    linode-cli databases postgres-config    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    databases:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List PostgreSQL Managed Database advanced parameters
- * {@link /:apiVersion/databases/postgresql/config}
+ * {@link /databases/postgresql/config}
  */
-export async function getDatabasesPostgresqlConfig(apiVersion: GetDatabasesPostgresqlConfigPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDatabasesPostgresqlConfig(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDatabasesPostgresqlConfigQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesPostgresqlConfigUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetDatabasesPostgresqlConfigQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesPostgresqlConfigUrl().url.toString(), ... requestConfig })  
   return res.data
 }

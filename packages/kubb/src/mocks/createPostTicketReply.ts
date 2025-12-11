@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostTicketReplyPathParams(data?: Partial<PostTicketReplyPathParams>): PostTicketReplyPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostTicketReplyPathParams>["apiVersion"]>(["v4", "v4beta"]),"ticketId": faker.number.int()},
+  ...{"ticketId": faker.number.int()},
   ...data || {}
   }
 }

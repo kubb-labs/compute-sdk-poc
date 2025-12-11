@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetInvoiceQueryResponse, GetInvoicePathParams } from "../types/GetInvoice.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetInvoiceUrl(apiVersion: GetInvoicePathParams["apiVersion"], invoiceId: GetInvoicePathParams["invoiceId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/invoices/${invoiceId}` as const }  
+function getGetInvoiceUrl(invoiceId: GetInvoicePathParams["invoiceId"]) {
+  const res = { method: 'GET', url: `/account/invoices/${invoiceId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single Invoice object.<<LB>>---- __CLI__.    ```    linode-cli account invoice-view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an invoice
- * {@link /:apiVersion/account/invoices/:invoiceId}
+ * {@link /account/invoices/:invoiceId}
  */
-export async function getInvoice(apiVersion: GetInvoicePathParams["apiVersion"], invoiceId: GetInvoicePathParams["invoiceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getInvoice(invoiceId: GetInvoicePathParams["invoiceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetInvoiceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetInvoiceUrl(apiVersion, invoiceId).url.toString(), ... requestConfig })  
+  const res = await request<GetInvoiceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetInvoiceUrl(invoiceId).url.toString(), ... requestConfig })  
   return res.data
 }

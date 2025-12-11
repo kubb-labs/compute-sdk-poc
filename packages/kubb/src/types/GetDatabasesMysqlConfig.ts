@@ -4,950 +4,935 @@
 */
 
 
-export const getDatabasesMysqlConfigPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetDatabasesMysqlConfigPathParamsApiVersionEnumKey = (typeof getDatabasesMysqlConfigPathParamsApiVersionEnum)[keyof typeof getDatabasesMysqlConfigPathParamsApiVersionEnum];
-
-export interface GetDatabasesMysqlConfigPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetDatabasesMysqlConfigPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description MySQL Managed Database advanced parameters.
 */
 export interface GetDatabasesMysqlConfig200 {
     /**
      * @description Settings available to configure a `binlog_retention_period`, per Aiven\'s specifications.
-     * @type integer | undefined
+     * @type integer
     */
-    binlog_retention_period?: number;
+    binlog_retention_period: number;
     /**
      * @description Parameters available to configure a MySQL Managed Database.
-     * @type object | undefined
+     * @type object
     */
-    mysql?: {
+    mysql: {
         /**
          * @description Settings available to configure the `connect_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        connect_timeout?: {
+        connect_timeout: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `connect_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        default_time_zone?: {
+        default_time_zone: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter, using the required `pattern`.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description The maximum character length for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maxLength?: number;
+            maxLength: number;
             /**
              * @description The minimum character length for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minLength?: number;
+            minLength: number;
             /**
              * @description The pattern to follow when defining this parameter.
-             * @type string | undefined
+             * @type string
             */
-            pattern?: string;
+            pattern: string;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `group_concat_max_len`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        group_concat_max_len?: {
+        group_concat_max_len: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `information_schema_stats_expiry`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        information_schema_stats_expiry?: {
+        information_schema_stats_expiry: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `innodb_change_buffer_max_size`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        innodb_change_buffer_max_size?: {
+        innodb_change_buffer_max_size: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `innodb_flush_neighbors`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        innodb_flush_neighbors?: {
+        innodb_flush_neighbors: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `innodb_ft_min_token_size`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        innodb_ft_min_token_size?: {
+        innodb_ft_min_token_size: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure your own `innodb_ft_server_stopword_table`, per Aiven\'s specifications. Set to `null` for no value.
          * @type object
         */
-        innodb_ft_server_stopword_table?: {
+        innodb_ft_server_stopword_table: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter, using the required `pattern`, or `null` for no value.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description The maximum character length for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maxLength?: number;
+            maxLength: number;
             /**
              * @description The pattern to follow when defining this parameter.
-             * @type string | undefined
+             * @type string
             */
-            pattern?: string;
+            pattern: string;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         } | null;
         /**
          * @description Settings available to configure the `innodb_lock_wait_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        innodb_lock_wait_timeout?: {
+        innodb_lock_wait_timeout: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `innodb_log_buffer_size`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        innodb_log_buffer_size?: {
+        innodb_log_buffer_size: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `innodb_online_alter_log_max_size`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        innodb_online_alter_log_max_size?: {
+        innodb_online_alter_log_max_size: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `innodb_read_io_threads`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        innodb_read_io_threads?: {
+        innodb_read_io_threads: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `innodb_rollback_on_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        innodb_rollback_on_timeout?: {
+        innodb_rollback_on_timeout: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example boolean value for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `innodb_thread_concurrency`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        innodb_thread_concurrency?: {
+        innodb_thread_concurrency: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `innodb_write_io_threads`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        innodb_write_io_threads?: {
+        innodb_write_io_threads: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `interactive_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        interactive_timeout?: {
+        interactive_timeout: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `internal_tmp_mem_storage_engine`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        internal_tmp_mem_storage_engine?: {
+        internal_tmp_mem_storage_engine: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description Specific values available for use as this parameter.
-             * @type string | undefined
+             * @type string
             */
-            enum?: string;
+            enum: string;
             /**
              * @description One of the `enum` values available for use.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_allowed_packet`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_allowed_packet?: {
+        max_allowed_packet: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_heap_table_size`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_heap_table_size?: {
+        max_heap_table_size: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `net_buffer_length`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        net_buffer_length?: {
+        net_buffer_length: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `net_read_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        net_read_timeout?: {
+        net_read_timeout: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `net_write_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        net_write_timeout?: {
+        net_write_timeout: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `sql_mode`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        sql_mode?: {
+        sql_mode: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter, using the required `pattern`.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description The maximum character length for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maxLength?: number;
+            maxLength: number;
             /**
              * @description The pattern to follow when defining this parameter.
-             * @type string | undefined
+             * @type string
             */
-            pattern?: string;
+            pattern: string;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `sql_require_primary_key`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        sql_require_primary_key?: {
+        sql_require_primary_key: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example boolean value for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `tmp_table_size`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        tmp_table_size?: {
+        tmp_table_size: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `wait_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        wait_timeout?: {
+        wait_timeout: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the MySQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
     };
 }
@@ -957,19 +942,19 @@ export interface GetDatabasesMysqlConfig200 {
 */
 export interface GetDatabasesMysqlConfigError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -977,6 +962,5 @@ export type GetDatabasesMysqlConfigQueryResponse = GetDatabasesMysqlConfig200;
 
 export type GetDatabasesMysqlConfigQuery = {
     Response: GetDatabasesMysqlConfig200;
-    PathParams: GetDatabasesMysqlConfigPathParams;
     Errors: any;
 };

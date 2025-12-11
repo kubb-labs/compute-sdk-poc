@@ -5,40 +5,36 @@
 
 import { z } from "zod/v4";
 
-export const postObjectStorageKeysPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description The new Object Storage access key. *This is the only time* the `secret_key` is returned.
  */
 export const postObjectStorageKeys200Schema = z.object({
-    "access_key": z.optional(z.string().describe("__Read-only__ A unique string chosen by the API to identify this key. Used as a username to identify this key when making requests to an S3 API, such as the Amazon S3 API or Ceph Object Gateway S3 API.")),
-"bucket_access": z.optional(z.array(z.object({
-    "bucket_name": z.optional(z.string().describe("The name of the bucket the key can access in the `region`.")),
-"cluster": z.optional(z.string().describe("__Deprecated__ For backwards compatibility, this is included to identify the legacy cluster equivalent of the `region` where this key can be used. The key grants access to each specified `bucket_name`, based on the `permissions` set. Returned as an empty object for newer regions that don't support the legacy `cluster` parameter.\n\n> 📘\n>\n> Use of clusters in a limited access key has been deprecated. You should use the `region` parameter instead.")),
-"permissions": z.optional(z.enum(["read_write", "read_only"]).describe("The level of access the key grants to the `bucket_name`. Keys with `read_write` access can manage content in the `bucket_name`, while `read_only` can be used to view content.")),
-"region": z.optional(z.string().describe("The region where the Object Storage `bucket_name` resides."))
-    })).describe("Settings that limit access to specific buckets, each with a specific permission level. See [Create a limited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.")),
-"id": z.optional(z.int().describe("__Read-only__ This Object Storage key's unique ID.")),
-"label": z.optional(z.string().describe("The label given to this key. For display purposes only.")),
-"limited": z.optional(z.boolean().describe("__Read-only__ Whether this Object Storage key limits access to specific buckets and permissions. Returns `false` if this key grants full access. Specific limitations are set in `bucket_access`.")),
-"regions": z.optional(z.array(z.object({
-    "endpoint_type": z.optional(z.enum(["E0", "E1", "E2", "E3"]).describe("The type of `s3_endpoint` available to the active `user` in this `region`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information.")),
-"id": z.optional(z.string().describe("The individual region where this key is valid.\n\n- **For an unlimited key**. Each `id` represents an individual region you set in the `regions` array, when you set up the key. See [Create an unlimited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.\n\n- **For a limited access key**. The API server populates each object in this array with each of the individual instances of the `region` parameter you set in the `bucket_access` array. See [Create a limited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.")),
-"s3_endpoint": z.optional(z.string().describe("The S3-compatible hostname you can use to access the Object Storage buckets in this region."))
-    })).describe("Identifies each region where you can use the Object Storage key.")),
-"secret_key": z.optional(z.string().describe("__Read-only__ This Object Storage key's secret key. Used as a password to validate this key when making requests to an S3 API, such as the Amazon S3 API or Ceph Object Gateway S3 API.\n\n> 🚧\n>\n> The `secret_key` is only revealed in the response for this operation. Make sure to store it for later use."))
+    "access_key": z.string().describe("__Read-only__ A unique string chosen by the API to identify this key. Used as a username to identify this key when making requests to an S3 API, such as the Amazon S3 API or Ceph Object Gateway S3 API."),
+"bucket_access": z.array(z.object({
+    "bucket_name": z.string().describe("The name of the bucket the key can access in the `region`."),
+"cluster": z.string().describe("__Deprecated__ For backwards compatibility, this is included to identify the legacy cluster equivalent of the `region` where this key can be used. The key grants access to each specified `bucket_name`, based on the `permissions` set. Returned as an empty object for newer regions that don't support the legacy `cluster` parameter.\n\n> 📘\n>\n> Use of clusters in a limited access key has been deprecated. You should use the `region` parameter instead."),
+"permissions": z.enum(["read_write", "read_only"]).describe("The level of access the key grants to the `bucket_name`. Keys with `read_write` access can manage content in the `bucket_name`, while `read_only` can be used to view content."),
+"region": z.string().describe("The region where the Object Storage `bucket_name` resides.")
+    })).describe("Settings that limit access to specific buckets, each with a specific permission level. See [Create a limited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information."),
+"id": z.int().describe("__Read-only__ This Object Storage key's unique ID."),
+"label": z.string().describe("The label given to this key. For display purposes only."),
+"limited": z.boolean().describe("__Read-only__ Whether this Object Storage key limits access to specific buckets and permissions. Returns `false` if this key grants full access. Specific limitations are set in `bucket_access`."),
+"regions": z.array(z.object({
+    "endpoint_type": z.enum(["E0", "E1", "E2", "E3"]).describe("The type of `s3_endpoint` available to the active `user` in this `region`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information."),
+"id": z.string().describe("The individual region where this key is valid.\n\n- **For an unlimited key**. Each `id` represents an individual region you set in the `regions` array, when you set up the key. See [Create an unlimited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.\n\n- **For a limited access key**. The API server populates each object in this array with each of the individual instances of the `region` parameter you set in the `bucket_access` array. See [Create a limited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information."),
+"s3_endpoint": z.string().describe("The S3-compatible hostname you can use to access the Object Storage buckets in this region.")
+    })).describe("Identifies each region where you can use the Object Storage key."),
+"secret_key": z.string().describe("__Read-only__ This Object Storage key's secret key. Used as a password to validate this key when making requests to an S3 API, such as the Amazon S3 API or Ceph Object Gateway S3 API.\n\n> 🚧\n>\n> The `secret_key` is only revealed in the response for this operation. Make sure to store it for later use.")
     }).describe("The settings necessary to create a new Object Storage access key.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const postObjectStorageKeysErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const postObjectStorageKeysMutationRequestSchema = z.union([z.object({

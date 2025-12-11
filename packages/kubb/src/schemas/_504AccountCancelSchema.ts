@@ -6,7 +6,7 @@
 import { z } from "zod/v4";
 
 export const _504AccountCancelSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "reason": z.optional(z.string().describe("A string explaining that the account is taking longer to close than expected."))
-    })))
+    "errors": z.array(z.object({
+    "reason": z.string().describe("A string explaining that the account is taking longer to close than expected.")
+    }))
     })

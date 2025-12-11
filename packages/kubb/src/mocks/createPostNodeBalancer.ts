@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostNodeBalancerPathParams, PostNodeBalancer200, PostNodeBalancerError, PostNodeBalancerMutationRequest, PostNodeBalancerMutationResponse } from "../types/PostNodeBalancer.ts";
+import type { PostNodeBalancer200, PostNodeBalancerError, PostNodeBalancerMutationRequest, PostNodeBalancerMutationResponse } from "../types/PostNodeBalancer.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostNodeBalancerPathParams(data?: Partial<PostNodeBalancerPathParams>): PostNodeBalancerPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostNodeBalancerPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description NodeBalancer created successfully.

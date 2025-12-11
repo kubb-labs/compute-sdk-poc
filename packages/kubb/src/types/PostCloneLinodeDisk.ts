@@ -4,19 +4,7 @@
 */
 
 
-export const postCloneLinodeDiskPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostCloneLinodeDiskPathParamsApiVersionEnumKey = (typeof postCloneLinodeDiskPathParamsApiVersionEnum)[keyof typeof postCloneLinodeDiskPathParamsApiVersionEnum];
-
 export interface PostCloneLinodeDiskPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostCloneLinodeDiskPathParamsApiVersionEnumKey;
     /**
      * @description ID of the Linode to look up.
      * @type integer
@@ -54,47 +42,47 @@ export type PostCloneLinodeDisk200StatusEnumKey = (typeof postCloneLinodeDisk200
 export interface PostCloneLinodeDisk200 {
     /**
      * @description __Read-only__ When this disk was created.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description __Read-only__ Displays if encryption is enabled on this disk. This setting is based on the `disk_encryption` setting of the Linode.
      * @default "enabled"
-     * @type string | undefined
+     * @type string
     */
-    readonly disk_encryption?: string;
+    readonly disk_encryption: string;
     /**
      * @description The disk\'s format or file system. A value of `raw` indicates no file system, just a raw binary stream. A value of `swap` indicates a Linux swap area. The values `ext3` or `ext4` represent these Linux journaling file systems. The value `ext2` is the deprecated ext2 Linux file system. Finally, `initrd` indicates the disk is formatted as an uncompressed initial RAM disk.\n\n> 📘\n>\n> The `ext2` file system doesn\'t properly support timestamps and will be removed from Linux support in the near future. Also, `initrd` is a legacy format that no longer applies to most use cases. As a best practice, use the other supported formats or file systems instead.
-     * @type string | undefined
+     * @type string
     */
-    filesystem?: PostCloneLinodeDisk200FilesystemEnumKey;
+    filesystem: PostCloneLinodeDisk200FilesystemEnumKey;
     /**
      * @description __Read-only__ This disk\'s ID. You need this value to run other operations that interact with the disk.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description __Filterable__ The name of the disk. This is for display purposes only.
      * @minLength 1
      * @maxLength 48
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description __Filterable__ The size of the disk in MB.
-     * @type integer | undefined
+     * @type integer
     */
-    size?: number;
+    size: number;
     /**
      * @description __Read-only__ The current state of the disk.
-     * @type string | undefined
+     * @type string
     */
-    readonly status?: PostCloneLinodeDisk200StatusEnumKey;
+    readonly status: PostCloneLinodeDisk200StatusEnumKey;
     /**
      * @description __Read-only__ When this disk was last updated.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly updated?: string;
+    readonly updated: string;
 }
 
 /**
@@ -102,19 +90,19 @@ export interface PostCloneLinodeDisk200 {
 */
 export interface PostCloneLinodeDiskError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

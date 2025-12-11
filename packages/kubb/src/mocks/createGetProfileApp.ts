@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetProfileAppPathParams(data?: Partial<GetProfileAppPathParams>): GetProfileAppPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetProfileAppPathParams>["apiVersion"]>(["v4", "v4beta"]),"appId": faker.number.int()},
+  ...{"appId": faker.number.int()},
   ...data || {}
   }
 }

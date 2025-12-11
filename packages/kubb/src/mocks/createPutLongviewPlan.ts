@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PutLongviewPlanPathParams, PutLongviewPlan200, PutLongviewPlanError, PutLongviewPlanMutationRequest, PutLongviewPlanMutationResponse } from "../types/PutLongviewPlan.ts";
+import type { PutLongviewPlan200, PutLongviewPlanError, PutLongviewPlanMutationRequest, PutLongviewPlanMutationResponse } from "../types/PutLongviewPlan.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPutLongviewPlanPathParams(data?: Partial<PutLongviewPlanPathParams>): PutLongviewPlanPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutLongviewPlanPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description The updated Longview plan details for this account.

@@ -6,8 +6,8 @@
 import { z } from "zod/v4";
 
 export const acceptedResponseSchema = z.object({
-    "warnings": z.optional(z.array(z.object({
-    "details": z.optional(z.string().describe("Specific information related to the warning.")),
-"title": z.optional(z.string().describe("The general warning message."))
-    }).describe("An object for describing a single warning associated with a response.")))
+    "warnings": z.array(z.object({
+    "details": z.string().describe("Specific information related to the warning."),
+"title": z.string().describe("The general warning message.")
+    }).describe("An object for describing a single warning associated with a response."))
     })

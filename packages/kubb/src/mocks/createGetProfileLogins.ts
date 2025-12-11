@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetProfileLoginsPathParams, GetProfileLogins200, GetProfileLoginsError, GetProfileLoginsQueryResponse } from "../types/GetProfileLogins.ts";
+import type { GetProfileLogins200, GetProfileLoginsError, GetProfileLoginsQueryResponse } from "../types/GetProfileLogins.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetProfileLoginsPathParams(data?: Partial<GetProfileLoginsPathParams>): GetProfileLoginsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetProfileLoginsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description An array of successful account logins from this user during the last 90 days.

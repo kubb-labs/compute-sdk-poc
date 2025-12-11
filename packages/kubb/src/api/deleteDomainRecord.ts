@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteDomainRecordMutationResponse, DeleteDomainRecordPathParams } from "../types/DeleteDomainRecord.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteDomainRecordUrl(apiVersion: DeleteDomainRecordPathParams["apiVersion"], domainId: DeleteDomainRecordPathParams["domainId"], recordId: DeleteDomainRecordPathParams["recordId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/domains/${domainId}/records/${recordId}` as const }  
+function getDeleteDomainRecordUrl(domainId: DeleteDomainRecordPathParams["domainId"], recordId: DeleteDomainRecordPathParams["recordId"]) {
+  const res = { method: 'DELETE', url: `/domains/${domainId}/records/${recordId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a Record on this Domain.<<LB>>---- __CLI__.    ```    linode-cli domains records-delete 123 234    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    domains:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a domain record
- * {@link /:apiVersion/domains/:domainId/records/:recordId}
+ * {@link /domains/:domainId/records/:recordId}
  */
-export async function deleteDomainRecord(apiVersion: DeleteDomainRecordPathParams["apiVersion"], domainId: DeleteDomainRecordPathParams["domainId"], recordId: DeleteDomainRecordPathParams["recordId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteDomainRecord(domainId: DeleteDomainRecordPathParams["domainId"], recordId: DeleteDomainRecordPathParams["recordId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteDomainRecordMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteDomainRecordUrl(apiVersion, domainId, recordId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteDomainRecordMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteDomainRecordUrl(domainId, recordId).url.toString(), ... requestConfig })  
   return res.data
 }

@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetDatabasesTypesQueryResponse, GetDatabasesTypesPathParams, GetDatabasesTypesQueryParams } from "../types/GetDatabasesTypes.ts";
+import type { GetDatabasesTypesQueryResponse, GetDatabasesTypesQueryParams } from "../types/GetDatabasesTypes.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDatabasesTypesUrl(apiVersion: GetDatabasesTypesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/databases/types` as const }  
+function getGetDatabasesTypesUrl() {
+  const res = { method: 'GET', url: `/databases/types` as const }  
   return res
 }
 
 /**
  * @description Display all Managed Databases node types. The type and number of nodes determine the resources and price of a Managed Databases instance. Each database can have one node type. With a high availability database, all nodes are deployed according to the chosen type.<<LB>>---- __CLI__.    ```    linode-cli databases types    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List Managed Databases types
- * {@link /:apiVersion/databases/types}
+ * {@link /databases/types}
  */
-export async function getDatabasesTypes(apiVersion: GetDatabasesTypesPathParams["apiVersion"], params?: GetDatabasesTypesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDatabasesTypes(params?: GetDatabasesTypesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDatabasesTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesTypesUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetDatabasesTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesTypesUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

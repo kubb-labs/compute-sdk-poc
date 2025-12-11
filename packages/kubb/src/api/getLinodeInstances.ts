@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetLinodeInstancesQueryResponse, GetLinodeInstancesPathParams, GetLinodeInstancesQueryParams, GetLinodeInstancesHeaderParams } from "../types/GetLinodeInstances.ts";
+import type { GetLinodeInstancesQueryResponse, GetLinodeInstancesQueryParams, GetLinodeInstancesHeaderParams } from "../types/GetLinodeInstances.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeInstancesUrl(apiVersion: GetLinodeInstancesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances` as const }  
+function getGetLinodeInstancesUrl() {
+  const res = { method: 'GET', url: `/linode/instances` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of Linodes you have permission to view.<<LB>>---- __CLI__.    ```    linode-cli linodes list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List Linodes
- * {@link /:apiVersion/linode/instances}
+ * {@link /linode/instances}
  */
-export async function getLinodeInstances(apiVersion: GetLinodeInstancesPathParams["apiVersion"], params?: GetLinodeInstancesQueryParams, headers?: GetLinodeInstancesHeaderParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeInstances(params?: GetLinodeInstancesQueryParams, headers?: GetLinodeInstancesHeaderParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeInstancesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeInstancesUrl(apiVersion).url.toString(), params, ... requestConfig, headers : { ...headers, ...requestConfig.headers } })  
+  const res = await request<GetLinodeInstancesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeInstancesUrl().url.toString(), params, ... requestConfig, headers : { ...headers, ...requestConfig.headers } })  
   return res.data
 }

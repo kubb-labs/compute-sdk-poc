@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostProfilePhoneNumberVerifyMutationRequest, PostProfilePhoneNumberVerifyMutationResponse, PostProfilePhoneNumberVerifyPathParams } from "../types/PostProfilePhoneNumberVerify.ts";
+import type { PostProfilePhoneNumberVerifyMutationRequest, PostProfilePhoneNumberVerifyMutationResponse } from "../types/PostProfilePhoneNumberVerify.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostProfilePhoneNumberVerifyUrl(apiVersion: PostProfilePhoneNumberVerifyPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/profile/phone-number/verify` as const }  
+function getPostProfilePhoneNumberVerifyUrl() {
+  const res = { method: 'POST', url: `/profile/phone-number/verify` as const }  
   return res
 }
 
 /**
  * @description Verify a phone number by confirming the one-time code received via SMS message after running the [Send a phone number verification code](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number) operation.- Verification codes are valid for 10 minutes after they are sent.- Only the same User that made the verification code request can use that code with this operation.Once completed, the verified phone number is assigned to the User making the request. To change the verified phone number for a User, first run the [Delete a phone number](https://techdocs.akamai.com/linode-api/reference/delete-profile-phone-number) operation, then begin the verification process again with the [Send a phone number verification code](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number) operation.<<LB>>---- __CLI__.    ```    linode-cli phone verify \  --otp_code 123456    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Verify a phone number
- * {@link /:apiVersion/profile/phone-number/verify}
+ * {@link /profile/phone-number/verify}
  */
-export async function postProfilePhoneNumberVerify(apiVersion: PostProfilePhoneNumberVerifyPathParams["apiVersion"], data: PostProfilePhoneNumberVerifyMutationRequest, config: Partial<RequestConfig<PostProfilePhoneNumberVerifyMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postProfilePhoneNumberVerify(data: PostProfilePhoneNumberVerifyMutationRequest, config: Partial<RequestConfig<PostProfilePhoneNumberVerifyMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostProfilePhoneNumberVerifyMutationResponse, ResponseErrorConfig<Error>, PostProfilePhoneNumberVerifyMutationRequest>({ method : "POST", url : getPostProfilePhoneNumberVerifyUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostProfilePhoneNumberVerifyMutationResponse, ResponseErrorConfig<Error>, PostProfilePhoneNumberVerifyMutationRequest>({ method : "POST", url : getPostProfilePhoneNumberVerifyUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

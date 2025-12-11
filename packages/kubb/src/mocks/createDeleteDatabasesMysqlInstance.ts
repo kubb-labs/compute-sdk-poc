@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteDatabasesMysqlInstancePathParams(data?: Partial<DeleteDatabasesMysqlInstancePathParams>): DeleteDatabasesMysqlInstancePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteDatabasesMysqlInstancePathParams>["apiVersion"]>(["v4", "v4beta"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

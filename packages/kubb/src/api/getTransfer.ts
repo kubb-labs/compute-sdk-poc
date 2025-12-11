@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetTransferQueryResponse, GetTransferPathParams } from "../types/GetTransfer.ts";
+import type { GetTransferQueryResponse } from "../types/GetTransfer.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetTransferUrl(apiVersion: GetTransferPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/transfer` as const }  
+function getGetTransferUrl() {
+  const res = { method: 'GET', url: `/account/transfer` as const }  
   return res
 }
 
 /**
  * @description Returns a Transfer object showing your network utilization, in GB, for the current month.<<LB>>---- __CLI__.    ```    linode-cli account transfer    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get network usage
- * {@link /:apiVersion/account/transfer}
+ * {@link /account/transfer}
  */
-export async function getTransfer(apiVersion: GetTransferPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getTransfer(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetTransferQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTransferUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetTransferQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTransferUrl().url.toString(), ... requestConfig })  
   return res.data
 }

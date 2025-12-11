@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetManagedServicesQueryResponse, GetManagedServicesPathParams } from "../types/GetManagedServices.ts";
+import type { GetManagedServicesQueryResponse } from "../types/GetManagedServices.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetManagedServicesUrl(apiVersion: GetManagedServicesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/managed/services` as const }  
+function getGetManagedServicesUrl() {
+  const res = { method: 'GET', url: `/managed/services` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of service monitors on your account. These are the services on your Linodes monitored by Linode Managed.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed services-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List managed services
- * {@link /:apiVersion/managed/services}
+ * {@link /managed/services}
  */
-export async function getManagedServices(apiVersion: GetManagedServicesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getManagedServices(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetManagedServicesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedServicesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetManagedServicesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedServicesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

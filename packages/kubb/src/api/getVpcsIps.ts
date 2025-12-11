@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetVpcsIpsQueryResponse, GetVpcsIpsPathParams, GetVpcsIpsQueryParams } from "../types/GetVpcsIps.ts";
+import type { GetVpcsIpsQueryResponse, GetVpcsIpsQueryParams } from "../types/GetVpcsIps.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetVpcsIpsUrl(apiVersion: GetVpcsIpsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/vpcs/ips` as const }  
+function getGetVpcsIpsUrl() {
+  const res = { method: 'GET', url: `/vpcs/ips` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of all VPC IP addresses and address ranges on your account.> 📘>> If a Linode has several configuration profiles that include a VPC interface, address information for all of them is listed in the response. Since VPCs can use the same address space, you may see duplicate IP addresses.<<LB>>---- __CLI__.    ```    linode-cli vpcs ips-all-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    ips:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List VPC IP addresses
- * {@link /:apiVersion/vpcs/ips}
+ * {@link /vpcs/ips}
  */
-export async function getVpcsIps(apiVersion: GetVpcsIpsPathParams["apiVersion"], params?: GetVpcsIpsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getVpcsIps(params?: GetVpcsIpsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetVpcsIpsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVpcsIpsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetVpcsIpsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVpcsIpsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

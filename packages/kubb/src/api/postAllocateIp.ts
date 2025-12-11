@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostAllocateIpMutationRequest, PostAllocateIpMutationResponse, PostAllocateIpPathParams } from "../types/PostAllocateIp.ts";
+import type { PostAllocateIpMutationRequest, PostAllocateIpMutationResponse } from "../types/PostAllocateIp.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostAllocateIpUrl(apiVersion: PostAllocateIpPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/networking/ips` as const }  
+function getPostAllocateIpUrl() {
+  const res = { method: 'POST', url: `/networking/ips` as const }  
   return res
 }
 
 /**
  * @description Allocates a new IPv4 Address on your Account. The Linode must be configured to support additional addresses - please [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) requesting additional addresses before attempting allocation.> 📘>> You can run this operation for Linodes with legacy configuration interfaces. You can't use it for Linodes with Linode interfaces. To allocate an IP for a Linode with Linode interfaces, use the [Add a Linode interface](https://techdocs.akamai.com/linode-api/reference/post-linode-interface) operation and set the public IPv4 address to `auto`.<<LB>>---- __CLI__.    ```    linode-cli networking ip-add \  --type ipv4 \  --public true \  --linode_id 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    ips:read_writelinodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Allocate an IP address
- * {@link /:apiVersion/networking/ips}
+ * {@link /networking/ips}
  */
-export async function postAllocateIp(apiVersion: PostAllocateIpPathParams["apiVersion"], data: PostAllocateIpMutationRequest, config: Partial<RequestConfig<PostAllocateIpMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postAllocateIp(data: PostAllocateIpMutationRequest, config: Partial<RequestConfig<PostAllocateIpMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostAllocateIpMutationResponse, ResponseErrorConfig<Error>, PostAllocateIpMutationRequest>({ method : "POST", url : getPostAllocateIpUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostAllocateIpMutationResponse, ResponseErrorConfig<Error>, PostAllocateIpMutationRequest>({ method : "POST", url : getPostAllocateIpUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

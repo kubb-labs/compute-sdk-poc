@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetLkeTypesQueryResponse, GetLkeTypesPathParams } from "../types/GetLkeTypes.ts";
+import type { GetLkeTypesQueryResponse } from "../types/GetLkeTypes.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLkeTypesUrl(apiVersion: GetLkeTypesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/lke/types` as const }  
+function getGetLkeTypesUrl() {
+  const res = { method: 'GET', url: `/lke/types` as const }  
   return res
 }
 
 /**
  * @description Returns Kubernetes types and prices, including any region-specific rates.<<LB>>---- __CLI__.    ```    linode-cli lke types    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List Kubernetes types
- * {@link /:apiVersion/lke/types}
+ * {@link /lke/types}
  */
-export async function getLkeTypes(apiVersion: GetLkeTypesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLkeTypes(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLkeTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeTypesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetLkeTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeTypesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetPersonalAccessTokensQueryResponse, GetPersonalAccessTokensPathParams } from "../types/GetPersonalAccessTokens.ts";
+import type { GetPersonalAccessTokensQueryResponse } from "../types/GetPersonalAccessTokens.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetPersonalAccessTokensUrl(apiVersion: GetPersonalAccessTokensPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/tokens` as const }  
+function getGetPersonalAccessTokensUrl() {
+  const res = { method: 'GET', url: `/profile/tokens` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of Personal Access Tokens currently active for your User.<<LB>>---- __CLI__.    ```    linode-cli profile tokens-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List personal access tokens
- * {@link /:apiVersion/profile/tokens}
+ * {@link /profile/tokens}
  */
-export async function getPersonalAccessTokens(apiVersion: GetPersonalAccessTokensPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getPersonalAccessTokens(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetPersonalAccessTokensQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPersonalAccessTokensUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetPersonalAccessTokensQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPersonalAccessTokensUrl().url.toString(), ... requestConfig })  
   return res.data
 }

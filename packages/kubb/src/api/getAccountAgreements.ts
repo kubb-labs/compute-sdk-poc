@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetAccountAgreementsQueryResponse, GetAccountAgreementsPathParams } from "../types/GetAccountAgreements.ts";
+import type { GetAccountAgreementsQueryResponse } from "../types/GetAccountAgreements.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAccountAgreementsUrl(apiVersion: GetAccountAgreementsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/agreements` as const }  
+function getGetAccountAgreementsUrl() {
+  const res = { method: 'GET', url: `/account/agreements` as const }  
   return res
 }
 
 /**
  * @description Returns all agreements and their acceptance status for your account.<<LB>>---- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List agreements
- * {@link /:apiVersion/account/agreements}
+ * {@link /account/agreements}
  */
-export async function getAccountAgreements(apiVersion: GetAccountAgreementsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAccountAgreements(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAccountAgreementsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountAgreementsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetAccountAgreementsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountAgreementsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

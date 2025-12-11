@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetPaymentsQueryResponse, GetPaymentsPathParams, GetPaymentsQueryParams, GetPaymentsHeaderParams } from "../types/GetPayments.ts";
+import type { GetPaymentsQueryResponse, GetPaymentsQueryParams, GetPaymentsHeaderParams } from "../types/GetPayments.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetPaymentsUrl(apiVersion: GetPaymentsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/payments` as const }  
+function getGetPaymentsUrl() {
+  const res = { method: 'GET', url: `/account/payments` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of payments made on this Account.<<LB>>---- __CLI__.    ```    linode-cli account payments-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List payments
- * {@link /:apiVersion/account/payments}
+ * {@link /account/payments}
  */
-export async function getPayments(apiVersion: GetPaymentsPathParams["apiVersion"], params?: GetPaymentsQueryParams, headers?: GetPaymentsHeaderParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getPayments(params?: GetPaymentsQueryParams, headers?: GetPaymentsHeaderParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetPaymentsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPaymentsUrl(apiVersion).url.toString(), params, ... requestConfig, headers : { ...headers, ...requestConfig.headers } })  
+  const res = await request<GetPaymentsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPaymentsUrl().url.toString(), params, ... requestConfig, headers : { ...headers, ...requestConfig.headers } })  
   return res.data
 }

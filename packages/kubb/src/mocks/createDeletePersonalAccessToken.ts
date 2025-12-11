@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeletePersonalAccessTokenPathParams(data?: Partial<DeletePersonalAccessTokenPathParams>): DeletePersonalAccessTokenPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeletePersonalAccessTokenPathParams>["apiVersion"]>(["v4", "v4beta"]),"tokenId": faker.number.int()},
+  ...{"tokenId": faker.number.int()},
   ...data || {}
   }
 }

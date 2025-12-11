@@ -4,19 +4,7 @@
 */
 
 
-export const getLinodeInterfacesPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLinodeInterfacesPathParamsApiVersionEnumKey = (typeof getLinodeInterfacesPathParamsApiVersionEnum)[keyof typeof getLinodeInterfacesPathParamsApiVersionEnum];
-
 export interface GetLinodeInterfacesPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLinodeInterfacesPathParamsApiVersionEnumKey;
     /**
      * @description The `id` of the Linode.
      * @type integer
@@ -35,317 +23,317 @@ export interface GetLinodeInterfaces200 {
     interfaces: ({
         /**
          * @description When the interface was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        created?: string;
+        created: string;
         /**
          * @description Indicates if the interface is used as a default route.
          * @type object
         */
-        default_route?: {
+        default_route: {
             /**
              * @description Indicates if the interface is used for the IPv4 default route. Only one interface per Linode can have the IPv4 default route.
              * @default false
-             * @type boolean | undefined
+             * @type boolean
             */
-            ipv4?: boolean;
+            ipv4: boolean;
             /**
              * @description Indicates if the interface is used for the IPv6 default route. Only one interface per Linode can have the IPv6 default route.
              * @default false
-             * @type boolean | undefined
+             * @type boolean
             */
-            ipv6?: boolean;
+            ipv6: boolean;
         } | null;
         /**
          * @description __Read-only__ The unique ID for this interface. For `dry_run` [upgrades](https://techdocs.akamai.com/linode-api/reference/post-upgrade-linode-interfaces), a unique `id` is not generated for the interface and its value is set to 0.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description A 48-bit MAC address used to identify the Linode’s interface. A public interface\'s `mac_address` does not change, even if the public interface is deleted and then recreated.
          * @minLength 1
          * @maxLength 64
          * @pattern [a-zA-Z0-9-]+
-         * @type string | undefined
+         * @type string
         */
-        mac_address?: string;
+        mac_address: string;
         /**
          * @description Public interface type.
-         * @type object | undefined
+         * @type object
         */
-        public?: {
+        public: {
             /**
              * @description The interface\'s public IPv4 `addresses`.
-             * @type object | undefined
+             * @type object
             */
-            ipv4?: {
+            ipv4: {
                 /**
                  * @description The public IPv4 addresses and primary settings for this public interface.
-                 * @type array | undefined
+                 * @type array
                 */
-                addresses?: {
+                addresses: {
                     /**
                      * @description The public IPv4 address assigned to this interface.
-                     * @type string | undefined
+                     * @type string
                     */
-                    address?: string;
+                    address: string;
                     /**
                      * @description Indicates if the public IPv4 address serves as the source address for traffic routing within the Linode and other corresponding network interfaces and services.
-                     * @type boolean | undefined
+                     * @type boolean
                     */
-                    primary?: boolean;
+                    primary: boolean;
                 }[];
                 /**
                  * @description The IPv4 address assigned to this Linode interface, which is also shared with another Linode.
-                 * @type array | undefined
+                 * @type array
                 */
-                shared?: {
+                shared: {
                     /**
                      * @description Shared IPv4 address.
-                     * @type string | undefined
+                     * @type string
                     */
-                    address?: string;
+                    address: string;
                     /**
                      * @description The ID of the Linode this address currently belongs to. For IPv4 addresses, by default this is the Linode this address was assigned when created.
-                     * @type string | undefined
+                     * @type string
                     */
-                    linode_id?: string;
+                    linode_id: string;
                 }[];
             };
             /**
              * @description The interface\'s public IPv6 configuration.
-             * @type object | undefined
+             * @type object
             */
-            ipv6?: {
+            ipv6: {
                 /**
                  * @description List of IPv6 ranges assigned to this interface.
-                 * @type array | undefined
+                 * @type array
                 */
-                ranges?: {
+                ranges: {
                     /**
                      * @description IPv6 range in CIDR notation (`2600:0db8::1/64`) or prefix-only (`/64`).
-                     * @type string | undefined
+                     * @type string
                     */
-                    range?: string;
+                    range: string;
                     /**
                      * @description The public IPv6 address that the `range` is routed to.
-                     * @type string | undefined
+                     * @type string
                     */
-                    route_target?: string;
+                    route_target: string;
                 }[];
                 /**
                  * @description The IPv6 address assigned to this Linode interface, which is also shared with another Linode.
-                 * @type array | undefined
+                 * @type array
                 */
-                shared?: {
+                shared: {
                     /**
                      * @description The IPv6 address range.
-                     * @type string | undefined
+                     * @type string
                     */
-                    range?: string;
+                    range: string;
                     /**
                      * @description The public IPv6 address that the `range` is routed to.
-                     * @type string | undefined
+                     * @type string
                     */
-                    route_target?: string;
+                    route_target: string;
                 }[];
                 /**
                  * @description The public `slaac` and subnet prefix settings for this public interface that is used to communicate over the public internet, and with other services in the same data center.
-                 * @type array | undefined
+                 * @type array
                 */
-                slaac?: {
+                slaac: {
                     /**
                      * @description Public IPv6 addresses assigned to this interface.
-                     * @type string | undefined
+                     * @type string
                     */
-                    address?: string;
+                    address: string;
                     /**
                      * @description The prefix length advertised for SLAAC to use. Only the specific (`/128`) EUI-64 address derived from the interface\'s MAC address is supported. To ensure the MAC-based EUI-64 address is used, privacy addressing needs to be disabled. Network Helper automatically configures the MAC-derived EUI-64 address. If you disable Network Helper or use an unsupported operating system, follow the specific instructions for your OS.
-                     * @type integer | undefined
+                     * @type integer
                     */
-                    prefix?: number;
+                    prefix: number;
                 }[];
             };
         };
         /**
          * @description When the interface was last updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        updated?: string;
+        updated: string;
         /**
          * @description Interface version number that increments when the interface updates.
-         * @type integer | undefined
+         * @type integer
         */
-        version?: number;
+        version: number;
         /**
          * @description The value is `null` if this is not a VLAN interface.
          * @type object
         */
-        vlan?: object | null;
+        vlan: object | null;
         /**
          * @description The value is `null` if this is not a VPC interface.
          * @type object
         */
-        vpc?: object | null;
+        vpc: object | null;
     } | {
         /**
          * @description When the interface was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        created?: string;
+        created: string;
         /**
          * @description __Read-only__ The unique ID for this interface. For `dry_run` [upgrades](https://techdocs.akamai.com/linode-api/reference/post-upgrade-linode-interfaces), a unique `id` is not generated for the interface and its value is set to 0.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description A 48-bit MAC address used to identify the Linode’s interface. The `mac_address` of an interface remains constant and does not change.
          * @minLength 1
          * @maxLength 64
          * @pattern [a-zA-Z0-9-]+
-         * @type string | undefined
+         * @type string
         */
-        mac_address?: string;
+        mac_address: string;
         /**
          * @description The value is `null` if this isn\'t a public interface.
          * @type object
         */
-        public?: object | null;
+        public: object | null;
         /**
          * @description When the interface was last updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        updated?: string;
+        updated: string;
         /**
          * @description Interface version number that is incremented when the interface is updated.
-         * @type integer | undefined
+         * @type integer
         */
-        version?: number;
+        version: number;
         /**
          * @description VLAN interface type.
-         * @type object | undefined
+         * @type object
         */
-        vlan?: {
+        vlan: {
             /**
              * @description This VLAN interface\'s private IPv4 address in classless inter-domain routing (CIDR) notation.
              * @type string, ip/netmask
             */
-            ipam_address?: string | null;
+            ipam_address: string | null;
             /**
              * @description The VLAN\'s label. VLAN interfaces on the same Linode must have a unique `vlan_label`.
-             * @type string | undefined
+             * @type string
             */
-            vlan_label?: string;
+            vlan_label: string;
         };
         /**
          * @description The value is `null` if this isn\'t a VPC interface.
          * @type object
         */
-        vpc?: object | null;
+        vpc: object | null;
     } | {
         /**
          * @description When the interface was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        created?: string;
+        created: string;
         /**
          * @description Indicates if the interface serves as a default route.
-         * @type object | undefined
+         * @type object
         */
-        default_route?: {
+        default_route: {
             /**
              * @description Indicates if the interface serves as the IPv4 default route. Only one interface per Linode can have the IPv4 default route.
              * @default false
-             * @type boolean | undefined
+             * @type boolean
             */
-            ipv4?: boolean;
+            ipv4: boolean;
         };
         /**
          * @description __Read-only__ The unique ID for this interface. For `dry_run` [upgrades](https://techdocs.akamai.com/linode-api/reference/post-upgrade-linode-interfaces), a unique `id` is not generated for the interface and its value is set to 0.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description A 48-bit MAC address used to identify the Linode’s interface. The `mac_address` of an interface remains constant and does not change.
          * @minLength 1
          * @maxLength 64
          * @pattern [a-zA-Z0-9-]+
-         * @type string | undefined
+         * @type string
         */
-        mac_address?: string;
+        mac_address: string;
         /**
          * @description The value is `null` if this is not a public interface.
          * @type object
         */
-        public?: object | null;
+        public: object | null;
         /**
          * @description When the interface last updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        updated?: string;
+        updated: string;
         /**
          * @description The version number of the interface configuration, incremented each time the interface is updated.
-         * @type integer | undefined
+         * @type integer
         */
-        version?: number;
+        version: number;
         /**
          * @description The value is `null` if this is not a VLAN interface.
          * @type object
         */
-        vlan?: object | null;
+        vlan: object | null;
         /**
          * @description VPC interface type.
-         * @type object | undefined
+         * @type object
         */
-        vpc?: {
+        vpc: {
             /**
              * @description The interface\'s IPv4 `addresses` and `ranges` configuration.
-             * @type object | undefined
+             * @type object
             */
-            ipv4?: {
+            ipv4: {
                 /**
                  * @description IPv4 address settings for this VPC interface.
-                 * @type array | undefined
+                 * @type array
                 */
-                addresses?: {
+                addresses: {
                     /**
                      * @description The VPC subnet IPv4 address.
-                     * @type string | undefined
+                     * @type string
                     */
-                    address?: string;
+                    address: string;
                     /**
                      * @description The 1:1 NAT IPv4 address used to associate a public IPv4 address with the interface\'s VPC subnet IPv4 address.
                      * @type string
                     */
-                    nat_1_1_address?: string | null;
+                    nat_1_1_address: string | null;
                     /**
                      * @description Indicates if the IPv4 address is used to set up a source address for routes inside the Linode for the corresponding network interface.
-                     * @type boolean | undefined
+                     * @type boolean
                     */
-                    primary?: boolean;
+                    primary: boolean;
                 }[];
                 /**
                  * @description VPC IPv4 ranges.
-                 * @type array | undefined
+                 * @type array
                 */
-                ranges?: {
+                ranges: {
                     /**
                      * @description CIDR notation of a range (`1.2.3.4/24`) or prefix only (`/24`).
-                     * @type string | undefined
+                     * @type string
                     */
-                    range?: string;
+                    range: string;
                 }[];
             };
             /**
              * @description VPC subnet\'s unique identifier.
-             * @type integer | undefined
+             * @type integer
             */
-            subnet_id?: number;
+            subnet_id: number;
             /**
              * @description VPC\'s unique identifier.
-             * @type integer | undefined
+             * @type integer
             */
-            vpc_id?: number;
+            vpc_id: number;
         };
     })[];
 }
@@ -355,19 +343,19 @@ export interface GetLinodeInterfaces200 {
 */
 export interface GetLinodeInterfacesError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

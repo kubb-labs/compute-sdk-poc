@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteLongviewClientMutationResponse, DeleteLongviewClientPathParams } from "../types/DeleteLongviewClient.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteLongviewClientUrl(apiVersion: DeleteLongviewClientPathParams["apiVersion"], clientId: DeleteLongviewClientPathParams["clientId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/longview/clients/${clientId}` as const }  
+function getDeleteLongviewClientUrl(clientId: DeleteLongviewClientPathParams["clientId"]) {
+  const res = { method: 'DELETE', url: `/longview/clients/${clientId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a Longview Client from your Account.__All information stored for this client will be lost.__This _does not_ uninstall the Longview Client application for your Linode - you must do that manually.<<LB>>---- __CLI__.    ```    linode-cli longview delete 789    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    longview:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a Longview client
- * {@link /:apiVersion/longview/clients/:clientId}
+ * {@link /longview/clients/:clientId}
  */
-export async function deleteLongviewClient(apiVersion: DeleteLongviewClientPathParams["apiVersion"], clientId: DeleteLongviewClientPathParams["clientId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteLongviewClient(clientId: DeleteLongviewClientPathParams["clientId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteLongviewClientMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteLongviewClientUrl(apiVersion, clientId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteLongviewClientMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteLongviewClientUrl(clientId).url.toString(), ... requestConfig })  
   return res.data
 }

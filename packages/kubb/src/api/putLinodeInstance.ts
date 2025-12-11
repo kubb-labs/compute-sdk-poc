@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutLinodeInstanceMutationRequest, PutLinodeInstanceMutationResponse, PutLinodeInstancePathParams } from "../types/PutLinodeInstance.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutLinodeInstanceUrl(apiVersion: PutLinodeInstancePathParams["apiVersion"], linodeId: PutLinodeInstancePathParams["linodeId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/linode/instances/${linodeId}` as const }  
+function getPutLinodeInstanceUrl(linodeId: PutLinodeInstancePathParams["linodeId"]) {
+  const res = { method: 'PUT', url: `/linode/instances/${linodeId}` as const }  
   return res
 }
 
 /**
  * @description Updates a Linode that you have permission to `read_write`. Only unrestricted users can add or modify tags on Linodes.<<LB>>> 🚧>> All tags for the instance are overwritten if `tags` are included in the request.<<LB>>---- __CLI__.    ```    linode-cli linodes update 7833080 \  --label linode123 \  --backups.schedule.day "Saturday" \  --backups.schedule.window "W22" \  --alerts.cpu 180 \  --alerts.network_in 10 \  --alerts.network_out 10 \  --alerts.transfer_quota 80 \  --alerts.io 10000    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a Linode
- * {@link /:apiVersion/linode/instances/:linodeId}
+ * {@link /linode/instances/:linodeId}
  */
-export async function putLinodeInstance(apiVersion: PutLinodeInstancePathParams["apiVersion"], linodeId: PutLinodeInstancePathParams["linodeId"], data?: PutLinodeInstanceMutationRequest, config: Partial<RequestConfig<PutLinodeInstanceMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putLinodeInstance(linodeId: PutLinodeInstancePathParams["linodeId"], data?: PutLinodeInstanceMutationRequest, config: Partial<RequestConfig<PutLinodeInstanceMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutLinodeInstanceMutationResponse, ResponseErrorConfig<Error>, PutLinodeInstanceMutationRequest>({ method : "PUT", url : getPutLinodeInstanceUrl(apiVersion, linodeId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutLinodeInstanceMutationResponse, ResponseErrorConfig<Error>, PutLinodeInstanceMutationRequest>({ method : "PUT", url : getPutLinodeInstanceUrl(linodeId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

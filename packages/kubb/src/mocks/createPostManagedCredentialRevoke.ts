@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostManagedCredentialRevokePathParams(data?: Partial<PostManagedCredentialRevokePathParams>): PostManagedCredentialRevokePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostManagedCredentialRevokePathParams>["apiVersion"]>(["v4", "v4beta"]),"credentialId": faker.number.int()},
+  ...{"credentialId": faker.number.int()},
   ...data || {}
   }
 }

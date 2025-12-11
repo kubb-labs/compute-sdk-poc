@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostBootLinodeInstanceMutationRequest, PostBootLinodeInstanceMutationResponse, PostBootLinodeInstancePathParams } from "../types/PostBootLinodeInstance.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostBootLinodeInstanceUrl(apiVersion: PostBootLinodeInstancePathParams["apiVersion"], linodeId: PostBootLinodeInstancePathParams["linodeId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/instances/${linodeId}/boot` as const }  
+function getPostBootLinodeInstanceUrl(linodeId: PostBootLinodeInstancePathParams["linodeId"]) {
+  const res = { method: 'POST', url: `/linode/instances/${linodeId}/boot` as const }  
   return res
 }
 
 /**
  * @description Boots a Linode you have permission to modify.If the Linode is using config profiles, and no parameters are given, a config profile is chosen for this boot based on the following criteria:- If there is only one config profile for this Linode, it will be used.- If there is more than one config profile, the last booted config will be used.- If there is more than one config profile and none were the last to be booted (because the Linode was never booted or the last booted config was deleted) an error will be returned.If the Linode is using Linode interfaces, where `interface_generation` is set as `linode`, an error is returned if the Linode has to boot without any interface defined.<<LB>>---- __CLI__.    ```    linode-cli linodes boot 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Boot a Linode
- * {@link /:apiVersion/linode/instances/:linodeId/boot}
+ * {@link /linode/instances/:linodeId/boot}
  */
-export async function postBootLinodeInstance(apiVersion: PostBootLinodeInstancePathParams["apiVersion"], linodeId: PostBootLinodeInstancePathParams["linodeId"], data?: PostBootLinodeInstanceMutationRequest, config: Partial<RequestConfig<PostBootLinodeInstanceMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postBootLinodeInstance(linodeId: PostBootLinodeInstancePathParams["linodeId"], data?: PostBootLinodeInstanceMutationRequest, config: Partial<RequestConfig<PostBootLinodeInstanceMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostBootLinodeInstanceMutationResponse, ResponseErrorConfig<Error>, PostBootLinodeInstanceMutationRequest>({ method : "POST", url : getPostBootLinodeInstanceUrl(apiVersion, linodeId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostBootLinodeInstanceMutationResponse, ResponseErrorConfig<Error>, PostBootLinodeInstanceMutationRequest>({ method : "POST", url : getPostBootLinodeInstanceUrl(linodeId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

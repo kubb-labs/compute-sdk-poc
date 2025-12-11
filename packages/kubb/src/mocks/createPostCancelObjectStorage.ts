@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostCancelObjectStoragePathParams, PostCancelObjectStorage200, PostCancelObjectStorageError, PostCancelObjectStorageMutationResponse } from "../types/PostCancelObjectStorage.ts";
+import type { PostCancelObjectStorage200, PostCancelObjectStorageError, PostCancelObjectStorageMutationResponse } from "../types/PostCancelObjectStorage.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostCancelObjectStoragePathParams(data?: Partial<PostCancelObjectStoragePathParams>): PostCancelObjectStoragePathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostCancelObjectStoragePathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Object Storage cancellation successful.

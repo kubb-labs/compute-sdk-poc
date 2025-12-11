@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetAvailabilityPathParams, GetAvailabilityQueryParams, GetAvailability200, GetAvailabilityError, GetAvailabilityQueryResponse } from "../types/GetAvailability.ts";
+import type { GetAvailabilityQueryParams, GetAvailability200, GetAvailabilityError, GetAvailabilityQueryResponse } from "../types/GetAvailability.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetAvailabilityPathParams(data?: Partial<GetAvailabilityPathParams>): GetAvailabilityPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetAvailabilityPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetAvailabilityQueryParams(data?: Partial<GetAvailabilityQueryParams>): GetAvailabilityQueryParams {
   

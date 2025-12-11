@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetObjectStorageSslQueryResponse, GetObjectStorageSslPathParams } from "../types/GetObjectStorageSsl.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageSslUrl(apiVersion: GetObjectStorageSslPathParams["apiVersion"], regionId: GetObjectStorageSslPathParams["regionId"], bucket: GetObjectStorageSslPathParams["bucket"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/buckets/${regionId}/${bucket}/ssl` as const }  
+function getGetObjectStorageSslUrl(regionId: GetObjectStorageSslPathParams["regionId"], bucket: GetObjectStorageSslPathParams["bucket"]) {
+  const res = { method: 'GET', url: `/object-storage/buckets/${regionId}/${bucket}/ssl` as const }  
   return res
 }
 
 /**
  * @description Returns a boolean value indicating if this bucket has a corresponding TLS/SSL certificate that was uploaded by an Account user.<<LB>>---- __CLI__.    ```    linode-cli object-storage ssl-view \  us-east-1 example-bucket    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    object_storage:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an Object Storage TLS/SSL certificate
- * {@link /:apiVersion/object-storage/buckets/:regionId/:bucket/ssl}
+ * {@link /object-storage/buckets/:regionId/:bucket/ssl}
  */
-export async function getObjectStorageSsl(apiVersion: GetObjectStorageSslPathParams["apiVersion"], regionId: GetObjectStorageSslPathParams["regionId"], bucket: GetObjectStorageSslPathParams["bucket"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageSsl(regionId: GetObjectStorageSslPathParams["regionId"], bucket: GetObjectStorageSslPathParams["bucket"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageSslQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageSslUrl(apiVersion, regionId, bucket).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageSslQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageSslUrl(regionId, bucket).url.toString(), ... requestConfig })  
   return res.data
 }

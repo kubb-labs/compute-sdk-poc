@@ -4,18 +4,7 @@
 */
 
 
-export const deleteAlertDefinitionPathParamsApiVersionEnum = {
-    "v4beta": "v4beta"
-} as const;
-
-export type DeleteAlertDefinitionPathParamsApiVersionEnumKey = (typeof deleteAlertDefinitionPathParamsApiVersionEnum)[keyof typeof deleteAlertDefinitionPathParamsApiVersionEnum];
-
 export interface DeleteAlertDefinitionPathParams {
-    /**
-     * @description __Enum__ Call the `v4beta` URL for operations still only in beta.
-     * @type string
-    */
-    apiVersion: DeleteAlertDefinitionPathParamsApiVersionEnumKey;
     /**
      * @description The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`.
      * @type string
@@ -38,19 +27,19 @@ export type DeleteAlertDefinition200 = object;
 */
 export interface DeleteAlertDefinitionError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

@@ -4,19 +4,7 @@
 */
 
 
-export const putLinodeConfigPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PutLinodeConfigPathParamsApiVersionEnumKey = (typeof putLinodeConfigPathParamsApiVersionEnum)[keyof typeof putLinodeConfigPathParamsApiVersionEnum];
-
 export interface PutLinodeConfigPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PutLinodeConfigPathParamsApiVersionEnumKey;
     /**
      * @description The `id` of the Linode.
      * @type integer
@@ -66,183 +54,183 @@ export interface PutLinodeConfig200 {
      * @description Optional field for arbitrary user comments on this configuration.
      * @type string
     */
-    comments?: string | null;
+    comments: string | null;
     /**
      * @description A dictionary of device disks to use as a device map in a Linode\'s configuration profile.\n\n- An empty device disk dictionary or a dictionary with empty values for device slots is allowed.\n- If no devices are specified, booting from this configuration will hold until a device exists that allows the boot process to start.
-     * @type object | undefined
+     * @type object
     */
-    devices?: {
+    devices: {
         /**
          * @description Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
-         * @type object | undefined
+         * @type object
         */
-        sda?: {
+        sda: {
             /**
              * @description The Disk ID, or `null` if a Volume is assigned to this slot.
-             * @type integer | undefined
+             * @type integer
             */
-            disk_id?: number;
+            disk_id: number;
             /**
              * @description The Volume ID, or `null` if a Disk is assigned to this slot.
              * @type integer
             */
-            volume_id?: number | null;
+            volume_id: number | null;
         };
         /**
          * @description Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
-         * @type object | undefined
+         * @type object
         */
-        sdb?: {
+        sdb: {
             /**
              * @description The Disk ID, or `null` if a Volume is assigned to this slot.
-             * @type integer | undefined
+             * @type integer
             */
-            disk_id?: number;
+            disk_id: number;
             /**
              * @description The Volume ID, or `null` if a Disk is assigned to this slot.
              * @type integer
             */
-            volume_id?: number | null;
+            volume_id: number | null;
         };
         /**
          * @description Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
-         * @type object | undefined
+         * @type object
         */
-        sdc?: {
+        sdc: {
             /**
              * @description The Disk ID, or `null` if a Volume is assigned to this slot.
-             * @type integer | undefined
+             * @type integer
             */
-            disk_id?: number;
+            disk_id: number;
             /**
              * @description The Volume ID, or `null` if a Disk is assigned to this slot.
              * @type integer
             */
-            volume_id?: number | null;
+            volume_id: number | null;
         };
         /**
          * @description Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
-         * @type object | undefined
+         * @type object
         */
-        sdd?: {
+        sdd: {
             /**
              * @description The Disk ID, or `null` if a Volume is assigned to this slot.
-             * @type integer | undefined
+             * @type integer
             */
-            disk_id?: number;
+            disk_id: number;
             /**
              * @description The Volume ID, or `null` if a Disk is assigned to this slot.
              * @type integer
             */
-            volume_id?: number | null;
+            volume_id: number | null;
         };
         /**
          * @description Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
-         * @type object | undefined
+         * @type object
         */
-        sde?: {
+        sde: {
             /**
              * @description The Disk ID, or `null` if a Volume is assigned to this slot.
-             * @type integer | undefined
+             * @type integer
             */
-            disk_id?: number;
+            disk_id: number;
             /**
              * @description The Volume ID, or `null` if a Disk is assigned to this slot.
              * @type integer
             */
-            volume_id?: number | null;
+            volume_id: number | null;
         };
         /**
          * @description Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
-         * @type object | undefined
+         * @type object
         */
-        sdf?: {
+        sdf: {
             /**
              * @description The Disk ID, or `null` if a Volume is assigned to this slot.
-             * @type integer | undefined
+             * @type integer
             */
-            disk_id?: number;
+            disk_id: number;
             /**
              * @description The Volume ID, or `null` if a Disk is assigned to this slot.
              * @type integer
             */
-            volume_id?: number | null;
+            volume_id: number | null;
         };
         /**
          * @description Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
-         * @type object | undefined
+         * @type object
         */
-        sdg?: {
+        sdg: {
             /**
              * @description The Disk ID, or `null` if a Volume is assigned to this slot.
-             * @type integer | undefined
+             * @type integer
             */
-            disk_id?: number;
+            disk_id: number;
             /**
              * @description The Volume ID, or `null` if a Disk is assigned to this slot.
              * @type integer
             */
-            volume_id?: number | null;
+            volume_id: number | null;
         };
         /**
          * @description Device can be either a Disk or Volume identified by `disk_id` or `volume_id`. Only one type per slot allowed. Can be `null`. Devices mapped from _sde_ through _sdh_ are unavailable in `fullvirt` virt_mode.
-         * @type object | undefined
+         * @type object
         */
-        sdh?: {
+        sdh: {
             /**
              * @description The Disk ID, or `null` if a Volume is assigned to this slot.
-             * @type integer | undefined
+             * @type integer
             */
-            disk_id?: number;
+            disk_id: number;
             /**
              * @description The Volume ID, or `null` if a Disk is assigned to this slot.
              * @type integer
             */
-            volume_id?: number | null;
+            volume_id: number | null;
         };
     };
     /**
      * @description Helpers enabled when booting to this Linode configuration.
-     * @type object | undefined
+     * @type object
     */
-    helpers?: {
+    helpers: {
         /**
          * @description Populates the `/dev` directory early during boot without `udev`.  Defaults to `false`.
          * @default false
-         * @type boolean | undefined
+         * @type boolean
         */
-        devtmpfs_automount?: boolean;
+        devtmpfs_automount: boolean;
         /**
          * @description Helps maintain correct `inittab` or `upstart` console device.
-         * @type boolean | undefined
+         * @type boolean
         */
-        distro?: boolean;
+        distro: boolean;
         /**
          * @description Creates a modules dependency file for the kernel you run.
-         * @type boolean | undefined
+         * @type boolean
         */
-        modules_dep?: boolean;
+        modules_dep: boolean;
         /**
          * @description Set to `true` to automatically configure static networking. The `network` option applies only to legacy configuration profile interfaces and does not apply to [Linode interfaces](https://techdocs.akamai.com/linode-api/reference/post-linode-interface).
          * @type boolean
         */
-        network?: boolean | null;
+        network: boolean | null;
         /**
          * @description Set to `true` to disable the `updatedb` cron job to avoid disk thrashing.
-         * @type boolean | undefined
+         * @type boolean
         */
-        updatedb_disabled?: boolean;
+        updatedb_disabled: boolean;
     };
     /**
      * @description __Read-only__ The ID of this Config.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description `interfaces` is applicable only to legacy configuration profiles and does not apply to [Linode interfaces](https://techdocs.akamai.com/linode-api/reference/post-linode-interface).\n\nFrom one to three network interfaces to add to this Linode\'s configuration profile. The position in the array determines which of the Linode\'s network interfaces is configured:\n\n- First [0]:  `eth0`\n- Second [1]: `eth1`\n- Third [2]:  `eth2`\n\nWhen updating a Linode\'s legacy interfaces, _each interface must be redefined_. An empty `interfaces` array results in a default `public` type interface configuration only.\n\nIf no public Interface is configured, public IP addresses are still assigned to the Linode but will not be usable without manual configuration.\n\n> 📘\n>\n> Changes to Linode Interface configurations can be enabled by rebooting the Linode.\n\n`vpc` details\n\nSee the [VPC documentation](https://www.linode.com/docs/products/networking/vpc/#technical-specifications) guide for its specifications and limitations.\n\n`vlan` details\n\n- Only Next Generation Network (NGN) data centers support VLANs. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view the capabilities of data center regions. If a VLAN is attached to your Linode and you attempt to migrate or clone it to a non-NGN data center, the migration or cloning will not initiate. If a Linode cannot be migrated or cloned because of an incompatibility, you will be prompted to select a different data center or contact support.\n- See the [VLANs Overview](https://www.linode.com/docs/products/networking/vlans/#technical-specifications) guide to view additional specifications and limitations.
-     * @type array | undefined
+     * @type array
     */
-    interfaces?: {
+    interfaces: {
         /**
          * @description __Read-only__ Returns `true` if the interface is in use, meaning that the Linode has been booted using the configuration profile to which the interface belongs.
          * @type boolean | undefined
@@ -272,12 +260,12 @@ export interface PutLinodeConfig200 {
              * @description The 1:1 NAT IPv4 address, used to associate a public IPv4 address with the interface\'s VPC subnet IPv4 address.\n\n- Only supported for interfaces with a `purpose` of `vpc`.\n\n- Returned as `null` if no 1:1 NAT is set for a `vpc` type interface.\n\n- Returned as an empty string (`\"\"`) for non-`vpc` type interfaces.\n\nWhen included in a request:\n\n- You can set this to a specific, public IPv4 address that\'s available on the Linode. You can also use the `any` keyword to enable the Linode\'s assigned public IPv4 address.\n\n- A specified address can\'t be shared with another Linode.\n\n- Omit this object or include it and set it to `null` or an empty string (`\"\"`) to block creation of a 1:1 NAT.\n\n<<LB>>\n\n> 📘\n>\n> You can\'t set this to a specific IPv4 address when creating a new Linode. During the creation process, the network automatically establishes a public IPv4 address for the Linode. Since this address doesn\'t exist yet, you can\'t include a custom IPv4 address to change it. After your Linode is created, you can [update your configuration profile interface](https://www.linode.com/docs/api/linode-instances/#configuration-profile-interface-update) to change the `nat_1_1` address.
              * @type string
             */
-            nat_1_1?: (string | Ipv4Nat11Enum6Key) | null;
+            nat_1_1: (string | Ipv4Nat11Enum6Key) | null;
             /**
              * @description The VPC subnet IPv4 address for this interface.\n\n- This only applies to interfaces with a `purpose` of `vpc`.\n\n- Returned as an empty string (`\"\"`) for non-`vpc` type interfaces.\n\nWhen included in a request:\n\n- The `vpc` can\'t be assigned to an existing Linode as an address or in a range.\n\n- The target address can\'t be the first two or last two addresses in the subnet IPv4 range.\n\n- If omitted, a valid address within the Subnet IPv4 range is automatically assigned.
              * @type string, ip
             */
-            vpc?: string | null;
+            vpc: string | null;
         };
         /**
          * @description __Filterable__ The name of this interface.\n\nFor interfaces with a `purpose` of `vlan`:\n\n- Required.\n\n- This needs to be unique among a Linode\'s interfaces. A Linode can\'t be attached to the same VLAN multiple times.\n\n- This can only contain ASCII letters, numbers, and dashes (`-`). You can\'t use two consecutive dashes (`--`).\n\n- If the VLAN label is new, a VLAN is created. Up to 10 VLANs can be created in each data center `region`. To view your active VLANs, run the [List VLANs](https://techdocs.akamai.com/linode-api/reference/get-vlans) operation.\n\nFor interfaces with a `purpose` of `public`:\n\n- If you include this in a request, set it to an empty string (`\"\"`) or `null`.\n\n- Returned as `null` in a response.\n\nFor interfaces with a `purpose` of `vpc`:\n\n- If you include this in a request, set it to an empty string (`\"\"`) or `null`.\n\n- Returned as `null` in a response.
@@ -311,37 +299,37 @@ export interface PutLinodeConfig200 {
     /**
      * @description The ID of the kernel used to boot a Linode. Run the [List kernels](https://techdocs.akamai.com/linode-api/reference/get-kernels) operation to see all available kernels. Here are some commonly used kernels:\n\n- `linode/latest-64bit`. This is the default, our latest kernel at the time of an instance boot or reboot.\n\n- `linode/grub2`. The upstream distribution-supplied kernel that\'s installed on the primary disk, or a custom kernel if installed.\n\n- `linode/direct-disk`. The master boot record (MBR) of the primary disk or root device. Use this in place of a Linux kernel.
      * @default "linode/latest-64bit"
-     * @type string | undefined
+     * @type string
     */
-    kernel?: string;
+    kernel: string;
     /**
      * @description __Filterable__ The name of the configuration for display in Akamai Cloud Manager.
      * @minLength 1
      * @maxLength 48
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description Defaults to the total RAM of the Linode.
-     * @type integer | undefined
+     * @type integer
     */
-    memory_limit?: number;
+    memory_limit: number;
     /**
      * @description The root device to boot.\n\n> 📘\n\n- If you leave this empty or set an invalid value, the root device defaults to `/dev/sda`.\n\n- If you specify a device at the root device location and it\'s not mounted, the Linode won\'t boot until a device is mounted.
      * @pattern a-z, A-Z, 0-9, /, _, -
-     * @type string | undefined
+     * @type string
     */
-    root_device?: string;
+    root_device: string;
     /**
      * @description Defines the state of your Linode after booting. Defaults to `default`.
-     * @type string | undefined
+     * @type string
     */
-    run_level?: PutLinodeConfig200RunLevelEnumKey;
+    run_level: PutLinodeConfig200RunLevelEnumKey;
     /**
      * @description Controls the virtualization mode. Defaults to `paravirt`.\n\n- `paravirt` is suitable for most cases. Linodes running in `paravirt` mode share some qualities with the host, ultimately making it run faster since there is less transition between it and the host.\n\n- `fullvirt` affords more customization, but is slower because 100% of the VM is virtualized.
-     * @type string | undefined
+     * @type string
     */
-    virt_mode?: PutLinodeConfig200VirtModeEnumKey;
+    virt_mode: PutLinodeConfig200VirtModeEnumKey;
 }
 
 /**
@@ -349,19 +337,19 @@ export interface PutLinodeConfig200 {
 */
 export interface PutLinodeConfigError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

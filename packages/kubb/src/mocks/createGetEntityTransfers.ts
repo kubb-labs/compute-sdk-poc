@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetEntityTransfersPathParams, GetEntityTransfersQueryParams, GetEntityTransfers200, GetEntityTransfersError, GetEntityTransfersQueryResponse } from "../types/GetEntityTransfers.ts";
+import type { GetEntityTransfersQueryParams, GetEntityTransfers200, GetEntityTransfersError, GetEntityTransfersQueryResponse } from "../types/GetEntityTransfers.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetEntityTransfersPathParams(data?: Partial<GetEntityTransfersPathParams>): GetEntityTransfersPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetEntityTransfersPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetEntityTransfersQueryParams(data?: Partial<GetEntityTransfersQueryParams>): GetEntityTransfersQueryParams {
   

@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostFirewallsMutationRequest, PostFirewallsMutationResponse, PostFirewallsPathParams } from "../types/PostFirewalls.ts";
+import type { PostFirewallsMutationRequest, PostFirewallsMutationResponse } from "../types/PostFirewalls.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostFirewallsUrl(apiVersion: PostFirewallsPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/networking/firewalls` as const }  
+function getPostFirewallsUrl() {
+  const res = { method: 'POST', url: `/networking/firewalls` as const }  
   return res
 }
 
 /**
  * @description Creates a Firewall to filter network traffic.- Use `rules` to create inbound and outbound access rules. Rule versions increment from `1` whenever the firewall's `rules` change.- Use `devices` to assign a firewall to a service such as a Linode that is using legacy config profiles, a Linode interface or a NodeBalancer. The firewall’s rules are then applied to that service. Requires a `read_write` [user grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants) to the device.  - For Linodes using Linode interfaces, firewalls need to be assigned to `interfaces` and not the `linodes`. Firewall templates are available for both VPC Linode interfaces and public Linode interfaces, and come with pre-configured protection rules.  - For Linodes using legacy configuration profiles, firewalls are applied through the Linode. Public and VPC interfaces are subject to the firewall rules, while VLAN interfaces are not.- Currently, firewalls can be assigned to Linodes with legacy configuration profiles, Linode interfaces, and NodeBalancers.    - The same firewall can be assigned to multiple services at a time.- Use `firewall_id` to assign a firewall when [creating a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance) or when [adding a Linode interface](https://techdocs.akamai.com/linode-api/reference/post-linode-interface).- A service can have one assigned firewall enabled at a time.- Assigned Linodes must not have any ongoing live migrations.- A `firewall_create` event is generated when this operation succeeds.<<LB>>---- __CLI__.    ```    linode-cli firewalls create \  --label example-firewall \  --rules.outbound_policy ACCEPT \  --rules.inbound_policy DROP \  --rules.inbound '[{"protocol": "TCP", "ports": "22, 80, 8080, 443", "addresses": {"ipv4": ["192.0.2.0/24", "198.51.100.2/32"], "ipv6": ["2001:DB8::/128"]}, "action": "ACCEPT"}]' \  --rules.outbound '[{"protocol": "TCP", "ports": "49152-65535", "addresses": {"ipv4": ["192.0.2.0/24", "198.51.100.2/32"],"ipv6": ["2001:DB8::/128"]}, "action": "DROP", "label": "outbound-rule123", "description": "An example outbound rule description."}]'    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    firewall:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a firewall
- * {@link /:apiVersion/networking/firewalls}
+ * {@link /networking/firewalls}
  */
-export async function postFirewalls(apiVersion: PostFirewallsPathParams["apiVersion"], data: PostFirewallsMutationRequest, config: Partial<RequestConfig<PostFirewallsMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postFirewalls(data: PostFirewallsMutationRequest, config: Partial<RequestConfig<PostFirewallsMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostFirewallsMutationResponse, ResponseErrorConfig<Error>, PostFirewallsMutationRequest>({ method : "POST", url : getPostFirewallsUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostFirewallsMutationResponse, ResponseErrorConfig<Error>, PostFirewallsMutationRequest>({ method : "POST", url : getPostFirewallsUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

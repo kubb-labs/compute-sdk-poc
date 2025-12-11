@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetProfileAppQueryResponse, GetProfileAppPathParams } from "../types/GetProfileApp.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetProfileAppUrl(apiVersion: GetProfileAppPathParams["apiVersion"], appId: GetProfileAppPathParams["appId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/apps/${appId}` as const }  
+function getGetProfileAppUrl(appId: GetProfileAppPathParams["appId"]) {
+  const res = { method: 'GET', url: `/profile/apps/${appId}` as const }  
   return res
 }
 
 /**
  * @description Returns information about a single app you've authorized to access your account.<<LB>>---- __CLI__.    ```    linode-cli profile app-view 1234    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an authorized app
- * {@link /:apiVersion/profile/apps/:appId}
+ * {@link /profile/apps/:appId}
  */
-export async function getProfileApp(apiVersion: GetProfileAppPathParams["apiVersion"], appId: GetProfileAppPathParams["appId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getProfileApp(appId: GetProfileAppPathParams["appId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetProfileAppQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetProfileAppUrl(apiVersion, appId).url.toString(), ... requestConfig })  
+  const res = await request<GetProfileAppQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetProfileAppUrl(appId).url.toString(), ... requestConfig })  
   return res.data
 }

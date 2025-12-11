@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetClientsPathParams, GetClientsQueryParams, GetClients200, GetClientsError, GetClientsQueryResponse } from "../types/GetClients.ts";
+import type { GetClientsQueryParams, GetClients200, GetClientsError, GetClientsQueryResponse } from "../types/GetClients.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetClientsPathParams(data?: Partial<GetClientsPathParams>): GetClientsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetClientsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetClientsQueryParams(data?: Partial<GetClientsQueryParams>): GetClientsQueryParams {
   

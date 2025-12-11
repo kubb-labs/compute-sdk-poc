@@ -4,19 +4,7 @@
 */
 
 
-export const putObjectStorageKeyPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PutObjectStorageKeyPathParamsApiVersionEnumKey = (typeof putObjectStorageKeyPathParamsApiVersionEnum)[keyof typeof putObjectStorageKeyPathParamsApiVersionEnum];
-
 export interface PutObjectStorageKeyPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PutObjectStorageKeyPathParamsApiVersionEnumKey;
     /**
      * @description The key to look up.
      * @type integer
@@ -39,50 +27,50 @@ export type RegionsEndpointTypeEnum4Key = (typeof regionsEndpointTypeEnum4)[keyo
 export interface PutObjectStorageKey200 {
     /**
      * @description A unique string chosen by the API to identify this key. Used as a username to identify this key when making requests to an S3 API, such as the Amazon S3 API or Ceph Object Gateway S3 API.
-     * @type string | undefined
+     * @type string
     */
-    access_key?: string;
+    access_key: string;
     /**
      * @description This Object Storage key\'s unique numeric identifier.
-     * @type integer | undefined
+     * @type integer
     */
-    id?: number;
+    id: number;
     /**
      * @description The label given to this key. For display purposes only.
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description Whether this Object Storage key limits access to specific buckets and permissions. Returns `false` if this key grants full access.\n\n> 📘\n>\n> The `bucket_access` array that contains limited Object Storage key settings doesn\'t appear in this response. Store this key\'s `id` from the response and run [Get an Object Storage key](https://techdocs.akamai.com/linode-api/reference/get-object-storage-key) to view these settings.
-     * @type boolean | undefined
+     * @type boolean
     */
-    limited?: boolean;
+    limited: boolean;
     /**
      * @description The key can be used in these regions to list buckets and create new ones, but it can\'t be used to manage content in the newly created buckets. See [Create an unlimited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.
-     * @type array | undefined
+     * @type array
     */
-    regions?: {
+    regions: {
         /**
          * @description The type of `s3_endpoint` available to the active `user` in this `region`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information.
-         * @type string | undefined
+         * @type string
         */
-        endpoint_type?: RegionsEndpointTypeEnum4Key;
+        endpoint_type: RegionsEndpointTypeEnum4Key;
         /**
          * @description Identifies each region where you can use the Object Storage key.
-         * @type string | undefined
+         * @type string
         */
-        id?: string;
+        id: string;
         /**
          * @description The S3-compatible hostname you can use to access your Object Storage buckets in this region.
-         * @type string | undefined
+         * @type string
         */
-        s3_endpoint?: string;
+        s3_endpoint: string;
     }[];
     /**
      * @description This Object Storage key\'s secret key. Used as a password to validate this key when making requests to an S3 API, such as the Amazon S3 API or Ceph Object Gateway S3 API.\n\n> 📘\n>\n> This value is listed as `[REDACTED]` for this operation, to protect it. It\'s only revealed in a response after [creating](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) a key.
-     * @type string | undefined
+     * @type string
     */
-    secret_key?: string;
+    secret_key: string;
 }
 
 /**
@@ -90,19 +78,19 @@ export interface PutObjectStorageKey200 {
 */
 export interface PutObjectStorageKeyError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

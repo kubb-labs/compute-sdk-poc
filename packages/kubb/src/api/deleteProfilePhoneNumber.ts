@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { DeleteProfilePhoneNumberMutationResponse, DeleteProfilePhoneNumberPathParams } from "../types/DeleteProfilePhoneNumber.ts";
+import type { DeleteProfilePhoneNumberMutationResponse } from "../types/DeleteProfilePhoneNumber.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteProfilePhoneNumberUrl(apiVersion: DeleteProfilePhoneNumberPathParams["apiVersion"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/profile/phone-number` as const }  
+function getDeleteProfilePhoneNumberUrl() {
+  const res = { method: 'DELETE', url: `/profile/phone-number` as const }  
   return res
 }
 
 /**
  * @description Delete the verified phone number for the User making this request.Use this operation to opt out of SMS messages for the requesting User after a phone number has been verified with the [Verify a phone number](https://techdocs.akamai.com/linode-api/reference/post-profile-phone-number-verify) operation.<<LB>>---- __CLI__.    ```    linode-cli phone delete    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a phone number
- * {@link /:apiVersion/profile/phone-number}
+ * {@link /profile/phone-number}
  */
-export async function deleteProfilePhoneNumber(apiVersion: DeleteProfilePhoneNumberPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteProfilePhoneNumber(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteProfilePhoneNumberMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteProfilePhoneNumberUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<DeleteProfilePhoneNumberMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteProfilePhoneNumberUrl().url.toString(), ... requestConfig })  
   return res.data
 }

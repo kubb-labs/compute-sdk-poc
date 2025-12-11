@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostNodeBalancerMutationRequest, PostNodeBalancerMutationResponse, PostNodeBalancerPathParams } from "../types/PostNodeBalancer.ts";
+import type { PostNodeBalancerMutationRequest, PostNodeBalancerMutationResponse } from "../types/PostNodeBalancer.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostNodeBalancerUrl(apiVersion: PostNodeBalancerPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/nodebalancers` as const }  
+function getPostNodeBalancerUrl() {
+  const res = { method: 'POST', url: `/nodebalancers` as const }  
   return res
 }
 
 /**
  * @description Creates a NodeBalancer in the requested Region. Only available in [regions](https://techdocs.akamai.com/linode-api/reference/get-regions) with "NodeBalancers" in their `capabilities`.NodeBalancers require a port config with at least one backend node to start serving requests.When using the Linode CLI to create a NodeBalancer, first create a NodeBalancer without any configs. Then, create configs and nodes for that NodeBalancer with the respective [Create a config](https://techdocs.akamai.com/linode-api/reference/post-node-balancer-config) and [Create a node](https://techdocs.akamai.com/linode-api/reference/post-node-balancer-node) operations.<<LB>>---- __CLI__.    ```    linode-cli nodebalancers create \  --region us-east \  --label balancer12345 \  --client_conn_throttle 0    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    nodebalancers:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a NodeBalancer
- * {@link /:apiVersion/nodebalancers}
+ * {@link /nodebalancers}
  */
-export async function postNodeBalancer(apiVersion: PostNodeBalancerPathParams["apiVersion"], data: PostNodeBalancerMutationRequest, config: Partial<RequestConfig<PostNodeBalancerMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postNodeBalancer(data: PostNodeBalancerMutationRequest, config: Partial<RequestConfig<PostNodeBalancerMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostNodeBalancerMutationResponse, ResponseErrorConfig<Error>, PostNodeBalancerMutationRequest>({ method : "POST", url : getPostNodeBalancerUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostNodeBalancerMutationResponse, ResponseErrorConfig<Error>, PostNodeBalancerMutationRequest>({ method : "POST", url : getPostNodeBalancerUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

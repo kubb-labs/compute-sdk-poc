@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetDatabasesMysqlInstanceCredentialsQueryResponse, GetDatabasesMysqlInstanceCredentialsPathParams } from "../types/GetDatabasesMysqlInstanceCredentials.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDatabasesMysqlInstanceCredentialsUrl(apiVersion: GetDatabasesMysqlInstanceCredentialsPathParams["apiVersion"], instanceId: GetDatabasesMysqlInstanceCredentialsPathParams["instanceId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/databases/mysql/instances/${instanceId}/credentials` as const }  
+function getGetDatabasesMysqlInstanceCredentialsUrl(instanceId: GetDatabasesMysqlInstanceCredentialsPathParams["instanceId"]) {
+  const res = { method: 'GET', url: `/databases/mysql/instances/${instanceId}/credentials` as const }  
   return res
 }
 
 /**
  * @description Display the root username and password for an accessible MySQL Managed Database. The database's status needs to be `active`.<<LB>>---- __CLI__.    ```    linode-cli databases mysql-creds-view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    databases:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get MySQL Managed Database credentials
- * {@link /:apiVersion/databases/mysql/instances/:instanceId/credentials}
+ * {@link /databases/mysql/instances/:instanceId/credentials}
  */
-export async function getDatabasesMysqlInstanceCredentials(apiVersion: GetDatabasesMysqlInstanceCredentialsPathParams["apiVersion"], instanceId: GetDatabasesMysqlInstanceCredentialsPathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDatabasesMysqlInstanceCredentials(instanceId: GetDatabasesMysqlInstanceCredentialsPathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDatabasesMysqlInstanceCredentialsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesMysqlInstanceCredentialsUrl(apiVersion, instanceId).url.toString(), ... requestConfig })  
+  const res = await request<GetDatabasesMysqlInstanceCredentialsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesMysqlInstanceCredentialsUrl(instanceId).url.toString(), ... requestConfig })  
   return res.data
 }

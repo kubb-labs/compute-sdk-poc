@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetNodeBalancerStatsQueryResponse, GetNodeBalancerStatsPathParams } from "../types/GetNodeBalancerStats.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetNodeBalancerStatsUrl(apiVersion: GetNodeBalancerStatsPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerStatsPathParams["nodeBalancerId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/nodebalancers/${nodeBalancerId}/stats` as const }  
+function getGetNodeBalancerStatsUrl(nodeBalancerId: GetNodeBalancerStatsPathParams["nodeBalancerId"]) {
+  const res = { method: 'GET', url: `/nodebalancers/${nodeBalancerId}/stats` as const }  
   return res
 }
 
 /**
  * @description Returns detailed statistics about the requested NodeBalancer.<<LB>>---- __OAuth scopes__.    ```    nodebalancers:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get NodeBalancer statistics
- * {@link /:apiVersion/nodebalancers/:nodeBalancerId/stats}
+ * {@link /nodebalancers/:nodeBalancerId/stats}
  */
-export async function getNodeBalancerStats(apiVersion: GetNodeBalancerStatsPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerStatsPathParams["nodeBalancerId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getNodeBalancerStats(nodeBalancerId: GetNodeBalancerStatsPathParams["nodeBalancerId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetNodeBalancerStatsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerStatsUrl(apiVersion, nodeBalancerId).url.toString(), ... requestConfig })  
+  const res = await request<GetNodeBalancerStatsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerStatsUrl(nodeBalancerId).url.toString(), ... requestConfig })  
   return res.data
 }

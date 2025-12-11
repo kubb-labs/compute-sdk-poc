@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetLinodeIpPathParams(data?: Partial<GetLinodeIpPathParams>): GetLinodeIpPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLinodeIpPathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int(),"address": faker.string.alpha()},
+  ...{"linodeId": faker.number.int(),"address": faker.string.alpha()},
   ...data || {}
   }
 }

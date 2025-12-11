@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostCloseTicketMutationResponse, PostCloseTicketPathParams } from "../types/PostCloseTicket.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostCloseTicketUrl(apiVersion: PostCloseTicketPathParams["apiVersion"], ticketId: PostCloseTicketPathParams["ticketId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/support/tickets/${ticketId}/close` as const }  
+function getPostCloseTicketUrl(ticketId: PostCloseTicketPathParams["ticketId"]) {
+  const res = { method: 'POST', url: `/support/tickets/${ticketId}/close` as const }  
   return res
 }
 
 /**
  * @description Closes a support ticket you have access to modify.<<LB>>---- __CLI__.    ```    linode-cli tickets close 11223344    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Close a support ticket
- * {@link /:apiVersion/support/tickets/:ticketId/close}
+ * {@link /support/tickets/:ticketId/close}
  */
-export async function postCloseTicket(apiVersion: PostCloseTicketPathParams["apiVersion"], ticketId: PostCloseTicketPathParams["ticketId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postCloseTicket(ticketId: PostCloseTicketPathParams["ticketId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostCloseTicketMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostCloseTicketUrl(apiVersion, ticketId).url.toString(), ... requestConfig })  
+  const res = await request<PostCloseTicketMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostCloseTicketUrl(ticketId).url.toString(), ... requestConfig })  
   return res.data
 }

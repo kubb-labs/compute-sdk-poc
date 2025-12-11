@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostEnableManagedServiceMutationResponse, PostEnableManagedServicePathParams } from "../types/PostEnableManagedService.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostEnableManagedServiceUrl(apiVersion: PostEnableManagedServicePathParams["apiVersion"], serviceId: PostEnableManagedServicePathParams["serviceId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/managed/services/${serviceId}/enable` as const }  
+function getPostEnableManagedServiceUrl(serviceId: PostEnableManagedServicePathParams["serviceId"]) {
+  const res = { method: 'POST', url: `/managed/services/${serviceId}/enable` as const }  
   return res
 }
 
 /**
  * @description Enables monitoring of a service on a managed Linode.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed service-enable 9994    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Enable a managed service monitor
- * {@link /:apiVersion/managed/services/:serviceId/enable}
+ * {@link /managed/services/:serviceId/enable}
  */
-export async function postEnableManagedService(apiVersion: PostEnableManagedServicePathParams["apiVersion"], serviceId: PostEnableManagedServicePathParams["serviceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postEnableManagedService(serviceId: PostEnableManagedServicePathParams["serviceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostEnableManagedServiceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostEnableManagedServiceUrl(apiVersion, serviceId).url.toString(), ... requestConfig })  
+  const res = await request<PostEnableManagedServiceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostEnableManagedServiceUrl(serviceId).url.toString(), ... requestConfig })  
   return res.data
 }

@@ -5,10 +5,6 @@
 
 import { z } from "zod/v4";
 
-export const getDatabasesTypesPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 export const getDatabasesTypesQueryParamsSchema = z.object({
     "page": z.coerce.number().int().min(1).default(1).describe("The page of a collection to return."),
 "page_size": z.coerce.number().int().min(25).max(500).default(100).describe("The number of items to return per page.")
@@ -18,43 +14,43 @@ export const getDatabasesTypesQueryParamsSchema = z.object({
  * @description Returns a paginated list of all Managed Databases types.
  */
 export const getDatabasesTypes200Schema = z.object({
-    "page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results.")),
-"data": z.optional(z.array(z.object({
-    "class": z.optional(z.enum(["dedicated", "shared", "premium"]).describe("The Linode class category. This can be [dedicated](https://techdocs.akamai.com/cloud-computing/docs/dedicated-cpu-compute-instances), [shared](https://techdocs.akamai.com/cloud-computing/docs/shared-cpu-compute-instances), or [premium](https://techdocs.akamai.com/cloud-computing/docs/premium-compute-instances).\n\n> 📘\n>\n> Premium plan Linodes are available in limited regions.")),
-"disk": z.optional(z.int().describe("The amount of disk space set aside for Databases of this plan type. The value is represented in megabytes.")),
-"engines": z.optional(z.object({
-    "mysql": z.optional(z.array(z.object({
-    "price": z.optional(z.object({
-    "hourly": z.optional(z.number().describe("Cost (in US dollars) per hour for this subscription tier.")),
-"monthly": z.optional(z.number().describe("Maximum cost (in US dollars) per month for this subscription tier."))
-    }).describe("Cost in US dollars, broken down into hourly and monthly charges.")),
-"quantity": z.optional(z.union([z.literal(1), z.literal(2), z.literal(3)]).describe("The number of nodes for the Managed Database cluster for this subscription tier."))
-    })).describe("Pricing details for MySQL Managed Databases.")),
-"postgresql": z.optional(z.array(z.object({
-    "price": z.optional(z.object({
-    "hourly": z.optional(z.number().describe("Cost (in US dollars) per hour for this subscription tier.")),
-"monthly": z.optional(z.number().describe("Maximum cost (in US dollars) per month for this subscription tier."))
-    }).describe("Cost in US dollars, broken down into hourly and monthly charges.")),
-"quantity": z.optional(z.union([z.literal(1), z.literal(2), z.literal(3)]).describe("The number of nodes for the Managed Database cluster for this subscription tier."))
-    })).describe("Pricing details for PostgreSQL Managed Databases."))
-    }).describe("Information for the supported third-party databases that can be used with Managed Databases.")),
-"id": z.optional(z.string().describe("__Read-only__ The ID representing the Managed Database node plan type.")),
-"label": z.optional(z.string().describe("__Read-only__ A human-readable string that describes each plan type. For display purposes only.")),
-"memory": z.optional(z.int().describe("The amount of RAM allocated to Database created of this plan type. The value is represented in megabytes.")),
-"vcpus": z.optional(z.int().describe("The number of CPUs allocated to databases of this plan type."))
-    }).describe("Managed Database plan type object.")))
+    "page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results."),
+"data": z.array(z.object({
+    "class": z.enum(["dedicated", "shared", "premium"]).describe("The Linode class category. This can be [dedicated](https://techdocs.akamai.com/cloud-computing/docs/dedicated-cpu-compute-instances), [shared](https://techdocs.akamai.com/cloud-computing/docs/shared-cpu-compute-instances), or [premium](https://techdocs.akamai.com/cloud-computing/docs/premium-compute-instances).\n\n> 📘\n>\n> Premium plan Linodes are available in limited regions."),
+"disk": z.int().describe("The amount of disk space set aside for Databases of this plan type. The value is represented in megabytes."),
+"engines": z.object({
+    "mysql": z.array(z.object({
+    "price": z.object({
+    "hourly": z.number().describe("Cost (in US dollars) per hour for this subscription tier."),
+"monthly": z.number().describe("Maximum cost (in US dollars) per month for this subscription tier.")
+    }).describe("Cost in US dollars, broken down into hourly and monthly charges."),
+"quantity": z.union([z.literal(1), z.literal(2), z.literal(3)]).describe("The number of nodes for the Managed Database cluster for this subscription tier.")
+    })).describe("Pricing details for MySQL Managed Databases."),
+"postgresql": z.array(z.object({
+    "price": z.object({
+    "hourly": z.number().describe("Cost (in US dollars) per hour for this subscription tier."),
+"monthly": z.number().describe("Maximum cost (in US dollars) per month for this subscription tier.")
+    }).describe("Cost in US dollars, broken down into hourly and monthly charges."),
+"quantity": z.union([z.literal(1), z.literal(2), z.literal(3)]).describe("The number of nodes for the Managed Database cluster for this subscription tier.")
+    })).describe("Pricing details for PostgreSQL Managed Databases.")
+    }).describe("Information for the supported third-party databases that can be used with Managed Databases."),
+"id": z.string().describe("__Read-only__ The ID representing the Managed Database node plan type."),
+"label": z.string().describe("__Read-only__ A human-readable string that describes each plan type. For display purposes only."),
+"memory": z.int().describe("The amount of RAM allocated to Database created of this plan type. The value is represented in megabytes."),
+"vcpus": z.int().describe("The number of CPUs allocated to databases of this plan type.")
+    }).describe("Managed Database plan type object."))
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getDatabasesTypesErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getDatabasesTypesQueryResponseSchema = z.lazy(() => getDatabasesTypes200Schema)

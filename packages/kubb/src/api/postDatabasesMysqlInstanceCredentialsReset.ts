@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostDatabasesMysqlInstanceCredentialsResetMutationResponse, PostDatabasesMysqlInstanceCredentialsResetPathParams } from "../types/PostDatabasesMysqlInstanceCredentialsReset.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostDatabasesMysqlInstanceCredentialsResetUrl(apiVersion: PostDatabasesMysqlInstanceCredentialsResetPathParams["apiVersion"], instanceId: PostDatabasesMysqlInstanceCredentialsResetPathParams["instanceId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/databases/mysql/instances/${instanceId}/credentials/reset` as const }  
+function getPostDatabasesMysqlInstanceCredentialsResetUrl(instanceId: PostDatabasesMysqlInstanceCredentialsResetPathParams["instanceId"]) {
+  const res = { method: 'POST', url: `/databases/mysql/instances/${instanceId}/credentials/reset` as const }  
   return res
 }
 
 /**
  * @description Reset the root password for a MySQL Managed Database. A new root password is randomly generated and accessible with the [Get MySQL Managed Database credentials](https://techdocs.akamai.com/linode-api/reference/get-databases-mysql-instance-credentials) operation.- The database's status needs to be `active`.- Only unrestricted users can access this operation. These users have access regardless of the acting token's OAuth scopes.- It may take several seconds for credentials to reset.<<LB>>---- __CLI__.    ```    linode-cli databases mysql-creds-reset 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    databases:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Reset MySQL Managed Database credentials
- * {@link /:apiVersion/databases/mysql/instances/:instanceId/credentials/reset}
+ * {@link /databases/mysql/instances/:instanceId/credentials/reset}
  */
-export async function postDatabasesMysqlInstanceCredentialsReset(apiVersion: PostDatabasesMysqlInstanceCredentialsResetPathParams["apiVersion"], instanceId: PostDatabasesMysqlInstanceCredentialsResetPathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postDatabasesMysqlInstanceCredentialsReset(instanceId: PostDatabasesMysqlInstanceCredentialsResetPathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostDatabasesMysqlInstanceCredentialsResetMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostDatabasesMysqlInstanceCredentialsResetUrl(apiVersion, instanceId).url.toString(), ... requestConfig })  
+  const res = await request<PostDatabasesMysqlInstanceCredentialsResetMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostDatabasesMysqlInstanceCredentialsResetUrl(instanceId).url.toString(), ... requestConfig })  
   return res.data
 }

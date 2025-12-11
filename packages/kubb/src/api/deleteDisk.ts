@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteDiskMutationResponse, DeleteDiskPathParams } from "../types/DeleteDisk.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteDiskUrl(apiVersion: DeleteDiskPathParams["apiVersion"], linodeId: DeleteDiskPathParams["linodeId"], diskId: DeleteDiskPathParams["diskId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/linode/instances/${linodeId}/disks/${diskId}` as const }  
+function getDeleteDiskUrl(linodeId: DeleteDiskPathParams["linodeId"], diskId: DeleteDiskPathParams["diskId"]) {
+  const res = { method: 'DELETE', url: `/linode/instances/${linodeId}/disks/${diskId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a Disk you have permission to `read_write`.__Deleting a Disk is a destructive action and cannot be undone.__<<LB>>---- __CLI__.    ```    linode-cli linodes disk-delete 123 24674    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a disk
- * {@link /:apiVersion/linode/instances/:linodeId/disks/:diskId}
+ * {@link /linode/instances/:linodeId/disks/:diskId}
  */
-export async function deleteDisk(apiVersion: DeleteDiskPathParams["apiVersion"], linodeId: DeleteDiskPathParams["linodeId"], diskId: DeleteDiskPathParams["diskId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteDisk(linodeId: DeleteDiskPathParams["linodeId"], diskId: DeleteDiskPathParams["diskId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteDiskMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteDiskUrl(apiVersion, linodeId, diskId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteDiskMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteDiskUrl(linodeId, diskId).url.toString(), ... requestConfig })  
   return res.data
 }

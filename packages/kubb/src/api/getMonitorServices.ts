@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetMonitorServicesQueryResponse, GetMonitorServicesPathParams } from "../types/GetMonitorServices.ts";
+import type { GetMonitorServicesQueryResponse } from "../types/GetMonitorServices.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetMonitorServicesUrl(apiVersion: GetMonitorServicesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/monitor/services` as const }  
+function getGetMonitorServicesUrl() {
+  const res = { method: 'GET', url: `/monitor/services` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns a paginated list of all current supported service types.> 📘>> This operation is beta. Call it using the `v4beta` path in its URL.<<LB>>---- __CLI__.    ```    linode-cli monitor service-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    monitor:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List supported service types
- * {@link /:apiVersion/monitor/services}
+ * {@link /monitor/services}
  */
-export async function getMonitorServices(apiVersion: GetMonitorServicesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getMonitorServices(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetMonitorServicesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetMonitorServicesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetMonitorServicesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetMonitorServicesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PutAccountSettingsMutationRequest, PutAccountSettingsMutationResponse, PutAccountSettingsPathParams } from "../types/PutAccountSettings.ts";
+import type { PutAccountSettingsMutationRequest, PutAccountSettingsMutationResponse } from "../types/PutAccountSettings.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutAccountSettingsUrl(apiVersion: PutAccountSettingsPathParams["apiVersion"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/account/settings` as const }  
+function getPutAccountSettingsUrl() {
+  const res = { method: 'PUT', url: `/account/settings` as const }  
   return res
 }
 
 /**
  * @description Updates your account settings. For a Longview subscription plan, see [Update a Longview plan](https://techdocs.akamai.com/linode-api/reference/put-longview-plan).<<LB>>---- __CLI__.    ```    linode-cli account settings-update \  --network_helper false    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update account settings
- * {@link /:apiVersion/account/settings}
+ * {@link /account/settings}
  */
-export async function putAccountSettings(apiVersion: PutAccountSettingsPathParams["apiVersion"], data?: PutAccountSettingsMutationRequest, config: Partial<RequestConfig<PutAccountSettingsMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putAccountSettings(data?: PutAccountSettingsMutationRequest, config: Partial<RequestConfig<PutAccountSettingsMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutAccountSettingsMutationResponse, ResponseErrorConfig<Error>, PutAccountSettingsMutationRequest>({ method : "PUT", url : getPutAccountSettingsUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutAccountSettingsMutationResponse, ResponseErrorConfig<Error>, PutAccountSettingsMutationRequest>({ method : "PUT", url : getPutAccountSettingsUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

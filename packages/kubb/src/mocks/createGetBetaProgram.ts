@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetBetaProgramPathParams(data?: Partial<GetBetaProgramPathParams>): GetBetaProgramPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetBetaProgramPathParams>["apiVersion"]>(["v4", "v4beta"]),"betaId": faker.string.alpha()},
+  ...{"betaId": faker.string.alpha()},
   ...data || {}
   }
 }

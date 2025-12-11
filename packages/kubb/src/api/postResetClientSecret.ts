@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostResetClientSecretMutationResponse, PostResetClientSecretPathParams } from "../types/PostResetClientSecret.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostResetClientSecretUrl(apiVersion: PostResetClientSecretPathParams["apiVersion"], clientId: PostResetClientSecretPathParams["clientId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/oauth-clients/${clientId}/reset-secret` as const }  
+function getPostResetClientSecretUrl(clientId: PostResetClientSecretPathParams["clientId"]) {
+  const res = { method: 'POST', url: `/account/oauth-clients/${clientId}/reset-secret` as const }  
   return res
 }
 
 /**
  * @description Resets the OAuth Client secret for a client you own, and returns the OAuth Client with the plaintext secret. This secret is not supposed to be publicly known or disclosed anywhere. This can be used to generate a new secret in case the one you have has been leaked, or to get a new secret if you lost the original. The old secret is expired immediately, and logins to your client with the old secret will fail.<<LB>>---- __CLI__.    ```    linode-cli account client-reset-secret \  edc6790ea9db4d224c5c    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Reset an OAuth client secret
- * {@link /:apiVersion/account/oauth-clients/:clientId/reset-secret}
+ * {@link /account/oauth-clients/:clientId/reset-secret}
  */
-export async function postResetClientSecret(apiVersion: PostResetClientSecretPathParams["apiVersion"], clientId: PostResetClientSecretPathParams["clientId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postResetClientSecret(clientId: PostResetClientSecretPathParams["clientId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostResetClientSecretMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostResetClientSecretUrl(apiVersion, clientId).url.toString(), ... requestConfig })  
+  const res = await request<PostResetClientSecretMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostResetClientSecretUrl(clientId).url.toString(), ... requestConfig })  
   return res.data
 }

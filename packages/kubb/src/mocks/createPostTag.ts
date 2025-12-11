@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostTagPathParams, PostTag200, PostTagError, PostTagMutationRequest, PostTagMutationResponse } from "../types/PostTag.ts";
+import type { PostTag200, PostTagError, PostTagMutationRequest, PostTagMutationResponse } from "../types/PostTag.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostTagPathParams(data?: Partial<PostTagPathParams>): PostTagPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostTagPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description The new tag.

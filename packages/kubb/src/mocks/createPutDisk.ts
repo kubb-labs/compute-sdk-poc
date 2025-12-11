@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutDiskPathParams(data?: Partial<PutDiskPathParams>): PutDiskPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutDiskPathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int(),"diskId": faker.number.int()},
+  ...{"linodeId": faker.number.int(),"diskId": faker.number.int()},
   ...data || {}
   }
 }

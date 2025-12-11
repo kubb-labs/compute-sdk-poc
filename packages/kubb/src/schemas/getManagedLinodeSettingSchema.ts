@@ -6,33 +6,32 @@
 import { z } from "zod/v4";
 
 export const getManagedLinodeSettingPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"linodeId": z.coerce.number().int().describe("The Linode ID whose settings we are accessing.")
+    "linodeId": z.coerce.number().int().describe("The Linode ID whose settings we are accessing.")
     })
 
 /**
  * @description The requested Linode\'s Managed settings.
  */
 export const getManagedLinodeSetting200Schema = z.object({
-    "group": z.optional(z.string().describe("__Read-only__ The group of the Linode these Settings are for. This is for display purposes only.")),
-"id": z.optional(z.int().describe("__Read-only__ The ID of the Linode these Settings are for.")),
-"label": z.optional(z.string().describe("__Read-only__ The label of the Linode these Settings are for.")),
-"ssh": z.optional(z.object({
-    "access": z.optional(z.boolean().default(true).describe("If `true`, Linode special forces may access this Linode over ssh to respond to Issues.")),
-"ip": z.optional(z.string().default("any").describe("The IP Linode special forces should use to access this Linode when responding to an Issue.\n\nBy default, any of a Linode's IP addresses can be used for incident response access.")),
-"port": z.int().min(1).max(65535).describe("The port Linode special forces should use to access this Linode over ssh to respond to an Issue.\n\nThe default `null` value corresponds to port 22.").nullish(),
-"user": z.string().min(0).max(32).describe("The specific user, if any, Linode's special forces should use when accessing this Linode to respond to an issue.\n\nThe default `null` value corresponds to the root user.").nullish()
-    }).describe("The SSH settings for this Linode."))
+    "group": z.string().describe("__Read-only__ The group of the Linode these Settings are for. This is for display purposes only."),
+"id": z.int().describe("__Read-only__ The ID of the Linode these Settings are for."),
+"label": z.string().describe("__Read-only__ The label of the Linode these Settings are for."),
+"ssh": z.object({
+    "access": z.boolean().default(true).describe("If `true`, Linode special forces may access this Linode over ssh to respond to Issues."),
+"ip": z.string().default("any").describe("The IP Linode special forces should use to access this Linode when responding to an Issue.\n\nBy default, any of a Linode's IP addresses can be used for incident response access."),
+"port": z.nullable(z.int().min(1).max(65535).describe("The port Linode special forces should use to access this Linode over ssh to respond to an Issue.\n\nThe default `null` value corresponds to port 22.")),
+"user": z.nullable(z.string().min(0).max(32).describe("The specific user, if any, Linode's special forces should use when accessing this Linode to respond to an issue.\n\nThe default `null` value corresponds to the root user."))
+    }).describe("The SSH settings for this Linode.")
     }).describe("Settings for a specific Linode related to Managed Services. There is one ManagedLinodeSettings object for each Linode on your Account.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getManagedLinodeSettingErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getManagedLinodeSettingQueryResponseSchema = z.lazy(() => getManagedLinodeSetting200Schema)

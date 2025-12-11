@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutLinodeIpMutationRequest, PutLinodeIpMutationResponse, PutLinodeIpPathParams } from "../types/PutLinodeIp.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutLinodeIpUrl(apiVersion: PutLinodeIpPathParams["apiVersion"], linodeId: PutLinodeIpPathParams["linodeId"], address: PutLinodeIpPathParams["address"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/linode/instances/${linodeId}/ips/${address}` as const }  
+function getPutLinodeIpUrl(linodeId: PutLinodeIpPathParams["linodeId"], address: PutLinodeIpPathParams["address"]) {
+  const res = { method: 'PUT', url: `/linode/instances/${linodeId}/ips/${address}` as const }  
   return res
 }
 
 /**
  * @description Updates the reverse DNS (RDNS) for a Linode's IP Address. This may be done for both IPv4 and IPv6 addresses.Setting the RDNS to `null` for a public IPv4 address, resets it to the default `ip.linodeusercontent.com` RDNS value.<<LB>>---- __CLI__.    ```    linode-cli linodes ip-update 123 \  203.0.113.1 \  --rdns test.example.org    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update an IP address's RDNS for a Linode
- * {@link /:apiVersion/linode/instances/:linodeId/ips/:address}
+ * {@link /linode/instances/:linodeId/ips/:address}
  */
-export async function putLinodeIp(apiVersion: PutLinodeIpPathParams["apiVersion"], linodeId: PutLinodeIpPathParams["linodeId"], address: PutLinodeIpPathParams["address"], data: PutLinodeIpMutationRequest, config: Partial<RequestConfig<PutLinodeIpMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putLinodeIp(linodeId: PutLinodeIpPathParams["linodeId"], address: PutLinodeIpPathParams["address"], data: PutLinodeIpMutationRequest, config: Partial<RequestConfig<PutLinodeIpMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutLinodeIpMutationResponse, ResponseErrorConfig<Error>, PutLinodeIpMutationRequest>({ method : "PUT", url : getPutLinodeIpUrl(apiVersion, linodeId, address).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutLinodeIpMutationResponse, ResponseErrorConfig<Error>, PutLinodeIpMutationRequest>({ method : "PUT", url : getPutLinodeIpUrl(linodeId, address).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

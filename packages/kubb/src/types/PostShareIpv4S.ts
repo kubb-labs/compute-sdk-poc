@@ -4,21 +4,6 @@
 */
 
 
-export const postShareIpv4SPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostShareIpv4SPathParamsApiVersionEnumKey = (typeof postShareIpv4SPathParamsApiVersionEnum)[keyof typeof postShareIpv4SPathParamsApiVersionEnum];
-
-export interface PostShareIpv4SPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostShareIpv4SPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description Sharing configured successfully.
 */
@@ -29,19 +14,19 @@ export type PostShareIpv4S200 = object;
 */
 export interface PostShareIpv4SError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -66,6 +51,5 @@ export type PostShareIpv4SMutationResponse = PostShareIpv4S200;
 export type PostShareIpv4SMutation = {
     Response: PostShareIpv4S200;
     Request: PostShareIpv4SMutationRequest;
-    PathParams: PostShareIpv4SPathParams;
     Errors: any;
 };

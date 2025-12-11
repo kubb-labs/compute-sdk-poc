@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutStackScriptMutationRequest, PutStackScriptMutationResponse, PutStackScriptPathParams } from "../types/PutStackScript.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutStackScriptUrl(apiVersion: PutStackScriptPathParams["apiVersion"], stackscriptId: PutStackScriptPathParams["stackscriptId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/linode/stackscripts/${stackscriptId}` as const }  
+function getPutStackScriptUrl(stackscriptId: PutStackScriptPathParams["stackscriptId"]) {
+  const res = { method: 'PUT', url: `/linode/stackscripts/${stackscriptId}` as const }  
   return res
 }
 
 /**
  * @description Updates a StackScript.__Once a StackScript is made public, it cannot be made private.__<<LB>>---- __CLI__.    ```    linode-cli stackscripts update 10079 \  --label a-stackscript \  --description "This StackScript installs \    and configures MySQL" \  --images "linode/debian9" \  --images "linode/debian8" \  --is_public true \  --rev_note "Set up MySQL" \  --script '#!/bin/bash'    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    stackscripts:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a StackScript
- * {@link /:apiVersion/linode/stackscripts/:stackscriptId}
+ * {@link /linode/stackscripts/:stackscriptId}
  */
-export async function putStackScript(apiVersion: PutStackScriptPathParams["apiVersion"], stackscriptId: PutStackScriptPathParams["stackscriptId"], data?: PutStackScriptMutationRequest, config: Partial<RequestConfig<PutStackScriptMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putStackScript(stackscriptId: PutStackScriptPathParams["stackscriptId"], data?: PutStackScriptMutationRequest, config: Partial<RequestConfig<PutStackScriptMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutStackScriptMutationResponse, ResponseErrorConfig<Error>, PutStackScriptMutationRequest>({ method : "PUT", url : getPutStackScriptUrl(apiVersion, stackscriptId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutStackScriptMutationResponse, ResponseErrorConfig<Error>, PutStackScriptMutationRequest>({ method : "PUT", url : getPutStackScriptUrl(stackscriptId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

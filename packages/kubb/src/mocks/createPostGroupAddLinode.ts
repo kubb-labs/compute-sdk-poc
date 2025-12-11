@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostGroupAddLinodePathParams(data?: Partial<PostGroupAddLinodePathParams>): PostGroupAddLinodePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostGroupAddLinodePathParams>["apiVersion"]>(["v4", "v4beta"]),"groupId": faker.number.int()},
+  ...{"groupId": faker.number.int()},
   ...data || {}
   }
 }

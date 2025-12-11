@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostCancelAccountPathParams, PostCancelAccount200, PostCancelAccount409, PostCancelAccount504, PostCancelAccountError, PostCancelAccountMutationRequest, PostCancelAccountMutationResponse } from "../types/PostCancelAccount.ts";
+import type { PostCancelAccount200, PostCancelAccount409, PostCancelAccount504, PostCancelAccountError, PostCancelAccountMutationRequest, PostCancelAccountMutationResponse } from "../types/PostCancelAccount.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostCancelAccountPathParams(data?: Partial<PostCancelAccountPathParams>): PostCancelAccountPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostCancelAccountPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Account canceled.

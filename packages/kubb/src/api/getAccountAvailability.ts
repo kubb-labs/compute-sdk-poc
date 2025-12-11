@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetAccountAvailabilityQueryResponse, GetAccountAvailabilityPathParams } from "../types/GetAccountAvailability.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAccountAvailabilityUrl(apiVersion: GetAccountAvailabilityPathParams["apiVersion"], regionId: GetAccountAvailabilityPathParams["regionId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/availability/${regionId}` as const }  
+function getGetAccountAvailabilityUrl(regionId: GetAccountAvailabilityPathParams["regionId"]) {
+  const res = { method: 'GET', url: `/account/availability/${regionId}` as const }  
   return res
 }
 
 /**
  * @description View the available services for your account, in a specific region.> 📘>> Only account users with _unrestricted_ access can run this operation.<<LB>>---- __CLI__.    ```    linode-cli account get-account-availability us-east    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get available services for a region
- * {@link /:apiVersion/account/availability/:regionId}
+ * {@link /account/availability/:regionId}
  */
-export async function getAccountAvailability(apiVersion: GetAccountAvailabilityPathParams["apiVersion"], regionId: GetAccountAvailabilityPathParams["regionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAccountAvailability(regionId: GetAccountAvailabilityPathParams["regionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAccountAvailabilityQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountAvailabilityUrl(apiVersion, regionId).url.toString(), ... requestConfig })  
+  const res = await request<GetAccountAvailabilityQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountAvailabilityUrl(regionId).url.toString(), ... requestConfig })  
   return res.data
 }

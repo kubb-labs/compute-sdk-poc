@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetFirewallQueryResponse, GetFirewallPathParams } from "../types/GetFirewall.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetFirewallUrl(apiVersion: GetFirewallPathParams["apiVersion"], firewallId: GetFirewallPathParams["firewallId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/firewalls/${firewallId}` as const }  
+function getGetFirewallUrl(firewallId: GetFirewallPathParams["firewallId"]) {
+  const res = { method: 'GET', url: `/networking/firewalls/${firewallId}` as const }  
   return res
 }
 
 /**
  * @description Get a specific Firewall resource by its ID. The Firewall's Devices will not be returned in the response. Instead, run the [List firewall devices](https://techdocs.akamai.com/linode-api/reference/get-firewall-devices) operation to review them.<<LB>>---- __CLI__.    ```    linode-cli firewalls view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    firewall:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a firewall
- * {@link /:apiVersion/networking/firewalls/:firewallId}
+ * {@link /networking/firewalls/:firewallId}
  */
-export async function getFirewall(apiVersion: GetFirewallPathParams["apiVersion"], firewallId: GetFirewallPathParams["firewallId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getFirewall(firewallId: GetFirewallPathParams["firewallId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetFirewallQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallUrl(apiVersion, firewallId).url.toString(), ... requestConfig })  
+  const res = await request<GetFirewallQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallUrl(firewallId).url.toString(), ... requestConfig })  
   return res.data
 }

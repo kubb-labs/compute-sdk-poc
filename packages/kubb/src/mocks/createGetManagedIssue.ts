@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetManagedIssuePathParams(data?: Partial<GetManagedIssuePathParams>): GetManagedIssuePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetManagedIssuePathParams>["apiVersion"]>(["v4", "v4beta"]),"issueId": faker.number.int()},
+  ...{"issueId": faker.number.int()},
   ...data || {}
   }
 }

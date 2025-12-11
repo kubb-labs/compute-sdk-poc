@@ -4,23 +4,23 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetEntityTransfersQueryResponse, GetEntityTransfersPathParams, GetEntityTransfersQueryParams } from "../types/GetEntityTransfers.ts";
+import type { GetEntityTransfersQueryResponse, GetEntityTransfersQueryParams } from "../types/GetEntityTransfers.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetEntityTransfersUrl(apiVersion: GetEntityTransfersPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/entity-transfers` as const }  
+function getGetEntityTransfersUrl() {
+  const res = { method: 'GET', url: `/account/entity-transfers` as const }  
   return res
 }
 
 /**
  * @description __Deprecated__ Please run [List service transfers](https://techdocs.akamai.com/linode-api/reference/get-service-transfers).<<LB>>---- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List entity transfers
- * {@link /:apiVersion/account/entity-transfers}
+ * {@link /account/entity-transfers}
  * @deprecated
  */
-export async function getEntityTransfers(apiVersion: GetEntityTransfersPathParams["apiVersion"], params?: GetEntityTransfersQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getEntityTransfers(params?: GetEntityTransfersQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetEntityTransfersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetEntityTransfersUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetEntityTransfersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetEntityTransfersUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

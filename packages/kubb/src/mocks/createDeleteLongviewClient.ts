@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteLongviewClientPathParams(data?: Partial<DeleteLongviewClientPathParams>): DeleteLongviewClientPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteLongviewClientPathParams>["apiVersion"]>(["v4", "v4beta"]),"clientId": faker.number.int()},
+  ...{"clientId": faker.number.int()},
   ...data || {}
   }
 }

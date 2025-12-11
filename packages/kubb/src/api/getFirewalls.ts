@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetFirewallsQueryResponse, GetFirewallsPathParams, GetFirewallsQueryParams } from "../types/GetFirewalls.ts";
+import type { GetFirewallsQueryResponse, GetFirewallsQueryParams } from "../types/GetFirewalls.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetFirewallsUrl(apiVersion: GetFirewallsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/firewalls` as const }  
+function getGetFirewallsUrl() {
+  const res = { method: 'GET', url: `/networking/firewalls` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of accessible Firewalls.<<LB>>---- __CLI__.    ```    linode-cli firewalls list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    firewall:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List firewalls
- * {@link /:apiVersion/networking/firewalls}
+ * {@link /networking/firewalls}
  */
-export async function getFirewalls(apiVersion: GetFirewallsPathParams["apiVersion"], params?: GetFirewallsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getFirewalls(params?: GetFirewallsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetFirewallsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetFirewallsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

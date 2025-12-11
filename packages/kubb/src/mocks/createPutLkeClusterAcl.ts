@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutLkeClusterAclPathParams(data?: Partial<PutLkeClusterAclPathParams>): PutLkeClusterAclPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutLkeClusterAclPathParams>["apiVersion"]>(["v4", "v4beta"]),"clusterId": faker.number.int()},
+  ...{"clusterId": faker.number.int()},
   ...data || {}
   }
 }

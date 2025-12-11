@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetManagedSshKeyPathParams, GetManagedSshKey200, GetManagedSshKeyError, GetManagedSshKeyQueryResponse } from "../types/GetManagedSshKey.ts";
+import type { GetManagedSshKey200, GetManagedSshKeyError, GetManagedSshKeyQueryResponse } from "../types/GetManagedSshKey.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetManagedSshKeyPathParams(data?: Partial<GetManagedSshKeyPathParams>): GetManagedSshKeyPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetManagedSshKeyPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description The requested Managed SSH public key.

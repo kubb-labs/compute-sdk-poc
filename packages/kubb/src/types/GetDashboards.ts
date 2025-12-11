@@ -4,18 +4,7 @@
 */
 
 
-export const getDashboardsPathParamsApiVersionEnum = {
-    "v4beta": "v4beta"
-} as const;
-
-export type GetDashboardsPathParamsApiVersionEnumKey = (typeof getDashboardsPathParamsApiVersionEnum)[keyof typeof getDashboardsPathParamsApiVersionEnum];
-
 export interface GetDashboardsPathParams {
-    /**
-     * @description __Enum__ Call the `v4beta` URL for operations still only in beta.
-     * @type string
-    */
-    apiVersion: GetDashboardsPathParamsApiVersionEnumKey;
     /**
      * @description The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`.
      * @type string
@@ -83,80 +72,80 @@ export interface GetDashboards200 {
     data: {
         /**
          * @description When the dashboard was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        created?: string;
+        created: string;
         /**
          * @description The unique ID assigned to the dashboard.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description The name of the dashboard. This is used for display purposes in Akamai Cloud Manager.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description The Akamai Cloud Computing service used by this dashboard.
-         * @type string | undefined
+         * @type string
         */
-        service_type?: string;
+        service_type: string;
         /**
          * @description The type of dashboard. Currently, this can only be `standard` for a dashboard, which uses default formatting.
-         * @type string | undefined
+         * @type string
         */
-        type?: DataTypeEnum20Key;
+        type: DataTypeEnum20Key;
         /**
          * @description When the dashboard was last updated.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        updated?: string;
+        updated: string;
         /**
          * @description The widgets used in the dashboard.
-         * @type array | undefined
+         * @type array
         */
-        widgets?: {
+        widgets: {
             /**
              * @description The aggregate function for the metric. This defaults to `avg` for average.
              * @default "avg"
-             * @type string | undefined
+             * @type string
             */
-            aggregate_function?: WidgetsAggregateFunctionEnum3Key;
+            aggregate_function: WidgetsAggregateFunctionEnum3Key;
             /**
              * @description The type of chart used in the widget. This can be `line` for a line chart or `area` for an area chart.
-             * @type string | undefined
+             * @type string
             */
-            chart_type?: WidgetsChartTypeEnum3Key;
+            chart_type: WidgetsChartTypeEnum3Key;
             /**
              * @description The color used in the widget.
-             * @type string | undefined
+             * @type string
             */
-            color?: string;
+            color: string;
             /**
              * @description The name of the widget. This is used for display purposes in Akamai Cloud Manager.
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description The metric used in the widget.
-             * @type string | undefined
+             * @type string
             */
-            metric?: string;
+            metric: string;
             /**
              * @description The size of the widget. This can be `6` or `12` grid units, expressed as strings.
-             * @type string | undefined
+             * @type string
             */
-            size?: WidgetsSizeEnum3Key;
+            size: WidgetsSizeEnum3Key;
             /**
              * @description The unit of the metric. This can be values like `%` for percentage or `GB` for gigabyte.
-             * @type string | undefined
+             * @type string
             */
-            unit?: WidgetsUnitEnum3Key;
+            unit: WidgetsUnitEnum3Key;
             /**
              * @description The label for the y-axis in the widget\'s chart.
-             * @type string | undefined
+             * @type string
             */
-            y_label?: string;
+            y_label: string;
         }[];
     }[];
     /**
@@ -181,19 +170,19 @@ export interface GetDashboards200 {
 */
 export interface GetDashboardsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

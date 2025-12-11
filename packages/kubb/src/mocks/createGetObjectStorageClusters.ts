@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetObjectStorageClustersPathParams, GetObjectStorageClusters200, GetObjectStorageClustersError, GetObjectStorageClustersQueryResponse } from "../types/GetObjectStorageClusters.ts";
+import type { GetObjectStorageClusters200, GetObjectStorageClustersError, GetObjectStorageClustersQueryResponse } from "../types/GetObjectStorageClusters.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetObjectStorageClustersPathParams(data?: Partial<GetObjectStorageClustersPathParams>): GetObjectStorageClustersPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetObjectStorageClustersPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A paginated list of available clusters.

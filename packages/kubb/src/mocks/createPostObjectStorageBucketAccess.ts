@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostObjectStorageBucketAccessPathParams(data?: Partial<PostObjectStorageBucketAccessPathParams>): PostObjectStorageBucketAccessPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostObjectStorageBucketAccessPathParams>["apiVersion"]>(["v4", "v4beta"]),"regionId": faker.string.alpha(),"bucket": faker.string.alpha()},
+  ...{"regionId": faker.string.alpha(),"bucket": faker.string.alpha()},
   ...data || {}
   }
 }

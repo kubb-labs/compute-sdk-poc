@@ -6,3 +6,5 @@ const linodePayload = postLinodeInstanceMutationRequestSchema.parse({
 })
 
 console.log("Linode Payload:", linodePayload)
+
+// This schema is working 🎉

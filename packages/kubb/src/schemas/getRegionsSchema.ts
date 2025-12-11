@@ -5,48 +5,44 @@
 
 import { z } from "zod/v4";
 
-export const getRegionsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description Returns an array of regions.
  */
 export const getRegions200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "capabilities": z.optional(z.array(z.string()).describe("A list of capabilities of this region.")),
-"country": z.optional(z.string().describe("__Filterable__ The country where this region resides.")),
-"id": z.optional(z.string().describe("The unique ID of this Region.")),
-"label": z.optional(z.string().describe("Detailed location information for this region, including city, state or region, and country.")),
-"monitors": z.optional(z.object({
+    "data": z.array(z.object({
+    "capabilities": z.array(z.string()).describe("A list of capabilities of this region."),
+"country": z.string().describe("__Filterable__ The country where this region resides."),
+"id": z.string().describe("The unique ID of this Region."),
+"label": z.string().describe("Detailed location information for this region, including city, state or region, and country."),
+"monitors": z.object({
     "alerts": z.array(z.string()).describe("Each `service_type` supported for use in managing ACLP [alerts](https://techdocs.akamai.com/linode-api/reference/post-alert-definition-for-service-type) in this region, for your account. A `service_type` identifies the Akamai Cloud Computing service."),
 "metrics": z.array(z.string()).describe("Each `service_type` supported for use in managing ACLP [metrics](https://techdocs.akamai.com/linode-api/reference/get-dashboards-all) in this region, for your account. A `service_type` identifies the Akamai Cloud Computing service.")
-    }).describe("__Beta__ Lists the services in this region that support metrics and alerts use with Akamai Cloud Pulse (ACLP).\n\n> 📘\n>\n> The ACLP service is currently beta. This object is only returned in a response if you're participating in the ACLP beta. Contact your account team for more information.")),
-"placement_group_limits": z.optional(z.object({
-    "maximum_linodes_per_flexible_pg": z.int().describe("The maximum number of Linodes you can include in a placement group, when that placement group uses a `placement_group_policy` of `flexible`.  Displayed as `null` if you don't have a limit. See [Create placement group](https://techdocs.akamai.com/linode-api/reference/post-placement-group) for more information on `placement_group_policy`.").nullish(),
-"maximum_linodes_per_pg": z.int().describe("The maximum number of Linodes you can include in a placement group, when that placement group uses a `placement _group_policy` of `strict`. Displayed as `null` if you don't have a limit. See [Create placement group](https://techdocs.akamai.com/linode-api/reference/post-placement-group) for more information on `placement_group_policy`.").nullish(),
-"maximum_pgs_per_customer": z.int().describe("The maximum number of placement groups you can have in this region. Displayed as `null` if you don't have a limit.").nullish()
-    }).describe("The limits for [placement groups](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/) in this region.")),
-"resolvers": z.optional(z.object({
-    "ipv4": z.optional(z.string().describe("The IPv4 addresses for this region's DNS resolvers, separated by commas.")),
-"ipv6": z.optional(z.string().describe("The IPv6 addresses for this region's DNS resolvers, separated by commas."))
-    })),
-"site_type": z.optional(z.enum(["core", "distributed"]).describe("__Filterable__ This region's site type. A `core` region indicates a traditional cloud computing [region](https://www.linode.com/docs/products/platform/get-started/guides/choose-a-data-center/#product-availability) that offers all compute services. A `distributed` region indicates sites that are globally dispersed to be closer to end users and workloads. These regions offer limited services.")),
-"status": z.optional(z.enum(["ok", "outage"]).describe("This region's current operational status."))
-    }).describe("An area where Linode services are available."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    }).describe("__Beta__ Lists the services in this region that support metrics and alerts use with Akamai Cloud Pulse (ACLP).\n\n> 📘\n>\n> The ACLP service is currently beta. This object is only returned in a response if you're participating in the ACLP beta. Contact your account team for more information."),
+"placement_group_limits": z.object({
+    "maximum_linodes_per_flexible_pg": z.nullable(z.int().describe("The maximum number of Linodes you can include in a placement group, when that placement group uses a `placement_group_policy` of `flexible`.  Displayed as `null` if you don't have a limit. See [Create placement group](https://techdocs.akamai.com/linode-api/reference/post-placement-group) for more information on `placement_group_policy`.")),
+"maximum_linodes_per_pg": z.nullable(z.int().describe("The maximum number of Linodes you can include in a placement group, when that placement group uses a `placement _group_policy` of `strict`. Displayed as `null` if you don't have a limit. See [Create placement group](https://techdocs.akamai.com/linode-api/reference/post-placement-group) for more information on `placement_group_policy`.")),
+"maximum_pgs_per_customer": z.nullable(z.int().describe("The maximum number of placement groups you can have in this region. Displayed as `null` if you don't have a limit."))
+    }).describe("The limits for [placement groups](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/) in this region."),
+"resolvers": z.object({
+    "ipv4": z.string().describe("The IPv4 addresses for this region's DNS resolvers, separated by commas."),
+"ipv6": z.string().describe("The IPv6 addresses for this region's DNS resolvers, separated by commas.")
+    }),
+"site_type": z.enum(["core", "distributed"]).describe("__Filterable__ This region's site type. A `core` region indicates a traditional cloud computing [region](https://www.linode.com/docs/products/platform/get-started/guides/choose-a-data-center/#product-availability) that offers all compute services. A `distributed` region indicates sites that are globally dispersed to be closer to end users and workloads. These regions offer limited services."),
+"status": z.enum(["ok", "outage"]).describe("This region's current operational status.")
+    }).describe("An area where Linode services are available.")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getRegionsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getRegionsQueryResponseSchema = z.lazy(() => getRegions200Schema)

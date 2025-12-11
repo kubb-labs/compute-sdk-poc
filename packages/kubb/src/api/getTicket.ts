@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetTicketQueryResponse, GetTicketPathParams } from "../types/GetTicket.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetTicketUrl(apiVersion: GetTicketPathParams["apiVersion"], ticketId: GetTicketPathParams["ticketId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/support/tickets/${ticketId}` as const }  
+function getGetTicketUrl(ticketId: GetTicketPathParams["ticketId"]) {
+  const res = { method: 'GET', url: `/support/tickets/${ticketId}` as const }  
   return res
 }
 
 /**
  * @description Returns a specific support ticket under your account.<<LB>>---- __CLI__.    ```    linode-cli tickets view 11223344    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a support ticket
- * {@link /:apiVersion/support/tickets/:ticketId}
+ * {@link /support/tickets/:ticketId}
  */
-export async function getTicket(apiVersion: GetTicketPathParams["apiVersion"], ticketId: GetTicketPathParams["ticketId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getTicket(ticketId: GetTicketPathParams["ticketId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetTicketQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTicketUrl(apiVersion, ticketId).url.toString(), ... requestConfig })  
+  const res = await request<GetTicketQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTicketUrl(ticketId).url.toString(), ... requestConfig })  
   return res.data
 }

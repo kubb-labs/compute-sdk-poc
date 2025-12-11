@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeTypeQueryResponse, GetLinodeTypePathParams } from "../types/GetLinodeType.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeTypeUrl(apiVersion: GetLinodeTypePathParams["apiVersion"], typeId: GetLinodeTypePathParams["typeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/types/${typeId}` as const }  
+function getGetLinodeTypeUrl(typeId: GetLinodeTypePathParams["typeId"]) {
+  const res = { method: 'GET', url: `/linode/types/${typeId}` as const }  
   return res
 }
 
 /**
  * @description Returns information about a specific Linode Type, including pricing and specifications. This is used when [creating](https://techdocs.akamai.com/linode-api/reference/post-linode-instance) or [resizing](https://techdocs.akamai.com/linode-api/reference/post-resize-linode-instance) Linodes.<<LB>>---- __CLI__.    ```    linode-cli linodes type-view g6-standard-2    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Get a type
- * {@link /:apiVersion/linode/types/:typeId}
+ * {@link /linode/types/:typeId}
  */
-export async function getLinodeType(apiVersion: GetLinodeTypePathParams["apiVersion"], typeId: GetLinodeTypePathParams["typeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeType(typeId: GetLinodeTypePathParams["typeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeTypeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeTypeUrl(apiVersion, typeId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeTypeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeTypeUrl(typeId).url.toString(), ... requestConfig })  
   return res.data
 }

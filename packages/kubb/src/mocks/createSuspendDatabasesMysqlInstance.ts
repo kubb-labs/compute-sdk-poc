@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createSuspendDatabasesMysqlInstancePathParams(data?: Partial<SuspendDatabasesMysqlInstancePathParams>): SuspendDatabasesMysqlInstancePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<SuspendDatabasesMysqlInstancePathParams>["apiVersion"]>(["v4"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

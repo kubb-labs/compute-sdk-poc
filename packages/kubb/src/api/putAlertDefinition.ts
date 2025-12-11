@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutAlertDefinitionMutationRequest, PutAlertDefinitionMutationResponse, PutAlertDefinitionPathParams } from "../types/PutAlertDefinition.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutAlertDefinitionUrl(apiVersion: PutAlertDefinitionPathParams["apiVersion"], serviceType: PutAlertDefinitionPathParams["serviceType"], alertId: PutAlertDefinitionPathParams["alertId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/monitor/services/${serviceType}/alert-definitions/${alertId}` as const }  
+function getPutAlertDefinitionUrl(serviceType: PutAlertDefinitionPathParams["serviceType"], alertId: PutAlertDefinitionPathParams["alertId"]) {
+  const res = { method: 'PUT', url: `/monitor/services/${serviceType}/alert-definitions/${alertId}` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Update an existing alert definition. You need `read_only` access to the [scope](https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference) for the selected `serviceType`. Only include the objects in the request that you want to update. Leave any object out of the request to leave it set as is.> 📘>> This operation is beta. Call it using the `v4beta` path in its URL.**User alert definitions**When updating an alert definition you've [created](https://techdocs.akamai.com/linode-api/reference/post-alert-definition-for-service-type), you can change the `status` to `enabled` or `disabled`. You can also modify the `label`, `description`, `severity`, `entity_ids`, `rule_criteria`, `trigger_conditions`, and `channel_ids` objects. If updating the `entity_ids`, `rule_criteria`, or `channel_ids` list objects, these points apply:- If you want to keep an existing item, you need to include it in the list.- If you want to remove an existing item, leave it out of the list.- To add a new item, include it in the list.- You can't pass an empty list to remove all items. This doesn't apply to the `entity_ids` or `dimension_filters` (in `rule_criteria`) list objects, because they are optional, while all other list objects are required.**System alert definitions**These are the default alert definitions offered by Akamai. You can only edit the `entity_ids` list object for these alerts. All of the points above regarding editing a list object apply here, too.<<LB>>---- __OAuth scopes__.    ```    monitor:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)- __CLI__.    ```    linode-cli alerts definition-update dbaas 457 \--status disabled \--label Read-Write Channel (old)    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Update an alert definition
- * {@link /:apiVersion/monitor/services/:serviceType/alert-definitions/:alertId}
+ * {@link /monitor/services/:serviceType/alert-definitions/:alertId}
  */
-export async function putAlertDefinition(apiVersion: PutAlertDefinitionPathParams["apiVersion"], serviceType: PutAlertDefinitionPathParams["serviceType"], alertId: PutAlertDefinitionPathParams["alertId"], data?: PutAlertDefinitionMutationRequest, config: Partial<RequestConfig<PutAlertDefinitionMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putAlertDefinition(serviceType: PutAlertDefinitionPathParams["serviceType"], alertId: PutAlertDefinitionPathParams["alertId"], data?: PutAlertDefinitionMutationRequest, config: Partial<RequestConfig<PutAlertDefinitionMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutAlertDefinitionMutationResponse, ResponseErrorConfig<Error>, PutAlertDefinitionMutationRequest>({ method : "PUT", url : getPutAlertDefinitionUrl(apiVersion, serviceType, alertId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutAlertDefinitionMutationResponse, ResponseErrorConfig<Error>, PutAlertDefinitionMutationRequest>({ method : "PUT", url : getPutAlertDefinitionUrl(serviceType, alertId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

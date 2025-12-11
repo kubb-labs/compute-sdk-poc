@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetManagedCredentialsQueryResponse, GetManagedCredentialsPathParams, GetManagedCredentialsQueryParams } from "../types/GetManagedCredentials.ts";
+import type { GetManagedCredentialsQueryResponse, GetManagedCredentialsQueryParams } from "../types/GetManagedCredentials.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetManagedCredentialsUrl(apiVersion: GetManagedCredentialsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/managed/credentials` as const }  
+function getGetManagedCredentialsUrl() {
+  const res = { method: 'GET', url: `/managed/credentials` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of managed credentials on your account.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed credentials-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List managed credentials
- * {@link /:apiVersion/managed/credentials}
+ * {@link /managed/credentials}
  */
-export async function getManagedCredentials(apiVersion: GetManagedCredentialsPathParams["apiVersion"], params?: GetManagedCredentialsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getManagedCredentials(params?: GetManagedCredentialsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetManagedCredentialsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedCredentialsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetManagedCredentialsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedCredentialsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

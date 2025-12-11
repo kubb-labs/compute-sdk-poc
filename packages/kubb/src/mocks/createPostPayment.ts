@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostPaymentPathParams, PostPayment200, PostPayment202, PostPaymentError, PostPaymentMutationRequest, PostPaymentMutationResponse } from "../types/PostPayment.ts";
+import type { PostPayment200, PostPayment202, PostPaymentError, PostPaymentMutationRequest, PostPaymentMutationResponse } from "../types/PostPayment.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostPaymentPathParams(data?: Partial<PostPaymentPathParams>): PostPaymentPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostPaymentPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Payment submitted successfully.

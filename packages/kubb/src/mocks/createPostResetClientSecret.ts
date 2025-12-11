@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostResetClientSecretPathParams(data?: Partial<PostResetClientSecretPathParams>): PostResetClientSecretPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostResetClientSecretPathParams>["apiVersion"]>(["v4", "v4beta"]),"clientId": faker.string.alpha()},
+  ...{"clientId": faker.string.alpha()},
   ...data || {}
   }
 }

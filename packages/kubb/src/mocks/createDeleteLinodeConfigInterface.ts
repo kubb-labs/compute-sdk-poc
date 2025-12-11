@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteLinodeConfigInterfacePathParams(data?: Partial<DeleteLinodeConfigInterfacePathParams>): DeleteLinodeConfigInterfacePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteLinodeConfigInterfacePathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int(),"configId": faker.number.int(),"interfaceId": faker.number.int()},
+  ...{"linodeId": faker.number.int(),"configId": faker.number.int(),"interfaceId": faker.number.int()},
   ...data || {}
   }
 }

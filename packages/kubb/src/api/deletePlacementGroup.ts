@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeletePlacementGroupMutationResponse, DeletePlacementGroupPathParams } from "../types/DeletePlacementGroup.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeletePlacementGroupUrl(apiVersion: DeletePlacementGroupPathParams["apiVersion"], groupId: DeletePlacementGroupPathParams["groupId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/placement/groups/${groupId}` as const }  
+function getDeletePlacementGroupUrl(groupId: DeletePlacementGroupPathParams["groupId"]) {
+  const res = { method: 'DELETE', url: `/placement/groups/${groupId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a placement group you have permission to `read_write`.- Deleting a placement group can't be undone.- All Linodes need to be [removed](https://techdocs.akamai.com/linode-api/reference/post-group-unassign) before you can delete a placement group.- If your placement group is non-compliant, you can't delete it. You need to wait for our help to bring it [compliant](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/#non-compliance-precedence).<<LB>>> 📘>> To run this operation, your user needs the `add_linodes` [grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants). Talk to your local account administrator about grant management for your user.<<LB>>---- __CLI__.    ```    linode-cli placement group-delete 528    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a placement group
- * {@link /:apiVersion/placement/groups/:groupId}
+ * {@link /placement/groups/:groupId}
  */
-export async function deletePlacementGroup(apiVersion: DeletePlacementGroupPathParams["apiVersion"], groupId: DeletePlacementGroupPathParams["groupId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deletePlacementGroup(groupId: DeletePlacementGroupPathParams["groupId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeletePlacementGroupMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeletePlacementGroupUrl(apiVersion, groupId).url.toString(), ... requestConfig })  
+  const res = await request<DeletePlacementGroupMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeletePlacementGroupUrl(groupId).url.toString(), ... requestConfig })  
   return res.data
 }

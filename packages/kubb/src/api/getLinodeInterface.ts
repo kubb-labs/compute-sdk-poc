@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeInterfaceQueryResponse, GetLinodeInterfacePathParams } from "../types/GetLinodeInterface.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeInterfaceUrl(apiVersion: GetLinodeInterfacePathParams["apiVersion"], linodeId: GetLinodeInterfacePathParams["linodeId"], interfaceId: GetLinodeInterfacePathParams["interfaceId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/interfaces/${interfaceId}` as const }  
+function getGetLinodeInterfaceUrl(linodeId: GetLinodeInterfacePathParams["linodeId"], interfaceId: GetLinodeInterfacePathParams["interfaceId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/interfaces/${interfaceId}` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns an interface assigned to a specific Linode. This operation requires the `read_only` [grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for the Linode.<<LB>>---- __CLI__.    ```    linode-cli linodes interface-view $linodeId $interfaceId    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a Linode interface
- * {@link /:apiVersion/linode/instances/:linodeId/interfaces/:interfaceId}
+ * {@link /linode/instances/:linodeId/interfaces/:interfaceId}
  */
-export async function getLinodeInterface(apiVersion: GetLinodeInterfacePathParams["apiVersion"], linodeId: GetLinodeInterfacePathParams["linodeId"], interfaceId: GetLinodeInterfacePathParams["interfaceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeInterface(linodeId: GetLinodeInterfacePathParams["linodeId"], interfaceId: GetLinodeInterfacePathParams["interfaceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeInterfaceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeInterfaceUrl(apiVersion, linodeId, interfaceId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeInterfaceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeInterfaceUrl(linodeId, interfaceId).url.toString(), ... requestConfig })  
   return res.data
 }

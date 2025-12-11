@@ -4,21 +4,6 @@
 */
 
 
-export const getIpsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetIpsPathParamsApiVersionEnumKey = (typeof getIpsPathParamsApiVersionEnum)[keyof typeof getIpsPathParamsApiVersionEnum];
-
-export interface GetIpsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetIpsPathParamsApiVersionEnumKey;
-}
-
 export interface GetIpsQueryParams {
     /**
      * @description When `true`, the `rdns` property for any `ipv6` type addresses always returns `null` regardless of whether RDNS data exists for the address.
@@ -43,94 +28,94 @@ export type DataTypeEnum21Key = (typeof dataTypeEnum21)[keyof typeof dataTypeEnu
 export interface GetIps200 {
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
     /**
      * @description IP addresses that exist in Linode\'s system, either IPv4 or IPv6, specific to the response for the [List IP addresses](https://techdocs.akamai.com/linode-api/reference/get-ips) operation.
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Filterable__, __Read-only__ The IP address.
-         * @type string | undefined, ip
+         * @type string, ip
         */
-        readonly address?: string;
+        readonly address: string;
         /**
          * @description __Read-only__ The default gateway for this address.
          * @type string, ip
         */
-        readonly gateway?: string | null;
+        readonly gateway: string | null;
         /**
          * @description __Beta__, __Read-only__ The Linode interface ID this public IP address is assigned to. This value is `null` if a Linode interface is not assigned, or if the IP is assigned to a legacy configuration profile interface.
          * @type integer
         */
-        readonly interface_id?: number | null;
+        readonly interface_id: number | null;
         /**
          * @description __Read-only__ The ID of the Linode this address currently belongs to. For IPv4 addresses, this defaults to the Linode that this address was assigned to on creation. IPv4 addresses may be moved using the [Assign IPv4s to Linodes](https://techdocs.akamai.com/linode-api/reference/post-assign-ipv4s) operation. For SLAAC and link-local addresses, this value may not be changed.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly linode_id?: number;
+        readonly linode_id: number;
         /**
          * @description __Filterable__, __Read-only__ The number of bits set in the subnet mask.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly prefix?: number;
+        readonly prefix: number;
         /**
          * @description __Read-only__ Whether this is a public or private IP address.
-         * @type boolean | undefined
+         * @type boolean
         */
-        readonly public?: boolean;
+        readonly public: boolean;
         /**
          * @description __Filterable__ The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.
          * @type string
         */
-        rdns?: string | null;
+        rdns: string | null;
         /**
          * @description __Filterable__, __Read-only__ The Region this IP address resides in.
-         * @type string | undefined
+         * @type string
         */
-        readonly region?: string;
+        readonly region: string;
         /**
          * @description __Read-only__ The mask that separates host bits from network bits for this address.
-         * @type string | undefined, ip
+         * @type string, ip
         */
-        readonly subnet_mask?: string;
+        readonly subnet_mask: string;
         /**
          * @description __Filterable__, __Read-only__ The type of address this is.
-         * @type string | undefined
+         * @type string
         */
-        readonly type?: DataTypeEnum21Key;
+        readonly type: DataTypeEnum21Key;
         /**
          * @description IPv4 address configured as a 1:1 NAT for this interface. Empty if no address is configured as a 1:1 NAT.\n\n> 📘\n>\n> Only allowed for `vpc` type interfaces.
-         * @type object | undefined
+         * @type object
         */
-        vpc_nat_1_1?: {
+        vpc_nat_1_1: {
             /**
              * @description The IPv4 address that is configured as a 1:1 NAT for this VPC interface.
-             * @type string | undefined, ipv4
+             * @type string, ipv4
             */
-            address?: string;
+            address: string;
             /**
              * @description The `id` of the VPC Subnet for this interface.
-             * @type integer | undefined
+             * @type integer
             */
-            subnet_id?: number;
+            subnet_id: number;
             /**
              * @description __Read-only__ The `id` of the VPC configured for this Interface.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly vpc_id?: number;
+            readonly vpc_id: number;
         };
     }[];
 }
@@ -140,19 +125,19 @@ export interface GetIps200 {
 */
 export interface GetIpsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -160,7 +145,6 @@ export type GetIpsQueryResponse = GetIps200;
 
 export type GetIpsQuery = {
     Response: GetIps200;
-    PathParams: GetIpsPathParams;
     QueryParams: GetIpsQueryParams;
     Errors: any;
 };

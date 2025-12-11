@@ -4,18 +4,7 @@
 */
 
 
-export const getMonitorInformationPathParamsApiVersionEnum = {
-    "v4beta": "v4beta"
-} as const;
-
-export type GetMonitorInformationPathParamsApiVersionEnumKey = (typeof getMonitorInformationPathParamsApiVersionEnum)[keyof typeof getMonitorInformationPathParamsApiVersionEnum];
-
 export interface GetMonitorInformationPathParams {
-    /**
-     * @description __Enum__ Call the `v4beta` URL for operations still only in beta.
-     * @type string
-    */
-    apiVersion: GetMonitorInformationPathParamsApiVersionEnumKey;
     /**
      * @description The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`.
      * @type string
@@ -149,60 +138,60 @@ export interface GetMonitorInformation200 {
     data: {
         /**
          * @description Available aggregate functions for the metric.
-         * @type array | undefined
+         * @type array
         */
-        available_aggregate_functions?: DataAvailableAggregateFunctionsEnumKey[];
+        available_aggregate_functions: DataAvailableAggregateFunctionsEnumKey[];
         /**
          * @description Dimensions for the metric.
-         * @type array | undefined
+         * @type array
         */
-        dimensions?: {
+        dimensions: {
             /**
              * @description The label used to represent the dimension in metrics. Use this value to call out the service in other Monitor operations in the API.
-             * @type string | undefined
+             * @type string
             */
-            dimension_label?: string;
+            dimension_label: string;
             /**
              * @description The label of the dimension. This is used for display purposes in Akamai Cloud Manager.
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description Available values for the `dimension_label`.
-             * @type array | undefined
+             * @type array
             */
-            values?: string[];
+            values: string[];
         }[];
         /**
          * @description Whether the metric is alertable.
-         * @type boolean | undefined
+         * @type boolean
         */
-        is_alertable?: boolean;
+        is_alertable: boolean;
         /**
          * @description The name of the metric. This is used for display purposes in Akamai Cloud Manager.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description The identifier for the metric. This is how the metric is called out in other Monitor operations in the API.
-         * @type string | undefined
+         * @type string
         */
-        metric?: string;
+        metric: string;
         /**
          * @description The type of metric. A value of `counter` represents variable values and a set target for the count. A `histogram` represents the frequency distribution of data points across a continuous range of numerical values. A `gauge` represents the performance against a target goal, and `summary` presents and summarizes data from multiple sources.
-         * @type string | undefined
+         * @type string
         */
-        metric_type?: DataMetricTypeEnumKey;
+        metric_type: DataMetricTypeEnumKey;
         /**
          * @description How frequently a metric is scraped to gather data, using `s` for seconds, `m` for minutes, or `h` for hours. Set to `60s`, the metric would be scraped every 60 seconds. Set to `2m`, the scrape occurs every two minutes.
-         * @type string | undefined
+         * @type string
         */
-        scrape_interval?: string;
+        scrape_interval: string;
         /**
          * @description The unit of measurement for the metric.
-         * @type string | undefined
+         * @type string
         */
-        unit?: DataUnitEnumKey;
+        unit: DataUnitEnumKey;
     }[];
     /**
      * @description The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
@@ -226,19 +215,19 @@ export interface GetMonitorInformation200 {
 */
 export interface GetMonitorInformationError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

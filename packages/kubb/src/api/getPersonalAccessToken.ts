@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetPersonalAccessTokenQueryResponse, GetPersonalAccessTokenPathParams } from "../types/GetPersonalAccessToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetPersonalAccessTokenUrl(apiVersion: GetPersonalAccessTokenPathParams["apiVersion"], tokenId: GetPersonalAccessTokenPathParams["tokenId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/tokens/${tokenId}` as const }  
+function getGetPersonalAccessTokenUrl(tokenId: GetPersonalAccessTokenPathParams["tokenId"]) {
+  const res = { method: 'GET', url: `/profile/tokens/${tokenId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single Personal Access Token.<<LB>>---- __CLI__.    ```    linode-cli profile token-view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a personal access token
- * {@link /:apiVersion/profile/tokens/:tokenId}
+ * {@link /profile/tokens/:tokenId}
  */
-export async function getPersonalAccessToken(apiVersion: GetPersonalAccessTokenPathParams["apiVersion"], tokenId: GetPersonalAccessTokenPathParams["tokenId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getPersonalAccessToken(tokenId: GetPersonalAccessTokenPathParams["tokenId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetPersonalAccessTokenQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPersonalAccessTokenUrl(apiVersion, tokenId).url.toString(), ... requestConfig })  
+  const res = await request<GetPersonalAccessTokenQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPersonalAccessTokenUrl(tokenId).url.toString(), ... requestConfig })  
   return res.data
 }

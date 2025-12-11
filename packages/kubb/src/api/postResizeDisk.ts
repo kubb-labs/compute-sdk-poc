@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostResizeDiskMutationRequest, PostResizeDiskMutationResponse, PostResizeDiskPathParams } from "../types/PostResizeDisk.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostResizeDiskUrl(apiVersion: PostResizeDiskPathParams["apiVersion"], linodeId: PostResizeDiskPathParams["linodeId"], diskId: PostResizeDiskPathParams["diskId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/instances/${linodeId}/disks/${diskId}/resize` as const }  
+function getPostResizeDiskUrl(linodeId: PostResizeDiskPathParams["linodeId"], diskId: PostResizeDiskPathParams["diskId"]) {
+  const res = { method: 'POST', url: `/linode/instances/${linodeId}/disks/${diskId}/resize` as const }  
   return res
 }
 
 /**
  * @description Resizes a Disk you have permission to `read_write`.The Disk must not be in use. If the Disk is in use, the request will succeed but the resize will ultimately fail. For a request to succeed, the Linode must be shut down prior to resizing the Disk, or the Disk must not be assigned to the Linode's active Configuration Profile.If you are resizing the Disk to a smaller size, it cannot be made smaller than what is required by the total size of the files current on the Disk.<<LB>>---- __CLI__.    ```    linode-cli linodes disk-resize 123 25674 \  --size 2048    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Resize a disk
- * {@link /:apiVersion/linode/instances/:linodeId/disks/:diskId/resize}
+ * {@link /linode/instances/:linodeId/disks/:diskId/resize}
  */
-export async function postResizeDisk(apiVersion: PostResizeDiskPathParams["apiVersion"], linodeId: PostResizeDiskPathParams["linodeId"], diskId: PostResizeDiskPathParams["diskId"], data: PostResizeDiskMutationRequest, config: Partial<RequestConfig<PostResizeDiskMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postResizeDisk(linodeId: PostResizeDiskPathParams["linodeId"], diskId: PostResizeDiskPathParams["diskId"], data: PostResizeDiskMutationRequest, config: Partial<RequestConfig<PostResizeDiskMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostResizeDiskMutationResponse, ResponseErrorConfig<Error>, PostResizeDiskMutationRequest>({ method : "POST", url : getPostResizeDiskUrl(apiVersion, linodeId, diskId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostResizeDiskMutationResponse, ResponseErrorConfig<Error>, PostResizeDiskMutationRequest>({ method : "POST", url : getPostResizeDiskUrl(linodeId, diskId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

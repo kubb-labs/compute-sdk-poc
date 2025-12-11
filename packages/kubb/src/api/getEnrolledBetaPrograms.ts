@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetEnrolledBetaProgramsQueryResponse, GetEnrolledBetaProgramsPathParams, GetEnrolledBetaProgramsQueryParams } from "../types/GetEnrolledBetaPrograms.ts";
+import type { GetEnrolledBetaProgramsQueryResponse, GetEnrolledBetaProgramsQueryParams } from "../types/GetEnrolledBetaPrograms.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetEnrolledBetaProgramsUrl(apiVersion: GetEnrolledBetaProgramsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/betas` as const }  
+function getGetEnrolledBetaProgramsUrl() {
+  const res = { method: 'GET', url: `/account/betas` as const }  
   return res
 }
 
 /**
  * @description Display all enrolled Beta Programs for your Account. Includes inactive as well as active Beta Programs.Only unrestricted Users can access this operation.<<LB>>---- __CLI__.    ```    linode-cli betas enrolled    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List enrolled Beta programs
- * {@link /:apiVersion/account/betas}
+ * {@link /account/betas}
  */
-export async function getEnrolledBetaPrograms(apiVersion: GetEnrolledBetaProgramsPathParams["apiVersion"], params?: GetEnrolledBetaProgramsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getEnrolledBetaPrograms(params?: GetEnrolledBetaProgramsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetEnrolledBetaProgramsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetEnrolledBetaProgramsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetEnrolledBetaProgramsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetEnrolledBetaProgramsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

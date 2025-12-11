@@ -4,19 +4,7 @@
 */
 
 
-export const getChildAccountPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetChildAccountPathParamsApiVersionEnumKey = (typeof getChildAccountPathParamsApiVersionEnum)[keyof typeof getChildAccountPathParamsApiVersionEnum];
-
 export interface GetChildAccountPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetChildAccountPathParamsApiVersionEnumKey;
     /**
      * @description The child account to look up. You can run the [List child accounts](https://techdocs.akamai.com/linode-api/reference/get-child-accounts) operation to find the applicable account and store its `euuid` as your `euuId`.
      * @type string
@@ -36,120 +24,120 @@ export type GetChildAccount200BillingSourceEnumKey = (typeof getChildAccount200B
 export interface GetChildAccount200 {
     /**
      * @description __Read-only__ The activation date and time for the child account.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly active_since?: string;
+    readonly active_since: string;
     /**
      * @description __Filterable__ First line of this child account\'s billing address.
      * @maxLength 64
-     * @type string | undefined
+     * @type string
     */
-    address_1?: string;
+    address_1: string;
     /**
      * @description __Filterable__ Second line of this child account\'s billing address, if applicable.
      * @maxLength 64
-     * @type string | undefined
+     * @type string
     */
-    address_2?: string;
+    address_2: string;
     /**
      * @description __Read-only__ This child account\'s balance, in US dollars.
-     * @type number | undefined
+     * @type number
     */
-    readonly balance?: number;
+    readonly balance: number;
     /**
      * @description __Read-only__ This child account\'s current estimated invoice in US dollars. This is not your final invoice balance. Transfer charges are not included in the estimate.
-     * @type number | undefined
+     * @type number
     */
-    readonly balance_uninvoiced?: number;
+    readonly balance_uninvoiced: number;
     /**
      * @description __Read-only__ The source of service charges for this account, as determined by its relationship with Akamai. The API returns a value of `external` to describe a child account in a parent-child account environment.
-     * @type string | undefined
+     * @type string
     */
-    readonly billing_source?: GetChildAccount200BillingSourceEnumKey;
+    readonly billing_source: GetChildAccount200BillingSourceEnumKey;
     /**
      * @description __Read-only__ A list of the capabilities the child account supports.
-     * @type array | undefined
+     * @type array
     */
-    readonly capabilities?: string[];
+    readonly capabilities: string[];
     /**
      * @description __Filterable__ The city for this child account\'s billing address.
      * @maxLength 24
-     * @type string | undefined
+     * @type string
     */
-    city?: string;
+    city: string;
     /**
      * @description __Filterable__ The company name for the owner of this child account. It can\'t include any of these characters: `<` `>` `(` `)` `\"` `=`. You can\'t change this value yourself. We use it to create the proxy users that a parent account uses to access a child account. Talk to your account team if you need to change this value.
      * @maxLength 128
-     * @type string | undefined
+     * @type string
     */
-    company?: string;
+    company: string;
     /**
      * @description __Filterable__ The two-letter ISO 3166 country code for this child account\'s billing address.
-     * @type string | undefined
+     * @type string
     */
-    country?: string;
+    country: string;
     /**
      * @description __Read-only__ Information for the credit card you\'ve assigned to this child account.
-     * @type object | undefined
+     * @type object
     */
-    readonly credit_card?: {
+    readonly credit_card: {
         /**
          * @description The expiration month and year of the credit card.
-         * @type string | undefined
+         * @type string
         */
-        expiry?: string;
+        expiry: string;
         /**
          * @description The last four digits of the credit card.
-         * @type string | undefined
+         * @type string
         */
-        last_four?: string;
+        last_four: string;
     };
     /**
      * @description __Filterable__ The email address of the owner of this child account.
      * @maxLength 128
-     * @type string | undefined
+     * @type string
     */
-    email?: string;
+    email: string;
     /**
      * @description __Read-only__ An external, unique identifier that Akamai assigned to the child account.
-     * @type string | undefined, uuid
+     * @type string, uuid
     */
-    readonly euuid?: string;
+    readonly euuid: string;
     /**
      * @description __Filterable__ The first name of the owner of this child account. It can\'t include any of these characters: `<` `>` `(` `)` `\"` `=`.
      * @maxLength 50
-     * @type string | undefined
+     * @type string
     */
-    first_name?: string;
+    first_name: string;
     /**
      * @description __Filterable__ The last name of the owner of this child account. It can\'t include any of these characters: `<` `>` `(` `)` `\"` `=`.
      * @maxLength 50
-     * @type string | undefined
+     * @type string
     */
-    last_name?: string;
+    last_name: string;
     /**
      * @description __Filterable__ The phone number for the owner of this child account.
      * @maxLength 32
-     * @type string | undefined
+     * @type string
     */
-    phone?: string;
+    phone: string;
     /**
      * @description __Filterable__ The state or province for the billing address (`address_1` and `address_2, if applicable`). If in the United States (US) or Canada (CA), this is the two-letter ISO 3166 State or Province code.\n\n> 📘\n>\n> If this is a US military address, use state abbreviations (AA, AE, AP).
      * @maxLength 24
-     * @type string | undefined
+     * @type string
     */
-    state?: string;
+    state: string;
     /**
      * @description The tax identification number for this child account. Use this for tax calculations in some countries. If you live in a country that doesn\'t collect taxes, ensure this is an empty string (`\"\"`).
      * @maxLength 25
-     * @type string | undefined
+     * @type string
     */
-    tax_id?: string;
+    tax_id: string;
     /**
      * @description __Filterable__ The zip code of this Account\'s billing address. The following restrictions apply:\n\n- Can only contain ASCII letters, numbers, and hyphens (`-`).\n- Can\'t contain more than 9 letter or number characters.
-     * @type string | undefined
+     * @type string
     */
-    zip?: string;
+    zip: string;
 }
 
 /**
@@ -157,19 +145,19 @@ export interface GetChildAccount200 {
 */
 export interface GetChildAccountError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

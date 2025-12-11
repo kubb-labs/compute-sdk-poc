@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostRescueLinodeInstancePathParams(data?: Partial<PostRescueLinodeInstancePathParams>): PostRescueLinodeInstancePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostRescueLinodeInstancePathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int()},
+  ...{"linodeId": faker.number.int()},
   ...data || {}
   }
 }

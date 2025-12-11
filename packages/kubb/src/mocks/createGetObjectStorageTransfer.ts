@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetObjectStorageTransferPathParams, GetObjectStorageTransfer200, GetObjectStorageTransferError, GetObjectStorageTransferQueryResponse } from "../types/GetObjectStorageTransfer.ts";
+import type { GetObjectStorageTransfer200, GetObjectStorageTransferError, GetObjectStorageTransferQueryResponse } from "../types/GetObjectStorageTransfer.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetObjectStorageTransferPathParams(data?: Partial<GetObjectStorageTransferPathParams>): GetObjectStorageTransferPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetObjectStorageTransferPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns the amount of outbound data transfer used by your account\'s Object Storage buckets.

@@ -4,30 +4,15 @@
 */
 
 
-export const getLkeVersionsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLkeVersionsPathParamsApiVersionEnumKey = (typeof getLkeVersionsPathParamsApiVersionEnum)[keyof typeof getLkeVersionsPathParamsApiVersionEnum];
-
-export interface GetLkeVersionsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLkeVersionsPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description Returns a list of LKE Kubernetes versions available for deployment to a standard-tier Kubernetes cluster.
 */
 export interface GetLkeVersions200 {
     /**
      * @description __Read-only__ LKE versions for standard tier.
-     * @type array | undefined
+     * @type array
     */
-    readonly data?: {
+    readonly data: {
         /**
          * @description __Read-only__ A Kubernetes version number available for deployment to a Kubernetes cluster in the format of &lt;major&gt;.&lt;minor&gt;, and the latest supported patch version.
          * @minLength 1
@@ -37,19 +22,19 @@ export interface GetLkeVersions200 {
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -57,19 +42,19 @@ export interface GetLkeVersions200 {
 */
 export interface GetLkeVersionsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -77,6 +62,5 @@ export type GetLkeVersionsQueryResponse = GetLkeVersions200;
 
 export type GetLkeVersionsQuery = {
     Response: GetLkeVersions200;
-    PathParams: GetLkeVersionsPathParams;
     Errors: any;
 };

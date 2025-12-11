@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const postReadMetricPathParamsSchema = z.object({
-    "serviceType": z.string().describe("The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`."),
-"apiVersion": z.enum(["v2beta"]).describe("__Enum__ Call the `v2beta` URL to use the version 2 beta operation.")
+    "serviceType": z.string().describe("The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`.")
     })
 
 /**
@@ -15,18 +14,18 @@ export const postReadMetricPathParamsSchema = z.object({
  */
 export const postReadMetric200Schema = z.object({
     "data": z.object({
-    "result": z.optional(z.array(z.object({
-    "metric": z.optional(z.object({
+    "result": z.array(z.object({
+    "metric": z.object({
     
-    }).catchall(z.string()).describe("A mapping of labels where keys and values are strings representing details for the metric.")),
-"values": z.optional(z.array(z.array(z.union([z.int(), z.string()]))).min(1).describe("Pairs that consist of an epoch timestamp and a corresponding metric value."))
-    })).min(1).describe("Pairs of a specific `metric` and its corresponding `values`.")),
-"resultType": z.optional(z.enum(["matrix"]).describe("The type of result, which will always be `matrix` in this context."))
+    }).catchall(z.string()).describe("A mapping of labels where keys and values are strings representing details for the metric."),
+"values": z.array(z.array(z.union([z.int(), z.string()]))).min(1).describe("Pairs that consist of an epoch timestamp and a corresponding metric value.")
+    })).min(1).describe("Pairs of a specific `metric` and its corresponding `values`."),
+"resultType": z.enum(["matrix"]).describe("The type of result, which will always be `matrix` in this context.")
     }).describe("A collection of information for the metric."),
 "isPartial": z.boolean().describe("Indicates whether the result is partial. A result of `false` indicates the response is complete, while `true` indicates a partial response."),
 "stats": z.object({
-    "executionTimeMsec": z.optional(z.int().min(0).describe("The time taken to execute the query, in milliseconds.")),
-"seriesFetched": z.optional(z.string().min(1).describe("The number of metric series fetched in the query."))
+    "executionTimeMsec": z.int().min(0).describe("The time taken to execute the query, in milliseconds."),
+"seriesFetched": z.string().min(1).describe("The number of metric series fetched in the query.")
     }).describe("Statistics for a query against a `metric`."),
 "status": z.string().describe("The status of the query execution, such as `success`.")
     })
@@ -35,10 +34,10 @@ export const postReadMetric200Schema = z.object({
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const postReadMetricErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const postReadMetricMutationRequestSchema = z.union([z.object({

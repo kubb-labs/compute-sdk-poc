@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetObjectStorageTypesPathParams, GetObjectStorageTypes200, GetObjectStorageTypesError, GetObjectStorageTypesQueryResponse } from "../types/GetObjectStorageTypes.ts";
+import type { GetObjectStorageTypes200, GetObjectStorageTypesError, GetObjectStorageTypesQueryResponse } from "../types/GetObjectStorageTypes.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetObjectStorageTypesPathParams(data?: Partial<GetObjectStorageTypesPathParams>): GetObjectStorageTypesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetObjectStorageTypesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A collection of Object Storage types.

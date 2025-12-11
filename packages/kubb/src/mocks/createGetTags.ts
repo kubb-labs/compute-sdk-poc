@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetTagsPathParams, GetTagsQueryParams, GetTags200, GetTagsError, GetTagsQueryResponse } from "../types/GetTags.ts";
+import type { GetTagsQueryParams, GetTags200, GetTagsError, GetTagsQueryResponse } from "../types/GetTags.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetTagsPathParams(data?: Partial<GetTagsPathParams>): GetTagsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetTagsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetTagsQueryParams(data?: Partial<GetTagsQueryParams>): GetTagsQueryParams {
   

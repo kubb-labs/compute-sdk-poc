@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteAlertDefinitionMutationResponse, DeleteAlertDefinitionPathParams } from "../types/DeleteAlertDefinition.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteAlertDefinitionUrl(apiVersion: DeleteAlertDefinitionPathParams["apiVersion"], serviceType: DeleteAlertDefinitionPathParams["serviceType"], alertId: DeleteAlertDefinitionPathParams["alertId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/monitor/services/${serviceType}/alert-definitions/${alertId}` as const }  
+function getDeleteAlertDefinitionUrl(serviceType: DeleteAlertDefinitionPathParams["serviceType"], alertId: DeleteAlertDefinitionPathParams["alertId"]) {
+  const res = { method: 'DELETE', url: `/monitor/services/${serviceType}/alert-definitions/${alertId}` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Delete a specific alert definition on your account.> 📘>> - This operation is beta. Call it using the `v4beta` path in its URL.>> - You need `read_only` access to the [scope](https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference) for the target `serviceType`.>> - An [alert definition](https://techdocs.akamai.com/linode-api/reference/get-alert-definitions) with a `type` of `system` can't be deleted.<<LB>>---- __CLI__.    ```    linode-cli alerts definition-delete dbaas 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    monitor:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete an alert definition
- * {@link /:apiVersion/monitor/services/:serviceType/alert-definitions/:alertId}
+ * {@link /monitor/services/:serviceType/alert-definitions/:alertId}
  */
-export async function deleteAlertDefinition(apiVersion: DeleteAlertDefinitionPathParams["apiVersion"], serviceType: DeleteAlertDefinitionPathParams["serviceType"], alertId: DeleteAlertDefinitionPathParams["alertId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteAlertDefinition(serviceType: DeleteAlertDefinitionPathParams["serviceType"], alertId: DeleteAlertDefinitionPathParams["alertId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteAlertDefinitionMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteAlertDefinitionUrl(apiVersion, serviceType, alertId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteAlertDefinitionMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteAlertDefinitionUrl(serviceType, alertId).url.toString(), ... requestConfig })  
   return res.data
 }

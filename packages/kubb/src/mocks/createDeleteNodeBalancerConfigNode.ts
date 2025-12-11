@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteNodeBalancerConfigNodePathParams(data?: Partial<DeleteNodeBalancerConfigNodePathParams>): DeleteNodeBalancerConfigNodePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteNodeBalancerConfigNodePathParams>["apiVersion"]>(["v4", "v4beta"]),"nodeBalancerId": faker.number.int(),"configId": faker.number.int(),"nodeId": faker.string.alpha()},
+  ...{"nodeBalancerId": faker.number.int(),"configId": faker.number.int(),"nodeId": faker.string.alpha()},
   ...data || {}
   }
 }

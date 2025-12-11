@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetObjectStorageBucketinClusterPathParams(data?: Partial<GetObjectStorageBucketinClusterPathParams>): GetObjectStorageBucketinClusterPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetObjectStorageBucketinClusterPathParams>["apiVersion"]>(["v4", "v4beta"]),"regionId": faker.string.alpha()},
+  ...{"regionId": faker.string.alpha()},
   ...data || {}
   }
 }

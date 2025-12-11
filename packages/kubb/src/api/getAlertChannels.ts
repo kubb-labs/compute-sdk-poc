@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetAlertChannelsQueryResponse, GetAlertChannelsPathParams } from "../types/GetAlertChannels.ts";
+import type { GetAlertChannelsQueryResponse } from "../types/GetAlertChannels.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAlertChannelsUrl(apiVersion: GetAlertChannelsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/monitor/alert-channels` as const }  
+function getGetAlertChannelsUrl() {
+  const res = { method: 'GET', url: `/monitor/alert-channels` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns all of the monitoring alert channels available to your user.> 📘>> - This operation is beta. Call it using the `v4beta` path in its URL.>> - [Filtering](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) is supported for specific objects, labeled as **Filterable**. However, only the `+and` and `+or` operators are supported, and you can't nest filter operators.<<LB>>---- __OAuth scopes__.    ```    monitor:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)- __CLI__.    ```    linode-cli alerts channels-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List alert channels
- * {@link /:apiVersion/monitor/alert-channels}
+ * {@link /monitor/alert-channels}
  */
-export async function getAlertChannels(apiVersion: GetAlertChannelsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAlertChannels(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAlertChannelsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAlertChannelsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetAlertChannelsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAlertChannelsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetProfileGrantsQueryResponse, GetProfileGrantsPathParams } from "../types/GetProfileGrants.ts";
+import type { GetProfileGrantsQueryResponse } from "../types/GetProfileGrants.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetProfileGrantsUrl(apiVersion: GetProfileGrantsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/grants` as const }  
+function getGetProfileGrantsUrl() {
+  const res = { method: 'GET', url: `/profile/grants` as const }  
   return res
 }
 
 /**
  * @description This returns a GrantsResponse describing what the acting User has been granted access to.  For unrestricted users, this will return a  204 and no body because unrestricted users have access to everything without grants.  This will not return information about entities you do not have access to.  This operation is useful when writing third-party OAuth applications to see what options you should present to the acting User.For example, if they do not have `global.add_linodes`, you might not display a button to deploy a new Linode.Any client may run this operation; no OAuth scopes are required.
  * @summary List grants
- * {@link /:apiVersion/profile/grants}
+ * {@link /profile/grants}
  */
-export async function getProfileGrants(apiVersion: GetProfileGrantsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getProfileGrants(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetProfileGrantsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetProfileGrantsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetProfileGrantsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetProfileGrantsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

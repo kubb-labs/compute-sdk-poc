@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutLinodeInterfaceSettingsMutationRequest, PutLinodeInterfaceSettingsMutationResponse, PutLinodeInterfaceSettingsPathParams } from "../types/PutLinodeInterfaceSettings.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutLinodeInterfaceSettingsUrl(apiVersion: PutLinodeInterfaceSettingsPathParams["apiVersion"], linodeId: PutLinodeInterfaceSettingsPathParams["linodeId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/linode/instances/${linodeId}/interfaces/settings` as const }  
+function getPutLinodeInterfaceSettingsUrl(linodeId: PutLinodeInterfaceSettingsPathParams["linodeId"]) {
+  const res = { method: 'PUT', url: `/linode/instances/${linodeId}/interfaces/settings` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Updates Network Helper and default route settings on the Linode.<<LB>>---- __CLI: Public interface__.    ```    linode-cli linodes interface-settings-update $linodeId \  --network_helper true \  --default_route.ipv4_interface_id 4527 \  --default_route.ipv6_interface_id 4541 \  --default_route.ipv4_eligible_interface_ids 4527 \  --default_route.ipv4_eligible_interface_ids 4541 \  --default_route.ipv6_eligible_interface_ids 4527 \  --default_route.ipv6_eligible_interface_ids 4541    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __CLI: VLAN interface__.    ```    linode-cli linodes interface-settings-update $linodeId \  --network_helper true    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __CLI: VPC interface__.    ```    linode-cli linodes interface-settings-update $linodeId \  --network_helper true \  --default_route.ipv4_interface_id 5527 \  --default_route.ipv4_eligible_interface_ids 5527 \  --default_route.ipv4_eligible_interface_ids 5541    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update Linode interface settings
- * {@link /:apiVersion/linode/instances/:linodeId/interfaces/settings}
+ * {@link /linode/instances/:linodeId/interfaces/settings}
  */
-export async function putLinodeInterfaceSettings(apiVersion: PutLinodeInterfaceSettingsPathParams["apiVersion"], linodeId: PutLinodeInterfaceSettingsPathParams["linodeId"], data?: PutLinodeInterfaceSettingsMutationRequest, config: Partial<RequestConfig<PutLinodeInterfaceSettingsMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putLinodeInterfaceSettings(linodeId: PutLinodeInterfaceSettingsPathParams["linodeId"], data?: PutLinodeInterfaceSettingsMutationRequest, config: Partial<RequestConfig<PutLinodeInterfaceSettingsMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutLinodeInterfaceSettingsMutationResponse, ResponseErrorConfig<Error>, PutLinodeInterfaceSettingsMutationRequest>({ method : "PUT", url : getPutLinodeInterfaceSettingsUrl(apiVersion, linodeId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutLinodeInterfaceSettingsMutationResponse, ResponseErrorConfig<Error>, PutLinodeInterfaceSettingsMutationRequest>({ method : "PUT", url : getPutLinodeInterfaceSettingsUrl(linodeId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

@@ -4,19 +4,7 @@
 */
 
 
-export const postCloneVolumePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostCloneVolumePathParamsApiVersionEnumKey = (typeof postCloneVolumePathParamsApiVersionEnum)[keyof typeof postCloneVolumePathParamsApiVersionEnum];
-
 export interface PostCloneVolumePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostCloneVolumePathParamsApiVersionEnumKey;
     /**
      * @description The unique identifier for the target volume. Run the [List volumes](https://techdocs.akamai.com/linode-api/reference/get-volumes) operation and store the `id` for the target volume as your `volumeId`.
      * @type integer
@@ -53,78 +41,78 @@ export type PostCloneVolume200StatusEnumKey = (typeof postCloneVolume200StatusEn
 export interface PostCloneVolume200 {
     /**
      * @description __Read-only__ When this volume was created.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description __Read-only__ Whether encryption is enabled on this volume.
-     * @type string | undefined
+     * @type string
     */
-    readonly encryption?: PostCloneVolume200EncryptionEnumKey;
+    readonly encryption: PostCloneVolume200EncryptionEnumKey;
     /**
      * @description __Read-only__ The full file system path for the volume, based on its `label`. The path is `/dev/disk/by-id/scsi-0Linode_Volume_label`.
-     * @type string | undefined
+     * @type string
     */
-    readonly filesystem_path?: string;
+    readonly filesystem_path: string;
     /**
      * @description __Read-only__ The storage type of this volume. This can be either `hdd` to emulate a hard disk drive for the volume, or `nvme` to emulate a non-volatile memory express solid state drive.
-     * @type string | undefined
+     * @type string
     */
-    readonly hardware_type?: PostCloneVolume200HardwareTypeEnumKey;
+    readonly hardware_type: PostCloneVolume200HardwareTypeEnumKey;
     /**
      * @description __Read-only__ The unique identifier for the volume.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description __Read-only__ Indicates whether the volume is successfully attached to a Linode and ready for read and write operations.
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly io_ready?: boolean;
+    readonly io_ready: boolean;
     /**
      * @description __Filterable__ The name of the volume. A `label` can be up to 32 characters long and contain alphanumeric characters, hyphens, and underscores. This value is also used in the volume\'s `filesystem_path`.
      * @minLength 1
      * @maxLength 32
      * @pattern ^[a-zA-Z]((?!--|__)[a-zA-Z0-9-_])+$
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description The unique identifier of the Linode this volume is attached to, if applicable.
      * @type integer
     */
-    linode_id?: number | null;
+    linode_id: number | null;
     /**
      * @description __Read-only__ The name of the Linode this volume is attached to, if applicable.
      * @type string
     */
-    readonly linode_label?: string | null;
+    readonly linode_label: string | null;
     /**
      * @description The unique identifier for the region where the volume lives.
-     * @type string | undefined
+     * @type string
     */
-    region?: string;
+    region: string;
     /**
      * @description The volume\'s size, in gigabytes.
      * @maxLength 10240
-     * @type integer | undefined
+     * @type integer
     */
-    size?: number;
+    size: number;
     /**
      * @description __Read-only__ The current status of the volume. This can be one of:\n\n- `creating`. The API is creating the volume and it\'s not ready for use.\n\n- `active`. The volume is online and ready for use.\n\n- `resizing`. The volume\'s capacity is being upgraded.\n\n- `key_rotating`. The volume\'s encryption keys are being rotated to new values. Requests to resize, delete, or clone a volume fail during encryption key rotation.
-     * @type string | undefined
+     * @type string
     */
-    readonly status?: PostCloneVolume200StatusEnumKey;
+    readonly status: PostCloneVolume200StatusEnumKey;
     /**
      * @description __Filterable__ Any tags applied to this object. Use [tags](https://techdocs.akamai.com/linode-api/reference/post-tag) to label and organize your cloud computing resources.
-     * @type array | undefined
+     * @type array
     */
-    tags?: string[];
+    tags: string[];
     /**
      * @description __Read-only__ When this volume was last updated.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly updated?: string;
+    readonly updated: string;
 }
 
 /**
@@ -132,19 +120,19 @@ export interface PostCloneVolume200 {
 */
 export interface PostCloneVolumeError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

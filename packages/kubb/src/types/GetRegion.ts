@@ -4,19 +4,7 @@
 */
 
 
-export const getRegionPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetRegionPathParamsApiVersionEnumKey = (typeof getRegionPathParamsApiVersionEnum)[keyof typeof getRegionPathParamsApiVersionEnum];
-
 export interface GetRegionPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetRegionPathParamsApiVersionEnumKey;
     /**
      * @description The abbreviated value (\"slug\") for the applicable data center. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view the slug for each data center.
      * @type string
@@ -44,29 +32,29 @@ export type GetRegion200StatusEnumKey = (typeof getRegion200StatusEnum)[keyof ty
 export interface GetRegion200 {
     /**
      * @description A list of capabilities of this region.
-     * @type array | undefined
+     * @type array
     */
-    capabilities?: string[];
+    capabilities: string[];
     /**
      * @description __Filterable__ The country where this region resides.
-     * @type string | undefined
+     * @type string
     */
-    country?: string;
+    country: string;
     /**
      * @description The unique ID of this Region.
-     * @type string | undefined
+     * @type string
     */
-    id?: string;
+    id: string;
     /**
      * @description Detailed location information for this region, including city, state or region, and country.
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description __Beta__ Lists the services in this region that support metrics and alerts use with Akamai Cloud Pulse (ACLP).\n\n> 📘\n>\n> The ACLP service is currently beta. This object is only returned in a response if you\'re participating in the ACLP beta. Contact your account team for more information.
-     * @type object | undefined
+     * @type object
     */
-    monitors?: {
+    monitors: {
         /**
          * @description Each `service_type` supported for use in managing ACLP [alerts](https://techdocs.akamai.com/linode-api/reference/post-alert-definition-for-service-type) in this region, for your account. A `service_type` identifies the Akamai Cloud Computing service.
          * @type array
@@ -80,50 +68,50 @@ export interface GetRegion200 {
     };
     /**
      * @description The limits for [placement groups](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/) in this region.
-     * @type object | undefined
+     * @type object
     */
-    placement_group_limits?: {
+    placement_group_limits: {
         /**
          * @description The maximum number of Linodes you can include in a placement group, when that placement group uses a `placement_group_policy` of `flexible`.  Displayed as `null` if you don\'t have a limit. See [Create placement group](https://techdocs.akamai.com/linode-api/reference/post-placement-group) for more information on `placement_group_policy`.
          * @type integer
         */
-        maximum_linodes_per_flexible_pg?: number | null;
+        maximum_linodes_per_flexible_pg: number | null;
         /**
          * @description The maximum number of Linodes you can include in a placement group, when that placement group uses a `placement _group_policy` of `strict`. Displayed as `null` if you don\'t have a limit. See [Create placement group](https://techdocs.akamai.com/linode-api/reference/post-placement-group) for more information on `placement_group_policy`.
          * @type integer
         */
-        maximum_linodes_per_pg?: number | null;
+        maximum_linodes_per_pg: number | null;
         /**
          * @description The maximum number of placement groups you can have in this region. Displayed as `null` if you don\'t have a limit.
          * @type integer
         */
-        maximum_pgs_per_customer?: number | null;
+        maximum_pgs_per_customer: number | null;
     };
     /**
-     * @type object | undefined
+     * @type object
     */
-    resolvers?: {
+    resolvers: {
         /**
          * @description The IPv4 addresses for this region\'s DNS resolvers, separated by commas.
-         * @type string | undefined
+         * @type string
         */
-        ipv4?: string;
+        ipv4: string;
         /**
          * @description The IPv6 addresses for this region\'s DNS resolvers, separated by commas.
-         * @type string | undefined
+         * @type string
         */
-        ipv6?: string;
+        ipv6: string;
     };
     /**
      * @description __Filterable__ This region\'s site type. A `core` region indicates a traditional cloud computing [region](https://www.linode.com/docs/products/platform/get-started/guides/choose-a-data-center/#product-availability) that offers all compute services. A `distributed` region indicates sites that are globally dispersed to be closer to end users and workloads. These regions offer limited services.
-     * @type string | undefined
+     * @type string
     */
-    site_type?: GetRegion200SiteTypeEnumKey;
+    site_type: GetRegion200SiteTypeEnumKey;
     /**
      * @description This region\'s current operational status.
-     * @type string | undefined
+     * @type string
     */
-    status?: GetRegion200StatusEnumKey;
+    status: GetRegion200StatusEnumKey;
 }
 
 /**
@@ -131,19 +119,19 @@ export interface GetRegion200 {
 */
 export interface GetRegionError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

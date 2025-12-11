@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetLongviewSubscriptionsQueryResponse, GetLongviewSubscriptionsPathParams, GetLongviewSubscriptionsQueryParams } from "../types/GetLongviewSubscriptions.ts";
+import type { GetLongviewSubscriptionsQueryResponse, GetLongviewSubscriptionsQueryParams } from "../types/GetLongviewSubscriptions.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLongviewSubscriptionsUrl(apiVersion: GetLongviewSubscriptionsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/longview/subscriptions` as const }  
+function getGetLongviewSubscriptionsUrl() {
+  const res = { method: 'GET', url: `/longview/subscriptions` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of available Longview subscriptions. This is a public endpoint and requires no authentication.<<LB>>---- __CLI__.    ```    linode-cli longview subscriptions-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List Longview subscriptions
- * {@link /:apiVersion/longview/subscriptions}
+ * {@link /longview/subscriptions}
  */
-export async function getLongviewSubscriptions(apiVersion: GetLongviewSubscriptionsPathParams["apiVersion"], params?: GetLongviewSubscriptionsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLongviewSubscriptions(params?: GetLongviewSubscriptionsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLongviewSubscriptionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLongviewSubscriptionsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetLongviewSubscriptionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLongviewSubscriptionsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

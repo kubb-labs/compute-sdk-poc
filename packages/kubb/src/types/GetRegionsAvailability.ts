@@ -4,59 +4,44 @@
 */
 
 
-export const getRegionsAvailabilityPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetRegionsAvailabilityPathParamsApiVersionEnumKey = (typeof getRegionsAvailabilityPathParamsApiVersionEnum)[keyof typeof getRegionsAvailabilityPathParamsApiVersionEnum];
-
-export interface GetRegionsAvailabilityPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetRegionsAvailabilityPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description Returns a Region Availability object.
 */
 export interface GetRegionsAvailability200 {
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
     /**
      * @type array | undefined
     */
     data?: {
         /**
          * @description __Filterable__ Whether the compute instance type is available in the region.
-         * @type boolean | undefined
+         * @type boolean
         */
-        available?: boolean;
+        available: boolean;
         /**
          * @description __Filterable__ The compute instance [Type](https://techdocs.akamai.com/linode-api/reference/get-linode-types) ID.
-         * @type string | undefined
+         * @type string
         */
-        plan?: string;
+        plan: string;
         /**
          * @description __Filterable__ The [Region](https://techdocs.akamai.com/linode-api/reference/get-regions) ID.
-         * @type string | undefined
+         * @type string
         */
-        region?: string;
+        region: string;
     }[];
 }
 
@@ -65,19 +50,19 @@ export interface GetRegionsAvailability200 {
 */
 export interface GetRegionsAvailabilityError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -85,6 +70,5 @@ export type GetRegionsAvailabilityQueryResponse = GetRegionsAvailability200;
 
 export type GetRegionsAvailabilityQuery = {
     Response: GetRegionsAvailability200;
-    PathParams: GetRegionsAvailabilityPathParams;
     Errors: any;
 };

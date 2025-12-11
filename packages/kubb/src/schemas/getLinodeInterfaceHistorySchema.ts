@@ -6,35 +6,34 @@
 import { z } from "zod/v4";
 
 export const getLinodeInterfaceHistoryPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"linodeId": z.coerce.number().int().describe("The `id` of the Linode.")
+    "linodeId": z.coerce.number().int().describe("The `id` of the Linode.")
     })
 
 /**
  * @description Returns a paginated list of network interface versions for a Linode.
  */
 export const getLinodeInterfaceHistory200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "created": z.optional(z.string().datetime().describe("__Filterable__, __Read-only__ When this version was created. Use `created` to determine which settings an interface prevously had.")),
-"interface_data": z.optional(z.string().describe("The JSON body returned in response to a successful `PUT`, `POST`, or `DELETE` operation on the interface.")),
-"interface_history_id": z.optional(z.int().describe("__Filterable__, __Read-only__ The unique ID for this history version.")),
-"interface_id": z.optional(z.int().describe("__Filterable__, __Read-only__ The network interface defined in the `version`.")),
-"linode_id": z.optional(z.int().describe("__Filterable__, __Read-only__ The Linode the `interface_id` belongs to.")),
-"version": z.optional(z.int().describe("__Filterable__, __Read-only__ The network interface's version. The first version from a `POST` is `1`. The version number is incremented when the network interface configuration is changed."))
-    }).describe("Returns a paginated list of all available versions for all interfaces (as full objects) on the Linode. A new entry is added to this list each time a change is made to any interface."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    "data": z.array(z.object({
+    "created": z.string().datetime().describe("__Filterable__, __Read-only__ When this version was created. Use `created` to determine which settings an interface prevously had."),
+"interface_data": z.string().describe("The JSON body returned in response to a successful `PUT`, `POST`, or `DELETE` operation on the interface."),
+"interface_history_id": z.int().describe("__Filterable__, __Read-only__ The unique ID for this history version."),
+"interface_id": z.int().describe("__Filterable__, __Read-only__ The network interface defined in the `version`."),
+"linode_id": z.int().describe("__Filterable__, __Read-only__ The Linode the `interface_id` belongs to."),
+"version": z.int().describe("__Filterable__, __Read-only__ The network interface's version. The first version from a `POST` is `1`. The version number is incremented when the network interface configuration is changed.")
+    }).describe("Returns a paginated list of all available versions for all interfaces (as full objects) on the Linode. A new entry is added to this list each time a change is made to any interface.")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getLinodeInterfaceHistoryErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getLinodeInterfaceHistoryQueryResponseSchema = z.lazy(() => getLinodeInterfaceHistory200Schema)

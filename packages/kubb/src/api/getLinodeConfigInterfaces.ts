@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeConfigInterfacesQueryResponse, GetLinodeConfigInterfacesPathParams } from "../types/GetLinodeConfigInterfaces.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeConfigInterfacesUrl(apiVersion: GetLinodeConfigInterfacesPathParams["apiVersion"], linodeId: GetLinodeConfigInterfacesPathParams["linodeId"], configId: GetLinodeConfigInterfacesPathParams["configId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/configs/${configId}/interfaces` as const }  
+function getGetLinodeConfigInterfacesUrl(linodeId: GetLinodeConfigInterfacesPathParams["linodeId"], configId: GetLinodeConfigInterfacesPathParams["configId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/configs/${configId}/interfaces` as const }  
   return res
 }
 
 /**
  * @description Returns all configuration profile interfaces assigned to a specific configuration profile, on a specific Linode. To access this operation, your user needs the `read_write` [grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for the Linode.<<LB>>---- __CLI__.    ```    linode-cli linodes config-interfaces-list $linodeId $configId    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List configuration profile interfaces
- * {@link /:apiVersion/linode/instances/:linodeId/configs/:configId/interfaces}
+ * {@link /linode/instances/:linodeId/configs/:configId/interfaces}
  */
-export async function getLinodeConfigInterfaces(apiVersion: GetLinodeConfigInterfacesPathParams["apiVersion"], linodeId: GetLinodeConfigInterfacesPathParams["linodeId"], configId: GetLinodeConfigInterfacesPathParams["configId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeConfigInterfaces(linodeId: GetLinodeConfigInterfacesPathParams["linodeId"], configId: GetLinodeConfigInterfacesPathParams["configId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeConfigInterfacesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeConfigInterfacesUrl(apiVersion, linodeId, configId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeConfigInterfacesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeConfigInterfacesUrl(linodeId, configId).url.toString(), ... requestConfig })  
   return res.data
 }

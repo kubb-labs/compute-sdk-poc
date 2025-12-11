@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetEventPathParams(data?: Partial<GetEventPathParams>): GetEventPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetEventPathParams>["apiVersion"]>(["v4", "v4beta"]),"eventId": faker.number.int()},
+  ...{"eventId": faker.number.int()},
   ...data || {}
   }
 }

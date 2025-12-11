@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteTagPathParams(data?: Partial<DeleteTagPathParams>): DeleteTagPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteTagPathParams>["apiVersion"]>(["v4", "v4beta"]),"tagLabel": faker.string.alpha()},
+  ...{"tagLabel": faker.string.alpha()},
   ...data || {}
   }
 }

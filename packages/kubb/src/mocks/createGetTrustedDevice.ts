@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetTrustedDevicePathParams(data?: Partial<GetTrustedDevicePathParams>): GetTrustedDevicePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetTrustedDevicePathParams>["apiVersion"]>(["v4", "v4beta"]),"deviceId": faker.number.int()},
+  ...{"deviceId": faker.number.int()},
   ...data || {}
   }
 }

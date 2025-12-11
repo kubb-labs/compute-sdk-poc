@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetNetworkTransferPricesQueryResponse, GetNetworkTransferPricesPathParams } from "../types/GetNetworkTransferPrices.ts";
+import type { GetNetworkTransferPricesQueryResponse } from "../types/GetNetworkTransferPrices.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetNetworkTransferPricesUrl(apiVersion: GetNetworkTransferPricesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/network-transfer/prices` as const }  
+function getGetNetworkTransferPricesUrl() {
+  const res = { method: 'GET', url: `/network-transfer/prices` as const }  
   return res
 }
 
 /**
  * @description Returns collection of network transfer prices, including any region-specific rates.<<LB>>---- __CLI__.    ```    linode-cli network-transfer prices    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List network transfer prices
- * {@link /:apiVersion/network-transfer/prices}
+ * {@link /network-transfer/prices}
  */
-export async function getNetworkTransferPrices(apiVersion: GetNetworkTransferPricesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getNetworkTransferPrices(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetNetworkTransferPricesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNetworkTransferPricesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetNetworkTransferPricesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNetworkTransferPricesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

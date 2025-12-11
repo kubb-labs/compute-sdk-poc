@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteManagedContactPathParams(data?: Partial<DeleteManagedContactPathParams>): DeleteManagedContactPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteManagedContactPathParams>["apiVersion"]>(["v4", "v4beta"]),"contactId": faker.number.int()},
+  ...{"contactId": faker.number.int()},
   ...data || {}
   }
 }

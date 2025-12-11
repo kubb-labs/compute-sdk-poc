@@ -4,19 +4,7 @@
 */
 
 
-export const getDomainZonePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetDomainZonePathParamsApiVersionEnumKey = (typeof getDomainZonePathParamsApiVersionEnum)[keyof typeof getDomainZonePathParamsApiVersionEnum];
-
 export interface GetDomainZonePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetDomainZonePathParamsApiVersionEnumKey;
     /**
      * @description ID of the Domain.
      * @type string
@@ -30,9 +18,9 @@ export interface GetDomainZonePathParams {
 export interface GetDomainZone200 {
     /**
      * @description The lines of the zone file for the last rendered zone for this domain.
-     * @type array | undefined
+     * @type array
     */
-    zone_file?: string[];
+    zone_file: string[];
 }
 
 /**
@@ -40,19 +28,19 @@ export interface GetDomainZone200 {
 */
 export interface GetDomainZoneError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

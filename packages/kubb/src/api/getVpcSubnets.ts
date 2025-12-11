@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetVpcSubnetsQueryResponse, GetVpcSubnetsPathParams, GetVpcSubnetsQueryParams } from "../types/GetVpcSubnets.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetVpcSubnetsUrl(apiVersion: GetVpcSubnetsPathParams["apiVersion"], vpcId: GetVpcSubnetsPathParams["vpcId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/vpcs/${vpcId}/subnets` as const }  
+function getGetVpcSubnetsUrl(vpcId: GetVpcSubnetsPathParams["vpcId"]) {
+  const res = { method: 'GET', url: `/vpcs/${vpcId}/subnets` as const }  
   return res
 }
 
 /**
  * @description Get information about all VPC Subnets associated with a VPC.<<LB>>---- __CLI__.    ```    linode-cli vpcs subnets-list $vpcId    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List VPC subnets
- * {@link /:apiVersion/vpcs/:vpcId/subnets}
+ * {@link /vpcs/:vpcId/subnets}
  */
-export async function getVpcSubnets(apiVersion: GetVpcSubnetsPathParams["apiVersion"], vpcId: GetVpcSubnetsPathParams["vpcId"], params?: GetVpcSubnetsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getVpcSubnets(vpcId: GetVpcSubnetsPathParams["vpcId"], params?: GetVpcSubnetsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetVpcSubnetsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVpcSubnetsUrl(apiVersion, vpcId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetVpcSubnetsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVpcSubnetsUrl(vpcId).url.toString(), params, ... requestConfig })  
   return res.data
 }

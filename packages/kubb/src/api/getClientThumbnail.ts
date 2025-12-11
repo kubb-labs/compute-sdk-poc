@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetClientThumbnailQueryResponse, GetClientThumbnailPathParams } from "../types/GetClientThumbnail.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetClientThumbnailUrl(apiVersion: GetClientThumbnailPathParams["apiVersion"], clientId: GetClientThumbnailPathParams["clientId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/oauth-clients/${clientId}/thumbnail` as const }  
+function getGetClientThumbnailUrl(clientId: GetClientThumbnailPathParams["clientId"]) {
+  const res = { method: 'GET', url: `/account/oauth-clients/${clientId}/thumbnail` as const }  
   return res
 }
 
 /**
  * @description Returns the PNG thumbnail for this OAuth client.  This is a publicly viewable operation, and you can access it without authentication.
  * @summary Get the OAuth client's thumbnail
- * {@link /:apiVersion/account/oauth-clients/:clientId/thumbnail}
+ * {@link /account/oauth-clients/:clientId/thumbnail}
  */
-export async function getClientThumbnail(apiVersion: GetClientThumbnailPathParams["apiVersion"], clientId: GetClientThumbnailPathParams["clientId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getClientThumbnail(clientId: GetClientThumbnailPathParams["clientId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetClientThumbnailQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetClientThumbnailUrl(apiVersion, clientId).url.toString(), ... requestConfig })  
+  const res = await request<GetClientThumbnailQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetClientThumbnailUrl(clientId).url.toString(), ... requestConfig })  
   return res.data
 }

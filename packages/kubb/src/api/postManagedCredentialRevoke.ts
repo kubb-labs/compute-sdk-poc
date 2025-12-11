@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostManagedCredentialRevokeMutationResponse, PostManagedCredentialRevokePathParams } from "../types/PostManagedCredentialRevoke.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostManagedCredentialRevokeUrl(apiVersion: PostManagedCredentialRevokePathParams["apiVersion"], credentialId: PostManagedCredentialRevokePathParams["credentialId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/managed/credentials/${credentialId}/revoke` as const }  
+function getPostManagedCredentialRevokeUrl(credentialId: PostManagedCredentialRevokePathParams["credentialId"]) {
+  const res = { method: 'POST', url: `/managed/credentials/${credentialId}/revoke` as const }  
   return res
 }
 
 /**
  * @description Deletes a managed credential.  Akamai Support will no longer have access to this credential when investigating or resolving issues.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed credential-revoke 9991    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a managed credential
- * {@link /:apiVersion/managed/credentials/:credentialId/revoke}
+ * {@link /managed/credentials/:credentialId/revoke}
  */
-export async function postManagedCredentialRevoke(apiVersion: PostManagedCredentialRevokePathParams["apiVersion"], credentialId: PostManagedCredentialRevokePathParams["credentialId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postManagedCredentialRevoke(credentialId: PostManagedCredentialRevokePathParams["credentialId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostManagedCredentialRevokeMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostManagedCredentialRevokeUrl(apiVersion, credentialId).url.toString(), ... requestConfig })  
+  const res = await request<PostManagedCredentialRevokeMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostManagedCredentialRevokeUrl(credentialId).url.toString(), ... requestConfig })  
   return res.data
 }

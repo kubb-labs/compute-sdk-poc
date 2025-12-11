@@ -7,20 +7,20 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteEntityTransferMutationResponse, DeleteEntityTransferPathParams } from "../types/DeleteEntityTransfer.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteEntityTransferUrl(apiVersion: DeleteEntityTransferPathParams["apiVersion"], token: DeleteEntityTransferPathParams["token"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/account/entity-transfers/${token}` as const }  
+function getDeleteEntityTransferUrl(token: DeleteEntityTransferPathParams["token"]) {
+  const res = { method: 'DELETE', url: `/account/entity-transfers/${token}` as const }  
   return res
 }
 
 /**
  * @description __Deprecated__ Please run [Cancel a service transfer](https://techdocs.akamai.com/linode-api/reference/delete-service-transfer).<<LB>>---- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Cancel an entity transfer
- * {@link /:apiVersion/account/entity-transfers/:token}
+ * {@link /account/entity-transfers/:token}
  * @deprecated
  */
-export async function deleteEntityTransfer(apiVersion: DeleteEntityTransferPathParams["apiVersion"], token: DeleteEntityTransferPathParams["token"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteEntityTransfer(token: DeleteEntityTransferPathParams["token"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteEntityTransferMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteEntityTransferUrl(apiVersion, token).url.toString(), ... requestConfig })  
+  const res = await request<DeleteEntityTransferMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteEntityTransferUrl(token).url.toString(), ... requestConfig })  
   return res.data
 }

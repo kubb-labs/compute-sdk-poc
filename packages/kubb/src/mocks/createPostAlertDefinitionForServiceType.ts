@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostAlertDefinitionForServiceTypePathParams(data?: Partial<PostAlertDefinitionForServiceTypePathParams>): PostAlertDefinitionForServiceTypePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostAlertDefinitionForServiceTypePathParams>["apiVersion"]>(["v4beta"]),"serviceType": faker.string.alpha()},
+  ...{"serviceType": faker.string.alpha()},
   ...data || {}
   }
 }

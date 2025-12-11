@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetProfileQueryResponse, GetProfilePathParams } from "../types/GetProfile.ts";
+import type { GetProfileQueryResponse } from "../types/GetProfile.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetProfileUrl(apiVersion: GetProfilePathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile` as const }  
+function getGetProfileUrl() {
+  const res = { method: 'GET', url: `/profile` as const }  
   return res
 }
 
 /**
  * @description Returns information about the current user. Use this to see who is acting in applications where more than one token is managed, such as a third-party OAuth application.> 📘>> A third-party OAuth application accessing a profile with this operation has full access to all aspects of that profile.<<LB>>---- __CLI__.    ```    linode-cli profile view    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Get a profile
- * {@link /:apiVersion/profile}
+ * {@link /profile}
  */
-export async function getProfile(apiVersion: GetProfilePathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getProfile(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetProfileQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetProfileUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetProfileQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetProfileUrl().url.toString(), ... requestConfig })  
   return res.data
 }

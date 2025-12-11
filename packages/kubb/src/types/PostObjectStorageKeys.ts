@@ -4,21 +4,6 @@
 */
 
 
-export const postObjectStorageKeysPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostObjectStorageKeysPathParamsApiVersionEnumKey = (typeof postObjectStorageKeysPathParamsApiVersionEnum)[keyof typeof postObjectStorageKeysPathParamsApiVersionEnum];
-
-export interface PostObjectStorageKeysPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostObjectStorageKeysPathParamsApiVersionEnumKey;
-}
-
 export const bucketAccessPermissionsEnum = {
     "read_write": "read_write",
     "read_only": "read_only"
@@ -41,76 +26,76 @@ export type RegionsEndpointTypeEnumKey = (typeof regionsEndpointTypeEnum)[keyof 
 export interface PostObjectStorageKeys200 {
     /**
      * @description __Read-only__ A unique string chosen by the API to identify this key. Used as a username to identify this key when making requests to an S3 API, such as the Amazon S3 API or Ceph Object Gateway S3 API.
-     * @type string | undefined
+     * @type string
     */
-    readonly access_key?: string;
+    readonly access_key: string;
     /**
      * @description Settings that limit access to specific buckets, each with a specific permission level. See [Create a limited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.
-     * @type array | undefined
+     * @type array
     */
-    bucket_access?: {
+    bucket_access: {
         /**
          * @description The name of the bucket the key can access in the `region`.
-         * @type string | undefined
+         * @type string
         */
-        bucket_name?: string;
+        bucket_name: string;
         /**
          * @description __Deprecated__ For backwards compatibility, this is included to identify the legacy cluster equivalent of the `region` where this key can be used. The key grants access to each specified `bucket_name`, based on the `permissions` set. Returned as an empty object for newer regions that don\'t support the legacy `cluster` parameter.\n\n> 📘\n>\n> Use of clusters in a limited access key has been deprecated. You should use the `region` parameter instead.
-         * @type string | undefined
+         * @type string
         */
-        cluster?: string;
+        cluster: string;
         /**
          * @description The level of access the key grants to the `bucket_name`. Keys with `read_write` access can manage content in the `bucket_name`, while `read_only` can be used to view content.
-         * @type string | undefined
+         * @type string
         */
-        permissions?: BucketAccessPermissionsEnumKey;
+        permissions: BucketAccessPermissionsEnumKey;
         /**
          * @description The region where the Object Storage `bucket_name` resides.
-         * @type string | undefined
+         * @type string
         */
-        region?: string;
+        region: string;
     }[];
     /**
      * @description __Read-only__ This Object Storage key\'s unique ID.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description The label given to this key. For display purposes only.
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description __Read-only__ Whether this Object Storage key limits access to specific buckets and permissions. Returns `false` if this key grants full access. Specific limitations are set in `bucket_access`.
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly limited?: boolean;
+    readonly limited: boolean;
     /**
      * @description Identifies each region where you can use the Object Storage key.
-     * @type array | undefined
+     * @type array
     */
-    regions?: {
+    regions: {
         /**
          * @description The type of `s3_endpoint` available to the active `user` in this `region`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information.
-         * @type string | undefined
+         * @type string
         */
-        endpoint_type?: RegionsEndpointTypeEnumKey;
+        endpoint_type: RegionsEndpointTypeEnumKey;
         /**
          * @description The individual region where this key is valid.\n\n- **For an unlimited key**. Each `id` represents an individual region you set in the `regions` array, when you set up the key. See [Create an unlimited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.\n\n- **For a limited access key**. The API server populates each object in this array with each of the individual instances of the `region` parameter you set in the `bucket_access` array. See [Create a limited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.
-         * @type string | undefined
+         * @type string
         */
-        id?: string;
+        id: string;
         /**
          * @description The S3-compatible hostname you can use to access the Object Storage buckets in this region.
-         * @type string | undefined
+         * @type string
         */
-        s3_endpoint?: string;
+        s3_endpoint: string;
     }[];
     /**
      * @description __Read-only__ This Object Storage key\'s secret key. Used as a password to validate this key when making requests to an S3 API, such as the Amazon S3 API or Ceph Object Gateway S3 API.\n\n> 🚧\n>\n> The `secret_key` is only revealed in the response for this operation. Make sure to store it for later use.
-     * @type string | undefined
+     * @type string
     */
-    readonly secret_key?: string;
+    readonly secret_key: string;
 }
 
 /**
@@ -118,19 +103,19 @@ export interface PostObjectStorageKeys200 {
 */
 export interface PostObjectStorageKeysError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -209,6 +194,5 @@ export type PostObjectStorageKeysMutationResponse = PostObjectStorageKeys200;
 export type PostObjectStorageKeysMutation = {
     Response: PostObjectStorageKeys200;
     Request: PostObjectStorageKeysMutationRequest;
-    PathParams: PostObjectStorageKeysPathParams;
     Errors: any;
 };

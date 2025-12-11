@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetImagesSharegroupsImagePathParams(data?: Partial<GetImagesSharegroupsImagePathParams>): GetImagesSharegroupsImagePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetImagesSharegroupsImagePathParams>["apiVersion"]>(["v4", "v4beta"]),"imageId": faker.string.alpha()},
+  ...{"imageId": faker.string.alpha()},
   ...data || {}
   }
 }

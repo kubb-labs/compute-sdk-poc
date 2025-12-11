@@ -4,19 +4,7 @@
 */
 
 
-export const getTrustedDevicePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetTrustedDevicePathParamsApiVersionEnumKey = (typeof getTrustedDevicePathParamsApiVersionEnum)[keyof typeof getTrustedDevicePathParamsApiVersionEnum];
-
 export interface GetTrustedDevicePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetTrustedDevicePathParamsApiVersionEnumKey;
     /**
      * @description The ID of the TrustedDevice.
      * @type integer
@@ -30,34 +18,34 @@ export interface GetTrustedDevicePathParams {
 export interface GetTrustedDevice200 {
     /**
      * @description __Read-only__ When this Remember Me session was started.  This corresponds to the time of login with the \"Remember Me\" box checked.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description __Read-only__ When this TrustedDevice session expires.  Sessions typically last 30 days.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly expiry?: string;
+    readonly expiry: string;
     /**
      * @description __Read-only__ The unique ID for this TrustedDevice.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description __Read-only__ The last time this TrustedDevice was successfully used to authenticate to [login.linode.com](https://login.linode.com).
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly last_authenticated?: string;
+    readonly last_authenticated: string;
     /**
      * @description __Read-only__ The last IP Address to successfully authenticate with this TrustedDevice.
-     * @type string | undefined
+     * @type string
     */
-    readonly last_remote_addr?: string;
+    readonly last_remote_addr: string;
     /**
      * @description __Read-only__ The User Agent of the browser that created this TrustedDevice session.
-     * @type string | undefined
+     * @type string
     */
-    readonly user_agent?: string;
+    readonly user_agent: string;
 }
 
 /**
@@ -65,19 +53,19 @@ export interface GetTrustedDevice200 {
 */
 export interface GetTrustedDeviceError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

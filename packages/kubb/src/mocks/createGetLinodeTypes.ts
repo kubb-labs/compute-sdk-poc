@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetLinodeTypesPathParams, GetLinodeTypes200, GetLinodeTypesError, GetLinodeTypesQueryResponse } from "../types/GetLinodeTypes.ts";
+import type { GetLinodeTypes200, GetLinodeTypesError, GetLinodeTypesQueryResponse } from "../types/GetLinodeTypes.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetLinodeTypesPathParams(data?: Partial<GetLinodeTypesPathParams>): GetLinodeTypesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLinodeTypesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A collection of Linode Types.

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { DeleteProfilePhoneNumberPathParams, DeleteProfilePhoneNumber200, DeleteProfilePhoneNumberError, DeleteProfilePhoneNumberMutationResponse } from "../types/DeleteProfilePhoneNumber.ts";
+import type { DeleteProfilePhoneNumber200, DeleteProfilePhoneNumberError, DeleteProfilePhoneNumberMutationResponse } from "../types/DeleteProfilePhoneNumber.ts";
 import { faker } from "@faker-js/faker";
-
-export function createDeleteProfilePhoneNumberPathParams(data?: Partial<DeleteProfilePhoneNumberPathParams>): DeleteProfilePhoneNumberPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteProfilePhoneNumberPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Phone number deletion request successful.

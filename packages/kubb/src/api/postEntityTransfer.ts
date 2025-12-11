@@ -4,25 +4,25 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostEntityTransferMutationRequest, PostEntityTransferMutationResponse, PostEntityTransferPathParams } from "../types/PostEntityTransfer.ts";
+import type { PostEntityTransferMutationRequest, PostEntityTransferMutationResponse } from "../types/PostEntityTransfer.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostEntityTransferUrl(apiVersion: PostEntityTransferPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/entity-transfers` as const }  
+function getPostEntityTransferUrl() {
+  const res = { method: 'POST', url: `/account/entity-transfers` as const }  
   return res
 }
 
 /**
  * @description __Deprecated__ Please run [Request a service transfer](https://techdocs.akamai.com/linode-api/reference/post-service-transfer).<<LB>>---- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create an entity transfer
- * {@link /:apiVersion/account/entity-transfers}
+ * {@link /account/entity-transfers}
  * @deprecated
  */
-export async function postEntityTransfer(apiVersion: PostEntityTransferPathParams["apiVersion"], data: PostEntityTransferMutationRequest, config: Partial<RequestConfig<PostEntityTransferMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postEntityTransfer(data: PostEntityTransferMutationRequest, config: Partial<RequestConfig<PostEntityTransferMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostEntityTransferMutationResponse, ResponseErrorConfig<Error>, PostEntityTransferMutationRequest>({ method : "POST", url : getPostEntityTransferUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostEntityTransferMutationResponse, ResponseErrorConfig<Error>, PostEntityTransferMutationRequest>({ method : "POST", url : getPostEntityTransferUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

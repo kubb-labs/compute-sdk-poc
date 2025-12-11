@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetIpsQueryResponse, GetIpsPathParams, GetIpsQueryParams } from "../types/GetIps.ts";
+import type { GetIpsQueryResponse, GetIpsQueryParams } from "../types/GetIps.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetIpsUrl(apiVersion: GetIpsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/ips` as const }  
+function getGetIpsUrl() {
+  const res = { method: 'GET', url: `/networking/ips` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of IP addresses on your account for Linodes or Linode interfaces, excluding private addresses.> 👍>> if your application frequently accesses this operation and doesn't require IPv6 RDNS data, you can use the `skip_ipv6_rdns` query string to improve performance.<<LB>>---- __CLI__.    ```    linode-cli networking ips-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    ips:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List IP addresses
- * {@link /:apiVersion/networking/ips}
+ * {@link /networking/ips}
  */
-export async function getIps(apiVersion: GetIpsPathParams["apiVersion"], params?: GetIpsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getIps(params?: GetIpsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetIpsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetIpsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetIpsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetIpsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

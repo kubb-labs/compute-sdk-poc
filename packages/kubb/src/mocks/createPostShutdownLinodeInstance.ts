@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostShutdownLinodeInstancePathParams(data?: Partial<PostShutdownLinodeInstancePathParams>): PostShutdownLinodeInstancePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostShutdownLinodeInstancePathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int()},
+  ...{"linodeId": faker.number.int()},
   ...data || {}
   }
 }

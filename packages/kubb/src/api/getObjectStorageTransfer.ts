@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetObjectStorageTransferQueryResponse, GetObjectStorageTransferPathParams } from "../types/GetObjectStorageTransfer.ts";
+import type { GetObjectStorageTransferQueryResponse } from "../types/GetObjectStorageTransfer.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageTransferUrl(apiVersion: GetObjectStorageTransferPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/transfer` as const }  
+function getGetObjectStorageTransferUrl() {
+  const res = { method: 'GET', url: `/object-storage/transfer` as const }  
   return res
 }
 
 /**
  * @description The amount of outbound data transfer used by your account's Object Storage buckets. Object Storage adds 1 terabyte of outbound data transfer to your data transfer pool. See the [Object Storage Overview](https://www.linode.com/docs/products/storage/object-storage/#pricing) guide for details on Object Storage transfer quotas.<<LB>>---- __OAuth scopes__.    ```    object_storage:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)- __CLI__.    ```    linode-cli object-storage transfer-view    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Get Object Storage transfer data
- * {@link /:apiVersion/object-storage/transfer}
+ * {@link /object-storage/transfer}
  */
-export async function getObjectStorageTransfer(apiVersion: GetObjectStorageTransferPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageTransfer(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageTransferQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageTransferUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageTransferQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageTransferUrl().url.toString(), ... requestConfig })  
   return res.data
 }

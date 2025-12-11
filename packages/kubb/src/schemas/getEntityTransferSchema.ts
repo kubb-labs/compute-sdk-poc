@@ -6,33 +6,32 @@
 import { z } from "zod/v4";
 
 export const getEntityTransferPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"token": z.uuid().describe("The UUID of the Entity Transfer.")
+    "token": z.uuid().describe("The UUID of the Entity Transfer.")
     })
 
 /**
  * @description Returns an Entity Transfer object containing the details of the transfer for the specified token.
  */
 export const getEntityTransfer200Schema = z.object({
-    "created": z.optional(z.string().datetime().describe("When this transfer was created.")),
-"entities": z.optional(z.object({
-    "linodes": z.optional(z.array(z.int()).describe("An array containing the IDs of each of the Linodes included in this transfer."))
-    }).describe("A collection of the entities to include in this transfer request, separated by type.")),
-"expiry": z.optional(z.string().datetime().describe("When this transfer expires. Transfers will automatically expire 24 hours after creation.")),
-"is_sender": z.optional(z.boolean().describe("__Filterable__ If the requesting account created this transfer.")),
-"status": z.optional(z.enum(["accepted", "canceled", "completed", "failed", "pending", "stale"]).describe("__Filterable__ The status of the transfer request:\n\n`accepted`: The transfer has been accepted by another user and is currently in progress. Transfers can take up to 3 hours to complete.\n`canceled`: The transfer has been canceled by the sender.\n`completed`: The transfer has completed successfully.\n`failed`: The transfer has failed after initiation.\n`pending`: The transfer is ready to be accepted.\n`stale`: The transfer has exceeded its expiration date. It can no longer be accepted or canceled.")),
-"token": z.optional(z.uuid().describe("The token used to identify and accept or cancel this transfer.")),
-"updated": z.optional(z.string().datetime().describe("When this transfer was last updated."))
+    "created": z.string().datetime().describe("When this transfer was created."),
+"entities": z.object({
+    "linodes": z.array(z.int()).describe("An array containing the IDs of each of the Linodes included in this transfer.")
+    }).describe("A collection of the entities to include in this transfer request, separated by type."),
+"expiry": z.string().datetime().describe("When this transfer expires. Transfers will automatically expire 24 hours after creation."),
+"is_sender": z.boolean().describe("__Filterable__ If the requesting account created this transfer."),
+"status": z.enum(["accepted", "canceled", "completed", "failed", "pending", "stale"]).describe("__Filterable__ The status of the transfer request:\n\n`accepted`: The transfer has been accepted by another user and is currently in progress. Transfers can take up to 3 hours to complete.\n`canceled`: The transfer has been canceled by the sender.\n`completed`: The transfer has completed successfully.\n`failed`: The transfer has failed after initiation.\n`pending`: The transfer is ready to be accepted.\n`stale`: The transfer has exceeded its expiration date. It can no longer be accepted or canceled."),
+"token": z.uuid().describe("The token used to identify and accept or cancel this transfer."),
+"updated": z.string().datetime().describe("When this transfer was last updated.")
     }).describe("An object representing an Entity Transfer.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getEntityTransferErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getEntityTransferQueryResponseSchema = z.lazy(() => getEntityTransfer200Schema)

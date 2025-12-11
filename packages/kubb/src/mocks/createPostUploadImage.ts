@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostUploadImagePathParams, PostUploadImage200, PostUploadImageError, PostUploadImageMutationRequest, PostUploadImageMutationResponse } from "../types/PostUploadImage.ts";
+import type { PostUploadImage200, PostUploadImageError, PostUploadImageMutationRequest, PostUploadImageMutationResponse } from "../types/PostUploadImage.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostUploadImagePathParams(data?: Partial<PostUploadImagePathParams>): PostUploadImagePathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostUploadImagePathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Image Upload object including the upload URL and image object.

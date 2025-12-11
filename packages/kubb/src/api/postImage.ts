@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostImageMutationRequest, PostImageMutationResponse, PostImagePathParams } from "../types/PostImage.ts";
+import type { PostImageMutationRequest, PostImageMutationResponse } from "../types/PostImage.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostImageUrl(apiVersion: PostImagePathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/images` as const }  
+function getPostImageUrl() {
+  const res = { method: 'POST', url: `/images` as const }  
   return res
 }
 
 /**
  * @description Captures a private, gold-master image from a Linode disk and stores it for later use.> 👍 There's a tutorial>> This operation has specific requirements for use. Check out its [workflow](https://techdocs.akamai.com/linode-api/reference/capture-an-image) for details.<<LB>>---- __CLI__.    ```    linode-cli images create \  --label this_is_a_label \  --description "A longer description \    of the image" \  --disk_id 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_writelinodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create an image
- * {@link /:apiVersion/images}
+ * {@link /images}
  */
-export async function postImage(apiVersion: PostImagePathParams["apiVersion"], data: PostImageMutationRequest, config: Partial<RequestConfig<PostImageMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postImage(data: PostImageMutationRequest, config: Partial<RequestConfig<PostImageMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostImageMutationResponse, ResponseErrorConfig<Error>, PostImageMutationRequest>({ method : "POST", url : getPostImageUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostImageMutationResponse, ResponseErrorConfig<Error>, PostImageMutationRequest>({ method : "POST", url : getPostImageUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

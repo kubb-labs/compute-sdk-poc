@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostObjectStorageSslMutationRequest, PostObjectStorageSslMutationResponse, PostObjectStorageSslPathParams } from "../types/PostObjectStorageSsl.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostObjectStorageSslUrl(apiVersion: PostObjectStorageSslPathParams["apiVersion"], regionId: PostObjectStorageSslPathParams["regionId"], bucket: PostObjectStorageSslPathParams["bucket"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/object-storage/buckets/${regionId}/${bucket}/ssl` as const }  
+function getPostObjectStorageSslUrl(regionId: PostObjectStorageSslPathParams["regionId"], bucket: PostObjectStorageSslPathParams["bucket"]) {
+  const res = { method: 'POST', url: `/object-storage/buckets/${regionId}/${bucket}/ssl` as const }  
   return res
 }
 
 /**
  * @description Upload a TLS/SSL certificate and private key to be served when you visit your Object Storage bucket via HTTPS. Your TLS/SSL certificate and private key are stored encrypted at rest.To replace an expired certificate, [delete your current certificates](https://techdocs.akamai.com/linode-api/reference/delete-object-storage-ssl) and upload a new one.<<LB>>---- __CLI__.    ```    linode-cli object-storage ssl-upload \  us-east-1 example-bucket \  --certificate "-----BEGIN CERTIFICATE-----                 CERTIFICATE_INFORMATION                 -----END CERTIFICATE-----" \  --private_key "-----BEGIN PRIVATE KEY-----                 PRIVATE_KEY_INFORMATION                 -----END PRIVATE KEY-----"    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    object_storage:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Upload an Object Storage TLS/SSL certificate
- * {@link /:apiVersion/object-storage/buckets/:regionId/:bucket/ssl}
+ * {@link /object-storage/buckets/:regionId/:bucket/ssl}
  */
-export async function postObjectStorageSsl(apiVersion: PostObjectStorageSslPathParams["apiVersion"], regionId: PostObjectStorageSslPathParams["regionId"], bucket: PostObjectStorageSslPathParams["bucket"], data: PostObjectStorageSslMutationRequest, config: Partial<RequestConfig<PostObjectStorageSslMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postObjectStorageSsl(regionId: PostObjectStorageSslPathParams["regionId"], bucket: PostObjectStorageSslPathParams["bucket"], data: PostObjectStorageSslMutationRequest, config: Partial<RequestConfig<PostObjectStorageSslMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostObjectStorageSslMutationResponse, ResponseErrorConfig<Error>, PostObjectStorageSslMutationRequest>({ method : "POST", url : getPostObjectStorageSslUrl(apiVersion, regionId, bucket).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostObjectStorageSslMutationResponse, ResponseErrorConfig<Error>, PostObjectStorageSslMutationRequest>({ method : "POST", url : getPostObjectStorageSslUrl(regionId, bucket).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

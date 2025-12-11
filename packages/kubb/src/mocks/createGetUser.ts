@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetUserPathParams(data?: Partial<GetUserPathParams>): GetUserPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetUserPathParams>["apiVersion"]>(["v4", "v4beta"]),"username": faker.string.alpha()},
+  ...{"username": faker.string.alpha()},
   ...data || {}
   }
 }

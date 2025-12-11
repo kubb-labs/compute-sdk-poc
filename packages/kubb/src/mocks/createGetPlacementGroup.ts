@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetPlacementGroupPathParams(data?: Partial<GetPlacementGroupPathParams>): GetPlacementGroupPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetPlacementGroupPathParams>["apiVersion"]>(["v4", "v4beta"]),"groupId": faker.number.int()},
+  ...{"groupId": faker.number.int()},
   ...data || {}
   }
 }

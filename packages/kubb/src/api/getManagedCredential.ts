@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetManagedCredentialQueryResponse, GetManagedCredentialPathParams } from "../types/GetManagedCredential.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetManagedCredentialUrl(apiVersion: GetManagedCredentialPathParams["apiVersion"], credentialId: GetManagedCredentialPathParams["credentialId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/managed/credentials/${credentialId}` as const }  
+function getGetManagedCredentialUrl(credentialId: GetManagedCredentialPathParams["credentialId"]) {
+  const res = { method: 'GET', url: `/managed/credentials/${credentialId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single Managed Credential.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed credential-view 9991    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a managed credential
- * {@link /:apiVersion/managed/credentials/:credentialId}
+ * {@link /managed/credentials/:credentialId}
  */
-export async function getManagedCredential(apiVersion: GetManagedCredentialPathParams["apiVersion"], credentialId: GetManagedCredentialPathParams["credentialId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getManagedCredential(credentialId: GetManagedCredentialPathParams["credentialId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetManagedCredentialQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedCredentialUrl(apiVersion, credentialId).url.toString(), ... requestConfig })  
+  const res = await request<GetManagedCredentialQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedCredentialUrl(credentialId).url.toString(), ... requestConfig })  
   return res.data
 }

@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetObjectStorageKeysQueryResponse, GetObjectStorageKeysPathParams } from "../types/GetObjectStorageKeys.ts";
+import type { GetObjectStorageKeysQueryResponse } from "../types/GetObjectStorageKeys.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageKeysUrl(apiVersion: GetObjectStorageKeysPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/keys` as const }  
+function getGetObjectStorageKeysUrl() {
+  const res = { method: 'GET', url: `/object-storage/keys` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of Object Storage access keys for authentication.<<LB>>---- __CLI__.    ```    linode-cli object-storage keys-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    object_storage:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List Object Storage access keys
- * {@link /:apiVersion/object-storage/keys}
+ * {@link /object-storage/keys}
  */
-export async function getObjectStorageKeys(apiVersion: GetObjectStorageKeysPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageKeys(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageKeysQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageKeysUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageKeysQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageKeysUrl().url.toString(), ... requestConfig })  
   return res.data
 }

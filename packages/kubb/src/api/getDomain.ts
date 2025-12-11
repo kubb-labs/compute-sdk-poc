@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetDomainQueryResponse, GetDomainPathParams } from "../types/GetDomain.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDomainUrl(apiVersion: GetDomainPathParams["apiVersion"], domainId: GetDomainPathParams["domainId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/domains/${domainId}` as const }  
+function getGetDomainUrl(domainId: GetDomainPathParams["domainId"]) {
+  const res = { method: 'GET', url: `/domains/${domainId}` as const }  
   return res
 }
 
 /**
  * @description This is a single Domain that you have registered in Linode's DNS Manager. Linode is not a registrar, and in order for this Domain record to work you must own the domain and point your registrar at Linode's nameservers.<<LB>>---- __CLI__.    ```    linode-cli domains view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    domains:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a domain
- * {@link /:apiVersion/domains/:domainId}
+ * {@link /domains/:domainId}
  */
-export async function getDomain(apiVersion: GetDomainPathParams["apiVersion"], domainId: GetDomainPathParams["domainId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDomain(domainId: GetDomainPathParams["domainId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDomainQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDomainUrl(apiVersion, domainId).url.toString(), ... requestConfig })  
+  const res = await request<GetDomainQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDomainUrl(domainId).url.toString(), ... requestConfig })  
   return res.data
 }

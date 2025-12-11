@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetManagedContactQueryResponse, GetManagedContactPathParams } from "../types/GetManagedContact.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetManagedContactUrl(apiVersion: GetManagedContactPathParams["apiVersion"], contactId: GetManagedContactPathParams["contactId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/managed/contacts/${contactId}` as const }  
+function getGetManagedContactUrl(contactId: GetManagedContactPathParams["contactId"]) {
+  const res = { method: 'GET', url: `/managed/contacts/${contactId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single managed contact.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed contact-view 567    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a managed contact
- * {@link /:apiVersion/managed/contacts/:contactId}
+ * {@link /managed/contacts/:contactId}
  */
-export async function getManagedContact(apiVersion: GetManagedContactPathParams["apiVersion"], contactId: GetManagedContactPathParams["contactId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getManagedContact(contactId: GetManagedContactPathParams["contactId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetManagedContactQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedContactUrl(apiVersion, contactId).url.toString(), ... requestConfig })  
+  const res = await request<GetManagedContactQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedContactUrl(contactId).url.toString(), ... requestConfig })  
   return res.data
 }

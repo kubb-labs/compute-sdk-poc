@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetTransferPathParams, GetTransfer200, GetTransferError, GetTransferQueryResponse } from "../types/GetTransfer.ts";
+import type { GetTransfer200, GetTransferError, GetTransferQueryResponse } from "../types/GetTransfer.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetTransferPathParams(data?: Partial<GetTransferPathParams>): GetTransferPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetTransferPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a single Transfer object.

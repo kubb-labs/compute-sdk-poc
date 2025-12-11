@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const getDashboardsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4beta"]).describe("__Enum__ Call the `v4beta` URL for operations still only in beta."),
-"serviceType": z.string().describe("The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`.")
+    "serviceType": z.string().describe("The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`.")
     })
 
 /**
@@ -15,22 +14,22 @@ export const getDashboardsPathParamsSchema = z.object({
  */
 export const getDashboards200Schema = z.object({
     "data": z.array(z.object({
-    "created": z.optional(z.string().datetime().describe("When the dashboard was created.")),
-"id": z.optional(z.int().describe("The unique ID assigned to the dashboard.")),
-"label": z.optional(z.string().describe("The name of the dashboard. This is used for display purposes in Akamai Cloud Manager.")),
-"service_type": z.optional(z.string().describe("The Akamai Cloud Computing service used by this dashboard.")),
-"type": z.optional(z.enum(["standard"]).describe("The type of dashboard. Currently, this can only be `standard` for a dashboard, which uses default formatting.")),
-"updated": z.optional(z.string().datetime().describe("When the dashboard was last updated.")),
-"widgets": z.optional(z.array(z.object({
-    "aggregate_function": z.optional(z.enum(["min", "max", "avg", "sum", "rate", "increase"]).default("avg").describe("The aggregate function for the metric. This defaults to `avg` for average.")),
-"chart_type": z.optional(z.enum(["line", "area"]).describe("The type of chart used in the widget. This can be `line` for a line chart or `area` for an area chart.")),
-"color": z.optional(z.string().describe("The color used in the widget.")),
-"label": z.optional(z.string().describe("The name of the widget. This is used for display purposes in Akamai Cloud Manager.")),
-"metric": z.optional(z.string().describe("The metric used in the widget.")),
-"size": z.optional(z.enum(["6", "12"]).describe("The size of the widget. This can be `6` or `12` grid units, expressed as strings.")),
-"unit": z.optional(z.enum(["%", "Bytes", "sec", "bps", "msec", "Bps", "KB", "MB", "GB", "rate", "percentile", "ratio", "OPS", "IOPS"]).describe("The unit of the metric. This can be values like `%` for percentage or `GB` for gigabyte.")),
-"y_label": z.optional(z.string().describe("The label for the y-axis in the widget's chart."))
-    })).describe("The widgets used in the dashboard."))
+    "created": z.string().datetime().describe("When the dashboard was created."),
+"id": z.int().describe("The unique ID assigned to the dashboard."),
+"label": z.string().describe("The name of the dashboard. This is used for display purposes in Akamai Cloud Manager."),
+"service_type": z.string().describe("The Akamai Cloud Computing service used by this dashboard."),
+"type": z.enum(["standard"]).describe("The type of dashboard. Currently, this can only be `standard` for a dashboard, which uses default formatting."),
+"updated": z.string().datetime().describe("When the dashboard was last updated."),
+"widgets": z.array(z.object({
+    "aggregate_function": z.enum(["min", "max", "avg", "sum", "rate", "increase"]).default("avg").describe("The aggregate function for the metric. This defaults to `avg` for average."),
+"chart_type": z.enum(["line", "area"]).describe("The type of chart used in the widget. This can be `line` for a line chart or `area` for an area chart."),
+"color": z.string().describe("The color used in the widget."),
+"label": z.string().describe("The name of the widget. This is used for display purposes in Akamai Cloud Manager."),
+"metric": z.string().describe("The metric used in the widget."),
+"size": z.enum(["6", "12"]).describe("The size of the widget. This can be `6` or `12` grid units, expressed as strings."),
+"unit": z.enum(["%", "Bytes", "sec", "bps", "msec", "Bps", "KB", "MB", "GB", "rate", "percentile", "ratio", "OPS", "IOPS"]).describe("The unit of the metric. This can be values like `%` for percentage or `GB` for gigabyte."),
+"y_label": z.string().describe("The label for the y-axis in the widget's chart.")
+    })).describe("The widgets used in the dashboard.")
     })),
 "page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
 "pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
@@ -41,10 +40,10 @@ export const getDashboards200Schema = z.object({
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getDashboardsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getDashboardsQueryResponseSchema = z.lazy(() => getDashboards200Schema)

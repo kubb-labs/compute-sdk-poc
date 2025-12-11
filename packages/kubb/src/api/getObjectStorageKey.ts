@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetObjectStorageKeyQueryResponse, GetObjectStorageKeyPathParams } from "../types/GetObjectStorageKey.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageKeyUrl(apiVersion: GetObjectStorageKeyPathParams["apiVersion"], keyId: GetObjectStorageKeyPathParams["keyId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/keys/${keyId}` as const }  
+function getGetObjectStorageKeyUrl(keyId: GetObjectStorageKeyPathParams["keyId"]) {
+  const res = { method: 'GET', url: `/object-storage/keys/${keyId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single Object Storage access key.<<LB>>---- __CLI__.    ```    linode-cli object-storage keys-view \  --keyId 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    object_storage:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an Object Storage access key
- * {@link /:apiVersion/object-storage/keys/:keyId}
+ * {@link /object-storage/keys/:keyId}
  */
-export async function getObjectStorageKey(apiVersion: GetObjectStorageKeyPathParams["apiVersion"], keyId: GetObjectStorageKeyPathParams["keyId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageKey(keyId: GetObjectStorageKeyPathParams["keyId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageKeyQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageKeyUrl(apiVersion, keyId).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageKeyQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageKeyUrl(keyId).url.toString(), ... requestConfig })  
   return res.data
 }

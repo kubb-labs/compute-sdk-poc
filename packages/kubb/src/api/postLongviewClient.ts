@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostLongviewClientMutationRequest, PostLongviewClientMutationResponse, PostLongviewClientPathParams } from "../types/PostLongviewClient.ts";
+import type { PostLongviewClientMutationRequest, PostLongviewClientMutationResponse } from "../types/PostLongviewClient.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostLongviewClientUrl(apiVersion: PostLongviewClientPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/longview/clients` as const }  
+function getPostLongviewClientUrl() {
+  const res = { method: 'POST', url: `/longview/clients` as const }  
   return res
 }
 
 /**
  * @description Creates a Longview Client.  This Client will not begin monitoring the status of your server until you configure the Longview Client application on your Linode using the returning `install_code` and `api_key`.<<LB>>---- __CLI__.    ```    linode-cli longview create \  --label client789    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    longview:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a Longview client
- * {@link /:apiVersion/longview/clients}
+ * {@link /longview/clients}
  */
-export async function postLongviewClient(apiVersion: PostLongviewClientPathParams["apiVersion"], data?: PostLongviewClientMutationRequest, config: Partial<RequestConfig<PostLongviewClientMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postLongviewClient(data?: PostLongviewClientMutationRequest, config: Partial<RequestConfig<PostLongviewClientMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostLongviewClientMutationResponse, ResponseErrorConfig<Error>, PostLongviewClientMutationRequest>({ method : "POST", url : getPostLongviewClientUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostLongviewClientMutationResponse, ResponseErrorConfig<Error>, PostLongviewClientMutationRequest>({ method : "POST", url : getPostLongviewClientUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

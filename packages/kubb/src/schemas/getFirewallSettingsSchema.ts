@@ -5,10 +5,6 @@
 
 import { z } from "zod/v4";
 
-export const getFirewallSettingsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 export const getFirewallSettingsQueryParamsSchema = z.object({
     "page": z.coerce.number().int().min(1).default(1).describe("The page of a collection to return."),
 "page_size": z.coerce.number().int().min(25).max(500).default(100).describe("The number of items to return per page.")
@@ -18,22 +14,22 @@ export const getFirewallSettingsQueryParamsSchema = z.object({
  * @description Returns default firewalls.
  */
 export const getFirewallSettings200Schema = z.object({
-    "default_firewall_ids": z.optional(z.object({
-    "linode": z.optional(z.int().describe("The Linode's default firewall.")),
-"nodebalancer": z.optional(z.int().describe("The NodeBalancer's default firewall.")),
-"public_interface": z.optional(z.int().describe("The public interface's default firewall.")),
-"vpc_interface": z.optional(z.int().describe("The VPC interface's default firewall."))
-    }).describe("The default firewall ID for a `linode`, `nodebalancer`, `public_interface`, or `vpc_interface`. Default firewalls can't be deleted or disabled."))
+    "default_firewall_ids": z.object({
+    "linode": z.int().describe("The Linode's default firewall."),
+"nodebalancer": z.int().describe("The NodeBalancer's default firewall."),
+"public_interface": z.int().describe("The public interface's default firewall."),
+"vpc_interface": z.int().describe("The VPC interface's default firewall.")
+    }).describe("The default firewall ID for a `linode`, `nodebalancer`, `public_interface`, or `vpc_interface`. Default firewalls can't be deleted or disabled.")
     }).describe("Default firewalls.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getFirewallSettingsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getFirewallSettingsQueryResponseSchema = z.lazy(() => getFirewallSettings200Schema)

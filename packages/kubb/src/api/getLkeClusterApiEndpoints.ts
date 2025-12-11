@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLkeClusterApiEndpointsQueryResponse, GetLkeClusterApiEndpointsPathParams } from "../types/GetLkeClusterApiEndpoints.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLkeClusterApiEndpointsUrl(apiVersion: GetLkeClusterApiEndpointsPathParams["apiVersion"], clusterId: GetLkeClusterApiEndpointsPathParams["clusterId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/lke/clusters/${clusterId}/api-endpoints` as const }  
+function getGetLkeClusterApiEndpointsUrl(clusterId: GetLkeClusterApiEndpointsPathParams["clusterId"]) {
+  const res = { method: 'GET', url: `/lke/clusters/${clusterId}/api-endpoints` as const }  
   return res
 }
 
 /**
  * @description List the Kubernetes API server endpoints for this cluster. Please note that it often takes 2-5 minutes before the endpoint is ready after first [creating a new cluster](https://techdocs.akamai.com/linode-api/reference/post-lke-cluster).<<LB>>---- __CLI__.    ```    linode-cli lke api-endpoints-list 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List Kubernetes API endpoints
- * {@link /:apiVersion/lke/clusters/:clusterId/api-endpoints}
+ * {@link /lke/clusters/:clusterId/api-endpoints}
  */
-export async function getLkeClusterApiEndpoints(apiVersion: GetLkeClusterApiEndpointsPathParams["apiVersion"], clusterId: GetLkeClusterApiEndpointsPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLkeClusterApiEndpoints(clusterId: GetLkeClusterApiEndpointsPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLkeClusterApiEndpointsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeClusterApiEndpointsUrl(apiVersion, clusterId).url.toString(), ... requestConfig })  
+  const res = await request<GetLkeClusterApiEndpointsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeClusterApiEndpointsUrl(clusterId).url.toString(), ... requestConfig })  
   return res.data
 }

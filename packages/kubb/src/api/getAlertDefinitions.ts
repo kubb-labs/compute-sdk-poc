@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetAlertDefinitionsQueryResponse, GetAlertDefinitionsPathParams } from "../types/GetAlertDefinitions.ts";
+import type { GetAlertDefinitionsQueryResponse } from "../types/GetAlertDefinitions.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAlertDefinitionsUrl(apiVersion: GetAlertDefinitionsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/monitor/alert-definitions` as const }  
+function getGetAlertDefinitionsUrl() {
+  const res = { method: 'GET', url: `/monitor/alert-definitions` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns all available alert definitions on your account.> 📘>> - This operation is beta. Call it using the `v4beta` path in its URL.>> - [Filtering](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) is supported for specific objects, labeled as **Filterable**. However, only the `+and` and `+or` operators are supported, and you can't nest filter operators.<<LB>>---- __OAuth scopes__.    ```    monitor:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)- __CLI__.    ```    linode-cli alerts definitions-list-all    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List alert definitions
- * {@link /:apiVersion/monitor/alert-definitions}
+ * {@link /monitor/alert-definitions}
  */
-export async function getAlertDefinitions(apiVersion: GetAlertDefinitionsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAlertDefinitions(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAlertDefinitionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAlertDefinitionsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetAlertDefinitionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAlertDefinitionsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

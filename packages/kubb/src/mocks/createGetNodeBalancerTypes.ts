@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetNodeBalancerTypesPathParams, GetNodeBalancerTypes200, GetNodeBalancerTypesError, GetNodeBalancerTypesQueryResponse } from "../types/GetNodeBalancerTypes.ts";
+import type { GetNodeBalancerTypes200, GetNodeBalancerTypesError, GetNodeBalancerTypesQueryResponse } from "../types/GetNodeBalancerTypes.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetNodeBalancerTypesPathParams(data?: Partial<GetNodeBalancerTypesPathParams>): GetNodeBalancerTypesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetNodeBalancerTypesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A collection of NodeBalancer types.

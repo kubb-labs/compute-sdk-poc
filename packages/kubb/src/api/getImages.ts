@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetImagesQueryResponse, GetImagesPathParams, GetImagesQueryParams } from "../types/GetImages.ts";
+import type { GetImagesQueryResponse, GetImagesQueryParams } from "../types/GetImages.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetImagesUrl(apiVersion: GetImagesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/images` as const }  
+function getGetImagesUrl() {
+  const res = { method: 'GET', url: `/images` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of images. An image can be one of two types:- **Public image**. The `id` for these images begins with `linode/`. These images are generally available to all users. To limit the response to public images, don't include [authentication](https://techdocs.akamai.com/linode-api/reference/get-started#authentication) when calling this operation.- **Private image**. The `id` for these images begins with `private/`. These images are account-specific and only accessible to users with appropriate [grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants). To view private images, you need to include authentication when calling this operation. The response includes both private and public images.- **Shared image**. The `id` for these images begins with `shared/`. These are the images that are shared with the user.<<LB>>---- __CLI__.    ```    linode-cli images list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List images
- * {@link /:apiVersion/images}
+ * {@link /images}
  */
-export async function getImages(apiVersion: GetImagesPathParams["apiVersion"], params?: GetImagesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getImages(params?: GetImagesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetImagesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetImagesUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetImagesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetImagesUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

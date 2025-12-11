@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostChildAccountTokenPathParams(data?: Partial<PostChildAccountTokenPathParams>): PostChildAccountTokenPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostChildAccountTokenPathParams>["apiVersion"]>(["v4", "v4beta"]),"euuId": faker.string.alpha()},
+  ...{"euuId": faker.string.alpha()},
   ...data || {}
   }
 }

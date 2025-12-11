@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteObjectStorageKeyMutationResponse, DeleteObjectStorageKeyPathParams } from "../types/DeleteObjectStorageKey.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteObjectStorageKeyUrl(apiVersion: DeleteObjectStorageKeyPathParams["apiVersion"], keyId: DeleteObjectStorageKeyPathParams["keyId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/object-storage/keys/${keyId}` as const }  
+function getDeleteObjectStorageKeyUrl(keyId: DeleteObjectStorageKeyPathParams["keyId"]) {
+  const res = { method: 'DELETE', url: `/object-storage/keys/${keyId}` as const }  
   return res
 }
 
 /**
  * @description Revokes an Object Storage access key. Once revoked, the access key can no longer be used by third-party clients. A successful request triggers an `obj_access_key_delete` [event](https://techdocs.akamai.com/linode-api/reference/get-events).> 📘>> This operation has specific [rate limits](https://techdocs.akamai.com/linode-api/reference/rate-limits#specific-operation-rate-limits).<<LB>>---- __CLI__.    ```    linode-cli object-storage keys-delete 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    object_storage:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Revoke an Object Storage access key
- * {@link /:apiVersion/object-storage/keys/:keyId}
+ * {@link /object-storage/keys/:keyId}
  */
-export async function deleteObjectStorageKey(apiVersion: DeleteObjectStorageKeyPathParams["apiVersion"], keyId: DeleteObjectStorageKeyPathParams["keyId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteObjectStorageKey(keyId: DeleteObjectStorageKeyPathParams["keyId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteObjectStorageKeyMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteObjectStorageKeyUrl(apiVersion, keyId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteObjectStorageKeyMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteObjectStorageKeyUrl(keyId).url.toString(), ... requestConfig })  
   return res.data
 }

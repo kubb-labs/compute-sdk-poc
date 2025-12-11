@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteLkeClusterAclMutationResponse, DeleteLkeClusterAclPathParams, DeleteLkeClusterAcl400, DeleteLkeClusterAcl404 } from "../types/DeleteLkeClusterAcl.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteLkeClusterAclUrl(apiVersion: DeleteLkeClusterAclPathParams["apiVersion"], clusterId: DeleteLkeClusterAclPathParams["clusterId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/lke/clusters/${clusterId}/control_plane_acl` as const }  
+function getDeleteLkeClusterAclUrl(clusterId: DeleteLkeClusterAclPathParams["clusterId"]) {
+  const res = { method: 'DELETE', url: `/lke/clusters/${clusterId}/control_plane_acl` as const }  
   return res
 }
 
 /**
  * @description Disable control plane access controls and deletes all rules. This has the same effect as calling `PUT` with an acl json map value of `{“enabled” : false}`. <<LB>>---- __CLI__.    ```    linode-cli lke cluster-acl-delete 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete the control plane access control list
- * {@link /:apiVersion/lke/clusters/:clusterId/control_plane_acl}
+ * {@link /lke/clusters/:clusterId/control_plane_acl}
  */
-export async function deleteLkeClusterAcl(apiVersion: DeleteLkeClusterAclPathParams["apiVersion"], clusterId: DeleteLkeClusterAclPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteLkeClusterAcl(clusterId: DeleteLkeClusterAclPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteLkeClusterAclMutationResponse, ResponseErrorConfig<DeleteLkeClusterAcl400 | DeleteLkeClusterAcl404>, unknown>({ method : "DELETE", url : getDeleteLkeClusterAclUrl(apiVersion, clusterId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteLkeClusterAclMutationResponse, ResponseErrorConfig<DeleteLkeClusterAcl400 | DeleteLkeClusterAcl404>, unknown>({ method : "DELETE", url : getDeleteLkeClusterAclUrl(clusterId).url.toString(), ... requestConfig })  
   return res.data
 }

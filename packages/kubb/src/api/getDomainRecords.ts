@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetDomainRecordsQueryResponse, GetDomainRecordsPathParams, GetDomainRecordsQueryParams } from "../types/GetDomainRecords.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDomainRecordsUrl(apiVersion: GetDomainRecordsPathParams["apiVersion"], domainId: GetDomainRecordsPathParams["domainId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/domains/${domainId}/records` as const }  
+function getGetDomainRecordsUrl(domainId: GetDomainRecordsPathParams["domainId"]) {
+  const res = { method: 'GET', url: `/domains/${domainId}/records` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of Records configured on a Domain in Linode's DNS Manager.<<LB>>---- __CLI__.    ```    linode-cli domains records-list 1234    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    domains:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List domain records
- * {@link /:apiVersion/domains/:domainId/records}
+ * {@link /domains/:domainId/records}
  */
-export async function getDomainRecords(apiVersion: GetDomainRecordsPathParams["apiVersion"], domainId: GetDomainRecordsPathParams["domainId"], params?: GetDomainRecordsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDomainRecords(domainId: GetDomainRecordsPathParams["domainId"], params?: GetDomainRecordsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDomainRecordsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDomainRecordsUrl(apiVersion, domainId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetDomainRecordsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDomainRecordsUrl(domainId).url.toString(), params, ... requestConfig })  
   return res.data
 }

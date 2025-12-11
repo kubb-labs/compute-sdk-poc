@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetManagedContactsQueryResponse, GetManagedContactsPathParams, GetManagedContactsQueryParams } from "../types/GetManagedContacts.ts";
+import type { GetManagedContactsQueryResponse, GetManagedContactsQueryParams } from "../types/GetManagedContacts.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetManagedContactsUrl(apiVersion: GetManagedContactsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/managed/contacts` as const }  
+function getGetManagedContactsUrl() {
+  const res = { method: 'GET', url: `/managed/contacts` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of managed contacts on your account.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed contacts-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List managed contacts
- * {@link /:apiVersion/managed/contacts}
+ * {@link /managed/contacts}
  */
-export async function getManagedContacts(apiVersion: GetManagedContactsPathParams["apiVersion"], params?: GetManagedContactsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getManagedContacts(params?: GetManagedContactsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetManagedContactsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedContactsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetManagedContactsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedContactsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

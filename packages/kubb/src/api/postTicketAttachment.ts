@@ -8,21 +8,21 @@ import type { PostTicketAttachmentMutationRequest, PostTicketAttachmentMutationR
 import { buildFormData } from "../.kubb/config.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostTicketAttachmentUrl(apiVersion: PostTicketAttachmentPathParams["apiVersion"], ticketId: PostTicketAttachmentPathParams["ticketId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/support/tickets/${ticketId}/attachments` as const }  
+function getPostTicketAttachmentUrl(ticketId: PostTicketAttachmentPathParams["ticketId"]) {
+  const res = { method: 'POST', url: `/support/tickets/${ticketId}/attachments` as const }  
   return res
 }
 
 /**
  * @description Adds a file attachment to an open support ticket on your account. Use an attachment to help customer support resolve your ticket. The file attachment is submitted in the request as `multipart/form-data` type. Accepted file extensions include: `.gif`, `.jpg`, `.jpeg`, `.pjpg`, `.pjpeg`, `.tif`, `.tiff`, `.png`, `.pdf`, or `.txt`.<<LB>>---- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a support ticket attachment
- * {@link /:apiVersion/support/tickets/:ticketId/attachments}
+ * {@link /support/tickets/:ticketId/attachments}
  */
-export async function postTicketAttachment(apiVersion: PostTicketAttachmentPathParams["apiVersion"], ticketId: PostTicketAttachmentPathParams["ticketId"], data: PostTicketAttachmentMutationRequest, config: Partial<RequestConfig<PostTicketAttachmentMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postTicketAttachment(ticketId: PostTicketAttachmentPathParams["ticketId"], data: PostTicketAttachmentMutationRequest, config: Partial<RequestConfig<PostTicketAttachmentMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   const formData = buildFormData(requestData)  
-  const res = await request<PostTicketAttachmentMutationResponse, ResponseErrorConfig<Error>, PostTicketAttachmentMutationRequest>({ method : "POST", url : getPostTicketAttachmentUrl(apiVersion, ticketId).url.toString(), data : formData as FormData, ... requestConfig })  
+  const res = await request<PostTicketAttachmentMutationResponse, ResponseErrorConfig<Error>, PostTicketAttachmentMutationRequest>({ method : "POST", url : getPostTicketAttachmentUrl(ticketId).url.toString(), data : formData as FormData, ... requestConfig })  
   return res.data
 }

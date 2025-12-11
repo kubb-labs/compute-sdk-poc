@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetPlacementGroupsQueryResponse, GetPlacementGroupsPathParams, GetPlacementGroupsQueryParams } from "../types/GetPlacementGroups.ts";
+import type { GetPlacementGroupsQueryResponse, GetPlacementGroupsQueryParams } from "../types/GetPlacementGroups.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetPlacementGroupsUrl(apiVersion: GetPlacementGroupsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/placement/groups` as const }  
+function getGetPlacementGroupsUrl() {
+  const res = { method: 'GET', url: `/placement/groups` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of placement groups you have permission to view.> 📘>> Your user needs at least `read-only` [permission](https://techdocs.akamai.com/linode-api/reference/get-user-grants) to all Linodes included in a placement group to view it. Placement groups that contain Linodes that you don't have this permission for are left out of the response. If all placement groups contain Linodes that lack this permission, the API returns a 403 error. Talk to your local account administrator about managing permissions.<<LB>>---- __CLI__.    ```    linode-cli placement groups-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    placement:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List placement groups
- * {@link /:apiVersion/placement/groups}
+ * {@link /placement/groups}
  */
-export async function getPlacementGroups(apiVersion: GetPlacementGroupsPathParams["apiVersion"], params?: GetPlacementGroupsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getPlacementGroups(params?: GetPlacementGroupsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetPlacementGroupsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPlacementGroupsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetPlacementGroupsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPlacementGroupsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

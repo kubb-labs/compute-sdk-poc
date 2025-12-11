@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetMonitorInformationQueryResponse, GetMonitorInformationPathParams, GetMonitorInformationHeaderParams } from "../types/GetMonitorInformation.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetMonitorInformationUrl(apiVersion: GetMonitorInformationPathParams["apiVersion"], serviceType: GetMonitorInformationPathParams["serviceType"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/monitor/services/${serviceType}/metric-definitions` as const }  
+function getGetMonitorInformationUrl(serviceType: GetMonitorInformationPathParams["serviceType"]) {
+  const res = { method: 'GET', url: `/monitor/services/${serviceType}/metric-definitions` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns metrics for a specific service type.> 📘>> - This operation is beta. Call it using the `v4beta` path in its URL.>> - For more details on the metrics available for each service, see the [Metrics reference](https://techdocs.akamai.com/cloud-computing/docs/metrics-dimensions-parameters).<<LB>>---- __CLI__.    ```    linode-cli monitor metrics-list dbaas    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    monitor:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List metrics for a service type
- * {@link /:apiVersion/monitor/services/:serviceType/metric-definitions}
+ * {@link /monitor/services/:serviceType/metric-definitions}
  */
-export async function getMonitorInformation(apiVersion: GetMonitorInformationPathParams["apiVersion"], serviceType: GetMonitorInformationPathParams["serviceType"], headers?: GetMonitorInformationHeaderParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getMonitorInformation(serviceType: GetMonitorInformationPathParams["serviceType"], headers?: GetMonitorInformationHeaderParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetMonitorInformationQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetMonitorInformationUrl(apiVersion, serviceType).url.toString(), ... requestConfig, headers : { ...headers, ...requestConfig.headers } })  
+  const res = await request<GetMonitorInformationQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetMonitorInformationUrl(serviceType).url.toString(), ... requestConfig, headers : { ...headers, ...requestConfig.headers } })  
   return res.data
 }

@@ -4,19 +4,7 @@
 */
 
 
-export const getKernelPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetKernelPathParamsApiVersionEnumKey = (typeof getKernelPathParamsApiVersionEnum)[keyof typeof getKernelPathParamsApiVersionEnum];
-
 export interface GetKernelPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetKernelPathParamsApiVersionEnumKey;
     /**
      * @description ID of the Kernel to look up.
      * @type string
@@ -37,44 +25,44 @@ export type GetKernel200ArchitectureEnumKey = (typeof getKernel200ArchitectureEn
 export interface GetKernel200 {
     /**
      * @description __Filterable__, __Read-only__ The architecture of this Kernel.
-     * @type string | undefined
+     * @type string
     */
-    readonly architecture?: GetKernel200ArchitectureEnumKey;
+    readonly architecture: GetKernel200ArchitectureEnumKey;
     /**
      * @description __Read-only__ The date on which this Kernel was built.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly built?: string;
+    readonly built: string;
     /**
      * @description __Filterable__, __Read-only__ If this Kernel is marked as deprecated, this field has a value of `true`; otherwise, this field is `false`.
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly deprecated?: boolean;
+    readonly deprecated: boolean;
     /**
      * @description __Read-only__ The unique ID of this Kernel.
-     * @type string | undefined
+     * @type string
     */
-    readonly id?: string;
+    readonly id: string;
     /**
      * @description __Filterable__, __Read-only__ If this Kernel is suitable for KVM Linodes.
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly kvm?: boolean;
+    readonly kvm: boolean;
     /**
      * @description __Filterable__, __Read-only__ The friendly name of this Kernel.
-     * @type string | undefined
+     * @type string
     */
-    readonly label?: string;
+    readonly label: string;
     /**
      * @description __Filterable__, __Read-only__ If this Kernel is suitable for paravirtualized operations.
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly pvops?: boolean;
+    readonly pvops: boolean;
     /**
      * @description __Filterable__, __Read-only__ Linux Kernel version.
-     * @type string | undefined
+     * @type string
     */
-    readonly version?: string;
+    readonly version: string;
 }
 
 /**
@@ -82,19 +70,19 @@ export interface GetKernel200 {
 */
 export interface GetKernelError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

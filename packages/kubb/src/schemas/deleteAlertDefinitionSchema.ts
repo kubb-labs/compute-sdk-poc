@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const deleteAlertDefinitionPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4beta"]).describe("__Enum__ Call the `v4beta` URL for operations still only in beta."),
-"serviceType": z.string().describe("The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`."),
+    "serviceType": z.string().describe("The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`."),
 "alertId": z.coerce.number().int().describe("The unique identifier assigned to the alert definition. Run the [List alert definitions](https://techdocs.akamai.com/linode-api/reference/get-alert-definitions) operation and store the `id` for the applicable alert definition.")
     })
 
@@ -22,10 +21,10 @@ export const deleteAlertDefinition200Schema = z.object({
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const deleteAlertDefinitionErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const deleteAlertDefinitionMutationResponseSchema = z.lazy(() => deleteAlertDefinition200Schema)

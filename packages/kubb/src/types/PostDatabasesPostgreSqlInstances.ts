@@ -4,21 +4,6 @@
 */
 
 
-export const postDatabasesPostgreSqlInstancesPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostDatabasesPostgreSqlInstancesPathParamsApiVersionEnumKey = (typeof postDatabasesPostgreSqlInstancesPathParamsApiVersionEnum)[keyof typeof postDatabasesPostgreSqlInstancesPathParamsApiVersionEnum];
-
-export interface PostDatabasesPostgreSqlInstancesPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostDatabasesPostgreSqlInstancesPathParamsApiVersionEnumKey;
-}
-
 export const postDatabasesPostgreSqlInstances200ClusterSizeEnum = {
     "1": 1,
     "2": 2,
@@ -104,531 +89,531 @@ export type UpdatesFrequencyEnum7Key = (typeof updatesFrequencyEnum7)[keyof type
 export interface PostDatabasesPostgreSqlInstances200 {
     /**
      * @description Controls access to the Managed Database.\n\n- Individually included IP addresses or CIDR ranges can access the Managed Database while all other sources are blocked.\n\n- A standalone value of `0.0.0.0/0` allows all IP addresses access to the Managed Database.\n\n- An empty array (`[]`) blocks all public and private connections to the Managed Database.
-     * @type array | undefined
+     * @type array
     */
-    allow_list?: string[];
+    allow_list: string[];
     /**
      * @description The number of Linode instance nodes deployed to the Managed Database.\n\n - Choose `3` nodes to create a high availability cluster that consists of one primary node and two replica nodes.\n\n- A `2` node cluster is only available with a dedicated plan. It consists of one primary node and one replica node.
      * @default 1
-     * @type integer | undefined
+     * @type integer
     */
-    cluster_size?: PostDatabasesPostgreSqlInstances200ClusterSizeEnumKey;
+    cluster_size: PostDatabasesPostgreSqlInstances200ClusterSizeEnumKey;
     /**
      * @description __Read-only__ When this Managed Database was created.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description __Read-only__ Whether the Managed Databases is encrypted. Currently required to be `true`.
      * @default true
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly encrypted?: boolean;
+    readonly encrypted: boolean;
     /**
      * @description __Filterable__, __Read-only__ The Managed Database engine type.
-     * @type string | undefined
+     * @type string
     */
-    readonly engine?: string;
+    readonly engine: string;
     /**
      * @description Advanced parameters you can apply to a PostgreSQL Managed Database, via our partner [Aiven\'s specification](https://aiven.io/docs/products/postgresql/reference/advanced-params). Only include the objects for parameters you want to set in your database. Omit objects for parameters you don\'t want to define or change.\n\n> 📘\n>\n> Aiven may offer additional parameters in their specification. Currently, only those listed here are supported for use in a PostgreSQL Managed Database. You can also run the [List PostgreSQL Managed Database advanced parameters](https://techdocs.akamai.com/linode-api/reference/get-databases-postgresql-config) operation to see an up-to-date list.
-     * @type object | undefined
+     * @type object
     */
-    engine_config?: {
+    engine_config: {
         /**
          * @description PostgreSQL-specific advanced configuration parameters.
-         * @type object | undefined
+         * @type object
         */
-        pg?: {
+        pg: {
             /**
              * @description Specifies a fraction of the table size to add to `autovacuum_analyze_threshold` when deciding whether to trigger an `ANALYZE`.
              * @minLength 0
              * @maxLength 1
              * @default 0.2
-             * @type number | undefined
+             * @type number
             */
-            autovacuum_analyze_scale_factor?: number;
+            autovacuum_analyze_scale_factor: number;
             /**
              * @description Specifies the minimum number of inserted, updated, or deleted tuples needed to trigger an `ANALYZE` in any one table.
              * @minLength 0
              * @maxLength 2147483647
              * @default 50
-             * @type integer | undefined
+             * @type integer
             */
-            autovacuum_analyze_threshold?: number;
+            autovacuum_analyze_threshold: number;
             /**
              * @description Specifies the maximum number of `autovacuum` processes, other than the `autovacuum` launcher, that may be running at any one time. This parameter can only be set at server start.
              * @minLength 1
              * @maxLength 20
              * @default 3
-             * @type integer | undefined
+             * @type integer
             */
-            autovacuum_max_workers?: number;
+            autovacuum_max_workers: number;
             /**
              * @description Specifies the minimum delay between `autovacuum` runs on any given database. The delay is measured in seconds.
              * @minLength 1
              * @maxLength 86400
              * @default 60
-             * @type integer | undefined
+             * @type integer
             */
-            autovacuum_naptime?: number;
+            autovacuum_naptime: number;
             /**
              * @description Specifies the cost delay value that will be used in automatic `VACUUM` operations. If `-1` is specified, the regular `vacuum_cost_delay` value will be used.
              * @minLength -1
              * @maxLength 100
              * @default 20
-             * @type integer | undefined
+             * @type integer
             */
-            autovacuum_vacuum_cost_delay?: number;
+            autovacuum_vacuum_cost_delay: number;
             /**
              * @description Specifies the cost limit value that will be used in automatic `VACUUM` operations. The default of `-1` applies the regular `vacuum_cost_limit` value.
              * @minLength -1
              * @maxLength 10000
              * @default -1
-             * @type integer | undefined
+             * @type integer
             */
-            autovacuum_vacuum_cost_limit?: number;
+            autovacuum_vacuum_cost_limit: number;
             /**
              * @description Specifies a fraction of the table size to add to `autovacuum_vacuum_threshold` when deciding whether to trigger a `VACUUM`.
              * @minLength 0
              * @maxLength 1
              * @default 0.2
-             * @type number | undefined
+             * @type number
             */
-            autovacuum_vacuum_scale_factor?: number;
+            autovacuum_vacuum_scale_factor: number;
             /**
              * @description Specifies the minimum number of updated or deleted tuples needed to trigger a `VACUUM` in any one table.
              * @minLength 0
              * @maxLength 2147483647
              * @default 50
-             * @type integer | undefined
+             * @type integer
             */
-            autovacuum_vacuum_threshold?: number;
+            autovacuum_vacuum_threshold: number;
             /**
              * @description Specifies the delay between activity rounds for the background writer in milliseconds.
              * @minLength 20
              * @maxLength 10000
              * @default 200
-             * @type integer | undefined
+             * @type integer
             */
-            bgwriter_delay?: number;
+            bgwriter_delay: number;
             /**
              * @description Whenever more than `bgwriter_flush_after` bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes. A setting of `0` disables forced writeback.
              * @minLength 0
              * @maxLength 2048
              * @default 512
-             * @type integer | undefined
+             * @type integer
             */
-            bgwriter_flush_after?: number;
+            bgwriter_flush_after: number;
             /**
              * @description In each round, no more than this many buffers will be written by the background writer. Setting this to `0` disables background writing.
              * @minLength 0
              * @maxLength 1073741823
              * @default 100
-             * @type integer | undefined
+             * @type integer
             */
-            bgwriter_lru_maxpages?: number;
+            bgwriter_lru_maxpages: number;
             /**
              * @description The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to `bgwriter_lru_maxpages`). `1.0` represents a `\\u201cjust` in `time\\u201d` policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes.
              * @minLength 0
              * @maxLength 10
              * @default 2.5
-             * @type number | undefined
+             * @type number
             */
-            bgwriter_lru_multiplier?: number;
+            bgwriter_lru_multiplier: number;
             /**
              * @description This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
              * @minLength 500
              * @maxLength 1800000
-             * @type integer | undefined
+             * @type integer
             */
-            deadlock_timeout?: number;
+            deadlock_timeout: number;
             /**
              * @description Specifies the default TOAST compression method for values of compressible columns.
              * @default "lz4"
-             * @type string | undefined
+             * @type string
             */
-            default_toast_compression?: PgDefaultToastCompressionEnumKey;
+            default_toast_compression: PgDefaultToastCompressionEnumKey;
             /**
              * @description Time out sessions with open transactions after this number of milliseconds.
              * @minLength 0
              * @maxLength 604800000
-             * @type integer | undefined
+             * @type integer
             */
-            idle_in_transaction_session_timeout?: number;
+            idle_in_transaction_session_timeout: number;
             /**
              * @description Controls system-wide use of Just-in-Time Compilation (JIT).
-             * @type boolean | undefined
+             * @type boolean
             */
-            jit?: boolean;
+            jit: boolean;
             /**
              * @description PostgreSQL maximum number of files that can be open per process.
              * @minLength 1000
              * @maxLength 4096
-             * @type integer | undefined
+             * @type integer
             */
-            max_files_per_process?: number;
+            max_files_per_process: number;
             /**
              * @description PostgreSQL maximum locks per transaction.
              * @minLength 64
              * @maxLength 6400
-             * @type integer | undefined
+             * @type integer
             */
-            max_locks_per_transaction?: number;
+            max_locks_per_transaction: number;
             /**
              * @description PostgreSQL maximum logical replication workers, taken from the pool of `max_parallel_workers`.
              * @minLength 4
              * @maxLength 64
-             * @type integer | undefined
+             * @type integer
             */
-            max_logical_replication_workers?: number;
+            max_logical_replication_workers: number;
             /**
              * @description Sets the maximum number of workers that the system can support for parallel queries.
              * @minLength 0
              * @maxLength 96
-             * @type integer | undefined
+             * @type integer
             */
-            max_parallel_workers?: number;
+            max_parallel_workers: number;
             /**
              * @description Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
              * @minLength 0
              * @maxLength 96
-             * @type integer | undefined
+             * @type integer
             */
-            max_parallel_workers_per_gather?: number;
+            max_parallel_workers_per_gather: number;
             /**
              * @description PostgreSQL maximum predicate locks per transaction.
              * @minLength 64
              * @maxLength 5120
-             * @type integer | undefined
+             * @type integer
             */
-            max_pred_locks_per_transaction?: number;
+            max_pred_locks_per_transaction: number;
             /**
              * @description PostgreSQL maximum replication slots.
              * @minLength 8
              * @maxLength 64
-             * @type integer | undefined
+             * @type integer
             */
-            max_replication_slots?: number;
+            max_replication_slots: number;
             /**
              * @description PostgreSQL maximum write ahead log (WAL) size in MB, reserved for replication slots. A value of `-1` which indicates unlimited. The `wal_keep_size` minimum write ahead log (WAL) size setting takes precedence over this.
              * @minLength -1
              * @maxLength 2147483647
              * @default -1
-             * @type integer | undefined
+             * @type integer
             */
-            max_slot_wal_keep_size?: number;
+            max_slot_wal_keep_size: number;
             /**
              * @description Maximum depth of the stack in bytes.
              * @minLength 2097152
              * @maxLength 6291456
-             * @type integer | undefined
+             * @type integer
             */
-            max_stack_depth?: number;
+            max_stack_depth: number;
             /**
              * @description Maximum standby archive delay in milliseconds.
              * @minLength 1
              * @maxLength 43200000
-             * @type integer | undefined
+             * @type integer
             */
-            max_standby_archive_delay?: number;
+            max_standby_archive_delay: number;
             /**
              * @description Maximum standby streaming delay in milliseconds.
              * @minLength 1
              * @maxLength 43200000
-             * @type integer | undefined
+             * @type integer
             */
-            max_standby_streaming_delay?: number;
+            max_standby_streaming_delay: number;
             /**
              * @description PostgreSQL maximum write ahead log (WAL) senders.
              * @minLength 20
              * @maxLength 64
-             * @type integer | undefined
+             * @type integer
             */
-            max_wal_senders?: number;
+            max_wal_senders: number;
             /**
              * @description Maximum number of background processes that the system can support.
              * @minLength 8
              * @maxLength 96
-             * @type integer | undefined
+             * @type integer
             */
-            max_worker_processes?: number;
+            max_worker_processes: number;
             /**
              * @description Chooses the algorithm for encrypting passwords.
              * @default "md5"
-             * @type string | undefined
+             * @type string
             */
-            password_encryption?: PgPasswordEncryptionEnumKey;
+            password_encryption: PgPasswordEncryptionEnumKey;
             /**
              * @description Sets the time interval to run `pg_partman` scheduled tasks.
              * @minLength 3600
              * @maxLength 604800
-             * @type integer | undefined
+             * @type integer
             */
-            "pg_partman_bgw.interval"?: number;
+            "pg_partman_bgw.interval": number;
             /**
              * @description Controls which role to use for `pg_partman` scheduled background tasks.
-             * @type string | undefined
+             * @type string
             */
-            "pg_partman_bgw.role"?: string;
+            "pg_partman_bgw.role": string;
             /**
              * @description Enables query plan monitoring.
-             * @type boolean | undefined
+             * @type boolean
             */
-            "pg_stat_monitor.pgsm_enable_query_plan"?: boolean;
+            "pg_stat_monitor.pgsm_enable_query_plan": boolean;
             /**
              * @description Sets the maximum number of buckets.
              * @minLength 1
              * @maxLength 10
-             * @type integer | undefined
+             * @type integer
             */
-            "pg_stat_monitor.pgsm_max_buckets"?: number;
+            "pg_stat_monitor.pgsm_max_buckets": number;
             /**
              * @description Controls which statements are counted. Specify `top` to track top-level statements that are issued directly by clients, `all` to also track nested statements, such as those invoked within functions, or `none` to disable statement statistics collection.
              * @default "top"
-             * @type string | undefined
+             * @type string
             */
-            "pg_stat_statements.track"?: PgPgStatStatementsTrackEnumKey;
+            "pg_stat_statements.track": PgPgStatStatementsTrackEnumKey;
             /**
              * @description PostgreSQL temporary file limit in KB. Set to `-1` for unlimited.
              * @minLength -1
              * @maxLength 2147483647
-             * @type integer | undefined
+             * @type integer
             */
-            temp_file_limit?: number;
+            temp_file_limit: number;
             /**
              * @description PostgreSQL service time zone.
              * @maxLength 64
              * @pattern ^[\\w/]*$
-             * @type string | undefined
+             * @type string
             */
-            timezone?: string;
+            timezone: string;
             /**
              * @description Specifies the number of bytes reserved to track the currently executing command for each active session.
              * @minLength 1024
              * @maxLength 10240
-             * @type integer | undefined
+             * @type integer
             */
-            track_activity_query_size?: number;
+            track_activity_query_size: number;
             /**
              * @description Record the commit time of transactions.
-             * @type string | undefined
+             * @type string
             */
-            track_commit_timestamp?: PgTrackCommitTimestampEnumKey;
+            track_commit_timestamp: PgTrackCommitTimestampEnumKey;
             /**
              * @description Enables tracking of function call counts and time used. Specify `pl` to track only procedural-language functions, `all` to also track SQL and C language functions, or `none` to disable function statistics tracking.
              * @default "none"
-             * @type string | undefined
+             * @type string
             */
-            track_functions?: PgTrackFunctionsEnumKey;
+            track_functions: PgTrackFunctionsEnumKey;
             /**
              * @description Enables timing of database I/O calls. This parameter is `off` by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
              * @default "off"
-             * @type string | undefined
+             * @type string
             */
-            track_io_timing?: PgTrackIoTimingEnumKey;
+            track_io_timing: PgTrackIoTimingEnumKey;
             /**
              * @description Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to `0` disables the timeout.
              * @minLength 0
              * @maxLength 60000
-             * @type integer | undefined
+             * @type integer
             */
-            wal_sender_timeout?: number;
+            wal_sender_timeout: number;
             /**
              * @description Write ahead log (WAL) flush interval in milliseconds. A value lower than 200 milliseconds may negatively impact performance.
              * @minLength 10
              * @maxLength 200
              * @default 200
-             * @type integer | undefined
+             * @type integer
             */
-            wal_writer_delay?: number;
+            wal_writer_delay: number;
         };
         /**
          * @description Enable the `pg_stat_monitor` extension. When this extension is enabled, PostgreSQL restarts the cluster it\'s in. Additionally, `pg_stat_statements` results for utility commands are unreliable.
-         * @type boolean | undefined
+         * @type boolean
         */
-        pg_stat_monitor_enable?: boolean;
+        pg_stat_monitor_enable: boolean;
         /**
          * @description Parameter used to apply PGLookout settings.
-         * @type object | undefined
+         * @type object
         */
-        pglookout?: {
+        pglookout: {
             /**
              * @description Number of seconds of master unavailability before triggering database failover to standby.
              * @minLength 10
              * @maxLength 999999
-             * @type integer | undefined
+             * @type integer
             */
-            max_failover_replication_time_lag?: number;
+            max_failover_replication_time_lag: number;
         };
         /**
          * @description Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the `shared_buffers` configuration value.
          * @minLength 20
          * @maxLength 60
-         * @type number | undefined
+         * @type number
         */
-        shared_buffers_percentage?: number;
+        shared_buffers_percentage: number;
         /**
          * @description Sets the maximum amount of memory in MB to be used by a query operation, such as a sort or hash table, before writing to temporary disk files. Default is 1MB + 0.075% of total RAM, up to 32 MB.
          * @minLength 1
          * @maxLength 4
-         * @type integer | undefined
+         * @type integer
         */
-        work_mem?: number;
+        work_mem: number;
     };
     /**
      * @description Details on the database that was the target of the fork. This only exists if the database was restored by creating a fork from another [MySQL](https://techdocs.akamai.com/linode-api/reference/post-databases-mysql-instances) or [PostgreSQL](https://techdocs.akamai.com/linode-api/reference/post-databases-postgre-sql-instances) database.
-     * @type object | undefined
+     * @type object
     */
-    fork?: {
+    fork: {
         /**
          * @description The database timestamp from which it was restored. This is _not_ when the fork was created.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        restore_time?: string;
+        restore_time: string;
         /**
          * @description The instance id of the database that was forked from.
-         * @type integer | undefined
+         * @type integer
         */
-        source?: number;
+        source: number;
     };
     /**
      * @description __Read-only__ The primary and secondary hosts for the Managed Database. These are assigned after provisioning is complete.
-     * @type object | undefined
+     * @type object
     */
-    readonly hosts?: {
+    readonly hosts: {
         /**
          * @description The primary host for the Managed Database.
          * @type string
         */
-        primary?: string | null;
+        primary: string | null;
         /**
          * @description The secondary/private network host for the Managed Database. A private network host and a private IP can only be used to access a database cluster from Linodes in the same data center and will not incur transfer costs.\n\n> 📘\n>\n> The secondary hostname is publicly viewable and accessible.
          * @type string
         */
-        secondary?: string | null;
+        secondary: string | null;
     };
     /**
      * @description __Read-only__ A unique ID that can be used to identify and reference the Managed Database.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description __Filterable__ A unique, user-defined string referring to the Managed Database. This string needs to be unique per Managed Database engine type.
      * @minLength 3
      * @maxLength 32
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description __Read-only__ A mapping between IP addresses and strings designating them as `primary` or `failover`.
-     * @type object | undefined
+     * @type object
     */
-    readonly members?: object;
+    readonly members: object;
     /**
      * @description __Filterable__, __Read-only__ The back-end platform for relational databases used by the service.
-     * @type string | undefined
+     * @type string
     */
-    readonly platform?: PostDatabasesPostgreSqlInstances200PlatformEnumKey;
+    readonly platform: PostDatabasesPostgreSqlInstances200PlatformEnumKey;
     /**
      * @description __Read-only__ The access port for this Managed Database.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly port?: number;
+    readonly port: number;
     /**
      * @description __Filterable__ The unique identifier for the [region](https://techdocs.akamai.com/linode-api/reference/get-regions) where the Managed Database lives.
-     * @type string | undefined
+     * @type string
     */
-    region?: string;
+    region: string;
     /**
      * @description Currently required to be `true`. Whether to require SSL credentials to establish a connection to the Managed Database.\n\nRun the [Get managed PostgreSQL database credentials](https://techdocs.akamai.com/linode-api/reference/get-databases-postgre-sql-instance-credentials) operation for access information.
      * @default true
-     * @type boolean | undefined
+     * @type boolean
     */
-    ssl_connection?: boolean;
+    ssl_connection: boolean;
     /**
      * @description __Filterable__, __Read-only__ The operating status of the Managed Database.
-     * @type string | undefined
+     * @type string
     */
-    readonly status?: PostDatabasesPostgreSqlInstances200StatusEnumKey;
+    readonly status: PostDatabasesPostgreSqlInstances200StatusEnumKey;
     /**
      * @description __Read-only__ The total disk size of the database, in GB.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly total_disk_size_gb?: number;
+    readonly total_disk_size_gb: number;
     /**
      * @description __Filterable__ The Linode Instance type used by the Managed Database for its nodes.
-     * @type string | undefined
+     * @type string
     */
-    type?: string;
+    type: string;
     /**
      * @description __Read-only__ When this Managed Database was last updated.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly updated?: string;
+    readonly updated: string;
     /**
      * @description Configuration settings for automated patch update maintenance for the Managed Database.
-     * @type object | undefined
+     * @type object
     */
-    updates?: {
+    updates: {
         /**
          * @description The numeric reference for the day of the week to perform maintenance. `1` is Monday, `2` is Tuesday, through to `7` which is Sunday.
          * @minLength 1
          * @maxLength 7
-         * @type integer | undefined
+         * @type integer
         */
-        day_of_week?: number;
+        day_of_week: number;
         /**
          * @description The maximum maintenance window time in hours.
          * @minLength 1
          * @maxLength 3
-         * @type integer | undefined
+         * @type integer
         */
-        duration?: number;
+        duration: number;
         /**
          * @description How frequently maintenance occurs. Currently can only be `weekly`.
          * @default "weekly"
-         * @type string | undefined
+         * @type string
         */
-        frequency?: UpdatesFrequencyEnum7Key;
+        frequency: UpdatesFrequencyEnum7Key;
         /**
          * @description The hour to begin maintenance based in UTC time.
          * @minLength 0
          * @maxLength 23
-         * @type integer | undefined
+         * @type integer
         */
-        hour_of_day?: number;
+        hour_of_day: number;
         /**
          * @description __Read-only__ An array of pending updates.
-         * @type array | undefined
+         * @type array
         */
-        readonly pending?: {
+        readonly pending: {
             /**
              * @description The time when a mandatory update needs to be applied.
              * @type string, date-time
             */
-            deadline?: string | null;
+            deadline: string | null;
             /**
              * @description A description of the update.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description The date and time a maintenance update will be applied.
              * @type string, date-time
             */
-            planned_for?: string | null;
+            planned_for: string | null;
         }[];
     };
     /**
      * @description __Read-only__ The amount of space currently in use in the database, in GB.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly used_disk_size_gb?: number;
+    readonly used_disk_size_gb: number;
     /**
      * @description __Filterable__ The Managed Database engine version.
-     * @type string | undefined
+     * @type string
     */
-    version?: string;
+    version: string;
 }
 
 /**
@@ -636,19 +621,19 @@ export interface PostDatabasesPostgreSqlInstances200 {
 */
 export interface PostDatabasesPostgreSqlInstancesError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -1135,6 +1120,5 @@ export type PostDatabasesPostgreSqlInstancesMutationResponse = PostDatabasesPost
 export type PostDatabasesPostgreSqlInstancesMutation = {
     Response: PostDatabasesPostgreSqlInstances200;
     Request: PostDatabasesPostgreSqlInstancesMutationRequest;
-    PathParams: PostDatabasesPostgreSqlInstancesPathParams;
     Errors: any;
 };

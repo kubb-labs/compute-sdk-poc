@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostPersonalAccessTokenMutationRequest, PostPersonalAccessTokenMutationResponse, PostPersonalAccessTokenPathParams } from "../types/PostPersonalAccessToken.ts";
+import type { PostPersonalAccessTokenMutationRequest, PostPersonalAccessTokenMutationResponse } from "../types/PostPersonalAccessToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostPersonalAccessTokenUrl(apiVersion: PostPersonalAccessTokenPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/profile/tokens` as const }  
+function getPostPersonalAccessTokenUrl() {
+  const res = { method: 'POST', url: `/profile/tokens` as const }  
   return res
 }
 
 /**
  * @description Creates a Personal Access Token for your User. The raw token will be returned in the response, but will never be returned again afterward so be sure to take note of it. You may create a token with _at most_ the scopes of your current token. The created token will be able to access your Account until the given expiry, or until it is revoked. __Parent and child accounts__ In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:- If you're using a child account parent user (proxy user), you can't create this form of token. The only token available to a proxy user is one that lets you run operations in a child account. These are created with the [Create a proxy user token](https://techdocs.akamai.com/linode-api/reference/post-child-account-token) operation.<<LB>>---- __CLI__.    ```    linode-cli profile token-create \  --scopes '*' \  --expiry '2018-01-01T13:46:32' \  --label linode-cli    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a personal access token
- * {@link /:apiVersion/profile/tokens}
+ * {@link /profile/tokens}
  */
-export async function postPersonalAccessToken(apiVersion: PostPersonalAccessTokenPathParams["apiVersion"], data?: PostPersonalAccessTokenMutationRequest, config: Partial<RequestConfig<PostPersonalAccessTokenMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postPersonalAccessToken(data?: PostPersonalAccessTokenMutationRequest, config: Partial<RequestConfig<PostPersonalAccessTokenMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostPersonalAccessTokenMutationResponse, ResponseErrorConfig<Error>, PostPersonalAccessTokenMutationRequest>({ method : "POST", url : getPostPersonalAccessTokenUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostPersonalAccessTokenMutationResponse, ResponseErrorConfig<Error>, PostPersonalAccessTokenMutationRequest>({ method : "POST", url : getPostPersonalAccessTokenUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

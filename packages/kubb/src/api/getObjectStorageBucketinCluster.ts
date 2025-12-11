@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetObjectStorageBucketinClusterQueryResponse, GetObjectStorageBucketinClusterPathParams } from "../types/GetObjectStorageBucketinCluster.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageBucketinClusterUrl(apiVersion: GetObjectStorageBucketinClusterPathParams["apiVersion"], regionId: GetObjectStorageBucketinClusterPathParams["regionId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/buckets/${regionId}` as const }  
+function getGetObjectStorageBucketinClusterUrl(regionId: GetObjectStorageBucketinClusterPathParams["regionId"]) {
+  const res = { method: 'GET', url: `/object-storage/buckets/${regionId}` as const }  
   return res
 }
 
 /**
  * @description Returns a list of buckets on your account, in the specified region.> 📘>> You can use the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/bucketops/#get-bucket) for more options.<<LB>>---- __OAuth scopes__.    ```    object_storage:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List Object Storage buckets per region
- * {@link /:apiVersion/object-storage/buckets/:regionId}
+ * {@link /object-storage/buckets/:regionId}
  */
-export async function getObjectStorageBucketinCluster(apiVersion: GetObjectStorageBucketinClusterPathParams["apiVersion"], regionId: GetObjectStorageBucketinClusterPathParams["regionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageBucketinCluster(regionId: GetObjectStorageBucketinClusterPathParams["regionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageBucketinClusterQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageBucketinClusterUrl(apiVersion, regionId).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageBucketinClusterQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageBucketinClusterUrl(regionId).url.toString(), ... requestConfig })  
   return res.data
 }

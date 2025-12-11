@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetLongviewPlanQueryResponse, GetLongviewPlanPathParams } from "../types/GetLongviewPlan.ts";
+import type { GetLongviewPlanQueryResponse } from "../types/GetLongviewPlan.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLongviewPlanUrl(apiVersion: GetLongviewPlanPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/longview/plan` as const }  
+function getGetLongviewPlanUrl() {
+  const res = { method: 'GET', url: `/longview/plan` as const }  
   return res
 }
 
 /**
  * @description Get the details of your current Longview plan. This returns a `LongviewSubscription` object for your current Longview Pro plan, or an empty set `{}` if your current plan is Longview Free.You must have at least one of the following `global` [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) in order to run this operation:  - `"account_access": read_write`  - `"account_access": read_only`  - `"longview_subscription": true`  - `"add_longview": true`To update your subscription plan, send a request to [Update a Longview plan](https://techdocs.akamai.com/linode-api/reference/put-longview-plan).<<LB>>---- __CLI__.    ```    linode-cli longview plan-view    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    longview:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a Longview plan
- * {@link /:apiVersion/longview/plan}
+ * {@link /longview/plan}
  */
-export async function getLongviewPlan(apiVersion: GetLongviewPlanPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLongviewPlan(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLongviewPlanQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLongviewPlanUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetLongviewPlanQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLongviewPlanUrl().url.toString(), ... requestConfig })  
   return res.data
 }

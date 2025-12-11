@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostVpcSubnetPathParams(data?: Partial<PostVpcSubnetPathParams>): PostVpcSubnetPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostVpcSubnetPathParams>["apiVersion"]>(["v4", "v4beta"]),"vpcId": faker.number.int()},
+  ...{"vpcId": faker.number.int()},
   ...data || {}
   }
 }

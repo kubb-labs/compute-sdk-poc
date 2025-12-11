@@ -4,71 +4,56 @@
 */
 
 
-export const postManagedContactPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostManagedContactPathParamsApiVersionEnumKey = (typeof postManagedContactPathParamsApiVersionEnum)[keyof typeof postManagedContactPathParamsApiVersionEnum];
-
-export interface PostManagedContactPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostManagedContactPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description Contact created.
 */
 export interface PostManagedContact200 {
     /**
      * @description The address to email this Contact to alert them of issues.
-     * @type string | undefined, email
+     * @type string, email
     */
-    email?: string;
+    email: string;
     /**
      * @description __Filterable__ A grouping for this Contact. This is for display purposes only.
      * @minLength 2
      * @maxLength 50
      * @type string
     */
-    group?: string | null;
+    group: string | null;
     /**
      * @description __Read-only__ This Contact\'s unique ID.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description The name of this Contact.
      * @minLength 2
      * @maxLength 64
      * @pattern [a-zA-Z0-9-_ ]{2,64}
-     * @type string | undefined
+     * @type string
     */
-    name?: string;
+    name: string;
     /**
      * @description Information about how to reach this Contact by phone.
-     * @type object | undefined
+     * @type object
     */
-    phone?: {
+    phone: {
         /**
          * @description This Contact\'s primary phone number.
          * @type string, phone
         */
-        primary?: string | null;
+        primary: string | null;
         /**
          * @description This Contact\'s secondary phone number.
          * @type string, phone
         */
-        secondary?: string | null;
+        secondary: string | null;
     };
     /**
      * @description __Read-only__ When this Contact was last updated.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly updated?: string;
+    readonly updated: string;
 }
 
 /**
@@ -76,19 +61,19 @@ export interface PostManagedContact200 {
 */
 export interface PostManagedContactError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -149,6 +134,5 @@ export type PostManagedContactMutationResponse = PostManagedContact200;
 export type PostManagedContactMutation = {
     Response: PostManagedContact200;
     Request: PostManagedContactMutationRequest;
-    PathParams: PostManagedContactPathParams;
     Errors: any;
 };

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostDisableManagedServicePathParams(data?: Partial<PostDisableManagedServicePathParams>): PostDisableManagedServicePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostDisableManagedServicePathParams>["apiVersion"]>(["v4", "v4beta"]),"serviceId": faker.number.int()},
+  ...{"serviceId": faker.number.int()},
   ...data || {}
   }
 }

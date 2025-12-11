@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetObjectStorageBucketAccessQueryResponse, GetObjectStorageBucketAccessPathParams } from "../types/GetObjectStorageBucketAccess.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageBucketAccessUrl(apiVersion: GetObjectStorageBucketAccessPathParams["apiVersion"], regionId: GetObjectStorageBucketAccessPathParams["regionId"], bucket: GetObjectStorageBucketAccessPathParams["bucket"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/buckets/${regionId}/${bucket}/access` as const }  
+function getGetObjectStorageBucketAccessUrl(regionId: GetObjectStorageBucketAccessPathParams["regionId"], bucket: GetObjectStorageBucketAccessPathParams["bucket"]) {
+  const res = { method: 'GET', url: `/object-storage/buckets/${regionId}/${bucket}/access` as const }  
   return res
 }
 
 /**
  * @description View the cross-origin resource sharing (CORS) and [S3 canned access control (ACL)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) settings for a specific Object Storage bucket.> 📘>> You can use the S3 API to view more details on [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html) or [S3 canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/managing-acls.html) settings.<<LB>>---- __OAuth scopes__.    ```    object_storage:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get Object Storage bucket access
- * {@link /:apiVersion/object-storage/buckets/:regionId/:bucket/access}
+ * {@link /object-storage/buckets/:regionId/:bucket/access}
  */
-export async function getObjectStorageBucketAccess(apiVersion: GetObjectStorageBucketAccessPathParams["apiVersion"], regionId: GetObjectStorageBucketAccessPathParams["regionId"], bucket: GetObjectStorageBucketAccessPathParams["bucket"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageBucketAccess(regionId: GetObjectStorageBucketAccessPathParams["regionId"], bucket: GetObjectStorageBucketAccessPathParams["bucket"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageBucketAccessQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageBucketAccessUrl(apiVersion, regionId, bucket).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageBucketAccessQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageBucketAccessUrl(regionId, bucket).url.toString(), ... requestConfig })  
   return res.data
 }

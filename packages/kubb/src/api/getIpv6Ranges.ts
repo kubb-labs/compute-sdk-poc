@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetIpv6RangesQueryResponse, GetIpv6RangesPathParams, GetIpv6RangesQueryParams } from "../types/GetIpv6Ranges.ts";
+import type { GetIpv6RangesQueryResponse, GetIpv6RangesQueryParams } from "../types/GetIpv6Ranges.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetIpv6RangesUrl(apiVersion: GetIpv6RangesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/ipv6/ranges` as const }  
+function getGetIpv6RangesUrl() {
+  const res = { method: 'GET', url: `/networking/ipv6/ranges` as const }  
   return res
 }
 
 /**
  * @description Displays the IPv6 ranges on your Account.  - An IPv6 range is a `/64` or `/56` block of IPv6 addresses routed to a single Linode in a given [region](https://techdocs.akamai.com/linode-api/reference/get-regions).  - Your Linode is responsible for routing individual addresses in the range, or handling traffic for all the addresses in the range.  - Run the [Create an IPv6 range](https://techdocs.akamai.com/linode-api/reference/post-ipv6-range) operation to add a `/64` or `/56` block of IPv6 addresses to your account.<<LB>>---- __CLI__.    ```    linode-cli networking v6-ranges    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    ips:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List IPv6 ranges
- * {@link /:apiVersion/networking/ipv6/ranges}
+ * {@link /networking/ipv6/ranges}
  */
-export async function getIpv6Ranges(apiVersion: GetIpv6RangesPathParams["apiVersion"], params?: GetIpv6RangesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getIpv6Ranges(params?: GetIpv6RangesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetIpv6RangesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetIpv6RangesUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetIpv6RangesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetIpv6RangesUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

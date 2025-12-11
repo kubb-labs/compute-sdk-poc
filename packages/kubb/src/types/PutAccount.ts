@@ -4,21 +4,6 @@
 */
 
 
-export const putAccountPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PutAccountPathParamsApiVersionEnumKey = (typeof putAccountPathParamsApiVersionEnum)[keyof typeof putAccountPathParamsApiVersionEnum];
-
-export interface PutAccountPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PutAccountPathParamsApiVersionEnumKey;
-}
-
 export const activePromotionsServiceTypeEnum3 = {
     "all": "all",
     "backup": "backup",
@@ -50,166 +35,166 @@ export type PutAccount200BillingSourceEnumKey = (typeof putAccount200BillingSour
 */
 export interface PutAccount200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    readonly active_promotions?: {
+    readonly active_promotions: {
         /**
          * @description The amount available to spend per month.
-         * @type string | undefined
+         * @type string
         */
-        credit_monthly_cap?: string;
+        credit_monthly_cap: string;
         /**
          * @description The total amount of credit left for this promotion.
-         * @type string | undefined
+         * @type string
         */
-        credit_remaining?: string;
+        credit_remaining: string;
         /**
          * @description A detailed description of this promotion.
-         * @type string | undefined
+         * @type string
         */
-        description?: string;
+        description: string;
         /**
          * @description When this promotion\'s credits expire.
-         * @type string | undefined
+         * @type string
         */
-        expire_dt?: string;
+        expire_dt: string;
         /**
          * @description The location of an image for this promotion.
-         * @type string | undefined
+         * @type string
         */
-        image_url?: string;
+        image_url: string;
         /**
          * @description The service to which this promotion applies.
-         * @type string | undefined
+         * @type string
         */
-        service_type?: ActivePromotionsServiceTypeEnum3Key;
+        service_type: ActivePromotionsServiceTypeEnum3Key;
         /**
          * @description Short details of this promotion.
-         * @type string | undefined
+         * @type string
         */
-        summary?: string;
+        summary: string;
         /**
          * @description The amount of credit left for this month for this promotion.
-         * @type string | undefined
+         * @type string
         */
-        this_month_credit_remaining?: string;
+        this_month_credit_remaining: string;
     }[];
     /**
      * @description __Read-only__ The date and time the account was activated.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly active_since?: string;
+    readonly active_since: string;
     /**
      * @description The first line of this account\'s billing address.
      * @maxLength 64
-     * @type string | undefined
+     * @type string
     */
-    address_1?: string;
+    address_1: string;
     /**
      * @description The second line of this account\'s billing address.
      * @maxLength 64
-     * @type string | undefined
+     * @type string
     */
-    address_2?: string;
+    address_2: string;
     /**
      * @description __Read-only__ This account\'s balance, in US dollars.
-     * @type number | undefined
+     * @type number
     */
-    readonly balance?: number;
+    readonly balance: number;
     /**
      * @description __Read-only__ This account\'s current estimated invoice in US dollars. This is not your final invoice balance. Transfer charges are not included in the estimate.
-     * @type number | undefined
+     * @type number
     */
-    readonly balance_uninvoiced?: number;
+    readonly balance_uninvoiced: number;
     /**
      * @description __Read-only__ The source of service charges for this account. Accounts that are associated with Akamai-specific customers return a value of `akamai`. All other accounts return a value of `linode`.
-     * @type string | undefined
+     * @type string
     */
-    readonly billing_source?: PutAccount200BillingSourceEnumKey;
+    readonly billing_source: PutAccount200BillingSourceEnumKey;
     /**
      * @description __Read-only__ The Akamai Cloud Computing services your account supports.
-     * @type array | undefined
+     * @type array
     */
-    readonly capabilities?: string[];
+    readonly capabilities: string[];
     /**
      * @description The city for this account\'s `address`.
      * @maxLength 24
-     * @type string | undefined
+     * @type string
     */
-    city?: string;
+    city: string;
     /**
      * @description The company name assigned to this account. This value can\'t include the characters, `<` `>` `(` `)` `\"` `=`.
      * @maxLength 128
-     * @type string | undefined
+     * @type string
     */
-    company?: string;
+    company: string;
     /**
      * @description The two-letter ISO 3166 country code for this account\'s `address`.
-     * @type string | undefined
+     * @type string
     */
-    country?: string;
+    country: string;
     /**
      * @description __Read-only__ The credit card information assigned to this account.
-     * @type object | undefined
+     * @type object
     */
-    readonly credit_card?: {
+    readonly credit_card: {
         /**
          * @description The expiration month and year of the `credit_card`.
-         * @type string | undefined
+         * @type string
         */
-        expiry?: string;
+        expiry: string;
         /**
          * @description The last four digits of the `credit_card` assigned to this account.
-         * @type string | undefined
+         * @type string
         */
-        last_four?: string;
+        last_four: string;
     };
     /**
      * @description The email address of the person assigned to this account.
      * @maxLength 128
-     * @type string | undefined
+     * @type string
     */
-    email?: string;
+    email: string;
     /**
      * @description __Read-only__ An external unique identifier for this account.
-     * @type string | undefined, uuid
+     * @type string, uuid
     */
-    readonly euuid?: string;
+    readonly euuid: string;
     /**
      * @description The first name of the person assigned to this account. This value can\'t include the characters, `<` `>` `(` `)` `\"` `=`.
      * @maxLength 50
-     * @type string | undefined
+     * @type string
     */
-    first_name?: string;
+    first_name: string;
     /**
      * @description The last name of the person assigned to this account. This value can\'t include the characters, `<` `>` `(` `)` `\"` `=`.
      * @maxLength 50
-     * @type string | undefined
+     * @type string
     */
-    last_name?: string;
+    last_name: string;
     /**
      * @description The phone number assigned to this account.
      * @maxLength 32
-     * @type string | undefined
+     * @type string
     */
-    phone?: string;
+    phone: string;
     /**
      * @description The state or province for the `address` set for your account, if applicable.\n\n- If the `address` is in the United States (US) or Canada (CA), this is the two-letter ISO 3166 code for the state or province.\n\n- If it\'s a US military `address`, this is the abbreviation for that territory. This includes `AA` for Armed Forces Americas (excluding Canada), `AE` for Armed Forces Africa, Europe, Middle East, and Canada, or `AP` for Armed Forces Pacific.\n\n- If outside the US or CA, this is the province associated with the account\'s `address`.
      * @maxLength 24
-     * @type string | undefined
+     * @type string
     */
-    state?: string;
+    state: string;
     /**
      * @description The tax identification number (TIN) assigned to this account, used for tax calculations. A TIN is set by the national authorities in your `country`, based on your `address_1`, and it may be named differently between countries. Set to an empty string (`\"\"`) if a TIN doesn\'t apply or for countries that don\'t collect tax.\n\n> 📘\n>\n> This value is externally validated. If the validation is successful, a `tax_id_valid` [event](https://techdocs.akamai.com/linode-api/reference/get-events) is triggered. If unsuccessful, a `tax_id_invalid` event is triggered and an error response is issued for an operation that included it.
      * @maxLength 25
-     * @type string | undefined
+     * @type string
     */
-    tax_id?: string;
+    tax_id: string;
     /**
      * @description The zip code for this account\'s `address`.\n\n- It can only contain ASCII letters, numbers, and dashes (`-`).\n\n- It can\'t contain more than nine letter or number characters.
-     * @type string | undefined
+     * @type string
     */
-    zip?: string;
+    zip: string;
 }
 
 /**
@@ -217,19 +202,19 @@ export interface PutAccount200 {
 */
 export interface PutAccountError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -431,6 +416,5 @@ export type PutAccountMutationResponse = PutAccount200;
 export type PutAccountMutation = {
     Response: PutAccount200;
     Request: PutAccountMutationRequest;
-    PathParams: PutAccountPathParams;
     Errors: any;
 };

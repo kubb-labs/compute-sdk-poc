@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetTaggedObjectsPathParams(data?: Partial<GetTaggedObjectsPathParams>): GetTaggedObjectsPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetTaggedObjectsPathParams>["apiVersion"]>(["v4", "v4beta"]),"tagLabel": faker.string.alpha()},
+  ...{"tagLabel": faker.string.alpha()},
   ...data || {}
   }
 }

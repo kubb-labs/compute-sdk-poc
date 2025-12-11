@@ -4,19 +4,7 @@
 */
 
 
-export const getBetaProgramPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetBetaProgramPathParamsApiVersionEnumKey = (typeof getBetaProgramPathParamsApiVersionEnum)[keyof typeof getBetaProgramPathParamsApiVersionEnum];
-
 export interface GetBetaProgramPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetBetaProgramPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the Beta Program.
      * @type string
@@ -32,37 +20,37 @@ export interface GetBetaProgram200 {
      * @description __Read-only__ Additional details regarding the Beta Program.
      * @type string
     */
-    readonly description?: string | null;
+    readonly description: string | null;
     /**
      * @description __Filterable__, __Read-only__ The date-time that the Beta Program ended.\n\n`null` indicates that the Beta Program is ongoing.
      * @type string, date-time
     */
-    readonly ended?: string | null;
+    readonly ended: string | null;
     /**
      * @description __Filterable__, __Read-only__ Whether the Beta Program requires [Green Light](https://www.linode.com/green-light/) participation for enrollment.
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly greenlight_only?: boolean;
+    readonly greenlight_only: boolean;
     /**
      * @description The unique identifier of the Beta Program.
-     * @type string | undefined
+     * @type string
     */
-    id?: string;
+    id: string;
     /**
      * @description __Filterable__, __Read-only__ The name of the Beta Program.
-     * @type string | undefined
+     * @type string
     */
-    readonly label?: string;
+    readonly label: string;
     /**
      * @description __Read-only__ Additional source of information for the Beta Program.
      * @type string
     */
-    readonly more_info?: string | null;
+    readonly more_info: string | null;
     /**
      * @description __Filterable__, __Read-only__ The start date-time of the Beta Program.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly started?: string;
+    readonly started: string;
 }
 
 /**
@@ -70,19 +58,19 @@ export interface GetBetaProgram200 {
 */
 export interface GetBetaProgramError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

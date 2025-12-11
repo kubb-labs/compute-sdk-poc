@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetAvailabilityQueryResponse, GetAvailabilityPathParams, GetAvailabilityQueryParams } from "../types/GetAvailability.ts";
+import type { GetAvailabilityQueryResponse, GetAvailabilityQueryParams } from "../types/GetAvailability.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAvailabilityUrl(apiVersion: GetAvailabilityPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/availability` as const }  
+function getGetAvailabilityUrl() {
+  const res = { method: 'GET', url: `/account/availability` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of the services available to you, for all Linode regions.> 📘>> Only authorized users can run this operation.<<LB>>---- __CLI__.    ```    linode-cli account get-availability    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List available services
- * {@link /:apiVersion/account/availability}
+ * {@link /account/availability}
  */
-export async function getAvailability(apiVersion: GetAvailabilityPathParams["apiVersion"], params?: GetAvailabilityQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAvailability(params?: GetAvailabilityQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAvailabilityQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAvailabilityUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetAvailabilityQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAvailabilityUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

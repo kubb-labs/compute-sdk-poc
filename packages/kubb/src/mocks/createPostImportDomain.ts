@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostImportDomainPathParams, PostImportDomain200, PostImportDomainError, PostImportDomainMutationRequest, PostImportDomainMutationResponse } from "../types/PostImportDomain.ts";
+import type { PostImportDomain200, PostImportDomainError, PostImportDomainMutationRequest, PostImportDomainMutationResponse } from "../types/PostImportDomain.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostImportDomainPathParams(data?: Partial<PostImportDomainPathParams>): PostImportDomainPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostImportDomainPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A single Domain in Linode\'s DNS Manager.

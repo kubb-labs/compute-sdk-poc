@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetProfileLoginsQueryResponse, GetProfileLoginsPathParams } from "../types/GetProfileLogins.ts";
+import type { GetProfileLoginsQueryResponse } from "../types/GetProfileLogins.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetProfileLoginsUrl(apiVersion: GetProfileLoginsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/logins` as const }  
+function getGetProfileLoginsUrl() {
+  const res = { method: 'GET', url: `/profile/logins` as const }  
   return res
 }
 
 /**
  * @description Returns a collection of successful account logins from this user during the last 90 days.<<LB>>---- __CLI__.    ```    linode-cli profile logins-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List logins
- * {@link /:apiVersion/profile/logins}
+ * {@link /profile/logins}
  */
-export async function getProfileLogins(apiVersion: GetProfileLoginsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getProfileLogins(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetProfileLoginsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetProfileLoginsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetProfileLoginsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetProfileLoginsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

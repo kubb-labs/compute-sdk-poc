@@ -4,19 +4,7 @@
 */
 
 
-export const getObjectStorageBucketContentPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetObjectStorageBucketContentPathParamsApiVersionEnumKey = (typeof getObjectStorageBucketContentPathParamsApiVersionEnum)[keyof typeof getObjectStorageBucketContentPathParamsApiVersionEnum];
-
 export interface GetObjectStorageBucketContentPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetObjectStorageBucketContentPathParamsApiVersionEnumKey;
     /**
      * @description Identifies a region where this bucket lives.\n\n> 📘\n>\n> You can use a `clusterId` in place of `regionId` in requests for buckets that you created using the legacy version of the API. Run [List clusters](https://techdocs.akamai.com/linode-api/reference/get-object-storage-clusters) to see each cluster `id`.
      * @type string
@@ -60,45 +48,45 @@ export interface GetObjectStorageBucketContentQueryParams {
 */
 export interface GetObjectStorageBucketContent200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description An MD-5 hash of the object. `null` if this object represents a prefix.
-         * @type string | undefined
+         * @type string
         */
-        etag?: string;
+        etag: string;
         /**
          * @description The date and time this object was last modified. `null` if this object represents a prefix.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        last_modified?: string;
+        last_modified: string;
         /**
          * @description The name of this object or prefix.
-         * @type string | undefined
+         * @type string
         */
-        name?: string;
+        name: string;
         /**
          * @description The owner of this object, as a UUID. `null` if this object represents a prefix.
-         * @type string | undefined
+         * @type string
         */
-        owner?: string;
+        owner: string;
         /**
          * @description The size of this object, in bytes. `null` if this object represents a prefix.
-         * @type integer | undefined
+         * @type integer
         */
-        size?: number;
+        size: number;
     }[];
     /**
      * @description Designates if there is another page of bucket objects.
-     * @type boolean | undefined
+     * @type boolean
     */
-    is_truncated?: boolean;
+    is_truncated: boolean;
     /**
      * @description Returns the value you should pass to the `marker` query parameter to get the next page of objects. If there is no next page, `null` will be returned.
      * @type string
     */
-    next_marker?: string | null;
+    next_marker: string | null;
 }
 
 /**
@@ -106,19 +94,19 @@ export interface GetObjectStorageBucketContent200 {
 */
 export interface GetObjectStorageBucketContentError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

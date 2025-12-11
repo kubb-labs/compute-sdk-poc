@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetProfileGrantsPathParams, GetProfileGrants200, GetProfileGrantsError, GetProfileGrantsQueryResponse } from "../types/GetProfileGrants.ts";
+import type { GetProfileGrants200, GetProfileGrantsError, GetProfileGrantsQueryResponse } from "../types/GetProfileGrants.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetProfileGrantsPathParams(data?: Partial<GetProfileGrantsPathParams>): GetProfileGrantsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetProfileGrantsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description GrantsResponse.

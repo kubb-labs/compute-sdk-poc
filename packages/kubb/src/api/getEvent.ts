@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetEventQueryResponse, GetEventPathParams } from "../types/GetEvent.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetEventUrl(apiVersion: GetEventPathParams["apiVersion"], eventId: GetEventPathParams["eventId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/events/${eventId}` as const }  
+function getGetEventUrl(eventId: GetEventPathParams["eventId"]) {
+  const res = { method: 'GET', url: `/account/events/${eventId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single event object.<<LB>>---- __CLI__.    ```    linode-cli events view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    events:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an event
- * {@link /:apiVersion/account/events/:eventId}
+ * {@link /account/events/:eventId}
  */
-export async function getEvent(apiVersion: GetEventPathParams["apiVersion"], eventId: GetEventPathParams["eventId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getEvent(eventId: GetEventPathParams["eventId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetEventQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetEventUrl(apiVersion, eventId).url.toString(), ... requestConfig })  
+  const res = await request<GetEventQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetEventUrl(eventId).url.toString(), ... requestConfig })  
   return res.data
 }

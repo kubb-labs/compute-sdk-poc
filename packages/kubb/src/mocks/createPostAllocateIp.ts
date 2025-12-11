@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostAllocateIpPathParams, PostAllocateIp200, PostAllocateIpError, PostAllocateIpMutationRequest, PostAllocateIpMutationResponse } from "../types/PostAllocateIp.ts";
+import type { PostAllocateIp200, PostAllocateIpError, PostAllocateIpMutationRequest, PostAllocateIpMutationResponse } from "../types/PostAllocateIp.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostAllocateIpPathParams(data?: Partial<PostAllocateIpPathParams>): PostAllocateIpPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostAllocateIpPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description IP Address allocated successfully.

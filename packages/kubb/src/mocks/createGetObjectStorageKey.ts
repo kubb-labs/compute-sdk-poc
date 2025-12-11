@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetObjectStorageKeyPathParams(data?: Partial<GetObjectStorageKeyPathParams>): GetObjectStorageKeyPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetObjectStorageKeyPathParams>["apiVersion"]>(["v4", "v4beta"]),"keyId": faker.number.int()},
+  ...{"keyId": faker.number.int()},
   ...data || {}
   }
 }

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetManagedIssueQueryResponse, GetManagedIssuePathParams } from "../types/GetManagedIssue.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetManagedIssueUrl(apiVersion: GetManagedIssuePathParams["apiVersion"], issueId: GetManagedIssuePathParams["issueId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/managed/issues/${issueId}` as const }  
+function getGetManagedIssueUrl(issueId: GetManagedIssuePathParams["issueId"]) {
+  const res = { method: 'GET', url: `/managed/issues/${issueId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single issue affecting one of your service monitors.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed issue-view 823    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a managed issue
- * {@link /:apiVersion/managed/issues/:issueId}
+ * {@link /managed/issues/:issueId}
  */
-export async function getManagedIssue(apiVersion: GetManagedIssuePathParams["apiVersion"], issueId: GetManagedIssuePathParams["issueId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getManagedIssue(issueId: GetManagedIssuePathParams["issueId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetManagedIssueQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedIssueUrl(apiVersion, issueId).url.toString(), ... requestConfig })  
+  const res = await request<GetManagedIssueQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedIssueUrl(issueId).url.toString(), ... requestConfig })  
   return res.data
 }

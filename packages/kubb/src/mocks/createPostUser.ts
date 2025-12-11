@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostUserPathParams, PostUser200, PostUserError, PostUserMutationRequest, PostUserMutationResponse } from "../types/PostUser.ts";
+import type { PostUser200, PostUserError, PostUserMutationRequest, PostUserMutationResponse } from "../types/PostUser.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostUserPathParams(data?: Partial<PostUserPathParams>): PostUserPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostUserPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description New User created successfully.

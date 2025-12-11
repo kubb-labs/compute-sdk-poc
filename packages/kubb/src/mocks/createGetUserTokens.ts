@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetUserTokensPathParams, GetUserTokens200, GetUserTokensError, GetUserTokensQueryResponse } from "../types/GetUserTokens.ts";
+import type { GetUserTokens200, GetUserTokensError, GetUserTokensQueryResponse } from "../types/GetUserTokens.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetUserTokensPathParams(data?: Partial<GetUserTokensPathParams>): GetUserTokensPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetUserTokensPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a paginated list of the tokens.

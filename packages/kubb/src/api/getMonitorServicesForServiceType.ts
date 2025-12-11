@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetMonitorServicesForServiceTypeQueryResponse, GetMonitorServicesForServiceTypePathParams } from "../types/GetMonitorServicesForServiceType.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetMonitorServicesForServiceTypeUrl(apiVersion: GetMonitorServicesForServiceTypePathParams["apiVersion"], serviceType: GetMonitorServicesForServiceTypePathParams["serviceType"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/monitor/services/${serviceType}` as const }  
+function getGetMonitorServicesForServiceTypeUrl(serviceType: GetMonitorServicesForServiceTypePathParams["serviceType"]) {
+  const res = { method: 'GET', url: `/monitor/services/${serviceType}` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns details for a specific service type.> 📘>> - This operation is beta. Call it using the `v4beta` path in its URL.>> - For more details on the metrics available for each service, see the [Metrics reference](https://techdocs.akamai.com/cloud-computing/docs/metrics-dimensions-parameters).<<LB>>---- __CLI__.    ```    linode-cli monitor service-view dbaas    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    monitor:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get details for a supported service type
- * {@link /:apiVersion/monitor/services/:serviceType}
+ * {@link /monitor/services/:serviceType}
  */
-export async function getMonitorServicesForServiceType(apiVersion: GetMonitorServicesForServiceTypePathParams["apiVersion"], serviceType: GetMonitorServicesForServiceTypePathParams["serviceType"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getMonitorServicesForServiceType(serviceType: GetMonitorServicesForServiceTypePathParams["serviceType"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetMonitorServicesForServiceTypeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetMonitorServicesForServiceTypeUrl(apiVersion, serviceType).url.toString(), ... requestConfig })  
+  const res = await request<GetMonitorServicesForServiceTypeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetMonitorServicesForServiceTypeUrl(serviceType).url.toString(), ... requestConfig })  
   return res.data
 }

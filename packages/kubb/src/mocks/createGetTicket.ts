@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetTicketPathParams(data?: Partial<GetTicketPathParams>): GetTicketPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetTicketPathParams>["apiVersion"]>(["v4", "v4beta"]),"ticketId": faker.number.int()},
+  ...{"ticketId": faker.number.int()},
   ...data || {}
   }
 }

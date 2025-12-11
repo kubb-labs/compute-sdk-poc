@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetObjectStorageKeysPathParams, GetObjectStorageKeys200, GetObjectStorageKeysError, GetObjectStorageKeysQueryResponse } from "../types/GetObjectStorageKeys.ts";
+import type { GetObjectStorageKeys200, GetObjectStorageKeysError, GetObjectStorageKeysQueryResponse } from "../types/GetObjectStorageKeys.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetObjectStorageKeysPathParams(data?: Partial<GetObjectStorageKeysPathParams>): GetObjectStorageKeysPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetObjectStorageKeysPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A paginated list of Object Storage Keys.

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetKernelPathParams(data?: Partial<GetKernelPathParams>): GetKernelPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetKernelPathParams>["apiVersion"]>(["v4", "v4beta"]),"kernelId": faker.string.alpha()},
+  ...{"kernelId": faker.string.alpha()},
   ...data || {}
   }
 }

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetFirewallDevicesQueryResponse, GetFirewallDevicesPathParams, GetFirewallDevicesQueryParams } from "../types/GetFirewallDevices.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetFirewallDevicesUrl(apiVersion: GetFirewallDevicesPathParams["apiVersion"], firewallId: GetFirewallDevicesPathParams["firewallId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/firewalls/${firewallId}/devices` as const }  
+function getGetFirewallDevicesUrl(firewallId: GetFirewallDevicesPathParams["firewallId"]) {
+  const res = { method: 'GET', url: `/networking/firewalls/${firewallId}/devices` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of a firewall's devices. A firewall device assigns a firewall to a service (referred to as the device's `entity`).<<LB>>---- __CLI__.    ```    linode-cli firewalls devices-list 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    firewall:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List firewall devices
- * {@link /:apiVersion/networking/firewalls/:firewallId/devices}
+ * {@link /networking/firewalls/:firewallId/devices}
  */
-export async function getFirewallDevices(apiVersion: GetFirewallDevicesPathParams["apiVersion"], firewallId: GetFirewallDevicesPathParams["firewallId"], params?: GetFirewallDevicesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getFirewallDevices(firewallId: GetFirewallDevicesPathParams["firewallId"], params?: GetFirewallDevicesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetFirewallDevicesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallDevicesUrl(apiVersion, firewallId).url.toString(), params, ... requestConfig })  
+  const res = await request<GetFirewallDevicesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallDevicesUrl(firewallId).url.toString(), params, ... requestConfig })  
   return res.data
 }

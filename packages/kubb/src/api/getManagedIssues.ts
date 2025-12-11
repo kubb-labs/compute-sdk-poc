@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetManagedIssuesQueryResponse, GetManagedIssuesPathParams, GetManagedIssuesQueryParams } from "../types/GetManagedIssues.ts";
+import type { GetManagedIssuesQueryResponse, GetManagedIssuesQueryParams } from "../types/GetManagedIssues.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetManagedIssuesUrl(apiVersion: GetManagedIssuesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/managed/issues` as const }  
+function getGetManagedIssuesUrl() {
+  const res = { method: 'GET', url: `/managed/issues` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of recent and ongoing issues detected on your service monitors.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed issues-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List managed issues
- * {@link /:apiVersion/managed/issues}
+ * {@link /managed/issues}
  */
-export async function getManagedIssues(apiVersion: GetManagedIssuesPathParams["apiVersion"], params?: GetManagedIssuesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getManagedIssues(params?: GetManagedIssuesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetManagedIssuesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedIssuesUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetManagedIssuesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetManagedIssuesUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostLinodeConfigInterfaceMutationRequest, PostLinodeConfigInterfaceMutationResponse, PostLinodeConfigInterfacePathParams } from "../types/PostLinodeConfigInterface.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostLinodeConfigInterfaceUrl(apiVersion: PostLinodeConfigInterfacePathParams["apiVersion"], linodeId: PostLinodeConfigInterfacePathParams["linodeId"], configId: PostLinodeConfigInterfacePathParams["configId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/instances/${linodeId}/configs/${configId}/interfaces` as const }  
+function getPostLinodeConfigInterfaceUrl(linodeId: PostLinodeConfigInterfacePathParams["linodeId"], configId: PostLinodeConfigInterfacePathParams["configId"]) {
+  const res = { method: 'POST', url: `/linode/instances/${linodeId}/configs/${configId}/interfaces` as const }  
   return res
 }
 
 /**
  * @description Creates and appends a single interface to the end of the `interfaces` array for an existing configuration profile. After you add the interface, you need to reboot the target Linode.- To access this operation, your user needs the `read_write` [grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants) for the Linode.- A successful request triggers a `linode_config_update` [event](https://techdocs.akamai.com/linode-api/reference/get-events).- Only one interface can be set as `primary`. Setting `primary` to `true` for an interface sets all other interfaces to `false`.<<LB>>---- __CLI__.    ```    linode-cli linodes config-interface-add $linodeId $configId \  --purpose vpc \  --primary false \  --subnet_id 101 \  --ipv4.vpc "10.0.1.2" \  --ipv4.nat_1_1 "203.0.113.2"    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Add a configuration profile interface
- * {@link /:apiVersion/linode/instances/:linodeId/configs/:configId/interfaces}
+ * {@link /linode/instances/:linodeId/configs/:configId/interfaces}
  */
-export async function postLinodeConfigInterface(apiVersion: PostLinodeConfigInterfacePathParams["apiVersion"], linodeId: PostLinodeConfigInterfacePathParams["linodeId"], configId: PostLinodeConfigInterfacePathParams["configId"], data?: PostLinodeConfigInterfaceMutationRequest, config: Partial<RequestConfig<PostLinodeConfigInterfaceMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postLinodeConfigInterface(linodeId: PostLinodeConfigInterfacePathParams["linodeId"], configId: PostLinodeConfigInterfacePathParams["configId"], data?: PostLinodeConfigInterfaceMutationRequest, config: Partial<RequestConfig<PostLinodeConfigInterfaceMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostLinodeConfigInterfaceMutationResponse, ResponseErrorConfig<Error>, PostLinodeConfigInterfaceMutationRequest>({ method : "POST", url : getPostLinodeConfigInterfaceUrl(apiVersion, linodeId, configId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostLinodeConfigInterfaceMutationResponse, ResponseErrorConfig<Error>, PostLinodeConfigInterfaceMutationRequest>({ method : "POST", url : getPostLinodeConfigInterfaceUrl(linodeId, configId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

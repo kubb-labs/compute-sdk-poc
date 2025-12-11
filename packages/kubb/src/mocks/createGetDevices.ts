@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetDevicesPathParams, GetDevices200, GetDevicesError, GetDevicesQueryResponse } from "../types/GetDevices.ts";
+import type { GetDevices200, GetDevicesError, GetDevicesQueryResponse } from "../types/GetDevices.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetDevicesPathParams(data?: Partial<GetDevicesPathParams>): GetDevicesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDevicesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a paginated list of TrustedDevice objects.

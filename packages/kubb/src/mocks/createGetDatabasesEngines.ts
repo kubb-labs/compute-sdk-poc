@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetDatabasesEnginesPathParams, GetDatabasesEnginesQueryParams, GetDatabasesEngines200, GetDatabasesEnginesError, GetDatabasesEnginesQueryResponse } from "../types/GetDatabasesEngines.ts";
+import type { GetDatabasesEnginesQueryParams, GetDatabasesEngines200, GetDatabasesEnginesError, GetDatabasesEnginesQueryResponse } from "../types/GetDatabasesEngines.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetDatabasesEnginesPathParams(data?: Partial<GetDatabasesEnginesPathParams>): GetDatabasesEnginesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDatabasesEnginesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetDatabasesEnginesQueryParams(data?: Partial<GetDatabasesEnginesQueryParams>): GetDatabasesEnginesQueryParams {
   

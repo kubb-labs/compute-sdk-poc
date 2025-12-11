@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetPlacementGroupsPathParams, GetPlacementGroupsQueryParams, GetPlacementGroups200, GetPlacementGroupsError, GetPlacementGroupsQueryResponse } from "../types/GetPlacementGroups.ts";
+import type { GetPlacementGroupsQueryParams, GetPlacementGroups200, GetPlacementGroupsError, GetPlacementGroupsQueryResponse } from "../types/GetPlacementGroups.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetPlacementGroupsPathParams(data?: Partial<GetPlacementGroupsPathParams>): GetPlacementGroupsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetPlacementGroupsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetPlacementGroupsQueryParams(data?: Partial<GetPlacementGroupsQueryParams>): GetPlacementGroupsQueryParams {
   

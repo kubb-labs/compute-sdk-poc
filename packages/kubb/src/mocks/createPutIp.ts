@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutIpPathParams(data?: Partial<PutIpPathParams>): PutIpPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutIpPathParams>["apiVersion"]>(["v4", "v4beta"]),"address": faker.string.alpha()},
+  ...{"address": faker.string.alpha()},
   ...data || {}
   }
 }

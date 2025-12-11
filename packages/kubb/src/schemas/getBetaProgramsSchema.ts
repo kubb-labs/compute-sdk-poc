@@ -5,10 +5,6 @@
 
 import { z } from "zod/v4";
 
-export const getBetaProgramsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 export const getBetaProgramsQueryParamsSchema = z.object({
     "page": z.coerce.number().int().min(1).default(1).describe("The page of a collection to return."),
 "page_size": z.coerce.number().int().min(25).max(500).default(100).describe("The number of items to return per page.")
@@ -18,28 +14,28 @@ export const getBetaProgramsQueryParamsSchema = z.object({
  * @description Returns a paginated list of all available Beta Program objects.
  */
 export const getBetaPrograms200Schema = z.object({
-    "page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results.")),
-"data": z.optional(z.array(z.object({
-    "description": z.string().describe("__Read-only__ Additional details regarding the Beta Program.").nullish(),
-"ended": z.string().datetime().describe("__Filterable__, __Read-only__ The date-time that the Beta Program ended.\n\n`null` indicates that the Beta Program is ongoing.").nullish(),
-"greenlight_only": z.optional(z.boolean().describe("__Filterable__, __Read-only__ Whether the Beta Program requires [Green Light](https://www.linode.com/green-light/) participation for enrollment.")),
-"id": z.optional(z.string().describe("The unique identifier of the Beta Program.")),
-"label": z.optional(z.string().describe("__Filterable__, __Read-only__ The name of the Beta Program.")),
-"more_info": z.string().describe("__Read-only__ Additional source of information for the Beta Program.").nullish(),
-"started": z.optional(z.string().datetime().describe("__Filterable__, __Read-only__ The start date-time of the Beta Program."))
-    }).describe("An object representing Beta Program information.")))
+    "page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results."),
+"data": z.array(z.object({
+    "description": z.nullable(z.string().describe("__Read-only__ Additional details regarding the Beta Program.")),
+"ended": z.nullable(z.string().datetime().describe("__Filterable__, __Read-only__ The date-time that the Beta Program ended.\n\n`null` indicates that the Beta Program is ongoing.")),
+"greenlight_only": z.boolean().describe("__Filterable__, __Read-only__ Whether the Beta Program requires [Green Light](https://www.linode.com/green-light/) participation for enrollment."),
+"id": z.string().describe("The unique identifier of the Beta Program."),
+"label": z.string().describe("__Filterable__, __Read-only__ The name of the Beta Program."),
+"more_info": z.nullable(z.string().describe("__Read-only__ Additional source of information for the Beta Program.")),
+"started": z.string().datetime().describe("__Filterable__, __Read-only__ The start date-time of the Beta Program.")
+    }).describe("An object representing Beta Program information."))
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getBetaProgramsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getBetaProgramsQueryResponseSchema = z.lazy(() => getBetaPrograms200Schema)

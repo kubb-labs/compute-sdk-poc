@@ -6,8 +6,7 @@
 import { z } from "zod/v4";
 
 export const getObjectStorageBucketContentPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"regionId": z.string().describe("Identifies a region where this bucket lives.\n\n> 📘\n>\n> You can use a `clusterId` in place of `regionId` in requests for buckets that you created using the legacy version of the API. Run [List clusters](https://techdocs.akamai.com/linode-api/reference/get-object-storage-clusters) to see each cluster `id`."),
+    "regionId": z.string().describe("Identifies a region where this bucket lives.\n\n> 📘\n>\n> You can use a `clusterId` in place of `regionId` in requests for buckets that you created using the legacy version of the API. Run [List clusters](https://techdocs.akamai.com/linode-api/reference/get-object-storage-clusters) to see each cluster `id`."),
 "bucket": z.string().describe("The bucket name.")
     })
 
@@ -22,25 +21,25 @@ export const getObjectStorageBucketContentQueryParamsSchema = z.object({
  * @description One page of the requested bucket\'s contents.
  */
 export const getObjectStorageBucketContent200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "etag": z.optional(z.string().describe("An MD-5 hash of the object. `null` if this object represents a prefix.")),
-"last_modified": z.optional(z.string().datetime().describe("The date and time this object was last modified. `null` if this object represents a prefix.")),
-"name": z.optional(z.string().describe("The name of this object or prefix.")),
-"owner": z.optional(z.string().describe("The owner of this object, as a UUID. `null` if this object represents a prefix.")),
-"size": z.optional(z.int().describe("The size of this object, in bytes. `null` if this object represents a prefix."))
-    }).describe("An Object in Object Storage, or a \"prefix\" that contains one or more objects when a `delimiter` is used."))),
-"is_truncated": z.optional(z.boolean().describe("Designates if there is another page of bucket objects.")),
-"next_marker": z.string().describe("Returns the value you should pass to the `marker` query parameter to get the next page of objects. If there is no next page, `null` will be returned.").nullish()
+    "data": z.array(z.object({
+    "etag": z.string().describe("An MD-5 hash of the object. `null` if this object represents a prefix."),
+"last_modified": z.string().datetime().describe("The date and time this object was last modified. `null` if this object represents a prefix."),
+"name": z.string().describe("The name of this object or prefix."),
+"owner": z.string().describe("The owner of this object, as a UUID. `null` if this object represents a prefix."),
+"size": z.int().describe("The size of this object, in bytes. `null` if this object represents a prefix.")
+    }).describe("An Object in Object Storage, or a \"prefix\" that contains one or more objects when a `delimiter` is used.")),
+"is_truncated": z.boolean().describe("Designates if there is another page of bucket objects."),
+"next_marker": z.nullable(z.string().describe("Returns the value you should pass to the `marker` query parameter to get the next page of objects. If there is no next page, `null` will be returned."))
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getObjectStorageBucketContentErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getObjectStorageBucketContentQueryResponseSchema = z.lazy(() => getObjectStorageBucketContent200Schema)

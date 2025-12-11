@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetAccountAvailabilityPathParams(data?: Partial<GetAccountAvailabilityPathParams>): GetAccountAvailabilityPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetAccountAvailabilityPathParams>["apiVersion"]>(["v4", "v4beta"]),"regionId": faker.string.alpha()},
+  ...{"regionId": faker.string.alpha()},
   ...data || {}
   }
 }

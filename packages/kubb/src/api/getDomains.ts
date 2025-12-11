@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetDomainsQueryResponse, GetDomainsPathParams, GetDomainsQueryParams } from "../types/GetDomains.ts";
+import type { GetDomainsQueryResponse, GetDomainsQueryParams } from "../types/GetDomains.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDomainsUrl(apiVersion: GetDomainsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/domains` as const }  
+function getGetDomainsUrl() {
+  const res = { method: 'GET', url: `/domains` as const }  
   return res
 }
 
 /**
  * @description This is a collection of Domains that you have registered in Linode's DNS Manager.  Linode is not a registrar, and in order for these to work you must own the domains and point your registrar at Linode's nameservers.<<LB>>---- __CLI__.    ```    linode-cli domains list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    domains:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List domains
- * {@link /:apiVersion/domains}
+ * {@link /domains}
  */
-export async function getDomains(apiVersion: GetDomainsPathParams["apiVersion"], params?: GetDomainsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDomains(params?: GetDomainsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDomainsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDomainsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetDomainsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDomainsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

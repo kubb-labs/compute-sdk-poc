@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetAlertDefinitionQueryResponse, GetAlertDefinitionPathParams } from "../types/GetAlertDefinition.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAlertDefinitionUrl(apiVersion: GetAlertDefinitionPathParams["apiVersion"], serviceType: GetAlertDefinitionPathParams["serviceType"], alertId: GetAlertDefinitionPathParams["alertId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/monitor/services/${serviceType}/alert-definitions/${alertId}` as const }  
+function getGetAlertDefinitionUrl(serviceType: GetAlertDefinitionPathParams["serviceType"], alertId: GetAlertDefinitionPathParams["alertId"]) {
+  const res = { method: 'GET', url: `/monitor/services/${serviceType}/alert-definitions/${alertId}` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns a specific alert definition.> 📘>> This operation is beta. Call it using the `v4beta` path in its URL.<<LB>>---- __OAuth scopes__.    ```    monitor:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)- __CLI__.    ```    linode-cli alerts definition-view dbaas 457    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary Get an alert definition
- * {@link /:apiVersion/monitor/services/:serviceType/alert-definitions/:alertId}
+ * {@link /monitor/services/:serviceType/alert-definitions/:alertId}
  */
-export async function getAlertDefinition(apiVersion: GetAlertDefinitionPathParams["apiVersion"], serviceType: GetAlertDefinitionPathParams["serviceType"], alertId: GetAlertDefinitionPathParams["alertId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAlertDefinition(serviceType: GetAlertDefinitionPathParams["serviceType"], alertId: GetAlertDefinitionPathParams["alertId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAlertDefinitionQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAlertDefinitionUrl(apiVersion, serviceType, alertId).url.toString(), ... requestConfig })  
+  const res = await request<GetAlertDefinitionQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAlertDefinitionUrl(serviceType, alertId).url.toString(), ... requestConfig })  
   return res.data
 }

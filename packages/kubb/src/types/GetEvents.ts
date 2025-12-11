@@ -4,21 +4,6 @@
 */
 
 
-export const getEventsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetEventsPathParamsApiVersionEnumKey = (typeof getEventsPathParamsApiVersionEnum)[keyof typeof getEventsPathParamsApiVersionEnum];
-
-export interface GetEventsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetEventsPathParamsApiVersionEnumKey;
-}
-
 export interface GetEventsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -352,168 +337,168 @@ export type DataStatusEnum8Key = (typeof dataStatusEnum8)[keyof typeof dataStatu
 */
 export interface GetEvents200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Filterable__ The action that caused this event. New actions may be added in the future.
-         * @type string | undefined
+         * @type string
         */
-        action?: DataActionEnum2Key;
+        action: DataActionEnum2Key;
         /**
          * @description __Filterable__ When the system created this event.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        created?: string;
+        created: string;
         /**
          * @description __Beta__ Maintenance details for this event, if any.
-         * @type object | undefined
+         * @type object
         */
-        details?: {
+        details: {
             /**
              * @description __Filterable__ The time the maintenance completed. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:\n\n- A single ISO 8601 timestamp (`yyyy-mm-ddThh:mm:ss`), which returns only matches for that value.\n\n- Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            complete_time?: string;
+            complete_time: string;
             /**
              * @description __Filterable__ Differentiates between scheduled and emergency maintenance.
-             * @type string | undefined
+             * @type string
             */
-            description?: DetailsDescriptionEnum3Key;
+            description: DetailsDescriptionEnum3Key;
             /**
              * @description __Filterable__ The maintenance policy the user configures for this event.
-             * @type string | undefined
+             * @type string
             */
-            maintenance_policy_set?: string;
+            maintenance_policy_set: string;
             /**
              * @description __Filterable__ The scheduled start time for the event. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:\n\n- A single ISO 8601 timestamp (`yyyy-mm-ddThh:mm:ss`), which returns only matches for that value.\n\n- Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            not_before?: string;
+            not_before: string;
             /**
              * @description __Filterable__ The origin of the event. A `platform` source indicates that the event was initiated by Akamai. A `user` source indicates that the event was initiated by the user.
-             * @type string | undefined
+             * @type string
             */
-            source?: DetailsSourceEnum3Key;
+            source: DetailsSourceEnum3Key;
             /**
              * @description __Filterable__ The actual start time for the event. This field is [filterable](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) based on these parameters:\n\n- A single ISO 8601 timestamp (`yyyy-mm-ddThh:mm:ss`), which returns only matches for that value.\n\n- Pairs of operator string keys (`+or`, `+gt`, `+gte`, `+lt`, `+lte`, or `+neq`) and individual ISO 8601 timestamps. The `+or` operator accepts an array of values that can consist of single date-time strings or dictionaries of inequality operator pairs.
-             * @type string | undefined, date-time
+             * @type string, date-time
             */
-            start_time?: string;
+            start_time: string;
         };
         /**
          * @description The number of seconds that it takes for the event to complete.
-         * @type number | undefined
+         * @type number
         */
-        duration?: number;
+        duration: number;
         /**
          * @description Detailed information about the entity that triggered this event.
-         * @type object | undefined
+         * @type object
         */
-        entity?: {
+        entity: {
             /**
              * @description __Filterable__ The unique identifier assigned to the entity.\n\n> 📘\n>\n> Consider these points when filtering by `id`:\n>\n> - The `disks` and `backups` entities use the `id` of their parent Linode when filtering for events.\n>\n> - The `account` and `profile` entities don\'t have an `id`. To filter these entities, use the `type` object instead.\n>\n> - The `tag` entity uses the tag\'s name as its `id`. Set this value to the tag\'s name to filter.
-             * @type integer | undefined
+             * @type integer
             */
-            id?: number;
+            id: number;
             /**
              * @description The name of the entity. The label may reflect changes that occur with this event.
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description __Filterable__ The type of entity that is being referenced by the event.
-             * @type string | undefined
+             * @type string
             */
-            type?: EntityTypeEnum5Key;
+            type: EntityTypeEnum5Key;
             /**
              * @description The URL where you can access this event\'s entity. If it\'s a relative URL, it\'s relative to the domain where you retrieved the event.
-             * @type string | undefined
+             * @type string
             */
-            url?: string;
+            url: string;
         };
         /**
          * @description __Filterable__ The unique ID of this event.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description Additional information about the event. This can be a more detailed representation of an event that can help you diagnose non-obvious failures.
          * @type string
         */
-        message?: string | null;
+        message: string | null;
         /**
          * @description A percentage estimating the amount of time remaining for an event. Returned as `null` for notification events.
          * @type integer
         */
-        percent_complete?: number | null;
+        percent_complete: number | null;
         /**
          * @description The rate of completion of the event. Only some events return a `rate`, such as the `migration` and `resize` events.
          * @type string
         */
-        rate?: string | null;
+        rate: string | null;
         /**
          * @description Detailed information about the event\'s secondary entity, if applicable.
-         * @type object | undefined
+         * @type object
         */
-        secondary_entity?: {
+        secondary_entity: {
             /**
              * @description The identifier for the secondary entity object.
-             * @type string | undefined
+             * @type string
             */
-            id?: string;
+            id: string;
             /**
              * @description The name of the secondary entity object.
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description The type of secondary entity object that\'s being referenced by the event.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
             /**
              * @description The URL where you can access this event\'s secondary entity object. If it\'s a relative URL, it\'s relative to the domain where you retrieved the event.
-             * @type string | undefined
+             * @type string
             */
-            url?: string;
+            url: string;
         };
         /**
          * @description If a user on your account has [marked an event as seen](https://techdocs.akamai.com/linode-api/reference/post-event-seen).
-         * @type boolean | undefined
+         * @type boolean
         */
-        seen?: boolean;
+        seen: boolean;
         /**
          * @description The current status of this event.
-         * @type string | undefined
+         * @type string
         */
-        status?: DataStatusEnum8Key;
+        status: DataStatusEnum8Key;
         /**
          * @description The estimated time remaining until the event completes. This is only returned for some in-progress migration events. Otherwise, the `percent_complete` attribute indicates how long until completion.
          * @type string
         */
-        time_remaining?: string | null;
+        time_remaining: string | null;
         /**
          * @description The name of the user whose action caused the event.
          * @type string
         */
-        username?: string | null;
+        username: string | null;
     }[];
     /**
      * @description The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    page?: number;
+    page: number;
     /**
      * @description The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    pages?: number;
+    pages: number;
     /**
      * @description The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    results?: number;
+    results: number;
 }
 
 /**
@@ -521,19 +506,19 @@ export interface GetEvents200 {
 */
 export interface GetEventsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -541,7 +526,6 @@ export type GetEventsQueryResponse = GetEvents200;
 
 export type GetEventsQuery = {
     Response: GetEvents200;
-    PathParams: GetEventsPathParams;
     QueryParams: GetEventsQueryParams;
     HeaderParams: GetEventsHeaderParams;
     Errors: any;

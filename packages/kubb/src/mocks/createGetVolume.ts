@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetVolumePathParams(data?: Partial<GetVolumePathParams>): GetVolumePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetVolumePathParams>["apiVersion"]>(["v4", "v4beta"]),"volumeId": faker.number.int()},
+  ...{"volumeId": faker.number.int()},
   ...data || {}
   }
 }

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteSharegroupPathParams(data?: Partial<DeleteSharegroupPathParams>): DeleteSharegroupPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteSharegroupPathParams>["apiVersion"]>(["v4", "v4beta"]),"sharegroupId": faker.number.int()},
+  ...{"sharegroupId": faker.number.int()},
   ...data || {}
   }
 }

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetProfilePathParams, GetProfile200, GetProfileError, GetProfileQueryResponse } from "../types/GetProfile.ts";
+import type { GetProfile200, GetProfileError, GetProfileQueryResponse } from "../types/GetProfile.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetProfilePathParams(data?: Partial<GetProfilePathParams>): GetProfilePathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetProfilePathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Profile response.

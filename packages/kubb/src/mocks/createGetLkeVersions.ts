@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetLkeVersionsPathParams, GetLkeVersions200, GetLkeVersionsError, GetLkeVersionsQueryResponse } from "../types/GetLkeVersions.ts";
+import type { GetLkeVersions200, GetLkeVersionsError, GetLkeVersionsQueryResponse } from "../types/GetLkeVersions.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetLkeVersionsPathParams(data?: Partial<GetLkeVersionsPathParams>): GetLkeVersionsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLkeVersionsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a list of LKE Kubernetes versions available for deployment to a standard-tier Kubernetes cluster.

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetAlertDefinitionsPathParams, GetAlertDefinitions200, GetAlertDefinitionsError, GetAlertDefinitionsQueryResponse } from "../types/GetAlertDefinitions.ts";
+import type { GetAlertDefinitions200, GetAlertDefinitionsError, GetAlertDefinitionsQueryResponse } from "../types/GetAlertDefinitions.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetAlertDefinitionsPathParams(data?: Partial<GetAlertDefinitionsPathParams>): GetAlertDefinitionsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetAlertDefinitionsPathParams>["apiVersion"]>(["v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a paginated list of all alert definitions.

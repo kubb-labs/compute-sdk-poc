@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetMaintenancePoliciesPathParams, GetMaintenancePolicies200, GetMaintenancePoliciesError, GetMaintenancePoliciesQueryResponse } from "../types/GetMaintenancePolicies.ts";
+import type { GetMaintenancePolicies200, GetMaintenancePoliciesError, GetMaintenancePoliciesQueryResponse } from "../types/GetMaintenancePolicies.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetMaintenancePoliciesPathParams(data?: Partial<GetMaintenancePoliciesPathParams>): GetMaintenancePoliciesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetMaintenancePoliciesPathParams>["apiVersion"]>(["v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a paginated list of maintenance policy objects.

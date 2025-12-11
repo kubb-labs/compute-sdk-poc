@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetAccountLoginQueryResponse, GetAccountLoginPathParams } from "../types/GetAccountLogin.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAccountLoginUrl(apiVersion: GetAccountLoginPathParams["apiVersion"], loginId: GetAccountLoginPathParams["loginId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/logins/${loginId}` as const }  
+function getGetAccountLoginUrl(loginId: GetAccountLoginPathParams["loginId"]) {
+  const res = { method: 'GET', url: `/account/logins/${loginId}` as const }  
   return res
 }
 
 /**
  * @description Returns a Login object that displays information about a successful login. The logins that can be viewed can be for any user on the account, and are not limited to only the logins of the user that is accessing this API endpoint. This operation can only be accessed by the unrestricted users of the account.<<LB>>---- __CLI__.    ```    linode-cli account login-view 1234    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an account login
- * {@link /:apiVersion/account/logins/:loginId}
+ * {@link /account/logins/:loginId}
  */
-export async function getAccountLogin(apiVersion: GetAccountLoginPathParams["apiVersion"], loginId: GetAccountLoginPathParams["loginId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAccountLogin(loginId: GetAccountLoginPathParams["loginId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAccountLoginQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountLoginUrl(apiVersion, loginId).url.toString(), ... requestConfig })  
+  const res = await request<GetAccountLoginQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountLoginUrl(loginId).url.toString(), ... requestConfig })  
   return res.data
 }

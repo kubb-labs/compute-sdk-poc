@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostTfaDisablePathParams, PostTfaDisable200, PostTfaDisableError, PostTfaDisableMutationResponse } from "../types/PostTfaDisable.ts";
+import type { PostTfaDisable200, PostTfaDisableError, PostTfaDisableMutationResponse } from "../types/PostTfaDisable.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostTfaDisablePathParams(data?: Partial<PostTfaDisablePathParams>): PostTfaDisablePathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostTfaDisablePathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description TFA disabled.

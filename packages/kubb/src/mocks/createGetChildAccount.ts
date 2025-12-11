@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetChildAccountPathParams(data?: Partial<GetChildAccountPathParams>): GetChildAccountPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetChildAccountPathParams>["apiVersion"]>(["v4", "v4beta"]),"euuId": faker.string.alpha()},
+  ...{"euuId": faker.string.alpha()},
   ...data || {}
   }
 }

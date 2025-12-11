@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PutProfilePathParams, PutProfile200, PutProfileError, PutProfileMutationRequest, PutProfileMutationResponse } from "../types/PutProfile.ts";
+import type { PutProfile200, PutProfileError, PutProfileMutationRequest, PutProfileMutationResponse } from "../types/PutProfile.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPutProfilePathParams(data?: Partial<PutProfilePathParams>): PutProfilePathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutProfilePathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Profile updated successfully.

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetFirewallRuleVersionQueryResponse, GetFirewallRuleVersionPathParams } from "../types/GetFirewallRuleVersion.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetFirewallRuleVersionUrl(apiVersion: GetFirewallRuleVersionPathParams["apiVersion"], firewallId: GetFirewallRuleVersionPathParams["firewallId"], version: GetFirewallRuleVersionPathParams["version"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/firewalls/${firewallId}/history/rules/${version}` as const }  
+function getGetFirewallRuleVersionUrl(firewallId: GetFirewallRuleVersionPathParams["firewallId"], version: GetFirewallRuleVersionPathParams["version"]) {
+  const res = { method: 'GET', url: `/networking/firewalls/${firewallId}/history/rules/${version}` as const }  
   return res
 }
 
 /**
  * @description Get a specific firewall rule version for an `enabled` or `disabled` firewall.<<LB>>---- __CLI__.    ```    linode-cli firewalls version-view \  123 2    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    firewall:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a firewall rule version
- * {@link /:apiVersion/networking/firewalls/:firewallId/history/rules/:version}
+ * {@link /networking/firewalls/:firewallId/history/rules/:version}
  */
-export async function getFirewallRuleVersion(apiVersion: GetFirewallRuleVersionPathParams["apiVersion"], firewallId: GetFirewallRuleVersionPathParams["firewallId"], version: GetFirewallRuleVersionPathParams["version"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getFirewallRuleVersion(firewallId: GetFirewallRuleVersionPathParams["firewallId"], version: GetFirewallRuleVersionPathParams["version"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetFirewallRuleVersionQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallRuleVersionUrl(apiVersion, firewallId, version).url.toString(), ... requestConfig })  
+  const res = await request<GetFirewallRuleVersionQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetFirewallRuleVersionUrl(firewallId, version).url.toString(), ... requestConfig })  
   return res.data
 }

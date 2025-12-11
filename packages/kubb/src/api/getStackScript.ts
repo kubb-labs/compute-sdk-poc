@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetStackScriptQueryResponse, GetStackScriptPathParams } from "../types/GetStackScript.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetStackScriptUrl(apiVersion: GetStackScriptPathParams["apiVersion"], stackscriptId: GetStackScriptPathParams["stackscriptId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/stackscripts/${stackscriptId}` as const }  
+function getGetStackScriptUrl(stackscriptId: GetStackScriptPathParams["stackscriptId"]) {
+  const res = { method: 'GET', url: `/linode/stackscripts/${stackscriptId}` as const }  
   return res
 }
 
 /**
  * @description Returns all of the information about a specified StackScript, including the contents of the script.<<LB>>---- __CLI__.    ```    linode-cli stackscripts view 10079    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    stackscripts:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a StackScript
- * {@link /:apiVersion/linode/stackscripts/:stackscriptId}
+ * {@link /linode/stackscripts/:stackscriptId}
  */
-export async function getStackScript(apiVersion: GetStackScriptPathParams["apiVersion"], stackscriptId: GetStackScriptPathParams["stackscriptId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getStackScript(stackscriptId: GetStackScriptPathParams["stackscriptId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetStackScriptQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetStackScriptUrl(apiVersion, stackscriptId).url.toString(), ... requestConfig })  
+  const res = await request<GetStackScriptQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetStackScriptUrl(stackscriptId).url.toString(), ... requestConfig })  
   return res.data
 }

@@ -4,21 +4,6 @@
 */
 
 
-export const getObjectStorageKeysPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetObjectStorageKeysPathParamsApiVersionEnumKey = (typeof getObjectStorageKeysPathParamsApiVersionEnum)[keyof typeof getObjectStorageKeysPathParamsApiVersionEnum];
-
-export interface GetObjectStorageKeysPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetObjectStorageKeysPathParamsApiVersionEnumKey;
-}
-
 export const bucketAccessPermissionsEnum4 = {
     "read_write": "read_write",
     "read_only": "read_only"
@@ -40,97 +25,97 @@ export type RegionsEndpointTypeEnum2Key = (typeof regionsEndpointTypeEnum2)[keyo
 */
 export interface GetObjectStorageKeys200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description A unique string chosen by the API to identify this key. Used as a username to identify this key when making requests to an S3 API, such as the Amazon S3 API or Ceph Object Gateway S3 API.
-         * @type string | undefined
+         * @type string
         */
-        access_key?: string;
+        access_key: string;
         /**
          * @description Settings that limit access to specific buckets, each with a specific permission level. See [Create a limited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.
-         * @type array | undefined
+         * @type array
         */
-        bucket_access?: {
+        bucket_access: {
             /**
              * @description The name of the bucket the key can access in the `region`.
-             * @type string | undefined
+             * @type string
             */
-            bucket_name?: string;
+            bucket_name: string;
             /**
              * @description __Deprecated__ For backwards compatibility, this is included to identify the legacy cluster equivalent of the `region` where this key can be used. The key grants access to each specified `bucket_name`, based on the `permissions` set.\n\n> 📘\n>\n> Use of clusters in a limited access key has been deprecated.
-             * @type string | undefined
+             * @type string
             */
-            cluster?: string;
+            cluster: string;
             /**
              * @description The level of access the key grants to the `bucket_name`. Keys with `read_write` access can manage content in the `bucket_name`, while `read_only` can be used to view content.
-             * @type string | undefined
+             * @type string
             */
-            permissions?: BucketAccessPermissionsEnum4Key;
+            permissions: BucketAccessPermissionsEnum4Key;
             /**
              * @description The region where the `bucket_name` resides.
-             * @type string | undefined
+             * @type string
             */
-            region?: string;
+            region: string;
         }[];
         /**
          * @description This Object Storage key\'s unique ID.
-         * @type integer | undefined
+         * @type integer
         */
-        id?: number;
+        id: number;
         /**
          * @description The label given to this key. For display purposes only.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description Whether this Object Storage key limits access to specific buckets and permissions. Returns `false` if this key grants full access. Specific limitations are set in `bucket_access`.
-         * @type boolean | undefined
+         * @type boolean
         */
-        limited?: boolean;
+        limited: boolean;
         /**
          * @description The key can be used in these regions to manage buckets.
-         * @type array | undefined
+         * @type array
         */
-        regions?: {
+        regions: {
             /**
              * @description The type of `s3_endpoint` available to the active `user` in this `region`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information.
-             * @type string | undefined
+             * @type string
             */
-            endpoint_type?: RegionsEndpointTypeEnum2Key;
+            endpoint_type: RegionsEndpointTypeEnum2Key;
             /**
              * @description Identifies each region where you can use the Object Storage key.\n\n- **For an unlimited key**. Each `id` represents an individual region you set in the `regions` array, when you set up the key. See [Create an unlimited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.\n\n- **For a limited access key**. The API server populates each object in this array with each of the individual instances of the `region` parameter you set in the `bucket_access` array. See [Create a limited access key](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) for more information.
-             * @type string | undefined
+             * @type string
             */
-            id?: string;
+            id: string;
             /**
              * @description The S3-compatible hostname you can use to access the Object Storage buckets in this region.
-             * @type string | undefined
+             * @type string
             */
-            s3_endpoint?: string;
+            s3_endpoint: string;
         }[];
         /**
          * @description This Object Storage key\'s secret key. Used as a password to validate this key when making requests to an S3 API, such as the Amazon S3 API or Ceph Object Gateway S3 API.\n\n> 📘\n>\n> This value is listed as `[REDACTED]` for this operation, to protect it. It\'s only revealed in a response after [creating](https://techdocs.akamai.com/linode-api/reference/post-object-storage-keys) a key.
-         * @type string | undefined
+         * @type string
         */
-        secret_key?: string;
+        secret_key: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -138,19 +123,19 @@ export interface GetObjectStorageKeys200 {
 */
 export interface GetObjectStorageKeysError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -158,6 +143,5 @@ export type GetObjectStorageKeysQueryResponse = GetObjectStorageKeys200;
 
 export type GetObjectStorageKeysQuery = {
     Response: GetObjectStorageKeys200;
-    PathParams: GetObjectStorageKeysPathParams;
     Errors: any;
 };

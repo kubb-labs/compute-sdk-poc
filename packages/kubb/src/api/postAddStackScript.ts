@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostAddStackScriptMutationRequest, PostAddStackScriptMutationResponse, PostAddStackScriptPathParams } from "../types/PostAddStackScript.ts";
+import type { PostAddStackScriptMutationRequest, PostAddStackScriptMutationResponse } from "../types/PostAddStackScript.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostAddStackScriptUrl(apiVersion: PostAddStackScriptPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/stackscripts` as const }  
+function getPostAddStackScriptUrl() {
+  const res = { method: 'POST', url: `/linode/stackscripts` as const }  
   return res
 }
 
 /**
  * @description Creates a StackScript in your Account.<<LB>>---- __CLI__.    ```    linode-cli stackscripts create \  --label a-stackscript \  --description "This StackScript install and configures MySQL" \  --images "linode/debian9" \  --images "linode/debian8" \  --is_public true \  --rev_note "Set up MySQL" \  --script '#!/bin/bash'    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    stackscripts:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create a StackScript
- * {@link /:apiVersion/linode/stackscripts}
+ * {@link /linode/stackscripts}
  */
-export async function postAddStackScript(apiVersion: PostAddStackScriptPathParams["apiVersion"], data: PostAddStackScriptMutationRequest, config: Partial<RequestConfig<PostAddStackScriptMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postAddStackScript(data: PostAddStackScriptMutationRequest, config: Partial<RequestConfig<PostAddStackScriptMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostAddStackScriptMutationResponse, ResponseErrorConfig<Error>, PostAddStackScriptMutationRequest>({ method : "POST", url : getPostAddStackScriptUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostAddStackScriptMutationResponse, ResponseErrorConfig<Error>, PostAddStackScriptMutationRequest>({ method : "POST", url : getPostAddStackScriptUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetManagedServicesPathParams, GetManagedServices200, GetManagedServicesError, GetManagedServicesQueryResponse } from "../types/GetManagedServices.ts";
+import type { GetManagedServices200, GetManagedServicesError, GetManagedServicesQueryResponse } from "../types/GetManagedServices.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetManagedServicesPathParams(data?: Partial<GetManagedServicesPathParams>): GetManagedServicesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetManagedServicesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description A paginated list of Managed Services.

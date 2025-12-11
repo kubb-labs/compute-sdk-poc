@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetDatabasesMysqlInstancesPathParams, GetDatabasesMysqlInstancesQueryParams, GetDatabasesMysqlInstances200, GetDatabasesMysqlInstancesError, GetDatabasesMysqlInstancesQueryResponse } from "../types/GetDatabasesMysqlInstances.ts";
+import type { GetDatabasesMysqlInstancesQueryParams, GetDatabasesMysqlInstances200, GetDatabasesMysqlInstancesError, GetDatabasesMysqlInstancesQueryResponse } from "../types/GetDatabasesMysqlInstances.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetDatabasesMysqlInstancesPathParams(data?: Partial<GetDatabasesMysqlInstancesPathParams>): GetDatabasesMysqlInstancesPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDatabasesMysqlInstancesPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetDatabasesMysqlInstancesQueryParams(data?: Partial<GetDatabasesMysqlInstancesQueryParams>): GetDatabasesMysqlInstancesQueryParams {
   

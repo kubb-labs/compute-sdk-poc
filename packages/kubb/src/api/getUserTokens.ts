@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetUserTokensQueryResponse, GetUserTokensPathParams } from "../types/GetUserTokens.ts";
+import type { GetUserTokensQueryResponse } from "../types/GetUserTokens.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetUserTokensUrl(apiVersion: GetUserTokensPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/images/sharegroups/tokens` as const }  
+function getGetUserTokensUrl() {
+  const res = { method: 'GET', url: `/images/sharegroups/tokens` as const }  
   return res
 }
 
 /**
  * @description Get details about all the user's tokens.<<LB>>---- __CLI__.    ```    linode-cli image-sharegroups tokens-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List a user's tokens
- * {@link /:apiVersion/images/sharegroups/tokens}
+ * {@link /images/sharegroups/tokens}
  */
-export async function getUserTokens(apiVersion: GetUserTokensPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getUserTokens(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetUserTokensQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetUserTokensUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetUserTokensQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetUserTokensUrl().url.toString(), ... requestConfig })  
   return res.data
 }

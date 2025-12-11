@@ -4,19 +4,7 @@
 */
 
 
-export const getLinodeStatsByYearMonthPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLinodeStatsByYearMonthPathParamsApiVersionEnumKey = (typeof getLinodeStatsByYearMonthPathParamsApiVersionEnum)[keyof typeof getLinodeStatsByYearMonthPathParamsApiVersionEnum];
-
 export interface GetLinodeStatsByYearMonthPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLinodeStatsByYearMonthPathParamsApiVersionEnumKey;
     /**
      * @description ID of the Linode to look up.
      * @type integer
@@ -44,82 +32,82 @@ export interface GetLinodeStatsByYearMonthPathParams {
 export interface GetLinodeStatsByYearMonth200 {
     /**
      * @description Percentage of CPU used.
-     * @type array | undefined
+     * @type array
     */
-    cpu?: number[][];
+    cpu: number[][];
     /**
      * @description Input/Output statistics.
-     * @type object | undefined
+     * @type object
     */
-    io?: {
+    io: {
         /**
          * @description Block/s written.
-         * @type array | undefined
+         * @type array
         */
-        io?: number[][];
+        io: number[][];
         /**
          * @description Block/s written.
-         * @type array | undefined
+         * @type array
         */
-        swap?: number[][];
+        swap: number[][];
     };
     /**
      * @description IPv4 statistics.
-     * @type object | undefined
+     * @type object
     */
-    netv4?: {
+    netv4: {
         /**
          * @description Input stats for IPv4, measured in bits/s (bits/second).
-         * @type array | undefined
+         * @type array
         */
-        in?: number[][];
+        in: number[][];
         /**
          * @description Output stats for IPv4, measured in bits/s (bits/second).
-         * @type array | undefined
+         * @type array
         */
-        out?: number[][];
+        out: number[][];
         /**
          * @description Private IPv4 input statistics, measured in bits/s (bits/second).
-         * @type array | undefined
+         * @type array
         */
-        private_in?: number[][];
+        private_in: number[][];
         /**
          * @description Private IPv4 output statistics, measured in bits/s (bits/second).
-         * @type array | undefined
+         * @type array
         */
-        private_out?: number[][];
+        private_out: number[][];
     };
     /**
      * @description IPv6 statistics.
-     * @type object | undefined
+     * @type object
     */
-    netv6?: {
+    netv6: {
         /**
          * @description Input stats for IPv6, measured in bits/s (bits/second).
-         * @type array | undefined
+         * @type array
         */
-        in?: number[][];
+        in: number[][];
         /**
          * @description Output stats for IPv6, measured in bits/s (bits/second).
-         * @type array | undefined
+         * @type array
         */
-        out?: number[][];
+        out: number[][];
         /**
          * @description Private IPv6 input statistics, measured in bits/s (bits/second).
-         * @type array | undefined
+         * @type array
         */
-        private_in?: number[][];
+        private_in: number[][];
         /**
          * @description Private IPv6 output statistics, measured in bits/s (bits/second).
-         * @type array | undefined
+         * @type array
         */
-        private_out?: number[][];
+        private_out: number[][];
     };
     /**
      * @description The title for this data set.
-     * @type string | undefined
+     * @type string
     */
-    title?: string;
+    title: string;
 }
 
 /**
@@ -127,19 +115,19 @@ export interface GetLinodeStatsByYearMonth200 {
 */
 export interface GetLinodeStatsByYearMonthError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

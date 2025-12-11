@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetNodeBalancersQueryResponse, GetNodeBalancersPathParams, GetNodeBalancersQueryParams } from "../types/GetNodeBalancers.ts";
+import type { GetNodeBalancersQueryResponse, GetNodeBalancersQueryParams } from "../types/GetNodeBalancers.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetNodeBalancersUrl(apiVersion: GetNodeBalancersPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/nodebalancers` as const }  
+function getGetNodeBalancersUrl() {
+  const res = { method: 'GET', url: `/nodebalancers` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of NodeBalancers you have access to.<<LB>>---- __CLI__.    ```    linode-cli nodebalancers list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    nodebalancers:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List NodeBalancers
- * {@link /:apiVersion/nodebalancers}
+ * {@link /nodebalancers}
  */
-export async function getNodeBalancers(apiVersion: GetNodeBalancersPathParams["apiVersion"], params?: GetNodeBalancersQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getNodeBalancers(params?: GetNodeBalancersQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetNodeBalancersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancersUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetNodeBalancersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancersUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

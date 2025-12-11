@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetLinodeTransferPathParams(data?: Partial<GetLinodeTransferPathParams>): GetLinodeTransferPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLinodeTransferPathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int()},
+  ...{"linodeId": faker.number.int()},
   ...data || {}
   }
 }

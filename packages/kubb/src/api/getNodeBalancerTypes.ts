@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetNodeBalancerTypesQueryResponse, GetNodeBalancerTypesPathParams } from "../types/GetNodeBalancerTypes.ts";
+import type { GetNodeBalancerTypesQueryResponse } from "../types/GetNodeBalancerTypes.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetNodeBalancerTypesUrl(apiVersion: GetNodeBalancerTypesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/nodebalancers/types` as const }  
+function getGetNodeBalancerTypesUrl() {
+  const res = { method: 'GET', url: `/nodebalancers/types` as const }  
   return res
 }
 
 /**
  * @description Returns NodeBalancer types and prices, including any region-specific rates.<<LB>>---- __CLI__.    ```    linode-cli nodebalancers types    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List NodeBalancer types
- * {@link /:apiVersion/nodebalancers/types}
+ * {@link /nodebalancers/types}
  */
-export async function getNodeBalancerTypes(apiVersion: GetNodeBalancerTypesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getNodeBalancerTypes(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetNodeBalancerTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerTypesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetNodeBalancerTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerTypesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

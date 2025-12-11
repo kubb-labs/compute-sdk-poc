@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeConfigQueryResponse, GetLinodeConfigPathParams } from "../types/GetLinodeConfig.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeConfigUrl(apiVersion: GetLinodeConfigPathParams["apiVersion"], linodeId: GetLinodeConfigPathParams["linodeId"], configId: GetLinodeConfigPathParams["configId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/configs/${configId}` as const }  
+function getGetLinodeConfigUrl(linodeId: GetLinodeConfigPathParams["linodeId"], configId: GetLinodeConfigPathParams["configId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/configs/${configId}` as const }  
   return res
 }
 
 /**
  * @description Returns information about a specific configuration profile.<<LB>>---- __CLI__.    ```    linode-cli linodes config-view 123 23456    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a configuration profile
- * {@link /:apiVersion/linode/instances/:linodeId/configs/:configId}
+ * {@link /linode/instances/:linodeId/configs/:configId}
  */
-export async function getLinodeConfig(apiVersion: GetLinodeConfigPathParams["apiVersion"], linodeId: GetLinodeConfigPathParams["linodeId"], configId: GetLinodeConfigPathParams["configId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeConfig(linodeId: GetLinodeConfigPathParams["linodeId"], configId: GetLinodeConfigPathParams["configId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeConfigQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeConfigUrl(apiVersion, linodeId, configId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeConfigQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeConfigUrl(linodeId, configId).url.toString(), ... requestConfig })  
   return res.data
 }

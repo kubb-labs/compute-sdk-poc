@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostImportDomainMutationRequest, PostImportDomainMutationResponse, PostImportDomainPathParams } from "../types/PostImportDomain.ts";
+import type { PostImportDomainMutationRequest, PostImportDomainMutationResponse } from "../types/PostImportDomain.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostImportDomainUrl(apiVersion: PostImportDomainPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/domains/import` as const }  
+function getPostImportDomainUrl() {
+  const res = { method: 'POST', url: `/domains/import` as const }  
   return res
 }
 
 /**
  * @description Imports a domain zone from a remote nameserver. Your nameserver must allow zone transfers (AXFR) from the following IPs:- 96.126.114.97- 96.126.114.98- 2600:3c00::5e- 2600:3c00::5f<<LB>>---- __CLI__.    ```    linode-cli domains import --domain example.com --remote_nameserver examplenameserver.com    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    domains:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Import a domain
- * {@link /:apiVersion/domains/import}
+ * {@link /domains/import}
  */
-export async function postImportDomain(apiVersion: PostImportDomainPathParams["apiVersion"], data: PostImportDomainMutationRequest, config: Partial<RequestConfig<PostImportDomainMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postImportDomain(data: PostImportDomainMutationRequest, config: Partial<RequestConfig<PostImportDomainMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostImportDomainMutationResponse, ResponseErrorConfig<Error>, PostImportDomainMutationRequest>({ method : "POST", url : getPostImportDomainUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostImportDomainMutationResponse, ResponseErrorConfig<Error>, PostImportDomainMutationRequest>({ method : "POST", url : getPostImportDomainUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

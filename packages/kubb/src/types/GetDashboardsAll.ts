@@ -4,20 +4,6 @@
 */
 
 
-export const getDashboardsAllPathParamsApiVersionEnum = {
-    "v4beta": "v4beta"
-} as const;
-
-export type GetDashboardsAllPathParamsApiVersionEnumKey = (typeof getDashboardsAllPathParamsApiVersionEnum)[keyof typeof getDashboardsAllPathParamsApiVersionEnum];
-
-export interface GetDashboardsAllPathParams {
-    /**
-     * @description __Enum__ Call the `v4beta` URL for operations still only in beta.
-     * @type string
-    */
-    apiVersion: GetDashboardsAllPathParamsApiVersionEnumKey;
-}
-
 export const dataTypeEnum18 = {
     "standard": "standard"
 } as const;
@@ -72,9 +58,9 @@ export type WidgetsUnitEnumKey = (typeof widgetsUnitEnum)[keyof typeof widgetsUn
 */
 export interface GetDashboardsAll200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description When the dashboard was created.
          * @type string, date-time
@@ -112,61 +98,61 @@ export interface GetDashboardsAll200 {
         widgets: {
             /**
              * @description The aggregate function for the metric. This defaults to `avg` for average.
-             * @type string | undefined
+             * @type string
             */
-            aggregate_function?: WidgetsAggregateFunctionEnumKey;
+            aggregate_function: WidgetsAggregateFunctionEnumKey;
             /**
              * @description The type of chart used in the widget. This can be `line` for a line chart or `area` for an area chart.
-             * @type string | undefined
+             * @type string
             */
-            chart_type?: WidgetsChartTypeEnumKey;
+            chart_type: WidgetsChartTypeEnumKey;
             /**
              * @description The color used in the widget.
-             * @type string | undefined
+             * @type string
             */
-            color?: string;
+            color: string;
             /**
              * @description The name of the widget. This is used for display purposes in Akamai Cloud Manager.
-             * @type string | undefined
+             * @type string
             */
-            label?: string;
+            label: string;
             /**
              * @description The metric to query.
-             * @type string | undefined
+             * @type string
             */
-            metric?: string;
+            metric: string;
             /**
              * @description The size of the widget. This can be `6` or `12` grid units, expressed as strings.
-             * @type string | undefined
+             * @type string
             */
-            size?: WidgetsSizeEnumKey;
+            size: WidgetsSizeEnumKey;
             /**
              * @description The unit of the metric. This can be values like `%` for percentage or `GB` for gigabyte.
-             * @type string | undefined
+             * @type string
             */
-            unit?: WidgetsUnitEnumKey;
+            unit: WidgetsUnitEnumKey;
             /**
              * @description The label for the y-axis in the widget\'s chart.
-             * @type string | undefined
+             * @type string
             */
-            y_label?: string;
+            y_label: string;
         }[];
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -174,19 +160,19 @@ export interface GetDashboardsAll200 {
 */
 export interface GetDashboardsAllError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -194,6 +180,5 @@ export type GetDashboardsAllQueryResponse = GetDashboardsAll200;
 
 export type GetDashboardsAllQuery = {
     Response: GetDashboardsAll200;
-    PathParams: GetDashboardsAllPathParams;
     Errors: any;
 };

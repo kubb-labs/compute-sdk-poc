@@ -4,19 +4,7 @@
 */
 
 
-export const putManagedLinodeSettingPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PutManagedLinodeSettingPathParamsApiVersionEnumKey = (typeof putManagedLinodeSettingPathParamsApiVersionEnum)[keyof typeof putManagedLinodeSettingPathParamsApiVersionEnum];
-
 export interface PutManagedLinodeSettingPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PutManagedLinodeSettingPathParamsApiVersionEnumKey;
     /**
      * @description The Linode ID whose settings we are accessing.
      * @type integer
@@ -31,50 +19,50 @@ export interface PutManagedLinodeSetting200 {
     /**
      * @description __Read-only__ The group of the Linode these Settings are for. This is for display purposes only.
      * @deprecated
-     * @type string | undefined
+     * @type string
     */
-    readonly group?: string;
+    readonly group: string;
     /**
      * @description __Read-only__ The ID of the Linode these Settings are for.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description __Read-only__ The label of the Linode these Settings are for.
-     * @type string | undefined
+     * @type string
     */
-    readonly label?: string;
+    readonly label: string;
     /**
      * @description The SSH settings for this Linode.
-     * @type object | undefined
+     * @type object
     */
-    ssh?: {
+    ssh: {
         /**
          * @description If `true`, Linode special forces may access this Linode over ssh to respond to Issues.
          * @default true
-         * @type boolean | undefined
+         * @type boolean
         */
-        access?: boolean;
+        access: boolean;
         /**
          * @description The IP Linode special forces should use to access this Linode when responding to an Issue.\n\nBy default, any of a Linode\'s IP addresses can be used for incident response access.
          * @default "any"
-         * @type string | undefined, ip
+         * @type string, ip
         */
-        ip?: string;
+        ip: string;
         /**
          * @description The port Linode special forces should use to access this Linode over ssh to respond to an Issue.\n\nThe default `null` value corresponds to port 22.
          * @minLength 1
          * @maxLength 65535
          * @type integer
         */
-        port?: number | null;
+        port: number | null;
         /**
          * @description The specific user, if any, Linode\'s special forces should use when accessing this Linode to respond to an issue.\n\nThe default `null` value corresponds to the root user.
          * @minLength 0
          * @maxLength 32
          * @type string
         */
-        user?: string | null;
+        user: string | null;
     };
 }
 
@@ -83,19 +71,19 @@ export interface PutManagedLinodeSetting200 {
 */
 export interface PutManagedLinodeSettingError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetManagedContactsPathParams, GetManagedContactsQueryParams, GetManagedContacts200, GetManagedContactsError, GetManagedContactsQueryResponse } from "../types/GetManagedContacts.ts";
+import type { GetManagedContactsQueryParams, GetManagedContacts200, GetManagedContactsError, GetManagedContactsQueryResponse } from "../types/GetManagedContacts.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetManagedContactsPathParams(data?: Partial<GetManagedContactsPathParams>): GetManagedContactsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetManagedContactsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetManagedContactsQueryParams(data?: Partial<GetManagedContactsQueryParams>): GetManagedContactsQueryParams {
   

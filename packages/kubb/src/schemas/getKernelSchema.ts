@@ -6,32 +6,31 @@
 import { z } from "zod/v4";
 
 export const getKernelPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"kernelId": z.string().describe("ID of the Kernel to look up.")
+    "kernelId": z.string().describe("ID of the Kernel to look up.")
     })
 
 /**
  * @description A single Kernel object.
  */
 export const getKernel200Schema = z.object({
-    "architecture": z.optional(z.enum(["x86_64", "i386"]).describe("__Filterable__, __Read-only__ The architecture of this Kernel.")),
-"built": z.optional(z.string().datetime().describe("__Read-only__ The date on which this Kernel was built.")),
-"deprecated": z.optional(z.boolean().describe("__Filterable__, __Read-only__ If this Kernel is marked as deprecated, this field has a value of `true`; otherwise, this field is `false`.")),
-"id": z.optional(z.string().describe("__Read-only__ The unique ID of this Kernel.")),
-"kvm": z.optional(z.boolean().describe("__Filterable__, __Read-only__ If this Kernel is suitable for KVM Linodes.")),
-"label": z.optional(z.string().describe("__Filterable__, __Read-only__ The friendly name of this Kernel.")),
-"pvops": z.optional(z.boolean().describe("__Filterable__, __Read-only__ If this Kernel is suitable for paravirtualized operations.")),
-"version": z.optional(z.string().describe("__Filterable__, __Read-only__ Linux Kernel version."))
+    "architecture": z.enum(["x86_64", "i386"]).describe("__Filterable__, __Read-only__ The architecture of this Kernel."),
+"built": z.string().datetime().describe("__Read-only__ The date on which this Kernel was built."),
+"deprecated": z.boolean().describe("__Filterable__, __Read-only__ If this Kernel is marked as deprecated, this field has a value of `true`; otherwise, this field is `false`."),
+"id": z.string().describe("__Read-only__ The unique ID of this Kernel."),
+"kvm": z.boolean().describe("__Filterable__, __Read-only__ If this Kernel is suitable for KVM Linodes."),
+"label": z.string().describe("__Filterable__, __Read-only__ The friendly name of this Kernel."),
+"pvops": z.boolean().describe("__Filterable__, __Read-only__ If this Kernel is suitable for paravirtualized operations."),
+"version": z.string().describe("__Filterable__, __Read-only__ Linux Kernel version.")
     }).describe("Linux kernel object.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getKernelErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getKernelQueryResponseSchema = z.lazy(() => getKernel200Schema)

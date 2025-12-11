@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetVpcsIpsPathParams, GetVpcsIpsQueryParams, GetVpcsIps200, GetVpcsIpsError, GetVpcsIpsQueryResponse } from "../types/GetVpcsIps.ts";
+import type { GetVpcsIpsQueryParams, GetVpcsIps200, GetVpcsIpsError, GetVpcsIpsQueryResponse } from "../types/GetVpcsIps.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetVpcsIpsPathParams(data?: Partial<GetVpcsIpsPathParams>): GetVpcsIpsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetVpcsIpsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetVpcsIpsQueryParams(data?: Partial<GetVpcsIpsQueryParams>): GetVpcsIpsQueryParams {
   

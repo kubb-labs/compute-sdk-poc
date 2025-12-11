@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetLongviewPlanPathParams, GetLongviewPlan200, GetLongviewPlanError, GetLongviewPlanQueryResponse } from "../types/GetLongviewPlan.ts";
+import type { GetLongviewPlan200, GetLongviewPlanError, GetLongviewPlanQueryResponse } from "../types/GetLongviewPlan.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetLongviewPlanPathParams(data?: Partial<GetLongviewPlanPathParams>): GetLongviewPlanPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetLongviewPlanPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description The Longview plan details for this account.

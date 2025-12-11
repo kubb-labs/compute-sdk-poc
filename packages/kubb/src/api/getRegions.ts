@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetRegionsQueryResponse, GetRegionsPathParams } from "../types/GetRegions.ts";
+import type { GetRegionsQueryResponse } from "../types/GetRegions.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetRegionsUrl(apiVersion: GetRegionsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/regions` as const }  
+function getGetRegionsUrl() {
+  const res = { method: 'GET', url: `/regions` as const }  
   return res
 }
 
 /**
  * @description Lists the regions available for Linode services. Not all services are guaranteed to be available in all regions.<<LB>>---- __CLI__.    ```    linode-cli regions list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List regions
- * {@link /:apiVersion/regions}
+ * {@link /regions}
  */
-export async function getRegions(apiVersion: GetRegionsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getRegions(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetRegionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetRegionsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetRegionsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetRegionsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

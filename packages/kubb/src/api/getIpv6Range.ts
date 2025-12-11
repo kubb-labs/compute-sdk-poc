@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetIpv6RangeQueryResponse, GetIpv6RangePathParams } from "../types/GetIpv6Range.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetIpv6RangeUrl(apiVersion: GetIpv6RangePathParams["apiVersion"], range: GetIpv6RangePathParams["range"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/networking/ipv6/ranges/${range}` as const }  
+function getGetIpv6RangeUrl(range: GetIpv6RangePathParams["range"]) {
+  const res = { method: 'GET', url: `/networking/ipv6/ranges/${range}` as const }  
   return res
 }
 
 /**
  * @description View IPv6 range information.<<LB>>---- __CLI__.    ```    linode-cli networking v6-range-view 2001:0db8::    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    ips:read    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an IPv6 range
- * {@link /:apiVersion/networking/ipv6/ranges/:range}
+ * {@link /networking/ipv6/ranges/:range}
  */
-export async function getIpv6Range(apiVersion: GetIpv6RangePathParams["apiVersion"], range: GetIpv6RangePathParams["range"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getIpv6Range(range: GetIpv6RangePathParams["range"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetIpv6RangeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetIpv6RangeUrl(apiVersion, range).url.toString(), ... requestConfig })  
+  const res = await request<GetIpv6RangeQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetIpv6RangeUrl(range).url.toString(), ... requestConfig })  
   return res.data
 }

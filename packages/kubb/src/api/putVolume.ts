@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutVolumeMutationRequest, PutVolumeMutationResponse, PutVolumePathParams } from "../types/PutVolume.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutVolumeUrl(apiVersion: PutVolumePathParams["apiVersion"], volumeId: PutVolumePathParams["volumeId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/volumes/${volumeId}` as const }  
+function getPutVolumeUrl(volumeId: PutVolumePathParams["volumeId"]) {
+  const res = { method: 'PUT', url: `/volumes/${volumeId}` as const }  
   return res
 }
 
 /**
  * @description Update a Block Storage volume that you have permission to `read_write`.<<LB>>---- __CLI__.    ```    linode-cli volumes update 12345 \  --label my_volume    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    volumes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a volume
- * {@link /:apiVersion/volumes/:volumeId}
+ * {@link /volumes/:volumeId}
  */
-export async function putVolume(apiVersion: PutVolumePathParams["apiVersion"], volumeId: PutVolumePathParams["volumeId"], data?: PutVolumeMutationRequest, config: Partial<RequestConfig<PutVolumeMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putVolume(volumeId: PutVolumePathParams["volumeId"], data?: PutVolumeMutationRequest, config: Partial<RequestConfig<PutVolumeMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutVolumeMutationResponse, ResponseErrorConfig<Error>, PutVolumeMutationRequest>({ method : "PUT", url : getPutVolumeUrl(apiVersion, volumeId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutVolumeMutationResponse, ResponseErrorConfig<Error>, PutVolumeMutationRequest>({ method : "PUT", url : getPutVolumeUrl(volumeId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

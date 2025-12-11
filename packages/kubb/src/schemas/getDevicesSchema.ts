@@ -5,35 +5,31 @@
 
 import { z } from "zod/v4";
 
-export const getDevicesPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description Returns a paginated list of TrustedDevice objects.
  */
 export const getDevices200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "created": z.optional(z.string().datetime().describe("__Read-only__ When this Remember Me session was started.  This corresponds to the time of login with the \"Remember Me\" box checked.")),
-"expiry": z.optional(z.string().datetime().describe("__Read-only__ When this TrustedDevice session expires.  Sessions typically last 30 days.")),
-"id": z.optional(z.int().describe("__Read-only__ The unique ID for this TrustedDevice.")),
-"last_authenticated": z.optional(z.string().datetime().describe("__Read-only__ The last time this TrustedDevice was successfully used to authenticate to [login.linode.com](https://login.linode.com).")),
-"last_remote_addr": z.optional(z.string().describe("__Read-only__ The last IP Address to successfully authenticate with this TrustedDevice.")),
-"user_agent": z.optional(z.string().describe("__Read-only__ The User Agent of the browser that created this TrustedDevice session."))
-    }).describe("A trusted device object represents an active Remember Me session with [login.linode.com](https://login.linode.com)."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    "data": z.array(z.object({
+    "created": z.string().datetime().describe("__Read-only__ When this Remember Me session was started.  This corresponds to the time of login with the \"Remember Me\" box checked."),
+"expiry": z.string().datetime().describe("__Read-only__ When this TrustedDevice session expires.  Sessions typically last 30 days."),
+"id": z.int().describe("__Read-only__ The unique ID for this TrustedDevice."),
+"last_authenticated": z.string().datetime().describe("__Read-only__ The last time this TrustedDevice was successfully used to authenticate to [login.linode.com](https://login.linode.com)."),
+"last_remote_addr": z.string().describe("__Read-only__ The last IP Address to successfully authenticate with this TrustedDevice."),
+"user_agent": z.string().describe("__Read-only__ The User Agent of the browser that created this TrustedDevice session.")
+    }).describe("A trusted device object represents an active Remember Me session with [login.linode.com](https://login.linode.com).")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getDevicesErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getDevicesQueryResponseSchema = z.lazy(() => getDevices200Schema)

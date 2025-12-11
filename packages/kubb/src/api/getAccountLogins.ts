@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetAccountLoginsQueryResponse, GetAccountLoginsPathParams } from "../types/GetAccountLogins.ts";
+import type { GetAccountLoginsQueryResponse } from "../types/GetAccountLogins.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetAccountLoginsUrl(apiVersion: GetAccountLoginsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/logins` as const }  
+function getGetAccountLoginsUrl() {
+  const res = { method: 'GET', url: `/account/logins` as const }  
   return res
 }
 
 /**
  * @description Returns a collection of successful logins for all users on the account during the last 90 days. This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli account logins-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List user logins
- * {@link /:apiVersion/account/logins}
+ * {@link /account/logins}
  */
-export async function getAccountLogins(apiVersion: GetAccountLoginsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getAccountLogins(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetAccountLoginsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountLoginsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetAccountLoginsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetAccountLoginsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

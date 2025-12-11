@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetFirewallTemplatePathParams(data?: Partial<GetFirewallTemplatePathParams>): GetFirewallTemplatePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetFirewallTemplatePathParams>["apiVersion"]>(["v4", "v4beta"]),"slug": faker.helpers.arrayElement<NonNullable<GetFirewallTemplatePathParams>["slug"]>(["vpc", "public"])},
+  ...{"slug": faker.helpers.arrayElement<NonNullable<GetFirewallTemplatePathParams>["slug"]>(["vpc", "public"])},
   ...data || {}
   }
 }

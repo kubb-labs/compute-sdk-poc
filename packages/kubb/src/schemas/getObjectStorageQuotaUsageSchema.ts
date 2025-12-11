@@ -6,26 +6,25 @@
 import { z } from "zod/v4";
 
 export const getObjectStorageQuotaUsagePathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"objQuotaId": z.string().describe("The unique string that identifies the specific Object Storage-related quota to look up. This follows the pattern, `obj-<quota_type>-<s3_endpoint>`, for example, `obj-buckets-eu-central-1.linodeobjects.com`.")
+    "objQuotaId": z.string().describe("The unique string that identifies the specific Object Storage-related quota to look up. This follows the pattern, `obj-<quota_type>-<s3_endpoint>`, for example, `obj-buckets-eu-central-1.linodeobjects.com`.")
     })
 
 /**
  * @description Usage data for the specified `objQuotaId`.
  */
 export const getObjectStorageQuotaUsage200Schema = z.object({
-    "quota_limit": z.optional(z.int().describe("The availability limit for a specific Object Storage resource (`objQuotaId`) for a single endpoint.")),
-"usage": z.int().describe("The quantity of the Object Storage resource currently in use on an endpoint. Displayed as `null` if no resources are in use.").nullish()
+    "quota_limit": z.int().describe("The availability limit for a specific Object Storage resource (`objQuotaId`) for a single endpoint."),
+"usage": z.nullable(z.int().describe("The quantity of the Object Storage resource currently in use on an endpoint. Displayed as `null` if no resources are in use."))
     }).describe("Usage data for a specific Object Storage-related quota on your account.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getObjectStorageQuotaUsageErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getObjectStorageQuotaUsageQueryResponseSchema = z.lazy(() => getObjectStorageQuotaUsage200Schema)

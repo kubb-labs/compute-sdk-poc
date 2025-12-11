@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostSecurityQuestionsPathParams, PostSecurityQuestions200, PostSecurityQuestionsError, PostSecurityQuestionsMutationRequest, PostSecurityQuestionsMutationResponse } from "../types/PostSecurityQuestions.ts";
+import type { PostSecurityQuestions200, PostSecurityQuestionsError, PostSecurityQuestionsMutationRequest, PostSecurityQuestionsMutationResponse } from "../types/PostSecurityQuestions.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostSecurityQuestionsPathParams(data?: Partial<PostSecurityQuestionsPathParams>): PostSecurityQuestionsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostSecurityQuestionsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Security Questions answered successfully.

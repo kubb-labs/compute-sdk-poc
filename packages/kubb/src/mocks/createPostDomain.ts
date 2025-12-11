@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostDomainPathParams, PostDomain200, PostDomainError, PostDomainMutationRequest, PostDomainMutationResponse } from "../types/PostDomain.ts";
+import type { PostDomain200, PostDomainError, PostDomainMutationRequest, PostDomainMutationResponse } from "../types/PostDomain.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostDomainPathParams(data?: Partial<PostDomainPathParams>): PostDomainPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostDomainPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Domain added successfully.

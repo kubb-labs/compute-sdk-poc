@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutManagedServicePathParams(data?: Partial<PutManagedServicePathParams>): PutManagedServicePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutManagedServicePathParams>["apiVersion"]>(["v4", "v4beta"]),"serviceId": faker.number.int()},
+  ...{"serviceId": faker.number.int()},
   ...data || {}
   }
 }

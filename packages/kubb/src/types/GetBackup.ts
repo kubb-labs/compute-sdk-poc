@@ -4,19 +4,7 @@
 */
 
 
-export const getBackupPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetBackupPathParamsApiVersionEnumKey = (typeof getBackupPathParamsApiVersionEnum)[keyof typeof getBackupPathParamsApiVersionEnum];
-
 export interface GetBackupPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetBackupPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the Linode the Backup belongs to.
      * @type integer
@@ -65,68 +53,68 @@ export type GetBackup200TypeEnumKey = (typeof getBackup200TypeEnum)[keyof typeof
 export interface GetBackup200 {
     /**
      * @description __Read-only__ Whether this Backup is available for restoration.\n\nBackups undergoing maintenance are not available for restoration.
-     * @type boolean | undefined
+     * @type boolean
     */
-    readonly available?: boolean;
+    readonly available: boolean;
     /**
      * @description __Read-only__ A list of the labels of the Configuration profiles that are part of the Backup.
-     * @type array | undefined
+     * @type array
     */
-    readonly configs?: string[];
+    readonly configs: string[];
     /**
      * @description __Read-only__ The date the Backup was taken.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly created?: string;
+    readonly created: string;
     /**
      * @description __Read-only__ A list of the disks that are part of the Backup.
-     * @type array | undefined
+     * @type array
     */
-    readonly disks?: {
+    readonly disks: {
         /**
          * @description The disk\'s format or file system. A value of `raw` indicates no file system, just a raw binary stream. A value of `swap` indicates a Linux swap area. The values `ext3` or `ext4` represent these Linux journaling file systems. The value `ext2` is the deprecated ext2 Linux file system. Finally, `initrd` indicates the disk is formatted as an uncompressed initial RAM disk.\n\n> 📘\n>\n> The `ext2` file system doesn\'t properly support timestamps and will be removed from Linux support in the near future. Also, `initrd` is a legacy format that no longer applies to most use cases. As a best practice, use the other supported formats or file systems instead.
-         * @type string | undefined
+         * @type string
         */
-        filesystem?: DisksFilesystemEnum5Key;
+        filesystem: DisksFilesystemEnum5Key;
         /**
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
-         * @type integer | undefined
+         * @type integer
         */
-        size?: number;
+        size: number;
     }[];
     /**
      * @description __Read-only__ The date the Backup completed.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly finished?: string;
+    readonly finished: string;
     /**
      * @description __Read-only__ The unique ID of this Backup.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly id?: number;
+    readonly id: number;
     /**
      * @description A label for Backups that are of type `snapshot`.
      * @type string
     */
-    label?: string | null;
+    label: string | null;
     /**
      * @description __Read-only__ The current state of a specific Backup.
-     * @type string | undefined
+     * @type string
     */
-    readonly status?: GetBackup200StatusEnumKey;
+    readonly status: GetBackup200StatusEnumKey;
     /**
      * @description __Read-only__ This indicates whether the Backup is an automatic Backup or manual snapshot taken by the User at a specific point in time.
-     * @type string | undefined
+     * @type string
     */
-    readonly type?: GetBackup200TypeEnumKey;
+    readonly type: GetBackup200TypeEnumKey;
     /**
      * @description __Read-only__ The date the Backup was most recently updated.
-     * @type string | undefined, date-time
+     * @type string, date-time
     */
-    readonly updated?: string;
+    readonly updated: string;
 }
 
 /**
@@ -134,19 +122,19 @@ export interface GetBackup200 {
 */
 export interface GetBackupError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetDashboardsAllQueryResponse, GetDashboardsAllPathParams } from "../types/GetDashboardsAll.ts";
+import type { GetDashboardsAllQueryResponse } from "../types/GetDashboardsAll.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDashboardsAllUrl(apiVersion: GetDashboardsAllPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/monitor/dashboards` as const }  
+function getGetDashboardsAllUrl() {
+  const res = { method: 'GET', url: `/monitor/dashboards` as const }  
   return res
 }
 
 /**
  * @description __Beta__ Returns all available dashboards.> 📘>> This operation is beta. Call it using the `v4beta` path in its URL.<<LB>>---- __CLI__.    ```    linode-cli monitor dashboards-list-all    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    monitor:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List dashboards
- * {@link /:apiVersion/monitor/dashboards}
+ * {@link /monitor/dashboards}
  */
-export async function getDashboardsAll(apiVersion: GetDashboardsAllPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDashboardsAll(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDashboardsAllQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDashboardsAllUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetDashboardsAllQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDashboardsAllUrl().url.toString(), ... requestConfig })  
   return res.data
 }

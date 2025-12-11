@@ -4,98 +4,83 @@
 */
 
 
-export const getVolumeTypesPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetVolumeTypesPathParamsApiVersionEnumKey = (typeof getVolumeTypesPathParamsApiVersionEnum)[keyof typeof getVolumeTypesPathParamsApiVersionEnum];
-
-export interface GetVolumeTypesPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetVolumeTypesPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description A collection of volume types.
 */
 export interface GetVolumeTypes200 {
     /**
      * @description The volume types.
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ The ID representing the volume type.
-         * @type string | undefined
+         * @type string
         */
-        readonly id?: string;
+        readonly id: string;
         /**
          * @description __Filterable__, __Read-only__ The volume type label is for display purposes only.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Read-only__ The default cost of this volume type. Prices are in US dollars, broken down into hourly and monthly charges.\n\nCertain regions have different prices from the default. For region-specific prices, see `region_prices`.
-         * @type object | undefined
+         * @type object
         */
-        readonly price?: {
+        readonly price: {
             /**
              * @description __Filterable__ Cost (in US dollars) per hour.
-             * @type number | undefined
+             * @type number
             */
-            hourly?: number;
+            hourly: number;
             /**
              * @description __Filterable__ Cost per month, in US dollars.
-             * @type number | undefined
+             * @type number
             */
-            monthly?: number;
+            monthly: number;
         };
         /**
-         * @type array | undefined
+         * @type array
         */
-        region_prices?: {
+        region_prices: {
             /**
              * @description Cost per hour for this region, in US dollars.
-             * @type number | undefined
+             * @type number
             */
-            hourly?: number;
+            hourly: number;
             /**
              * @description The Region ID for these prices.
-             * @type string | undefined
+             * @type string
             */
-            id?: string;
+            id: string;
             /**
              * @description Cost per month for this region, in US dollars.
-             * @type number | undefined
+             * @type number
             */
-            monthly?: number;
+            monthly: number;
         }[];
         /**
          * @description __Filterable__, __Read-only__ The monthly outbound transfer amount, in MB.
          * @minLength 0
-         * @type integer | undefined
+         * @type integer
         */
-        readonly transfer?: number;
+        readonly transfer: number;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -103,19 +88,19 @@ export interface GetVolumeTypes200 {
 */
 export interface GetVolumeTypesError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -123,6 +108,5 @@ export type GetVolumeTypesQueryResponse = GetVolumeTypes200;
 
 export type GetVolumeTypesQuery = {
     Response: GetVolumeTypes200;
-    PathParams: GetVolumeTypesPathParams;
     Errors: any;
 };

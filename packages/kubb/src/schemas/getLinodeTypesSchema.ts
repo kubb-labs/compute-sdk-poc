@@ -5,61 +5,57 @@
 
 import { z } from "zod/v4";
 
-export const getLinodeTypesPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description A collection of Linode Types.
  */
 export const getLinodeTypes200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "addons": z.optional(z.object({
-    "backups": z.optional(z.object({
-    "price": z.optional(z.object({
-    "hourly": z.optional(z.number().describe("The hourly cost for the Backups service, in U.S. dollars.")),
-"monthly": z.optional(z.number().describe("The monthly cost for the Backups service, in U.S. dollars."))
-    }).describe("The default cost to enable the Backups service for this Linode type. Prices are in U.S. dollars, broken down into hourly and monthly charges. Different prices apply in different regions. For region-specific prices, see `region_prices`.")),
-"region_prices": z.optional(z.array(z.object({
-    "hourly": z.optional(z.number().describe("The hourly cost for the Backups service in this region, in U.S. dollars.")),
-"id": z.optional(z.string().describe("The unique identifier for the region.")),
-"monthly": z.optional(z.number().describe("The monthly cost for the Backups service in this region, in U.S. dollars."))
-    })))
-    }).describe("__Read-only__ Details on the optional backup service available with a Linode."))
-    }).describe("__Read-only__ Optional add-on services for Linodes and their associated cost.")),
-"class": z.optional(z.enum(["nanode", "standard", "dedicated", "premium", "gpu", "accelerated", "highmem"]).describe("__Filterable__, __Read-only__ The class of the Linode type.\n\n- `nanode`. These instances are good for low-duty workloads, where performance isn't critical.\n\n- `standard`. These instances are good for medium-duty workloads, and offer a good mix of performance, resources, and price.\n\n- `dedicated`. These instances are good for full-duty workloads where consistent performance is important.\n\n- `premium` (limited regions). This includes the features of a `dedicated` instance as well as the latest AMD EPYC&trade; CPUs. This ensures your applications are running on the latest hardware with consistently high performance. Only available in [regions](https://techdocs.akamai.com/linode-api/reference/get-regions) with \"Premium Plans\" in their `capabilities`.\n\n- `gpu` (limited regions). Linodes with dedicated NVIDIA Quadro&reg; RTX 6000 GPUs accelerate highly specialized applications such as machine learning, AI, and video transcoding. Only available in [regions](https://techdocs.akamai.com/linode-api/reference/get-regions) with `GPU Linodes` in their `capabilities`.\n\n- `accelerated` (limited regions). These leverage the power of dedicated, application-specific integrated circuits (ASIC), starting with NETINT Video Processing Units (VPUs). They're ideal for video transcoding, media processing, and other compute-heavy workloads. Designed to offload specialized tasks, these instances deliver faster processing times and greater efficiency than traditional CPU-based solutions. Only available in [regions](https://techdocs.akamai.com/linode-api/reference/get-regions) with `Accelerated` in their `capabilities`.\n\n- `highmem`. High Memory instances favor RAM over other resources, and can be good for memory hungry use cases like caching and in-memory databases. All High Memory plans contain dedicated CPU cores.\n\n> 📘\n>\n> - A `nanode` class is listed as a 1 GB Linode in Cloud Manager. The API, the CLI, and billing continue to refer to these as a Nanode.\n>\n> - A `standard` class is listed as a Shared Linode in Cloud Manager. The API, the CLI, and billing still refer to these as Standard.")),
-"disk": z.optional(z.int().describe("__Filterable__, __Read-only__ The Linode type's disk size in MB.")),
-"gpus": z.optional(z.int().describe("__Filterable__, __Read-only__ The number of GPUs this Linode type offers.")),
-"id": z.optional(z.string().describe("__Read-only__ The ID representing the Linode type.")),
-"label": z.optional(z.string().describe("__Filterable__, __Read-only__ The display name for the Linode type.")),
-"memory": z.optional(z.int().describe("__Filterable__, __Read-only__ Amount of RAM included in this Linode type.")),
-"network_out": z.optional(z.int().describe("__Filterable__, __Read-only__ The Mbits outbound bandwidth allocation.")),
-"price": z.optional(z.object({
-    "hourly": z.optional(z.number().describe("The cost per hour in U.S. dollars.")),
-"monthly": z.optional(z.number().describe("The cost per month in U.S. dollars."))
-    }).describe("__Read-only__ The default cost of provisioning this Linode type. Prices are in U.S. dollars, broken down into hourly and monthly charges. Certain regions have different prices. For region-specific pricing, see `region_prices`.")),
-"region_prices": z.optional(z.array(z.object({
-    "hourly": z.optional(z.number().describe("The cost per hour for this region in U.S. dollars.")),
-"id": z.optional(z.string().describe("The unique identifier for the region.")),
-"monthly": z.optional(z.number().describe("The cost per month for this region in U.S. dollars."))
-    }))),
-"successor": z.string().describe("__Read-only__ After a [mutate](https://techdocs.akamai.com/linode-api/reference/post-mutate-linode-instance), the Linode is upgraded to this Linode type. If `null`, this Linode type can't be mutated.").nullish(),
-"transfer": z.optional(z.int().describe("__Filterable__, __Read-only__ The monthly outbound transfer amount in MB.")),
-"vcpus": z.optional(z.int().describe("__Filterable__, __Read-only__ The number of VCPU cores this Linode type offers."))
-    }).describe("The available Linode types, including pricing and specifications for each. Use them when [creating](https://techdocs.akamai.com/linode-api/reference/post-linode-instance) or [resizing](https://techdocs.akamai.com/linode-api/reference/post-resize-linode-instance) Linodes.")).describe("The Linode types.")),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    "data": z.array(z.object({
+    "addons": z.object({
+    "backups": z.object({
+    "price": z.object({
+    "hourly": z.number().describe("The hourly cost for the Backups service, in U.S. dollars."),
+"monthly": z.number().describe("The monthly cost for the Backups service, in U.S. dollars.")
+    }).describe("The default cost to enable the Backups service for this Linode type. Prices are in U.S. dollars, broken down into hourly and monthly charges. Different prices apply in different regions. For region-specific prices, see `region_prices`."),
+"region_prices": z.array(z.object({
+    "hourly": z.number().describe("The hourly cost for the Backups service in this region, in U.S. dollars."),
+"id": z.string().describe("The unique identifier for the region."),
+"monthly": z.number().describe("The monthly cost for the Backups service in this region, in U.S. dollars.")
+    }))
+    }).describe("__Read-only__ Details on the optional backup service available with a Linode.")
+    }).describe("__Read-only__ Optional add-on services for Linodes and their associated cost."),
+"class": z.enum(["nanode", "standard", "dedicated", "premium", "gpu", "accelerated", "highmem"]).describe("__Filterable__, __Read-only__ The class of the Linode type.\n\n- `nanode`. These instances are good for low-duty workloads, where performance isn't critical.\n\n- `standard`. These instances are good for medium-duty workloads, and offer a good mix of performance, resources, and price.\n\n- `dedicated`. These instances are good for full-duty workloads where consistent performance is important.\n\n- `premium` (limited regions). This includes the features of a `dedicated` instance as well as the latest AMD EPYC&trade; CPUs. This ensures your applications are running on the latest hardware with consistently high performance. Only available in [regions](https://techdocs.akamai.com/linode-api/reference/get-regions) with \"Premium Plans\" in their `capabilities`.\n\n- `gpu` (limited regions). Linodes with dedicated NVIDIA Quadro&reg; RTX 6000 GPUs accelerate highly specialized applications such as machine learning, AI, and video transcoding. Only available in [regions](https://techdocs.akamai.com/linode-api/reference/get-regions) with `GPU Linodes` in their `capabilities`.\n\n- `accelerated` (limited regions). These leverage the power of dedicated, application-specific integrated circuits (ASIC), starting with NETINT Video Processing Units (VPUs). They're ideal for video transcoding, media processing, and other compute-heavy workloads. Designed to offload specialized tasks, these instances deliver faster processing times and greater efficiency than traditional CPU-based solutions. Only available in [regions](https://techdocs.akamai.com/linode-api/reference/get-regions) with `Accelerated` in their `capabilities`.\n\n- `highmem`. High Memory instances favor RAM over other resources, and can be good for memory hungry use cases like caching and in-memory databases. All High Memory plans contain dedicated CPU cores.\n\n> 📘\n>\n> - A `nanode` class is listed as a 1 GB Linode in Cloud Manager. The API, the CLI, and billing continue to refer to these as a Nanode.\n>\n> - A `standard` class is listed as a Shared Linode in Cloud Manager. The API, the CLI, and billing still refer to these as Standard."),
+"disk": z.int().describe("__Filterable__, __Read-only__ The Linode type's disk size in MB."),
+"gpus": z.int().describe("__Filterable__, __Read-only__ The number of GPUs this Linode type offers."),
+"id": z.string().describe("__Read-only__ The ID representing the Linode type."),
+"label": z.string().describe("__Filterable__, __Read-only__ The display name for the Linode type."),
+"memory": z.int().describe("__Filterable__, __Read-only__ Amount of RAM included in this Linode type."),
+"network_out": z.int().describe("__Filterable__, __Read-only__ The Mbits outbound bandwidth allocation."),
+"price": z.object({
+    "hourly": z.number().describe("The cost per hour in U.S. dollars."),
+"monthly": z.number().describe("The cost per month in U.S. dollars.")
+    }).describe("__Read-only__ The default cost of provisioning this Linode type. Prices are in U.S. dollars, broken down into hourly and monthly charges. Certain regions have different prices. For region-specific pricing, see `region_prices`."),
+"region_prices": z.array(z.object({
+    "hourly": z.number().describe("The cost per hour for this region in U.S. dollars."),
+"id": z.string().describe("The unique identifier for the region."),
+"monthly": z.number().describe("The cost per month for this region in U.S. dollars.")
+    })),
+"successor": z.nullable(z.string().describe("__Read-only__ After a [mutate](https://techdocs.akamai.com/linode-api/reference/post-mutate-linode-instance), the Linode is upgraded to this Linode type. If `null`, this Linode type can't be mutated.")),
+"transfer": z.int().describe("__Filterable__, __Read-only__ The monthly outbound transfer amount in MB."),
+"vcpus": z.int().describe("__Filterable__, __Read-only__ The number of VCPU cores this Linode type offers.")
+    }).describe("The available Linode types, including pricing and specifications for each. Use them when [creating](https://techdocs.akamai.com/linode-api/reference/post-linode-instance) or [resizing](https://techdocs.akamai.com/linode-api/reference/post-resize-linode-instance) Linodes.")).describe("The Linode types."),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getLinodeTypesErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getLinodeTypesQueryResponseSchema = z.lazy(() => getLinodeTypes200Schema)

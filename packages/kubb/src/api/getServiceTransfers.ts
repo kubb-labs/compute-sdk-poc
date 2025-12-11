@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetServiceTransfersQueryResponse, GetServiceTransfersPathParams, GetServiceTransfersQueryParams } from "../types/GetServiceTransfers.ts";
+import type { GetServiceTransfersQueryResponse, GetServiceTransfersQueryParams } from "../types/GetServiceTransfers.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetServiceTransfersUrl(apiVersion: GetServiceTransfersPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/service-transfers` as const }  
+function getGetServiceTransfersUrl() {
+  const res = { method: 'GET', url: `/account/service-transfers` as const }  
   return res
 }
 
 /**
  * @description Returns a collection of all created and accepted Service Transfers for this account, regardless of the user that created or accepted the transfer.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli service-transfers \  list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List service transfers
- * {@link /:apiVersion/account/service-transfers}
+ * {@link /account/service-transfers}
  */
-export async function getServiceTransfers(apiVersion: GetServiceTransfersPathParams["apiVersion"], params?: GetServiceTransfersQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getServiceTransfers(params?: GetServiceTransfersQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetServiceTransfersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetServiceTransfersUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetServiceTransfersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetServiceTransfersUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

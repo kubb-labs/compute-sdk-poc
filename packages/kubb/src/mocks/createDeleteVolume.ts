@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteVolumePathParams(data?: Partial<DeleteVolumePathParams>): DeleteVolumePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteVolumePathParams>["apiVersion"]>(["v4", "v4beta"]),"volumeId": faker.number.int()},
+  ...{"volumeId": faker.number.int()},
   ...data || {}
   }
 }

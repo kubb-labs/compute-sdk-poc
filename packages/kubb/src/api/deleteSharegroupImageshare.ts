@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteSharegroupImageshareMutationResponse, DeleteSharegroupImagesharePathParams } from "../types/DeleteSharegroupImageshare.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteSharegroupImageshareUrl(apiVersion: DeleteSharegroupImagesharePathParams["apiVersion"], sharegroupId: DeleteSharegroupImagesharePathParams["sharegroupId"], imageId: DeleteSharegroupImagesharePathParams["imageId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/images/sharegroups/${sharegroupId}/images/${imageId}` as const }  
+function getDeleteSharegroupImageshareUrl(sharegroupId: DeleteSharegroupImagesharePathParams["sharegroupId"], imageId: DeleteSharegroupImagesharePathParams["imageId"]) {
+  const res = { method: 'DELETE', url: `/images/sharegroups/${sharegroupId}/images/${imageId}` as const }  
   return res
 }
 
 /**
  * @description Revokes access to a shared image within an owned group for all members.- Run the [List share groups](https://techdocs.akamai.com/linode-api/reference/get-sharegroups) operation to get the `id` you should use as the `(sharegroupId)` path parameter that identifies an existing share group. To get the `imageID`, run the [List shared images by group](https://techdocs.akamai.com/linode-api/reference/get-sharegroup-images) operation.- To add a private image back to a share group, run the [Add images to a share group](https://techdocs.akamai.com/linode-api/reference/post-sharegroup-images).<<LB>>---- __CLI__.    ```    linode-cli image-sharegroups image-remove 123 1234    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Revoke access to a shared image
- * {@link /:apiVersion/images/sharegroups/:sharegroupId/images/:imageId}
+ * {@link /images/sharegroups/:sharegroupId/images/:imageId}
  */
-export async function deleteSharegroupImageshare(apiVersion: DeleteSharegroupImagesharePathParams["apiVersion"], sharegroupId: DeleteSharegroupImagesharePathParams["sharegroupId"], imageId: DeleteSharegroupImagesharePathParams["imageId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteSharegroupImageshare(sharegroupId: DeleteSharegroupImagesharePathParams["sharegroupId"], imageId: DeleteSharegroupImagesharePathParams["imageId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteSharegroupImageshareMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteSharegroupImageshareUrl(apiVersion, sharegroupId, imageId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteSharegroupImageshareMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteSharegroupImageshareUrl(sharegroupId, imageId).url.toString(), ... requestConfig })  
   return res.data
 }

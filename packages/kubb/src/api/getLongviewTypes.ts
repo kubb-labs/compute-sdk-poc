@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetLongviewTypesQueryResponse, GetLongviewTypesPathParams } from "../types/GetLongviewTypes.ts";
+import type { GetLongviewTypesQueryResponse } from "../types/GetLongviewTypes.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLongviewTypesUrl(apiVersion: GetLongviewTypesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/longview/types` as const }  
+function getGetLongviewTypesUrl() {
+  const res = { method: 'GET', url: `/longview/types` as const }  
   return res
 }
 
 /**
  * @description Returns Longview types and prices, including any region-specific rates.<<LB>>---- __CLI__.    ```    linode-cli longview types    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List Longview types
- * {@link /:apiVersion/longview/types}
+ * {@link /longview/types}
  */
-export async function getLongviewTypes(apiVersion: GetLongviewTypesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLongviewTypes(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLongviewTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLongviewTypesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetLongviewTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLongviewTypesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

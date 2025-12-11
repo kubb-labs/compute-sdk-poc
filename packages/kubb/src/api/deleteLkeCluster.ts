@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteLkeClusterMutationResponse, DeleteLkeClusterPathParams } from "../types/DeleteLkeCluster.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteLkeClusterUrl(apiVersion: DeleteLkeClusterPathParams["apiVersion"], clusterId: DeleteLkeClusterPathParams["clusterId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/lke/clusters/${clusterId}` as const }  
+function getDeleteLkeClusterUrl(clusterId: DeleteLkeClusterPathParams["clusterId"]) {
+  const res = { method: 'DELETE', url: `/lke/clusters/${clusterId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a cluster from your account.> 🚧>> Deleting a cluster is a destructive action and can't be undone.When a cluster is deleted, all supporting Kubernetes services are removed from your account along with all Linodes in your cluster's node pools. You must have `read_write` permission to the cluster to initiate deletion.Some additional services associated with your cluster remain active on your account. These services include NodeBalancers and Block Storage volumes. To avoid further charges, delete these services manually through Cloud Manager, the Linode CLI, or the Linode API.<<LB>>---- __CLI__.    ```    linode-cli lke cluster-delete 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a Kubernetes cluster
- * {@link /:apiVersion/lke/clusters/:clusterId}
+ * {@link /lke/clusters/:clusterId}
  */
-export async function deleteLkeCluster(apiVersion: DeleteLkeClusterPathParams["apiVersion"], clusterId: DeleteLkeClusterPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteLkeCluster(clusterId: DeleteLkeClusterPathParams["clusterId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteLkeClusterMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteLkeClusterUrl(apiVersion, clusterId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteLkeClusterMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteLkeClusterUrl(clusterId).url.toString(), ... requestConfig })  
   return res.data
 }

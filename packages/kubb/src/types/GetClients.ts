@@ -4,21 +4,6 @@
 */
 
 
-export const getClientsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetClientsPathParamsApiVersionEnumKey = (typeof getClientsPathParamsApiVersionEnum)[keyof typeof getClientsPathParamsApiVersionEnum];
-
-export interface GetClientsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetClientsPathParamsApiVersionEnumKey;
-}
-
 export interface GetClientsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -50,63 +35,63 @@ export type DataStatusEnum11Key = (typeof dataStatusEnum11)[keyof typeof dataSta
 */
 export interface GetClients200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ The OAuth Client ID.  This is used to identify the client, and is a publicly known value (it is not a secret).
-         * @type string | undefined
+         * @type string
         */
-        readonly id?: string;
+        readonly id: string;
         /**
          * @description __Filterable__ The name of this application.  This will be presented to users when they are asked to grant it access to their Account.
          * @minLength 1
          * @maxLength 512
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description __Filterable__ If this is a public or private OAuth Client.  Public clients have a slightly different authentication workflow than private clients.  See the [OAuth spec](https://oauth.net/2/) for more details.
          * @default false
-         * @type boolean | undefined
+         * @type boolean
         */
-        public?: boolean;
+        public: boolean;
         /**
          * @description The location a successful log in from [login.linode.com](https://login.linode.com) should be redirected to for this client.  The receiver of this redirect should be ready to accept an OAuth exchange code and finish the OAuth exchange.
-         * @type string | undefined, url
+         * @type string, url
         */
-        redirect_uri?: string;
+        redirect_uri: string;
         /**
          * @description __Read-only__ The OAuth Client secret, used in the OAuth exchange.  This is returned as `<REDACTED>` except when an OAuth Client is created or its secret is reset.  This is a secret, and should not be shared or disclosed publicly.
-         * @type string | undefined
+         * @type string
         */
-        readonly secret?: string;
+        readonly secret: string;
         /**
          * @description __Read-only__ The status of this application.  `active` by default.
-         * @type string | undefined
+         * @type string
         */
-        readonly status?: DataStatusEnum11Key;
+        readonly status: DataStatusEnum11Key;
         /**
          * @description __Read-only__ The URL where this client\'s thumbnail may be viewed, or `null` if this client does not have a thumbnail set.
          * @type string, url
         */
-        readonly thumbnail_url?: string | null;
+        readonly thumbnail_url: string | null;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -114,19 +99,19 @@ export interface GetClients200 {
 */
 export interface GetClientsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -134,7 +119,6 @@ export type GetClientsQueryResponse = GetClients200;
 
 export type GetClientsQuery = {
     Response: GetClients200;
-    PathParams: GetClientsPathParams;
     QueryParams: GetClientsQueryParams;
     Errors: any;
 };

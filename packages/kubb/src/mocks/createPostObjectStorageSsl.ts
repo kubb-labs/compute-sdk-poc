@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostObjectStorageSslPathParams(data?: Partial<PostObjectStorageSslPathParams>): PostObjectStorageSslPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostObjectStorageSslPathParams>["apiVersion"]>(["v4", "v4beta"]),"regionId": faker.string.alpha(),"bucket": faker.string.alpha()},
+  ...{"regionId": faker.string.alpha(),"bucket": faker.string.alpha()},
   ...data || {}
   }
 }

@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostClientMutationRequest, PostClientMutationResponse, PostClientPathParams } from "../types/PostClient.ts";
+import type { PostClientMutationRequest, PostClientMutationResponse } from "../types/PostClient.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostClientUrl(apiVersion: PostClientPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/oauth-clients` as const }  
+function getPostClientUrl() {
+  const res = { method: 'POST', url: `/account/oauth-clients` as const }  
   return res
 }
 
 /**
  * @description Creates an OAuth Client, which can be used to allow users (using their Linode account) to log in to your own application, and optionally grant your application some amount of access to their Linodes or other entities.<<LB>>---- __CLI__.    ```    linode-cli account client-create \  --label Test_Client_1 \  --redirect_uri https://example.org/callback    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Create an OAuth client
- * {@link /:apiVersion/account/oauth-clients}
+ * {@link /account/oauth-clients}
  */
-export async function postClient(apiVersion: PostClientPathParams["apiVersion"], data: PostClientMutationRequest, config: Partial<RequestConfig<PostClientMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postClient(data: PostClientMutationRequest, config: Partial<RequestConfig<PostClientMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostClientMutationResponse, ResponseErrorConfig<Error>, PostClientMutationRequest>({ method : "POST", url : getPostClientUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostClientMutationResponse, ResponseErrorConfig<Error>, PostClientMutationRequest>({ method : "POST", url : getPostClientUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

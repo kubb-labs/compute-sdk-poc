@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetIpv6RangePathParams(data?: Partial<GetIpv6RangePathParams>): GetIpv6RangePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetIpv6RangePathParams>["apiVersion"]>(["v4", "v4beta"]),"range": faker.internet.url()},
+  ...{"range": faker.internet.url()},
   ...data || {}
   }
 }

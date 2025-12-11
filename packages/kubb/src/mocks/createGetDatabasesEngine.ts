@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetDatabasesEnginePathParams(data?: Partial<GetDatabasesEnginePathParams>): GetDatabasesEnginePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDatabasesEnginePathParams>["apiVersion"]>(["v4", "v4beta"]),"engineId": faker.string.alpha()},
+  ...{"engineId": faker.string.alpha()},
   ...data || {}
   }
 }

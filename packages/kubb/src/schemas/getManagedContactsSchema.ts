@@ -5,10 +5,6 @@
 
 import { z } from "zod/v4";
 
-export const getManagedContactsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 export const getManagedContactsQueryParamsSchema = z.object({
     "page": z.coerce.number().int().min(1).default(1).describe("The page of a collection to return."),
 "page_size": z.coerce.number().int().min(25).max(500).default(100).describe("The number of items to return per page.")
@@ -18,30 +14,30 @@ export const getManagedContactsQueryParamsSchema = z.object({
  * @description A paginated list of ManagedContacts.
  */
 export const getManagedContacts200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "email": z.optional(z.email().describe("The address to email this Contact to alert them of issues.")),
-"group": z.string().min(2).max(50).describe("__Filterable__ A grouping for this Contact. This is for display purposes only.").nullish(),
-"id": z.optional(z.int().describe("__Read-only__ This Contact's unique ID.")),
-"name": z.optional(z.string().regex(/[a-zA-Z0-9-_ ]{2,64}/).describe("The name of this Contact.")),
-"phone": z.optional(z.object({
-    "primary": z.string().describe("This Contact's primary phone number.").nullish(),
-"secondary": z.string().describe("This Contact's secondary phone number.").nullish()
-    }).describe("Information about how to reach this Contact by phone.")),
-"updated": z.optional(z.string().datetime().describe("__Read-only__ When this Contact was last updated."))
-    }).describe("Information about someone Linode's special forces may contact in case an issue is detected with a manager service."))),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    "data": z.array(z.object({
+    "email": z.email().describe("The address to email this Contact to alert them of issues."),
+"group": z.nullable(z.string().min(2).max(50).describe("__Filterable__ A grouping for this Contact. This is for display purposes only.")),
+"id": z.int().describe("__Read-only__ This Contact's unique ID."),
+"name": z.string().regex(/[a-zA-Z0-9-_ ]{2,64}/).describe("The name of this Contact."),
+"phone": z.object({
+    "primary": z.nullable(z.string().describe("This Contact's primary phone number.")),
+"secondary": z.nullable(z.string().describe("This Contact's secondary phone number."))
+    }).describe("Information about how to reach this Contact by phone."),
+"updated": z.string().datetime().describe("__Read-only__ When this Contact was last updated.")
+    }).describe("Information about someone Linode's special forces may contact in case an issue is detected with a manager service.")),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getManagedContactsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getManagedContactsQueryResponseSchema = z.lazy(() => getManagedContacts200Schema)

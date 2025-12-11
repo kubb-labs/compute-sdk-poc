@@ -4,21 +4,6 @@
 */
 
 
-export const getImagesPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetImagesPathParamsApiVersionEnumKey = (typeof getImagesPathParamsApiVersionEnum)[keyof typeof getImagesPathParamsApiVersionEnum];
-
-export interface GetImagesPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetImagesPathParamsApiVersionEnumKey;
-}
-
 export interface GetImagesQueryParams {
     /**
      * @description The page of a collection to return.
@@ -77,9 +62,9 @@ export type DataTypeEnum11Key = (typeof dataTypeEnum11)[keyof typeof dataTypeEnu
 */
 export interface GetImages200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ A list of the possible capabilities of this image.\n\n- `cloud-init`. The image supports the cloud-init multi-distribution method with our [Metadata service](https://www.linode.com/docs/products/compute/compute-instances/guides/metadata/#troubleshoot-metadata-and-cloud-init). This only applies to public images.\n\n- `distributed-sites`. Whether the image can be used in distributed compute regions. Compared to a core compute region, distributed compute regions offer limited functionality, but they\'re globally distributed. Your image can be geographically closer to you, potentially letting you deploy it quicker. See [Regions and images](https://techdocs.akamai.com/cloud-computing/docs/images#regions-and-images) for complete details.
          * @type array
@@ -202,14 +187,14 @@ export interface GetImages200 {
         readonly regions: {
             /**
              * @description The unique identifier for the core compute region where this image is stored.
-             * @type string | undefined
+             * @type string
             */
-            region?: string;
+            region: string;
             /**
              * @description The status of the image in this `region`. Possible values are `available`, `creating`, `pending`, `pending deletion`, `pending replication`, or `replicating`.
-             * @type string | undefined
+             * @type string
             */
-            status?: RegionsStatusEnum2Key;
+            status: RegionsStatusEnum2Key;
         }[];
         /**
          * @description __Filterable__, __Read-only__ The minimum size in MB this image needs to deploy.
@@ -249,19 +234,19 @@ export interface GetImages200 {
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -269,19 +254,19 @@ export interface GetImages200 {
 */
 export interface GetImagesError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -289,7 +274,6 @@ export type GetImagesQueryResponse = GetImages200;
 
 export type GetImagesQuery = {
     Response: GetImages200;
-    PathParams: GetImagesPathParams;
     QueryParams: GetImagesQueryParams;
     Errors: any;
 };

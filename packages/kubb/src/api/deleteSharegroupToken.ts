@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteSharegroupTokenMutationResponse, DeleteSharegroupTokenPathParams } from "../types/DeleteSharegroupToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteSharegroupTokenUrl(apiVersion: DeleteSharegroupTokenPathParams["apiVersion"], tokenUuid: DeleteSharegroupTokenPathParams["tokenUuid"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/images/sharegroups/tokens/${tokenUuid}` as const }  
+function getDeleteSharegroupTokenUrl(tokenUuid: DeleteSharegroupTokenPathParams["tokenUuid"]) {
+  const res = { method: 'DELETE', url: `/images/sharegroups/tokens/${tokenUuid}` as const }  
   return res
 }
 
 /**
  * @description Removes an existing membership token for a share group member or a pending membership.- To get the `token_uuid`, run the [List tokens](https://techdocs.akamai.com/linode-api/reference/get-user-tokens) operation.<<LB>>---- __CLI__.    ```    linode-cli image-sharegroups token-delete abc123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a token
- * {@link /:apiVersion/images/sharegroups/tokens/:tokenUuid}
+ * {@link /images/sharegroups/tokens/:tokenUuid}
  */
-export async function deleteSharegroupToken(apiVersion: DeleteSharegroupTokenPathParams["apiVersion"], tokenUuid: DeleteSharegroupTokenPathParams["tokenUuid"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteSharegroupToken(tokenUuid: DeleteSharegroupTokenPathParams["tokenUuid"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteSharegroupTokenMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteSharegroupTokenUrl(apiVersion, tokenUuid).url.toString(), ... requestConfig })  
+  const res = await request<DeleteSharegroupTokenMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteSharegroupTokenUrl(tokenUuid).url.toString(), ... requestConfig })  
   return res.data
 }

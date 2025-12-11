@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostRebuildNodeBalancerConfigPathParams(data?: Partial<PostRebuildNodeBalancerConfigPathParams>): PostRebuildNodeBalancerConfigPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostRebuildNodeBalancerConfigPathParams>["apiVersion"]>(["v4", "v4beta"]),"nodeBalancerId": faker.number.int(),"configId": faker.number.int()},
+  ...{"nodeBalancerId": faker.number.int(),"configId": faker.number.int()},
   ...data || {}
   }
 }

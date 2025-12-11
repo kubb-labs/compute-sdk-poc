@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetSshKeyQueryResponse, GetSshKeyPathParams } from "../types/GetSshKey.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetSshKeyUrl(apiVersion: GetSshKeyPathParams["apiVersion"], sshKeyId: GetSshKeyPathParams["sshKeyId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/sshkeys/${sshKeyId}` as const }  
+function getGetSshKeyUrl(sshKeyId: GetSshKeyPathParams["sshKeyId"]) {
+  const res = { method: 'GET', url: `/profile/sshkeys/${sshKeyId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single SSH Key object identified by `id` that you have access to view.<<LB>>---- __CLI__.    ```    linode-cli sshkeys view 42    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an SSH key
- * {@link /:apiVersion/profile/sshkeys/:sshKeyId}
+ * {@link /profile/sshkeys/:sshKeyId}
  */
-export async function getSshKey(apiVersion: GetSshKeyPathParams["apiVersion"], sshKeyId: GetSshKeyPathParams["sshKeyId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getSshKey(sshKeyId: GetSshKeyPathParams["sshKeyId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetSshKeyQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSshKeyUrl(apiVersion, sshKeyId).url.toString(), ... requestConfig })  
+  const res = await request<GetSshKeyQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSshKeyUrl(sshKeyId).url.toString(), ... requestConfig })  
   return res.data
 }

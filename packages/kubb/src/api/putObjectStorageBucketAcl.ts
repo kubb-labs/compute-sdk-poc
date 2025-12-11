@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutObjectStorageBucketAclMutationRequest, PutObjectStorageBucketAclMutationResponse, PutObjectStorageBucketAclPathParams } from "../types/PutObjectStorageBucketAcl.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutObjectStorageBucketAclUrl(apiVersion: PutObjectStorageBucketAclPathParams["apiVersion"], regionId: PutObjectStorageBucketAclPathParams["regionId"], bucket: PutObjectStorageBucketAclPathParams["bucket"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/object-storage/buckets/${regionId}/${bucket}/object-acl` as const }  
+function getPutObjectStorageBucketAclUrl(regionId: PutObjectStorageBucketAclPathParams["regionId"], bucket: PutObjectStorageBucketAclPathParams["bucket"]) {
+  const res = { method: 'PUT', url: `/object-storage/buckets/${regionId}/${bucket}/object-acl` as const }  
   return res
 }
 
 /**
  * @description Update a specific object's access control list (ACL) settings. ACLs define who can access your buckets and objects, and specify the level of access granted to those users.> 📘>> You can use an outside API, such as the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/objectops/#set-object-acl) for more options.<<LB>>---- __OAuth scopes__.    ```    object_storage:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update an object's ACL configuration
- * {@link /:apiVersion/object-storage/buckets/:regionId/:bucket/object-acl}
+ * {@link /object-storage/buckets/:regionId/:bucket/object-acl}
  */
-export async function putObjectStorageBucketAcl(apiVersion: PutObjectStorageBucketAclPathParams["apiVersion"], regionId: PutObjectStorageBucketAclPathParams["regionId"], bucket: PutObjectStorageBucketAclPathParams["bucket"], data: PutObjectStorageBucketAclMutationRequest, config: Partial<RequestConfig<PutObjectStorageBucketAclMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putObjectStorageBucketAcl(regionId: PutObjectStorageBucketAclPathParams["regionId"], bucket: PutObjectStorageBucketAclPathParams["bucket"], data: PutObjectStorageBucketAclMutationRequest, config: Partial<RequestConfig<PutObjectStorageBucketAclMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutObjectStorageBucketAclMutationResponse, ResponseErrorConfig<Error>, PutObjectStorageBucketAclMutationRequest>({ method : "PUT", url : getPutObjectStorageBucketAclUrl(apiVersion, regionId, bucket).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutObjectStorageBucketAclMutationResponse, ResponseErrorConfig<Error>, PutObjectStorageBucketAclMutationRequest>({ method : "PUT", url : getPutObjectStorageBucketAclUrl(regionId, bucket).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

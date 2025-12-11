@@ -5,43 +5,39 @@
 
 import { z } from "zod/v4";
 
-export const postCancelAccountPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.")
-    })
-
 /**
  * @description Account canceled.
  */
 export const postCancelAccount200Schema = z.object({
-    "survey_link": z.optional(z.string().describe("A link to Linode's exit survey."))
+    "survey_link": z.string().describe("A link to Linode's exit survey.")
     })
 
 /**
  * @description Could not charge the credit card on file.
  */
 export const postCancelAccount409Schema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "reason": z.optional(z.string().describe("A string explaining that the account could not be canceled because there is an outstanding balance on the account that must be paid first."))
-    })))
+    "errors": z.array(z.object({
+    "reason": z.string().describe("A string explaining that the account could not be canceled because there is an outstanding balance on the account that must be paid first.")
+    }))
     })
 
 /**
  * @description Account is taking longer than expected to cancel.
  */
 export const postCancelAccount504Schema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "reason": z.optional(z.string().describe("A string explaining that the account is taking longer to close than expected."))
-    })))
+    "errors": z.array(z.object({
+    "reason": z.string().describe("A string explaining that the account is taking longer to close than expected.")
+    }))
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const postCancelAccountErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 /**

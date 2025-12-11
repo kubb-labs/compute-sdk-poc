@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetNotificationsQueryResponse, GetNotificationsPathParams } from "../types/GetNotifications.ts";
+import type { GetNotificationsQueryResponse } from "../types/GetNotifications.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetNotificationsUrl(apiVersion: GetNotificationsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/account/notifications` as const }  
+function getGetNotificationsUrl() {
+  const res = { method: 'GET', url: `/account/notifications` as const }  
   return res
 }
 
 /**
  * @description Returns notifications that represent important, often time-sensitive details about your account. You can't interact directly with notifications, and a notification disappears when you've resolved its cause. For example, if you have an important ticket open, you can respond to that ticket to dismiss its notification.<<LB>>---- __CLI__.    ```    linode-cli account notifications-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List notifications
- * {@link /:apiVersion/account/notifications}
+ * {@link /account/notifications}
  */
-export async function getNotifications(apiVersion: GetNotificationsPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getNotifications(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetNotificationsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNotificationsUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetNotificationsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNotificationsUrl().url.toString(), ... requestConfig })  
   return res.data
 }

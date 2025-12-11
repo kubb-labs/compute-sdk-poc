@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLkeTiersVersionQueryResponse, GetLkeTiersVersionPathParams } from "../types/GetLkeTiersVersion.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLkeTiersVersionUrl(apiVersion: GetLkeTiersVersionPathParams["apiVersion"], tier: GetLkeTiersVersionPathParams["tier"], version: GetLkeTiersVersionPathParams["version"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/lke/tiers/${tier}/versions/${version}` as const }  
+function getGetLkeTiersVersionUrl(tier: GetLkeTiersVersionPathParams["tier"], version: GetLkeTiersVersionPathParams["version"]) {
+  const res = { method: 'GET', url: `/lke/tiers/${tier}/versions/${version}` as const }  
   return res
 }
 
 /**
  * @description View an LKE Kubernetes version available for deployment to a Kubernetes cluster (any tier)<<LB>>---- __CLI__.    ```    linode-cli lke tiered-version-view standard 1.31    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an LKE Kubernetes version (any tier)
- * {@link /:apiVersion/lke/tiers/:tier/versions/:version}
+ * {@link /lke/tiers/:tier/versions/:version}
  */
-export async function getLkeTiersVersion(apiVersion: GetLkeTiersVersionPathParams["apiVersion"], tier: GetLkeTiersVersionPathParams["tier"], version: GetLkeTiersVersionPathParams["version"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLkeTiersVersion(tier: GetLkeTiersVersionPathParams["tier"], version: GetLkeTiersVersionPathParams["version"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLkeTiersVersionQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeTiersVersionUrl(apiVersion, tier, version).url.toString(), ... requestConfig })  
+  const res = await request<GetLkeTiersVersionQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeTiersVersionUrl(tier, version).url.toString(), ... requestConfig })  
   return res.data
 }

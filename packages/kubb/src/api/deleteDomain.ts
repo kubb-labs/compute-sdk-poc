@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteDomainMutationResponse, DeleteDomainPathParams } from "../types/DeleteDomain.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteDomainUrl(apiVersion: DeleteDomainPathParams["apiVersion"], domainId: DeleteDomainPathParams["domainId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/domains/${domainId}` as const }  
+function getDeleteDomainUrl(domainId: DeleteDomainPathParams["domainId"]) {
+  const res = { method: 'DELETE', url: `/domains/${domainId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a Domain from Linode's DNS Manager. The Domain will be removed from Linode's nameservers shortly after this operation completes. This also deletes all associated Domain Records.<<LB>>---- __CLI__.    ```    linode-cli domains delete 1234    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    domains:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a domain
- * {@link /:apiVersion/domains/:domainId}
+ * {@link /domains/:domainId}
  */
-export async function deleteDomain(apiVersion: DeleteDomainPathParams["apiVersion"], domainId: DeleteDomainPathParams["domainId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteDomain(domainId: DeleteDomainPathParams["domainId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteDomainMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteDomainUrl(apiVersion, domainId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteDomainMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteDomainUrl(domainId).url.toString(), ... requestConfig })  
   return res.data
 }

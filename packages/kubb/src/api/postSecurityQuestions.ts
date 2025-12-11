@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostSecurityQuestionsMutationRequest, PostSecurityQuestionsMutationResponse, PostSecurityQuestionsPathParams } from "../types/PostSecurityQuestions.ts";
+import type { PostSecurityQuestionsMutationRequest, PostSecurityQuestionsMutationResponse } from "../types/PostSecurityQuestions.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostSecurityQuestionsUrl(apiVersion: PostSecurityQuestionsPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/profile/security-questions` as const }  
+function getPostSecurityQuestionsUrl() {
+  const res = { method: 'POST', url: `/profile/security-questions` as const }  
   return res
 }
 
 /**
  * @description Adds security question responses for your user. You need to use exactly three unique questions. Previous responses are overwritten if answered, or they're reset to `null` if unanswered.> 📘>> You need to answer these security questions before you can access the [Create a two factor secret](https://techdocs.akamai.com/linode-api/reference/post-tfa-enable) operation.<<LB>>---- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Answer security questions
- * {@link /:apiVersion/profile/security-questions}
+ * {@link /profile/security-questions}
  */
-export async function postSecurityQuestions(apiVersion: PostSecurityQuestionsPathParams["apiVersion"], data?: PostSecurityQuestionsMutationRequest, config: Partial<RequestConfig<PostSecurityQuestionsMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postSecurityQuestions(data?: PostSecurityQuestionsMutationRequest, config: Partial<RequestConfig<PostSecurityQuestionsMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostSecurityQuestionsMutationResponse, ResponseErrorConfig<Error>, PostSecurityQuestionsMutationRequest>({ method : "POST", url : getPostSecurityQuestionsUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostSecurityQuestionsMutationResponse, ResponseErrorConfig<Error>, PostSecurityQuestionsMutationRequest>({ method : "POST", url : getPostSecurityQuestionsUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

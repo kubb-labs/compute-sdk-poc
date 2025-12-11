@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetDomainRecordQueryResponse, GetDomainRecordPathParams } from "../types/GetDomainRecord.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDomainRecordUrl(apiVersion: GetDomainRecordPathParams["apiVersion"], domainId: GetDomainRecordPathParams["domainId"], recordId: GetDomainRecordPathParams["recordId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/domains/${domainId}/records/${recordId}` as const }  
+function getGetDomainRecordUrl(domainId: GetDomainRecordPathParams["domainId"], recordId: GetDomainRecordPathParams["recordId"]) {
+  const res = { method: 'GET', url: `/domains/${domainId}/records/${recordId}` as const }  
   return res
 }
 
 /**
  * @description View a single Record on this Domain.<<LB>>---- __CLI__.    ```    linode-cli domains records-view 123 234    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    domains:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a domain record
- * {@link /:apiVersion/domains/:domainId/records/:recordId}
+ * {@link /domains/:domainId/records/:recordId}
  */
-export async function getDomainRecord(apiVersion: GetDomainRecordPathParams["apiVersion"], domainId: GetDomainRecordPathParams["domainId"], recordId: GetDomainRecordPathParams["recordId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDomainRecord(domainId: GetDomainRecordPathParams["domainId"], recordId: GetDomainRecordPathParams["recordId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDomainRecordQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDomainRecordUrl(apiVersion, domainId, recordId).url.toString(), ... requestConfig })  
+  const res = await request<GetDomainRecordQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDomainRecordUrl(domainId, recordId).url.toString(), ... requestConfig })  
   return res.data
 }

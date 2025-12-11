@@ -4,19 +4,7 @@
 */
 
 
-export const getVpcIpsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetVpcIpsPathParamsApiVersionEnumKey = (typeof getVpcIpsPathParamsApiVersionEnum)[keyof typeof getVpcIpsPathParamsApiVersionEnum];
-
 export interface GetVpcIpsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetVpcIpsPathParamsApiVersionEnumKey;
     /**
      * @description The `id` of the VPC.
      * @type integer
@@ -48,88 +36,88 @@ export interface GetVpcIpsQueryParams {
 export interface GetVpcIps200 {
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
     /**
      * @type array | undefined
     */
     data?: {
         /**
          * @description __Filterable__, __Read-only__ Returns `true` if the VPC interface is in use, meaning that the Linode was powered on using the `config_id` to which the interface belongs. Otherwise returns `false`.
-         * @type boolean | undefined
+         * @type boolean
         */
-        readonly active?: boolean;
+        readonly active: boolean;
         /**
          * @description __Read-only__ An IPv4 address configured for this VPC interface. These follow the [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918) private address format. Displayed as `null` if an `address_range`.
          * @type string, ip
         */
-        readonly address?: string | null;
+        readonly address: string | null;
         /**
          * @description __Read-only__ A range of IPv4 addresses configured for this VPC interface. Displayed as `null` if a single `address`.
          * @type string
         */
-        readonly address_range?: string | null;
+        readonly address_range: string | null;
         /**
          * @description __Filterable__, __Read-only__ The globally general entity identifier for the Linode configuration profile that includes the VPC. If this is a VPC Linode interface, the value is `null`.
          * @type integer
         */
-        readonly config_id?: number | null;
+        readonly config_id: number | null;
         /**
          * @description __Read-only__ The default gateway for the VPC subnet that the IP or IP range belongs to.
          * @type string, ip
         */
-        readonly gateway?: string | null;
+        readonly gateway: string | null;
         /**
          * @description __Beta__, __Read-only__ The globally general API entity identifier for the Linode interface.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly interface_id?: number;
+        readonly interface_id: number;
         /**
          * @description __Filterable__, __Read-only__ The identifier for the Linode the VPC interface currently belongs to.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly linode_id?: number;
+        readonly linode_id: number;
         /**
          * @description __Read-only__ The public IP address used for NAT 1:1 with the VPC. This is empty if NAT 1:1 isn\'t used.
-         * @type string | undefined, ip
+         * @type string, ip
         */
-        readonly nat_1_1?: string;
+        readonly nat_1_1: string;
         /**
          * @description __Read-only__ The number of bits set in the `subnet_mask`.
          * @type integer
         */
-        readonly prefix?: number | null;
+        readonly prefix: number | null;
         /**
          * @description __Filterable__, __Read-only__ The region of the VPC.
-         * @type string | undefined
+         * @type string
         */
-        readonly region?: string;
+        readonly region: string;
         /**
          * @description The `id` of the VPC Subnet for this interface.
-         * @type integer | undefined
+         * @type integer
         */
-        subnet_id?: number;
+        subnet_id: number;
         /**
          * @description __Read-only__ The mask that separates host bits from network bits for the `address` or `address_range`.
-         * @type string | undefined, ip
+         * @type string, ip
         */
-        readonly subnet_mask?: string;
+        readonly subnet_mask: string;
         /**
          * @description __Filterable__, __Read-only__ The unique globally general API entity identifier for the VPC.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly vpc_id?: number;
+        readonly vpc_id: number;
     }[];
 }
 
@@ -138,19 +126,19 @@ export interface GetVpcIps200 {
 */
 export interface GetVpcIpsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

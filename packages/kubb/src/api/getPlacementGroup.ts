@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetPlacementGroupQueryResponse, GetPlacementGroupPathParams } from "../types/GetPlacementGroup.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetPlacementGroupUrl(apiVersion: GetPlacementGroupPathParams["apiVersion"], groupId: GetPlacementGroupPathParams["groupId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/placement/groups/${groupId}` as const }  
+function getGetPlacementGroupUrl(groupId: GetPlacementGroupPathParams["groupId"]) {
+  const res = { method: 'GET', url: `/placement/groups/${groupId}` as const }  
   return res
 }
 
 /**
  * @description View a specific placement group by ID.> 📘>> Your user needs at least `read-only` [permission](https://techdocs.akamai.com/linode-api/reference/get-user-grants) to all Linodes included in a placement group to view it. If you don't have this access and call this operation, the API returns a 403 error. Talk to your local account administrator about managing permissions.<<LB>>---- __CLI__.    ```    linode-cli placement group-view 528    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a placement group
- * {@link /:apiVersion/placement/groups/:groupId}
+ * {@link /placement/groups/:groupId}
  */
-export async function getPlacementGroup(apiVersion: GetPlacementGroupPathParams["apiVersion"], groupId: GetPlacementGroupPathParams["groupId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getPlacementGroup(groupId: GetPlacementGroupPathParams["groupId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetPlacementGroupQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPlacementGroupUrl(apiVersion, groupId).url.toString(), ... requestConfig })  
+  const res = await request<GetPlacementGroupQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetPlacementGroupUrl(groupId).url.toString(), ... requestConfig })  
   return res.data
 }

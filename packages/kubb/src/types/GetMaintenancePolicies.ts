@@ -4,20 +4,6 @@
 */
 
 
-export const getMaintenancePoliciesPathParamsApiVersionEnum = {
-    "v4beta": "v4beta"
-} as const;
-
-export type GetMaintenancePoliciesPathParamsApiVersionEnumKey = (typeof getMaintenancePoliciesPathParamsApiVersionEnum)[keyof typeof getMaintenancePoliciesPathParamsApiVersionEnum];
-
-export interface GetMaintenancePoliciesPathParams {
-    /**
-     * @description __Enum__ Call the `v4beta` URL for operations still only in beta.
-     * @type string
-    */
-    apiVersion: GetMaintenancePoliciesPathParamsApiVersionEnumKey;
-}
-
 export const dataTypeEnum15 = {
     "migrate": "migrate",
     "power_off_on": "power_off_on"
@@ -30,55 +16,55 @@ export type DataTypeEnum15Key = (typeof dataTypeEnum15)[keyof typeof dataTypeEnu
 */
 export interface GetMaintenancePolicies200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description A brief explanation of the maintenance policy\'s intended behavior.
-         * @type string | undefined
+         * @type string
         */
-        description?: string;
+        description: string;
         /**
          * @description Indicates whether this policy is the default one applied when creating a Linode.
-         * @type boolean | undefined
+         * @type boolean
         */
-        is_default?: boolean;
+        is_default: boolean;
         /**
          * @description The display name for the maintenance policy.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description __Filterable__ Number of seconds before the maintenance event triggers. A value of 0 means no prior notification.
-         * @type integer | undefined
+         * @type integer
         */
-        notification_period_sec?: number;
+        notification_period_sec: number;
         /**
          * @description Unique identifier for the maintenance policy. System policies are prefixed with `linode/`.
-         * @type string | undefined
+         * @type string
         */
-        slug?: string;
+        slug: string;
         /**
          * @description The type of policy.
-         * @type string | undefined
+         * @type string
         */
-        type?: DataTypeEnum15Key;
+        type: DataTypeEnum15Key;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -86,19 +72,19 @@ export interface GetMaintenancePolicies200 {
 */
 export interface GetMaintenancePoliciesError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -106,6 +92,5 @@ export type GetMaintenancePoliciesQueryResponse = GetMaintenancePolicies200;
 
 export type GetMaintenancePoliciesQuery = {
     Response: GetMaintenancePolicies200;
-    PathParams: GetMaintenancePoliciesPathParams;
     Errors: any;
 };

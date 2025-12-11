@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostApplyFirewallsMutationResponse, PostApplyFirewallsPathParams } from "../types/PostApplyFirewalls.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostApplyFirewallsUrl(apiVersion: PostApplyFirewallsPathParams["apiVersion"], linodeId: PostApplyFirewallsPathParams["linodeId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/instances/${linodeId}/firewalls/apply` as const }  
+function getPostApplyFirewallsUrl(linodeId: PostApplyFirewallsPathParams["linodeId"]) {
+  const res = { method: 'POST', url: `/linode/instances/${linodeId}/firewalls/apply` as const }  
   return res
 }
 
 /**
  * @description Reapply assigned firewalls to a Linode in case they were not applied successfully.The `firewall_apply` event indicates if the firewalls were applied.<<LB>>---- __CLI__.    ```    linode-cli linodes apply-firewalls 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Apply a Linode's firewalls
- * {@link /:apiVersion/linode/instances/:linodeId/firewalls/apply}
+ * {@link /linode/instances/:linodeId/firewalls/apply}
  */
-export async function postApplyFirewalls(apiVersion: PostApplyFirewallsPathParams["apiVersion"], linodeId: PostApplyFirewallsPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postApplyFirewalls(linodeId: PostApplyFirewallsPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostApplyFirewallsMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostApplyFirewallsUrl(apiVersion, linodeId).url.toString(), ... requestConfig })  
+  const res = await request<PostApplyFirewallsMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostApplyFirewallsUrl(linodeId).url.toString(), ... requestConfig })  
   return res.data
 }

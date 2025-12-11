@@ -4,21 +4,6 @@
 */
 
 
-export const postCancelObjectStoragePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostCancelObjectStoragePathParamsApiVersionEnumKey = (typeof postCancelObjectStoragePathParamsApiVersionEnum)[keyof typeof postCancelObjectStoragePathParamsApiVersionEnum];
-
-export interface PostCancelObjectStoragePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostCancelObjectStoragePathParamsApiVersionEnumKey;
-}
-
 /**
  * @description Object Storage cancellation successful.
 */
@@ -29,19 +14,19 @@ export type PostCancelObjectStorage200 = object;
 */
 export interface PostCancelObjectStorageError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -49,6 +34,5 @@ export type PostCancelObjectStorageMutationResponse = PostCancelObjectStorage200
 
 export type PostCancelObjectStorageMutation = {
     Response: PostCancelObjectStorage200;
-    PathParams: PostCancelObjectStoragePathParams;
     Errors: any;
 };

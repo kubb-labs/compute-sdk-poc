@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeStatsQueryResponse, GetLinodeStatsPathParams } from "../types/GetLinodeStats.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeStatsUrl(apiVersion: GetLinodeStatsPathParams["apiVersion"], linodeId: GetLinodeStatsPathParams["linodeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/stats` as const }  
+function getGetLinodeStatsUrl(linodeId: GetLinodeStatsPathParams["linodeId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/stats` as const }  
   return res
 }
 
 /**
  * @description Returns CPU, IO, IPv4, and IPv6 statistics for your Linode for the past 24 hours.<<LB>>---- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get daily Linode statistics
- * {@link /:apiVersion/linode/instances/:linodeId/stats}
+ * {@link /linode/instances/:linodeId/stats}
  */
-export async function getLinodeStats(apiVersion: GetLinodeStatsPathParams["apiVersion"], linodeId: GetLinodeStatsPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeStats(linodeId: GetLinodeStatsPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeStatsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeStatsUrl(apiVersion, linodeId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeStatsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeStatsUrl(linodeId).url.toString(), ... requestConfig })  
   return res.data
 }

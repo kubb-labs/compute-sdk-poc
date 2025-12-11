@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteVlanMutationResponse, DeleteVlanPathParams } from "../types/DeleteVlan.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteVlanUrl(apiVersion: DeleteVlanPathParams["apiVersion"], label: DeleteVlanPathParams["label"], regionId: DeleteVlanPathParams["regionId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/networking/vlans/${regionId}/${label}` as const }  
+function getDeleteVlanUrl(label: DeleteVlanPathParams["label"], regionId: DeleteVlanPathParams["regionId"]) {
+  const res = { method: 'DELETE', url: `/networking/vlans/${regionId}/${label}` as const }  
   return res
 }
 
 /**
  * @description This operation deletes a legacy configuration profile VLAN interface. To delete a Linode interface VLAN, use the [Delete a Linode interface](https://techdocs.akamai.com/linode-api/reference/delete-linode-interface) operation.You can't delete a VLAN if it's still attached to a Linode. There are a few ways to detach it:- [Update](https://techdocs.akamai.com/linode-api/reference/put-linode-config) the active configuration profile to remove the VLAN interface, then [reboot](https://techdocs.akamai.com/linode-api/reference/post-reboot-linode-instance) the Linode.- [Create a config profile](https://techdocs.akamai.com/linode-api/reference/post-add-linode-config) without the VLAN interface, then [reboot](https://techdocs.akamai.com/linode-api/reference/post-reboot-linode-instance) the Linode into the new configuration profile.- [Delete](https://techdocs.akamai.com/linode-api/reference/delete-linode-instance) the Linode.To run this operation, you need `read_write` grants to Linodes that use the VLAN.A successful request triggers a `vlan_delete` event.> 📘>> VLANs without any attached Linodes are periodically cleaned up by the system.<<LB>>---- __CLI__.    ```    linode-cli vlans delete $regionId $label    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a VLAN
- * {@link /:apiVersion/networking/vlans/:regionId/:label}
+ * {@link /networking/vlans/:regionId/:label}
  */
-export async function deleteVlan(apiVersion: DeleteVlanPathParams["apiVersion"], label: DeleteVlanPathParams["label"], regionId: DeleteVlanPathParams["regionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteVlan(label: DeleteVlanPathParams["label"], regionId: DeleteVlanPathParams["regionId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteVlanMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteVlanUrl(apiVersion, label, regionId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteVlanMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteVlanUrl(label, regionId).url.toString(), ... requestConfig })  
   return res.data
 }

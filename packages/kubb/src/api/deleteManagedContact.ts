@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteManagedContactMutationResponse, DeleteManagedContactPathParams } from "../types/DeleteManagedContact.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteManagedContactUrl(apiVersion: DeleteManagedContactPathParams["apiVersion"], contactId: DeleteManagedContactPathParams["contactId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/managed/contacts/${contactId}` as const }  
+function getDeleteManagedContactUrl(contactId: DeleteManagedContactPathParams["contactId"]) {
+  const res = { method: 'DELETE', url: `/managed/contacts/${contactId}` as const }  
   return res
 }
 
 /**
  * @description Deletes a managed contact.This operation can only be accessed by the unrestricted users of an account.<<LB>>---- __CLI__.    ```    linode-cli managed contact-delete 567    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a managed contact
- * {@link /:apiVersion/managed/contacts/:contactId}
+ * {@link /managed/contacts/:contactId}
  */
-export async function deleteManagedContact(apiVersion: DeleteManagedContactPathParams["apiVersion"], contactId: DeleteManagedContactPathParams["contactId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteManagedContact(contactId: DeleteManagedContactPathParams["contactId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteManagedContactMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteManagedContactUrl(apiVersion, contactId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteManagedContactMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteManagedContactUrl(contactId).url.toString(), ... requestConfig })  
   return res.data
 }

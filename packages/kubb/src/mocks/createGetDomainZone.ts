@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetDomainZonePathParams(data?: Partial<GetDomainZonePathParams>): GetDomainZonePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDomainZonePathParams>["apiVersion"]>(["v4", "v4beta"]),"domainId": faker.string.alpha()},
+  ...{"domainId": faker.string.alpha()},
   ...data || {}
   }
 }

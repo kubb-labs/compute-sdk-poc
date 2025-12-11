@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetObjectStorageTypesQueryResponse, GetObjectStorageTypesPathParams } from "../types/GetObjectStorageTypes.ts";
+import type { GetObjectStorageTypesQueryResponse } from "../types/GetObjectStorageTypes.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageTypesUrl(apiVersion: GetObjectStorageTypesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/types` as const }  
+function getGetObjectStorageTypesUrl() {
+  const res = { method: 'GET', url: `/object-storage/types` as const }  
   return res
 }
 
 /**
  * @description Returns Object Storage types and prices, including any region-specific rates.<<LB>>---- __CLI__.    ```    linode-cli object-storage types    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List Object Storage types
- * {@link /:apiVersion/object-storage/types}
+ * {@link /object-storage/types}
  */
-export async function getObjectStorageTypes(apiVersion: GetObjectStorageTypesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageTypes(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageTypesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageTypesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

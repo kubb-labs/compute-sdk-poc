@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeleteNodeBalancerConfigMutationResponse, DeleteNodeBalancerConfigPathParams } from "../types/DeleteNodeBalancerConfig.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeleteNodeBalancerConfigUrl(apiVersion: DeleteNodeBalancerConfigPathParams["apiVersion"], nodeBalancerId: DeleteNodeBalancerConfigPathParams["nodeBalancerId"], configId: DeleteNodeBalancerConfigPathParams["configId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/nodebalancers/${nodeBalancerId}/configs/${configId}` as const }  
+function getDeleteNodeBalancerConfigUrl(nodeBalancerId: DeleteNodeBalancerConfigPathParams["nodeBalancerId"], configId: DeleteNodeBalancerConfigPathParams["configId"]) {
+  const res = { method: 'DELETE', url: `/nodebalancers/${nodeBalancerId}/configs/${configId}` as const }  
   return res
 }
 
 /**
  * @description Deletes the Config for a port of this NodeBalancer.__This cannot be undone.__Once completed, this NodeBalancer will no longer respond to requests on the given port. This also deletes all associated NodeBalancerNodes, but the Linodes they were routing traffic to will be unchanged and will not be removed.<<LB>>---- __CLI__.    ```    linode-cli nodebalancers config-delete \  12345 4567    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    nodebalancers:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Delete a config
- * {@link /:apiVersion/nodebalancers/:nodeBalancerId/configs/:configId}
+ * {@link /nodebalancers/:nodeBalancerId/configs/:configId}
  */
-export async function deleteNodeBalancerConfig(apiVersion: DeleteNodeBalancerConfigPathParams["apiVersion"], nodeBalancerId: DeleteNodeBalancerConfigPathParams["nodeBalancerId"], configId: DeleteNodeBalancerConfigPathParams["configId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deleteNodeBalancerConfig(nodeBalancerId: DeleteNodeBalancerConfigPathParams["nodeBalancerId"], configId: DeleteNodeBalancerConfigPathParams["configId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeleteNodeBalancerConfigMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteNodeBalancerConfigUrl(apiVersion, nodeBalancerId, configId).url.toString(), ... requestConfig })  
+  const res = await request<DeleteNodeBalancerConfigMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeleteNodeBalancerConfigUrl(nodeBalancerId, configId).url.toString(), ... requestConfig })  
   return res.data
 }

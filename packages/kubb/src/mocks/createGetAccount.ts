@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetAccountPathParams, GetAccount200, GetAccountError, GetAccountQueryResponse } from "../types/GetAccount.ts";
+import type { GetAccount200, GetAccountError, GetAccountQueryResponse } from "../types/GetAccount.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetAccountPathParams(data?: Partial<GetAccountPathParams>): GetAccountPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetAccountPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a single account object.

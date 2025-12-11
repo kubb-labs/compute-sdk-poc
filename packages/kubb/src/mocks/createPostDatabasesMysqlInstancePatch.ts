@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostDatabasesMysqlInstancePatchPathParams(data?: Partial<PostDatabasesMysqlInstancePatchPathParams>): PostDatabasesMysqlInstancePatchPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostDatabasesMysqlInstancePatchPathParams>["apiVersion"]>(["v4", "v4beta"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

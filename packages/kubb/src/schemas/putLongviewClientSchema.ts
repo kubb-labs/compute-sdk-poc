@@ -6,35 +6,34 @@
 import { z } from "zod/v4";
 
 export const putLongviewClientPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"clientId": z.coerce.number().int().describe("The Longview Client ID to access.")
+    "clientId": z.coerce.number().int().describe("The Longview Client ID to access.")
     })
 
 /**
  * @description Longview Client updated successfully.
  */
 export const putLongviewClient200Schema = z.object({
-    "api_key": z.optional(z.string().describe("__Read-only__ The API key for this Client, used when configuring the Longview Client application on your Linode.\n\nReturns as `[REDACTED]` if you do not have read-write access to this client.")),
-"apps": z.optional(z.object({
-    "apache": z.optional(z.boolean().describe("__Read-only__ If `true`, the Apache Longview Client module is monitoring Apache on your server.")),
-"mysql": z.optional(z.boolean().describe("__Read-only__ If `true`, the MySQL Longview Client modules is monitoring MySQL on your server.")),
-"nginx": z.optional(z.boolean().describe("__Read-only__ If `true`, the Nginx Longview Client module is monitoring Nginx on your server."))
-    }).describe("__Read-only__ The apps this Client is monitoring on your Linode. This is configured when you install the Longview Client application, and is present here for information purposes only.")),
-"created": z.optional(z.string().datetime().describe("__Read-only__ When this Longview Client was created.")),
-"id": z.optional(z.int().describe("__Read-only__ This Client's unique ID.")),
-"install_code": z.optional(z.string().describe("__Read-only__ The install code for this Client, used when configuring the Longview Client application on your Linode.\n\nReturns as `[REDACTED]` if you do not have read-write access to this client.")),
-"label": z.optional(z.string().regex(/[a-zA-Z0-9-_]{3,32}/).describe("__Filterable__ This Client's unique label. This is for display purposes only.")),
-"updated": z.optional(z.string().datetime().describe("__Read-only__ When this Longview Client was last updated."))
+    "api_key": z.string().describe("__Read-only__ The API key for this Client, used when configuring the Longview Client application on your Linode.\n\nReturns as `[REDACTED]` if you do not have read-write access to this client."),
+"apps": z.object({
+    "apache": z.boolean().describe("__Read-only__ If `true`, the Apache Longview Client module is monitoring Apache on your server."),
+"mysql": z.boolean().describe("__Read-only__ If `true`, the MySQL Longview Client modules is monitoring MySQL on your server."),
+"nginx": z.boolean().describe("__Read-only__ If `true`, the Nginx Longview Client module is monitoring Nginx on your server.")
+    }).describe("__Read-only__ The apps this Client is monitoring on your Linode. This is configured when you install the Longview Client application, and is present here for information purposes only."),
+"created": z.string().datetime().describe("__Read-only__ When this Longview Client was created."),
+"id": z.int().describe("__Read-only__ This Client's unique ID."),
+"install_code": z.string().describe("__Read-only__ The install code for this Client, used when configuring the Longview Client application on your Linode.\n\nReturns as `[REDACTED]` if you do not have read-write access to this client."),
+"label": z.string().regex(/[a-zA-Z0-9-_]{3,32}/).describe("__Filterable__ This Client's unique label. This is for display purposes only."),
+"updated": z.string().datetime().describe("__Read-only__ When this Longview Client was last updated.")
     }).describe("A LongviewClient is a single monitor set up to track statistics about one of your servers.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const putLongviewClientErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 /**

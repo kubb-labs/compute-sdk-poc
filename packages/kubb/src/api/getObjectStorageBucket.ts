@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetObjectStorageBucketQueryResponse, GetObjectStorageBucketPathParams } from "../types/GetObjectStorageBucket.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageBucketUrl(apiVersion: GetObjectStorageBucketPathParams["apiVersion"], regionId: GetObjectStorageBucketPathParams["regionId"], bucket: GetObjectStorageBucketPathParams["bucket"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/buckets/${regionId}/${bucket}` as const }  
+function getGetObjectStorageBucketUrl(regionId: GetObjectStorageBucketPathParams["regionId"], bucket: GetObjectStorageBucketPathParams["bucket"]) {
+  const res = { method: 'GET', url: `/object-storage/buckets/${regionId}/${bucket}` as const }  
   return res
 }
 
 /**
  * @description Returns a single Object Storage bucket.> 📘>> You can use an outside API, such as the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/bucketops/#get-bucket) for more options.<<LB>>---- __OAuth scopes__.    ```    object_storage:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get an Object Storage bucket
- * {@link /:apiVersion/object-storage/buckets/:regionId/:bucket}
+ * {@link /object-storage/buckets/:regionId/:bucket}
  */
-export async function getObjectStorageBucket(apiVersion: GetObjectStorageBucketPathParams["apiVersion"], regionId: GetObjectStorageBucketPathParams["regionId"], bucket: GetObjectStorageBucketPathParams["bucket"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageBucket(regionId: GetObjectStorageBucketPathParams["regionId"], bucket: GetObjectStorageBucketPathParams["bucket"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageBucketQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageBucketUrl(apiVersion, regionId, bucket).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageBucketQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageBucketUrl(regionId, bucket).url.toString(), ... requestConfig })  
   return res.data
 }

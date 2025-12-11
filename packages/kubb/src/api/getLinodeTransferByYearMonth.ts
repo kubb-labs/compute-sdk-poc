@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeTransferByYearMonthQueryResponse, GetLinodeTransferByYearMonthPathParams } from "../types/GetLinodeTransferByYearMonth.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeTransferByYearMonthUrl(apiVersion: GetLinodeTransferByYearMonthPathParams["apiVersion"], linodeId: GetLinodeTransferByYearMonthPathParams["linodeId"], year: GetLinodeTransferByYearMonthPathParams["year"], month: GetLinodeTransferByYearMonthPathParams["month"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/transfer/${year}/${month}` as const }  
+function getGetLinodeTransferByYearMonthUrl(linodeId: GetLinodeTransferByYearMonthPathParams["linodeId"], year: GetLinodeTransferByYearMonthPathParams["year"], month: GetLinodeTransferByYearMonthPathParams["month"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/transfer/${year}/${month}` as const }  
   return res
 }
 
 /**
  * @description Returns a Linode's network transfer pool statistics for a specific month. If the `{year}` and `{month}` are set to the current month, the API returns statistics for the past 30 days.<<LB>>---- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get monthly network transfer stats
- * {@link /:apiVersion/linode/instances/:linodeId/transfer/:year/:month}
+ * {@link /linode/instances/:linodeId/transfer/:year/:month}
  */
-export async function getLinodeTransferByYearMonth(apiVersion: GetLinodeTransferByYearMonthPathParams["apiVersion"], linodeId: GetLinodeTransferByYearMonthPathParams["linodeId"], year: GetLinodeTransferByYearMonthPathParams["year"], month: GetLinodeTransferByYearMonthPathParams["month"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeTransferByYearMonth(linodeId: GetLinodeTransferByYearMonthPathParams["linodeId"], year: GetLinodeTransferByYearMonthPathParams["year"], month: GetLinodeTransferByYearMonthPathParams["month"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeTransferByYearMonthQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeTransferByYearMonthUrl(apiVersion, linodeId, year, month).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeTransferByYearMonthQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeTransferByYearMonthUrl(linodeId, year, month).url.toString(), ... requestConfig })  
   return res.data
 }

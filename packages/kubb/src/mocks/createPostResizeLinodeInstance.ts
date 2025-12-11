@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPostResizeLinodeInstancePathParams(data?: Partial<PostResizeLinodeInstancePathParams>): PostResizeLinodeInstancePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostResizeLinodeInstancePathParams>["apiVersion"]>(["v4", "v4beta"]),"linodeId": faker.number.int()},
+  ...{"linodeId": faker.number.int()},
   ...data || {}
   }
 }

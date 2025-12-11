@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetTrustedDeviceQueryResponse, GetTrustedDevicePathParams } from "../types/GetTrustedDevice.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetTrustedDeviceUrl(apiVersion: GetTrustedDevicePathParams["apiVersion"], deviceId: GetTrustedDevicePathParams["deviceId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/profile/devices/${deviceId}` as const }  
+function getGetTrustedDeviceUrl(deviceId: GetTrustedDevicePathParams["deviceId"]) {
+  const res = { method: 'GET', url: `/profile/devices/${deviceId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single active trusted device for your user.<<LB>>---- __CLI__.    ```    linode-cli profile device-view 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a trusted device
- * {@link /:apiVersion/profile/devices/:deviceId}
+ * {@link /profile/devices/:deviceId}
  */
-export async function getTrustedDevice(apiVersion: GetTrustedDevicePathParams["apiVersion"], deviceId: GetTrustedDevicePathParams["deviceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getTrustedDevice(deviceId: GetTrustedDevicePathParams["deviceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetTrustedDeviceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTrustedDeviceUrl(apiVersion, deviceId).url.toString(), ... requestConfig })  
+  const res = await request<GetTrustedDeviceQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTrustedDeviceUrl(deviceId).url.toString(), ... requestConfig })  
   return res.data
 }

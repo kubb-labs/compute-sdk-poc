@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLkeNodePoolQueryResponse, GetLkeNodePoolPathParams } from "../types/GetLkeNodePool.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLkeNodePoolUrl(apiVersion: GetLkeNodePoolPathParams["apiVersion"], clusterId: GetLkeNodePoolPathParams["clusterId"], poolId: GetLkeNodePoolPathParams["poolId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/lke/clusters/${clusterId}/pools/${poolId}` as const }  
+function getGetLkeNodePoolUrl(clusterId: GetLkeNodePoolPathParams["clusterId"], poolId: GetLkeNodePoolPathParams["poolId"]) {
+  const res = { method: 'GET', url: `/lke/clusters/${clusterId}/pools/${poolId}` as const }  
   return res
 }
 
 /**
  * @description Get a specific Node Pool by ID.<<LB>>---- __CLI__.    ```    linode-cli lke pool-view 12345 456    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    lke:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a node pool
- * {@link /:apiVersion/lke/clusters/:clusterId/pools/:poolId}
+ * {@link /lke/clusters/:clusterId/pools/:poolId}
  */
-export async function getLkeNodePool(apiVersion: GetLkeNodePoolPathParams["apiVersion"], clusterId: GetLkeNodePoolPathParams["clusterId"], poolId: GetLkeNodePoolPathParams["poolId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLkeNodePool(clusterId: GetLkeNodePoolPathParams["clusterId"], poolId: GetLkeNodePoolPathParams["poolId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLkeNodePoolQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeNodePoolUrl(apiVersion, clusterId, poolId).url.toString(), ... requestConfig })  
+  const res = await request<GetLkeNodePoolQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLkeNodePoolUrl(clusterId, poolId).url.toString(), ... requestConfig })  
   return res.data
 }

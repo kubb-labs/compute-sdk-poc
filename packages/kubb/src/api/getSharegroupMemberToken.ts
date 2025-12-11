@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetSharegroupMemberTokenQueryResponse, GetSharegroupMemberTokenPathParams } from "../types/GetSharegroupMemberToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetSharegroupMemberTokenUrl(apiVersion: GetSharegroupMemberTokenPathParams["apiVersion"], sharegroupId: GetSharegroupMemberTokenPathParams["sharegroupId"], tokenUuid: GetSharegroupMemberTokenPathParams["tokenUuid"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/images/sharegroups/${sharegroupId}/members/${tokenUuid}` as const }  
+function getGetSharegroupMemberTokenUrl(sharegroupId: GetSharegroupMemberTokenPathParams["sharegroupId"], tokenUuid: GetSharegroupMemberTokenPathParams["tokenUuid"]) {
+  const res = { method: 'GET', url: `/images/sharegroups/${sharegroupId}/members/${tokenUuid}` as const }  
   return res
 }
 
 /**
  * @description Get details about a membership token as a share group owner. Run this operation to check the `status` of a pending membership request or a current group member.- Run the [List share groups](https://techdocs.akamai.com/linode-api/reference/get-sharegroups) operation to get the `id` you should use as the `(sharegroupId)` path parameter that identifies an existing share group.- Get the `token_uuid` from the user who wants to join your share group or run the [List members by share group](https://techdocs.akamai.com/linode-api/reference/get-sharegroup-members) operation for details on current group members.- To get details about a token as a current or pending group member, run the [Get a token](https://techdocs.akamai.com/linode-api/reference/get-sharegroup-token) operation.<<LB>>---- __CLI__.    ```    linode-cli image-sharegroups member-view 123 abc123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    images:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a membership token
- * {@link /:apiVersion/images/sharegroups/:sharegroupId/members/:tokenUuid}
+ * {@link /images/sharegroups/:sharegroupId/members/:tokenUuid}
  */
-export async function getSharegroupMemberToken(apiVersion: GetSharegroupMemberTokenPathParams["apiVersion"], sharegroupId: GetSharegroupMemberTokenPathParams["sharegroupId"], tokenUuid: GetSharegroupMemberTokenPathParams["tokenUuid"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getSharegroupMemberToken(sharegroupId: GetSharegroupMemberTokenPathParams["sharegroupId"], tokenUuid: GetSharegroupMemberTokenPathParams["tokenUuid"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetSharegroupMemberTokenQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSharegroupMemberTokenUrl(apiVersion, sharegroupId, tokenUuid).url.toString(), ... requestConfig })  
+  const res = await request<GetSharegroupMemberTokenQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetSharegroupMemberTokenUrl(sharegroupId, tokenUuid).url.toString(), ... requestConfig })  
   return res.data
 }

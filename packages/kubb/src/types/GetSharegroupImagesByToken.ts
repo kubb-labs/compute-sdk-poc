@@ -4,19 +4,7 @@
 */
 
 
-export const getSharegroupImagesByTokenPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetSharegroupImagesByTokenPathParamsApiVersionEnumKey = (typeof getSharegroupImagesByTokenPathParamsApiVersionEnum)[keyof typeof getSharegroupImagesByTokenPathParamsApiVersionEnum];
-
 export interface GetSharegroupImagesByTokenPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetSharegroupImagesByTokenPathParamsApiVersionEnumKey;
     /**
      * @description A unique identifier for the token, used to reference it after creation.
      * @type string, uuid
@@ -113,9 +101,9 @@ export interface GetSharegroupImagesByToken200 {
         */
         readonly image_sharing: {
             /**
-             * @type object | undefined
+             * @type object
             */
-            shared_by?: {
+            shared_by: {
                 /**
                  * @description __Read-only__ The share group\'s numeric identifier, used primarily as path parameters in URLs.
                  * @type integer
@@ -141,7 +129,7 @@ export interface GetSharegroupImagesByToken200 {
              * @description Details about who this image was shared with.
              * @type object
             */
-            shared_with?: object | null;
+            shared_with: object | null;
         };
         /**
          * @description __Read-only__ A `true` value if the image is a public distribution image. A `false` value indicates private, account-specific images.
@@ -165,14 +153,14 @@ export interface GetSharegroupImagesByToken200 {
         readonly regions: {
             /**
              * @description The unique identifier for the core compute region where this image is stored.
-             * @type string | undefined
+             * @type string
             */
-            region?: string;
+            region: string;
             /**
              * @description The status of the image in this `region`. Possible values are `available`, `creating`, `pending`, `pending deletion`, `pending replication`, or `replicating`.
-             * @type string | undefined
+             * @type string
             */
-            status?: RegionsStatusEnum3Key;
+            status: RegionsStatusEnum3Key;
         }[];
         /**
          * @description __Read-only__ The minimum size in MB this image needs to deploy.
@@ -232,19 +220,19 @@ export interface GetSharegroupImagesByToken200 {
 */
 export interface GetSharegroupImagesByTokenError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

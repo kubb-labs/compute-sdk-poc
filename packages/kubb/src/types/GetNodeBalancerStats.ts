@@ -4,19 +4,7 @@
 */
 
 
-export const getNodeBalancerStatsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetNodeBalancerStatsPathParamsApiVersionEnumKey = (typeof getNodeBalancerStatsPathParamsApiVersionEnum)[keyof typeof getNodeBalancerStatsPathParamsApiVersionEnum];
-
 export interface GetNodeBalancerStatsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetNodeBalancerStatsPathParamsApiVersionEnumKey;
     /**
      * @description The ID of the NodeBalancer.
      * @type integer
@@ -30,36 +18,36 @@ export interface GetNodeBalancerStatsPathParams {
 export interface GetNodeBalancerStats200 {
     /**
      * @description The data returned about this NodeBalancers.
-     * @type object | undefined
+     * @type object
     */
-    data?: {
+    data: {
         /**
          * @description An array of key/value pairs representing unix timestamp and reading for connections to this NodeBalancer.
-         * @type array | undefined
+         * @type array
         */
-        connections?: number[];
+        connections: number[];
         /**
          * @description Traffic statistics for this NodeBalancer.
-         * @type object | undefined
+         * @type object
         */
-        traffic?: {
+        traffic: {
             /**
              * @description An array of key/value pairs representing unix timestamp and reading for inbound traffic.
-             * @type array | undefined
+             * @type array
             */
-            in?: number[];
+            in: number[];
             /**
              * @description An array of key/value pairs representing unix timestamp and reading for outbound traffic.
-             * @type array | undefined
+             * @type array
             */
-            out?: number[];
+            out: number[];
         };
     };
     /**
      * @description The title for the statistics generated in this response.
-     * @type string | undefined
+     * @type string
     */
-    title?: string;
+    title: string;
 }
 
 /**
@@ -67,19 +55,19 @@ export interface GetNodeBalancerStats200 {
 */
 export interface GetNodeBalancerStatsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

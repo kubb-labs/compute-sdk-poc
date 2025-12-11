@@ -4,19 +4,7 @@
 */
 
 
-export const getLinodeInterfaceSettingsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLinodeInterfaceSettingsPathParamsApiVersionEnumKey = (typeof getLinodeInterfaceSettingsPathParamsApiVersionEnum)[keyof typeof getLinodeInterfaceSettingsPathParamsApiVersionEnum];
-
 export interface GetLinodeInterfaceSettingsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLinodeInterfaceSettingsPathParamsApiVersionEnumKey;
     /**
      * @description The `id` of the Linode.
      * @type integer
@@ -30,35 +18,35 @@ export interface GetLinodeInterfaceSettingsPathParams {
 export interface GetLinodeInterfaceSettings200 {
     /**
      * @description Interfaces used for the IPv4 `default_route` and IPv6 `default_route` when multiple interfaces are eligible for the role.
-     * @type object | undefined
+     * @type object
     */
-    default_route?: {
+    default_route: {
         /**
          * @description The VPC or public interface IDs that are eligible to be the IPv4 `default_route` for this Linode. If the `ipv4_eligible_interface_ids` array is empty, this means there are no eligible interfaces eligible for the IPv4 default route role.
-         * @type array | undefined
+         * @type array
         */
-        ipv4_eligible_interface_ids?: number[];
+        ipv4_eligible_interface_ids: number[];
         /**
          * @description The VPC or public interface ID assigned as the IPv4 `default_route`. The [List Linode interface settings](https://techdocs.akamai.com/linode-api/reference/get-linode-interface-settings) operation provides eligible IPv4 interface IDs.
          * @type integer
         */
-        ipv4_interface_id?: number | null;
+        ipv4_interface_id: number | null;
         /**
          * @description The public interface IDs that are eligible to be the IPv6 `default_route` for this Linode. If the `ipv6_eligible_interface_ids` array is empty, this means there are no eligible interfaces eligible for the IPv6 default route role.
-         * @type array | undefined
+         * @type array
         */
-        ipv6_eligible_interface_ids?: number[];
+        ipv6_eligible_interface_ids: number[];
         /**
          * @description The public interface ID assigned as the IPv6 `default_route`. The [List Linode interface settings](https://techdocs.akamai.com/linode-api/reference/get-linode-interface-settings) operation provides eligible IPv6 interface IDs.
          * @type integer
         */
-        ipv6_interface_id?: number | null;
+        ipv6_interface_id: number | null;
     };
     /**
      * @description Enables the Network Helper feature. The default value is determined by the `network_helper` setting in the [account settings](https://techdocs.akamai.com/linode-api/reference/get-account-settings). [Power off the Linode](https://techdocs.akamai.com/linode-api/reference/post-shutdown-linode-instance) before disabling or enabling Network Helper.
-     * @type boolean | undefined
+     * @type boolean
     */
-    network_helper?: boolean;
+    network_helper: boolean;
 }
 
 /**
@@ -66,19 +54,19 @@ export interface GetLinodeInterfaceSettings200 {
 */
 export interface GetLinodeInterfaceSettingsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

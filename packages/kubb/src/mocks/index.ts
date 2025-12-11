@@ -216,6 +216,7 @@ export * from "./createGetLongviewSubscription.ts";
 export * from "./createGetLongviewSubscriptions.ts";
 export * from "./createGetLongviewTypes.ts";
 export * from "./createGetMaintenance200.ts";
+export * from "./createGetMaintenance.ts";
 export * from "./createGetMaintenancePolicies.ts";
 export * from "./createGetManagedContact.ts";
 export * from "./createGetManagedContacts.ts";

@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetInvoicePathParams(data?: Partial<GetInvoicePathParams>): GetInvoicePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetInvoicePathParams>["apiVersion"]>(["v4", "v4beta"]),"invoiceId": faker.number.int()},
+  ...{"invoiceId": faker.number.int()},
   ...data || {}
   }
 }

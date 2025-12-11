@@ -4,1653 +4,1638 @@
 */
 
 
-export const getDatabasesPostgresqlConfigPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetDatabasesPostgresqlConfigPathParamsApiVersionEnumKey = (typeof getDatabasesPostgresqlConfigPathParamsApiVersionEnum)[keyof typeof getDatabasesPostgresqlConfigPathParamsApiVersionEnum];
-
-export interface GetDatabasesPostgresqlConfigPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetDatabasesPostgresqlConfigPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description PostgreSQL Managed Database advanced parameters.
 */
 export interface GetDatabasesPostgresqlConfig200 {
     /**
      * @description Configuration values available for a postgresql.conf.
-     * @type object | undefined
+     * @type object
     */
-    pg?: {
+    pg: {
         /**
          * @description Settings available to configure the `autovacuum_analyze_scale_factor`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        autovacuum_analyze_scale_factor?: {
+        autovacuum_analyze_scale_factor: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `autovacuum_analyze_threshold`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        autovacuum_analyze_threshold?: {
+        autovacuum_analyze_threshold: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `autovacuum_max_workers`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        autovacuum_max_workers?: {
+        autovacuum_max_workers: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `autovacuum_naptime`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        autovacuum_naptime?: {
+        autovacuum_naptime: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `autovacuum_vacuum_cost_delay`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        autovacuum_vacuum_cost_delay?: {
+        autovacuum_vacuum_cost_delay: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `autovacuum_vacuum_cost_limit`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        autovacuum_vacuum_cost_limit?: {
+        autovacuum_vacuum_cost_limit: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `autovacuum_vacuum_scale_factor`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        autovacuum_vacuum_scale_factor?: {
+        autovacuum_vacuum_scale_factor: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `autovacuum_vacuum_threshold`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        autovacuum_vacuum_threshold?: {
+        autovacuum_vacuum_threshold: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `bgwriter_delay`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        bgwriter_delay?: {
+        bgwriter_delay: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `bgwriter_flush_after`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        bgwriter_flush_after?: {
+        bgwriter_flush_after: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure `bgwriter_lru_maxpages`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        bgwriter_lru_maxpages?: {
+        bgwriter_lru_maxpages: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `bgwriter_lru_multiplier`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        bgwriter_lru_multiplier?: {
+        bgwriter_lru_multiplier: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `deadlock_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        deadlock_timeout?: {
+        deadlock_timeout: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `default_toast_compression`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        default_toast_compression?: {
+        default_toast_compression: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description Specific values available for use as this parameter.
-             * @type string | undefined
+             * @type string
             */
-            enum?: string;
+            enum: string;
             /**
              * @description One of the `enum` values available for use.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `idle_in_transaction_session_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        idle_in_transaction_session_timeout?: {
+        idle_in_transaction_session_timeout: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Parameter used to enable the Just-In-Time (`jit`) compilation, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        jit?: {
+        jit: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example boolean value for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_files_per_process`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_files_per_process?: {
+        max_files_per_process: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_locks_per_transaction`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_locks_per_transaction?: {
+        max_locks_per_transaction: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_logical_replication_workers`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_logical_replication_workers?: {
+        max_logical_replication_workers: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_parallel_workers`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_parallel_workers?: {
+        max_parallel_workers: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_parallel_workers_per_gather`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_parallel_workers_per_gather?: {
+        max_parallel_workers_per_gather: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_pred_locks_per_transaction`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_pred_locks_per_transaction?: {
+        max_pred_locks_per_transaction: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_replication_slots`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_replication_slots?: {
+        max_replication_slots: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_slot_wal_keep_size`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_slot_wal_keep_size?: {
+        max_slot_wal_keep_size: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_stack_depth`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_stack_depth?: {
+        max_stack_depth: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_standby_archive_delay`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_standby_archive_delay?: {
+        max_standby_archive_delay: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_standby_streaming_delay`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_standby_streaming_delay?: {
+        max_standby_streaming_delay: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_wal_senders`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_wal_senders?: {
+        max_wal_senders: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `max_worker_processes`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_worker_processes?: {
+        max_worker_processes: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure `password_encryption`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        password_encryption?: {
+        password_encryption: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description Specific values available for use as this parameter.
-             * @type string | undefined
+             * @type string
             */
-            enum?: string;
+            enum: string;
             /**
              * @description One of the `enum` values available for use.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `pg_partman_bgw.interval`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        "pg_partman_bgw.interval"?: {
+        "pg_partman_bgw.interval": {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `pg_partman_bgw.role`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        "pg_partman_bgw.role"?: {
+        "pg_partman_bgw.role": {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter, using the required `pattern`.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description The maximum character length for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maxLength?: number;
+            maxLength: number;
             /**
              * @description The pattern to follow when defining this parameter.
-             * @type string | undefined
+             * @type string
             */
-            pattern?: string;
+            pattern: string;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Parameter used to enable query plan monitoring, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        "pg_stat_monitor.pgsm_enable_query_plan"?: {
+        "pg_stat_monitor.pgsm_enable_query_plan": {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example boolean value for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure `pg_stat_monitor.pgsm_max_buckets`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        "pg_stat_monitor.pgsm_max_buckets"?: {
+        "pg_stat_monitor.pgsm_max_buckets": {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure `password_encryption`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        "pg_stat_statements.track"?: {
+        "pg_stat_statements.track": {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description Specific values available for use as this parameter.
-             * @type string | undefined
+             * @type string
             */
-            enum?: string;
+            enum: string;
             /**
              * @description One of the `enum` values available for use.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type array | undefined
+             * @type array
             */
-            type?: number[];
+            type: number[];
         };
         /**
          * @description Settings available to configure the `temp_file_limit`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        temp_file_limit?: {
+        temp_file_limit: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the PostgreSQL service time zone, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        timezone?: {
+        timezone: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter, using the required `pattern`.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description The maximum character length for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maxLength?: number;
+            maxLength: number;
             /**
              * @description The pattern to follow when defining this parameter.
-             * @type string | undefined
+             * @type string
             */
-            pattern?: string;
+            pattern: string;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `track_activity_query_size`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        track_activity_query_size?: {
+        track_activity_query_size: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `track_commit_timestamp`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        track_commit_timestamp?: {
+        track_commit_timestamp: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description Specific values available for use as this parameter.
-             * @type string | undefined
+             * @type string
             */
-            enum?: string;
+            enum: string;
             /**
              * @description One of the `enum` values available for use.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure `track_functions`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        track_functions?: {
+        track_functions: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description Specific values available for use as this parameter.
-             * @type string | undefined
+             * @type string
             */
-            enum?: string;
+            enum: string;
             /**
              * @description One of the `enum` values available for use.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to enable `track_io_timing`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        track_io_timing?: {
+        track_io_timing: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description Specific values available for use as this parameter.
-             * @type string | undefined
+             * @type string
             */
-            enum?: string;
+            enum: string;
             /**
              * @description One of the `enum` values available for use.
-             * @type string | undefined
+             * @type string
             */
-            example?: string;
+            example: string;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `wal_sender_timeout`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        wal_sender_timeout?: {
+        wal_sender_timeout: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
         /**
          * @description Settings available to configure the `wal_writer_delay`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        wal_writer_delay?: {
+        wal_writer_delay: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
     };
     /**
      * @description Parameter used to enable the `pg_stat_monitor` extension for a PostgreSQL cluster, per Aiven\'s specifications.
-     * @type object | undefined
+     * @type object
     */
-    pg_stat_monitor_enable?: {
+    pg_stat_monitor_enable: {
         /**
          * @description The description for this parameter.
-         * @type string | undefined
+         * @type string
         */
-        description?: string;
+        description: string;
         /**
          * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-         * @type boolean | undefined
+         * @type boolean
         */
-        requires_restart?: boolean;
+        requires_restart: boolean;
         /**
          * @description The format of this object.
-         * @type string | undefined
+         * @type string
         */
-        type?: string;
+        type: string;
     };
     /**
      * @description Parameter used to apply PGLookout settings, per Aiven\'s specifications.
-     * @type object | undefined
+     * @type object
     */
-    pglookout?: {
+    pglookout: {
         /**
          * @description Settings available to configure the `max_failover_replication_time_lag`, per Aiven\'s specifications.
-         * @type object | undefined
+         * @type object
         */
-        max_failover_replication_time_lag?: {
+        max_failover_replication_time_lag: {
             /**
              * @description The description for this parameter.
-             * @type string | undefined
+             * @type string
             */
-            description?: string;
+            description: string;
             /**
              * @description An example value for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            example?: number;
+            example: number;
             /**
              * @description The maximum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            maximum?: number;
+            maximum: number;
             /**
              * @description The minimum value allowed for this parameter.
-             * @type integer | undefined
+             * @type integer
             */
-            minimum?: number;
+            minimum: number;
             /**
              * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-             * @type boolean | undefined
+             * @type boolean
             */
-            requires_restart?: boolean;
+            requires_restart: boolean;
             /**
              * @description The format of this object.
-             * @type string | undefined
+             * @type string
             */
-            type?: string;
+            type: string;
         };
     };
     /**
      * @description Parameters used to set up the `shared_buffers_percentage`, per Aiven\'s specifications.
-     * @type object | undefined
+     * @type object
     */
-    shared_buffers_percentage?: {
+    shared_buffers_percentage: {
         /**
          * @description The description for this parameter.
-         * @type string | undefined
+         * @type string
         */
-        description?: string;
+        description: string;
         /**
          * @description An example value for this parameter.
-         * @type integer | undefined
+         * @type integer
         */
-        example?: number;
+        example: number;
         /**
          * @description The maximum value allowed for this parameter.
-         * @type integer | undefined
+         * @type integer
         */
-        maximum?: number;
+        maximum: number;
         /**
          * @description The minimum value allowed for this parameter.
-         * @type integer | undefined
+         * @type integer
         */
-        minimum?: number;
+        minimum: number;
         /**
          * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-         * @type boolean | undefined
+         * @type boolean
         */
-        requires_restart?: boolean;
+        requires_restart: boolean;
         /**
          * @description The format of this object.
-         * @type string | undefined
+         * @type string
         */
-        type?: string;
+        type: string;
     };
     /**
      * @description Parameters used to set up `work_mem`, per Aiven\'s specifications.
-     * @type object | undefined
+     * @type object
     */
-    work_mem?: {
+    work_mem: {
         /**
          * @description The description for this parameter.
-         * @type string | undefined
+         * @type string
         */
-        description?: string;
+        description: string;
         /**
          * @description An example value for this parameter.
-         * @type integer | undefined
+         * @type integer
         */
-        example?: number;
+        example: number;
         /**
          * @description The maximum value allowed for this parameter.
-         * @type integer | undefined
+         * @type integer
         */
-        maximum?: number;
+        maximum: number;
         /**
          * @description The minimum value allowed for this parameter.
-         * @type integer | undefined
+         * @type integer
         */
-        minimum?: number;
+        minimum: number;
         /**
          * @description Whether a change to this parameter requires a restart of the PostgreSQL database.
-         * @type boolean | undefined
+         * @type boolean
         */
-        requires_restart?: boolean;
+        requires_restart: boolean;
         /**
          * @description The format of this object.
-         * @type string | undefined
+         * @type string
         */
-        type?: string;
+        type: string;
     };
 }
 
@@ -1659,19 +1644,19 @@ export interface GetDatabasesPostgresqlConfig200 {
 */
 export interface GetDatabasesPostgresqlConfigError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -1679,6 +1664,5 @@ export type GetDatabasesPostgresqlConfigQueryResponse = GetDatabasesPostgresqlCo
 
 export type GetDatabasesPostgresqlConfigQuery = {
     Response: GetDatabasesPostgresqlConfig200;
-    PathParams: GetDatabasesPostgresqlConfigPathParams;
     Errors: any;
 };

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostFirewallsPathParams, PostFirewalls200, PostFirewallsError, PostFirewallsMutationRequest, PostFirewallsMutationResponse } from "../types/PostFirewalls.ts";
+import type { PostFirewalls200, PostFirewallsError, PostFirewallsMutationRequest, PostFirewallsMutationResponse } from "../types/PostFirewalls.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostFirewallsPathParams(data?: Partial<PostFirewallsPathParams>): PostFirewallsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostFirewallsPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns information about the created Firewall.

@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetAlertChannelsPathParams, GetAlertChannels200, GetAlertChannelsError, GetAlertChannelsQueryResponse } from "../types/GetAlertChannels.ts";
+import type { GetAlertChannels200, GetAlertChannelsError, GetAlertChannelsQueryResponse } from "../types/GetAlertChannels.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetAlertChannelsPathParams(data?: Partial<GetAlertChannelsPathParams>): GetAlertChannelsPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetAlertChannelsPathParams>["apiVersion"]>(["v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Returns a paginated list of alerts channels.

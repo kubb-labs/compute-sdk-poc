@@ -4,21 +4,6 @@
 */
 
 
-export const getIpv6PoolsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetIpv6PoolsPathParamsApiVersionEnumKey = (typeof getIpv6PoolsPathParamsApiVersionEnum)[keyof typeof getIpv6PoolsPathParamsApiVersionEnum];
-
-export interface GetIpv6PoolsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetIpv6PoolsPathParamsApiVersionEnumKey;
-}
-
 export interface GetIpv6PoolsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -42,45 +27,45 @@ export interface GetIpv6PoolsQueryParams {
 */
 export interface GetIpv6Pools200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description The prefix length of the address. The total number of addresses that can be assigned from this range is calculated as 2<sup>(128 - prefix length)</sup>.
-         * @type integer | undefined
+         * @type integer
         */
-        prefix?: number;
+        prefix: number;
         /**
          * @description __Read-only__ The IPv6 range of addresses in this pool.
-         * @type string | undefined
+         * @type string
         */
-        readonly range?: string;
+        readonly range: string;
         /**
          * @description __Filterable__, __Read-only__ The region for this pool of IPv6 addresses.
-         * @type string | undefined
+         * @type string
         */
-        readonly region?: string;
+        readonly region: string;
         /**
          * @description The last address in this block of IPv6 addresses.
          * @type string
         */
-        route_target?: string | null;
+        route_target: string | null;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -88,19 +73,19 @@ export interface GetIpv6Pools200 {
 */
 export interface GetIpv6PoolsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -108,7 +93,6 @@ export type GetIpv6PoolsQueryResponse = GetIpv6Pools200;
 
 export type GetIpv6PoolsQuery = {
     Response: GetIpv6Pools200;
-    PathParams: GetIpv6PoolsPathParams;
     QueryParams: GetIpv6PoolsQueryParams;
     Errors: any;
 };

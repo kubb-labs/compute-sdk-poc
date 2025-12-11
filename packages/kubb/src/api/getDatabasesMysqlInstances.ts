@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetDatabasesMysqlInstancesQueryResponse, GetDatabasesMysqlInstancesPathParams, GetDatabasesMysqlInstancesQueryParams } from "../types/GetDatabasesMysqlInstances.ts";
+import type { GetDatabasesMysqlInstancesQueryResponse, GetDatabasesMysqlInstancesQueryParams } from "../types/GetDatabasesMysqlInstances.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetDatabasesMysqlInstancesUrl(apiVersion: GetDatabasesMysqlInstancesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/databases/mysql/instances` as const }  
+function getGetDatabasesMysqlInstancesUrl() {
+  const res = { method: 'GET', url: `/databases/mysql/instances` as const }  
   return res
 }
 
 /**
  * @description Display all accessible MySQL Managed Databases.<<LB>>---- __CLI__.    ```    linode-cli databases mysql-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    databases:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List MySQL Managed Databases
- * {@link /:apiVersion/databases/mysql/instances}
+ * {@link /databases/mysql/instances}
  */
-export async function getDatabasesMysqlInstances(apiVersion: GetDatabasesMysqlInstancesPathParams["apiVersion"], params?: GetDatabasesMysqlInstancesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getDatabasesMysqlInstances(params?: GetDatabasesMysqlInstancesQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetDatabasesMysqlInstancesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesMysqlInstancesUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetDatabasesMysqlInstancesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetDatabasesMysqlInstancesUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

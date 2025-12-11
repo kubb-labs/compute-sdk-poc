@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostCreditCardPathParams, PostCreditCard200, PostCreditCardError, PostCreditCardMutationRequest, PostCreditCardMutationResponse } from "../types/PostCreditCard.ts";
+import type { PostCreditCard200, PostCreditCardError, PostCreditCardMutationRequest, PostCreditCardMutationResponse } from "../types/PostCreditCard.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostCreditCardPathParams(data?: Partial<PostCreditCardPathParams>): PostCreditCardPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostCreditCardPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Credit Card updated.

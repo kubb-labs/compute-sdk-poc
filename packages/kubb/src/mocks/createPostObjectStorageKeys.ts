@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostObjectStorageKeysPathParams, PostObjectStorageKeys200, PostObjectStorageKeysError, PostObjectStorageKeysMutationRequest, PostObjectStorageKeysMutationResponse } from "../types/PostObjectStorageKeys.ts";
+import type { PostObjectStorageKeys200, PostObjectStorageKeysError, PostObjectStorageKeysMutationRequest, PostObjectStorageKeysMutationResponse } from "../types/PostObjectStorageKeys.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostObjectStorageKeysPathParams(data?: Partial<PostObjectStorageKeysPathParams>): PostObjectStorageKeysPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostObjectStorageKeysPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description The new Object Storage access key. *This is the only time* the `secret_key` is returned.

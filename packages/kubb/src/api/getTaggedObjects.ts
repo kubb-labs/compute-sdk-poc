@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetTaggedObjectsQueryResponse, GetTaggedObjectsPathParams, GetTaggedObjectsQueryParams } from "../types/GetTaggedObjects.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetTaggedObjectsUrl(apiVersion: GetTaggedObjectsPathParams["apiVersion"], tagLabel: GetTaggedObjectsPathParams["tagLabel"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/tags/${tagLabel}` as const }  
+function getGetTaggedObjectsUrl(tagLabel: GetTaggedObjectsPathParams["tagLabel"]) {
+  const res = { method: 'GET', url: `/tags/${tagLabel}` as const }  
   return res
 }
 
 /**
  * @description Returns a paginated list of all objects you've tagged with the specified tag. The response includes a mixed collection of all object types.> 📘>> This operation can only be accessed by account users with _unrestricted_ access. Talk to your local account administrator about access management.<<LB>>---- __OAuth scopes__.    ```    account:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List tagged objects
- * {@link /:apiVersion/tags/:tagLabel}
+ * {@link /tags/:tagLabel}
  */
-export async function getTaggedObjects(apiVersion: GetTaggedObjectsPathParams["apiVersion"], tagLabel: GetTaggedObjectsPathParams["tagLabel"], params?: GetTaggedObjectsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getTaggedObjects(tagLabel: GetTaggedObjectsPathParams["tagLabel"], params?: GetTaggedObjectsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetTaggedObjectsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTaggedObjectsUrl(apiVersion, tagLabel).url.toString(), params, ... requestConfig })  
+  const res = await request<GetTaggedObjectsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetTaggedObjectsUrl(tagLabel).url.toString(), params, ... requestConfig })  
   return res.data
 }

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { ResumeDatabasesPostgreSqlInstanceMutationResponse, ResumeDatabasesPostgreSqlInstancePathParams } from "../types/ResumeDatabasesPostgreSqlInstance.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getResumeDatabasesPostgreSqlInstanceUrl(apiVersion: ResumeDatabasesPostgreSqlInstancePathParams["apiVersion"], instanceId: ResumeDatabasesPostgreSqlInstancePathParams["instanceId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/databases/postgresql/instances/${instanceId}/resume` as const }  
+function getResumeDatabasesPostgreSqlInstanceUrl(instanceId: ResumeDatabasesPostgreSqlInstancePathParams["instanceId"]) {
+  const res = { method: 'POST', url: `/databases/postgresql/instances/${instanceId}/resume` as const }  
   return res
 }
 
 /**
  * @description Resume a suspended PostgreSQL Managed Database from your account. This resumes billing for the cluster.- The user needs `read_write` [user grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants) access to the database.- The database's status needs to be `suspended`.- A successful request triggers a `database_resume` [event](https://techdocs.akamai.com/linode-api/reference/get-events).<<LB>>---- __OAuth scopes__.    ```    databases:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Resume a PostgreSQL Managed Database
- * {@link /:apiVersion/databases/postgresql/instances/:instanceId/resume}
+ * {@link /databases/postgresql/instances/:instanceId/resume}
  */
-export async function resumeDatabasesPostgreSqlInstance(apiVersion: ResumeDatabasesPostgreSqlInstancePathParams["apiVersion"], instanceId: ResumeDatabasesPostgreSqlInstancePathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function resumeDatabasesPostgreSqlInstance(instanceId: ResumeDatabasesPostgreSqlInstancePathParams["instanceId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<ResumeDatabasesPostgreSqlInstanceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getResumeDatabasesPostgreSqlInstanceUrl(apiVersion, instanceId).url.toString(), ... requestConfig })  
+  const res = await request<ResumeDatabasesPostgreSqlInstanceMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getResumeDatabasesPostgreSqlInstanceUrl(instanceId).url.toString(), ... requestConfig })  
   return res.data
 }

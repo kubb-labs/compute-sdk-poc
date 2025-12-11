@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createSuspendDatabasesPostgreSqlInstancePathParams(data?: Partial<SuspendDatabasesPostgreSqlInstancePathParams>): SuspendDatabasesPostgreSqlInstancePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<SuspendDatabasesPostgreSqlInstancePathParams>["apiVersion"]>(["v4"]),"instanceId": faker.number.int()},
+  ...{"instanceId": faker.number.int()},
   ...data || {}
   }
 }

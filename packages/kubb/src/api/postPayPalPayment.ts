@@ -4,25 +4,25 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostPayPalPaymentMutationRequest, PostPayPalPaymentMutationResponse, PostPayPalPaymentPathParams } from "../types/PostPayPalPayment.ts";
+import type { PostPayPalPaymentMutationRequest, PostPayPalPaymentMutationResponse } from "../types/PostPayPalPayment.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostPayPalPaymentUrl(apiVersion: PostPayPalPaymentPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/payments/paypal` as const }  
+function getPostPayPalPaymentUrl() {
+  const res = { method: 'POST', url: `/account/payments/paypal` as const }  
   return res
 }
 
 /**
  * @description __Deprecated__ This operation is disabled and no longer accessible. PayPal can be designated as a Payment Method for automated payments using the Cloud Manager. See [Manage Payment Methods](https://www.linode.com/docs/products/platform/billing/guides/payment-methods/).<<LB>>---- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Stage a PayPal payment
- * {@link /:apiVersion/account/payments/paypal}
+ * {@link /account/payments/paypal}
  * @deprecated
  */
-export async function postPayPalPayment(apiVersion: PostPayPalPaymentPathParams["apiVersion"], data: PostPayPalPaymentMutationRequest, config: Partial<RequestConfig<PostPayPalPaymentMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postPayPalPayment(data: PostPayPalPaymentMutationRequest, config: Partial<RequestConfig<PostPayPalPaymentMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostPayPalPaymentMutationResponse, ResponseErrorConfig<Error>, PostPayPalPaymentMutationRequest>({ method : "POST", url : getPostPayPalPaymentUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostPayPalPaymentMutationResponse, ResponseErrorConfig<Error>, PostPayPalPaymentMutationRequest>({ method : "POST", url : getPostPayPalPaymentUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

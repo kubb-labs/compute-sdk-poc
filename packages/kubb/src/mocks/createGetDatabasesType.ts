@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetDatabasesTypePathParams(data?: Partial<GetDatabasesTypePathParams>): GetDatabasesTypePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDatabasesTypePathParams>["apiVersion"]>(["v4", "v4beta"]),"typeId": faker.string.alpha()},
+  ...{"typeId": faker.string.alpha()},
   ...data || {}
   }
 }

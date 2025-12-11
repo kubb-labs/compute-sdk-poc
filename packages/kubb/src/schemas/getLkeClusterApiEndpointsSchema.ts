@@ -6,30 +6,29 @@
 import { z } from "zod/v4";
 
 export const getLkeClusterApiEndpointsPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"clusterId": z.coerce.number().int().describe("ID of the Kubernetes cluster to look up.")
+    "clusterId": z.coerce.number().int().describe("ID of the Kubernetes cluster to look up.")
     })
 
 /**
  * @description Returns the Kubernetes API server endpoints for this cluster.
  */
 export const getLkeClusterApiEndpoints200Schema = z.object({
-    "data": z.optional(z.array(z.object({
-    "endpoint": z.optional(z.string().describe("__Read-only__ A Kubernetes API server endpoint for this cluster."))
-    })).describe("The Kubernetes API server endpoints for this cluster.")),
-"page": z.optional(z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"pages": z.optional(z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).")),
-"results": z.optional(z.int().describe("__Read-only__ The total number of results."))
+    "data": z.array(z.object({
+    "endpoint": z.string().describe("__Read-only__ A Kubernetes API server endpoint for this cluster.")
+    })).describe("The Kubernetes API server endpoints for this cluster."),
+"page": z.int().describe("__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"pages": z.int().describe("__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination)."),
+"results": z.int().describe("__Read-only__ The total number of results.")
     })
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getLkeClusterApiEndpointsErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getLkeClusterApiEndpointsQueryResponseSchema = z.lazy(() => getLkeClusterApiEndpoints200Schema)

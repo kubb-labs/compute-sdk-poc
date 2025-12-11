@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PutLongviewClientMutationRequest, PutLongviewClientMutationResponse, PutLongviewClientPathParams } from "../types/PutLongviewClient.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPutLongviewClientUrl(apiVersion: PutLongviewClientPathParams["apiVersion"], clientId: PutLongviewClientPathParams["clientId"]) {
-  const res = { method: 'PUT', url: `/${apiVersion}/longview/clients/${clientId}` as const }  
+function getPutLongviewClientUrl(clientId: PutLongviewClientPathParams["clientId"]) {
+  const res = { method: 'PUT', url: `/longview/clients/${clientId}` as const }  
   return res
 }
 
 /**
  * @description Updates a Longview Client.  This cannot update how it monitors your server; use the Longview Client application on your Linode for monitoring configuration.<<LB>>---- __CLI__.    ```    linode-cli longview update 789 \  --label client789    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    longview:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Update a Longview client
- * {@link /:apiVersion/longview/clients/:clientId}
+ * {@link /longview/clients/:clientId}
  */
-export async function putLongviewClient(apiVersion: PutLongviewClientPathParams["apiVersion"], clientId: PutLongviewClientPathParams["clientId"], data?: PutLongviewClientMutationRequest, config: Partial<RequestConfig<PutLongviewClientMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function putLongviewClient(clientId: PutLongviewClientPathParams["clientId"], data?: PutLongviewClientMutationRequest, config: Partial<RequestConfig<PutLongviewClientMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PutLongviewClientMutationResponse, ResponseErrorConfig<Error>, PutLongviewClientMutationRequest>({ method : "PUT", url : getPutLongviewClientUrl(apiVersion, clientId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PutLongviewClientMutationResponse, ResponseErrorConfig<Error>, PutLongviewClientMutationRequest>({ method : "PUT", url : getPutLongviewClientUrl(clientId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

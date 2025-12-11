@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetVpcsQueryResponse, GetVpcsPathParams, GetVpcsQueryParams } from "../types/GetVpcs.ts";
+import type { GetVpcsQueryResponse, GetVpcsQueryParams } from "../types/GetVpcs.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetVpcsUrl(apiVersion: GetVpcsPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/vpcs` as const }  
+function getGetVpcsUrl() {
+  const res = { method: 'GET', url: `/vpcs` as const }  
   return res
 }
 
 /**
  * @description Display all VPCs on your account.<<LB>>---- __CLI__.    ```    linode-cli vpcs list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List VPCs
- * {@link /:apiVersion/vpcs}
+ * {@link /vpcs}
  */
-export async function getVpcs(apiVersion: GetVpcsPathParams["apiVersion"], params?: GetVpcsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getVpcs(params?: GetVpcsQueryParams, config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetVpcsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVpcsUrl(apiVersion).url.toString(), params, ... requestConfig })  
+  const res = await request<GetVpcsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVpcsUrl().url.toString(), params, ... requestConfig })  
   return res.data
 }

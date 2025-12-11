@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteLkeClusterNodePathParams(data?: Partial<DeleteLkeClusterNodePathParams>): DeleteLkeClusterNodePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteLkeClusterNodePathParams>["apiVersion"]>(["v4", "v4beta"]),"clusterId": faker.number.int(),"nodeId": faker.string.alpha()},
+  ...{"clusterId": faker.number.int(),"nodeId": faker.string.alpha()},
   ...data || {}
   }
 }

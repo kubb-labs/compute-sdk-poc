@@ -4,21 +4,6 @@
 */
 
 
-export const getLongviewSubscriptionsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetLongviewSubscriptionsPathParamsApiVersionEnumKey = (typeof getLongviewSubscriptionsPathParamsApiVersionEnum)[keyof typeof getLongviewSubscriptionsPathParamsApiVersionEnum];
-
-export interface GetLongviewSubscriptionsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetLongviewSubscriptionsPathParamsApiVersionEnumKey;
-}
-
 export interface GetLongviewSubscriptionsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -51,56 +36,56 @@ export type DataIdEnumKey = (typeof dataIdEnum)[keyof typeof dataIdEnum];
 */
 export interface GetLongviewSubscriptions200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ The number of Longview Clients that may be created with this Subscription tier.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly clients_included?: number;
+        readonly clients_included: number;
         /**
          * @description __Read-only__ The unique ID of this Subscription tier.
-         * @type string | undefined
+         * @type string
         */
-        readonly id?: DataIdEnumKey;
+        readonly id: DataIdEnumKey;
         /**
          * @description __Read-only__ A display name for this Subscription tier.
-         * @type string | undefined
+         * @type string
         */
-        readonly label?: string;
+        readonly label: string;
         /**
          * @description __Read-only__ Pricing information about this Subscription tier.
-         * @type object | undefined
+         * @type object
         */
-        readonly price?: {
+        readonly price: {
             /**
              * @description __Read-only__ The hourly price, in US dollars, for this Subscription tier.
-             * @type number | undefined
+             * @type number
             */
-            readonly hourly?: number;
+            readonly hourly: number;
             /**
              * @description __Read-only__ The maximum monthly price in US Dollars for this Subscription tier. You will never be charged more than this amount per month for this subscription.
-             * @type number | undefined
+             * @type number
             */
-            readonly monthly?: number;
+            readonly monthly: number;
         };
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -108,19 +93,19 @@ export interface GetLongviewSubscriptions200 {
 */
 export interface GetLongviewSubscriptionsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -128,7 +113,6 @@ export type GetLongviewSubscriptionsQueryResponse = GetLongviewSubscriptions200;
 
 export type GetLongviewSubscriptionsQuery = {
     Response: GetLongviewSubscriptions200;
-    PathParams: GetLongviewSubscriptionsPathParams;
     QueryParams: GetLongviewSubscriptionsQueryParams;
     Errors: any;
 };

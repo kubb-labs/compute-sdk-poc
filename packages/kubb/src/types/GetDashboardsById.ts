@@ -4,18 +4,7 @@
 */
 
 
-export const getDashboardsByIdPathParamsApiVersionEnum = {
-    "v4beta": "v4beta"
-} as const;
-
-export type GetDashboardsByIdPathParamsApiVersionEnumKey = (typeof getDashboardsByIdPathParamsApiVersionEnum)[keyof typeof getDashboardsByIdPathParamsApiVersionEnum];
-
 export interface GetDashboardsByIdPathParams {
-    /**
-     * @description __Enum__ Call the `v4beta` URL for operations still only in beta.
-     * @type string
-    */
-    apiVersion: GetDashboardsByIdPathParamsApiVersionEnumKey;
     /**
      * @description The unique identifier of the dashboard.
      * @type integer
@@ -113,44 +102,44 @@ export interface GetDashboardsById200 {
     widgets: {
         /**
          * @description The aggregate function for the metric. This defaults to `avg` for average.
-         * @type string | undefined
+         * @type string
         */
-        aggregate_function?: WidgetsAggregateFunctionEnum2Key;
+        aggregate_function: WidgetsAggregateFunctionEnum2Key;
         /**
          * @description The type of chart used in the widget. This can be `line` for a line chart or `area` for an area chart.
-         * @type string | undefined
+         * @type string
         */
-        chart_type?: WidgetsChartTypeEnum2Key;
+        chart_type: WidgetsChartTypeEnum2Key;
         /**
          * @description The color used in the widget.
-         * @type string | undefined
+         * @type string
         */
-        color?: string;
+        color: string;
         /**
          * @description The name of the widget. This is used for display purposes in Akamai Cloud Manager.
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description The metric to query.
-         * @type string | undefined
+         * @type string
         */
-        metric?: string;
+        metric: string;
         /**
          * @description The size of the widget. This can be `6` or `12` grid units, expressed as strings.
-         * @type string | undefined
+         * @type string
         */
-        size?: WidgetsSizeEnum2Key;
+        size: WidgetsSizeEnum2Key;
         /**
          * @description The unit of the metric. This can be values like `%` for percentage or `GB` for gigabyte.
-         * @type string | undefined
+         * @type string
         */
-        unit?: WidgetsUnitEnum2Key;
+        unit: WidgetsUnitEnum2Key;
         /**
          * @description The label for the y-axis in the widget\'s chart.
-         * @type string | undefined
+         * @type string
         */
-        y_label?: string;
+        y_label: string;
     }[];
 }
 
@@ -159,19 +148,19 @@ export interface GetDashboardsById200 {
 */
 export interface GetDashboardsByIdError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

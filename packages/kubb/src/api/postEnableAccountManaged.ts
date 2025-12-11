@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostEnableAccountManagedMutationResponse, PostEnableAccountManagedPathParams } from "../types/PostEnableAccountManaged.ts";
+import type { PostEnableAccountManagedMutationResponse } from "../types/PostEnableAccountManaged.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostEnableAccountManagedUrl(apiVersion: PostEnableAccountManagedPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/settings/managed-enable` as const }  
+function getPostEnableAccountManagedUrl() {
+  const res = { method: 'POST', url: `/account/settings/managed-enable` as const }  
   return res
 }
 
 /**
  * @description Enables Linode Managed for the entire account and sends a welcome email to the account's associated email address. Linode Managed can monitor any service or software stack reachable over TCP or HTTP. See our [Linode Managed guide](https://www.linode.com/docs/guides/linode-managed/) to learn more.<<LB>>---- __CLI__.    ```    linode-cli account enable-managed    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Enable Linode Managed
- * {@link /:apiVersion/account/settings/managed-enable}
+ * {@link /account/settings/managed-enable}
  */
-export async function postEnableAccountManaged(apiVersion: PostEnableAccountManagedPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function postEnableAccountManaged(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<PostEnableAccountManagedMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostEnableAccountManagedUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<PostEnableAccountManagedMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "POST", url : getPostEnableAccountManagedUrl().url.toString(), ... requestConfig })  
   return res.data
 }

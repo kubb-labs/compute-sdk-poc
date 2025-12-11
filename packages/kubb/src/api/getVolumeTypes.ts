@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetVolumeTypesQueryResponse, GetVolumeTypesPathParams } from "../types/GetVolumeTypes.ts";
+import type { GetVolumeTypesQueryResponse } from "../types/GetVolumeTypes.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetVolumeTypesUrl(apiVersion: GetVolumeTypesPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/volumes/types` as const }  
+function getGetVolumeTypesUrl() {
+  const res = { method: 'GET', url: `/volumes/types` as const }  
   return res
 }
 
 /**
  * @description Returns Block Storage volume types and prices, including any region-specific rates.<<LB>>---- __CLI__.    ```    linode-cli volumes types    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
  * @summary List volume types
- * {@link /:apiVersion/volumes/types}
+ * {@link /volumes/types}
  */
-export async function getVolumeTypes(apiVersion: GetVolumeTypesPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getVolumeTypes(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetVolumeTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVolumeTypesUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetVolumeTypesQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetVolumeTypesUrl().url.toString(), ... requestConfig })  
   return res.data
 }

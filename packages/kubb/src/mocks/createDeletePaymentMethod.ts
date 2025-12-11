@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeletePaymentMethodPathParams(data?: Partial<DeletePaymentMethodPathParams>): DeletePaymentMethodPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeletePaymentMethodPathParams>["apiVersion"]>(["v4", "v4beta"]),"paymentMethodId": faker.number.int()},
+  ...{"paymentMethodId": faker.number.int()},
   ...data || {}
   }
 }

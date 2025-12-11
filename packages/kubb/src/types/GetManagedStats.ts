@@ -4,108 +4,93 @@
 */
 
 
-export const getManagedStatsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetManagedStatsPathParamsApiVersionEnumKey = (typeof getManagedStatsPathParamsApiVersionEnum)[keyof typeof getManagedStatsPathParamsApiVersionEnum];
-
-export interface GetManagedStatsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetManagedStatsPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description A list of Managed Stats from the last 24 hours.
 */
 export interface GetManagedStats200 {
     /**
-     * @type object | undefined
+     * @type object
     */
-    data?: ({
+    data: ({
         /**
          * @description CPU usage stats from the last 24 hours.
-         * @type array | undefined
+         * @type array
         */
-        cpu?: {
+        cpu: {
             /**
              * @description __Read-only__ A stats graph data point.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly x?: number;
+            readonly x: number;
             /**
              * @description __Read-only__ A stats graph data point.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly y?: number;
+            readonly y: number;
         }[];
         /**
          * @description Disk usage stats from the last 24 hours.
-         * @type array | undefined
+         * @type array
         */
-        disk?: {
+        disk: {
             /**
              * @description __Read-only__ A stats graph data point.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly x?: number;
+            readonly x: number;
             /**
              * @description __Read-only__ A stats graph data point.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly y?: number;
+            readonly y: number;
         }[];
         /**
          * @description Inbound network traffic stats from the last 24 hours.
-         * @type array | undefined
+         * @type array
         */
-        net_in?: {
+        net_in: {
             /**
              * @description __Read-only__ A stats graph data point.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly x?: number;
+            readonly x: number;
             /**
              * @description __Read-only__ A stats graph data point.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly y?: number;
+            readonly y: number;
         }[];
         /**
          * @description Outbound network traffic stats from the last 24 hours.
-         * @type array | undefined
+         * @type array
         */
-        net_out?: {
+        net_out: {
             /**
              * @description __Read-only__ A stats graph data point.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly x?: number;
+            readonly x: number;
             /**
              * @description __Read-only__ A stats graph data point.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly y?: number;
+            readonly y: number;
         }[];
         /**
          * @description Swap usage stats from the last 24 hours.
-         * @type array | undefined
+         * @type array
         */
-        swap?: {
+        swap: {
             /**
              * @description __Read-only__ A stats graph data point.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly x?: number;
+            readonly x: number;
             /**
              * @description __Read-only__ A stats graph data point.
-             * @type integer | undefined
+             * @type integer
             */
-            readonly y?: number;
+            readonly y: number;
         }[];
     } | string[]);
 }
@@ -115,19 +100,19 @@ export interface GetManagedStats200 {
 */
 export interface GetManagedStatsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -135,6 +120,5 @@ export type GetManagedStatsQueryResponse = GetManagedStats200;
 
 export type GetManagedStatsQuery = {
     Response: GetManagedStats200;
-    PathParams: GetManagedStatsPathParams;
     Errors: any;
 };

@@ -4,19 +4,7 @@
 */
 
 
-export const getDatabasesTypePathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetDatabasesTypePathParamsApiVersionEnumKey = (typeof getDatabasesTypePathParamsApiVersionEnum)[keyof typeof getDatabasesTypePathParamsApiVersionEnum];
-
 export interface GetDatabasesTypePathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetDatabasesTypePathParamsApiVersionEnumKey;
     /**
      * @description The ID of the Managed Database type.
      * @type string
@@ -72,94 +60,94 @@ export type PostgresqlQuantityEnum2Key = (typeof postgresqlQuantityEnum2)[keyof 
 export interface GetDatabasesType200 {
     /**
      * @description The Linode class category. This can be [dedicated](https://techdocs.akamai.com/cloud-computing/docs/dedicated-cpu-compute-instances), [shared](https://techdocs.akamai.com/cloud-computing/docs/shared-cpu-compute-instances), or [premium](https://techdocs.akamai.com/cloud-computing/docs/premium-compute-instances).\n\n> 📘\n>\n> Premium plan Linodes are available in limited regions.
-     * @type string | undefined
+     * @type string
     */
-    class?: GetDatabasesType200ClassEnumKey;
+    class: GetDatabasesType200ClassEnumKey;
     /**
      * @description The amount of disk space set aside for Databases of this plan type. The value is represented in megabytes.
-     * @type integer | undefined
+     * @type integer
     */
-    disk?: number;
+    disk: number;
     /**
      * @description Information for the supported third-party databases that can be used with Managed Databases.
-     * @type object | undefined
+     * @type object
     */
-    engines?: {
+    engines: {
         /**
          * @description Pricing details for MySQL Managed Databases.
-         * @type array | undefined
+         * @type array
         */
-        mysql?: {
+        mysql: {
             /**
              * @description Cost in US dollars, broken down into hourly and monthly charges.
-             * @type object | undefined
+             * @type object
             */
-            price?: {
+            price: {
                 /**
                  * @description Cost (in US dollars) per hour for this subscription tier.
-                 * @type number | undefined
+                 * @type number
                 */
-                hourly?: number;
+                hourly: number;
                 /**
                  * @description Maximum cost (in US dollars) per month for this subscription tier.
-                 * @type number | undefined
+                 * @type number
                 */
-                monthly?: number;
+                monthly: number;
             };
             /**
              * @description The number of nodes for the Managed Database cluster for this subscription tier.
-             * @type integer | undefined
+             * @type integer
             */
-            quantity?: MysqlQuantityEnum2Key;
+            quantity: MysqlQuantityEnum2Key;
         }[];
         /**
          * @description Pricing details for PostgreSQL Managed Databases.
-         * @type array | undefined
+         * @type array
         */
-        postgresql?: {
+        postgresql: {
             /**
              * @description Cost in US dollars, broken down into hourly and monthly charges.
-             * @type object | undefined
+             * @type object
             */
-            price?: {
+            price: {
                 /**
                  * @description Cost (in US dollars) per hour for this subscription tier.
-                 * @type number | undefined
+                 * @type number
                 */
-                hourly?: number;
+                hourly: number;
                 /**
                  * @description Maximum cost (in US dollars) per month for this subscription tier.
-                 * @type number | undefined
+                 * @type number
                 */
-                monthly?: number;
+                monthly: number;
             };
             /**
              * @description The number of nodes for the Managed Database cluster for this subscription tier.
-             * @type integer | undefined
+             * @type integer
             */
-            quantity?: PostgresqlQuantityEnum2Key;
+            quantity: PostgresqlQuantityEnum2Key;
         }[];
     };
     /**
      * @description __Read-only__ The ID representing the Managed Database node plan type.
-     * @type string | undefined
+     * @type string
     */
-    readonly id?: string;
+    readonly id: string;
     /**
      * @description __Read-only__ A human-readable string that describes each plan type. For display purposes only.
-     * @type string | undefined
+     * @type string
     */
-    readonly label?: string;
+    readonly label: string;
     /**
      * @description The amount of RAM allocated to Database created of this plan type. The value is represented in megabytes.
-     * @type integer | undefined
+     * @type integer
     */
-    memory?: number;
+    memory: number;
     /**
      * @description The number of CPUs allocated to databases of this plan type.
-     * @type integer | undefined
+     * @type integer
     */
-    vcpus?: number;
+    vcpus: number;
 }
 
 /**
@@ -167,19 +155,19 @@ export interface GetDatabasesType200 {
 */
 export interface GetDatabasesTypeError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

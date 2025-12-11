@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteTrustedDevicePathParams(data?: Partial<DeleteTrustedDevicePathParams>): DeleteTrustedDevicePathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteTrustedDevicePathParams>["apiVersion"]>(["v4", "v4beta"]),"deviceId": faker.number.int()},
+  ...{"deviceId": faker.number.int()},
   ...data || {}
   }
 }

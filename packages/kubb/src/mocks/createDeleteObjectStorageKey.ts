@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteObjectStorageKeyPathParams(data?: Partial<DeleteObjectStorageKeyPathParams>): DeleteObjectStorageKeyPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteObjectStorageKeyPathParams>["apiVersion"]>(["v4", "v4beta"]),"keyId": faker.number.int()},
+  ...{"keyId": faker.number.int()},
   ...data || {}
   }
 }

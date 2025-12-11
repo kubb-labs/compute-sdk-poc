@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetNodeBalancerQueryResponse, GetNodeBalancerPathParams } from "../types/GetNodeBalancer.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetNodeBalancerUrl(apiVersion: GetNodeBalancerPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerPathParams["nodeBalancerId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/nodebalancers/${nodeBalancerId}` as const }  
+function getGetNodeBalancerUrl(nodeBalancerId: GetNodeBalancerPathParams["nodeBalancerId"]) {
+  const res = { method: 'GET', url: `/nodebalancers/${nodeBalancerId}` as const }  
   return res
 }
 
 /**
  * @description Returns a single NodeBalancer you can access.<<LB>>---- __CLI__.    ```    linode-cli nodebalancers view 12345    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    nodebalancers:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Get a NodeBalancer
- * {@link /:apiVersion/nodebalancers/:nodeBalancerId}
+ * {@link /nodebalancers/:nodeBalancerId}
  */
-export async function getNodeBalancer(apiVersion: GetNodeBalancerPathParams["apiVersion"], nodeBalancerId: GetNodeBalancerPathParams["nodeBalancerId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getNodeBalancer(nodeBalancerId: GetNodeBalancerPathParams["nodeBalancerId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetNodeBalancerQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerUrl(apiVersion, nodeBalancerId).url.toString(), ... requestConfig })  
+  const res = await request<GetNodeBalancerQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetNodeBalancerUrl(nodeBalancerId).url.toString(), ... requestConfig })  
   return res.data
 }

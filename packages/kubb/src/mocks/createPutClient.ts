@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createPutClientPathParams(data?: Partial<PutClientPathParams>): PutClientPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PutClientPathParams>["apiVersion"]>(["v4", "v4beta"]),"clientId": faker.string.alpha()},
+  ...{"clientId": faker.string.alpha()},
   ...data || {}
   }
 }

@@ -4,24 +4,24 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { PostBetaProgramMutationRequest, PostBetaProgramMutationResponse, PostBetaProgramPathParams } from "../types/PostBetaProgram.ts";
+import type { PostBetaProgramMutationRequest, PostBetaProgramMutationResponse } from "../types/PostBetaProgram.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostBetaProgramUrl(apiVersion: PostBetaProgramPathParams["apiVersion"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/account/betas` as const }  
+function getPostBetaProgramUrl() {
+  const res = { method: 'POST', url: `/account/betas` as const }  
   return res
 }
 
 /**
  * @description Enroll your Account in an active Beta Program.Only unrestricted Users can access this operation.To view active Beta Programs, run the [List beta programs](https://techdocs.akamai.com/linode-api/reference/get-beta-programs) operation.Active Beta Programs may have a limited number of enrollments. If a Beta Program has reached is maximum number of enrollments, an error is returned even though the request is successful.Beta Programs with `"greenlight_only": true` can only be enrolled by Accounts that participate in the [Greenlight](https://www.linode.com/green-light/) program.<<LB>>---- __CLI__.    ```    linode-cli betas enroll --id example_open    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Enroll in a Beta program
- * {@link /:apiVersion/account/betas}
+ * {@link /account/betas}
  */
-export async function postBetaProgram(apiVersion: PostBetaProgramPathParams["apiVersion"], data: PostBetaProgramMutationRequest, config: Partial<RequestConfig<PostBetaProgramMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postBetaProgram(data: PostBetaProgramMutationRequest, config: Partial<RequestConfig<PostBetaProgramMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostBetaProgramMutationResponse, ResponseErrorConfig<Error>, PostBetaProgramMutationRequest>({ method : "POST", url : getPostBetaProgramUrl(apiVersion).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostBetaProgramMutationResponse, ResponseErrorConfig<Error>, PostBetaProgramMutationRequest>({ method : "POST", url : getPostBetaProgramUrl().url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

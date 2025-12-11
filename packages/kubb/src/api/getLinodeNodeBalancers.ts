@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { GetLinodeNodeBalancersQueryResponse, GetLinodeNodeBalancersPathParams } from "../types/GetLinodeNodeBalancers.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetLinodeNodeBalancersUrl(apiVersion: GetLinodeNodeBalancersPathParams["apiVersion"], linodeId: GetLinodeNodeBalancersPathParams["linodeId"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/linode/instances/${linodeId}/nodebalancers` as const }  
+function getGetLinodeNodeBalancersUrl(linodeId: GetLinodeNodeBalancersPathParams["linodeId"]) {
+  const res = { method: 'GET', url: `/linode/instances/${linodeId}/nodebalancers` as const }  
   return res
 }
 
 /**
  * @description Returns a list of NodeBalancers that are assigned to this Linode and readable by the requesting User.Read permission to a NodeBalancer can be given to a User by accessing the [Update a user's grants](https://techdocs.akamai.com/linode-api/reference/put-user-grants) operation.<<LB>>---- __CLI__.    ```    linode-cli linodes nodebalancers 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List Linode NodeBalancers
- * {@link /:apiVersion/linode/instances/:linodeId/nodebalancers}
+ * {@link /linode/instances/:linodeId/nodebalancers}
  */
-export async function getLinodeNodeBalancers(apiVersion: GetLinodeNodeBalancersPathParams["apiVersion"], linodeId: GetLinodeNodeBalancersPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getLinodeNodeBalancers(linodeId: GetLinodeNodeBalancersPathParams["linodeId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetLinodeNodeBalancersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeNodeBalancersUrl(apiVersion, linodeId).url.toString(), ... requestConfig })  
+  const res = await request<GetLinodeNodeBalancersQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetLinodeNodeBalancersUrl(linodeId).url.toString(), ... requestConfig })  
   return res.data
 }

@@ -7,19 +7,19 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { DeletePersonalAccessTokenMutationResponse, DeletePersonalAccessTokenPathParams } from "../types/DeletePersonalAccessToken.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getDeletePersonalAccessTokenUrl(apiVersion: DeletePersonalAccessTokenPathParams["apiVersion"], tokenId: DeletePersonalAccessTokenPathParams["tokenId"]) {
-  const res = { method: 'DELETE', url: `/${apiVersion}/profile/tokens/${tokenId}` as const }  
+function getDeletePersonalAccessTokenUrl(tokenId: DeletePersonalAccessTokenPathParams["tokenId"]) {
+  const res = { method: 'DELETE', url: `/profile/tokens/${tokenId}` as const }  
   return res
 }
 
 /**
  * @description Revokes a Personal Access Token. The token will be invalidated immediately, and requests using that token will fail with a 401. It is possible to revoke access to the token making the request to revoke a token, but keep in mind that doing so could lose you access to the api and require you to create a new token through some other means.<<LB>>---- __CLI__.    ```    linode-cli profile token-delete 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    account:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Revoke a personal access token
- * {@link /:apiVersion/profile/tokens/:tokenId}
+ * {@link /profile/tokens/:tokenId}
  */
-export async function deletePersonalAccessToken(apiVersion: DeletePersonalAccessTokenPathParams["apiVersion"], tokenId: DeletePersonalAccessTokenPathParams["tokenId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function deletePersonalAccessToken(tokenId: DeletePersonalAccessTokenPathParams["tokenId"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<DeletePersonalAccessTokenMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeletePersonalAccessTokenUrl(apiVersion, tokenId).url.toString(), ... requestConfig })  
+  const res = await request<DeletePersonalAccessTokenMutationResponse, ResponseErrorConfig<Error>, unknown>({ method : "DELETE", url : getDeletePersonalAccessTokenUrl(tokenId).url.toString(), ... requestConfig })  
   return res.data
 }

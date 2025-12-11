@@ -4,19 +4,7 @@
 */
 
 
-export const postLkeClusterPoolsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostLkeClusterPoolsPathParamsApiVersionEnumKey = (typeof postLkeClusterPoolsPathParamsApiVersionEnum)[keyof typeof postLkeClusterPoolsPathParamsApiVersionEnum];
-
 export interface PostLkeClusterPoolsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostLkeClusterPoolsPathParamsApiVersionEnumKey;
     /**
      * @description ID of the Kubernetes cluster to look up.
      * @type integer
@@ -66,112 +54,112 @@ export type PostLkeClusterPools200UpdateStrategyEnumKey = (typeof postLkeCluster
 export interface PostLkeClusterPools200 {
     /**
      * @description When enabled, the number of nodes autoscales within the defined minimum and maximum values.
-     * @type object | undefined
+     * @type object
     */
-    autoscaler?: {
+    autoscaler: {
         /**
          * @description Whether autoscaling is enabled for this node pool. Defaults to `false`.
-         * @type boolean | undefined
+         * @type boolean
         */
-        enabled?: boolean;
+        enabled: boolean;
         /**
          * @description The maximum number of nodes to autoscale to. Defaults to the node pool\'s `count`.
          * @minLength 1
          * @maxLength 100
-         * @type integer | undefined
+         * @type integer
         */
-        max?: number;
+        max: number;
         /**
          * @description The minimum number of nodes to autoscale to. Defaults to the node pool\'s `count`.
          * @minLength 1
          * @maxLength 100
-         * @type integer | undefined
+         * @type integer
         */
-        min?: number;
+        min: number;
     };
     /**
      * @description The number of nodes in the node pool.
      * @minLength 1
      * @maxLength 100
-     * @type integer | undefined
+     * @type integer
     */
-    count?: number;
+    count: number;
     /**
      * @description Indicates the local disk encryption setting for this LKE node pool.
-     * @type string | undefined
+     * @type string
     */
-    disk_encryption?: PostLkeClusterPools200DiskEncryptionEnumKey;
+    disk_encryption: PostLkeClusterPools200DiskEncryptionEnumKey;
     /**
      * @description This node pool\'s custom disk layout.
-     * @type array | undefined
+     * @type array
     */
-    disks?: {
+    disks: {
         /**
          * @description The size of this custom disk partition in MB. The size of this disk partition can\'t exceed the capacity of the node\'s plan type.
-         * @type integer | undefined
+         * @type integer
         */
-        size?: number;
+        size: number;
         /**
          * @description This custom disk partition\'s filesystem type.
-         * @type string | undefined
+         * @type string
         */
-        type?: DisksTypeEnum2Key;
+        type: DisksTypeEnum2Key;
     }[];
     /**
      * @description __Filterable__ This node pool\'s unique ID.
-     * @type integer | undefined
+     * @type integer
     */
-    id?: number;
+    id: number;
     /**
      * @description __Beta__ The Kubernetes version used for the worker nodes within this node pool.\n> 🚧\n>\n> This field is available as part of the beta API and is only returned for accounts that have been enrolled in the LKE Enterprise LA.
-     * @type string | undefined
+     * @type string
     */
-    k8s_version?: string;
+    k8s_version: string;
     /**
      * @description __Beta__ The optional label defined for this node Pool.\n\n> 🚧\n>\n> This field is available as part of the beta API and is only returned for accounts that have been enrolled in the LKE Enterprise LA.
      * @minLength 1
      * @maxLength 32
-     * @type string | undefined
+     * @type string
     */
-    label?: string;
+    label: string;
     /**
      * @description Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and easily select subsets of objects. To learn more, review [Add Labels and Taints to your LKE node pools](https://www.linode.com/docs/products/compute/kubernetes/guides/deploy-and-manage-cluster-with-the-linode-api/#add-labels-and-taints-to-your-lke-node-pools).
-     * @type object | undefined
+     * @type object
     */
-    labels?: {
+    labels: {
         [key: string]: string;
     };
     /**
      * @description Status information for the nodes that are members of this node pool. If a Linode has not been provisioned for a given node slot, the `instance_id` is `null`.
-     * @type array | undefined
+     * @type array
     */
-    nodes?: {
+    nodes: {
         /**
          * @description The Node\'s ID.
-         * @type string | undefined
+         * @type string
         */
-        id?: string;
+        id: string;
         /**
          * @description The Linode\'s ID. When no Linode is currently provisioned for this Node, this will be `null`.
          * @type integer
         */
-        instance_id?: number | null;
+        instance_id: number | null;
         /**
          * @description The creation status of this Node. This status is distinct from this Node\'s readiness as a Kubernetes Node Object as determined by the command `kubectl get nodes`.\n\n`not_ready` indicates that the Linode is still being created.\n\n`ready` indicates that the Linode has successfully been created and is running Kubernetes software.
-         * @type string | undefined
+         * @type string
         */
-        status?: NodesStatusEnumKey;
+        status: NodesStatusEnumKey;
     }[];
     /**
      * @description __Filterable__ An array of tags applied to this object. Tags are for organizational purposes only.
-     * @type array | undefined
+     * @type array
     */
-    tags?: string[];
+    tags: string[];
     /**
      * @description Kubernetes taints added to nodes in the node pool. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
-     * @type array | undefined
+     * @type array
     */
-    taints?: {
+    taints: {
         /**
          * @description The Kubernetes taint effect. For `NoSchedule`, `PreferNoSchedule` and `NoExecute` descriptions, see [Kubernetes Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
          * @type string | undefined
@@ -196,14 +184,14 @@ export interface PostLkeClusterPools200 {
     }[];
     /**
      * @description The Linode Type for all of the nodes in the node pool.
-     * @type string | undefined
+     * @type string
     */
-    type?: string;
+    type: string;
     /**
      * @description __Beta__ Determines when the worker nodes within this node pool upgrade to the latest selected Kubernetes version, after the cluster has been upgraded. This field is required for LKE Enterprise clusters but should not be used for non-enterprise LKE clusters.
-     * @type string | undefined
+     * @type string
     */
-    update_strategy?: PostLkeClusterPools200UpdateStrategyEnumKey;
+    update_strategy: PostLkeClusterPools200UpdateStrategyEnumKey;
 }
 
 /**
@@ -211,19 +199,19 @@ export interface PostLkeClusterPools200 {
 */
 export interface PostLkeClusterPoolsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 

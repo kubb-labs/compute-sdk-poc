@@ -4,21 +4,6 @@
 */
 
 
-export const postCancelAccountPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type PostCancelAccountPathParamsApiVersionEnumKey = (typeof postCancelAccountPathParamsApiVersionEnum)[keyof typeof postCancelAccountPathParamsApiVersionEnum];
-
-export interface PostCancelAccountPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: PostCancelAccountPathParamsApiVersionEnumKey;
-}
-
 /**
  * @description Account canceled.
  * @example [object Object]
@@ -26,9 +11,9 @@ export interface PostCancelAccountPathParams {
 export interface PostCancelAccount200 {
     /**
      * @description A link to Linode\'s exit survey.
-     * @type string | undefined
+     * @type string
     */
-    survey_link?: string;
+    survey_link: string;
 }
 
 /**
@@ -36,14 +21,14 @@ export interface PostCancelAccount200 {
 */
 export interface PostCancelAccount409 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description A string explaining that the account could not be canceled because there is an outstanding balance on the account that must be paid first.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -52,14 +37,14 @@ export interface PostCancelAccount409 {
 */
 export interface PostCancelAccount504 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description A string explaining that the account is taking longer to close than expected.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -68,19 +53,19 @@ export interface PostCancelAccount504 {
 */
 export interface PostCancelAccountError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -100,6 +85,5 @@ export type PostCancelAccountMutationResponse = PostCancelAccount200;
 export type PostCancelAccountMutation = {
     Response: PostCancelAccount200;
     Request: PostCancelAccountMutationRequest;
-    PathParams: PostCancelAccountPathParams;
     Errors: PostCancelAccount409 | PostCancelAccount504;
 };

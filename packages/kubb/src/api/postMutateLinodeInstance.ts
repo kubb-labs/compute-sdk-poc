@@ -7,21 +7,21 @@ import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
 import type { PostMutateLinodeInstanceMutationRequest, PostMutateLinodeInstanceMutationResponse, PostMutateLinodeInstancePathParams } from "../types/PostMutateLinodeInstance.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getPostMutateLinodeInstanceUrl(apiVersion: PostMutateLinodeInstancePathParams["apiVersion"], linodeId: PostMutateLinodeInstancePathParams["linodeId"]) {
-  const res = { method: 'POST', url: `/${apiVersion}/linode/instances/${linodeId}/mutate` as const }  
+function getPostMutateLinodeInstanceUrl(linodeId: PostMutateLinodeInstancePathParams["linodeId"]) {
+  const res = { method: 'POST', url: `/linode/instances/${linodeId}/mutate` as const }  
   return res
 }
 
 /**
  * @description Linodes created with now-deprecated Types are entitled to a free upgrade to the next generation. A mutating Linode will be allocated any new resources the upgraded Type provides, and will be subsequently restarted if it was currently running. If any actions are currently running or queued, those actions must be completed first before you can initiate a mutate.<<LB>>---- __CLI__.    ```    linode-cli linodes upgrade 123    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    linodes:read_write    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary Upgrade a Linode
- * {@link /:apiVersion/linode/instances/:linodeId/mutate}
+ * {@link /linode/instances/:linodeId/mutate}
  */
-export async function postMutateLinodeInstance(apiVersion: PostMutateLinodeInstancePathParams["apiVersion"], linodeId: PostMutateLinodeInstancePathParams["linodeId"], data?: PostMutateLinodeInstanceMutationRequest, config: Partial<RequestConfig<PostMutateLinodeInstanceMutationRequest>> & { client?: typeof fetch } = {}) {
+export async function postMutateLinodeInstance(linodeId: PostMutateLinodeInstancePathParams["linodeId"], data?: PostMutateLinodeInstanceMutationRequest, config: Partial<RequestConfig<PostMutateLinodeInstanceMutationRequest>> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
   const requestData = data  
   
-  const res = await request<PostMutateLinodeInstanceMutationResponse, ResponseErrorConfig<Error>, PostMutateLinodeInstanceMutationRequest>({ method : "POST", url : getPostMutateLinodeInstanceUrl(apiVersion, linodeId).url.toString(), data : requestData, ... requestConfig })  
+  const res = await request<PostMutateLinodeInstanceMutationResponse, ResponseErrorConfig<Error>, PostMutateLinodeInstanceMutationRequest>({ method : "POST", url : getPostMutateLinodeInstanceUrl(linodeId).url.toString(), data : requestData, ... requestConfig })  
   return res.data
 }

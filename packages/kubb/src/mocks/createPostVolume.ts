@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostVolumePathParams, PostVolume200, PostVolumeError, PostVolumeMutationRequest, PostVolumeMutationResponse } from "../types/PostVolume.ts";
+import type { PostVolume200, PostVolumeError, PostVolumeMutationRequest, PostVolumeMutationResponse } from "../types/PostVolume.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostVolumePathParams(data?: Partial<PostVolumePathParams>): PostVolumePathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostVolumePathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description Creating volume.

@@ -4,22 +4,22 @@
 */
 
 import type { RequestConfig, ResponseErrorConfig } from "../.kubb/fetch.ts";
-import type { GetObjectStorageQuotasQueryResponse, GetObjectStorageQuotasPathParams } from "../types/GetObjectStorageQuotas.ts";
+import type { GetObjectStorageQuotasQueryResponse } from "../types/GetObjectStorageQuotas.ts";
 import { fetch } from "../.kubb/fetch.ts";
 
-function getGetObjectStorageQuotasUrl(apiVersion: GetObjectStorageQuotasPathParams["apiVersion"]) {
-  const res = { method: 'GET', url: `/${apiVersion}/object-storage/quotas` as const }  
+function getGetObjectStorageQuotasUrl() {
+  const res = { method: 'GET', url: `/object-storage/quotas` as const }  
   return res
 }
 
 /**
  * @description Returns the active Object Storage-related quotas applied to your account. For example, you may have a quota maximum for the number of buckets you can have on a single endpoint. The operation includes any quota overrides in the response.> 📘>> You can't combine parameters when [filtering](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) with this operation. Only a single filterable parameter can be used.<<LB>>---- __CLI__.    ```    linode-cli object-storage quotas-list    ```    [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)- __OAuth scopes__.    ```    object_storage:read_only    ```    [Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
  * @summary List Object Storage quotas
- * {@link /:apiVersion/object-storage/quotas}
+ * {@link /object-storage/quotas}
  */
-export async function getObjectStorageQuotas(apiVersion: GetObjectStorageQuotasPathParams["apiVersion"], config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
+export async function getObjectStorageQuotas(config: Partial<RequestConfig> & { client?: typeof fetch } = {}) {
   const { client: request = fetch, ...requestConfig } = config  
   
-  const res = await request<GetObjectStorageQuotasQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageQuotasUrl(apiVersion).url.toString(), ... requestConfig })  
+  const res = await request<GetObjectStorageQuotasQueryResponse, ResponseErrorConfig<Error>, unknown>({ method : "GET", url : getGetObjectStorageQuotasUrl().url.toString(), ... requestConfig })  
   return res.data
 }

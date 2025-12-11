@@ -4,21 +4,6 @@
 */
 
 
-export const getFirewallSettingsPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetFirewallSettingsPathParamsApiVersionEnumKey = (typeof getFirewallSettingsPathParamsApiVersionEnum)[keyof typeof getFirewallSettingsPathParamsApiVersionEnum];
-
-export interface GetFirewallSettingsPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetFirewallSettingsPathParamsApiVersionEnumKey;
-}
-
 export interface GetFirewallSettingsQueryParams {
     /**
      * @description The page of a collection to return.
@@ -43,29 +28,29 @@ export interface GetFirewallSettingsQueryParams {
 export interface GetFirewallSettings200 {
     /**
      * @description The default firewall ID for a `linode`, `nodebalancer`, `public_interface`, or `vpc_interface`. Default firewalls can\'t be deleted or disabled.
-     * @type object | undefined
+     * @type object
     */
-    default_firewall_ids?: {
+    default_firewall_ids: {
         /**
          * @description The Linode\'s default firewall.
-         * @type integer | undefined
+         * @type integer
         */
-        linode?: number;
+        linode: number;
         /**
          * @description The NodeBalancer\'s default firewall.
-         * @type integer | undefined
+         * @type integer
         */
-        nodebalancer?: number;
+        nodebalancer: number;
         /**
          * @description The public interface\'s default firewall.
-         * @type integer | undefined
+         * @type integer
         */
-        public_interface?: number;
+        public_interface: number;
         /**
          * @description The VPC interface\'s default firewall.
-         * @type integer | undefined
+         * @type integer
         */
-        vpc_interface?: number;
+        vpc_interface: number;
     };
 }
 
@@ -74,19 +59,19 @@ export interface GetFirewallSettings200 {
 */
 export interface GetFirewallSettingsError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -94,7 +79,6 @@ export type GetFirewallSettingsQueryResponse = GetFirewallSettings200;
 
 export type GetFirewallSettingsQuery = {
     Response: GetFirewallSettings200;
-    PathParams: GetFirewallSettingsPathParams;
     QueryParams: GetFirewallSettingsQueryParams;
     Errors: any;
 };

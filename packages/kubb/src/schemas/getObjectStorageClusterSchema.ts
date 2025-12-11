@@ -6,29 +6,28 @@
 import { z } from "zod/v4";
 
 export const getObjectStorageClusterPathParamsSchema = z.object({
-    "apiVersion": z.enum(["v4", "v4beta"]).describe("__Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta."),
-"clusterId": z.string().describe("Identifies a cluster where this bucket lives. For backward compatibility with Object Storage in this API.\n\n> 📘\n>\n> You can use the applicable `regionId`, for example `us-west`, in place of the `clusterId`, for example, `us-west-1`. Run [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) to see all regions.")
+    "clusterId": z.string().describe("Identifies a cluster where this bucket lives. For backward compatibility with Object Storage in this API.\n\n> 📘\n>\n> You can use the applicable `regionId`, for example `us-west`, in place of the `clusterId`, for example, `us-west-1`. Run [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) to see all regions.")
     })
 
 /**
  * @description The requested Cluster.
  */
 export const getObjectStorageCluster200Schema = z.object({
-    "domain": z.optional(z.string().describe("The base URL for this cluster, used for connecting with third-party clients.")),
-"id": z.optional(z.string().describe("The unique ID for this cluster.")),
-"region": z.optional(z.string().describe("The region where this cluster is located.")),
-"static_site_domain": z.optional(z.string().describe("The base URL for this cluster used when hosting static sites.")),
-"status": z.optional(z.enum(["available", "unavailable"]).describe("This cluster's status."))
+    "domain": z.string().describe("The base URL for this cluster, used for connecting with third-party clients."),
+"id": z.string().describe("The unique ID for this cluster."),
+"region": z.string().describe("The region where this cluster is located."),
+"static_site_domain": z.string().describe("The base URL for this cluster used when hosting static sites."),
+"status": z.enum(["available", "unavailable"]).describe("This cluster's status.")
     }).describe("An Object Storage Cluster.")
 
 /**
  * @description See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
  */
 export const getObjectStorageClusterErrorSchema = z.object({
-    "errors": z.optional(z.array(z.object({
-    "field": z.optional(z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.")),
-"reason": z.optional(z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully."))
-    }).describe("An object for describing a single error that occurred during the processing of a request.")))
+    "errors": z.array(z.object({
+    "field": z.string().describe("The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request."),
+"reason": z.string().describe("What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.")
+    }).describe("An object for describing a single error that occurred during the processing of a request."))
     })
 
 export const getObjectStorageClusterQueryResponseSchema = z.lazy(() => getObjectStorageCluster200Schema)

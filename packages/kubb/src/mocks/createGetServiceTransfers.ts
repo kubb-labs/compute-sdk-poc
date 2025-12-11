@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { GetServiceTransfersPathParams, GetServiceTransfersQueryParams, GetServiceTransfers200, GetServiceTransfersError, GetServiceTransfersQueryResponse } from "../types/GetServiceTransfers.ts";
+import type { GetServiceTransfersQueryParams, GetServiceTransfers200, GetServiceTransfersError, GetServiceTransfersQueryResponse } from "../types/GetServiceTransfers.ts";
 import { faker } from "@faker-js/faker";
-
-export function createGetServiceTransfersPathParams(data?: Partial<GetServiceTransfersPathParams>): GetServiceTransfersPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetServiceTransfersPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 export function createGetServiceTransfersQueryParams(data?: Partial<GetServiceTransfersQueryParams>): GetServiceTransfersQueryParams {
   

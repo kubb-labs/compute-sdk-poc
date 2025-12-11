@@ -3,16 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PostAddStackScriptPathParams, PostAddStackScript200, PostAddStackScriptError, PostAddStackScriptMutationRequest, PostAddStackScriptMutationResponse } from "../types/PostAddStackScript.ts";
+import type { PostAddStackScript200, PostAddStackScriptError, PostAddStackScriptMutationRequest, PostAddStackScriptMutationResponse } from "../types/PostAddStackScript.ts";
 import { faker } from "@faker-js/faker";
-
-export function createPostAddStackScriptPathParams(data?: Partial<PostAddStackScriptPathParams>): PostAddStackScriptPathParams {
-  
-  return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<PostAddStackScriptPathParams>["apiVersion"]>(["v4", "v4beta"])},
-  ...data || {}
-  }
-}
 
 /**
  * @description StackScript successfully created.

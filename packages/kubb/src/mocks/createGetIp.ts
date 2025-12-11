@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetIpPathParams(data?: Partial<GetIpPathParams>): GetIpPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetIpPathParams>["apiVersion"]>(["v4", "v4beta"]),"address": faker.string.alpha()},
+  ...{"address": faker.string.alpha()},
   ...data || {}
   }
 }

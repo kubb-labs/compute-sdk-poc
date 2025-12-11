@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetDomainPathParams(data?: Partial<GetDomainPathParams>): GetDomainPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetDomainPathParams>["apiVersion"]>(["v4", "v4beta"]),"domainId": faker.number.int()},
+  ...{"domainId": faker.number.int()},
   ...data || {}
   }
 }

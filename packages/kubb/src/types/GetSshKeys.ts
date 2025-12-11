@@ -4,21 +4,6 @@
 */
 
 
-export const getSshKeysPathParamsApiVersionEnum = {
-    "v4": "v4",
-    "v4beta": "v4beta"
-} as const;
-
-export type GetSshKeysPathParamsApiVersionEnumKey = (typeof getSshKeysPathParamsApiVersionEnum)[keyof typeof getSshKeysPathParamsApiVersionEnum];
-
-export interface GetSshKeysPathParams {
-    /**
-     * @description __Enum__ Call either the `v4` URL, or `v4beta` for operations still in Beta.
-     * @type string
-    */
-    apiVersion: GetSshKeysPathParamsApiVersionEnumKey;
-}
-
 export interface GetSshKeysQueryParams {
     /**
      * @description The page of a collection to return.
@@ -42,47 +27,47 @@ export interface GetSshKeysQueryParams {
 */
 export interface GetSshKeys200 {
     /**
-     * @type array | undefined
+     * @type array
     */
-    data?: {
+    data: {
         /**
          * @description __Read-only__ The date this key was added.
-         * @type string | undefined, date-time
+         * @type string, date-time
         */
-        readonly created?: string;
+        readonly created: string;
         /**
          * @description __Read-only__ The unique identifier of an SSH Key object.
-         * @type integer | undefined
+         * @type integer
         */
-        readonly id?: number;
+        readonly id: number;
         /**
          * @description A label for the SSH Key.
          * @minLength 0
          * @maxLength 64
-         * @type string | undefined
+         * @type string
         */
-        label?: string;
+        label: string;
         /**
          * @description The public SSH Key, which is used to authenticate to the root user of the Linodes you deploy.\n\nAccepted formats:\n\n- ssh-dss\n- ssh-rsa\n- ecdsa-sha2-nistp\n- ssh-ed25519\n- sk-ecdsa-sha2-nistp256 (Akamai-specific)
-         * @type string | undefined, ssh-key
+         * @type string, ssh-key
         */
-        ssh_key?: string;
+        ssh_key: string;
     }[];
     /**
      * @description __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly page?: number;
+    readonly page: number;
     /**
      * @description __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-     * @type integer | undefined
+     * @type integer
     */
-    readonly pages?: number;
+    readonly pages: number;
     /**
      * @description __Read-only__ The total number of results.
-     * @type integer | undefined
+     * @type integer
     */
-    readonly results?: number;
+    readonly results: number;
 }
 
 /**
@@ -90,19 +75,19 @@ export interface GetSshKeys200 {
 */
 export interface GetSshKeysError {
     /**
-     * @type array | undefined
+     * @type array
     */
-    errors?: {
+    errors: {
         /**
          * @description The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
-         * @type string | undefined
+         * @type string
         */
-        field?: string;
+        field: string;
         /**
          * @description What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
-         * @type string | undefined
+         * @type string
         */
-        reason?: string;
+        reason: string;
     }[];
 }
 
@@ -110,7 +95,6 @@ export type GetSshKeysQueryResponse = GetSshKeys200;
 
 export type GetSshKeysQuery = {
     Response: GetSshKeys200;
-    PathParams: GetSshKeysPathParams;
     QueryParams: GetSshKeysQueryParams;
     Errors: any;
 };

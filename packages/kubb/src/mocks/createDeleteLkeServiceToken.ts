@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createDeleteLkeServiceTokenPathParams(data?: Partial<DeleteLkeServiceTokenPathParams>): DeleteLkeServiceTokenPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<DeleteLkeServiceTokenPathParams>["apiVersion"]>(["v4", "v4beta"]),"clusterId": faker.number.int()},
+  ...{"clusterId": faker.number.int()},
   ...data || {}
   }
 }

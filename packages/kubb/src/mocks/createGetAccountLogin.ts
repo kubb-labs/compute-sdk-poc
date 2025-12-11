@@ -9,7 +9,7 @@ import { faker } from "@faker-js/faker";
 export function createGetAccountLoginPathParams(data?: Partial<GetAccountLoginPathParams>): GetAccountLoginPathParams {
   
   return {
-  ...{"apiVersion": faker.helpers.arrayElement<NonNullable<GetAccountLoginPathParams>["apiVersion"]>(["v4", "v4beta"]),"loginId": faker.number.int()},
+  ...{"loginId": faker.number.int()},
   ...data || {}
   }
 }
