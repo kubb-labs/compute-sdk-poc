@@ -24201,7 +24201,7 @@ export type PostLinodeInstanceData = {
                  */
                 subnet_id: number;
             } | null;
-        } | (unknown & {
+        } | {
             /**
              * __Read-only__ Returns `true` if the interface is in use, meaning that the Linode has been booted using the configuration profile to which the interface belongs.
              */
@@ -24373,7 +24373,7 @@ export type PostLinodeInstanceData = {
              * __Read-only__ The `id` of the VPC configured for this interface. Returned as `null` for non-`vpc` type interfaces.
              */
             readonly vpc_id?: number | null;
-        })>;
+        }>;
         /**
          * __Filterable__ Provides a name for the Linode. If not provided, the API generates one for it.
          *
@@ -29265,7 +29265,10 @@ export type GetLinodeConfigInterfacesResponses = {
 export type GetLinodeConfigInterfacesResponse = GetLinodeConfigInterfacesResponses[keyof GetLinodeConfigInterfacesResponses];
 
 export type PostLinodeConfigInterfaceData = {
-    body: unknown & {
+    /**
+     * The network interface to apply to this Linode's configuration profile.
+     */
+    body: {
         /**
          * __Read-only__ Returns `true` if the interface is in use, meaning that the Linode has been booted using the configuration profile to which the interface belongs.
          */
@@ -65689,7 +65692,7 @@ export type PostVpcData = {
     /**
      * VPC Create request object.
      */
-    body: unknown & {
+    body: {
         subnets?: unknown;
     } & {
         /**

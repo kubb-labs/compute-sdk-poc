@@ -1,6 +1,8 @@
 import { OpenAPIV3_1 } from "openapi-types";
 import { propertiesRequiredByDefaultTransform } from "./transform";
 import { fixNulls } from "./transform-2";
+import { moveApiVersionToServerUrl } from "./transform-3";
+import { removeBrokenSchemas } from "./transform-4";
 
 const OPEN_API_SPEC_URL = 'https://raw.githubusercontent.com/linode/linode-api-docs/refs/heads/development/openapi.json';
 
@@ -8,23 +10,10 @@ const response = await fetch(OPEN_API_SPEC_URL);
 
 const spec = await response.json() as OpenAPIV3_1.Document;
 
-if (spec.servers) {
-  spec.servers[0].url = 'https://api.linode.com/v4/';
-}
-
-for (const path in spec.paths) {
-  const pathItem = spec.paths[path];
-  const oldPath = path;
-  const newPath = path.replace('/{apiVersion}', '');
-  spec.paths[newPath] = pathItem;
-  delete spec.paths[oldPath];
-  if (spec.paths[newPath]?.parameters) {
-    spec.paths[newPath].parameters = spec.paths[newPath].parameters.filter((param) => 'name' in param && param.name !== 'apiVersion');
-  }
-}
-
 propertiesRequiredByDefaultTransform({ spec });
 fixNulls({ spec });
+moveApiVersionToServerUrl({ spec });
+removeBrokenSchemas({ spec });
 
 await Bun.write('./openapi.json', JSON.stringify(spec, null, 2));
 

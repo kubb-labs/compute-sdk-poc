@@ -9815,7 +9815,7 @@ export const postLinodeInstanceRequestSchema = z.object({
                     z.null()
                 ]))
             }),
-            z.intersection(z.unknown(), z.object({
+            z.object({
                 active: z.optional(z.boolean().readonly()),
                 id: z.optional(z.int().readonly()),
                 ip_ranges: z.optional(z.union([
@@ -9855,7 +9855,7 @@ export const postLinodeInstanceRequestSchema = z.object({
                     z.int().readonly(),
                     z.null()
                 ]).readonly())
-            }))
+            })
         ]))).default([]),
         label: z.optional(z.string().min(3).max(64).regex(/^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$/)),
         network_helper: z.optional(z.union([
@@ -11658,7 +11658,7 @@ export const getLinodeConfigInterfacesResponseSchema = z.array(z.object({
 })).min(1).max(3);
 
 export const postLinodeConfigInterfaceRequestSchema = z.object({
-    body: z.intersection(z.unknown(), z.object({
+    body: z.object({
         active: z.optional(z.boolean().readonly()),
         id: z.optional(z.int().readonly()),
         ip_ranges: z.optional(z.union([
@@ -11698,7 +11698,7 @@ export const postLinodeConfigInterfaceRequestSchema = z.object({
             z.int().readonly(),
             z.null()
         ]).readonly())
-    })),
+    }),
     path: z.object({
         linodeId: z.int(),
         configId: z.int()
@@ -24842,9 +24842,9 @@ export const getVpcsResponseSchema = z.object({
 }));
 
 export const postVpcRequestSchema = z.object({
-    body: z.intersection(z.unknown(), z.object({
+    body: z.object({
         subnets: z.optional(z.unknown())
-    }), z.object({
+    }).and(z.object({
         created: z.optional(z.iso.datetime().readonly()),
         description: z.optional(z.string().max(255)).default(''),
         id: z.optional(z.int().readonly()),

@@ -105,7 +105,7 @@ export const fixNulls = ({
           ('default' in nodeInfo.node && nodeInfo.node.default === null) ||
           ('example' in nodeInfo.node && nodeInfo.node.example && Array.isArray(nodeInfo.node.example) && nodeInfo.node.example.includes(null)))
       ) {
-        console.log(nodeInfo.key, ' | ', nodeInfo.node);
+        // console.log(nodeInfo.key, ' | ', nodeInfo.node);
         nodeInfo.node.nullable = true;
       }
     },
