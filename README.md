@@ -5,11 +5,9 @@ This repo contains different attempts for generating TypeScript SDKs from the [L
 Each folder in the `packages` directory represents a different tool being used to generate a TypeScript SDK.
 The `examples` directory is just used a manual playground for testing the generated SDKs.
 
-<img src="https://github.com/user-attachments/assets/602154b2-39d2-44bd-b720-d8b6e5083f52" width="650px" />
-
 ## Tools Tested
 
-### [Hey API](https://heyapi.dev/)
+### [Hey API](https://heyapi.dev/) 🥇
 
 You can see API reference docs for this generated SDK [here](https://bnussman-akamai.github.io/compute-sdk-poc/types/types.gen.PostLinodeInstanceData.html)!
 
@@ -23,7 +21,7 @@ You can see API reference docs for this generated SDK [here](https://bnussman-ak
 - Does not support generating mock data like Kubb yet
   - Claims to be coming soon https://github.com/hey-api/openapi-ts/issues/1485 
 
-### [Kubb](https://kubb.dev/)
+### [Kubb](https://kubb.dev/) 🥈
 
 #### Pros
 - More plugins in general
@@ -53,4 +51,10 @@ This isn't comprehensive. It just highlights some key points between the tools.
 
 ## Conclusion
 
-I had the most success with using https://heyapi.dev to generate a TypeScript SDK. With minor patching to the source OpenAPI spec, it generates a feature-rich fetch client, valid Zod schemas, and valid TypeScript types. Most types and schemas seem correct, but some are inaccurate due to inaccuracy and flaws in the source OpenAPI specification.
+I had the most success with using https://heyapi.dev to generate a TypeScript SDK.
+
+With minor patching to the source OpenAPI spec, it generates a feature-rich fetch client, valid Zod schemas, and valid TypeScript types. Most types and schemas seem correct, but some are inaccurate due to inaccuracy and flaws in the source OpenAPI specification.
+
+<img src="https://github.com/user-attachments/assets/602154b2-39d2-44bd-b720-d8b6e5083f52" width="670px" />
+
+You view [auto-generated reference docs](https://bnussman-akamai.github.io/compute-sdk-poc/functions/sdk.gen.postLinodeInstance.html) of the SDK to get an idea of what the final result is like.
