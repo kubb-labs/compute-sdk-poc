@@ -46,9 +46,7 @@ You can see API reference docs for this generated SDK [here](https://bnussman-ak
 - Generated lots of invalid code (115 errors in 47 files according to TypeScript)
   - Have not tried patching yet to get this number down
 
-<hr />
-
-### Comparison Chart
+## Comparison Chart
 
 This isn't comprehensive. It just highlights some key points between the tools. 
 
