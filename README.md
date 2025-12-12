@@ -5,6 +5,8 @@ This repo contains different attempts for generating TypeScript SDKs from the [L
 Each folder in the `packages` directory represents a different tool being used to generate a TypeScript SDK.
 The `examples` directory is just used a manual playground for testing the generated SDKs.
 
+<img src="https://github.com/user-attachments/assets/602154b2-39d2-44bd-b720-d8b6e5083f52" width="650px" />
+
 ## Tools Tested
 
 ### [Hey API](https://heyapi.dev/)
