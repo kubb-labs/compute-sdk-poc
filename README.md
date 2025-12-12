@@ -1,4 +1,4 @@
-# Generating TypeScript SDKs from the Linode OpenAPI specification
+## Overview
 
 This repo contains different attempts for generating TypeScript SDKs from the [Linode OpenAPI spesification](https://github.com/linode/linode-api-docs/blob/development/openapi.json) using different tools.
 
@@ -7,7 +7,7 @@ The `examples` directory is just used a manual playground for testing the genera
 
 ## Conclusion
 
-I had the most success with using https://heyapi.dev to generate a TypeScript SDK.
+I had the most success using https://heyapi.dev to generate a TypeScript SDK (see [`packages/openapi-ts`](https://github.com/bnussman-akamai/compute-sdk-poc/tree/main/packages/openapi-ts)).
 
 With minor patching to the source OpenAPI spec, it generates a feature-rich fetch client, valid Zod schemas, and valid TypeScript types. Most types and schemas seem correct, but some are inaccurate due to inaccuracy and flaws in the source OpenAPI specification.
 
