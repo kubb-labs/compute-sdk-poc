@@ -440,13 +440,288 @@ Use openapi-ts for production code but reference Kubb's:
 - Zod schema descriptions (for better error messages)
 - Detailed JSDoc (for documentation)
 
+## Additional Type Comparisons
+
+### Example 2: AccountSettings - Enums and Defaults
+
+#### openapi-ts Type
+
+```typescript
+export type AccountSettings = {
+    backups_enabled?: boolean;
+    interfaces_for_new_linodes?: 
+        | 'legacy_config_only' 
+        | 'legacy_config_default_but_linode_allowed' 
+        | 'linode_default_but_legacy_config_allowed' 
+        | 'linode_only';
+    readonly longview_subscription?: string;
+    maintenance_policy?: 'linode/migrate' | 'linode/power_off_on';
+    readonly managed?: boolean;
+    network_helper?: boolean;
+    object_storage?: 'disabled' | 'suspended' | 'active';
+};
+```
+
+**Features:**
+- Long enum values as inline union types
+- Clean and readable despite complexity
+- 7 lines of code
+
+#### Kubb Type
+
+```typescript
+export const accountSettingsInterfacesForNewLinodesEnum = {
+    "legacy_config_only": "legacy_config_only",
+    "legacy_config_default_but_linode_allowed": "legacy_config_default_but_linode_allowed",
+    "linode_default_but_legacy_config_allowed": "linode_default_but_legacy_config_allowed",
+    "linode_only": "linode_only"
+} as const;
+
+export type AccountSettingsInterfacesForNewLinodesEnumKey = 
+    (typeof accountSettingsInterfacesForNewLinodesEnum)[keyof typeof accountSettingsInterfacesForNewLinodesEnum];
+
+export const accountSettingsMaintenancePolicyEnum = {
+    "linode/migrate": "linode/migrate",
+    "linode/power_off_on": "linode/power_off_on"
+} as const;
+
+export type AccountSettingsMaintenancePolicyEnumKey = 
+    (typeof accountSettingsMaintenancePolicyEnum)[keyof typeof accountSettingsMaintenancePolicyEnum];
+
+export const accountSettingsObjectStorageEnum = {
+    "disabled": "disabled",
+    "suspended": "suspended",
+    "active": "active"
+} as const;
+
+export type AccountSettingsObjectStorageEnumKey = 
+    (typeof accountSettingsObjectStorageEnum)[keyof typeof accountSettingsObjectStorageEnum];
+
+export interface AccountSettings {
+    /**
+     * @description Account-wide backups default...
+     * @type boolean | undefined
+     */
+    backups_enabled?: boolean;
+    /**
+     * @description __Beta__ Defines if new Linodes can use legacy configuration interfaces...
+     * @type string | undefined
+     */
+    interfaces_for_new_linodes?: AccountSettingsInterfacesForNewLinodesEnumKey;
+    /**
+     * @description __Read-only__ The Longview Pro tier...
+     * @type string | undefined
+     */
+    readonly longview_subscription?: string;
+    /**
+     * @description __Beta__ Defines the default maintenance policy...
+     * @type string | undefined
+     */
+    maintenance_policy?: AccountSettingsMaintenancePolicyEnumKey;
+    /**
+     * @description __Read-only__ Our 24/7 incident response service...
+     * @type boolean | undefined
+     */
+    readonly managed?: boolean;
+    /**
+     * @type boolean | undefined
+     */
+    network_helper?: boolean;
+    /**
+     * @type string | undefined
+     */
+    object_storage?: AccountSettingsObjectStorageEnumKey;
+}
+```
+
+**Features:**
+- 3 separate enum const objects (33 lines vs 7)
+- Runtime-accessible enums (can iterate, get keys/values)
+- More verbose but provides runtime enum utilities
+- Detailed JSDoc comments
+
+**Runtime enum usage (Kubb advantage):**
+```typescript
+// With Kubb, you can do:
+const validPolicies = Object.values(accountSettingsMaintenancePolicyEnum);
+// ['linode/migrate', 'linode/power_off_on']
+
+// With openapi-ts, you'd need to manually define:
+const validPolicies = ['linode/migrate', 'linode/power_off_on'] as const;
+```
+
+### Schema Comparison for AccountSettings
+
+#### openapi-ts Schema
+
+```typescript
+export const accountSettingsSchema = z.object({
+    backups_enabled: z.optional(z.boolean()),
+    interfaces_for_new_linodes: z.optional(z.enum([
+        'legacy_config_only',
+        'legacy_config_default_but_linode_allowed',
+        'linode_default_but_legacy_config_allowed',
+        'linode_only'
+    ])),
+    longview_subscription: z.optional(z.string().readonly()),
+    maintenance_policy: z.optional(z.enum(['linode/migrate', 'linode/power_off_on'])),
+    managed: z.optional(z.boolean().readonly()),
+    network_helper: z.optional(z.boolean()),
+    object_storage: z.optional(z.enum(['disabled', 'suspended', 'active']))
+});
+```
+
+**Features:**
+- 10 lines, clean and concise
+- Inline enums
+- No field descriptions
+- Uses `.readonly()` for read-only fields
+
+#### Kubb Schema
+
+```typescript
+export const accountSettingsSchema = z.object({
+    "backups_enabled": z.optional(z.boolean().describe(
+        "Account-wide backups default. If `true`, all Linodes created will automatically be enrolled in the Backups service. If `false`, Linodes will not be enrolled by default, but may still be enrolled on creation or later."
+    )),
+    "interfaces_for_new_linodes": z.optional(z.enum([
+        "legacy_config_only", 
+        "legacy_config_default_but_linode_allowed", 
+        "linode_default_but_legacy_config_allowed", 
+        "linode_only"
+    ]).describe(
+        "__Beta__ Defines if new Linodes can use legacy configuration interfaces:\n- `legacy_config_only`. All new Linodes need to use legacy configuration interfaces...[long description]"
+    )),
+    "longview_subscription": z.optional(z.string().describe(
+        "__Read-only__ The Longview Pro tier you are currently subscribed to. The value must be a [Longview subscription](https://techdocs.akamai.com/linode-api/reference/get-longview-subscriptions) ID or `null` for Longview Free."
+    )),
+    "maintenance_policy": z.optional(z.enum([
+        "linode/migrate", 
+        "linode/power_off_on"
+    ]).describe(
+        "__Beta__ Defines the default maintenance policy for new Linodes created on this account. Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details."
+    )),
+    "managed": z.optional(z.boolean().describe(
+        "__Read-only__ Our 24/7 incident response service. This robust, multi-homed monitoring system distributes monitoring checks..."
+    )),
+    "network_helper": z.optional(z.boolean().describe(
+        "Enables network helper across all users by default for new Linodes and Linode Configs."
+    )),
+    "object_storage": z.optional(z.enum([
+        "disabled", 
+        "suspended", 
+        "active"
+    ]).default("disabled").describe(
+        "__Read-only__ A string describing the status of this account's Object Storage service enrollment."
+    ))
+}).describe("Account Settings object.");
+```
+
+**Features:**
+- Much more verbose (~25 lines with descriptions)
+- Includes `.describe()` for every field
+- Has `.default()` value for object_storage
+- Better error messages when validation fails
+- Does NOT use `.readonly()` (inconsistency)
+
+**Error message comparison:**
+
+When validation fails:
+
+```typescript
+// openapi-ts error (less context):
+{
+  "issues": [{
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "string",
+    "path": ["backups_enabled"]
+  }]
+}
+
+// Kubb error (with description):
+{
+  "issues": [{
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "string",
+    "path": ["backups_enabled"],
+    "message": "Expected boolean, received string. Account-wide backups default. If `true`, all Linodes created will automatically be enrolled in the Backups service..."
+  }]
+}
+```
+
+## Practical Comparison Summary
+
+### When to Use Each Approach
+
+**Use openapi-ts types/schemas when:**
+- You want minimal bundle size (before tree-shaking)
+- You prefer concise, readable code
+- You don't need runtime enum utilities
+- You're okay with standard Zod error messages
+- You want to follow TypeScript best practices
+
+**Use Kubb types/schemas when:**
+- You need runtime-accessible enum constants
+- You want detailed error messages with field descriptions
+- You prefer explicit, verbose code (easier for beginners)
+- You want to iterate over enum values at runtime
+- You need granular file control for code generation
+
+### Concrete Example: Using Runtime Enums
+
+**Scenario**: Build a dropdown for maintenance policy selection
+
+```typescript
+// With Kubb (easy):
+import { accountSettingsMaintenancePolicyEnum } from './types/AccountSettings';
+
+const options = Object.entries(accountSettingsMaintenancePolicyEnum).map(
+  ([key, value]) => ({ label: key, value })
+);
+// [
+//   { label: 'linode/migrate', value: 'linode/migrate' },
+//   { label: 'linode/power_off_on', value: 'linode/power_off_on' }
+// ]
+
+// With openapi-ts (manual):
+const options = [
+  { label: 'linode/migrate', value: 'linode/migrate' as const },
+  { label: 'linode/power_off_on', value: 'linode/power_off_on' as const }
+];
+```
+
+### Concrete Example: Better Error Messages
+
+```typescript
+// Kubb schema with descriptions provides better UX
+const result = accountSettingsSchema.safeParse({
+  backups_enabled: "yes" // wrong type
+});
+
+if (!result.success) {
+  // Kubb includes the field description in error:
+  // "Expected boolean, received string. Account-wide backups default. 
+  //  If `true`, all Linodes created will automatically be enrolled..."
+  
+  // openapi-ts just says:
+  // "Expected boolean, received string"
+}
+```
+
 ## Conclusion
 
 Both tools generate **functionally equivalent** types and schemas with similar validation rules. The main differences are:
 
 1. **Organization**: openapi-ts consolidates, Kubb separates
 2. **Style**: openapi-ts is concise, Kubb is verbose
-3. **Enums**: openapi-ts uses inline unions, Kubb creates const objects
-4. **Descriptions**: Kubb includes them in schemas, openapi-ts doesn't
+3. **Enums**: openapi-ts uses inline unions, Kubb creates const objects (runtime-accessible)
+4. **Descriptions**: Kubb includes them in schemas (better error messages), openapi-ts doesn't
+5. **Bundle size**: openapi-ts is smaller before tree-shaking
+6. **Developer experience**: openapi-ts is cleaner, Kubb is more explicit
 
-For most use cases, **openapi-ts generates cleaner code**, but Kubb's approach has advantages for specific scenarios (runtime enums, detailed error messages).
+For most use cases, **openapi-ts generates cleaner code**, but Kubb's approach has real advantages for:
+- Building dynamic UIs with enum-based selects/filters
+- Providing better validation error messages to end users
+- Code generation workflows that benefit from explicit, separated types
