@@ -5,6 +5,27 @@
   "files": ["dist"],
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.mts"
+    },
+    "./types": {
+      "types": "./dist/types/index.ts"
+    },
+    "./schemas": {
+      "import": "./dist/schemas/index.mjs",
+      "types": "./dist/schemas/index.d.mts"
+    },
+    "./api": {
+      "import": "./dist/api/index.mjs",
+      "types": "./dist/api/index.d.mts"
+    },
+    "./mocks": {
+      "import": "./dist/mocks/index.mjs",
+      "types": "./dist/mocks/index.d.mts"
+    }
+  },
   "scripts": {
     "generate": "kubb generate && echo \"export * from './.kubb/fetch.ts'\" >> src/index.ts",
     "download": "bun run ./scripts/download.ts",
@@ -26,6 +47,9 @@
   "dependencies": {
     "@faker-js/faker": "10.1.0",
     "@kubb/plugin-client": "^4.6.0",
+    "zod": "^4"
+  },
+  "peerDependencies": {
     "zod": "^4"
   }
 }

@@ -51,9 +51,9 @@ You can see API reference docs for this generated SDK [here](https://bnussman-ak
 
 ## Comparison Chart
 
-This isn't comprehensive. It just highlights some key points between the tools. 
+This isn't comprehensive. It just highlights some key points between the tools. For a detailed comparison, see [COMPARISON.md](./COMPARISON.md).
 
-|                  |  [Hey](https://heyapi.dev/openapi-ts/core)  |  [Kubb](https://kubb.dev/plugins/core/)  |
+|                  |  [Hey API](https://heyapi.dev/openapi-ts/core)  |  [Kubb](https://kubb.dev/plugins/core/)  |
 |------------------|-------|--------|
 | Fetch Client     |  ✅   |   ✅   |
 | Axios Client     |  ✅   |   ✅   |
@@ -63,7 +63,27 @@ This isn't comprehensive. It just highlights some key points between the tools.
 | React Query hooks|  ✅   |   ✅   |
 | Mock Data        |  ❌ (Coming soon)   |   ✅   |
 | Angular support  |  ✅   |   ❌   |
-| Generates valid code  |  ✅ (5 errors in 2 files according to TypeScript)  |   ❌  (115 errors in 47 files according to TypeScript)  |
+| File organization|  ✅ Consolidated (15 files) |   ⚠️  Split (2000+ files)  |
+| Type syntax      |  ✅ `type` keyword  |   ⚠️  `interface` or `type`  |
+| Generates valid code  |  ✅ (9 errors, mostly in tests)  |   ❌  (115+ errors in generated code)  |
+
+### Key Differences
+
+**File Organization:**
+- **Hey API**: Generates consolidated files (`types.gen.ts`, `sdk.gen.ts`, `zod.gen.ts`) for easier consumption
+- **Kubb**: Generates individual files per operation/type, which can be 2000+ files for large APIs
+
+**Code Quality:**
+- **Hey API**: Generates mostly valid TypeScript with minimal errors
+- **Kubb**: Currently generates code with TypeScript errors that need fixing (e.g., missing imports, duplicate exports)
+
+**Developer Experience:**
+- **Hey API**: Better defaults, works out of the box
+- **Kubb**: More configuration needed, but more flexibility with plugins
+
+**Unique Features:**
+- **Hey API**: Better Angular support, cleaner generated code
+- **Kubb**: Mock data generation with Faker, more plugin ecosystem
 
 ## Future Work
 
