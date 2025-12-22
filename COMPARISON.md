@@ -4,6 +4,8 @@
 
 This document compares the code generation between Kubb and openapi-ts (Hey API) to identify what's missing in Kubb to achieve similar code quality and structure.
 
+> **Note**: For detailed comparison of individual types and schemas, see [TYPES_SCHEMAS_COMPARISON.md](./TYPES_SCHEMAS_COMPARISON.md)
+
 ## Key Differences
 
 ### 1. File Organization

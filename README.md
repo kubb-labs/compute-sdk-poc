@@ -85,6 +85,16 @@ This isn't comprehensive. It just highlights some key points between the tools. 
 - **Hey API**: Better Angular support, cleaner generated code
 - **Kubb**: Mock data generation with Faker, more plugin ecosystem
 
+## Detailed Comparison Documents
+
+For in-depth analysis of the differences between Kubb and Hey API, see:
+
+- **[COMPARISON.md](./COMPARISON.md)** - High-level comparison of features, architecture, and code organization
+- **[TYPES_SCHEMAS_COMPARISON.md](./TYPES_SCHEMAS_COMPARISON.md)** - Detailed comparison of individual types and Zod schemas
+- **[KEY_FINDINGS.md](./KEY_FINDINGS.md)** - Executive summary of what's missing in Kubb
+- **[RECOMMENDATIONS.md](./RECOMMENDATIONS.md)** - Best practices and migration guide
+- **[packages/kubb/IMPROVEMENTS.md](./packages/kubb/IMPROVEMENTS.md)** - Specific improvements made to Kubb configuration
+
 ## Future Work
 
 This proof of concept repo doesn't _fully_ automate SDK generation.
