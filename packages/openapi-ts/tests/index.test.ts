@@ -15,6 +15,7 @@ describe("TypeScript types", () => {
     expectTypeOf(getLinodeInstance).parameter(0).toExtend<{ path: { linodeId: number } }>();
   });
 
+
   test("return type when fetching a Linode", async () => {
     const mockLinode = { id: 1, label: 'linode-1' };
 
@@ -28,6 +29,15 @@ describe("TypeScript types", () => {
 
     expect(linode).toStrictEqual(mockLinode);
     expectTypeOf(linode).toExtend<{ id: number, label: string }>();
+  });
+
+  test("can override the base URL", async() => {
+    getLinodeInstance({
+      baseUrl: 'https://api.linode.com/v4beta',
+      path: {
+        linodeId: 0
+      }
+    })
   });
 });
 

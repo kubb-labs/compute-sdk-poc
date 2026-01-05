@@ -48,7 +48,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 export const getAccount = <ThrowOnError extends boolean = true>(options?: Options<GetAccountData, ThrowOnError>) => (options?.client ?? client).get<GetAccountResponses, GetAccountErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account',
+    url: 'account',
     ...options
 });
 
@@ -106,7 +106,7 @@ export const getAccount = <ThrowOnError extends boolean = true>(options?: Option
 export const putAccount = <ThrowOnError extends boolean = true>(options: Options<PutAccountData, ThrowOnError>) => (options.client ?? client).put<PutAccountResponses, PutAccountErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account',
+    url: 'account',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ export const putAccount = <ThrowOnError extends boolean = true>(options: Options
 export const getAccountAgreements = <ThrowOnError extends boolean = true>(options?: Options<GetAccountAgreementsData, ThrowOnError>) => (options?.client ?? client).get<GetAccountAgreementsResponses, GetAccountAgreementsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/agreements',
+    url: 'account/agreements',
     ...options
 });
 
@@ -162,7 +162,7 @@ export const getAccountAgreements = <ThrowOnError extends boolean = true>(option
 export const postAccountAgreements = <ThrowOnError extends boolean = true>(options: Options<PostAccountAgreementsData, ThrowOnError>) => (options.client ?? client).post<PostAccountAgreementsResponses, PostAccountAgreementsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/agreements',
+    url: 'account/agreements',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ export const postAccountAgreements = <ThrowOnError extends boolean = true>(optio
 export const getAvailability = <ThrowOnError extends boolean = true>(options?: Options<GetAvailabilityData, ThrowOnError>) => (options?.client ?? client).get<GetAvailabilityResponses, GetAvailabilityErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/availability',
+    url: 'account/availability',
     ...options
 });
 
@@ -242,7 +242,7 @@ export const getAvailability = <ThrowOnError extends boolean = true>(options?: O
 export const getAccountAvailability = <ThrowOnError extends boolean = true>(options: Options<GetAccountAvailabilityData, ThrowOnError>) => (options.client ?? client).get<GetAccountAvailabilityResponses, GetAccountAvailabilityErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/availability/{regionId}',
+    url: 'account/availability/{regionId}',
     ...options
 });
 
@@ -278,7 +278,7 @@ export const getAccountAvailability = <ThrowOnError extends boolean = true>(opti
 export const getEnrolledBetaPrograms = <ThrowOnError extends boolean = true>(options?: Options<GetEnrolledBetaProgramsData, ThrowOnError>) => (options?.client ?? client).get<GetEnrolledBetaProgramsResponses, GetEnrolledBetaProgramsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/betas',
+    url: 'account/betas',
     ...options
 });
 
@@ -320,7 +320,7 @@ export const getEnrolledBetaPrograms = <ThrowOnError extends boolean = true>(opt
 export const postBetaProgram = <ThrowOnError extends boolean = true>(options: Options<PostBetaProgramData, ThrowOnError>) => (options.client ?? client).post<PostBetaProgramResponses, PostBetaProgramErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/betas',
+    url: 'account/betas',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -360,7 +360,7 @@ export const postBetaProgram = <ThrowOnError extends boolean = true>(options: Op
 export const getEnrolledBetaProgram = <ThrowOnError extends boolean = true>(options: Options<GetEnrolledBetaProgramData, ThrowOnError>) => (options.client ?? client).get<GetEnrolledBetaProgramResponses, GetEnrolledBetaProgramErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/betas/{betaId}',
+    url: 'account/betas/{betaId}',
     ...options
 });
 
@@ -411,7 +411,7 @@ export const getEnrolledBetaProgram = <ThrowOnError extends boolean = true>(opti
 export const postCancelAccount = <ThrowOnError extends boolean = true>(options: Options<PostCancelAccountData, ThrowOnError>) => (options.client ?? client).post<PostCancelAccountResponses, PostCancelAccountErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/cancel',
+    url: 'account/cancel',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -453,7 +453,7 @@ export const postCancelAccount = <ThrowOnError extends boolean = true>(options: 
 export const getChildAccounts = <ThrowOnError extends boolean = true>(options?: Options<GetChildAccountsData, ThrowOnError>) => (options?.client ?? client).get<GetChildAccountsResponses, GetChildAccountsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/child-accounts',
+    url: 'account/child-accounts',
     ...options
 });
 
@@ -491,7 +491,7 @@ export const getChildAccounts = <ThrowOnError extends boolean = true>(options?: 
 export const getChildAccount = <ThrowOnError extends boolean = true>(options: Options<GetChildAccountData, ThrowOnError>) => (options.client ?? client).get<GetChildAccountResponses, GetChildAccountErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/child-accounts/{euuId}',
+    url: 'account/child-accounts/{euuId}',
     ...options
 });
 
@@ -547,7 +547,7 @@ export const getChildAccount = <ThrowOnError extends boolean = true>(options: Op
 export const postChildAccountToken = <ThrowOnError extends boolean = true>(options: Options<PostChildAccountTokenData, ThrowOnError>) => (options.client ?? client).post<PostChildAccountTokenResponses, PostChildAccountTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/child-accounts/{euuId}/token',
+    url: 'account/child-accounts/{euuId}/token',
     ...options
 });
 
@@ -577,7 +577,7 @@ export const postChildAccountToken = <ThrowOnError extends boolean = true>(optio
 export const postCreditCard = <ThrowOnError extends boolean = true>(options: Options<PostCreditCardData, ThrowOnError>) => (options.client ?? client).post<PostCreditCardResponses, PostCreditCardErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/credit-card',
+    url: 'account/credit-card',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -609,7 +609,7 @@ export const postCreditCard = <ThrowOnError extends boolean = true>(options: Opt
 export const getEntityTransfers = <ThrowOnError extends boolean = true>(options?: Options<GetEntityTransfersData, ThrowOnError>) => (options?.client ?? client).get<GetEntityTransfersResponses, GetEntityTransfersErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/entity-transfers',
+    url: 'account/entity-transfers',
     ...options
 });
 
@@ -637,7 +637,7 @@ export const getEntityTransfers = <ThrowOnError extends boolean = true>(options?
 export const postEntityTransfer = <ThrowOnError extends boolean = true>(options?: Options<PostEntityTransferData, ThrowOnError>) => (options?.client ?? client).post<PostEntityTransferResponses, PostEntityTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/entity-transfers',
+    url: 'account/entity-transfers',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -669,7 +669,7 @@ export const postEntityTransfer = <ThrowOnError extends boolean = true>(options?
 export const deleteEntityTransfer = <ThrowOnError extends boolean = true>(options: Options<DeleteEntityTransferData, ThrowOnError>) => (options.client ?? client).delete<DeleteEntityTransferResponses, DeleteEntityTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/entity-transfers/{token}',
+    url: 'account/entity-transfers/{token}',
     ...options
 });
 
@@ -697,7 +697,7 @@ export const deleteEntityTransfer = <ThrowOnError extends boolean = true>(option
 export const getEntityTransfer = <ThrowOnError extends boolean = true>(options: Options<GetEntityTransferData, ThrowOnError>) => (options.client ?? client).get<GetEntityTransferResponses, GetEntityTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/entity-transfers/{token}',
+    url: 'account/entity-transfers/{token}',
     ...options
 });
 
@@ -725,7 +725,7 @@ export const getEntityTransfer = <ThrowOnError extends boolean = true>(options: 
 export const postAcceptEntityTransfer = <ThrowOnError extends boolean = true>(options: Options<PostAcceptEntityTransferData, ThrowOnError>) => (options.client ?? client).post<PostAcceptEntityTransferResponses, PostAcceptEntityTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/entity-transfers/{token}/accept',
+    url: 'account/entity-transfers/{token}/accept',
     ...options
 });
 
@@ -759,7 +759,7 @@ export const postAcceptEntityTransfer = <ThrowOnError extends boolean = true>(op
 export const getEvents = <ThrowOnError extends boolean = true>(options?: Options<GetEventsData, ThrowOnError>) => (options?.client ?? client).get<GetEventsResponses, GetEventsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/events',
+    url: 'account/events',
     ...options
 });
 
@@ -793,7 +793,7 @@ export const getEvents = <ThrowOnError extends boolean = true>(options?: Options
 export const getEvent = <ThrowOnError extends boolean = true>(options: Options<GetEventData, ThrowOnError>) => (options.client ?? client).get<GetEventResponses, GetEventErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/events/{eventId}',
+    url: 'account/events/{eventId}',
     ...options
 });
 
@@ -831,7 +831,7 @@ export const getEvent = <ThrowOnError extends boolean = true>(options: Options<G
 export const postEventSeen = <ThrowOnError extends boolean = true>(options: Options<PostEventSeenData, ThrowOnError>) => (options.client ?? client).post<PostEventSeenResponses, PostEventSeenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/events/{eventId}/seen',
+    url: 'account/events/{eventId}/seen',
     ...options
 });
 
@@ -865,7 +865,7 @@ export const postEventSeen = <ThrowOnError extends boolean = true>(options: Opti
 export const getInvoices = <ThrowOnError extends boolean = true>(options?: Options<GetInvoicesData, ThrowOnError>) => (options?.client ?? client).get<GetInvoicesResponses, GetInvoicesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/invoices',
+    url: 'account/invoices',
     ...options
 });
 
@@ -899,7 +899,7 @@ export const getInvoices = <ThrowOnError extends boolean = true>(options?: Optio
 export const getInvoice = <ThrowOnError extends boolean = true>(options: Options<GetInvoiceData, ThrowOnError>) => (options.client ?? client).get<GetInvoiceResponses, GetInvoiceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/invoices/{invoiceId}',
+    url: 'account/invoices/{invoiceId}',
     ...options
 });
 
@@ -933,7 +933,7 @@ export const getInvoice = <ThrowOnError extends boolean = true>(options: Options
 export const getInvoiceItems = <ThrowOnError extends boolean = true>(options: Options<GetInvoiceItemsData, ThrowOnError>) => (options.client ?? client).get<GetInvoiceItemsResponses, GetInvoiceItemsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/invoices/{invoiceId}/items',
+    url: 'account/invoices/{invoiceId}/items',
     ...options
 });
 
@@ -967,7 +967,7 @@ export const getInvoiceItems = <ThrowOnError extends boolean = true>(options: Op
 export const getAccountLogins = <ThrowOnError extends boolean = true>(options?: Options<GetAccountLoginsData, ThrowOnError>) => (options?.client ?? client).get<GetAccountLoginsResponses, GetAccountLoginsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/logins',
+    url: 'account/logins',
     ...options
 });
 
@@ -1001,7 +1001,7 @@ export const getAccountLogins = <ThrowOnError extends boolean = true>(options?: 
 export const getAccountLogin = <ThrowOnError extends boolean = true>(options: Options<GetAccountLoginData, ThrowOnError>) => (options.client ?? client).get<GetAccountLoginResponses, GetAccountLoginErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/logins/{loginId}',
+    url: 'account/logins/{loginId}',
     ...options
 });
 
@@ -1031,7 +1031,7 @@ export const getAccountLogin = <ThrowOnError extends boolean = true>(options: Op
 export const getMaintenance = <ThrowOnError extends boolean = true>(options?: Options<GetMaintenanceData, ThrowOnError>) => (options?.client ?? client).get<GetMaintenanceResponses, GetMaintenanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/maintenance',
+    url: 'account/maintenance',
     ...options
 });
 
@@ -1065,7 +1065,7 @@ export const getMaintenance = <ThrowOnError extends boolean = true>(options?: Op
 export const getNotifications = <ThrowOnError extends boolean = true>(options?: Options<GetNotificationsData, ThrowOnError>) => (options?.client ?? client).get<GetNotificationsResponses, GetNotificationsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/notifications',
+    url: 'account/notifications',
     ...options
 });
 
@@ -1099,7 +1099,7 @@ export const getNotifications = <ThrowOnError extends boolean = true>(options?: 
 export const getClients = <ThrowOnError extends boolean = true>(options?: Options<GetClientsData, ThrowOnError>) => (options?.client ?? client).get<GetClientsResponses, GetClientsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/oauth-clients',
+    url: 'account/oauth-clients',
     ...options
 });
 
@@ -1135,7 +1135,7 @@ export const getClients = <ThrowOnError extends boolean = true>(options?: Option
 export const postClient = <ThrowOnError extends boolean = true>(options?: Options<PostClientData, ThrowOnError>) => (options?.client ?? client).post<PostClientResponses, PostClientErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/oauth-clients',
+    url: 'account/oauth-clients',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -1174,7 +1174,7 @@ export const postClient = <ThrowOnError extends boolean = true>(options?: Option
 export const deleteClient = <ThrowOnError extends boolean = true>(options: Options<DeleteClientData, ThrowOnError>) => (options.client ?? client).delete<DeleteClientResponses, DeleteClientErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/oauth-clients/{clientId}',
+    url: 'account/oauth-clients/{clientId}',
     ...options
 });
 
@@ -1209,7 +1209,7 @@ export const deleteClient = <ThrowOnError extends boolean = true>(options: Optio
 export const getClient = <ThrowOnError extends boolean = true>(options: Options<GetClientData, ThrowOnError>) => (options.client ?? client).get<GetClientResponses, GetClientErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/oauth-clients/{clientId}',
+    url: 'account/oauth-clients/{clientId}',
     ...options
 });
 
@@ -1245,7 +1245,7 @@ export const getClient = <ThrowOnError extends boolean = true>(options: Options<
 export const putClient = <ThrowOnError extends boolean = true>(options: Options<PutClientData, ThrowOnError>) => (options.client ?? client).put<PutClientResponses, PutClientErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/oauth-clients/{clientId}',
+    url: 'account/oauth-clients/{clientId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -1284,7 +1284,7 @@ export const putClient = <ThrowOnError extends boolean = true>(options: Options<
 export const postResetClientSecret = <ThrowOnError extends boolean = true>(options: Options<PostResetClientSecretData, ThrowOnError>) => (options.client ?? client).post<PostResetClientSecretResponses, PostResetClientSecretErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/oauth-clients/{clientId}/reset-secret',
+    url: 'account/oauth-clients/{clientId}/reset-secret',
     ...options
 });
 
@@ -1295,7 +1295,7 @@ export const postResetClientSecret = <ThrowOnError extends boolean = true>(optio
  */
 export const getClientThumbnail = <ThrowOnError extends boolean = true>(options: Options<GetClientThumbnailData, ThrowOnError>) => (options.client ?? client).get<GetClientThumbnailResponses, GetClientThumbnailErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/account/oauth-clients/{clientId}/thumbnail',
+    url: 'account/oauth-clients/{clientId}/thumbnail',
     ...options
 });
 
@@ -1321,7 +1321,7 @@ export const getClientThumbnail = <ThrowOnError extends boolean = true>(options:
 export const putClientThumbnail = <ThrowOnError extends boolean = true>(options: Options<PutClientThumbnailData, ThrowOnError>) => (options.client ?? client).put<PutClientThumbnailResponses, PutClientThumbnailErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/oauth-clients/{clientId}/thumbnail',
+    url: 'account/oauth-clients/{clientId}/thumbnail',
     ...options,
     headers: {
         'Content-Type': 'image/png',
@@ -1359,7 +1359,7 @@ export const putClientThumbnail = <ThrowOnError extends boolean = true>(options:
 export const getPaymentMethods = <ThrowOnError extends boolean = true>(options?: Options<GetPaymentMethodsData, ThrowOnError>) => (options?.client ?? client).get<GetPaymentMethodsResponses, GetPaymentMethodsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/payment-methods',
+    url: 'account/payment-methods',
     ...options
 });
 
@@ -1415,7 +1415,7 @@ export const getPaymentMethods = <ThrowOnError extends boolean = true>(options?:
 export const postPaymentMethod = <ThrowOnError extends boolean = true>(options: Options<PostPaymentMethodData, ThrowOnError>) => (options.client ?? client).post<PostPaymentMethodResponses, PostPaymentMethodErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/payment-methods',
+    url: 'account/payment-methods',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -1455,7 +1455,7 @@ export const postPaymentMethod = <ThrowOnError extends boolean = true>(options: 
 export const deletePaymentMethod = <ThrowOnError extends boolean = true>(options: Options<DeletePaymentMethodData, ThrowOnError>) => (options.client ?? client).delete<DeletePaymentMethodResponses, DeletePaymentMethodErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/payment-methods/{paymentMethodId}',
+    url: 'account/payment-methods/{paymentMethodId}',
     ...options
 });
 
@@ -1489,7 +1489,7 @@ export const deletePaymentMethod = <ThrowOnError extends boolean = true>(options
 export const getPaymentMethod = <ThrowOnError extends boolean = true>(options: Options<GetPaymentMethodData, ThrowOnError>) => (options.client ?? client).get<GetPaymentMethodResponses, GetPaymentMethodErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/payment-methods/{paymentMethodId}',
+    url: 'account/payment-methods/{paymentMethodId}',
     ...options
 });
 
@@ -1529,7 +1529,7 @@ export const getPaymentMethod = <ThrowOnError extends boolean = true>(options: O
 export const postMakePaymentMethodDefault = <ThrowOnError extends boolean = true>(options: Options<PostMakePaymentMethodDefaultData, ThrowOnError>) => (options.client ?? client).post<PostMakePaymentMethodDefaultResponses, PostMakePaymentMethodDefaultErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/payment-methods/{paymentMethodId}/make-default',
+    url: 'account/payment-methods/{paymentMethodId}/make-default',
     ...options
 });
 
@@ -1563,7 +1563,7 @@ export const postMakePaymentMethodDefault = <ThrowOnError extends boolean = true
 export const getPayments = <ThrowOnError extends boolean = true>(options?: Options<GetPaymentsData, ThrowOnError>) => (options?.client ?? client).get<GetPaymentsResponses, GetPaymentsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/payments',
+    url: 'account/payments',
     ...options
 });
 
@@ -1609,7 +1609,7 @@ export const getPayments = <ThrowOnError extends boolean = true>(options?: Optio
 export const postPayment = <ThrowOnError extends boolean = true>(options: Options<PostPaymentData, ThrowOnError>) => (options.client ?? client).post<PostPaymentResponses, PostPaymentErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/payments',
+    url: 'account/payments',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -1641,7 +1641,7 @@ export const postPayment = <ThrowOnError extends boolean = true>(options: Option
 export const postPayPalPayment = <ThrowOnError extends boolean = true>(options: Options<PostPayPalPaymentData, ThrowOnError>) => (options.client ?? client).post<PostPayPalPaymentResponses, PostPayPalPaymentErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/payments/paypal',
+    url: 'account/payments/paypal',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -1673,7 +1673,7 @@ export const postPayPalPayment = <ThrowOnError extends boolean = true>(options: 
 export const postExecutePayPalPayment = <ThrowOnError extends boolean = true>(options: Options<PostExecutePayPalPaymentData, ThrowOnError>) => (options.client ?? client).post<PostExecutePayPalPaymentResponses, PostExecutePayPalPaymentErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/payments/paypal/execute',
+    url: 'account/payments/paypal/execute',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -1711,7 +1711,7 @@ export const postExecutePayPalPayment = <ThrowOnError extends boolean = true>(op
 export const getPayment = <ThrowOnError extends boolean = true>(options: Options<GetPaymentData, ThrowOnError>) => (options.client ?? client).get<GetPaymentResponses, GetPaymentErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/payments/{paymentId}',
+    url: 'account/payments/{paymentId}',
     ...options
 });
 
@@ -1761,7 +1761,7 @@ export const getPayment = <ThrowOnError extends boolean = true>(options: Options
 export const postPromoCredit = <ThrowOnError extends boolean = true>(options?: Options<PostPromoCreditData, ThrowOnError>) => (options?.client ?? client).post<PostPromoCreditResponses, PostPromoCreditErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/promo-codes',
+    url: 'account/promo-codes',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -1802,7 +1802,7 @@ export const postPromoCredit = <ThrowOnError extends boolean = true>(options?: O
 export const getServiceTransfers = <ThrowOnError extends boolean = true>(options?: Options<GetServiceTransfersData, ThrowOnError>) => (options?.client ?? client).get<GetServiceTransfersResponses, GetServiceTransfersErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/service-transfers',
+    url: 'account/service-transfers',
     ...options
 });
 
@@ -1867,7 +1867,7 @@ export const getServiceTransfers = <ThrowOnError extends boolean = true>(options
 export const postServiceTransfer = <ThrowOnError extends boolean = true>(options?: Options<PostServiceTransferData, ThrowOnError>) => (options?.client ?? client).post<PostServiceTransferResponses, PostServiceTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/service-transfers',
+    url: 'account/service-transfers',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -1910,7 +1910,7 @@ export const postServiceTransfer = <ThrowOnError extends boolean = true>(options
 export const deleteServiceTransfer = <ThrowOnError extends boolean = true>(options: Options<DeleteServiceTransferData, ThrowOnError>) => (options.client ?? client).delete<DeleteServiceTransferResponses, DeleteServiceTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/service-transfers/{token}',
+    url: 'account/service-transfers/{token}',
     ...options
 });
 
@@ -1947,7 +1947,7 @@ export const deleteServiceTransfer = <ThrowOnError extends boolean = true>(optio
 export const getServiceTransfer = <ThrowOnError extends boolean = true>(options: Options<GetServiceTransferData, ThrowOnError>) => (options.client ?? client).get<GetServiceTransferResponses, GetServiceTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/service-transfers/{token}',
+    url: 'account/service-transfers/{token}',
     ...options
 });
 
@@ -2008,7 +2008,7 @@ export const getServiceTransfer = <ThrowOnError extends boolean = true>(options:
 export const postAcceptServiceTransfer = <ThrowOnError extends boolean = true>(options: Options<PostAcceptServiceTransferData, ThrowOnError>) => (options.client ?? client).post<PostAcceptServiceTransferResponses, PostAcceptServiceTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/service-transfers/{token}/accept',
+    url: 'account/service-transfers/{token}/accept',
     ...options
 });
 
@@ -2042,7 +2042,7 @@ export const postAcceptServiceTransfer = <ThrowOnError extends boolean = true>(o
 export const getAccountSettings = <ThrowOnError extends boolean = true>(options?: Options<GetAccountSettingsData, ThrowOnError>) => (options?.client ?? client).get<GetAccountSettingsResponses, GetAccountSettingsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/settings',
+    url: 'account/settings',
     ...options
 });
 
@@ -2077,7 +2077,7 @@ export const getAccountSettings = <ThrowOnError extends boolean = true>(options?
 export const putAccountSettings = <ThrowOnError extends boolean = true>(options: Options<PutAccountSettingsData, ThrowOnError>) => (options.client ?? client).put<PutAccountSettingsResponses, PutAccountSettingsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/settings',
+    url: 'account/settings',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -2115,7 +2115,7 @@ export const putAccountSettings = <ThrowOnError extends boolean = true>(options:
 export const postEnableAccountManaged = <ThrowOnError extends boolean = true>(options?: Options<PostEnableAccountManagedData, ThrowOnError>) => (options?.client ?? client).post<PostEnableAccountManagedResponses, PostEnableAccountManagedErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/settings/managed-enable',
+    url: 'account/settings/managed-enable',
     ...options
 });
 
@@ -2149,7 +2149,7 @@ export const postEnableAccountManaged = <ThrowOnError extends boolean = true>(op
 export const getTransfer = <ThrowOnError extends boolean = true>(options?: Options<GetTransferData, ThrowOnError>) => (options?.client ?? client).get<GetTransferResponses, GetTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/transfer',
+    url: 'account/transfer',
     ...options
 });
 
@@ -2193,7 +2193,7 @@ export const getTransfer = <ThrowOnError extends boolean = true>(options?: Optio
 export const getUsers = <ThrowOnError extends boolean = true>(options?: Options<GetUsersData, ThrowOnError>) => (options?.client ?? client).get<GetUsersResponses, GetUsersErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/users',
+    url: 'account/users',
     ...options
 });
 
@@ -2246,7 +2246,7 @@ export const getUsers = <ThrowOnError extends boolean = true>(options?: Options<
 export const postUser = <ThrowOnError extends boolean = true>(options?: Options<PostUserData, ThrowOnError>) => (options?.client ?? client).post<PostUserResponses, PostUserErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/users',
+    url: 'account/users',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -2296,7 +2296,7 @@ export const postUser = <ThrowOnError extends boolean = true>(options?: Options<
 export const deleteUser = <ThrowOnError extends boolean = true>(options: Options<DeleteUserData, ThrowOnError>) => (options.client ?? client).delete<DeleteUserResponses, DeleteUserErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/users/{username}',
+    url: 'account/users/{username}',
     ...options
 });
 
@@ -2334,7 +2334,7 @@ export const deleteUser = <ThrowOnError extends boolean = true>(options: Options
 export const getUser = <ThrowOnError extends boolean = true>(options: Options<GetUserData, ThrowOnError>) => (options.client ?? client).get<GetUserResponses, GetUserErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/users/{username}',
+    url: 'account/users/{username}',
     ...options
 });
 
@@ -2385,7 +2385,7 @@ export const getUser = <ThrowOnError extends boolean = true>(options: Options<Ge
 export const putUser = <ThrowOnError extends boolean = true>(options: Options<PutUserData, ThrowOnError>) => (options.client ?? client).put<PutUserResponses, PutUserErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/users/{username}',
+    url: 'account/users/{username}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -2421,7 +2421,7 @@ export const putUser = <ThrowOnError extends boolean = true>(options: Options<Pu
 export const getUserGrants = <ThrowOnError extends boolean = true>(options: Options<GetUserGrantsData, ThrowOnError>) => (options.client ?? client).get<GetUserGrantsResponses, GetUserGrantsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/users/{username}/grants',
+    url: 'account/users/{username}/grants',
     ...options
 });
 
@@ -2463,7 +2463,7 @@ export const getUserGrants = <ThrowOnError extends boolean = true>(options: Opti
 export const putUserGrants = <ThrowOnError extends boolean = true>(options: Options<PutUserGrantsData, ThrowOnError>) => (options.client ?? client).put<PutUserGrantsResponses, PutUserGrantsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/account/users/{username}/grants',
+    url: 'account/users/{username}/grants',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -2495,7 +2495,7 @@ export const putUserGrants = <ThrowOnError extends boolean = true>(options: Opti
 export const getBetaPrograms = <ThrowOnError extends boolean = true>(options?: Options<GetBetaProgramsData, ThrowOnError>) => (options?.client ?? client).get<GetBetaProgramsResponses, GetBetaProgramsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/betas',
+    url: 'betas',
     ...options
 });
 
@@ -2523,7 +2523,7 @@ export const getBetaPrograms = <ThrowOnError extends boolean = true>(options?: O
 export const getBetaProgram = <ThrowOnError extends boolean = true>(options: Options<GetBetaProgramData, ThrowOnError>) => (options.client ?? client).get<GetBetaProgramResponses, GetBetaProgramErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/betas/{betaId}',
+    url: 'betas/{betaId}',
     ...options
 });
 
@@ -2548,7 +2548,7 @@ export const getBetaProgram = <ThrowOnError extends boolean = true>(options: Opt
  */
 export const getDatabasesEngines = <ThrowOnError extends boolean = true>(options?: Options<GetDatabasesEnginesData, ThrowOnError>) => (options?.client ?? client).get<GetDatabasesEnginesResponses, GetDatabasesEnginesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/databases/engines',
+    url: 'databases/engines',
     ...options
 });
 
@@ -2573,7 +2573,7 @@ export const getDatabasesEngines = <ThrowOnError extends boolean = true>(options
  */
 export const getDatabasesEngine = <ThrowOnError extends boolean = true>(options: Options<GetDatabasesEngineData, ThrowOnError>) => (options.client ?? client).get<GetDatabasesEngineResponses, GetDatabasesEngineErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/databases/engines/{engineId}',
+    url: 'databases/engines/{engineId}',
     ...options
 });
 
@@ -2607,7 +2607,7 @@ export const getDatabasesEngine = <ThrowOnError extends boolean = true>(options:
 export const getDatabasesInstances = <ThrowOnError extends boolean = true>(options?: Options<GetDatabasesInstancesData, ThrowOnError>) => (options?.client ?? client).get<GetDatabasesInstancesResponses, GetDatabasesInstancesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/instances',
+    url: 'databases/instances',
     ...options
 });
 
@@ -2645,7 +2645,7 @@ export const getDatabasesInstances = <ThrowOnError extends boolean = true>(optio
 export const getDatabasesMysqlConfig = <ThrowOnError extends boolean = true>(options?: Options<GetDatabasesMysqlConfigData, ThrowOnError>) => (options?.client ?? client).get<GetDatabasesMysqlConfigResponses, GetDatabasesMysqlConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/config',
+    url: 'databases/mysql/config',
     ...options
 });
 
@@ -2679,7 +2679,7 @@ export const getDatabasesMysqlConfig = <ThrowOnError extends boolean = true>(opt
 export const getDatabasesMysqlInstances = <ThrowOnError extends boolean = true>(options?: Options<GetDatabasesMysqlInstancesData, ThrowOnError>) => (options?.client ?? client).get<GetDatabasesMysqlInstancesResponses, GetDatabasesMysqlInstancesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances',
+    url: 'databases/mysql/instances',
     ...options
 });
 
@@ -2758,7 +2758,7 @@ export const getDatabasesMysqlInstances = <ThrowOnError extends boolean = true>(
 export const postDatabasesMysqlInstances = <ThrowOnError extends boolean = true>(options: Options<PostDatabasesMysqlInstancesData, ThrowOnError>) => (options.client ?? client).post<PostDatabasesMysqlInstancesResponses, PostDatabasesMysqlInstancesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances',
+    url: 'databases/mysql/instances',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -2802,7 +2802,7 @@ export const postDatabasesMysqlInstances = <ThrowOnError extends boolean = true>
 export const deleteDatabasesMysqlInstance = <ThrowOnError extends boolean = true>(options: Options<DeleteDatabasesMysqlInstanceData, ThrowOnError>) => (options.client ?? client).delete<DeleteDatabasesMysqlInstanceResponses, DeleteDatabasesMysqlInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances/{instanceId}',
+    url: 'databases/mysql/instances/{instanceId}',
     ...options
 });
 
@@ -2836,7 +2836,7 @@ export const deleteDatabasesMysqlInstance = <ThrowOnError extends boolean = true
 export const getDatabasesMysqlInstance = <ThrowOnError extends boolean = true>(options: Options<GetDatabasesMysqlInstanceData, ThrowOnError>) => (options.client ?? client).get<GetDatabasesMysqlInstanceResponses, GetDatabasesMysqlInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances/{instanceId}',
+    url: 'databases/mysql/instances/{instanceId}',
     ...options
 });
 
@@ -2907,7 +2907,7 @@ export const getDatabasesMysqlInstance = <ThrowOnError extends boolean = true>(o
 export const putDatabasesMysqlInstance = <ThrowOnError extends boolean = true>(options: Options<PutDatabasesMysqlInstanceData, ThrowOnError>) => (options.client ?? client).put<PutDatabasesMysqlInstanceResponses, PutDatabasesMysqlInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances/{instanceId}',
+    url: 'databases/mysql/instances/{instanceId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -2945,7 +2945,7 @@ export const putDatabasesMysqlInstance = <ThrowOnError extends boolean = true>(o
 export const getDatabasesMysqlInstanceCredentials = <ThrowOnError extends boolean = true>(options: Options<GetDatabasesMysqlInstanceCredentialsData, ThrowOnError>) => (options.client ?? client).get<GetDatabasesMysqlInstanceCredentialsResponses, GetDatabasesMysqlInstanceCredentialsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances/{instanceId}/credentials',
+    url: 'databases/mysql/instances/{instanceId}/credentials',
     ...options
 });
 
@@ -2985,7 +2985,7 @@ export const getDatabasesMysqlInstanceCredentials = <ThrowOnError extends boolea
 export const postDatabasesMysqlInstanceCredentialsReset = <ThrowOnError extends boolean = true>(options: Options<PostDatabasesMysqlInstanceCredentialsResetData, ThrowOnError>) => (options.client ?? client).post<PostDatabasesMysqlInstanceCredentialsResetResponses, PostDatabasesMysqlInstanceCredentialsResetErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances/{instanceId}/credentials/reset',
+    url: 'databases/mysql/instances/{instanceId}/credentials/reset',
     ...options
 });
 
@@ -3029,7 +3029,7 @@ export const postDatabasesMysqlInstanceCredentialsReset = <ThrowOnError extends 
 export const postDatabasesMysqlInstancePatch = <ThrowOnError extends boolean = true>(options: Options<PostDatabasesMysqlInstancePatchData, ThrowOnError>) => (options.client ?? client).post<PostDatabasesMysqlInstancePatchResponses, PostDatabasesMysqlInstancePatchErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances/{instanceId}/patch',
+    url: 'databases/mysql/instances/{instanceId}/patch',
     ...options
 });
 
@@ -3061,7 +3061,7 @@ export const postDatabasesMysqlInstancePatch = <ThrowOnError extends boolean = t
 export const resumeDatabasesMysqlInstance = <ThrowOnError extends boolean = true>(options: Options<ResumeDatabasesMysqlInstanceData, ThrowOnError>) => (options.client ?? client).post<ResumeDatabasesMysqlInstanceResponses, ResumeDatabasesMysqlInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances/{instanceId}/resume',
+    url: 'databases/mysql/instances/{instanceId}/resume',
     ...options
 });
 
@@ -3095,7 +3095,7 @@ export const resumeDatabasesMysqlInstance = <ThrowOnError extends boolean = true
 export const getDatabasesMysqlInstanceSsl = <ThrowOnError extends boolean = true>(options: Options<GetDatabasesMysqlInstanceSslData, ThrowOnError>) => (options.client ?? client).get<GetDatabasesMysqlInstanceSslResponses, GetDatabasesMysqlInstanceSslErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances/{instanceId}/ssl',
+    url: 'databases/mysql/instances/{instanceId}/ssl',
     ...options
 });
 
@@ -3129,7 +3129,7 @@ export const getDatabasesMysqlInstanceSsl = <ThrowOnError extends boolean = true
 export const suspendDatabasesMysqlInstance = <ThrowOnError extends boolean = true>(options: Options<SuspendDatabasesMysqlInstanceData, ThrowOnError>) => (options.client ?? client).post<SuspendDatabasesMysqlInstanceResponses, SuspendDatabasesMysqlInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/mysql/instances/{instanceId}/suspend',
+    url: 'databases/mysql/instances/{instanceId}/suspend',
     ...options
 });
 
@@ -3167,7 +3167,7 @@ export const suspendDatabasesMysqlInstance = <ThrowOnError extends boolean = tru
 export const getDatabasesPostgresqlConfig = <ThrowOnError extends boolean = true>(options?: Options<GetDatabasesPostgresqlConfigData, ThrowOnError>) => (options?.client ?? client).get<GetDatabasesPostgresqlConfigResponses, GetDatabasesPostgresqlConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/config',
+    url: 'databases/postgresql/config',
     ...options
 });
 
@@ -3201,7 +3201,7 @@ export const getDatabasesPostgresqlConfig = <ThrowOnError extends boolean = true
 export const getDatabasesPostgreSqlInstances = <ThrowOnError extends boolean = true>(options?: Options<GetDatabasesPostgreSqlInstancesData, ThrowOnError>) => (options?.client ?? client).get<GetDatabasesPostgreSqlInstancesResponses, GetDatabasesPostgreSqlInstancesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances',
+    url: 'databases/postgresql/instances',
     ...options
 });
 
@@ -3283,7 +3283,7 @@ export const getDatabasesPostgreSqlInstances = <ThrowOnError extends boolean = t
 export const postDatabasesPostgreSqlInstances = <ThrowOnError extends boolean = true>(options: Options<PostDatabasesPostgreSqlInstancesData, ThrowOnError>) => (options.client ?? client).post<PostDatabasesPostgreSqlInstancesResponses, PostDatabasesPostgreSqlInstancesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances',
+    url: 'databases/postgresql/instances',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -3327,7 +3327,7 @@ export const postDatabasesPostgreSqlInstances = <ThrowOnError extends boolean = 
 export const deleteDatabasesPostgreSqlInstance = <ThrowOnError extends boolean = true>(options: Options<DeleteDatabasesPostgreSqlInstanceData, ThrowOnError>) => (options.client ?? client).delete<DeleteDatabasesPostgreSqlInstanceResponses, DeleteDatabasesPostgreSqlInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances/{instanceId}',
+    url: 'databases/postgresql/instances/{instanceId}',
     ...options
 });
 
@@ -3361,7 +3361,7 @@ export const deleteDatabasesPostgreSqlInstance = <ThrowOnError extends boolean =
 export const getDatabasesPostgreSqlInstance = <ThrowOnError extends boolean = true>(options: Options<GetDatabasesPostgreSqlInstanceData, ThrowOnError>) => (options.client ?? client).get<GetDatabasesPostgreSqlInstanceResponses, GetDatabasesPostgreSqlInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances/{instanceId}',
+    url: 'databases/postgresql/instances/{instanceId}',
     ...options
 });
 
@@ -3429,7 +3429,7 @@ export const getDatabasesPostgreSqlInstance = <ThrowOnError extends boolean = tr
 export const putDatabasesPostgreSqlInstance = <ThrowOnError extends boolean = true>(options: Options<PutDatabasesPostgreSqlInstanceData, ThrowOnError>) => (options.client ?? client).put<PutDatabasesPostgreSqlInstanceResponses, PutDatabasesPostgreSqlInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances/{instanceId}',
+    url: 'databases/postgresql/instances/{instanceId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -3467,7 +3467,7 @@ export const putDatabasesPostgreSqlInstance = <ThrowOnError extends boolean = tr
 export const getDatabasesPostgreSqlInstanceCredentials = <ThrowOnError extends boolean = true>(options: Options<GetDatabasesPostgreSqlInstanceCredentialsData, ThrowOnError>) => (options.client ?? client).get<GetDatabasesPostgreSqlInstanceCredentialsResponses, GetDatabasesPostgreSqlInstanceCredentialsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances/{instanceId}/credentials',
+    url: 'databases/postgresql/instances/{instanceId}/credentials',
     ...options
 });
 
@@ -3507,7 +3507,7 @@ export const getDatabasesPostgreSqlInstanceCredentials = <ThrowOnError extends b
 export const postDatabasesPostgreSqlInstanceCredentialsReset = <ThrowOnError extends boolean = true>(options: Options<PostDatabasesPostgreSqlInstanceCredentialsResetData, ThrowOnError>) => (options.client ?? client).post<PostDatabasesPostgreSqlInstanceCredentialsResetResponses, PostDatabasesPostgreSqlInstanceCredentialsResetErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances/{instanceId}/credentials/reset',
+    url: 'databases/postgresql/instances/{instanceId}/credentials/reset',
     ...options
 });
 
@@ -3551,7 +3551,7 @@ export const postDatabasesPostgreSqlInstanceCredentialsReset = <ThrowOnError ext
 export const postDatabasesPostgreSqlInstancePatch = <ThrowOnError extends boolean = true>(options: Options<PostDatabasesPostgreSqlInstancePatchData, ThrowOnError>) => (options.client ?? client).post<PostDatabasesPostgreSqlInstancePatchResponses, PostDatabasesPostgreSqlInstancePatchErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances/{instanceId}/patch',
+    url: 'databases/postgresql/instances/{instanceId}/patch',
     ...options
 });
 
@@ -3583,7 +3583,7 @@ export const postDatabasesPostgreSqlInstancePatch = <ThrowOnError extends boolea
 export const resumeDatabasesPostgreSqlInstance = <ThrowOnError extends boolean = true>(options: Options<ResumeDatabasesPostgreSqlInstanceData, ThrowOnError>) => (options.client ?? client).post<ResumeDatabasesPostgreSqlInstanceResponses, ResumeDatabasesPostgreSqlInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances/{instanceId}/resume',
+    url: 'databases/postgresql/instances/{instanceId}/resume',
     ...options
 });
 
@@ -3617,7 +3617,7 @@ export const resumeDatabasesPostgreSqlInstance = <ThrowOnError extends boolean =
 export const getDatabasesPostgresqlInstanceSsl = <ThrowOnError extends boolean = true>(options: Options<GetDatabasesPostgresqlInstanceSslData, ThrowOnError>) => (options.client ?? client).get<GetDatabasesPostgresqlInstanceSslResponses, GetDatabasesPostgresqlInstanceSslErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances/{instanceId}/ssl',
+    url: 'databases/postgresql/instances/{instanceId}/ssl',
     ...options
 });
 
@@ -3651,7 +3651,7 @@ export const getDatabasesPostgresqlInstanceSsl = <ThrowOnError extends boolean =
 export const suspendDatabasesPostgreSqlInstance = <ThrowOnError extends boolean = true>(options: Options<SuspendDatabasesPostgreSqlInstanceData, ThrowOnError>) => (options.client ?? client).post<SuspendDatabasesPostgreSqlInstanceResponses, SuspendDatabasesPostgreSqlInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/databases/postgresql/instances/{instanceId}/suspend',
+    url: 'databases/postgresql/instances/{instanceId}/suspend',
     ...options
 });
 
@@ -3676,7 +3676,7 @@ export const suspendDatabasesPostgreSqlInstance = <ThrowOnError extends boolean 
  */
 export const getDatabasesTypes = <ThrowOnError extends boolean = true>(options?: Options<GetDatabasesTypesData, ThrowOnError>) => (options?.client ?? client).get<GetDatabasesTypesResponses, GetDatabasesTypesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/databases/types',
+    url: 'databases/types',
     ...options
 });
 
@@ -3701,7 +3701,7 @@ export const getDatabasesTypes = <ThrowOnError extends boolean = true>(options?:
  */
 export const getDatabasesType = <ThrowOnError extends boolean = true>(options: Options<GetDatabasesTypeData, ThrowOnError>) => (options.client ?? client).get<GetDatabasesTypeResponses, GetDatabasesTypeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/databases/types/{typeId}',
+    url: 'databases/types/{typeId}',
     ...options
 });
 
@@ -3735,7 +3735,7 @@ export const getDatabasesType = <ThrowOnError extends boolean = true>(options: O
 export const getDomains = <ThrowOnError extends boolean = true>(options?: Options<GetDomainsData, ThrowOnError>) => (options?.client ?? client).get<GetDomainsResponses, GetDomainsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains',
+    url: 'domains',
     ...options
 });
 
@@ -3772,7 +3772,7 @@ export const getDomains = <ThrowOnError extends boolean = true>(options?: Option
 export const postDomain = <ThrowOnError extends boolean = true>(options: Options<PostDomainData, ThrowOnError>) => (options.client ?? client).post<PostDomainResponses, PostDomainErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains',
+    url: 'domains',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -3815,7 +3815,7 @@ export const postDomain = <ThrowOnError extends boolean = true>(options: Options
 export const postImportDomain = <ThrowOnError extends boolean = true>(options?: Options<PostImportDomainData, ThrowOnError>) => (options?.client ?? client).post<PostImportDomainResponses, PostImportDomainErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/import',
+    url: 'domains/import',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -3853,7 +3853,7 @@ export const postImportDomain = <ThrowOnError extends boolean = true>(options?: 
 export const deleteDomain = <ThrowOnError extends boolean = true>(options: Options<DeleteDomainData, ThrowOnError>) => (options.client ?? client).delete<DeleteDomainResponses, DeleteDomainErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/{domainId}',
+    url: 'domains/{domainId}',
     ...options
 });
 
@@ -3887,7 +3887,7 @@ export const deleteDomain = <ThrowOnError extends boolean = true>(options: Optio
 export const getDomain = <ThrowOnError extends boolean = true>(options: Options<GetDomainData, ThrowOnError>) => (options.client ?? client).get<GetDomainResponses, GetDomainErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/{domainId}',
+    url: 'domains/{domainId}',
     ...options
 });
 
@@ -3923,7 +3923,7 @@ export const getDomain = <ThrowOnError extends boolean = true>(options: Options<
 export const putDomain = <ThrowOnError extends boolean = true>(options: Options<PutDomainData, ThrowOnError>) => (options.client ?? client).put<PutDomainResponses, PutDomainErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/{domainId}',
+    url: 'domains/{domainId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -3961,7 +3961,7 @@ export const putDomain = <ThrowOnError extends boolean = true>(options: Options<
 export const postCloneDomain = <ThrowOnError extends boolean = true>(options: Options<PostCloneDomainData, ThrowOnError>) => (options.client ?? client).post<PostCloneDomainResponses, PostCloneDomainErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/{domainId}/clone',
+    url: 'domains/{domainId}/clone',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -3999,7 +3999,7 @@ export const postCloneDomain = <ThrowOnError extends boolean = true>(options: Op
 export const getDomainRecords = <ThrowOnError extends boolean = true>(options: Options<GetDomainRecordsData, ThrowOnError>) => (options.client ?? client).get<GetDomainRecordsResponses, unknown, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/{domainId}/records',
+    url: 'domains/{domainId}/records',
     ...options
 });
 
@@ -4042,7 +4042,7 @@ export const getDomainRecords = <ThrowOnError extends boolean = true>(options: O
 export const postDomainRecord = <ThrowOnError extends boolean = true>(options: Options<PostDomainRecordData, ThrowOnError>) => (options.client ?? client).post<PostDomainRecordResponses, PostDomainRecordErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/{domainId}/records',
+    url: 'domains/{domainId}/records',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -4080,7 +4080,7 @@ export const postDomainRecord = <ThrowOnError extends boolean = true>(options: O
 export const deleteDomainRecord = <ThrowOnError extends boolean = true>(options: Options<DeleteDomainRecordData, ThrowOnError>) => (options.client ?? client).delete<DeleteDomainRecordResponses, DeleteDomainRecordErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/{domainId}/records/{recordId}',
+    url: 'domains/{domainId}/records/{recordId}',
     ...options
 });
 
@@ -4114,7 +4114,7 @@ export const deleteDomainRecord = <ThrowOnError extends boolean = true>(options:
 export const getDomainRecord = <ThrowOnError extends boolean = true>(options: Options<GetDomainRecordData, ThrowOnError>) => (options.client ?? client).get<GetDomainRecordResponses, GetDomainRecordErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/{domainId}/records/{recordId}',
+    url: 'domains/{domainId}/records/{recordId}',
     ...options
 });
 
@@ -4154,7 +4154,7 @@ export const getDomainRecord = <ThrowOnError extends boolean = true>(options: Op
 export const putDomainRecord = <ThrowOnError extends boolean = true>(options: Options<PutDomainRecordData, ThrowOnError>) => (options.client ?? client).put<PutDomainRecordResponses, PutDomainRecordErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/{domainId}/records/{recordId}',
+    url: 'domains/{domainId}/records/{recordId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -4192,7 +4192,7 @@ export const putDomainRecord = <ThrowOnError extends boolean = true>(options: Op
 export const getDomainZone = <ThrowOnError extends boolean = true>(options: Options<GetDomainZoneData, ThrowOnError>) => (options.client ?? client).get<GetDomainZoneResponses, GetDomainZoneErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/domains/{domainId}/zone-file',
+    url: 'domains/{domainId}/zone-file',
     ...options
 });
 
@@ -4232,7 +4232,7 @@ export const getDomainZone = <ThrowOnError extends boolean = true>(options: Opti
 export const getImages = <ThrowOnError extends boolean = true>(options?: Options<GetImagesData, ThrowOnError>) => (options?.client ?? client).get<GetImagesResponses, GetImagesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images',
+    url: 'images',
     ...options
 });
 
@@ -4275,7 +4275,7 @@ export const getImages = <ThrowOnError extends boolean = true>(options?: Options
 export const postImage = <ThrowOnError extends boolean = true>(options?: Options<PostImageData, ThrowOnError>) => (options?.client ?? client).post<PostImageResponses, PostImageErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images',
+    url: 'images',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -4317,7 +4317,7 @@ export const postImage = <ThrowOnError extends boolean = true>(options?: Options
 export const getSharegroups = <ThrowOnError extends boolean = true>(options?: Options<GetSharegroupsData, ThrowOnError>) => (options?.client ?? client).get<GetSharegroupsResponses, GetSharegroupsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups',
+    url: 'images/sharegroups',
     ...options
 });
 
@@ -4360,7 +4360,7 @@ export const getSharegroups = <ThrowOnError extends boolean = true>(options?: Op
 export const postSharegroups = <ThrowOnError extends boolean = true>(options?: Options<PostSharegroupsData, ThrowOnError>) => (options?.client ?? client).post<PostSharegroupsResponses, PostSharegroupsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups',
+    url: 'images/sharegroups',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -4398,7 +4398,7 @@ export const postSharegroups = <ThrowOnError extends boolean = true>(options?: O
 export const getUserTokens = <ThrowOnError extends boolean = true>(options?: Options<GetUserTokensData, ThrowOnError>) => (options?.client ?? client).get<GetUserTokensResponses, GetUserTokensErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/tokens',
+    url: 'images/sharegroups/tokens',
     ...options
 });
 
@@ -4436,7 +4436,7 @@ export const getUserTokens = <ThrowOnError extends boolean = true>(options?: Opt
 export const postSharegroupTokens = <ThrowOnError extends boolean = true>(options?: Options<PostSharegroupTokensData, ThrowOnError>) => (options?.client ?? client).post<PostSharegroupTokensResponses, PostSharegroupTokensErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/tokens',
+    url: 'images/sharegroups/tokens',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -4476,7 +4476,7 @@ export const postSharegroupTokens = <ThrowOnError extends boolean = true>(option
 export const deleteSharegroupToken = <ThrowOnError extends boolean = true>(options: Options<DeleteSharegroupTokenData, ThrowOnError>) => (options.client ?? client).delete<DeleteSharegroupTokenResponses, DeleteSharegroupTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/tokens/{tokenUuid}',
+    url: 'images/sharegroups/tokens/{tokenUuid}',
     ...options
 });
 
@@ -4512,7 +4512,7 @@ export const deleteSharegroupToken = <ThrowOnError extends boolean = true>(optio
 export const getSharegroupToken = <ThrowOnError extends boolean = true>(options: Options<GetSharegroupTokenData, ThrowOnError>) => (options.client ?? client).get<GetSharegroupTokenResponses, GetSharegroupTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/tokens/{tokenUuid}',
+    url: 'images/sharegroups/tokens/{tokenUuid}',
     ...options
 });
 
@@ -4548,7 +4548,7 @@ export const getSharegroupToken = <ThrowOnError extends boolean = true>(options:
 export const putSharegroupToken = <ThrowOnError extends boolean = true>(options: Options<PutSharegroupTokenData, ThrowOnError>) => (options.client ?? client).put<PutSharegroupTokenResponses, PutSharegroupTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/tokens/{tokenUuid}',
+    url: 'images/sharegroups/tokens/{tokenUuid}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -4588,7 +4588,7 @@ export const putSharegroupToken = <ThrowOnError extends boolean = true>(options:
 export const getSharegroupByToken = <ThrowOnError extends boolean = true>(options: Options<GetSharegroupByTokenData, ThrowOnError>) => (options.client ?? client).get<GetSharegroupByTokenResponses, GetSharegroupByTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/tokens/{tokenUuid}/sharegroup',
+    url: 'images/sharegroups/tokens/{tokenUuid}/sharegroup',
     ...options
 });
 
@@ -4622,7 +4622,7 @@ export const getSharegroupByToken = <ThrowOnError extends boolean = true>(option
 export const getSharegroupImagesByToken = <ThrowOnError extends boolean = true>(options: Options<GetSharegroupImagesByTokenData, ThrowOnError>) => (options.client ?? client).get<GetSharegroupImagesByTokenResponses, GetSharegroupImagesByTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/tokens/{tokenUuid}/sharegroup/images',
+    url: 'images/sharegroups/tokens/{tokenUuid}/sharegroup/images',
     ...options
 });
 
@@ -4658,7 +4658,7 @@ export const getSharegroupImagesByToken = <ThrowOnError extends boolean = true>(
 export const deleteSharegroup = <ThrowOnError extends boolean = true>(options: Options<DeleteSharegroupData, ThrowOnError>) => (options.client ?? client).delete<DeleteSharegroupResponses, DeleteSharegroupErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}',
+    url: 'images/sharegroups/{sharegroupId}',
     ...options
 });
 
@@ -4694,7 +4694,7 @@ export const deleteSharegroup = <ThrowOnError extends boolean = true>(options: O
 export const getSharegroup = <ThrowOnError extends boolean = true>(options: Options<GetSharegroupData, ThrowOnError>) => (options.client ?? client).get<GetSharegroupResponses, GetSharegroupErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}',
+    url: 'images/sharegroups/{sharegroupId}',
     ...options
 });
 
@@ -4732,7 +4732,7 @@ export const getSharegroup = <ThrowOnError extends boolean = true>(options: Opti
 export const putSharegroup = <ThrowOnError extends boolean = true>(options: Options<PutSharegroupData, ThrowOnError>) => (options.client ?? client).put<PutSharegroupResponses, PutSharegroupErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}',
+    url: 'images/sharegroups/{sharegroupId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -4772,7 +4772,7 @@ export const putSharegroup = <ThrowOnError extends boolean = true>(options: Opti
 export const getSharegroupImages = <ThrowOnError extends boolean = true>(options: Options<GetSharegroupImagesData, ThrowOnError>) => (options.client ?? client).get<GetSharegroupImagesResponses, GetSharegroupImagesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}/images',
+    url: 'images/sharegroups/{sharegroupId}/images',
     ...options
 });
 
@@ -4813,7 +4813,7 @@ export const getSharegroupImages = <ThrowOnError extends boolean = true>(options
 export const postSharegroupImages = <ThrowOnError extends boolean = true>(options: Options<PostSharegroupImagesData, ThrowOnError>) => (options.client ?? client).post<PostSharegroupImagesResponses, PostSharegroupImagesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}/images',
+    url: 'images/sharegroups/{sharegroupId}/images',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -4855,7 +4855,7 @@ export const postSharegroupImages = <ThrowOnError extends boolean = true>(option
 export const deleteSharegroupImageshare = <ThrowOnError extends boolean = true>(options: Options<DeleteSharegroupImageshareData, ThrowOnError>) => (options.client ?? client).delete<DeleteSharegroupImageshareResponses, DeleteSharegroupImageshareErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}/images/{imageId}',
+    url: 'images/sharegroups/{sharegroupId}/images/{imageId}',
     ...options
 });
 
@@ -4893,7 +4893,7 @@ export const deleteSharegroupImageshare = <ThrowOnError extends boolean = true>(
 export const putSharegroupImageshare = <ThrowOnError extends boolean = true>(options: Options<PutSharegroupImageshareData, ThrowOnError>) => (options.client ?? client).put<PutSharegroupImageshareResponses, PutSharegroupImageshareErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}/images/{imageId}',
+    url: 'images/sharegroups/{sharegroupId}/images/{imageId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -4933,7 +4933,7 @@ export const putSharegroupImageshare = <ThrowOnError extends boolean = true>(opt
 export const getSharegroupMembers = <ThrowOnError extends boolean = true>(options: Options<GetSharegroupMembersData, ThrowOnError>) => (options.client ?? client).get<GetSharegroupMembersResponses, GetSharegroupMembersErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}/members',
+    url: 'images/sharegroups/{sharegroupId}/members',
     ...options
 });
 
@@ -4971,7 +4971,7 @@ export const getSharegroupMembers = <ThrowOnError extends boolean = true>(option
 export const postSharegroupMembers = <ThrowOnError extends boolean = true>(options: Options<PostSharegroupMembersData, ThrowOnError>) => (options.client ?? client).post<PostSharegroupMembersResponses, PostSharegroupMembersErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}/members',
+    url: 'images/sharegroups/{sharegroupId}/members',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -5013,7 +5013,7 @@ export const postSharegroupMembers = <ThrowOnError extends boolean = true>(optio
 export const deleteSharegroupMemberToken = <ThrowOnError extends boolean = true>(options: Options<DeleteSharegroupMemberTokenData, ThrowOnError>) => (options.client ?? client).delete<DeleteSharegroupMemberTokenResponses, DeleteSharegroupMemberTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}/members/{tokenUuid}',
+    url: 'images/sharegroups/{sharegroupId}/members/{tokenUuid}',
     ...options
 });
 
@@ -5053,7 +5053,7 @@ export const deleteSharegroupMemberToken = <ThrowOnError extends boolean = true>
 export const getSharegroupMemberToken = <ThrowOnError extends boolean = true>(options: Options<GetSharegroupMemberTokenData, ThrowOnError>) => (options.client ?? client).get<GetSharegroupMemberTokenResponses, GetSharegroupMemberTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}/members/{tokenUuid}',
+    url: 'images/sharegroups/{sharegroupId}/members/{tokenUuid}',
     ...options
 });
 
@@ -5091,7 +5091,7 @@ export const getSharegroupMemberToken = <ThrowOnError extends boolean = true>(op
 export const putSharegroupMemberToken = <ThrowOnError extends boolean = true>(options: Options<PutSharegroupMemberTokenData, ThrowOnError>) => (options.client ?? client).put<PutSharegroupMemberTokenResponses, PutSharegroupMemberTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/sharegroups/{sharegroupId}/members/{tokenUuid}',
+    url: 'images/sharegroups/{sharegroupId}/members/{tokenUuid}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -5144,7 +5144,7 @@ export const putSharegroupMemberToken = <ThrowOnError extends boolean = true>(op
 export const postUploadImage = <ThrowOnError extends boolean = true>(options?: Options<PostUploadImageData, ThrowOnError>) => (options?.client ?? client).post<PostUploadImageResponses, PostUploadImageErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/upload',
+    url: 'images/upload',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -5188,7 +5188,7 @@ export const postUploadImage = <ThrowOnError extends boolean = true>(options?: O
 export const deleteImage = <ThrowOnError extends boolean = true>(options: Options<DeleteImageData, ThrowOnError>) => (options.client ?? client).delete<DeleteImageResponses, DeleteImageErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/{imageId}',
+    url: 'images/{imageId}',
     ...options
 });
 
@@ -5228,7 +5228,7 @@ export const deleteImage = <ThrowOnError extends boolean = true>(options: Option
 export const getImage = <ThrowOnError extends boolean = true>(options: Options<GetImageData, ThrowOnError>) => (options.client ?? client).get<GetImageResponses, GetImageErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/{imageId}',
+    url: 'images/{imageId}',
     ...options
 });
 
@@ -5269,7 +5269,7 @@ export const getImage = <ThrowOnError extends boolean = true>(options: Options<G
 export const putImage = <ThrowOnError extends boolean = true>(options: Options<PutImageData, ThrowOnError>) => (options.client ?? client).put<PutImageResponses, PutImageErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/{imageId}',
+    url: 'images/{imageId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -5321,7 +5321,7 @@ export const putImage = <ThrowOnError extends boolean = true>(options: Options<P
 export const postReplicateImage = <ThrowOnError extends boolean = true>(options: Options<PostReplicateImageData, ThrowOnError>) => (options.client ?? client).post<PostReplicateImageResponses, PostReplicateImageErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/{imageId}/regions',
+    url: 'images/{imageId}/regions',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -5363,7 +5363,7 @@ export const postReplicateImage = <ThrowOnError extends boolean = true>(options:
 export const getImagesSharegroupsImage = <ThrowOnError extends boolean = true>(options: Options<GetImagesSharegroupsImageData, ThrowOnError>) => (options.client ?? client).get<GetImagesSharegroupsImageResponses, GetImagesSharegroupsImageErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/images/{imageId}/sharegroups',
+    url: 'images/{imageId}/sharegroups',
     ...options
 });
 
@@ -5397,7 +5397,7 @@ export const getImagesSharegroupsImage = <ThrowOnError extends boolean = true>(o
 export const getLinodeInstances = <ThrowOnError extends boolean = true>(options?: Options<GetLinodeInstancesData, ThrowOnError>) => (options?.client ?? client).get<GetLinodeInstancesResponses, GetLinodeInstancesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances',
+    url: 'linode/instances',
     ...options
 });
 
@@ -5500,7 +5500,7 @@ export const getLinodeInstances = <ThrowOnError extends boolean = true>(options?
 export const postLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PostLinodeInstanceData, ThrowOnError>) => (options.client ?? client).post<PostLinodeInstanceResponses, PostLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances',
+    url: 'linode/instances',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -5549,7 +5549,7 @@ export const postLinodeInstance = <ThrowOnError extends boolean = true>(options:
 export const deleteLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<DeleteLinodeInstanceData, ThrowOnError>) => (options.client ?? client).delete<DeleteLinodeInstanceResponses, DeleteLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}',
+    url: 'linode/instances/{linodeId}',
     ...options
 });
 
@@ -5583,7 +5583,7 @@ export const deleteLinodeInstance = <ThrowOnError extends boolean = true>(option
 export const getLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<GetLinodeInstanceData, ThrowOnError>) => (options.client ?? client).get<GetLinodeInstanceResponses, GetLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}',
+    url: 'linode/instances/{linodeId}',
     ...options
 });
 
@@ -5630,7 +5630,7 @@ export const getLinodeInstance = <ThrowOnError extends boolean = true>(options: 
 export const putLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PutLinodeInstanceData, ThrowOnError>) => (options.client ?? client).put<PutLinodeInstanceResponses, PutLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}',
+    url: 'linode/instances/{linodeId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -5668,7 +5668,7 @@ export const putLinodeInstance = <ThrowOnError extends boolean = true>(options: 
 export const getBackups = <ThrowOnError extends boolean = true>(options: Options<GetBackupsData, ThrowOnError>) => (options.client ?? client).get<GetBackupsResponses, GetBackupsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/backups',
+    url: 'linode/instances/{linodeId}/backups',
     ...options
 });
 
@@ -5708,7 +5708,7 @@ export const getBackups = <ThrowOnError extends boolean = true>(options: Options
 export const postSnapshot = <ThrowOnError extends boolean = true>(options: Options<PostSnapshotData, ThrowOnError>) => (options.client ?? client).post<PostSnapshotResponses, PostSnapshotErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/backups',
+    url: 'linode/instances/{linodeId}/backups',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -5746,7 +5746,7 @@ export const postSnapshot = <ThrowOnError extends boolean = true>(options: Optio
 export const postCancelBackups = <ThrowOnError extends boolean = true>(options: Options<PostCancelBackupsData, ThrowOnError>) => (options.client ?? client).post<PostCancelBackupsResponses, PostCancelBackupsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/backups/cancel',
+    url: 'linode/instances/{linodeId}/backups/cancel',
     ...options
 });
 
@@ -5784,7 +5784,7 @@ export const postCancelBackups = <ThrowOnError extends boolean = true>(options: 
 export const postEnableBackups = <ThrowOnError extends boolean = true>(options: Options<PostEnableBackupsData, ThrowOnError>) => (options.client ?? client).post<PostEnableBackupsResponses, PostEnableBackupsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/backups/enable',
+    url: 'linode/instances/{linodeId}/backups/enable',
     ...options
 });
 
@@ -5818,7 +5818,7 @@ export const postEnableBackups = <ThrowOnError extends boolean = true>(options: 
 export const getBackup = <ThrowOnError extends boolean = true>(options: Options<GetBackupData, ThrowOnError>) => (options.client ?? client).get<GetBackupResponses, GetBackupErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/backups/{backupId}',
+    url: 'linode/instances/{linodeId}/backups/{backupId}',
     ...options
 });
 
@@ -5870,7 +5870,7 @@ export const getBackup = <ThrowOnError extends boolean = true>(options: Options<
 export const postRestoreBackup = <ThrowOnError extends boolean = true>(options: Options<PostRestoreBackupData, ThrowOnError>) => (options.client ?? client).post<PostRestoreBackupResponses, PostRestoreBackupErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/backups/{backupId}/restore',
+    url: 'linode/instances/{linodeId}/backups/{backupId}/restore',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -5915,7 +5915,7 @@ export const postRestoreBackup = <ThrowOnError extends boolean = true>(options: 
 export const postBootLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PostBootLinodeInstanceData, ThrowOnError>) => (options.client ?? client).post<PostBootLinodeInstanceResponses, PostBootLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/boot',
+    url: 'linode/instances/{linodeId}/boot',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -5985,7 +5985,7 @@ export const postBootLinodeInstance = <ThrowOnError extends boolean = true>(opti
 export const postCloneLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PostCloneLinodeInstanceData, ThrowOnError>) => (options.client ?? client).post<PostCloneLinodeInstanceResponses, PostCloneLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/clone',
+    url: 'linode/instances/{linodeId}/clone',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6023,7 +6023,7 @@ export const postCloneLinodeInstance = <ThrowOnError extends boolean = true>(opt
 export const getLinodeConfigs = <ThrowOnError extends boolean = true>(options: Options<GetLinodeConfigsData, ThrowOnError>) => (options.client ?? client).get<GetLinodeConfigsResponses, unknown, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs',
+    url: 'linode/instances/{linodeId}/configs',
     ...options
 });
 
@@ -6064,7 +6064,7 @@ export const getLinodeConfigs = <ThrowOnError extends boolean = true>(options: O
 export const postAddLinodeConfig = <ThrowOnError extends boolean = true>(options: Options<PostAddLinodeConfigData, ThrowOnError>) => (options.client ?? client).post<PostAddLinodeConfigResponses, PostAddLinodeConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs',
+    url: 'linode/instances/{linodeId}/configs',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6102,7 +6102,7 @@ export const postAddLinodeConfig = <ThrowOnError extends boolean = true>(options
 export const deleteLinodeConfig = <ThrowOnError extends boolean = true>(options: Options<DeleteLinodeConfigData, ThrowOnError>) => (options.client ?? client).delete<DeleteLinodeConfigResponses, DeleteLinodeConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs/{configId}',
+    url: 'linode/instances/{linodeId}/configs/{configId}',
     ...options
 });
 
@@ -6136,7 +6136,7 @@ export const deleteLinodeConfig = <ThrowOnError extends boolean = true>(options:
 export const getLinodeConfig = <ThrowOnError extends boolean = true>(options: Options<GetLinodeConfigData, ThrowOnError>) => (options.client ?? client).get<GetLinodeConfigResponses, GetLinodeConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs/{configId}',
+    url: 'linode/instances/{linodeId}/configs/{configId}',
     ...options
 });
 
@@ -6183,7 +6183,7 @@ export const getLinodeConfig = <ThrowOnError extends boolean = true>(options: Op
 export const putLinodeConfig = <ThrowOnError extends boolean = true>(options: Options<PutLinodeConfigData, ThrowOnError>) => (options.client ?? client).put<PutLinodeConfigResponses, PutLinodeConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs/{configId}',
+    url: 'linode/instances/{linodeId}/configs/{configId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6221,7 +6221,7 @@ export const putLinodeConfig = <ThrowOnError extends boolean = true>(options: Op
 export const getLinodeConfigInterfaces = <ThrowOnError extends boolean = true>(options: Options<GetLinodeConfigInterfacesData, ThrowOnError>) => (options.client ?? client).get<GetLinodeConfigInterfacesResponses, GetLinodeConfigInterfacesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces',
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces',
     ...options
 });
 
@@ -6266,7 +6266,7 @@ export const getLinodeConfigInterfaces = <ThrowOnError extends boolean = true>(o
 export const postLinodeConfigInterface = <ThrowOnError extends boolean = true>(options: Options<PostLinodeConfigInterfaceData, ThrowOnError>) => (options.client ?? client).post<PostLinodeConfigInterfaceResponses, PostLinodeConfigInterfaceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces',
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6307,7 +6307,7 @@ export const postLinodeConfigInterface = <ThrowOnError extends boolean = true>(o
 export const postLinodeConfigInterfaces = <ThrowOnError extends boolean = true>(options: Options<PostLinodeConfigInterfacesData, ThrowOnError>) => (options.client ?? client).post<PostLinodeConfigInterfacesResponses, PostLinodeConfigInterfacesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces/order',
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces/order',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6351,7 +6351,7 @@ export const postLinodeConfigInterfaces = <ThrowOnError extends boolean = true>(
 export const deleteLinodeConfigInterface = <ThrowOnError extends boolean = true>(options: Options<DeleteLinodeConfigInterfaceData, ThrowOnError>) => (options.client ?? client).delete<DeleteLinodeConfigInterfaceResponses, DeleteLinodeConfigInterfaceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}',
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}',
     ...options
 });
 
@@ -6385,7 +6385,7 @@ export const deleteLinodeConfigInterface = <ThrowOnError extends boolean = true>
 export const getLinodeConfigInterface = <ThrowOnError extends boolean = true>(options: Options<GetLinodeConfigInterfaceData, ThrowOnError>) => (options.client ?? client).get<GetLinodeConfigInterfaceResponses, GetLinodeConfigInterfaceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}',
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}',
     ...options
 });
 
@@ -6434,7 +6434,7 @@ export const getLinodeConfigInterface = <ThrowOnError extends boolean = true>(op
 export const putLinodeConfigInterface = <ThrowOnError extends boolean = true>(options: Options<PutLinodeConfigInterfaceData, ThrowOnError>) => (options.client ?? client).put<PutLinodeConfigInterfaceResponses, PutLinodeConfigInterfaceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}',
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6472,7 +6472,7 @@ export const putLinodeConfigInterface = <ThrowOnError extends boolean = true>(op
 export const getLinodeDisks = <ThrowOnError extends boolean = true>(options: Options<GetLinodeDisksData, ThrowOnError>) => (options.client ?? client).get<GetLinodeDisksResponses, GetLinodeDisksErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/disks',
+    url: 'linode/instances/{linodeId}/disks',
     ...options
 });
 
@@ -6538,7 +6538,7 @@ export const getLinodeDisks = <ThrowOnError extends boolean = true>(options: Opt
 export const postAddLinodeDisk = <ThrowOnError extends boolean = true>(options: Options<PostAddLinodeDiskData, ThrowOnError>) => (options.client ?? client).post<PostAddLinodeDiskResponses, PostAddLinodeDiskErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/disks',
+    url: 'linode/instances/{linodeId}/disks',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6578,7 +6578,7 @@ export const postAddLinodeDisk = <ThrowOnError extends boolean = true>(options: 
 export const deleteDisk = <ThrowOnError extends boolean = true>(options: Options<DeleteDiskData, ThrowOnError>) => (options.client ?? client).delete<DeleteDiskResponses, DeleteDiskErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/disks/{diskId}',
+    url: 'linode/instances/{linodeId}/disks/{diskId}',
     ...options
 });
 
@@ -6612,7 +6612,7 @@ export const deleteDisk = <ThrowOnError extends boolean = true>(options: Options
 export const getLinodeDisk = <ThrowOnError extends boolean = true>(options: Options<GetLinodeDiskData, ThrowOnError>) => (options.client ?? client).get<GetLinodeDiskResponses, GetLinodeDiskErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/disks/{diskId}',
+    url: 'linode/instances/{linodeId}/disks/{diskId}',
     ...options
 });
 
@@ -6647,7 +6647,7 @@ export const getLinodeDisk = <ThrowOnError extends boolean = true>(options: Opti
 export const putDisk = <ThrowOnError extends boolean = true>(options: Options<PutDiskData, ThrowOnError>) => (options.client ?? client).put<PutDiskResponses, PutDiskErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/disks/{diskId}',
+    url: 'linode/instances/{linodeId}/disks/{diskId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6685,7 +6685,7 @@ export const putDisk = <ThrowOnError extends boolean = true>(options: Options<Pu
 export const postCloneLinodeDisk = <ThrowOnError extends boolean = true>(options: Options<PostCloneLinodeDiskData, ThrowOnError>) => (options.client ?? client).post<PostCloneLinodeDiskResponses, PostCloneLinodeDiskErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/disks/{diskId}/clone',
+    url: 'linode/instances/{linodeId}/disks/{diskId}/clone',
     ...options
 });
 
@@ -6721,7 +6721,7 @@ export const postCloneLinodeDisk = <ThrowOnError extends boolean = true>(options
 export const postResetDiskPassword = <ThrowOnError extends boolean = true>(options: Options<PostResetDiskPasswordData, ThrowOnError>) => (options.client ?? client).post<PostResetDiskPasswordResponses, PostResetDiskPasswordErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/disks/{diskId}/password',
+    url: 'linode/instances/{linodeId}/disks/{diskId}/password',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6764,7 +6764,7 @@ export const postResetDiskPassword = <ThrowOnError extends boolean = true>(optio
 export const postResizeDisk = <ThrowOnError extends boolean = true>(options: Options<PostResizeDiskData, ThrowOnError>) => (options.client ?? client).post<PostResizeDiskResponses, PostResizeDiskErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/disks/{diskId}/resize',
+    url: 'linode/instances/{linodeId}/disks/{diskId}/resize',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6802,7 +6802,7 @@ export const postResizeDisk = <ThrowOnError extends boolean = true>(options: Opt
 export const getLinodeFirewalls = <ThrowOnError extends boolean = true>(options: Options<GetLinodeFirewallsData, ThrowOnError>) => (options.client ?? client).get<GetLinodeFirewallsResponses, GetLinodeFirewallsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/firewalls',
+    url: 'linode/instances/{linodeId}/firewalls',
     ...options
 });
 
@@ -6837,7 +6837,7 @@ export const getLinodeFirewalls = <ThrowOnError extends boolean = true>(options:
 export const putLinodeFirewalls = <ThrowOnError extends boolean = true>(options: Options<PutLinodeFirewallsData, ThrowOnError>) => (options.client ?? client).put<PutLinodeFirewallsResponses, PutLinodeFirewallsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/firewalls',
+    url: 'linode/instances/{linodeId}/firewalls',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -6877,7 +6877,7 @@ export const putLinodeFirewalls = <ThrowOnError extends boolean = true>(options:
 export const postApplyFirewalls = <ThrowOnError extends boolean = true>(options: Options<PostApplyFirewallsData, ThrowOnError>) => (options.client ?? client).post<PostApplyFirewallsResponses, PostApplyFirewallsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/firewalls/apply',
+    url: 'linode/instances/{linodeId}/firewalls/apply',
     ...options
 });
 
@@ -6911,7 +6911,7 @@ export const postApplyFirewalls = <ThrowOnError extends boolean = true>(options:
 export const getLinodeInterfaces = <ThrowOnError extends boolean = true>(options: Options<GetLinodeInterfacesData, ThrowOnError>) => (options.client ?? client).get<GetLinodeInterfacesResponses, GetLinodeInterfacesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/interfaces',
+    url: 'linode/instances/{linodeId}/interfaces',
     ...options
 });
 
@@ -6991,7 +6991,7 @@ export const getLinodeInterfaces = <ThrowOnError extends boolean = true>(options
 export const postLinodeInterface = <ThrowOnError extends boolean = true>(options: Options<PostLinodeInterfaceData, ThrowOnError>) => (options.client ?? client).post<PostLinodeInterfaceResponses, PostLinodeInterfaceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/interfaces',
+    url: 'linode/instances/{linodeId}/interfaces',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7029,7 +7029,7 @@ export const postLinodeInterface = <ThrowOnError extends boolean = true>(options
 export const getLinodeInterfaceHistory = <ThrowOnError extends boolean = true>(options: Options<GetLinodeInterfaceHistoryData, ThrowOnError>) => (options.client ?? client).get<GetLinodeInterfaceHistoryResponses, GetLinodeInterfaceHistoryErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/interfaces/history',
+    url: 'linode/instances/{linodeId}/interfaces/history',
     ...options
 });
 
@@ -7063,7 +7063,7 @@ export const getLinodeInterfaceHistory = <ThrowOnError extends boolean = true>(o
 export const getLinodeInterfaceSettings = <ThrowOnError extends boolean = true>(options: Options<GetLinodeInterfaceSettingsData, ThrowOnError>) => (options.client ?? client).get<GetLinodeInterfaceSettingsResponses, GetLinodeInterfaceSettingsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/interfaces/settings',
+    url: 'linode/instances/{linodeId}/interfaces/settings',
     ...options
 });
 
@@ -7125,7 +7125,7 @@ export const getLinodeInterfaceSettings = <ThrowOnError extends boolean = true>(
 export const putLinodeInterfaceSettings = <ThrowOnError extends boolean = true>(options: Options<PutLinodeInterfaceSettingsData, ThrowOnError>) => (options.client ?? client).put<PutLinodeInterfaceSettingsResponses, PutLinodeInterfaceSettingsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/interfaces/settings',
+    url: 'linode/instances/{linodeId}/interfaces/settings',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7163,7 +7163,7 @@ export const putLinodeInterfaceSettings = <ThrowOnError extends boolean = true>(
 export const deleteLinodeInterface = <ThrowOnError extends boolean = true>(options: Options<DeleteLinodeInterfaceData, ThrowOnError>) => (options.client ?? client).delete<DeleteLinodeInterfaceResponses, DeleteLinodeInterfaceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/interfaces/{interfaceId}',
+    url: 'linode/instances/{linodeId}/interfaces/{interfaceId}',
     ...options
 });
 
@@ -7197,7 +7197,7 @@ export const deleteLinodeInterface = <ThrowOnError extends boolean = true>(optio
 export const getLinodeInterface = <ThrowOnError extends boolean = true>(options: Options<GetLinodeInterfaceData, ThrowOnError>) => (options.client ?? client).get<GetLinodeInterfaceResponses, GetLinodeInterfaceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/interfaces/{interfaceId}',
+    url: 'linode/instances/{linodeId}/interfaces/{interfaceId}',
     ...options
 });
 
@@ -7257,7 +7257,7 @@ export const getLinodeInterface = <ThrowOnError extends boolean = true>(options:
 export const putLinodeInterface = <ThrowOnError extends boolean = true>(options: Options<PutLinodeInterfaceData, ThrowOnError>) => (options.client ?? client).put<PutLinodeInterfaceResponses, PutLinodeInterfaceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/interfaces/{interfaceId}',
+    url: 'linode/instances/{linodeId}/interfaces/{interfaceId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7295,7 +7295,7 @@ export const putLinodeInterface = <ThrowOnError extends boolean = true>(options:
 export const getLinodeInterfaceFirewalls = <ThrowOnError extends boolean = true>(options: Options<GetLinodeInterfaceFirewallsData, ThrowOnError>) => (options.client ?? client).get<GetLinodeInterfaceFirewallsResponses, GetLinodeInterfaceFirewallsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/interfaces/{interfaceId}/firewalls',
+    url: 'linode/instances/{linodeId}/interfaces/{interfaceId}/firewalls',
     ...options
 });
 
@@ -7333,7 +7333,7 @@ export const getLinodeInterfaceFirewalls = <ThrowOnError extends boolean = true>
 export const getLinodeIps = <ThrowOnError extends boolean = true>(options: Options<GetLinodeIpsData, ThrowOnError>) => (options.client ?? client).get<GetLinodeIpsResponses, GetLinodeIpsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/ips',
+    url: 'linode/instances/{linodeId}/ips',
     ...options
 });
 
@@ -7369,7 +7369,7 @@ export const getLinodeIps = <ThrowOnError extends boolean = true>(options: Optio
 export const postAddLinodeIp = <ThrowOnError extends boolean = true>(options: Options<PostAddLinodeIpData, ThrowOnError>) => (options.client ?? client).post<PostAddLinodeIpResponses, PostAddLinodeIpErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/ips',
+    url: 'linode/instances/{linodeId}/ips',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7411,7 +7411,7 @@ export const postAddLinodeIp = <ThrowOnError extends boolean = true>(options: Op
 export const deleteLinodeIp = <ThrowOnError extends boolean = true>(options: Options<DeleteLinodeIpData, ThrowOnError>) => (options.client ?? client).delete<DeleteLinodeIpResponses, DeleteLinodeIpErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/ips/{address}',
+    url: 'linode/instances/{linodeId}/ips/{address}',
     ...options
 });
 
@@ -7445,7 +7445,7 @@ export const deleteLinodeIp = <ThrowOnError extends boolean = true>(options: Opt
 export const getLinodeIp = <ThrowOnError extends boolean = true>(options: Options<GetLinodeIpData, ThrowOnError>) => (options.client ?? client).get<GetLinodeIpResponses, GetLinodeIpErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/ips/{address}',
+    url: 'linode/instances/{linodeId}/ips/{address}',
     ...options
 });
 
@@ -7483,7 +7483,7 @@ export const getLinodeIp = <ThrowOnError extends boolean = true>(options: Option
 export const putLinodeIp = <ThrowOnError extends boolean = true>(options: Options<PutLinodeIpData, ThrowOnError>) => (options.client ?? client).put<PutLinodeIpResponses, PutLinodeIpErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/ips/{address}',
+    url: 'linode/instances/{linodeId}/ips/{address}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7541,7 +7541,7 @@ export const putLinodeIp = <ThrowOnError extends boolean = true>(options: Option
 export const postMigrateLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PostMigrateLinodeInstanceData, ThrowOnError>) => (options.client ?? client).post<PostMigrateLinodeInstanceResponses, PostMigrateLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/migrate',
+    url: 'linode/instances/{linodeId}/migrate',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7579,7 +7579,7 @@ export const postMigrateLinodeInstance = <ThrowOnError extends boolean = true>(o
 export const postMutateLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PostMutateLinodeInstanceData, ThrowOnError>) => (options.client ?? client).post<PostMutateLinodeInstanceResponses, PostMutateLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/mutate',
+    url: 'linode/instances/{linodeId}/mutate',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7619,7 +7619,7 @@ export const postMutateLinodeInstance = <ThrowOnError extends boolean = true>(op
 export const getLinodeNodeBalancers = <ThrowOnError extends boolean = true>(options: Options<GetLinodeNodeBalancersData, ThrowOnError>) => (options.client ?? client).get<GetLinodeNodeBalancersResponses, unknown, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/nodebalancers',
+    url: 'linode/instances/{linodeId}/nodebalancers',
     ...options
 });
 
@@ -7657,7 +7657,7 @@ export const getLinodeNodeBalancers = <ThrowOnError extends boolean = true>(opti
 export const postResetLinodePassword = <ThrowOnError extends boolean = true>(options: Options<PostResetLinodePasswordData, ThrowOnError>) => (options.client ?? client).post<PostResetLinodePasswordResponses, PostResetLinodePasswordErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/password',
+    url: 'linode/instances/{linodeId}/password',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7697,7 +7697,7 @@ export const postResetLinodePassword = <ThrowOnError extends boolean = true>(opt
 export const postRebootLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PostRebootLinodeInstanceData, ThrowOnError>) => (options.client ?? client).post<PostRebootLinodeInstanceResponses, PostRebootLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/reboot',
+    url: 'linode/instances/{linodeId}/reboot',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7764,7 +7764,7 @@ export const postRebootLinodeInstance = <ThrowOnError extends boolean = true>(op
 export const postRebuildLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PostRebuildLinodeInstanceData, ThrowOnError>) => (options.client ?? client).post<PostRebuildLinodeInstanceResponses, PostRebuildLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/rebuild',
+    url: 'linode/instances/{linodeId}/rebuild',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7807,7 +7807,7 @@ export const postRebuildLinodeInstance = <ThrowOnError extends boolean = true>(o
 export const postRescueLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PostRescueLinodeInstanceData, ThrowOnError>) => (options.client ?? client).post<PostRescueLinodeInstanceResponses, PostRescueLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/rescue',
+    url: 'linode/instances/{linodeId}/rescue',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7853,7 +7853,7 @@ export const postRescueLinodeInstance = <ThrowOnError extends boolean = true>(op
 export const postResizeLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PostResizeLinodeInstanceData, ThrowOnError>) => (options.client ?? client).post<PostResizeLinodeInstanceResponses, PostResizeLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/resize',
+    url: 'linode/instances/{linodeId}/resize',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -7891,7 +7891,7 @@ export const postResizeLinodeInstance = <ThrowOnError extends boolean = true>(op
 export const postShutdownLinodeInstance = <ThrowOnError extends boolean = true>(options: Options<PostShutdownLinodeInstanceData, ThrowOnError>) => (options.client ?? client).post<PostShutdownLinodeInstanceResponses, PostShutdownLinodeInstanceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/shutdown',
+    url: 'linode/instances/{linodeId}/shutdown',
     ...options
 });
 
@@ -7917,7 +7917,7 @@ export const postShutdownLinodeInstance = <ThrowOnError extends boolean = true>(
 export const getLinodeStats = <ThrowOnError extends boolean = true>(options: Options<GetLinodeStatsData, ThrowOnError>) => (options.client ?? client).get<GetLinodeStatsResponses, GetLinodeStatsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/stats',
+    url: 'linode/instances/{linodeId}/stats',
     ...options
 });
 
@@ -7943,7 +7943,7 @@ export const getLinodeStats = <ThrowOnError extends boolean = true>(options: Opt
 export const getLinodeStatsByYearMonth = <ThrowOnError extends boolean = true>(options: Options<GetLinodeStatsByYearMonthData, ThrowOnError>) => (options.client ?? client).get<GetLinodeStatsByYearMonthResponses, GetLinodeStatsByYearMonthErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/stats/{year}/{month}',
+    url: 'linode/instances/{linodeId}/stats/{year}/{month}',
     ...options
 });
 
@@ -7977,7 +7977,7 @@ export const getLinodeStatsByYearMonth = <ThrowOnError extends boolean = true>(o
 export const getLinodeTransfer = <ThrowOnError extends boolean = true>(options: Options<GetLinodeTransferData, ThrowOnError>) => (options.client ?? client).get<GetLinodeTransferResponses, GetLinodeTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/transfer',
+    url: 'linode/instances/{linodeId}/transfer',
     ...options
 });
 
@@ -8003,7 +8003,7 @@ export const getLinodeTransfer = <ThrowOnError extends boolean = true>(options: 
 export const getLinodeTransferByYearMonth = <ThrowOnError extends boolean = true>(options: Options<GetLinodeTransferByYearMonthData, ThrowOnError>) => (options.client ?? client).get<GetLinodeTransferByYearMonthResponses, GetLinodeTransferByYearMonthErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/transfer/{year}/{month}',
+    url: 'linode/instances/{linodeId}/transfer/{year}/{month}',
     ...options
 });
 
@@ -8060,7 +8060,7 @@ export const getLinodeTransferByYearMonth = <ThrowOnError extends boolean = true
 export const postUpgradeLinodeInterfaces = <ThrowOnError extends boolean = true>(options: Options<PostUpgradeLinodeInterfacesData, ThrowOnError>) => (options.client ?? client).post<PostUpgradeLinodeInterfacesResponses, PostUpgradeLinodeInterfacesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/upgrade-interfaces',
+    url: 'linode/instances/{linodeId}/upgrade-interfaces',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -8098,7 +8098,7 @@ export const postUpgradeLinodeInterfaces = <ThrowOnError extends boolean = true>
 export const getLinodeVolumes = <ThrowOnError extends boolean = true>(options: Options<GetLinodeVolumesData, ThrowOnError>) => (options.client ?? client).get<GetLinodeVolumesResponses, GetLinodeVolumesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/instances/{linodeId}/volumes',
+    url: 'linode/instances/{linodeId}/volumes',
     ...options
 });
 
@@ -8125,7 +8125,7 @@ export const getLinodeVolumes = <ThrowOnError extends boolean = true>(options: O
  */
 export const getKernels = <ThrowOnError extends boolean = true>(options?: Options<GetKernelsData, ThrowOnError>) => (options?.client ?? client).get<GetKernelsResponses, GetKernelsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/linode/kernels',
+    url: 'linode/kernels',
     ...options
 });
 
@@ -8150,7 +8150,7 @@ export const getKernels = <ThrowOnError extends boolean = true>(options?: Option
  */
 export const getKernel = <ThrowOnError extends boolean = true>(options: Options<GetKernelData, ThrowOnError>) => (options.client ?? client).get<GetKernelResponses, GetKernelErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/linode/kernels/{kernelId}',
+    url: 'linode/kernels/{kernelId}',
     ...options
 });
 
@@ -8186,7 +8186,7 @@ export const getKernel = <ThrowOnError extends boolean = true>(options: Options<
 export const getStackScripts = <ThrowOnError extends boolean = true>(options?: Options<GetStackScriptsData, ThrowOnError>) => (options?.client ?? client).get<GetStackScriptsResponses, GetStackScriptsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/stackscripts',
+    url: 'linode/stackscripts',
     ...options
 });
 
@@ -8227,7 +8227,7 @@ export const getStackScripts = <ThrowOnError extends boolean = true>(options?: O
 export const postAddStackScript = <ThrowOnError extends boolean = true>(options: Options<PostAddStackScriptData, ThrowOnError>) => (options.client ?? client).post<PostAddStackScriptResponses, PostAddStackScriptErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/stackscripts',
+    url: 'linode/stackscripts',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -8265,7 +8265,7 @@ export const postAddStackScript = <ThrowOnError extends boolean = true>(options:
 export const deleteStackScript = <ThrowOnError extends boolean = true>(options: Options<DeleteStackScriptData, ThrowOnError>) => (options.client ?? client).delete<DeleteStackScriptResponses, DeleteStackScriptErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/stackscripts/{stackscriptId}',
+    url: 'linode/stackscripts/{stackscriptId}',
     ...options
 });
 
@@ -8299,7 +8299,7 @@ export const deleteStackScript = <ThrowOnError extends boolean = true>(options: 
 export const getStackScript = <ThrowOnError extends boolean = true>(options: Options<GetStackScriptData, ThrowOnError>) => (options.client ?? client).get<GetStackScriptResponses, GetStackScriptErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/stackscripts/{stackscriptId}',
+    url: 'linode/stackscripts/{stackscriptId}',
     ...options
 });
 
@@ -8343,7 +8343,7 @@ export const getStackScript = <ThrowOnError extends boolean = true>(options: Opt
 export const putStackScript = <ThrowOnError extends boolean = true>(options: Options<PutStackScriptData, ThrowOnError>) => (options.client ?? client).put<PutStackScriptResponses, PutStackScriptErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/linode/stackscripts/{stackscriptId}',
+    url: 'linode/stackscripts/{stackscriptId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -8372,7 +8372,7 @@ export const putStackScript = <ThrowOnError extends boolean = true>(options: Opt
  */
 export const getLinodeTypes = <ThrowOnError extends boolean = true>(options?: Options<GetLinodeTypesData, ThrowOnError>) => (options?.client ?? client).get<GetLinodeTypesResponses, GetLinodeTypesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/linode/types',
+    url: 'linode/types',
     ...options
 });
 
@@ -8397,7 +8397,7 @@ export const getLinodeTypes = <ThrowOnError extends boolean = true>(options?: Op
  */
 export const getLinodeType = <ThrowOnError extends boolean = true>(options: Options<GetLinodeTypeData, ThrowOnError>) => (options.client ?? client).get<GetLinodeTypeResponses, GetLinodeTypeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/linode/types/{typeId}',
+    url: 'linode/types/{typeId}',
     ...options
 });
 
@@ -8431,7 +8431,7 @@ export const getLinodeType = <ThrowOnError extends boolean = true>(options: Opti
 export const getLkeClusters = <ThrowOnError extends boolean = true>(options?: Options<GetLkeClustersData, ThrowOnError>) => (options?.client ?? client).get<GetLkeClustersResponses, GetLkeClustersErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters',
+    url: 'lke/clusters',
     ...options
 });
 
@@ -8476,7 +8476,7 @@ export const getLkeClusters = <ThrowOnError extends boolean = true>(options?: Op
 export const postLkeCluster = <ThrowOnError extends boolean = true>(options?: Options<PostLkeClusterData, ThrowOnError>) => (options?.client ?? client).post<PostLkeClusterResponses, PostLkeClusterErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters',
+    url: 'lke/clusters',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -8522,7 +8522,7 @@ export const postLkeCluster = <ThrowOnError extends boolean = true>(options?: Op
 export const deleteLkeCluster = <ThrowOnError extends boolean = true>(options: Options<DeleteLkeClusterData, ThrowOnError>) => (options.client ?? client).delete<DeleteLkeClusterResponses, DeleteLkeClusterErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}',
+    url: 'lke/clusters/{clusterId}',
     ...options
 });
 
@@ -8556,7 +8556,7 @@ export const deleteLkeCluster = <ThrowOnError extends boolean = true>(options: O
 export const getLkeCluster = <ThrowOnError extends boolean = true>(options: Options<GetLkeClusterData, ThrowOnError>) => (options.client ?? client).get<GetLkeClusterResponses, GetLkeClusterErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}',
+    url: 'lke/clusters/{clusterId}',
     ...options
 });
 
@@ -8597,7 +8597,7 @@ export const getLkeCluster = <ThrowOnError extends boolean = true>(options: Opti
 export const putLkeCluster = <ThrowOnError extends boolean = true>(options: Options<PutLkeClusterData, ThrowOnError>) => (options.client ?? client).put<PutLkeClusterResponses, unknown, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}',
+    url: 'lke/clusters/{clusterId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -8635,7 +8635,7 @@ export const putLkeCluster = <ThrowOnError extends boolean = true>(options: Opti
 export const getLkeClusterApiEndpoints = <ThrowOnError extends boolean = true>(options: Options<GetLkeClusterApiEndpointsData, ThrowOnError>) => (options.client ?? client).get<GetLkeClusterApiEndpointsResponses, GetLkeClusterApiEndpointsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/api-endpoints',
+    url: 'lke/clusters/{clusterId}/api-endpoints',
     ...options
 });
 
@@ -8669,7 +8669,7 @@ export const getLkeClusterApiEndpoints = <ThrowOnError extends boolean = true>(o
 export const deleteLkeClusterAcl = <ThrowOnError extends boolean = true>(options: Options<DeleteLkeClusterAclData, ThrowOnError>) => (options.client ?? client).delete<DeleteLkeClusterAclResponses, DeleteLkeClusterAclErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/control_plane_acl',
+    url: 'lke/clusters/{clusterId}/control_plane_acl',
     ...options
 });
 
@@ -8703,7 +8703,7 @@ export const deleteLkeClusterAcl = <ThrowOnError extends boolean = true>(options
 export const getLkeClusterAcl = <ThrowOnError extends boolean = true>(options: Options<GetLkeClusterAclData, ThrowOnError>) => (options.client ?? client).get<GetLkeClusterAclResponses, GetLkeClusterAclErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/control_plane_acl',
+    url: 'lke/clusters/{clusterId}/control_plane_acl',
     ...options
 });
 
@@ -8740,7 +8740,7 @@ export const getLkeClusterAcl = <ThrowOnError extends boolean = true>(options: O
 export const putLkeClusterAcl = <ThrowOnError extends boolean = true>(options: Options<PutLkeClusterAclData, ThrowOnError>) => (options.client ?? client).put<PutLkeClusterAclResponses, PutLkeClusterAclErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/control_plane_acl',
+    url: 'lke/clusters/{clusterId}/control_plane_acl',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -8784,7 +8784,7 @@ export const putLkeClusterAcl = <ThrowOnError extends boolean = true>(options: O
 export const getLkeClusterDashboard = <ThrowOnError extends boolean = true>(options: Options<GetLkeClusterDashboardData, ThrowOnError>) => (options.client ?? client).get<GetLkeClusterDashboardResponses, GetLkeClusterDashboardErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/dashboard',
+    url: 'lke/clusters/{clusterId}/dashboard',
     ...options
 });
 
@@ -8818,7 +8818,7 @@ export const getLkeClusterDashboard = <ThrowOnError extends boolean = true>(opti
 export const deleteLkeClusterKubeconfig = <ThrowOnError extends boolean = true>(options: Options<DeleteLkeClusterKubeconfigData, ThrowOnError>) => (options.client ?? client).delete<DeleteLkeClusterKubeconfigResponses, DeleteLkeClusterKubeconfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/kubeconfig',
+    url: 'lke/clusters/{clusterId}/kubeconfig',
     ...options
 });
 
@@ -8852,7 +8852,7 @@ export const deleteLkeClusterKubeconfig = <ThrowOnError extends boolean = true>(
 export const getLkeClusterKubeconfig = <ThrowOnError extends boolean = true>(options: Options<GetLkeClusterKubeconfigData, ThrowOnError>) => (options.client ?? client).get<GetLkeClusterKubeconfigResponses, GetLkeClusterKubeconfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/kubeconfig',
+    url: 'lke/clusters/{clusterId}/kubeconfig',
     ...options
 });
 
@@ -8890,7 +8890,7 @@ export const getLkeClusterKubeconfig = <ThrowOnError extends boolean = true>(opt
 export const deleteLkeClusterNode = <ThrowOnError extends boolean = true>(options: Options<DeleteLkeClusterNodeData, ThrowOnError>) => (options.client ?? client).delete<DeleteLkeClusterNodeResponses, DeleteLkeClusterNodeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/nodes/{nodeId}',
+    url: 'lke/clusters/{clusterId}/nodes/{nodeId}',
     ...options
 });
 
@@ -8924,7 +8924,7 @@ export const deleteLkeClusterNode = <ThrowOnError extends boolean = true>(option
 export const getLkeClusterNode = <ThrowOnError extends boolean = true>(options: Options<GetLkeClusterNodeData, ThrowOnError>) => (options.client ?? client).get<GetLkeClusterNodeResponses, GetLkeClusterNodeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/nodes/{nodeId}',
+    url: 'lke/clusters/{clusterId}/nodes/{nodeId}',
     ...options
 });
 
@@ -8960,7 +8960,7 @@ export const getLkeClusterNode = <ThrowOnError extends boolean = true>(options: 
 export const postLkeClusterNodeRecycle = <ThrowOnError extends boolean = true>(options: Options<PostLkeClusterNodeRecycleData, ThrowOnError>) => (options.client ?? client).post<PostLkeClusterNodeRecycleResponses, PostLkeClusterNodeRecycleErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/nodes/{nodeId}/recycle',
+    url: 'lke/clusters/{clusterId}/nodes/{nodeId}/recycle',
     ...options
 });
 
@@ -8994,7 +8994,7 @@ export const postLkeClusterNodeRecycle = <ThrowOnError extends boolean = true>(o
 export const getLkeClusterPools = <ThrowOnError extends boolean = true>(options: Options<GetLkeClusterPoolsData, ThrowOnError>) => (options.client ?? client).get<GetLkeClusterPoolsResponses, GetLkeClusterPoolsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/pools',
+    url: 'lke/clusters/{clusterId}/pools',
     ...options
 });
 
@@ -9038,7 +9038,7 @@ export const getLkeClusterPools = <ThrowOnError extends boolean = true>(options:
 export const postLkeClusterPools = <ThrowOnError extends boolean = true>(options: Options<PostLkeClusterPoolsData, ThrowOnError>) => (options.client ?? client).post<PostLkeClusterPoolsResponses, PostLkeClusterPoolsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/pools',
+    url: 'lke/clusters/{clusterId}/pools',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -9080,7 +9080,7 @@ export const postLkeClusterPools = <ThrowOnError extends boolean = true>(options
 export const deleteLkeNodePool = <ThrowOnError extends boolean = true>(options: Options<DeleteLkeNodePoolData, ThrowOnError>) => (options.client ?? client).delete<DeleteLkeNodePoolResponses, DeleteLkeNodePoolErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/pools/{poolId}',
+    url: 'lke/clusters/{clusterId}/pools/{poolId}',
     ...options
 });
 
@@ -9114,7 +9114,7 @@ export const deleteLkeNodePool = <ThrowOnError extends boolean = true>(options: 
 export const getLkeNodePool = <ThrowOnError extends boolean = true>(options: Options<GetLkeNodePoolData, ThrowOnError>) => (options.client ?? client).get<GetLkeNodePoolResponses, unknown, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/pools/{poolId}',
+    url: 'lke/clusters/{clusterId}/pools/{poolId}',
     ...options
 });
 
@@ -9162,7 +9162,7 @@ export const getLkeNodePool = <ThrowOnError extends boolean = true>(options: Opt
 export const putLkeNodePool = <ThrowOnError extends boolean = true>(options: Options<PutLkeNodePoolData, ThrowOnError>) => (options.client ?? client).put<PutLkeNodePoolResponses, unknown, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/pools/{poolId}',
+    url: 'lke/clusters/{clusterId}/pools/{poolId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -9202,7 +9202,7 @@ export const putLkeNodePool = <ThrowOnError extends boolean = true>(options: Opt
 export const postLkeClusterPoolRecycle = <ThrowOnError extends boolean = true>(options: Options<PostLkeClusterPoolRecycleData, ThrowOnError>) => (options.client ?? client).post<PostLkeClusterPoolRecycleResponses, PostLkeClusterPoolRecycleErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/pools/{poolId}/recycle',
+    url: 'lke/clusters/{clusterId}/pools/{poolId}/recycle',
     ...options
 });
 
@@ -9238,7 +9238,7 @@ export const postLkeClusterPoolRecycle = <ThrowOnError extends boolean = true>(o
 export const postLkeClusterRecycle = <ThrowOnError extends boolean = true>(options: Options<PostLkeClusterRecycleData, ThrowOnError>) => (options.client ?? client).post<PostLkeClusterRecycleResponses, PostLkeClusterRecycleErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/recycle',
+    url: 'lke/clusters/{clusterId}/recycle',
     ...options
 });
 
@@ -9282,7 +9282,7 @@ export const postLkeClusterRecycle = <ThrowOnError extends boolean = true>(optio
 export const postLkeClusterRegenerate = <ThrowOnError extends boolean = true>(options: Options<PostLkeClusterRegenerateData, ThrowOnError>) => (options.client ?? client).post<PostLkeClusterRegenerateResponses, PostLkeClusterRegenerateErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/regenerate',
+    url: 'lke/clusters/{clusterId}/regenerate',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -9324,7 +9324,7 @@ export const postLkeClusterRegenerate = <ThrowOnError extends boolean = true>(op
 export const deleteLkeServiceToken = <ThrowOnError extends boolean = true>(options: Options<DeleteLkeServiceTokenData, ThrowOnError>) => (options.client ?? client).delete<DeleteLkeServiceTokenResponses, DeleteLkeServiceTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/clusters/{clusterId}/servicetoken',
+    url: 'lke/clusters/{clusterId}/servicetoken',
     ...options
 });
 
@@ -9358,7 +9358,7 @@ export const deleteLkeServiceToken = <ThrowOnError extends boolean = true>(optio
 export const getLkeTiersVersions = <ThrowOnError extends boolean = true>(options: Options<GetLkeTiersVersionsData, ThrowOnError>) => (options.client ?? client).get<GetLkeTiersVersionsResponses, GetLkeTiersVersionsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/tiers/{tier}/versions',
+    url: 'lke/tiers/{tier}/versions',
     ...options
 });
 
@@ -9392,7 +9392,7 @@ export const getLkeTiersVersions = <ThrowOnError extends boolean = true>(options
 export const getLkeTiersVersion = <ThrowOnError extends boolean = true>(options: Options<GetLkeTiersVersionData, ThrowOnError>) => (options.client ?? client).get<GetLkeTiersVersionResponses, GetLkeTiersVersionErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/tiers/{tier}/versions/{version}',
+    url: 'lke/tiers/{tier}/versions/{version}',
     ...options
 });
 
@@ -9417,7 +9417,7 @@ export const getLkeTiersVersion = <ThrowOnError extends boolean = true>(options:
  */
 export const getLkeTypes = <ThrowOnError extends boolean = true>(options?: Options<GetLkeTypesData, ThrowOnError>) => (options?.client ?? client).get<GetLkeTypesResponses, GetLkeTypesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/lke/types',
+    url: 'lke/types',
     ...options
 });
 
@@ -9451,7 +9451,7 @@ export const getLkeTypes = <ThrowOnError extends boolean = true>(options?: Optio
 export const getLkeVersions = <ThrowOnError extends boolean = true>(options?: Options<GetLkeVersionsData, ThrowOnError>) => (options?.client ?? client).get<GetLkeVersionsResponses, GetLkeVersionsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/versions',
+    url: 'lke/versions',
     ...options
 });
 
@@ -9485,7 +9485,7 @@ export const getLkeVersions = <ThrowOnError extends boolean = true>(options?: Op
 export const getLkeVersion = <ThrowOnError extends boolean = true>(options: Options<GetLkeVersionData, ThrowOnError>) => (options.client ?? client).get<GetLkeVersionResponses, GetLkeVersionErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/lke/versions/{version}',
+    url: 'lke/versions/{version}',
     ...options
 });
 
@@ -9519,7 +9519,7 @@ export const getLkeVersion = <ThrowOnError extends boolean = true>(options: Opti
 export const getLongviewClients = <ThrowOnError extends boolean = true>(options?: Options<GetLongviewClientsData, ThrowOnError>) => (options?.client ?? client).get<GetLongviewClientsResponses, GetLongviewClientsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/longview/clients',
+    url: 'longview/clients',
     ...options
 });
 
@@ -9554,7 +9554,7 @@ export const getLongviewClients = <ThrowOnError extends boolean = true>(options?
 export const postLongviewClient = <ThrowOnError extends boolean = true>(options: Options<PostLongviewClientData, ThrowOnError>) => (options.client ?? client).post<PostLongviewClientResponses, PostLongviewClientErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/longview/clients',
+    url: 'longview/clients',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -9596,7 +9596,7 @@ export const postLongviewClient = <ThrowOnError extends boolean = true>(options:
 export const deleteLongviewClient = <ThrowOnError extends boolean = true>(options: Options<DeleteLongviewClientData, ThrowOnError>) => (options.client ?? client).delete<DeleteLongviewClientResponses, DeleteLongviewClientErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/longview/clients/{clientId}',
+    url: 'longview/clients/{clientId}',
     ...options
 });
 
@@ -9630,7 +9630,7 @@ export const deleteLongviewClient = <ThrowOnError extends boolean = true>(option
 export const getLongviewClient = <ThrowOnError extends boolean = true>(options: Options<GetLongviewClientData, ThrowOnError>) => (options.client ?? client).get<GetLongviewClientResponses, GetLongviewClientErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/longview/clients/{clientId}',
+    url: 'longview/clients/{clientId}',
     ...options
 });
 
@@ -9665,7 +9665,7 @@ export const getLongviewClient = <ThrowOnError extends boolean = true>(options: 
 export const putLongviewClient = <ThrowOnError extends boolean = true>(options: Options<PutLongviewClientData, ThrowOnError>) => (options.client ?? client).put<PutLongviewClientResponses, PutLongviewClientErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/longview/clients/{clientId}',
+    url: 'longview/clients/{clientId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -9712,7 +9712,7 @@ export const putLongviewClient = <ThrowOnError extends boolean = true>(options: 
 export const getLongviewPlan = <ThrowOnError extends boolean = true>(options?: Options<GetLongviewPlanData, ThrowOnError>) => (options?.client ?? client).get<GetLongviewPlanResponses, GetLongviewPlanErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/longview/plan',
+    url: 'longview/plan',
     ...options
 });
 
@@ -9750,7 +9750,7 @@ export const getLongviewPlan = <ThrowOnError extends boolean = true>(options?: O
 export const putLongviewPlan = <ThrowOnError extends boolean = true>(options: Options<PutLongviewPlanData, ThrowOnError>) => (options.client ?? client).put<PutLongviewPlanResponses, PutLongviewPlanErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/longview/plan',
+    url: 'longview/plan',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -9779,7 +9779,7 @@ export const putLongviewPlan = <ThrowOnError extends boolean = true>(options: Op
  */
 export const getLongviewSubscriptions = <ThrowOnError extends boolean = true>(options?: Options<GetLongviewSubscriptionsData, ThrowOnError>) => (options?.client ?? client).get<GetLongviewSubscriptionsResponses, GetLongviewSubscriptionsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/longview/subscriptions',
+    url: 'longview/subscriptions',
     ...options
 });
 
@@ -9804,7 +9804,7 @@ export const getLongviewSubscriptions = <ThrowOnError extends boolean = true>(op
  */
 export const getLongviewSubscription = <ThrowOnError extends boolean = true>(options: Options<GetLongviewSubscriptionData, ThrowOnError>) => (options.client ?? client).get<GetLongviewSubscriptionResponses, GetLongviewSubscriptionErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/longview/subscriptions/{subscriptionId}',
+    url: 'longview/subscriptions/{subscriptionId}',
     ...options
 });
 
@@ -9829,7 +9829,7 @@ export const getLongviewSubscription = <ThrowOnError extends boolean = true>(opt
  */
 export const getLongviewTypes = <ThrowOnError extends boolean = true>(options?: Options<GetLongviewTypesData, ThrowOnError>) => (options?.client ?? client).get<GetLongviewTypesResponses, GetLongviewTypesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/longview/types',
+    url: 'longview/types',
     ...options
 });
 
@@ -9859,7 +9859,7 @@ export const getLongviewTypes = <ThrowOnError extends boolean = true>(options?: 
 export const getMaintenancePolicies = <ThrowOnError extends boolean = true>(options?: Options<GetMaintenancePoliciesData, ThrowOnError>) => (options?.client ?? client).get<GetMaintenancePoliciesResponses, GetMaintenancePoliciesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/maintenance/policies',
+    url: 'maintenance/policies',
     ...options
 });
 
@@ -9895,7 +9895,7 @@ export const getMaintenancePolicies = <ThrowOnError extends boolean = true>(opti
 export const getManagedContacts = <ThrowOnError extends boolean = true>(options?: Options<GetManagedContactsData, ThrowOnError>) => (options?.client ?? client).get<GetManagedContactsResponses, GetManagedContactsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/contacts',
+    url: 'managed/contacts',
     ...options
 });
 
@@ -9934,7 +9934,7 @@ export const getManagedContacts = <ThrowOnError extends boolean = true>(options?
 export const postManagedContact = <ThrowOnError extends boolean = true>(options?: Options<PostManagedContactData, ThrowOnError>) => (options?.client ?? client).post<PostManagedContactResponses, PostManagedContactErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/contacts',
+    url: 'managed/contacts',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -9974,7 +9974,7 @@ export const postManagedContact = <ThrowOnError extends boolean = true>(options?
 export const deleteManagedContact = <ThrowOnError extends boolean = true>(options: Options<DeleteManagedContactData, ThrowOnError>) => (options.client ?? client).delete<DeleteManagedContactResponses, DeleteManagedContactErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/contacts/{contactId}',
+    url: 'managed/contacts/{contactId}',
     ...options
 });
 
@@ -10010,7 +10010,7 @@ export const deleteManagedContact = <ThrowOnError extends boolean = true>(option
 export const getManagedContact = <ThrowOnError extends boolean = true>(options: Options<GetManagedContactData, ThrowOnError>) => (options.client ?? client).get<GetManagedContactResponses, GetManagedContactErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/contacts/{contactId}',
+    url: 'managed/contacts/{contactId}',
     ...options
 });
 
@@ -10049,7 +10049,7 @@ export const getManagedContact = <ThrowOnError extends boolean = true>(options: 
 export const putManagedContact = <ThrowOnError extends boolean = true>(options: Options<PutManagedContactData, ThrowOnError>) => (options.client ?? client).put<PutManagedContactResponses, PutManagedContactErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/contacts/{contactId}',
+    url: 'managed/contacts/{contactId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -10089,7 +10089,7 @@ export const putManagedContact = <ThrowOnError extends boolean = true>(options: 
 export const getManagedCredentials = <ThrowOnError extends boolean = true>(options?: Options<GetManagedCredentialsData, ThrowOnError>) => (options?.client ?? client).get<GetManagedCredentialsResponses, GetManagedCredentialsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/credentials',
+    url: 'managed/credentials',
     ...options
 });
 
@@ -10128,7 +10128,7 @@ export const getManagedCredentials = <ThrowOnError extends boolean = true>(optio
 export const postManagedCredential = <ThrowOnError extends boolean = true>(options?: Options<PostManagedCredentialData, ThrowOnError>) => (options?.client ?? client).post<PostManagedCredentialResponses, PostManagedCredentialErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/credentials',
+    url: 'managed/credentials',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -10168,7 +10168,7 @@ export const postManagedCredential = <ThrowOnError extends boolean = true>(optio
 export const getManagedSshKey = <ThrowOnError extends boolean = true>(options?: Options<GetManagedSshKeyData, ThrowOnError>) => (options?.client ?? client).get<GetManagedSshKeyResponses, GetManagedSshKeyErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/credentials/sshkey',
+    url: 'managed/credentials/sshkey',
     ...options
 });
 
@@ -10204,7 +10204,7 @@ export const getManagedSshKey = <ThrowOnError extends boolean = true>(options?: 
 export const getManagedCredential = <ThrowOnError extends boolean = true>(options: Options<GetManagedCredentialData, ThrowOnError>) => (options.client ?? client).get<GetManagedCredentialResponses, GetManagedCredentialErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/credentials/{credentialId}',
+    url: 'managed/credentials/{credentialId}',
     ...options
 });
 
@@ -10239,7 +10239,7 @@ export const getManagedCredential = <ThrowOnError extends boolean = true>(option
 export const putManagedCredential = <ThrowOnError extends boolean = true>(options: Options<PutManagedCredentialData, ThrowOnError>) => (options.client ?? client).put<PutManagedCredentialResponses, PutManagedCredentialErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/credentials/{credentialId}',
+    url: 'managed/credentials/{credentialId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -10279,7 +10279,7 @@ export const putManagedCredential = <ThrowOnError extends boolean = true>(option
 export const postManagedCredentialRevoke = <ThrowOnError extends boolean = true>(options: Options<PostManagedCredentialRevokeData, ThrowOnError>) => (options.client ?? client).post<PostManagedCredentialRevokeResponses, PostManagedCredentialRevokeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/credentials/{credentialId}/revoke',
+    url: 'managed/credentials/{credentialId}/revoke',
     ...options
 });
 
@@ -10317,7 +10317,7 @@ export const postManagedCredentialRevoke = <ThrowOnError extends boolean = true>
 export const postManagedCredentialUsernamePassword = <ThrowOnError extends boolean = true>(options: Options<PostManagedCredentialUsernamePasswordData, ThrowOnError>) => (options.client ?? client).post<PostManagedCredentialUsernamePasswordResponses, PostManagedCredentialUsernamePasswordErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/credentials/{credentialId}/update',
+    url: 'managed/credentials/{credentialId}/update',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -10357,7 +10357,7 @@ export const postManagedCredentialUsernamePassword = <ThrowOnError extends boole
 export const getManagedIssues = <ThrowOnError extends boolean = true>(options?: Options<GetManagedIssuesData, ThrowOnError>) => (options?.client ?? client).get<GetManagedIssuesResponses, GetManagedIssuesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/issues',
+    url: 'managed/issues',
     ...options
 });
 
@@ -10393,7 +10393,7 @@ export const getManagedIssues = <ThrowOnError extends boolean = true>(options?: 
 export const getManagedIssue = <ThrowOnError extends boolean = true>(options: Options<GetManagedIssueData, ThrowOnError>) => (options.client ?? client).get<GetManagedIssueResponses, GetManagedIssueErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/issues/{issueId}',
+    url: 'managed/issues/{issueId}',
     ...options
 });
 
@@ -10429,7 +10429,7 @@ export const getManagedIssue = <ThrowOnError extends boolean = true>(options: Op
 export const getManagedLinodeSettings = <ThrowOnError extends boolean = true>(options?: Options<GetManagedLinodeSettingsData, ThrowOnError>) => (options?.client ?? client).get<GetManagedLinodeSettingsResponses, GetManagedLinodeSettingsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/linode-settings',
+    url: 'managed/linode-settings',
     ...options
 });
 
@@ -10465,7 +10465,7 @@ export const getManagedLinodeSettings = <ThrowOnError extends boolean = true>(op
 export const getManagedLinodeSetting = <ThrowOnError extends boolean = true>(options: Options<GetManagedLinodeSettingData, ThrowOnError>) => (options.client ?? client).get<GetManagedLinodeSettingResponses, GetManagedLinodeSettingErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/linode-settings/{linodeId}',
+    url: 'managed/linode-settings/{linodeId}',
     ...options
 });
 
@@ -10506,7 +10506,7 @@ export const getManagedLinodeSetting = <ThrowOnError extends boolean = true>(opt
 export const putManagedLinodeSetting = <ThrowOnError extends boolean = true>(options: Options<PutManagedLinodeSettingData, ThrowOnError>) => (options.client ?? client).put<PutManagedLinodeSettingResponses, PutManagedLinodeSettingErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/linode-settings/{linodeId}',
+    url: 'managed/linode-settings/{linodeId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -10546,7 +10546,7 @@ export const putManagedLinodeSetting = <ThrowOnError extends boolean = true>(opt
 export const getManagedServices = <ThrowOnError extends boolean = true>(options?: Options<GetManagedServicesData, ThrowOnError>) => (options?.client ?? client).get<GetManagedServicesResponses, GetManagedServicesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/services',
+    url: 'managed/services',
     ...options
 });
 
@@ -10591,7 +10591,7 @@ export const getManagedServices = <ThrowOnError extends boolean = true>(options?
 export const postManagedService = <ThrowOnError extends boolean = true>(options?: Options<PostManagedServiceData, ThrowOnError>) => (options?.client ?? client).post<PostManagedServiceResponses, PostManagedServiceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/services',
+    url: 'managed/services',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -10631,7 +10631,7 @@ export const postManagedService = <ThrowOnError extends boolean = true>(options?
 export const deleteManagedService = <ThrowOnError extends boolean = true>(options: Options<DeleteManagedServiceData, ThrowOnError>) => (options.client ?? client).delete<DeleteManagedServiceResponses, DeleteManagedServiceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/services/{serviceId}',
+    url: 'managed/services/{serviceId}',
     ...options
 });
 
@@ -10667,7 +10667,7 @@ export const deleteManagedService = <ThrowOnError extends boolean = true>(option
 export const getManagedService = <ThrowOnError extends boolean = true>(options: Options<GetManagedServiceData, ThrowOnError>) => (options.client ?? client).get<GetManagedServiceResponses, GetManagedServiceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/services/{serviceId}',
+    url: 'managed/services/{serviceId}',
     ...options
 });
 
@@ -10711,7 +10711,7 @@ export const getManagedService = <ThrowOnError extends boolean = true>(options: 
 export const putManagedService = <ThrowOnError extends boolean = true>(options: Options<PutManagedServiceData, ThrowOnError>) => (options.client ?? client).put<PutManagedServiceResponses, PutManagedServiceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/services/{serviceId}',
+    url: 'managed/services/{serviceId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -10751,7 +10751,7 @@ export const putManagedService = <ThrowOnError extends boolean = true>(options: 
 export const postDisableManagedService = <ThrowOnError extends boolean = true>(options: Options<PostDisableManagedServiceData, ThrowOnError>) => (options.client ?? client).post<PostDisableManagedServiceResponses, PostDisableManagedServiceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/services/{serviceId}/disable',
+    url: 'managed/services/{serviceId}/disable',
     ...options
 });
 
@@ -10787,7 +10787,7 @@ export const postDisableManagedService = <ThrowOnError extends boolean = true>(o
 export const postEnableManagedService = <ThrowOnError extends boolean = true>(options: Options<PostEnableManagedServiceData, ThrowOnError>) => (options.client ?? client).post<PostEnableManagedServiceResponses, PostEnableManagedServiceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/services/{serviceId}/enable',
+    url: 'managed/services/{serviceId}/enable',
     ...options
 });
 
@@ -10829,7 +10829,7 @@ export const postEnableManagedService = <ThrowOnError extends boolean = true>(op
 export const getManagedStats = <ThrowOnError extends boolean = true>(options?: Options<GetManagedStatsData, ThrowOnError>) => (options?.client ?? client).get<GetManagedStatsResponses, GetManagedStatsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/managed/stats',
+    url: 'managed/stats',
     ...options
 });
 
@@ -10869,7 +10869,7 @@ export const getManagedStats = <ThrowOnError extends boolean = true>(options?: O
 export const getAlertChannels = <ThrowOnError extends boolean = true>(options?: Options<GetAlertChannelsData, ThrowOnError>) => (options?.client ?? client).get<GetAlertChannelsResponses, GetAlertChannelsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/alert-channels',
+    url: 'monitor/alert-channels',
     ...options
 });
 
@@ -10909,7 +10909,7 @@ export const getAlertChannels = <ThrowOnError extends boolean = true>(options?: 
 export const getAlertDefinitions = <ThrowOnError extends boolean = true>(options?: Options<GetAlertDefinitionsData, ThrowOnError>) => (options?.client ?? client).get<GetAlertDefinitionsResponses, GetAlertDefinitionsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/alert-definitions',
+    url: 'monitor/alert-definitions',
     ...options
 });
 
@@ -10947,7 +10947,7 @@ export const getAlertDefinitions = <ThrowOnError extends boolean = true>(options
 export const getDashboardsAll = <ThrowOnError extends boolean = true>(options?: Options<GetDashboardsAllData, ThrowOnError>) => (options?.client ?? client).get<GetDashboardsAllResponses, GetDashboardsAllErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/dashboards',
+    url: 'monitor/dashboards',
     ...options
 });
 
@@ -10985,7 +10985,7 @@ export const getDashboardsAll = <ThrowOnError extends boolean = true>(options?: 
 export const getDashboardsById = <ThrowOnError extends boolean = true>(options: Options<GetDashboardsByIdData, ThrowOnError>) => (options.client ?? client).get<GetDashboardsByIdResponses, GetDashboardsByIdErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/dashboards/{dashboardId}',
+    url: 'monitor/dashboards/{dashboardId}',
     ...options
 });
 
@@ -11023,7 +11023,7 @@ export const getDashboardsById = <ThrowOnError extends boolean = true>(options: 
 export const getMonitorServices = <ThrowOnError extends boolean = true>(options?: Options<GetMonitorServicesData, ThrowOnError>) => (options?.client ?? client).get<GetMonitorServicesResponses, GetMonitorServicesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/services',
+    url: 'monitor/services',
     ...options
 });
 
@@ -11063,7 +11063,7 @@ export const getMonitorServices = <ThrowOnError extends boolean = true>(options?
 export const getMonitorServicesForServiceType = <ThrowOnError extends boolean = true>(options: Options<GetMonitorServicesForServiceTypeData, ThrowOnError>) => (options.client ?? client).get<GetMonitorServicesForServiceTypeResponses, GetMonitorServicesForServiceTypeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/services/{serviceType}',
+    url: 'monitor/services/{serviceType}',
     ...options
 });
 
@@ -11101,7 +11101,7 @@ export const getMonitorServicesForServiceType = <ThrowOnError extends boolean = 
 export const getAlertDefinitionsForServiceType = <ThrowOnError extends boolean = true>(options: Options<GetAlertDefinitionsForServiceTypeData, ThrowOnError>) => (options.client ?? client).get<GetAlertDefinitionsForServiceTypeResponses, GetAlertDefinitionsForServiceTypeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/services/{serviceType}/alert-definitions',
+    url: 'monitor/services/{serviceType}/alert-definitions',
     ...options
 });
 
@@ -11148,7 +11148,7 @@ export const getAlertDefinitionsForServiceType = <ThrowOnError extends boolean =
 export const postAlertDefinitionForServiceType = <ThrowOnError extends boolean = true>(options: Options<PostAlertDefinitionForServiceTypeData, ThrowOnError>) => (options.client ?? client).post<PostAlertDefinitionForServiceTypeResponses, PostAlertDefinitionForServiceTypeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/services/{serviceType}/alert-definitions',
+    url: 'monitor/services/{serviceType}/alert-definitions',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -11194,7 +11194,7 @@ export const postAlertDefinitionForServiceType = <ThrowOnError extends boolean =
 export const deleteAlertDefinition = <ThrowOnError extends boolean = true>(options: Options<DeleteAlertDefinitionData, ThrowOnError>) => (options.client ?? client).delete<DeleteAlertDefinitionResponses, DeleteAlertDefinitionErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/services/{serviceType}/alert-definitions/{alertId}',
+    url: 'monitor/services/{serviceType}/alert-definitions/{alertId}',
     ...options
 });
 
@@ -11232,7 +11232,7 @@ export const deleteAlertDefinition = <ThrowOnError extends boolean = true>(optio
 export const getAlertDefinition = <ThrowOnError extends boolean = true>(options: Options<GetAlertDefinitionData, ThrowOnError>) => (options.client ?? client).get<GetAlertDefinitionResponses, GetAlertDefinitionErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/services/{serviceType}/alert-definitions/{alertId}',
+    url: 'monitor/services/{serviceType}/alert-definitions/{alertId}',
     ...options
 });
 
@@ -11288,7 +11288,7 @@ export const getAlertDefinition = <ThrowOnError extends boolean = true>(options:
 export const putAlertDefinition = <ThrowOnError extends boolean = true>(options: Options<PutAlertDefinitionData, ThrowOnError>) => (options.client ?? client).put<PutAlertDefinitionResponses, PutAlertDefinitionErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/services/{serviceType}/alert-definitions/{alertId}',
+    url: 'monitor/services/{serviceType}/alert-definitions/{alertId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -11330,7 +11330,7 @@ export const putAlertDefinition = <ThrowOnError extends boolean = true>(options:
 export const getDashboards = <ThrowOnError extends boolean = true>(options: Options<GetDashboardsData, ThrowOnError>) => (options.client ?? client).get<GetDashboardsResponses, GetDashboardsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/services/{serviceType}/dashboards',
+    url: 'monitor/services/{serviceType}/dashboards',
     ...options
 });
 
@@ -11370,7 +11370,7 @@ export const getDashboards = <ThrowOnError extends boolean = true>(options: Opti
 export const getMonitorInformation = <ThrowOnError extends boolean = true>(options: Options<GetMonitorInformationData, ThrowOnError>) => (options.client ?? client).get<GetMonitorInformationResponses, GetMonitorInformationErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/services/{serviceType}/metric-definitions',
+    url: 'monitor/services/{serviceType}/metric-definitions',
     ...options
 });
 
@@ -11387,7 +11387,7 @@ export const getMonitorInformation = <ThrowOnError extends boolean = true>(optio
  */
 export const postReadMetric = <ThrowOnError extends boolean = true>(options: Options<PostReadMetricData, ThrowOnError>) => (options.client ?? client).post<PostReadMetricResponses, PostReadMetricErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/monitor/services/{serviceType}/metrics',
+    url: 'monitor/services/{serviceType}/metrics',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -11435,7 +11435,7 @@ export const postReadMetric = <ThrowOnError extends boolean = true>(options: Opt
 export const postGetToken = <ThrowOnError extends boolean = true>(options: Options<PostGetTokenData, ThrowOnError>) => (options.client ?? client).post<PostGetTokenResponses, PostGetTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/monitor/services/{serviceType}/token',
+    url: 'monitor/services/{serviceType}/token',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -11464,7 +11464,7 @@ export const postGetToken = <ThrowOnError extends boolean = true>(options: Optio
  */
 export const getNetworkTransferPrices = <ThrowOnError extends boolean = true>(options?: Options<GetNetworkTransferPricesData, ThrowOnError>) => (options?.client ?? client).get<GetNetworkTransferPricesResponses, GetNetworkTransferPricesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/network-transfer/prices',
+    url: 'network-transfer/prices',
     ...options
 });
 
@@ -11498,7 +11498,7 @@ export const getNetworkTransferPrices = <ThrowOnError extends boolean = true>(op
 export const getFirewalls = <ThrowOnError extends boolean = true>(options?: Options<GetFirewallsData, ThrowOnError>) => (options?.client ?? client).get<GetFirewallsResponses, GetFirewallsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls',
+    url: 'networking/firewalls',
     ...options
 });
 
@@ -11557,7 +11557,7 @@ export const getFirewalls = <ThrowOnError extends boolean = true>(options?: Opti
 export const postFirewalls = <ThrowOnError extends boolean = true>(options?: Options<PostFirewallsData, ThrowOnError>) => (options?.client ?? client).post<PostFirewallsResponses, PostFirewallsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls',
+    url: 'networking/firewalls',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -11595,7 +11595,7 @@ export const postFirewalls = <ThrowOnError extends boolean = true>(options?: Opt
 export const getFirewallSettings = <ThrowOnError extends boolean = true>(options?: Options<GetFirewallSettingsData, ThrowOnError>) => (options?.client ?? client).get<GetFirewallSettingsResponses, GetFirewallSettingsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/settings',
+    url: 'networking/firewalls/settings',
     ...options
 });
 
@@ -11647,7 +11647,7 @@ export const getFirewallSettings = <ThrowOnError extends boolean = true>(options
 export const putFirewallSettings = <ThrowOnError extends boolean = true>(options: Options<PutFirewallSettingsData, ThrowOnError>) => (options.client ?? client).put<PutFirewallSettingsResponses, PutFirewallSettingsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/settings',
+    url: 'networking/firewalls/settings',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -11685,7 +11685,7 @@ export const putFirewallSettings = <ThrowOnError extends boolean = true>(options
 export const getFirewallTemplates = <ThrowOnError extends boolean = true>(options?: Options<GetFirewallTemplatesData, ThrowOnError>) => (options?.client ?? client).get<GetFirewallTemplatesResponses, GetFirewallTemplatesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/templates',
+    url: 'networking/firewalls/templates',
     ...options
 });
 
@@ -11723,7 +11723,7 @@ export const getFirewallTemplates = <ThrowOnError extends boolean = true>(option
 export const getFirewallTemplate = <ThrowOnError extends boolean = true>(options: Options<GetFirewallTemplateData, ThrowOnError>) => (options.client ?? client).get<GetFirewallTemplateResponses, GetFirewallTemplateErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/templates/{slug}',
+    url: 'networking/firewalls/templates/{slug}',
     ...options
 });
 
@@ -11763,7 +11763,7 @@ export const getFirewallTemplate = <ThrowOnError extends boolean = true>(options
 export const deleteFirewall = <ThrowOnError extends boolean = true>(options: Options<DeleteFirewallData, ThrowOnError>) => (options.client ?? client).delete<DeleteFirewallResponses, DeleteFirewallErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}',
+    url: 'networking/firewalls/{firewallId}',
     ...options
 });
 
@@ -11797,7 +11797,7 @@ export const deleteFirewall = <ThrowOnError extends boolean = true>(options: Opt
 export const getFirewall = <ThrowOnError extends boolean = true>(options: Options<GetFirewallData, ThrowOnError>) => (options.client ?? client).get<GetFirewallResponses, GetFirewallErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}',
+    url: 'networking/firewalls/{firewallId}',
     ...options
 });
 
@@ -11846,7 +11846,7 @@ export const getFirewall = <ThrowOnError extends boolean = true>(options: Option
 export const putFirewall = <ThrowOnError extends boolean = true>(options: Options<PutFirewallData, ThrowOnError>) => (options.client ?? client).put<PutFirewallResponses, PutFirewallErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}',
+    url: 'networking/firewalls/{firewallId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -11884,7 +11884,7 @@ export const putFirewall = <ThrowOnError extends boolean = true>(options: Option
 export const getFirewallDevices = <ThrowOnError extends boolean = true>(options: Options<GetFirewallDevicesData, ThrowOnError>) => (options.client ?? client).get<GetFirewallDevicesResponses, GetFirewallDevicesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}/devices',
+    url: 'networking/firewalls/{firewallId}/devices',
     ...options
 });
 
@@ -11934,7 +11934,7 @@ export const getFirewallDevices = <ThrowOnError extends boolean = true>(options:
 export const postFirewallDevice = <ThrowOnError extends boolean = true>(options: Options<PostFirewallDeviceData, ThrowOnError>) => (options.client ?? client).post<PostFirewallDeviceResponses, PostFirewallDeviceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}/devices',
+    url: 'networking/firewalls/{firewallId}/devices',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -11976,7 +11976,7 @@ export const postFirewallDevice = <ThrowOnError extends boolean = true>(options:
 export const deleteFirewallDevice = <ThrowOnError extends boolean = true>(options: Options<DeleteFirewallDeviceData, ThrowOnError>) => (options.client ?? client).delete<DeleteFirewallDeviceResponses, DeleteFirewallDeviceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}/devices/{deviceId}',
+    url: 'networking/firewalls/{firewallId}/devices/{deviceId}',
     ...options
 });
 
@@ -12011,7 +12011,7 @@ export const deleteFirewallDevice = <ThrowOnError extends boolean = true>(option
 export const getFirewallDevice = <ThrowOnError extends boolean = true>(options: Options<GetFirewallDeviceData, ThrowOnError>) => (options.client ?? client).get<GetFirewallDeviceResponses, GetFirewallDeviceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}/devices/{deviceId}',
+    url: 'networking/firewalls/{firewallId}/devices/{deviceId}',
     ...options
 });
 
@@ -12045,7 +12045,7 @@ export const getFirewallDevice = <ThrowOnError extends boolean = true>(options: 
 export const getFirewallRuleVersions = <ThrowOnError extends boolean = true>(options: Options<GetFirewallRuleVersionsData, ThrowOnError>) => (options.client ?? client).get<GetFirewallRuleVersionsResponses, GetFirewallRuleVersionsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}/history',
+    url: 'networking/firewalls/{firewallId}/history',
     ...options
 });
 
@@ -12080,7 +12080,7 @@ export const getFirewallRuleVersions = <ThrowOnError extends boolean = true>(opt
 export const getFirewallRuleVersion = <ThrowOnError extends boolean = true>(options: Options<GetFirewallRuleVersionData, ThrowOnError>) => (options.client ?? client).get<GetFirewallRuleVersionResponses, GetFirewallRuleVersionErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}/history/rules/{version}',
+    url: 'networking/firewalls/{firewallId}/history/rules/{version}',
     ...options
 });
 
@@ -12114,7 +12114,7 @@ export const getFirewallRuleVersion = <ThrowOnError extends boolean = true>(opti
 export const getFirewallRules = <ThrowOnError extends boolean = true>(options: Options<GetFirewallRulesData, ThrowOnError>) => (options.client ?? client).get<GetFirewallRulesResponses, GetFirewallRulesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}/rules',
+    url: 'networking/firewalls/{firewallId}/rules',
     ...options
 });
 
@@ -12154,7 +12154,7 @@ export const getFirewallRules = <ThrowOnError extends boolean = true>(options: O
 export const putFirewallRules = <ThrowOnError extends boolean = true>(options: Options<PutFirewallRulesData, ThrowOnError>) => (options.client ?? client).put<PutFirewallRulesResponses, PutFirewallRulesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/firewalls/{firewallId}/rules',
+    url: 'networking/firewalls/{firewallId}/rules',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -12196,7 +12196,7 @@ export const putFirewallRules = <ThrowOnError extends boolean = true>(options: O
 export const getIps = <ThrowOnError extends boolean = true>(options?: Options<GetIpsData, ThrowOnError>) => (options?.client ?? client).get<GetIpsResponses, GetIpsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ips',
+    url: 'networking/ips',
     ...options
 });
 
@@ -12238,7 +12238,7 @@ export const getIps = <ThrowOnError extends boolean = true>(options?: Options<Ge
 export const postAllocateIp = <ThrowOnError extends boolean = true>(options: Options<PostAllocateIpData, ThrowOnError>) => (options.client ?? client).post<PostAllocateIpResponses, PostAllocateIpErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ips',
+    url: 'networking/ips',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -12305,7 +12305,7 @@ export const postAllocateIp = <ThrowOnError extends boolean = true>(options: Opt
 export const postAssignIps = <ThrowOnError extends boolean = true>(options: Options<PostAssignIpsData, ThrowOnError>) => (options.client ?? client).post<PostAssignIpsResponses, PostAssignIpsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ips/assign',
+    url: 'networking/ips/assign',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -12355,7 +12355,7 @@ export const postAssignIps = <ThrowOnError extends boolean = true>(options: Opti
 export const postShareIps = <ThrowOnError extends boolean = true>(options: Options<PostShareIpsData, ThrowOnError>) => (options.client ?? client).post<PostShareIpsResponses, PostShareIpsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ips/share',
+    url: 'networking/ips/share',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -12393,7 +12393,7 @@ export const postShareIps = <ThrowOnError extends boolean = true>(options: Optio
 export const getIp = <ThrowOnError extends boolean = true>(options: Options<GetIpData, ThrowOnError>) => (options.client ?? client).get<GetIpResponses, GetIpErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ips/{address}',
+    url: 'networking/ips/{address}',
     ...options
 });
 
@@ -12429,7 +12429,7 @@ export const getIp = <ThrowOnError extends boolean = true>(options: Options<GetI
 export const putIp = <ThrowOnError extends boolean = true>(options: Options<PutIpData, ThrowOnError>) => (options.client ?? client).put<PutIpResponses, PutIpErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ips/{address}',
+    url: 'networking/ips/{address}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -12479,7 +12479,7 @@ export const putIp = <ThrowOnError extends boolean = true>(options: Options<PutI
 export const postAssignIpv4S = <ThrowOnError extends boolean = true>(options: Options<PostAssignIpv4sData, ThrowOnError>) => (options.client ?? client).post<PostAssignIpv4sResponses, PostAssignIpv4sErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ipv4/assign',
+    url: 'networking/ipv4/assign',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -12520,7 +12520,7 @@ export const postAssignIpv4S = <ThrowOnError extends boolean = true>(options: Op
 export const postShareIpv4S = <ThrowOnError extends boolean = true>(options: Options<PostShareIpv4sData, ThrowOnError>) => (options.client ?? client).post<PostShareIpv4sResponses, PostShareIpv4sErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ipv4/share',
+    url: 'networking/ipv4/share',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -12558,7 +12558,7 @@ export const postShareIpv4S = <ThrowOnError extends boolean = true>(options: Opt
 export const getIpv6Pools = <ThrowOnError extends boolean = true>(options?: Options<GetIpv6PoolsData, ThrowOnError>) => (options?.client ?? client).get<GetIpv6PoolsResponses, GetIpv6PoolsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ipv6/pools',
+    url: 'networking/ipv6/pools',
     ...options
 });
 
@@ -12598,7 +12598,7 @@ export const getIpv6Pools = <ThrowOnError extends boolean = true>(options?: Opti
 export const getIpv6Ranges = <ThrowOnError extends boolean = true>(options?: Options<GetIpv6RangesData, ThrowOnError>) => (options?.client ?? client).get<GetIpv6RangesResponses, GetIpv6RangesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ipv6/ranges',
+    url: 'networking/ipv6/ranges',
     ...options
 });
 
@@ -12647,7 +12647,7 @@ export const getIpv6Ranges = <ThrowOnError extends boolean = true>(options?: Opt
 export const postIpv6Range = <ThrowOnError extends boolean = true>(options: Options<PostIpv6RangeData, ThrowOnError>) => (options.client ?? client).post<PostIpv6RangeResponses, PostIpv6RangeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ipv6/ranges',
+    url: 'networking/ipv6/ranges',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -12689,7 +12689,7 @@ export const postIpv6Range = <ThrowOnError extends boolean = true>(options: Opti
 export const deleteIpv6Range = <ThrowOnError extends boolean = true>(options: Options<DeleteIpv6RangeData, ThrowOnError>) => (options.client ?? client).delete<DeleteIpv6RangeResponses, DeleteIpv6RangeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ipv6/ranges/{range}',
+    url: 'networking/ipv6/ranges/{range}',
     ...options
 });
 
@@ -12723,7 +12723,7 @@ export const deleteIpv6Range = <ThrowOnError extends boolean = true>(options: Op
 export const getIpv6Range = <ThrowOnError extends boolean = true>(options: Options<GetIpv6RangeData, ThrowOnError>) => (options.client ?? client).get<GetIpv6RangeResponses, GetIpv6RangeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/ipv6/ranges/{range}',
+    url: 'networking/ipv6/ranges/{range}',
     ...options
 });
 
@@ -12777,7 +12777,7 @@ export const getIpv6Range = <ThrowOnError extends boolean = true>(options: Optio
 export const getVlans = <ThrowOnError extends boolean = true>(options?: Options<GetVlansData, ThrowOnError>) => (options?.client ?? client).get<GetVlansResponses, GetVlansErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/vlans',
+    url: 'networking/vlans',
     ...options
 });
 
@@ -12824,7 +12824,7 @@ export const getVlans = <ThrowOnError extends boolean = true>(options?: Options<
 export const deleteVlan = <ThrowOnError extends boolean = true>(options: Options<DeleteVlanData, ThrowOnError>) => (options.client ?? client).delete<DeleteVlanResponses, DeleteVlanErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/networking/vlans/{regionId}/{label}',
+    url: 'networking/vlans/{regionId}/{label}',
     ...options
 });
 
@@ -12858,7 +12858,7 @@ export const deleteVlan = <ThrowOnError extends boolean = true>(options: Options
 export const getNodeBalancers = <ThrowOnError extends boolean = true>(options?: Options<GetNodeBalancersData, ThrowOnError>) => (options?.client ?? client).get<GetNodeBalancersResponses, GetNodeBalancersErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers',
+    url: 'nodebalancers',
     ...options
 });
 
@@ -12899,7 +12899,7 @@ export const getNodeBalancers = <ThrowOnError extends boolean = true>(options?: 
 export const postNodeBalancer = <ThrowOnError extends boolean = true>(options: Options<PostNodeBalancerData, ThrowOnError>) => (options.client ?? client).post<PostNodeBalancerResponses, PostNodeBalancerErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers',
+    url: 'nodebalancers',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -12928,7 +12928,7 @@ export const postNodeBalancer = <ThrowOnError extends boolean = true>(options: O
  */
 export const getNodeBalancerTypes = <ThrowOnError extends boolean = true>(options?: Options<GetNodeBalancerTypesData, ThrowOnError>) => (options?.client ?? client).get<GetNodeBalancerTypesResponses, GetNodeBalancerTypesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/nodebalancers/types',
+    url: 'nodebalancers/types',
     ...options
 });
 
@@ -12966,7 +12966,7 @@ export const getNodeBalancerTypes = <ThrowOnError extends boolean = true>(option
 export const deleteNodeBalancer = <ThrowOnError extends boolean = true>(options: Options<DeleteNodeBalancerData, ThrowOnError>) => (options.client ?? client).delete<DeleteNodeBalancerResponses, DeleteNodeBalancerErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}',
+    url: 'nodebalancers/{nodeBalancerId}',
     ...options
 });
 
@@ -13000,7 +13000,7 @@ export const deleteNodeBalancer = <ThrowOnError extends boolean = true>(options:
 export const getNodeBalancer = <ThrowOnError extends boolean = true>(options: Options<GetNodeBalancerData, ThrowOnError>) => (options.client ?? client).get<GetNodeBalancerResponses, GetNodeBalancerErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}',
+    url: 'nodebalancers/{nodeBalancerId}',
     ...options
 });
 
@@ -13040,7 +13040,7 @@ export const getNodeBalancer = <ThrowOnError extends boolean = true>(options: Op
 export const putNodeBalancer = <ThrowOnError extends boolean = true>(options: Options<PutNodeBalancerData, ThrowOnError>) => (options.client ?? client).put<PutNodeBalancerResponses, PutNodeBalancerErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}',
+    url: 'nodebalancers/{nodeBalancerId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -13080,7 +13080,7 @@ export const putNodeBalancer = <ThrowOnError extends boolean = true>(options: Op
 export const getNodeBalancerConfigs = <ThrowOnError extends boolean = true>(options: Options<GetNodeBalancerConfigsData, ThrowOnError>) => (options.client ?? client).get<GetNodeBalancerConfigsResponses, GetNodeBalancerConfigsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs',
+    url: 'nodebalancers/{nodeBalancerId}/configs',
     ...options
 });
 
@@ -13193,7 +13193,7 @@ export const getNodeBalancerConfigs = <ThrowOnError extends boolean = true>(opti
 export const postNodeBalancerConfig = <ThrowOnError extends boolean = true>(options: Options<PostNodeBalancerConfigData, ThrowOnError>) => (options.client ?? client).post<PostNodeBalancerConfigResponses, PostNodeBalancerConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs',
+    url: 'nodebalancers/{nodeBalancerId}/configs',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -13236,7 +13236,7 @@ export const postNodeBalancerConfig = <ThrowOnError extends boolean = true>(opti
 export const deleteNodeBalancerConfig = <ThrowOnError extends boolean = true>(options: Options<DeleteNodeBalancerConfigData, ThrowOnError>) => (options.client ?? client).delete<DeleteNodeBalancerConfigResponses, DeleteNodeBalancerConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}',
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}',
     ...options
 });
 
@@ -13271,7 +13271,7 @@ export const deleteNodeBalancerConfig = <ThrowOnError extends boolean = true>(op
 export const getNodeBalancerConfig = <ThrowOnError extends boolean = true>(options: Options<GetNodeBalancerConfigData, ThrowOnError>) => (options.client ?? client).get<GetNodeBalancerConfigResponses, GetNodeBalancerConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}',
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}',
     ...options
 });
 
@@ -13389,7 +13389,7 @@ export const getNodeBalancerConfig = <ThrowOnError extends boolean = true>(optio
 export const putNodeBalancerConfig = <ThrowOnError extends boolean = true>(options: Options<PutNodeBalancerConfigData, ThrowOnError>) => (options.client ?? client).put<PutNodeBalancerConfigResponses, PutNodeBalancerConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}',
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -13427,7 +13427,7 @@ export const putNodeBalancerConfig = <ThrowOnError extends boolean = true>(optio
 export const getNodeBalancerConfigNodes = <ThrowOnError extends boolean = true>(options: Options<GetNodeBalancerConfigNodesData, ThrowOnError>) => (options.client ?? client).get<GetNodeBalancerConfigNodesResponses, GetNodeBalancerConfigNodesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes',
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/nodes',
     ...options
 });
 
@@ -13483,7 +13483,7 @@ export const getNodeBalancerConfigNodes = <ThrowOnError extends boolean = true>(
 export const postNodeBalancerNode = <ThrowOnError extends boolean = true>(options: Options<PostNodeBalancerNodeData, ThrowOnError>) => (options.client ?? client).post<PostNodeBalancerNodeResponses, PostNodeBalancerNodeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes',
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/nodes',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -13524,7 +13524,7 @@ export const postNodeBalancerNode = <ThrowOnError extends boolean = true>(option
 export const deleteNodeBalancerConfigNode = <ThrowOnError extends boolean = true>(options: Options<DeleteNodeBalancerConfigNodeData, ThrowOnError>) => (options.client ?? client).delete<DeleteNodeBalancerConfigNodeResponses, DeleteNodeBalancerConfigNodeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}',
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}',
     ...options
 });
 
@@ -13558,7 +13558,7 @@ export const deleteNodeBalancerConfigNode = <ThrowOnError extends boolean = true
 export const getNodeBalancerNode = <ThrowOnError extends boolean = true>(options: Options<GetNodeBalancerNodeData, ThrowOnError>) => (options.client ?? client).get<GetNodeBalancerNodeResponses, GetNodeBalancerNodeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}',
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}',
     ...options
 });
 
@@ -13613,7 +13613,7 @@ export const getNodeBalancerNode = <ThrowOnError extends boolean = true>(options
 export const putNodeBalancerNode = <ThrowOnError extends boolean = true>(options: Options<PutNodeBalancerNodeData, ThrowOnError>) => (options.client ?? client).put<PutNodeBalancerNodeResponses, PutNodeBalancerNodeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}',
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -13735,7 +13735,7 @@ export const putNodeBalancerNode = <ThrowOnError extends boolean = true>(options
 export const postRebuildNodeBalancerConfig = <ThrowOnError extends boolean = true>(options: Options<PostRebuildNodeBalancerConfigData, ThrowOnError>) => (options.client ?? client).post<PostRebuildNodeBalancerConfigResponses, PostRebuildNodeBalancerConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/rebuild',
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/rebuild',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -13773,7 +13773,7 @@ export const postRebuildNodeBalancerConfig = <ThrowOnError extends boolean = tru
 export const getNodeBalancerFirewalls = <ThrowOnError extends boolean = true>(options: Options<GetNodeBalancerFirewallsData, ThrowOnError>) => (options.client ?? client).get<GetNodeBalancerFirewallsResponses, GetNodeBalancerFirewallsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/firewalls',
+    url: 'nodebalancers/{nodeBalancerId}/firewalls',
     ...options
 });
 
@@ -13808,7 +13808,7 @@ export const getNodeBalancerFirewalls = <ThrowOnError extends boolean = true>(op
 export const putNodeBalancerFirewalls = <ThrowOnError extends boolean = true>(options: Options<PutNodeBalancerFirewallsData, ThrowOnError>) => (options.client ?? client).put<PutNodeBalancerFirewallsResponses, PutNodeBalancerFirewallsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/firewalls',
+    url: 'nodebalancers/{nodeBalancerId}/firewalls',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -13838,7 +13838,7 @@ export const putNodeBalancerFirewalls = <ThrowOnError extends boolean = true>(op
 export const getNodeBalancerStats = <ThrowOnError extends boolean = true>(options: Options<GetNodeBalancerStatsData, ThrowOnError>) => (options.client ?? client).get<GetNodeBalancerStatsResponses, GetNodeBalancerStatsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/stats',
+    url: 'nodebalancers/{nodeBalancerId}/stats',
     ...options
 });
 
@@ -13872,7 +13872,7 @@ export const getNodeBalancerStats = <ThrowOnError extends boolean = true>(option
 export const getNodeBalancerVpcs = <ThrowOnError extends boolean = true>(options: Options<GetNodeBalancerVpcsData, ThrowOnError>) => (options.client ?? client).get<GetNodeBalancerVpcsResponses, GetNodeBalancerVpcsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/vpcs',
+    url: 'nodebalancers/{nodeBalancerId}/vpcs',
     ...options
 });
 
@@ -13907,7 +13907,7 @@ export const getNodeBalancerVpcs = <ThrowOnError extends boolean = true>(options
 export const getNodeBalancerVpcConfig = <ThrowOnError extends boolean = true>(options: Options<GetNodeBalancerVpcConfigData, ThrowOnError>) => (options.client ?? client).get<GetNodeBalancerVpcConfigResponses, GetNodeBalancerVpcConfigErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/nodebalancers/{nodeBalancerId}/vpcs/{nodeBalancerVpcConfigId}',
+    url: 'nodebalancers/{nodeBalancerId}/vpcs/{nodeBalancerVpcConfigId}',
     ...options
 });
 
@@ -13937,7 +13937,7 @@ export const getNodeBalancerVpcConfig = <ThrowOnError extends boolean = true>(op
 export const getObjectStorageBuckets = <ThrowOnError extends boolean = true>(options?: Options<GetObjectStorageBucketsData, ThrowOnError>) => (options?.client ?? client).get<GetObjectStorageBucketsResponses, GetObjectStorageBucketsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets',
+    url: 'object-storage/buckets',
     ...options
 });
 
@@ -13973,7 +13973,7 @@ export const getObjectStorageBuckets = <ThrowOnError extends boolean = true>(opt
 export const postObjectStorageBucket = <ThrowOnError extends boolean = true>(options?: Options<PostObjectStorageBucketData, ThrowOnError>) => (options?.client ?? client).post<PostObjectStorageBucketResponses, PostObjectStorageBucketErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets',
+    url: 'object-storage/buckets',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -14007,7 +14007,7 @@ export const postObjectStorageBucket = <ThrowOnError extends boolean = true>(opt
 export const getObjectStorageBucketinCluster = <ThrowOnError extends boolean = true>(options: Options<GetObjectStorageBucketinClusterData, ThrowOnError>) => (options.client ?? client).get<GetObjectStorageBucketinClusterResponses, GetObjectStorageBucketinClusterErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}',
+    url: 'object-storage/buckets/{regionId}',
     ...options
 });
 
@@ -14039,7 +14039,7 @@ export const getObjectStorageBucketinCluster = <ThrowOnError extends boolean = t
 export const deleteObjectStorageBucket = <ThrowOnError extends boolean = true>(options: Options<DeleteObjectStorageBucketData, ThrowOnError>) => (options.client ?? client).delete<DeleteObjectStorageBucketResponses, DeleteObjectStorageBucketErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}',
+    url: 'object-storage/buckets/{regionId}/{bucket}',
     ...options
 });
 
@@ -14069,7 +14069,7 @@ export const deleteObjectStorageBucket = <ThrowOnError extends boolean = true>(o
 export const getObjectStorageBucket = <ThrowOnError extends boolean = true>(options: Options<GetObjectStorageBucketData, ThrowOnError>) => (options.client ?? client).get<GetObjectStorageBucketResponses, GetObjectStorageBucketErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}',
+    url: 'object-storage/buckets/{regionId}/{bucket}',
     ...options
 });
 
@@ -14099,7 +14099,7 @@ export const getObjectStorageBucket = <ThrowOnError extends boolean = true>(opti
 export const getObjectStorageBucketAccess = <ThrowOnError extends boolean = true>(options: Options<GetObjectStorageBucketAccessData, ThrowOnError>) => (options.client ?? client).get<GetObjectStorageBucketAccessResponses, GetObjectStorageBucketAccessErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}/access',
+    url: 'object-storage/buckets/{regionId}/{bucket}/access',
     ...options
 });
 
@@ -14129,7 +14129,7 @@ export const getObjectStorageBucketAccess = <ThrowOnError extends boolean = true
 export const postObjectStorageBucketAccess = <ThrowOnError extends boolean = true>(options: Options<PostObjectStorageBucketAccessData, ThrowOnError>) => (options.client ?? client).post<PostObjectStorageBucketAccessResponses, PostObjectStorageBucketAccessErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}/access',
+    url: 'object-storage/buckets/{regionId}/{bucket}/access',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -14163,7 +14163,7 @@ export const postObjectStorageBucketAccess = <ThrowOnError extends boolean = tru
 export const putStorageBucketAccess = <ThrowOnError extends boolean = true>(options: Options<PutStorageBucketAccessData, ThrowOnError>) => (options.client ?? client).put<PutStorageBucketAccessResponses, PutStorageBucketAccessErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}/access',
+    url: 'object-storage/buckets/{regionId}/{bucket}/access',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -14197,7 +14197,7 @@ export const putStorageBucketAccess = <ThrowOnError extends boolean = true>(opti
 export const getObjectStorageBucketAcl = <ThrowOnError extends boolean = true>(options: Options<GetObjectStorageBucketAclData, ThrowOnError>) => (options.client ?? client).get<GetObjectStorageBucketAclResponses, GetObjectStorageBucketAclErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}/object-acl',
+    url: 'object-storage/buckets/{regionId}/{bucket}/object-acl',
     ...options
 });
 
@@ -14227,7 +14227,7 @@ export const getObjectStorageBucketAcl = <ThrowOnError extends boolean = true>(o
 export const putObjectStorageBucketAcl = <ThrowOnError extends boolean = true>(options: Options<PutObjectStorageBucketAclData, ThrowOnError>) => (options.client ?? client).put<PutObjectStorageBucketAclResponses, PutObjectStorageBucketAclErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}/object-acl',
+    url: 'object-storage/buckets/{regionId}/{bucket}/object-acl',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -14261,7 +14261,7 @@ export const putObjectStorageBucketAcl = <ThrowOnError extends boolean = true>(o
 export const getObjectStorageBucketContent = <ThrowOnError extends boolean = true>(options: Options<GetObjectStorageBucketContentData, ThrowOnError>) => (options.client ?? client).get<GetObjectStorageBucketContentResponses, GetObjectStorageBucketContentErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}/object-list',
+    url: 'object-storage/buckets/{regionId}/{bucket}/object-list',
     ...options
 });
 
@@ -14291,7 +14291,7 @@ export const getObjectStorageBucketContent = <ThrowOnError extends boolean = tru
 export const postObjectStorageObjectUrl = <ThrowOnError extends boolean = true>(options: Options<PostObjectStorageObjectUrlData, ThrowOnError>) => (options.client ?? client).post<PostObjectStorageObjectUrlResponses, PostObjectStorageObjectUrlErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}/object-url',
+    url: 'object-storage/buckets/{regionId}/{bucket}/object-url',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -14330,7 +14330,7 @@ export const postObjectStorageObjectUrl = <ThrowOnError extends boolean = true>(
 export const deleteObjectStorageSsl = <ThrowOnError extends boolean = true>(options: Options<DeleteObjectStorageSslData, ThrowOnError>) => (options.client ?? client).delete<DeleteObjectStorageSslResponses, DeleteObjectStorageSslErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}/ssl',
+    url: 'object-storage/buckets/{regionId}/{bucket}/ssl',
     ...options
 });
 
@@ -14365,7 +14365,7 @@ export const deleteObjectStorageSsl = <ThrowOnError extends boolean = true>(opti
 export const getObjectStorageSsl = <ThrowOnError extends boolean = true>(options: Options<GetObjectStorageSslData, ThrowOnError>) => (options.client ?? client).get<GetObjectStorageSslResponses, GetObjectStorageSslErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}/ssl',
+    url: 'object-storage/buckets/{regionId}/{bucket}/ssl',
     ...options
 });
 
@@ -14408,7 +14408,7 @@ export const getObjectStorageSsl = <ThrowOnError extends boolean = true>(options
 export const postObjectStorageSsl = <ThrowOnError extends boolean = true>(options: Options<PostObjectStorageSslData, ThrowOnError>) => (options.client ?? client).post<PostObjectStorageSslResponses, PostObjectStorageSslErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/buckets/{regionId}/{bucket}/ssl',
+    url: 'object-storage/buckets/{regionId}/{bucket}/ssl',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -14450,7 +14450,7 @@ export const postObjectStorageSsl = <ThrowOnError extends boolean = true>(option
 export const postCancelObjectStorage = <ThrowOnError extends boolean = true>(options?: Options<PostCancelObjectStorageData, ThrowOnError>) => (options?.client ?? client).post<PostCancelObjectStorageResponses, PostCancelObjectStorageErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/cancel',
+    url: 'object-storage/cancel',
     ...options
 });
 
@@ -14481,7 +14481,7 @@ export const postCancelObjectStorage = <ThrowOnError extends boolean = true>(opt
  */
 export const getObjectStorageClusters = <ThrowOnError extends boolean = true>(options?: Options<GetObjectStorageClustersData, ThrowOnError>) => (options?.client ?? client).get<GetObjectStorageClustersResponses, GetObjectStorageClustersErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/object-storage/clusters',
+    url: 'object-storage/clusters',
     ...options
 });
 
@@ -14512,7 +14512,7 @@ export const getObjectStorageClusters = <ThrowOnError extends boolean = true>(op
  */
 export const getObjectStorageCluster = <ThrowOnError extends boolean = true>(options: Options<GetObjectStorageClusterData, ThrowOnError>) => (options.client ?? client).get<GetObjectStorageClusterResponses, GetObjectStorageClusterErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/object-storage/clusters/{clusterId}',
+    url: 'object-storage/clusters/{clusterId}',
     ...options
 });
 
@@ -14546,7 +14546,7 @@ export const getObjectStorageCluster = <ThrowOnError extends boolean = true>(opt
 export const getObjectStorageEndpoints = <ThrowOnError extends boolean = true>(options?: Options<GetObjectStorageEndpointsData, ThrowOnError>) => (options?.client ?? client).get<GetObjectStorageEndpointsResponses, GetObjectStorageEndpointsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/endpoints',
+    url: 'object-storage/endpoints',
     ...options
 });
 
@@ -14580,7 +14580,7 @@ export const getObjectStorageEndpoints = <ThrowOnError extends boolean = true>(o
 export const getObjectStorageKeys = <ThrowOnError extends boolean = true>(options?: Options<GetObjectStorageKeysData, ThrowOnError>) => (options?.client ?? client).get<GetObjectStorageKeysResponses, GetObjectStorageKeysErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/keys',
+    url: 'object-storage/keys',
     ...options
 });
 
@@ -14630,7 +14630,7 @@ export const getObjectStorageKeys = <ThrowOnError extends boolean = true>(option
 export const postObjectStorageKeys = <ThrowOnError extends boolean = true>(options?: Options<PostObjectStorageKeysData, ThrowOnError>) => (options?.client ?? client).post<PostObjectStorageKeysResponses, PostObjectStorageKeysErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/keys',
+    url: 'object-storage/keys',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -14672,7 +14672,7 @@ export const postObjectStorageKeys = <ThrowOnError extends boolean = true>(optio
 export const deleteObjectStorageKey = <ThrowOnError extends boolean = true>(options: Options<DeleteObjectStorageKeyData, ThrowOnError>) => (options.client ?? client).delete<DeleteObjectStorageKeyResponses, DeleteObjectStorageKeyErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/keys/{keyId}',
+    url: 'object-storage/keys/{keyId}',
     ...options
 });
 
@@ -14707,7 +14707,7 @@ export const deleteObjectStorageKey = <ThrowOnError extends boolean = true>(opti
 export const getObjectStorageKey = <ThrowOnError extends boolean = true>(options: Options<GetObjectStorageKeyData, ThrowOnError>) => (options.client ?? client).get<GetObjectStorageKeyResponses, GetObjectStorageKeyErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/keys/{keyId}',
+    url: 'object-storage/keys/{keyId}',
     ...options
 });
 
@@ -14747,7 +14747,7 @@ export const getObjectStorageKey = <ThrowOnError extends boolean = true>(options
 export const putObjectStorageKey = <ThrowOnError extends boolean = true>(options: Options<PutObjectStorageKeyData, ThrowOnError>) => (options.client ?? client).put<PutObjectStorageKeyResponses, PutObjectStorageKeyErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/keys/{keyId}',
+    url: 'object-storage/keys/{keyId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -14789,7 +14789,7 @@ export const putObjectStorageKey = <ThrowOnError extends boolean = true>(options
 export const getObjectStorageQuotas = <ThrowOnError extends boolean = true>(options?: Options<GetObjectStorageQuotasData, ThrowOnError>) => (options?.client ?? client).get<GetObjectStorageQuotasResponses, GetObjectStorageQuotasErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/quotas',
+    url: 'object-storage/quotas',
     ...options
 });
 
@@ -14823,7 +14823,7 @@ export const getObjectStorageQuotas = <ThrowOnError extends boolean = true>(opti
 export const getObjectStorageQuota = <ThrowOnError extends boolean = true>(options: Options<GetObjectStorageQuotaData, ThrowOnError>) => (options.client ?? client).get<GetObjectStorageQuotaResponses, GetObjectStorageQuotaErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/quotas/{objQuotaId}',
+    url: 'object-storage/quotas/{objQuotaId}',
     ...options
 });
 
@@ -14857,7 +14857,7 @@ export const getObjectStorageQuota = <ThrowOnError extends boolean = true>(optio
 export const getObjectStorageQuotaUsage = <ThrowOnError extends boolean = true>(options: Options<GetObjectStorageQuotaUsageData, ThrowOnError>) => (options.client ?? client).get<GetObjectStorageQuotaUsageResponses, GetObjectStorageQuotaUsageErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/quotas/{objQuotaId}/usage',
+    url: 'object-storage/quotas/{objQuotaId}/usage',
     ...options
 });
 
@@ -14891,7 +14891,7 @@ export const getObjectStorageQuotaUsage = <ThrowOnError extends boolean = true>(
 export const getObjectStorageTransfer = <ThrowOnError extends boolean = true>(options?: Options<GetObjectStorageTransferData, ThrowOnError>) => (options?.client ?? client).get<GetObjectStorageTransferResponses, GetObjectStorageTransferErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/object-storage/transfer',
+    url: 'object-storage/transfer',
     ...options
 });
 
@@ -14916,7 +14916,7 @@ export const getObjectStorageTransfer = <ThrowOnError extends boolean = true>(op
  */
 export const getObjectStorageTypes = <ThrowOnError extends boolean = true>(options?: Options<GetObjectStorageTypesData, ThrowOnError>) => (options?.client ?? client).get<GetObjectStorageTypesResponses, GetObjectStorageTypesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/object-storage/types',
+    url: 'object-storage/types',
     ...options
 });
 
@@ -14954,7 +14954,7 @@ export const getObjectStorageTypes = <ThrowOnError extends boolean = true>(optio
 export const getPlacementGroups = <ThrowOnError extends boolean = true>(options?: Options<GetPlacementGroupsData, ThrowOnError>) => (options?.client ?? client).get<GetPlacementGroupsResponses, GetPlacementGroupsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/placement/groups',
+    url: 'placement/groups',
     ...options
 });
 
@@ -15002,7 +15002,7 @@ export const getPlacementGroups = <ThrowOnError extends boolean = true>(options?
 export const postPlacementGroup = <ThrowOnError extends boolean = true>(options: Options<PostPlacementGroupData, ThrowOnError>) => (options.client ?? client).post<PostPlacementGroupResponses, PostPlacementGroupErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/placement/groups',
+    url: 'placement/groups',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -15052,7 +15052,7 @@ export const postPlacementGroup = <ThrowOnError extends boolean = true>(options:
 export const deletePlacementGroup = <ThrowOnError extends boolean = true>(options: Options<DeletePlacementGroupData, ThrowOnError>) => (options.client ?? client).delete<DeletePlacementGroupResponses, DeletePlacementGroupErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/placement/groups/{groupId}',
+    url: 'placement/groups/{groupId}',
     ...options
 });
 
@@ -15090,7 +15090,7 @@ export const deletePlacementGroup = <ThrowOnError extends boolean = true>(option
 export const getPlacementGroup = <ThrowOnError extends boolean = true>(options: Options<GetPlacementGroupData, ThrowOnError>) => (options.client ?? client).get<GetPlacementGroupResponses, unknown, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/placement/groups/{groupId}',
+    url: 'placement/groups/{groupId}',
     ...options
 });
 
@@ -15129,7 +15129,7 @@ export const getPlacementGroup = <ThrowOnError extends boolean = true>(options: 
 export const putPlacementGroup = <ThrowOnError extends boolean = true>(options: Options<PutPlacementGroupData, ThrowOnError>) => (options.client ?? client).put<PutPlacementGroupResponses, PutPlacementGroupErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/placement/groups/{groupId}',
+    url: 'placement/groups/{groupId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -15173,7 +15173,7 @@ export const putPlacementGroup = <ThrowOnError extends boolean = true>(options: 
 export const postGroupAddLinode = <ThrowOnError extends boolean = true>(options: Options<PostGroupAddLinodeData, ThrowOnError>) => (options.client ?? client).post<PostGroupAddLinodeResponses, PostGroupAddLinodeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/placement/groups/{groupId}/assign',
+    url: 'placement/groups/{groupId}/assign',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -15216,7 +15216,7 @@ export const postGroupAddLinode = <ThrowOnError extends boolean = true>(options:
 export const postGroupUnassign = <ThrowOnError extends boolean = true>(options: Options<PostGroupUnassignData, ThrowOnError>) => (options.client ?? client).post<PostGroupUnassignResponses, PostGroupUnassignErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/placement/groups/{groupId}/unassign',
+    url: 'placement/groups/{groupId}/unassign',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -15250,7 +15250,7 @@ export const postGroupUnassign = <ThrowOnError extends boolean = true>(options: 
 export const getProfile = <ThrowOnError extends boolean = true>(options?: Options<GetProfileData, ThrowOnError>) => (options?.client ?? client).get<GetProfileResponses, GetProfileErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile',
+    url: 'profile',
     ...options
 });
 
@@ -15294,7 +15294,7 @@ export const getProfile = <ThrowOnError extends boolean = true>(options?: Option
 export const putProfile = <ThrowOnError extends boolean = true>(options: Options<PutProfileData, ThrowOnError>) => (options.client ?? client).put<PutProfileResponses, PutProfileErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile',
+    url: 'profile',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -15332,7 +15332,7 @@ export const putProfile = <ThrowOnError extends boolean = true>(options: Options
 export const getProfileApps = <ThrowOnError extends boolean = true>(options?: Options<GetProfileAppsData, ThrowOnError>) => (options?.client ?? client).get<GetProfileAppsResponses, GetProfileAppsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/apps',
+    url: 'profile/apps',
     ...options
 });
 
@@ -15366,7 +15366,7 @@ export const getProfileApps = <ThrowOnError extends boolean = true>(options?: Op
 export const deleteProfileApp = <ThrowOnError extends boolean = true>(options: Options<DeleteProfileAppData, ThrowOnError>) => (options.client ?? client).delete<DeleteProfileAppResponses, DeleteProfileAppErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/apps/{appId}',
+    url: 'profile/apps/{appId}',
     ...options
 });
 
@@ -15400,7 +15400,7 @@ export const deleteProfileApp = <ThrowOnError extends boolean = true>(options: O
 export const getProfileApp = <ThrowOnError extends boolean = true>(options: Options<GetProfileAppData, ThrowOnError>) => (options.client ?? client).get<GetProfileAppResponses, GetProfileAppErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/apps/{appId}',
+    url: 'profile/apps/{appId}',
     ...options
 });
 
@@ -15434,7 +15434,7 @@ export const getProfileApp = <ThrowOnError extends boolean = true>(options: Opti
 export const getDevices = <ThrowOnError extends boolean = true>(options?: Options<GetDevicesData, ThrowOnError>) => (options?.client ?? client).get<GetDevicesResponses, GetDevicesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/devices',
+    url: 'profile/devices',
     ...options
 });
 
@@ -15468,7 +15468,7 @@ export const getDevices = <ThrowOnError extends boolean = true>(options?: Option
 export const deleteTrustedDevice = <ThrowOnError extends boolean = true>(options: Options<DeleteTrustedDeviceData, ThrowOnError>) => (options.client ?? client).delete<DeleteTrustedDeviceResponses, DeleteTrustedDeviceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/devices/{deviceId}',
+    url: 'profile/devices/{deviceId}',
     ...options
 });
 
@@ -15502,7 +15502,7 @@ export const deleteTrustedDevice = <ThrowOnError extends boolean = true>(options
 export const getTrustedDevice = <ThrowOnError extends boolean = true>(options: Options<GetTrustedDeviceData, ThrowOnError>) => (options.client ?? client).get<GetTrustedDeviceResponses, GetTrustedDeviceErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/devices/{deviceId}',
+    url: 'profile/devices/{deviceId}',
     ...options
 });
 
@@ -15518,7 +15518,7 @@ export const getTrustedDevice = <ThrowOnError extends boolean = true>(options: O
 export const getProfileGrants = <ThrowOnError extends boolean = true>(options?: Options<GetProfileGrantsData, ThrowOnError>) => (options?.client ?? client).get<GetProfileGrantsResponses, GetProfileGrantsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/grants',
+    url: 'profile/grants',
     ...options
 });
 
@@ -15552,7 +15552,7 @@ export const getProfileGrants = <ThrowOnError extends boolean = true>(options?: 
 export const getProfileLogins = <ThrowOnError extends boolean = true>(options?: Options<GetProfileLoginsData, ThrowOnError>) => (options?.client ?? client).get<GetProfileLoginsResponses, GetProfileLoginsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/logins',
+    url: 'profile/logins',
     ...options
 });
 
@@ -15586,7 +15586,7 @@ export const getProfileLogins = <ThrowOnError extends boolean = true>(options?: 
 export const getProfileLogin = <ThrowOnError extends boolean = true>(options: Options<GetProfileLoginData, ThrowOnError>) => (options.client ?? client).get<GetProfileLoginResponses, GetProfileLoginErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/logins/{loginId}',
+    url: 'profile/logins/{loginId}',
     ...options
 });
 
@@ -15622,7 +15622,7 @@ export const getProfileLogin = <ThrowOnError extends boolean = true>(options: Op
 export const deleteProfilePhoneNumber = <ThrowOnError extends boolean = true>(options?: Options<DeleteProfilePhoneNumberData, ThrowOnError>) => (options?.client ?? client).delete<DeleteProfilePhoneNumberResponses, DeleteProfilePhoneNumberErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/phone-number',
+    url: 'profile/phone-number',
     ...options
 });
 
@@ -15666,7 +15666,7 @@ export const deleteProfilePhoneNumber = <ThrowOnError extends boolean = true>(op
 export const postProfilePhoneNumber = <ThrowOnError extends boolean = true>(options?: Options<PostProfilePhoneNumberData, ThrowOnError>) => (options?.client ?? client).post<PostProfilePhoneNumberResponses, PostProfilePhoneNumberErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/phone-number',
+    url: 'profile/phone-number',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -15711,7 +15711,7 @@ export const postProfilePhoneNumber = <ThrowOnError extends boolean = true>(opti
 export const postProfilePhoneNumberVerify = <ThrowOnError extends boolean = true>(options?: Options<PostProfilePhoneNumberVerifyData, ThrowOnError>) => (options?.client ?? client).post<PostProfilePhoneNumberVerifyResponses, PostProfilePhoneNumberVerifyErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/phone-number/verify',
+    url: 'profile/phone-number/verify',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -15741,7 +15741,7 @@ export const postProfilePhoneNumberVerify = <ThrowOnError extends boolean = true
 export const getUserPreferences = <ThrowOnError extends boolean = true>(options?: Options<GetUserPreferencesData, ThrowOnError>) => (options?.client ?? client).get<GetUserPreferencesResponses, GetUserPreferencesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/preferences',
+    url: 'profile/preferences',
     ...options
 });
 
@@ -15767,7 +15767,7 @@ export const getUserPreferences = <ThrowOnError extends boolean = true>(options?
 export const putUserPreferences = <ThrowOnError extends boolean = true>(options: Options<PutUserPreferencesData, ThrowOnError>) => (options.client ?? client).put<PutUserPreferencesResponses, PutUserPreferencesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/preferences',
+    url: 'profile/preferences',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -15805,7 +15805,7 @@ export const putUserPreferences = <ThrowOnError extends boolean = true>(options:
 export const getSecurityQuestions = <ThrowOnError extends boolean = true>(options?: Options<GetSecurityQuestionsData, ThrowOnError>) => (options?.client ?? client).get<GetSecurityQuestionsResponses, GetSecurityQuestionsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/security-questions',
+    url: 'profile/security-questions',
     ...options
 });
 
@@ -15835,7 +15835,7 @@ export const getSecurityQuestions = <ThrowOnError extends boolean = true>(option
 export const postSecurityQuestions = <ThrowOnError extends boolean = true>(options?: Options<PostSecurityQuestionsData, ThrowOnError>) => (options?.client ?? client).post<PostSecurityQuestionsResponses, PostSecurityQuestionsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/security-questions',
+    url: 'profile/security-questions',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -15873,7 +15873,7 @@ export const postSecurityQuestions = <ThrowOnError extends boolean = true>(optio
 export const getSshKeys = <ThrowOnError extends boolean = true>(options?: Options<GetSshKeysData, ThrowOnError>) => (options?.client ?? client).get<GetSshKeysResponses, GetSshKeysErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/sshkeys',
+    url: 'profile/sshkeys',
     ...options
 });
 
@@ -15909,7 +15909,7 @@ export const getSshKeys = <ThrowOnError extends boolean = true>(options?: Option
 export const postAddSshKey = <ThrowOnError extends boolean = true>(options?: Options<PostAddSshKeyData, ThrowOnError>) => (options?.client ?? client).post<PostAddSshKeyResponses, PostAddSshKeyErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/sshkeys',
+    url: 'profile/sshkeys',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -15951,7 +15951,7 @@ export const postAddSshKey = <ThrowOnError extends boolean = true>(options?: Opt
 export const deleteSshKey = <ThrowOnError extends boolean = true>(options: Options<DeleteSshKeyData, ThrowOnError>) => (options.client ?? client).delete<DeleteSshKeyResponses, DeleteSshKeyErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/sshkeys/{sshKeyId}',
+    url: 'profile/sshkeys/{sshKeyId}',
     ...options
 });
 
@@ -15985,7 +15985,7 @@ export const deleteSshKey = <ThrowOnError extends boolean = true>(options: Optio
 export const getSshKey = <ThrowOnError extends boolean = true>(options: Options<GetSshKeyData, ThrowOnError>) => (options.client ?? client).get<GetSshKeyResponses, GetSshKeyErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/sshkeys/{sshKeyId}',
+    url: 'profile/sshkeys/{sshKeyId}',
     ...options
 });
 
@@ -16022,7 +16022,7 @@ export const getSshKey = <ThrowOnError extends boolean = true>(options: Options<
 export const putSshKey = <ThrowOnError extends boolean = true>(options: Options<PutSshKeyData, ThrowOnError>) => (options.client ?? client).put<PutSshKeyResponses, PutSshKeyErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/sshkeys/{sshKeyId}',
+    url: 'profile/sshkeys/{sshKeyId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -16060,7 +16060,7 @@ export const putSshKey = <ThrowOnError extends boolean = true>(options: Options<
 export const postTfaDisable = <ThrowOnError extends boolean = true>(options?: Options<PostTfaDisableData, ThrowOnError>) => (options?.client ?? client).post<PostTfaDisableResponses, PostTfaDisableErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/tfa-disable',
+    url: 'profile/tfa-disable',
     ...options
 });
 
@@ -16096,7 +16096,7 @@ export const postTfaDisable = <ThrowOnError extends boolean = true>(options?: Op
 export const postTfaEnable = <ThrowOnError extends boolean = true>(options?: Options<PostTfaEnableData, ThrowOnError>) => (options?.client ?? client).post<PostTfaEnableResponses, PostTfaEnableErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/tfa-enable',
+    url: 'profile/tfa-enable',
     ...options
 });
 
@@ -16131,7 +16131,7 @@ export const postTfaEnable = <ThrowOnError extends boolean = true>(options?: Opt
 export const postTfaConfirm = <ThrowOnError extends boolean = true>(options: Options<PostTfaConfirmData, ThrowOnError>) => (options.client ?? client).post<PostTfaConfirmResponses, PostTfaConfirmErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/tfa-enable-confirm',
+    url: 'profile/tfa-enable-confirm',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -16169,7 +16169,7 @@ export const postTfaConfirm = <ThrowOnError extends boolean = true>(options: Opt
 export const getPersonalAccessTokens = <ThrowOnError extends boolean = true>(options?: Options<GetPersonalAccessTokensData, ThrowOnError>) => (options?.client ?? client).get<GetPersonalAccessTokensResponses, GetPersonalAccessTokensErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/tokens',
+    url: 'profile/tokens',
     ...options
 });
 
@@ -16208,7 +16208,7 @@ export const getPersonalAccessTokens = <ThrowOnError extends boolean = true>(opt
 export const postPersonalAccessToken = <ThrowOnError extends boolean = true>(options: Options<PostPersonalAccessTokenData, ThrowOnError>) => (options.client ?? client).post<PostPersonalAccessTokenResponses, PostPersonalAccessTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/tokens',
+    url: 'profile/tokens',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -16246,7 +16246,7 @@ export const postPersonalAccessToken = <ThrowOnError extends boolean = true>(opt
 export const deletePersonalAccessToken = <ThrowOnError extends boolean = true>(options: Options<DeletePersonalAccessTokenData, ThrowOnError>) => (options.client ?? client).delete<DeletePersonalAccessTokenResponses, DeletePersonalAccessTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/tokens/{tokenId}',
+    url: 'profile/tokens/{tokenId}',
     ...options
 });
 
@@ -16280,7 +16280,7 @@ export const deletePersonalAccessToken = <ThrowOnError extends boolean = true>(o
 export const getPersonalAccessToken = <ThrowOnError extends boolean = true>(options: Options<GetPersonalAccessTokenData, ThrowOnError>) => (options.client ?? client).get<GetPersonalAccessTokenResponses, GetPersonalAccessTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/tokens/{tokenId}',
+    url: 'profile/tokens/{tokenId}',
     ...options
 });
 
@@ -16315,7 +16315,7 @@ export const getPersonalAccessToken = <ThrowOnError extends boolean = true>(opti
 export const putPersonalAccessToken = <ThrowOnError extends boolean = true>(options: Options<PutPersonalAccessTokenData, ThrowOnError>) => (options.client ?? client).put<PutPersonalAccessTokenResponses, PutPersonalAccessTokenErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/profile/tokens/{tokenId}',
+    url: 'profile/tokens/{tokenId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -16344,7 +16344,7 @@ export const putPersonalAccessToken = <ThrowOnError extends boolean = true>(opti
  */
 export const getRegions = <ThrowOnError extends boolean = true>(options?: Options<GetRegionsData, ThrowOnError>) => (options?.client ?? client).get<GetRegionsResponses, GetRegionsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/regions',
+    url: 'regions',
     ...options
 });
 
@@ -16369,7 +16369,7 @@ export const getRegions = <ThrowOnError extends boolean = true>(options?: Option
  */
 export const getRegionsAvailability = <ThrowOnError extends boolean = true>(options?: Options<GetRegionsAvailabilityData, ThrowOnError>) => (options?.client ?? client).get<GetRegionsAvailabilityResponses, GetRegionsAvailabilityErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/regions/availability',
+    url: 'regions/availability',
     ...options
 });
 
@@ -16394,7 +16394,7 @@ export const getRegionsAvailability = <ThrowOnError extends boolean = true>(opti
  */
 export const getRegion = <ThrowOnError extends boolean = true>(options: Options<GetRegionData, ThrowOnError>) => (options.client ?? client).get<GetRegionResponses, GetRegionErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/regions/{regionId}',
+    url: 'regions/{regionId}',
     ...options
 });
 
@@ -16419,7 +16419,7 @@ export const getRegion = <ThrowOnError extends boolean = true>(options: Options<
  */
 export const getRegionAvailability = <ThrowOnError extends boolean = true>(options: Options<GetRegionAvailabilityData, ThrowOnError>) => (options.client ?? client).get<GetRegionAvailabilityResponses, GetRegionAvailabilityErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/regions/{regionId}/availability',
+    url: 'regions/{regionId}/availability',
     ...options
 });
 
@@ -16453,7 +16453,7 @@ export const getRegionAvailability = <ThrowOnError extends boolean = true>(optio
 export const getTickets = <ThrowOnError extends boolean = true>(options?: Options<GetTicketsData, ThrowOnError>) => (options?.client ?? client).get<GetTicketsResponses, GetTicketsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/support/tickets',
+    url: 'support/tickets',
     ...options
 });
 
@@ -16490,7 +16490,7 @@ export const getTickets = <ThrowOnError extends boolean = true>(options?: Option
 export const postTicket = <ThrowOnError extends boolean = true>(options?: Options<PostTicketData, ThrowOnError>) => (options?.client ?? client).post<PostTicketResponses, PostTicketErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/support/tickets',
+    url: 'support/tickets',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -16528,7 +16528,7 @@ export const postTicket = <ThrowOnError extends boolean = true>(options?: Option
 export const getTicket = <ThrowOnError extends boolean = true>(options: Options<GetTicketData, ThrowOnError>) => (options.client ?? client).get<GetTicketResponses, GetTicketErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/support/tickets/{ticketId}',
+    url: 'support/tickets/{ticketId}',
     ...options
 });
 
@@ -16555,7 +16555,7 @@ export const postTicketAttachment = <ThrowOnError extends boolean = true>(option
     ...formDataBodySerializer,
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/support/tickets/{ticketId}/attachments',
+    url: 'support/tickets/{ticketId}/attachments',
     ...options,
     headers: {
         'Content-Type': null,
@@ -16593,7 +16593,7 @@ export const postTicketAttachment = <ThrowOnError extends boolean = true>(option
 export const postCloseTicket = <ThrowOnError extends boolean = true>(options: Options<PostCloseTicketData, ThrowOnError>) => (options.client ?? client).post<PostCloseTicketResponses, PostCloseTicketErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/support/tickets/{ticketId}/close',
+    url: 'support/tickets/{ticketId}/close',
     ...options
 });
 
@@ -16627,7 +16627,7 @@ export const postCloseTicket = <ThrowOnError extends boolean = true>(options: Op
 export const getTicketReplies = <ThrowOnError extends boolean = true>(options: Options<GetTicketRepliesData, ThrowOnError>) => (options.client ?? client).get<GetTicketRepliesResponses, GetTicketRepliesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/support/tickets/{ticketId}/replies',
+    url: 'support/tickets/{ticketId}/replies',
     ...options
 });
 
@@ -16662,7 +16662,7 @@ export const getTicketReplies = <ThrowOnError extends boolean = true>(options: O
 export const postTicketReply = <ThrowOnError extends boolean = true>(options: Options<PostTicketReplyData, ThrowOnError>) => (options.client ?? client).post<PostTicketReplyResponses, PostTicketReplyErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/support/tickets/{ticketId}/replies',
+    url: 'support/tickets/{ticketId}/replies',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -16704,7 +16704,7 @@ export const postTicketReply = <ThrowOnError extends boolean = true>(options: Op
 export const getTags = <ThrowOnError extends boolean = true>(options?: Options<GetTagsData, ThrowOnError>) => (options?.client ?? client).get<GetTagsResponses, GetTagsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/tags',
+    url: 'tags',
     ...options
 });
 
@@ -16749,7 +16749,7 @@ export const getTags = <ThrowOnError extends boolean = true>(options?: Options<G
 export const postTag = <ThrowOnError extends boolean = true>(options?: Options<PostTagData, ThrowOnError>) => (options?.client ?? client).post<PostTagResponses, PostTagErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/tags',
+    url: 'tags',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -16792,7 +16792,7 @@ export const postTag = <ThrowOnError extends boolean = true>(options?: Options<P
 export const deleteTag = <ThrowOnError extends boolean = true>(options: Options<DeleteTagData, ThrowOnError>) => (options.client ?? client).delete<DeleteTagResponses, DeleteTagErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/tags/{tagLabel}',
+    url: 'tags/{tagLabel}',
     ...options
 });
 
@@ -16822,7 +16822,7 @@ export const deleteTag = <ThrowOnError extends boolean = true>(options: Options<
 export const getTaggedObjects = <ThrowOnError extends boolean = true>(options: Options<GetTaggedObjectsData, ThrowOnError>) => (options.client ?? client).get<GetTaggedObjectsResponses, GetTaggedObjectsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/tags/{tagLabel}',
+    url: 'tags/{tagLabel}',
     ...options
 });
 
@@ -16856,7 +16856,7 @@ export const getTaggedObjects = <ThrowOnError extends boolean = true>(options: O
 export const getVolumes = <ThrowOnError extends boolean = true>(options?: Options<GetVolumesData, ThrowOnError>) => (options?.client ?? client).get<GetVolumesResponses, GetVolumesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/volumes',
+    url: 'volumes',
     ...options
 });
 
@@ -16899,7 +16899,7 @@ export const getVolumes = <ThrowOnError extends boolean = true>(options?: Option
 export const postVolume = <ThrowOnError extends boolean = true>(options: Options<PostVolumeData, ThrowOnError>) => (options.client ?? client).post<PostVolumeResponses, PostVolumeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/volumes',
+    url: 'volumes',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -16928,7 +16928,7 @@ export const postVolume = <ThrowOnError extends boolean = true>(options: Options
  */
 export const getVolumeTypes = <ThrowOnError extends boolean = true>(options?: Options<GetVolumeTypesData, ThrowOnError>) => (options?.client ?? client).get<GetVolumeTypesResponses, GetVolumeTypesErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
-    url: '/volumes/types',
+    url: 'volumes/types',
     ...options
 });
 
@@ -16968,7 +16968,7 @@ export const getVolumeTypes = <ThrowOnError extends boolean = true>(options?: Op
 export const deleteVolume = <ThrowOnError extends boolean = true>(options: Options<DeleteVolumeData, ThrowOnError>) => (options.client ?? client).delete<DeleteVolumeResponses, DeleteVolumeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/volumes/{volumeId}',
+    url: 'volumes/{volumeId}',
     ...options
 });
 
@@ -17002,7 +17002,7 @@ export const deleteVolume = <ThrowOnError extends boolean = true>(options: Optio
 export const getVolume = <ThrowOnError extends boolean = true>(options: Options<GetVolumeData, ThrowOnError>) => (options.client ?? client).get<GetVolumeResponses, GetVolumeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/volumes/{volumeId}',
+    url: 'volumes/{volumeId}',
     ...options
 });
 
@@ -17037,7 +17037,7 @@ export const getVolume = <ThrowOnError extends boolean = true>(options: Options<
 export const putVolume = <ThrowOnError extends boolean = true>(options: Options<PutVolumeData, ThrowOnError>) => (options.client ?? client).put<PutVolumeResponses, PutVolumeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/volumes/{volumeId}',
+    url: 'volumes/{volumeId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -17084,7 +17084,7 @@ export const putVolume = <ThrowOnError extends boolean = true>(options: Options<
 export const postAttachVolume = <ThrowOnError extends boolean = true>(options: Options<PostAttachVolumeData, ThrowOnError>) => (options.client ?? client).post<PostAttachVolumeResponses, PostAttachVolumeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/volumes/{volumeId}/attach',
+    url: 'volumes/{volumeId}/attach',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -17129,7 +17129,7 @@ export const postAttachVolume = <ThrowOnError extends boolean = true>(options: O
 export const postCloneVolume = <ThrowOnError extends boolean = true>(options: Options<PostCloneVolumeData, ThrowOnError>) => (options.client ?? client).post<PostCloneVolumeResponses, PostCloneVolumeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/volumes/{volumeId}/clone',
+    url: 'volumes/{volumeId}/clone',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -17172,7 +17172,7 @@ export const postCloneVolume = <ThrowOnError extends boolean = true>(options: Op
 export const postDetachVolume = <ThrowOnError extends boolean = true>(options: Options<PostDetachVolumeData, ThrowOnError>) => (options.client ?? client).post<PostDetachVolumeResponses, PostDetachVolumeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/volumes/{volumeId}/detach',
+    url: 'volumes/{volumeId}/detach',
     ...options
 });
 
@@ -17215,7 +17215,7 @@ export const postDetachVolume = <ThrowOnError extends boolean = true>(options: O
 export const postResizeVolume = <ThrowOnError extends boolean = true>(options: Options<PostResizeVolumeData, ThrowOnError>) => (options.client ?? client).post<PostResizeVolumeResponses, PostResizeVolumeErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/volumes/{volumeId}/resize',
+    url: 'volumes/{volumeId}/resize',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -17245,7 +17245,7 @@ export const postResizeVolume = <ThrowOnError extends boolean = true>(options: O
 export const getVpcs = <ThrowOnError extends boolean = true>(options?: Options<GetVpcsData, ThrowOnError>) => (options?.client ?? client).get<GetVpcsResponses, GetVpcsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs',
+    url: 'vpcs',
     ...options
 });
 
@@ -17294,7 +17294,7 @@ export const getVpcs = <ThrowOnError extends boolean = true>(options?: Options<G
 export const postVpc = <ThrowOnError extends boolean = true>(options: Options<PostVpcData, ThrowOnError>) => (options.client ?? client).post<PostVpcResponses, PostVpcErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs',
+    url: 'vpcs',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -17336,7 +17336,7 @@ export const postVpc = <ThrowOnError extends boolean = true>(options: Options<Po
 export const getVpcsIps = <ThrowOnError extends boolean = true>(options?: Options<GetVpcsIpsData, ThrowOnError>) => (options?.client ?? client).get<GetVpcsIpsResponses, GetVpcsIpsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs/ips',
+    url: 'vpcs/ips',
     ...options
 });
 
@@ -17375,7 +17375,7 @@ export const getVpcsIps = <ThrowOnError extends boolean = true>(options?: Option
 export const deleteVpc = <ThrowOnError extends boolean = true>(options: Options<DeleteVpcData, ThrowOnError>) => (options.client ?? client).delete<DeleteVpcResponses, DeleteVpcErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs/{vpcId}',
+    url: 'vpcs/{vpcId}',
     ...options
 });
 
@@ -17401,7 +17401,7 @@ export const deleteVpc = <ThrowOnError extends boolean = true>(options: Options<
 export const getVpc = <ThrowOnError extends boolean = true>(options: Options<GetVpcData, ThrowOnError>) => (options.client ?? client).get<GetVpcResponses, GetVpcErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs/{vpcId}',
+    url: 'vpcs/{vpcId}',
     ...options
 });
 
@@ -17442,7 +17442,7 @@ export const getVpc = <ThrowOnError extends boolean = true>(options: Options<Get
 export const putVpc = <ThrowOnError extends boolean = true>(options: Options<PutVpcData, ThrowOnError>) => (options.client ?? client).put<PutVpcResponses, PutVpcErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs/{vpcId}',
+    url: 'vpcs/{vpcId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -17480,7 +17480,7 @@ export const putVpc = <ThrowOnError extends boolean = true>(options: Options<Put
 export const getVpcIps = <ThrowOnError extends boolean = true>(options: Options<GetVpcIpsData, ThrowOnError>) => (options.client ?? client).get<GetVpcIpsResponses, GetVpcIpsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs/{vpcId}/ips',
+    url: 'vpcs/{vpcId}/ips',
     ...options
 });
 
@@ -17506,7 +17506,7 @@ export const getVpcIps = <ThrowOnError extends boolean = true>(options: Options<
 export const getVpcSubnets = <ThrowOnError extends boolean = true>(options: Options<GetVpcSubnetsData, ThrowOnError>) => (options.client ?? client).get<GetVpcSubnetsResponses, GetVpcSubnetsErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs/{vpcId}/subnets',
+    url: 'vpcs/{vpcId}/subnets',
     ...options
 });
 
@@ -17552,7 +17552,7 @@ export const getVpcSubnets = <ThrowOnError extends boolean = true>(options: Opti
 export const postVpcSubnet = <ThrowOnError extends boolean = true>(options: Options<PostVpcSubnetData, ThrowOnError>) => (options.client ?? client).post<PostVpcSubnetResponses, PostVpcSubnetErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs/{vpcId}/subnets',
+    url: 'vpcs/{vpcId}/subnets',
     ...options,
     headers: {
         'Content-Type': 'application/json',
@@ -17596,7 +17596,7 @@ export const postVpcSubnet = <ThrowOnError extends boolean = true>(options: Opti
 export const deleteVpcSubnet = <ThrowOnError extends boolean = true>(options: Options<DeleteVpcSubnetData, ThrowOnError>) => (options.client ?? client).delete<DeleteVpcSubnetResponses, DeleteVpcSubnetErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs/{vpcId}/subnets/{vpcSubnetId}',
+    url: 'vpcs/{vpcId}/subnets/{vpcSubnetId}',
     ...options
 });
 
@@ -17622,7 +17622,7 @@ export const deleteVpcSubnet = <ThrowOnError extends boolean = true>(options: Op
 export const getVpcSubnet = <ThrowOnError extends boolean = true>(options: Options<GetVpcSubnetData, ThrowOnError>) => (options.client ?? client).get<GetVpcSubnetResponses, GetVpcSubnetErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs/{vpcId}/subnets/{vpcSubnetId}',
+    url: 'vpcs/{vpcId}/subnets/{vpcSubnetId}',
     ...options
 });
 
@@ -17660,7 +17660,7 @@ export const getVpcSubnet = <ThrowOnError extends boolean = true>(options: Optio
 export const putVpcSubnet = <ThrowOnError extends boolean = true>(options: Options<PutVpcSubnetData, ThrowOnError>) => (options.client ?? client).put<PutVpcSubnetResponses, PutVpcSubnetErrors, ThrowOnError, 'data'>({
     responseStyle: 'data',
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
-    url: '/vpcs/{vpcId}/subnets/{vpcSubnetId}',
+    url: 'vpcs/{vpcId}/subnets/{vpcSubnetId}',
     ...options,
     headers: {
         'Content-Type': 'application/json',

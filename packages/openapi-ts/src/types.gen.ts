@@ -4169,7 +4169,7 @@ export type GetAccountData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/account';
+    url: 'account';
 };
 
 export type GetAccountErrors = {
@@ -4476,7 +4476,7 @@ export type PutAccountData = {
     };
     path?: never;
     query?: never;
-    url: '/account';
+    url: 'account';
 };
 
 export type PutAccountErrors = {
@@ -4646,7 +4646,7 @@ export type GetAccountAgreementsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/account/agreements';
+    url: 'account/agreements';
 };
 
 export type GetAccountAgreementsErrors = {
@@ -4719,7 +4719,7 @@ export type PostAccountAgreementsData = {
     };
     path?: never;
     query?: never;
-    url: '/account/agreements';
+    url: 'account/agreements';
 };
 
 export type PostAccountAgreementsErrors = {
@@ -4766,7 +4766,7 @@ export type GetAvailabilityData = {
          */
         page_size?: number;
     };
-    url: '/account/availability';
+    url: 'account/availability';
 };
 
 export type GetAvailabilityErrors = {
@@ -4835,7 +4835,7 @@ export type GetAccountAvailabilityData = {
         regionId: string;
     };
     query?: never;
-    url: '/account/availability/{regionId}';
+    url: 'account/availability/{regionId}';
 };
 
 export type GetAccountAvailabilityErrors = {
@@ -4893,7 +4893,7 @@ export type GetEnrolledBetaProgramsData = {
          */
         page_size?: number;
     };
-    url: '/account/betas';
+    url: 'account/betas';
 };
 
 export type GetEnrolledBetaProgramsErrors = {
@@ -4979,7 +4979,7 @@ export type PostBetaProgramData = {
     };
     path?: never;
     query?: never;
-    url: '/account/betas';
+    url: 'account/betas';
 };
 
 export type PostBetaProgramErrors = {
@@ -5022,7 +5022,7 @@ export type GetEnrolledBetaProgramData = {
         betaId: string;
     };
     query?: never;
-    url: '/account/betas/{betaId}';
+    url: 'account/betas/{betaId}';
 };
 
 export type GetEnrolledBetaProgramErrors = {
@@ -5093,7 +5093,7 @@ export type PostCancelAccountData = {
     };
     path?: never;
     query?: never;
-    url: '/account/cancel';
+    url: 'account/cancel';
 };
 
 export type PostCancelAccountErrors = {
@@ -5165,7 +5165,7 @@ export type GetChildAccountsData = {
          */
         page_size?: number;
     };
-    url: '/account/child-accounts';
+    url: 'account/child-accounts';
 };
 
 export type GetChildAccountsErrors = {
@@ -5313,7 +5313,7 @@ export type GetChildAccountData = {
         euuId: string;
     };
     query?: never;
-    url: '/account/child-accounts/{euuId}';
+    url: 'account/child-accounts/{euuId}';
 };
 
 export type GetChildAccountErrors = {
@@ -5447,7 +5447,7 @@ export type PostChildAccountTokenData = {
         euuId: string;
     };
     query?: never;
-    url: '/account/child-accounts/{euuId}/token';
+    url: 'account/child-accounts/{euuId}/token';
 };
 
 export type PostChildAccountTokenErrors = {
@@ -5535,7 +5535,7 @@ export type PostCreditCardData = {
     };
     path?: never;
     query?: never;
-    url: '/account/credit-card';
+    url: 'account/credit-card';
 };
 
 export type PostCreditCardErrors = {
@@ -5582,7 +5582,7 @@ export type GetEntityTransfersData = {
          */
         page_size?: number;
     };
-    url: '/account/entity-transfers';
+    url: 'account/entity-transfers';
 };
 
 export type GetEntityTransfersErrors = {
@@ -5687,7 +5687,7 @@ export type PostEntityTransferData = {
     };
     path?: never;
     query?: never;
-    url: '/account/entity-transfers';
+    url: 'account/entity-transfers';
 };
 
 export type PostEntityTransferErrors = {
@@ -5769,7 +5769,7 @@ export type DeleteEntityTransferData = {
         token: string;
     };
     query?: never;
-    url: '/account/entity-transfers/{token}';
+    url: 'account/entity-transfers/{token}';
 };
 
 export type DeleteEntityTransferErrors = {
@@ -5812,7 +5812,7 @@ export type GetEntityTransferData = {
         token: string;
     };
     query?: never;
-    url: '/account/entity-transfers/{token}';
+    url: 'account/entity-transfers/{token}';
 };
 
 export type GetEntityTransferErrors = {
@@ -5894,7 +5894,7 @@ export type PostAcceptEntityTransferData = {
         token: string;
     };
     query?: never;
-    url: '/account/entity-transfers/{token}/accept';
+    url: 'account/entity-transfers/{token}/accept';
 };
 
 export type PostAcceptEntityTransferErrors = {
@@ -5994,7 +5994,7 @@ export type GetEventsData = {
          */
         page_size?: number;
     };
-    url: '/account/events';
+    url: 'account/events';
 };
 
 export type GetEventsErrors = {
@@ -6187,7 +6187,7 @@ export type GetEventData = {
         eventId: number;
     };
     query?: never;
-    url: '/account/events/{eventId}';
+    url: 'account/events/{eventId}';
 };
 
 export type GetEventErrors = {
@@ -6356,7 +6356,7 @@ export type PostEventSeenData = {
         eventId: number;
     };
     query?: never;
-    url: '/account/events/{eventId}/seen';
+    url: 'account/events/{eventId}/seen';
 };
 
 export type PostEventSeenErrors = {
@@ -6456,7 +6456,7 @@ export type GetInvoicesData = {
          */
         page_size?: number;
     };
-    url: '/account/invoices';
+    url: 'account/invoices';
 };
 
 export type GetInvoicesErrors = {
@@ -6553,7 +6553,7 @@ export type GetInvoiceData = {
         invoiceId: number;
     };
     query?: never;
-    url: '/account/invoices/{invoiceId}';
+    url: 'account/invoices/{invoiceId}';
 };
 
 export type GetInvoiceErrors = {
@@ -6645,7 +6645,7 @@ export type GetInvoiceItemsData = {
          */
         page_size?: number;
     };
-    url: '/account/invoices/{invoiceId}/items';
+    url: 'account/invoices/{invoiceId}/items';
 };
 
 export type GetInvoiceItemsErrors = {
@@ -6738,7 +6738,7 @@ export type GetAccountLoginsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/account/logins';
+    url: 'account/logins';
 };
 
 export type GetAccountLoginsErrors = {
@@ -6818,7 +6818,7 @@ export type GetAccountLoginData = {
         loginId: number;
     };
     query?: never;
-    url: '/account/logins/{loginId}';
+    url: 'account/logins/{loginId}';
 };
 
 export type GetAccountLoginErrors = {
@@ -6879,7 +6879,7 @@ export type GetMaintenanceData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/account/maintenance';
+    url: 'account/maintenance';
 };
 
 export type GetMaintenanceErrors = {
@@ -7007,7 +7007,7 @@ export type GetNotificationsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/account/notifications';
+    url: 'account/notifications';
 };
 
 export type GetNotificationsErrors = {
@@ -7126,7 +7126,7 @@ export type GetClientsData = {
          */
         page_size?: number;
     };
-    url: '/account/oauth-clients';
+    url: 'account/oauth-clients';
 };
 
 export type GetClientsErrors = {
@@ -7237,7 +7237,7 @@ export type PostClientData = {
     };
     path?: never;
     query?: never;
-    url: '/account/oauth-clients';
+    url: 'account/oauth-clients';
 };
 
 export type PostClientErrors = {
@@ -7307,7 +7307,7 @@ export type DeleteClientData = {
         clientId: string;
     };
     query?: never;
-    url: '/account/oauth-clients/{clientId}';
+    url: 'account/oauth-clients/{clientId}';
 };
 
 export type DeleteClientErrors = {
@@ -7350,7 +7350,7 @@ export type GetClientData = {
         clientId: string;
     };
     query?: never;
-    url: '/account/oauth-clients/{clientId}';
+    url: 'account/oauth-clients/{clientId}';
 };
 
 export type GetClientErrors = {
@@ -7452,7 +7452,7 @@ export type PutClientData = {
         clientId: string;
     };
     query?: never;
-    url: '/account/oauth-clients/{clientId}';
+    url: 'account/oauth-clients/{clientId}';
 };
 
 export type PutClientErrors = {
@@ -7522,7 +7522,7 @@ export type PostResetClientSecretData = {
         clientId: string;
     };
     query?: never;
-    url: '/account/oauth-clients/{clientId}/reset-secret';
+    url: 'account/oauth-clients/{clientId}/reset-secret';
 };
 
 export type PostResetClientSecretErrors = {
@@ -7592,7 +7592,7 @@ export type GetClientThumbnailData = {
         clientId: string;
     };
     query?: never;
-    url: '/account/oauth-clients/{clientId}/thumbnail';
+    url: 'account/oauth-clients/{clientId}/thumbnail';
 };
 
 export type GetClientThumbnailErrors = {
@@ -7636,7 +7636,7 @@ export type PutClientThumbnailData = {
         clientId: string;
     };
     query?: never;
-    url: '/account/oauth-clients/{clientId}/thumbnail';
+    url: 'account/oauth-clients/{clientId}/thumbnail';
 };
 
 export type PutClientThumbnailErrors = {
@@ -7683,7 +7683,7 @@ export type GetPaymentMethodsData = {
          */
         page_size?: number;
     };
-    url: '/account/payment-methods';
+    url: 'account/payment-methods';
 };
 
 export type GetPaymentMethodsErrors = {
@@ -7829,7 +7829,7 @@ export type PostPaymentMethodData = {
     };
     path?: never;
     query?: never;
-    url: '/account/payment-methods';
+    url: 'account/payment-methods';
 };
 
 export type PostPaymentMethodErrors = {
@@ -7872,7 +7872,7 @@ export type DeletePaymentMethodData = {
         paymentMethodId: number;
     };
     query?: never;
-    url: '/account/payment-methods/{paymentMethodId}';
+    url: 'account/payment-methods/{paymentMethodId}';
 };
 
 export type DeletePaymentMethodErrors = {
@@ -7915,7 +7915,7 @@ export type GetPaymentMethodData = {
         paymentMethodId: number;
     };
     query?: never;
-    url: '/account/payment-methods/{paymentMethodId}';
+    url: 'account/payment-methods/{paymentMethodId}';
 };
 
 export type GetPaymentMethodErrors = {
@@ -8009,7 +8009,7 @@ export type PostMakePaymentMethodDefaultData = {
         paymentMethodId: number;
     };
     query?: never;
-    url: '/account/payment-methods/{paymentMethodId}/make-default';
+    url: 'account/payment-methods/{paymentMethodId}/make-default';
 };
 
 export type PostMakePaymentMethodDefaultErrors = {
@@ -8109,7 +8109,7 @@ export type GetPaymentsData = {
          */
         page_size?: number;
     };
-    url: '/account/payments';
+    url: 'account/payments';
 };
 
 export type GetPaymentsErrors = {
@@ -8190,7 +8190,7 @@ export type PostPaymentData = {
     };
     path?: never;
     query?: never;
-    url: '/account/payments';
+    url: 'account/payments';
 };
 
 export type PostPaymentErrors = {
@@ -8272,7 +8272,7 @@ export type PostPayPalPaymentData = {
     };
     path?: never;
     query?: never;
-    url: '/account/payments/paypal';
+    url: 'account/payments/paypal';
 };
 
 export type PostPayPalPaymentErrors = {
@@ -8346,7 +8346,7 @@ export type PostExecutePayPalPaymentData = {
     };
     path?: never;
     query?: never;
-    url: '/account/payments/paypal/execute';
+    url: 'account/payments/paypal/execute';
 };
 
 export type PostExecutePayPalPaymentErrors = {
@@ -8423,7 +8423,7 @@ export type GetPaymentData = {
         paymentId: number;
     };
     query?: never;
-    url: '/account/payments/{paymentId}';
+    url: 'account/payments/{paymentId}';
 };
 
 export type GetPaymentErrors = {
@@ -8480,7 +8480,7 @@ export type PostPromoCreditData = {
     };
     path?: never;
     query?: never;
-    url: '/account/promo-codes';
+    url: 'account/promo-codes';
 };
 
 export type PostPromoCreditErrors = {
@@ -8560,7 +8560,7 @@ export type GetServiceTransfersData = {
          */
         page_size?: number;
     };
-    url: '/account/service-transfers';
+    url: 'account/service-transfers';
 };
 
 export type GetServiceTransfersErrors = {
@@ -8671,7 +8671,7 @@ export type PostServiceTransferData = {
     };
     path?: never;
     query?: never;
-    url: '/account/service-transfers';
+    url: 'account/service-transfers';
 };
 
 export type PostServiceTransferErrors = {
@@ -8760,7 +8760,7 @@ export type DeleteServiceTransferData = {
         token: string;
     };
     query?: never;
-    url: '/account/service-transfers/{token}';
+    url: 'account/service-transfers/{token}';
 };
 
 export type DeleteServiceTransferErrors = {
@@ -8803,7 +8803,7 @@ export type GetServiceTransferData = {
         token: string;
     };
     query?: never;
-    url: '/account/service-transfers/{token}';
+    url: 'account/service-transfers/{token}';
 };
 
 export type GetServiceTransferErrors = {
@@ -8892,7 +8892,7 @@ export type PostAcceptServiceTransferData = {
         token: string;
     };
     query?: never;
-    url: '/account/service-transfers/{token}/accept';
+    url: 'account/service-transfers/{token}/accept';
 };
 
 export type PostAcceptServiceTransferErrors = {
@@ -8930,7 +8930,7 @@ export type GetAccountSettingsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/account/settings';
+    url: 'account/settings';
 };
 
 export type GetAccountSettingsErrors = {
@@ -9035,7 +9035,7 @@ export type PutAccountSettingsData = {
     };
     path?: never;
     query?: never;
-    url: '/account/settings';
+    url: 'account/settings';
 };
 
 export type PutAccountSettingsErrors = {
@@ -9104,7 +9104,7 @@ export type PostEnableAccountManagedData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/account/settings/managed-enable';
+    url: 'account/settings/managed-enable';
 };
 
 export type PostEnableAccountManagedErrors = {
@@ -9142,7 +9142,7 @@ export type GetTransferData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/account/transfer';
+    url: 'account/transfer';
 };
 
 export type GetTransferErrors = {
@@ -9220,7 +9220,7 @@ export type GetUsersData = {
          */
         page_size?: number;
     };
-    url: '/account/users';
+    url: 'account/users';
 };
 
 export type GetUsersErrors = {
@@ -9382,7 +9382,7 @@ export type PostUserData = {
     };
     path?: never;
     query?: never;
-    url: '/account/users';
+    url: 'account/users';
 };
 
 export type PostUserErrors = {
@@ -9471,7 +9471,7 @@ export type DeleteUserData = {
         username: string;
     };
     query?: never;
-    url: '/account/users/{username}';
+    url: 'account/users/{username}';
 };
 
 export type DeleteUserErrors = {
@@ -9514,7 +9514,7 @@ export type GetUserData = {
         username: string;
     };
     query?: never;
-    url: '/account/users/{username}';
+    url: 'account/users/{username}';
 };
 
 export type GetUserErrors = {
@@ -9667,7 +9667,7 @@ export type PutUserData = {
         username: string;
     };
     query?: never;
-    url: '/account/users/{username}';
+    url: 'account/users/{username}';
 };
 
 export type PutUserErrors = {
@@ -9769,7 +9769,7 @@ export type GetUserGrantsData = {
         username: string;
     };
     query?: never;
-    url: '/account/users/{username}/grants';
+    url: 'account/users/{username}/grants';
 };
 
 export type GetUserGrantsErrors = {
@@ -10294,7 +10294,7 @@ export type PutUserGrantsData = {
         username: string;
     };
     query?: never;
-    url: '/account/users/{username}/grants';
+    url: 'account/users/{username}/grants';
 };
 
 export type PutUserGrantsErrors = {
@@ -10579,7 +10579,7 @@ export type GetBetaProgramsData = {
          */
         page_size?: number;
     };
-    url: '/betas';
+    url: 'betas';
 };
 
 export type GetBetaProgramsErrors = {
@@ -10666,7 +10666,7 @@ export type GetBetaProgramData = {
         betaId: string;
     };
     query?: never;
-    url: '/betas/{betaId}';
+    url: 'betas/{betaId}';
 };
 
 export type GetBetaProgramErrors = {
@@ -10742,7 +10742,7 @@ export type GetDatabasesEnginesData = {
          */
         page_size?: number;
     };
-    url: '/databases/engines';
+    url: 'databases/engines';
 };
 
 export type GetDatabasesEnginesErrors = {
@@ -10820,7 +10820,7 @@ export type GetDatabasesEngineData = {
          */
         page_size?: number;
     };
-    url: '/databases/engines/{engineId}';
+    url: 'databases/engines/{engineId}';
 };
 
 export type GetDatabasesEngineErrors = {
@@ -10878,7 +10878,7 @@ export type GetDatabasesInstancesData = {
          */
         page_size?: number;
     };
-    url: '/databases/instances';
+    url: 'databases/instances';
 };
 
 export type GetDatabasesInstancesErrors = {
@@ -11096,7 +11096,7 @@ export type GetDatabasesMysqlConfigData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/databases/mysql/config';
+    url: 'databases/mysql/config';
 };
 
 export type GetDatabasesMysqlConfigErrors = {
@@ -11889,7 +11889,7 @@ export type GetDatabasesMysqlInstancesData = {
          */
         page_size?: number;
     };
-    url: '/databases/mysql/instances';
+    url: 'databases/mysql/instances';
 };
 
 export type GetDatabasesMysqlInstancesErrors = {
@@ -12456,7 +12456,7 @@ export type PostDatabasesMysqlInstancesData = {
     };
     path?: never;
     query?: never;
-    url: '/databases/mysql/instances';
+    url: 'databases/mysql/instances';
 };
 
 export type PostDatabasesMysqlInstancesErrors = {
@@ -12807,7 +12807,7 @@ export type DeleteDatabasesMysqlInstanceData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/mysql/instances/{instanceId}';
+    url: 'databases/mysql/instances/{instanceId}';
 };
 
 export type DeleteDatabasesMysqlInstanceErrors = {
@@ -12850,7 +12850,7 @@ export type GetDatabasesMysqlInstanceData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/mysql/instances/{instanceId}';
+    url: 'databases/mysql/instances/{instanceId}';
 };
 
 export type GetDatabasesMysqlInstanceErrors = {
@@ -13420,7 +13420,7 @@ export type PutDatabasesMysqlInstanceData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/mysql/instances/{instanceId}';
+    url: 'databases/mysql/instances/{instanceId}';
 };
 
 export type PutDatabasesMysqlInstanceErrors = {
@@ -13771,7 +13771,7 @@ export type GetDatabasesMysqlInstanceCredentialsData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/mysql/instances/{instanceId}/credentials';
+    url: 'databases/mysql/instances/{instanceId}/credentials';
 };
 
 export type GetDatabasesMysqlInstanceCredentialsErrors = {
@@ -13821,7 +13821,7 @@ export type PostDatabasesMysqlInstanceCredentialsResetData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/mysql/instances/{instanceId}/credentials/reset';
+    url: 'databases/mysql/instances/{instanceId}/credentials/reset';
 };
 
 export type PostDatabasesMysqlInstanceCredentialsResetErrors = {
@@ -13864,7 +13864,7 @@ export type PostDatabasesMysqlInstancePatchData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/mysql/instances/{instanceId}/patch';
+    url: 'databases/mysql/instances/{instanceId}/patch';
 };
 
 export type PostDatabasesMysqlInstancePatchErrors = {
@@ -13907,7 +13907,7 @@ export type ResumeDatabasesMysqlInstanceData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/mysql/instances/{instanceId}/resume';
+    url: 'databases/mysql/instances/{instanceId}/resume';
 };
 
 export type ResumeDatabasesMysqlInstanceErrors = {
@@ -13950,7 +13950,7 @@ export type GetDatabasesMysqlInstanceSslData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/mysql/instances/{instanceId}/ssl';
+    url: 'databases/mysql/instances/{instanceId}/ssl';
 };
 
 export type GetDatabasesMysqlInstanceSslErrors = {
@@ -13996,7 +13996,7 @@ export type SuspendDatabasesMysqlInstanceData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/mysql/instances/{instanceId}/suspend';
+    url: 'databases/mysql/instances/{instanceId}/suspend';
 };
 
 export type SuspendDatabasesMysqlInstanceErrors = {
@@ -14034,7 +14034,7 @@ export type GetDatabasesPostgresqlConfigData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/databases/postgresql/config';
+    url: 'databases/postgresql/config';
 };
 
 export type GetDatabasesPostgresqlConfigErrors = {
@@ -15393,7 +15393,7 @@ export type GetDatabasesPostgreSqlInstancesData = {
          */
         page_size?: number;
     };
-    url: '/databases/postgresql/instances';
+    url: 'databases/postgresql/instances';
 };
 
 export type GetDatabasesPostgreSqlInstancesErrors = {
@@ -16116,7 +16116,7 @@ export type PostDatabasesPostgreSqlInstancesData = {
     };
     path?: never;
     query?: never;
-    url: '/databases/postgresql/instances';
+    url: 'databases/postgresql/instances';
 };
 
 export type PostDatabasesPostgreSqlInstancesErrors = {
@@ -16519,7 +16519,7 @@ export type DeleteDatabasesPostgreSqlInstanceData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/postgresql/instances/{instanceId}';
+    url: 'databases/postgresql/instances/{instanceId}';
 };
 
 export type DeleteDatabasesPostgreSqlInstanceErrors = {
@@ -16562,7 +16562,7 @@ export type GetDatabasesPostgreSqlInstanceData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/postgresql/instances/{instanceId}';
+    url: 'databases/postgresql/instances/{instanceId}';
 };
 
 export type GetDatabasesPostgreSqlInstanceErrors = {
@@ -17288,7 +17288,7 @@ export type PutDatabasesPostgreSqlInstanceData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/postgresql/instances/{instanceId}';
+    url: 'databases/postgresql/instances/{instanceId}';
 };
 
 export type PutDatabasesPostgreSqlInstanceErrors = {
@@ -17714,7 +17714,7 @@ export type GetDatabasesPostgreSqlInstanceCredentialsData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/postgresql/instances/{instanceId}/credentials';
+    url: 'databases/postgresql/instances/{instanceId}/credentials';
 };
 
 export type GetDatabasesPostgreSqlInstanceCredentialsErrors = {
@@ -17764,7 +17764,7 @@ export type PostDatabasesPostgreSqlInstanceCredentialsResetData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/postgresql/instances/{instanceId}/credentials/reset';
+    url: 'databases/postgresql/instances/{instanceId}/credentials/reset';
 };
 
 export type PostDatabasesPostgreSqlInstanceCredentialsResetErrors = {
@@ -17807,7 +17807,7 @@ export type PostDatabasesPostgreSqlInstancePatchData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/postgresql/instances/{instanceId}/patch';
+    url: 'databases/postgresql/instances/{instanceId}/patch';
 };
 
 export type PostDatabasesPostgreSqlInstancePatchErrors = {
@@ -17850,7 +17850,7 @@ export type ResumeDatabasesPostgreSqlInstanceData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/postgresql/instances/{instanceId}/resume';
+    url: 'databases/postgresql/instances/{instanceId}/resume';
 };
 
 export type ResumeDatabasesPostgreSqlInstanceErrors = {
@@ -17893,7 +17893,7 @@ export type GetDatabasesPostgresqlInstanceSslData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/postgresql/instances/{instanceId}/ssl';
+    url: 'databases/postgresql/instances/{instanceId}/ssl';
 };
 
 export type GetDatabasesPostgresqlInstanceSslErrors = {
@@ -17939,7 +17939,7 @@ export type SuspendDatabasesPostgreSqlInstanceData = {
         instanceId: number;
     };
     query?: never;
-    url: '/databases/postgresql/instances/{instanceId}/suspend';
+    url: 'databases/postgresql/instances/{instanceId}/suspend';
 };
 
 export type SuspendDatabasesPostgreSqlInstanceErrors = {
@@ -17986,7 +17986,7 @@ export type GetDatabasesTypesData = {
          */
         page_size?: number;
     };
-    url: '/databases/types';
+    url: 'databases/types';
 };
 
 export type GetDatabasesTypesErrors = {
@@ -18129,7 +18129,7 @@ export type GetDatabasesTypeData = {
          */
         page_size?: number;
     };
-    url: '/databases/types/{typeId}';
+    url: 'databases/types/{typeId}';
 };
 
 export type GetDatabasesTypeErrors = {
@@ -18252,7 +18252,7 @@ export type GetDomainsData = {
          */
         page_size?: number;
     };
-    url: '/domains';
+    url: 'domains';
 };
 
 export type GetDomainsErrors = {
@@ -18481,7 +18481,7 @@ export type PostDomainData = {
     };
     path?: never;
     query?: never;
-    url: '/domains';
+    url: 'domains';
 };
 
 export type PostDomainErrors = {
@@ -18618,7 +18618,7 @@ export type PostImportDomainData = {
     };
     path?: never;
     query?: never;
-    url: '/domains/import';
+    url: 'domains/import';
 };
 
 export type PostImportDomainErrors = {
@@ -18748,7 +18748,7 @@ export type DeleteDomainData = {
         domainId: number;
     };
     query?: never;
-    url: '/domains/{domainId}';
+    url: 'domains/{domainId}';
 };
 
 export type DeleteDomainErrors = {
@@ -18791,7 +18791,7 @@ export type GetDomainData = {
         domainId: number;
     };
     query?: never;
-    url: '/domains/{domainId}';
+    url: 'domains/{domainId}';
 };
 
 export type GetDomainErrors = {
@@ -19013,7 +19013,7 @@ export type PutDomainData = {
         domainId: number;
     };
     query?: never;
-    url: '/domains/{domainId}';
+    url: 'domains/{domainId}';
 };
 
 export type PutDomainErrors = {
@@ -19151,7 +19151,7 @@ export type PostCloneDomainData = {
         domainId: string;
     };
     query?: never;
-    url: '/domains/{domainId}/clone';
+    url: 'domains/{domainId}/clone';
 };
 
 export type PostCloneDomainErrors = {
@@ -19290,7 +19290,7 @@ export type GetDomainRecordsData = {
          */
         page_size?: number;
     };
-    url: '/domains/{domainId}/records';
+    url: 'domains/{domainId}/records';
 };
 
 export type GetDomainRecordsResponses = {
@@ -19544,7 +19544,7 @@ export type PostDomainRecordData = {
         domainId: number;
     };
     query?: never;
-    url: '/domains/{domainId}/records';
+    url: 'domains/{domainId}/records';
 };
 
 export type PostDomainRecordErrors = {
@@ -19697,7 +19697,7 @@ export type DeleteDomainRecordData = {
         recordId: number;
     };
     query?: never;
-    url: '/domains/{domainId}/records/{recordId}';
+    url: 'domains/{domainId}/records/{recordId}';
 };
 
 export type DeleteDomainRecordErrors = {
@@ -19744,7 +19744,7 @@ export type GetDomainRecordData = {
         recordId: number;
     };
     query?: never;
-    url: '/domains/{domainId}/records/{recordId}';
+    url: 'domains/{domainId}/records/{recordId}';
 };
 
 export type GetDomainRecordErrors = {
@@ -19992,7 +19992,7 @@ export type PutDomainRecordData = {
         recordId: number;
     };
     query?: never;
-    url: '/domains/{domainId}/records/{recordId}';
+    url: 'domains/{domainId}/records/{recordId}';
 };
 
 export type PutDomainRecordErrors = {
@@ -20141,7 +20141,7 @@ export type GetDomainZoneData = {
         domainId: string;
     };
     query?: never;
-    url: '/domains/{domainId}/zone-file';
+    url: 'domains/{domainId}/zone-file';
 };
 
 export type GetDomainZoneErrors = {
@@ -20191,7 +20191,7 @@ export type GetImagesData = {
          */
         page_size?: number;
     };
-    url: '/images';
+    url: 'images';
 };
 
 export type GetImagesErrors = {
@@ -20412,7 +20412,7 @@ export type PostImageData = {
     };
     path?: never;
     query?: never;
-    url: '/images';
+    url: 'images';
 };
 
 export type PostImageErrors = {
@@ -20607,7 +20607,7 @@ export type GetSharegroupsData = {
          */
         page_size?: number;
     };
-    url: '/images/sharegroups';
+    url: 'images/sharegroups';
 };
 
 export type GetSharegroupsErrors = {
@@ -20724,7 +20724,7 @@ export type PostSharegroupsData = {
     };
     path?: never;
     query?: never;
-    url: '/images/sharegroups';
+    url: 'images/sharegroups';
 };
 
 export type PostSharegroupsErrors = {
@@ -20801,7 +20801,7 @@ export type GetUserTokensData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/images/sharegroups/tokens';
+    url: 'images/sharegroups/tokens';
 };
 
 export type GetUserTokensErrors = {
@@ -20902,7 +20902,7 @@ export type PostSharegroupTokensData = {
     };
     path?: never;
     query?: never;
-    url: '/images/sharegroups/tokens';
+    url: 'images/sharegroups/tokens';
 };
 
 export type PostSharegroupTokensErrors = {
@@ -20989,7 +20989,7 @@ export type DeleteSharegroupTokenData = {
         tokenUuid: string;
     };
     query?: never;
-    url: '/images/sharegroups/tokens/{tokenUuid}';
+    url: 'images/sharegroups/tokens/{tokenUuid}';
 };
 
 export type DeleteSharegroupTokenErrors = {
@@ -21032,7 +21032,7 @@ export type GetSharegroupTokenData = {
         tokenUuid: string;
     };
     query?: never;
-    url: '/images/sharegroups/tokens/{tokenUuid}';
+    url: 'images/sharegroups/tokens/{tokenUuid}';
 };
 
 export type GetSharegroupTokenErrors = {
@@ -21123,7 +21123,7 @@ export type PutSharegroupTokenData = {
         tokenUuid: string;
     };
     query?: never;
-    url: '/images/sharegroups/tokens/{tokenUuid}';
+    url: 'images/sharegroups/tokens/{tokenUuid}';
 };
 
 export type PutSharegroupTokenErrors = {
@@ -21206,7 +21206,7 @@ export type GetSharegroupByTokenData = {
         tokenUuid: string;
     };
     query?: never;
-    url: '/images/sharegroups/tokens/{tokenUuid}/sharegroup';
+    url: 'images/sharegroups/tokens/{tokenUuid}/sharegroup';
 };
 
 export type GetSharegroupByTokenErrors = {
@@ -21276,7 +21276,7 @@ export type GetSharegroupImagesByTokenData = {
         tokenUuid: string;
     };
     query?: never;
-    url: '/images/sharegroups/tokens/{tokenUuid}/sharegroup/images';
+    url: 'images/sharegroups/tokens/{tokenUuid}/sharegroup/images';
 };
 
 export type GetSharegroupImagesByTokenErrors = {
@@ -21446,7 +21446,7 @@ export type DeleteSharegroupData = {
         sharegroupId: number;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}';
+    url: 'images/sharegroups/{sharegroupId}';
 };
 
 export type DeleteSharegroupErrors = {
@@ -21489,7 +21489,7 @@ export type GetSharegroupData = {
         sharegroupId: number;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}';
+    url: 'images/sharegroups/{sharegroupId}';
 };
 
 export type GetSharegroupErrors = {
@@ -21583,7 +21583,7 @@ export type PutSharegroupData = {
         sharegroupId: number;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}';
+    url: 'images/sharegroups/{sharegroupId}';
 };
 
 export type PutSharegroupErrors = {
@@ -21665,7 +21665,7 @@ export type GetSharegroupImagesData = {
         sharegroupId: number;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}/images';
+    url: 'images/sharegroups/{sharegroupId}/images';
 };
 
 export type GetSharegroupImagesErrors = {
@@ -21850,7 +21850,7 @@ export type PostSharegroupImagesData = {
         sharegroupId: number;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}/images';
+    url: 'images/sharegroups/{sharegroupId}/images';
 };
 
 export type PostSharegroupImagesErrors = {
@@ -22010,7 +22010,7 @@ export type DeleteSharegroupImageshareData = {
         imageId: string;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}/images/{imageId}';
+    url: 'images/sharegroups/{sharegroupId}/images/{imageId}';
 };
 
 export type DeleteSharegroupImageshareErrors = {
@@ -22069,7 +22069,7 @@ export type PutSharegroupImageshareData = {
         imageId: string;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}/images/{imageId}';
+    url: 'images/sharegroups/{sharegroupId}/images/{imageId}';
 };
 
 export type PutSharegroupImageshareErrors = {
@@ -22225,7 +22225,7 @@ export type GetSharegroupMembersData = {
         sharegroupId: number;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}/members';
+    url: 'images/sharegroups/{sharegroupId}/members';
 };
 
 export type GetSharegroupMembersErrors = {
@@ -22314,7 +22314,7 @@ export type PostSharegroupMembersData = {
         sharegroupId: number;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}/members';
+    url: 'images/sharegroups/{sharegroupId}/members';
 };
 
 export type PostSharegroupMembersErrors = {
@@ -22384,7 +22384,7 @@ export type DeleteSharegroupMemberTokenData = {
         tokenUuid: string;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}/members/{tokenUuid}';
+    url: 'images/sharegroups/{sharegroupId}/members/{tokenUuid}';
 };
 
 export type DeleteSharegroupMemberTokenErrors = {
@@ -22431,7 +22431,7 @@ export type GetSharegroupMemberTokenData = {
         tokenUuid: string;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}/members/{tokenUuid}';
+    url: 'images/sharegroups/{sharegroupId}/members/{tokenUuid}';
 };
 
 export type GetSharegroupMemberTokenErrors = {
@@ -22509,7 +22509,7 @@ export type PutSharegroupMemberTokenData = {
         tokenUuid: string;
     };
     query?: never;
-    url: '/images/sharegroups/{sharegroupId}/members/{tokenUuid}';
+    url: 'images/sharegroups/{sharegroupId}/members/{tokenUuid}';
 };
 
 export type PutSharegroupMemberTokenErrors = {
@@ -22598,7 +22598,7 @@ export type PostUploadImageData = {
     };
     path?: never;
     query?: never;
-    url: '/images/upload';
+    url: 'images/upload';
 };
 
 export type PostUploadImageErrors = {
@@ -22798,7 +22798,7 @@ export type DeleteImageData = {
         imageId: string;
     };
     query?: never;
-    url: '/images/{imageId}';
+    url: 'images/{imageId}';
 };
 
 export type DeleteImageErrors = {
@@ -22841,7 +22841,7 @@ export type GetImageData = {
         imageId: string;
     };
     query?: never;
-    url: '/images/{imageId}';
+    url: 'images/{imageId}';
 };
 
 export type GetImageErrors = {
@@ -23130,7 +23130,7 @@ export type PutImageData = {
         imageId: string;
     };
     query?: never;
-    url: '/images/{imageId}';
+    url: 'images/{imageId}';
 };
 
 export type PutImageErrors = {
@@ -23329,7 +23329,7 @@ export type PostReplicateImageData = {
         imageId: string;
     };
     query?: never;
-    url: '/images/{imageId}/regions';
+    url: 'images/{imageId}/regions';
 };
 
 export type PostReplicateImageErrors = {
@@ -23520,7 +23520,7 @@ export type GetImagesSharegroupsImageData = {
         imageId: string;
     };
     query?: never;
-    url: '/images/{imageId}/sharegroups';
+    url: 'images/{imageId}/sharegroups';
 };
 
 export type GetImagesSharegroupsImageErrors = {
@@ -23673,7 +23673,7 @@ export type GetLinodeInstancesData = {
          */
         page_size?: number;
     };
-    url: '/linode/instances';
+    url: 'linode/instances';
 };
 
 export type GetLinodeInstancesErrors = {
@@ -24423,7 +24423,7 @@ export type PostLinodeInstanceData = {
     };
     path?: never;
     query?: never;
-    url: '/linode/instances';
+    url: 'linode/instances';
 };
 
 export type PostLinodeInstanceErrors = {
@@ -24694,7 +24694,7 @@ export type DeleteLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}';
+    url: 'linode/instances/{linodeId}';
 };
 
 export type DeleteLinodeInstanceErrors = {
@@ -24737,7 +24737,7 @@ export type GetLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}';
+    url: 'linode/instances/{linodeId}';
 };
 
 export type GetLinodeInstanceErrors = {
@@ -25245,7 +25245,7 @@ export type PutLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}';
+    url: 'linode/instances/{linodeId}';
 };
 
 export type PutLinodeInstanceErrors = {
@@ -25516,7 +25516,7 @@ export type GetBackupsData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/backups';
+    url: 'linode/instances/{linodeId}/backups';
 };
 
 export type GetBackupsErrors = {
@@ -25738,7 +25738,7 @@ export type PostSnapshotData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/backups';
+    url: 'linode/instances/{linodeId}/backups';
 };
 
 export type PostSnapshotErrors = {
@@ -25833,7 +25833,7 @@ export type PostCancelBackupsData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/backups/cancel';
+    url: 'linode/instances/{linodeId}/backups/cancel';
 };
 
 export type PostCancelBackupsErrors = {
@@ -25876,7 +25876,7 @@ export type PostEnableBackupsData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/backups/enable';
+    url: 'linode/instances/{linodeId}/backups/enable';
 };
 
 export type PostEnableBackupsErrors = {
@@ -25923,7 +25923,7 @@ export type GetBackupData = {
         backupId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/backups/{backupId}';
+    url: 'linode/instances/{linodeId}/backups/{backupId}';
 };
 
 export type GetBackupErrors = {
@@ -26036,7 +26036,7 @@ export type PostRestoreBackupData = {
         backupId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/backups/{backupId}/restore';
+    url: 'linode/instances/{linodeId}/backups/{backupId}/restore';
 };
 
 export type PostRestoreBackupErrors = {
@@ -26087,7 +26087,7 @@ export type PostBootLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/boot';
+    url: 'linode/instances/{linodeId}/boot';
 };
 
 export type PostBootLinodeInstanceErrors = {
@@ -26227,7 +26227,7 @@ export type PostCloneLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/clone';
+    url: 'linode/instances/{linodeId}/clone';
 };
 
 export type PostCloneLinodeInstanceErrors = {
@@ -26507,7 +26507,7 @@ export type GetLinodeConfigsData = {
          */
         page_size?: number;
     };
-    url: '/linode/instances/{linodeId}/configs';
+    url: 'linode/instances/{linodeId}/configs';
 };
 
 export type GetLinodeConfigsResponses = {
@@ -27315,7 +27315,7 @@ export type PostAddLinodeConfigData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/configs';
+    url: 'linode/instances/{linodeId}/configs';
 };
 
 export type PostAddLinodeConfigErrors = {
@@ -27745,7 +27745,7 @@ export type DeleteLinodeConfigData = {
         configId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/configs/{configId}';
+    url: 'linode/instances/{linodeId}/configs/{configId}';
 };
 
 export type DeleteLinodeConfigErrors = {
@@ -27792,7 +27792,7 @@ export type GetLinodeConfigData = {
         configId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/configs/{configId}';
+    url: 'linode/instances/{linodeId}/configs/{configId}';
 };
 
 export type GetLinodeConfigErrors = {
@@ -28607,7 +28607,7 @@ export type PutLinodeConfigData = {
         configId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/configs/{configId}';
+    url: 'linode/instances/{linodeId}/configs/{configId}';
 };
 
 export type PutLinodeConfigErrors = {
@@ -29037,7 +29037,7 @@ export type GetLinodeConfigInterfacesData = {
         configId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces';
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces';
 };
 
 export type GetLinodeConfigInterfacesErrors = {
@@ -29452,7 +29452,7 @@ export type PostLinodeConfigInterfaceData = {
         configId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces';
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces';
 };
 
 export type PostLinodeConfigInterfaceErrors = {
@@ -29687,7 +29687,7 @@ export type PostLinodeConfigInterfacesData = {
         configId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces/order';
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces/order';
 };
 
 export type PostLinodeConfigInterfacesErrors = {
@@ -29738,7 +29738,7 @@ export type DeleteLinodeConfigInterfaceData = {
         interfaceId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}';
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}';
 };
 
 export type DeleteLinodeConfigInterfaceErrors = {
@@ -29789,7 +29789,7 @@ export type GetLinodeConfigInterfaceData = {
         interfaceId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}';
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}';
 };
 
 export type GetLinodeConfigInterfaceErrors = {
@@ -30069,7 +30069,7 @@ export type PutLinodeConfigInterfaceData = {
         interfaceId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}';
+    url: 'linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId}';
 };
 
 export type PutLinodeConfigInterfaceErrors = {
@@ -30201,7 +30201,7 @@ export type GetLinodeDisksData = {
          */
         page_size?: number;
     };
-    url: '/linode/instances/{linodeId}/disks';
+    url: 'linode/instances/{linodeId}/disks';
 };
 
 export type GetLinodeDisksErrors = {
@@ -30351,7 +30351,7 @@ export type PostAddLinodeDiskData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/disks';
+    url: 'linode/instances/{linodeId}/disks';
 };
 
 export type PostAddLinodeDiskErrors = {
@@ -30433,7 +30433,7 @@ export type DeleteDiskData = {
         diskId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/disks/{diskId}';
+    url: 'linode/instances/{linodeId}/disks/{diskId}';
 };
 
 export type DeleteDiskErrors = {
@@ -30480,7 +30480,7 @@ export type GetLinodeDiskData = {
         diskId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/disks/{diskId}';
+    url: 'linode/instances/{linodeId}/disks/{diskId}';
 };
 
 export type GetLinodeDiskErrors = {
@@ -30570,7 +30570,7 @@ export type PutDiskData = {
         diskId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/disks/{diskId}';
+    url: 'linode/instances/{linodeId}/disks/{diskId}';
 };
 
 export type PutDiskErrors = {
@@ -30652,7 +30652,7 @@ export type PostCloneLinodeDiskData = {
         diskId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/disks/{diskId}/clone';
+    url: 'linode/instances/{linodeId}/disks/{diskId}/clone';
 };
 
 export type PostCloneLinodeDiskErrors = {
@@ -30742,7 +30742,7 @@ export type PostResetDiskPasswordData = {
         diskId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/disks/{diskId}/password';
+    url: 'linode/instances/{linodeId}/disks/{diskId}/password';
 };
 
 export type PostResetDiskPasswordErrors = {
@@ -30797,7 +30797,7 @@ export type PostResizeDiskData = {
         diskId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/disks/{diskId}/resize';
+    url: 'linode/instances/{linodeId}/disks/{diskId}/resize';
 };
 
 export type PostResizeDiskErrors = {
@@ -30849,7 +30849,7 @@ export type GetLinodeFirewallsData = {
          */
         page_size?: number;
     };
-    url: '/linode/instances/{linodeId}/firewalls';
+    url: 'linode/instances/{linodeId}/firewalls';
 };
 
 export type GetLinodeFirewallsErrors = {
@@ -31131,7 +31131,7 @@ export type PutLinodeFirewallsData = {
          */
         page_size?: number;
     };
-    url: '/linode/instances/{linodeId}/firewalls';
+    url: 'linode/instances/{linodeId}/firewalls';
 };
 
 export type PutLinodeFirewallsErrors = {
@@ -31396,7 +31396,7 @@ export type PostApplyFirewallsData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/firewalls/apply';
+    url: 'linode/instances/{linodeId}/firewalls/apply';
 };
 
 export type PostApplyFirewallsErrors = {
@@ -31439,7 +31439,7 @@ export type GetLinodeInterfacesData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/interfaces';
+    url: 'linode/instances/{linodeId}/interfaces';
 };
 
 export type GetLinodeInterfacesErrors = {
@@ -31885,7 +31885,7 @@ export type PostLinodeInterfaceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/interfaces';
+    url: 'linode/instances/{linodeId}/interfaces';
 };
 
 export type PostLinodeInterfaceErrors = {
@@ -32184,7 +32184,7 @@ export type GetLinodeInterfaceHistoryData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/interfaces/history';
+    url: 'linode/instances/{linodeId}/interfaces/history';
 };
 
 export type GetLinodeInterfaceHistoryErrors = {
@@ -32264,7 +32264,7 @@ export type GetLinodeInterfaceSettingsData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/interfaces/settings';
+    url: 'linode/instances/{linodeId}/interfaces/settings';
 };
 
 export type GetLinodeInterfaceSettingsErrors = {
@@ -32360,7 +32360,7 @@ export type PutLinodeInterfaceSettingsData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/interfaces/settings';
+    url: 'linode/instances/{linodeId}/interfaces/settings';
 };
 
 export type PutLinodeInterfaceSettingsErrors = {
@@ -32431,7 +32431,7 @@ export type DeleteLinodeInterfaceData = {
         interfaceId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/interfaces/{interfaceId}';
+    url: 'linode/instances/{linodeId}/interfaces/{interfaceId}';
 };
 
 export type DeleteLinodeInterfaceErrors = {
@@ -32478,7 +32478,7 @@ export type GetLinodeInterfaceData = {
         interfaceId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/interfaces/{interfaceId}';
+    url: 'linode/instances/{linodeId}/interfaces/{interfaceId}';
 };
 
 export type GetLinodeInterfaceErrors = {
@@ -32919,7 +32919,7 @@ export type PutLinodeInterfaceData = {
         interfaceId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/interfaces/{interfaceId}';
+    url: 'linode/instances/{linodeId}/interfaces/{interfaceId}';
 };
 
 export type PutLinodeInterfaceErrors = {
@@ -33222,7 +33222,7 @@ export type GetLinodeInterfaceFirewallsData = {
         interfaceId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/interfaces/{interfaceId}/firewalls';
+    url: 'linode/instances/{linodeId}/interfaces/{interfaceId}/firewalls';
 };
 
 export type GetLinodeInterfaceFirewallsErrors = {
@@ -33488,7 +33488,7 @@ export type GetLinodeIpsData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/ips';
+    url: 'linode/instances/{linodeId}/ips';
 };
 
 export type GetLinodeIpsErrors = {
@@ -33951,7 +33951,7 @@ export type PostAddLinodeIpData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/ips';
+    url: 'linode/instances/{linodeId}/ips';
 };
 
 export type PostAddLinodeIpErrors = {
@@ -34058,7 +34058,7 @@ export type DeleteLinodeIpData = {
         address: string;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/ips/{address}';
+    url: 'linode/instances/{linodeId}/ips/{address}';
 };
 
 export type DeleteLinodeIpErrors = {
@@ -34105,7 +34105,7 @@ export type GetLinodeIpData = {
         address: string;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/ips/{address}';
+    url: 'linode/instances/{linodeId}/ips/{address}';
 };
 
 export type GetLinodeIpErrors = {
@@ -34220,7 +34220,7 @@ export type PutLinodeIpData = {
         address: string;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/ips/{address}';
+    url: 'linode/instances/{linodeId}/ips/{address}';
 };
 
 export type PutLinodeIpErrors = {
@@ -34355,7 +34355,7 @@ export type PostMigrateLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/migrate';
+    url: 'linode/instances/{linodeId}/migrate';
 };
 
 export type PostMigrateLinodeInstanceErrors = {
@@ -34406,7 +34406,7 @@ export type PostMutateLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/mutate';
+    url: 'linode/instances/{linodeId}/mutate';
 };
 
 export type PostMutateLinodeInstanceErrors = {
@@ -34449,7 +34449,7 @@ export type GetLinodeNodeBalancersData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/nodebalancers';
+    url: 'linode/instances/{linodeId}/nodebalancers';
 };
 
 export type GetLinodeNodeBalancersResponses = {
@@ -34575,7 +34575,7 @@ export type PostResetLinodePasswordData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/password';
+    url: 'linode/instances/{linodeId}/password';
 };
 
 export type PostResetLinodePasswordErrors = {
@@ -34626,7 +34626,7 @@ export type PostRebootLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/reboot';
+    url: 'linode/instances/{linodeId}/reboot';
 };
 
 export type PostRebootLinodeInstanceErrors = {
@@ -34748,7 +34748,7 @@ export type PostRebuildLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/rebuild';
+    url: 'linode/instances/{linodeId}/rebuild';
 };
 
 export type PostRebuildLinodeInstanceErrors = {
@@ -35116,7 +35116,7 @@ export type PostRescueLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/rescue';
+    url: 'linode/instances/{linodeId}/rescue';
 };
 
 export type PostRescueLinodeInstanceErrors = {
@@ -35181,7 +35181,7 @@ export type PostResizeLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/resize';
+    url: 'linode/instances/{linodeId}/resize';
 };
 
 export type PostResizeLinodeInstanceErrors = {
@@ -35224,7 +35224,7 @@ export type PostShutdownLinodeInstanceData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/shutdown';
+    url: 'linode/instances/{linodeId}/shutdown';
 };
 
 export type PostShutdownLinodeInstanceErrors = {
@@ -35267,7 +35267,7 @@ export type GetLinodeStatsData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/stats';
+    url: 'linode/instances/{linodeId}/stats';
 };
 
 export type GetLinodeStatsErrors = {
@@ -35380,7 +35380,7 @@ export type GetLinodeStatsByYearMonthData = {
         month: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/stats/{year}/{month}';
+    url: 'linode/instances/{linodeId}/stats/{year}/{month}';
 };
 
 export type GetLinodeStatsByYearMonthErrors = {
@@ -35485,7 +35485,7 @@ export type GetLinodeTransferData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/transfer';
+    url: 'linode/instances/{linodeId}/transfer';
 };
 
 export type GetLinodeTransferErrors = {
@@ -35547,7 +35547,7 @@ export type GetLinodeTransferByYearMonthData = {
         month: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/transfer/{year}/{month}';
+    url: 'linode/instances/{linodeId}/transfer/{year}/{month}';
 };
 
 export type GetLinodeTransferByYearMonthErrors = {
@@ -35618,7 +35618,7 @@ export type PostUpgradeLinodeInterfacesData = {
         linodeId: number;
     };
     query?: never;
-    url: '/linode/instances/{linodeId}/upgrade-interfaces';
+    url: 'linode/instances/{linodeId}/upgrade-interfaces';
 };
 
 export type PostUpgradeLinodeInterfacesErrors = {
@@ -35939,7 +35939,7 @@ export type GetLinodeVolumesData = {
          */
         page_size?: number;
     };
-    url: '/linode/instances/{linodeId}/volumes';
+    url: 'linode/instances/{linodeId}/volumes';
 };
 
 export type GetLinodeVolumesErrors = {
@@ -36063,7 +36063,7 @@ export type GetKernelsData = {
          */
         page_size?: number;
     };
-    url: '/linode/kernels';
+    url: 'linode/kernels';
 };
 
 export type GetKernelsErrors = {
@@ -36151,7 +36151,7 @@ export type GetKernelData = {
         kernelId: string;
     };
     query?: never;
-    url: '/linode/kernels/{kernelId}';
+    url: 'linode/kernels/{kernelId}';
 };
 
 export type GetKernelErrors = {
@@ -36229,7 +36229,7 @@ export type GetStackScriptsData = {
          */
         page_size?: number;
     };
-    url: '/linode/stackscripts';
+    url: 'linode/stackscripts';
 };
 
 export type GetStackScriptsErrors = {
@@ -36458,7 +36458,7 @@ export type PostAddStackScriptData = {
     };
     path?: never;
     query?: never;
-    url: '/linode/stackscripts';
+    url: 'linode/stackscripts';
 };
 
 export type PostAddStackScriptErrors = {
@@ -36587,7 +36587,7 @@ export type DeleteStackScriptData = {
         stackscriptId: string;
     };
     query?: never;
-    url: '/linode/stackscripts/{stackscriptId}';
+    url: 'linode/stackscripts/{stackscriptId}';
 };
 
 export type DeleteStackScriptErrors = {
@@ -36630,7 +36630,7 @@ export type GetStackScriptData = {
         stackscriptId: string;
     };
     query?: never;
-    url: '/linode/stackscripts/{stackscriptId}';
+    url: 'linode/stackscripts/{stackscriptId}';
 };
 
 export type GetStackScriptErrors = {
@@ -36850,7 +36850,7 @@ export type PutStackScriptData = {
         stackscriptId: string;
     };
     query?: never;
-    url: '/linode/stackscripts/{stackscriptId}';
+    url: 'linode/stackscripts/{stackscriptId}';
 };
 
 export type PutStackScriptErrors = {
@@ -36974,7 +36974,7 @@ export type GetLinodeTypesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/linode/types';
+    url: 'linode/types';
 };
 
 export type GetLinodeTypesErrors = {
@@ -37157,7 +37157,7 @@ export type GetLinodeTypeData = {
         typeId: string;
     };
     query?: never;
-    url: '/linode/types/{typeId}';
+    url: 'linode/types/{typeId}';
 };
 
 export type GetLinodeTypeErrors = {
@@ -37318,7 +37318,7 @@ export type GetLkeClustersData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/lke/clusters';
+    url: 'lke/clusters';
 };
 
 export type GetLkeClustersErrors = {
@@ -37699,7 +37699,7 @@ export type PostLkeClusterData = {
     };
     path?: never;
     query?: never;
-    url: '/lke/clusters';
+    url: 'lke/clusters';
 };
 
 export type PostLkeClusterErrors = {
@@ -37828,7 +37828,7 @@ export type DeleteLkeClusterData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}';
+    url: 'lke/clusters/{clusterId}';
 };
 
 export type DeleteLkeClusterErrors = {
@@ -37871,7 +37871,7 @@ export type GetLkeClusterData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}';
+    url: 'lke/clusters/{clusterId}';
 };
 
 export type GetLkeClusterErrors = {
@@ -38079,7 +38079,7 @@ export type PutLkeClusterData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}';
+    url: 'lke/clusters/{clusterId}';
 };
 
 export type PutLkeClusterResponses = {
@@ -38188,7 +38188,7 @@ export type GetLkeClusterApiEndpointsData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/api-endpoints';
+    url: 'lke/clusters/{clusterId}/api-endpoints';
 };
 
 export type GetLkeClusterApiEndpointsErrors = {
@@ -38251,7 +38251,7 @@ export type DeleteLkeClusterAclData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/control_plane_acl';
+    url: 'lke/clusters/{clusterId}/control_plane_acl';
 };
 
 export type DeleteLkeClusterAclErrors = {
@@ -38324,7 +38324,7 @@ export type GetLkeClusterAclData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/control_plane_acl';
+    url: 'lke/clusters/{clusterId}/control_plane_acl';
 };
 
 export type GetLkeClusterAclErrors = {
@@ -38460,7 +38460,7 @@ export type PutLkeClusterAclData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/control_plane_acl';
+    url: 'lke/clusters/{clusterId}/control_plane_acl';
 };
 
 export type PutLkeClusterAclErrors = {
@@ -38566,7 +38566,7 @@ export type GetLkeClusterDashboardData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/dashboard';
+    url: 'lke/clusters/{clusterId}/dashboard';
 };
 
 export type GetLkeClusterDashboardErrors = {
@@ -38612,7 +38612,7 @@ export type DeleteLkeClusterKubeconfigData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/kubeconfig';
+    url: 'lke/clusters/{clusterId}/kubeconfig';
 };
 
 export type DeleteLkeClusterKubeconfigErrors = {
@@ -38655,7 +38655,7 @@ export type GetLkeClusterKubeconfigData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/kubeconfig';
+    url: 'lke/clusters/{clusterId}/kubeconfig';
 };
 
 export type GetLkeClusterKubeconfigErrors = {
@@ -38705,7 +38705,7 @@ export type DeleteLkeClusterNodeData = {
         nodeId: string;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/nodes/{nodeId}';
+    url: 'lke/clusters/{clusterId}/nodes/{nodeId}';
 };
 
 export type DeleteLkeClusterNodeErrors = {
@@ -38752,7 +38752,7 @@ export type GetLkeClusterNodeData = {
         nodeId: string;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/nodes/{nodeId}';
+    url: 'lke/clusters/{clusterId}/nodes/{nodeId}';
 };
 
 export type GetLkeClusterNodeErrors = {
@@ -38814,7 +38814,7 @@ export type PostLkeClusterNodeRecycleData = {
         nodeId: string;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/nodes/{nodeId}/recycle';
+    url: 'lke/clusters/{clusterId}/nodes/{nodeId}/recycle';
 };
 
 export type PostLkeClusterNodeRecycleErrors = {
@@ -38857,7 +38857,7 @@ export type GetLkeClusterPoolsData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/pools';
+    url: 'lke/clusters/{clusterId}/pools';
 };
 
 export type GetLkeClusterPoolsErrors = {
@@ -39166,7 +39166,7 @@ export type PostLkeClusterPoolsData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/pools';
+    url: 'lke/clusters/{clusterId}/pools';
 };
 
 export type PostLkeClusterPoolsErrors = {
@@ -39325,7 +39325,7 @@ export type DeleteLkeNodePoolData = {
         poolId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/pools/{poolId}';
+    url: 'lke/clusters/{clusterId}/pools/{poolId}';
 };
 
 export type DeleteLkeNodePoolErrors = {
@@ -39372,7 +39372,7 @@ export type GetLkeNodePoolData = {
         poolId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/pools/{poolId}';
+    url: 'lke/clusters/{clusterId}/pools/{poolId}';
 };
 
 export type GetLkeNodePoolResponses = {
@@ -39589,7 +39589,7 @@ export type PutLkeNodePoolData = {
         poolId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/pools/{poolId}';
+    url: 'lke/clusters/{clusterId}/pools/{poolId}';
 };
 
 export type PutLkeNodePoolResponses = {
@@ -39728,7 +39728,7 @@ export type PostLkeClusterPoolRecycleData = {
         poolId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/pools/{poolId}/recycle';
+    url: 'lke/clusters/{clusterId}/pools/{poolId}/recycle';
 };
 
 export type PostLkeClusterPoolRecycleErrors = {
@@ -39771,7 +39771,7 @@ export type PostLkeClusterRecycleData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/recycle';
+    url: 'lke/clusters/{clusterId}/recycle';
 };
 
 export type PostLkeClusterRecycleErrors = {
@@ -39826,7 +39826,7 @@ export type PostLkeClusterRegenerateData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/regenerate';
+    url: 'lke/clusters/{clusterId}/regenerate';
 };
 
 export type PostLkeClusterRegenerateErrors = {
@@ -39869,7 +39869,7 @@ export type DeleteLkeServiceTokenData = {
         clusterId: number;
     };
     query?: never;
-    url: '/lke/clusters/{clusterId}/servicetoken';
+    url: 'lke/clusters/{clusterId}/servicetoken';
 };
 
 export type DeleteLkeServiceTokenErrors = {
@@ -39912,7 +39912,7 @@ export type GetLkeTiersVersionsData = {
         tier: 'standard' | 'enterprise';
     };
     query?: never;
-    url: '/lke/tiers/{tier}/versions';
+    url: 'lke/tiers/{tier}/versions';
 };
 
 export type GetLkeTiersVersionsErrors = {
@@ -39983,7 +39983,7 @@ export type GetLkeTiersVersionData = {
         version: string;
     };
     query?: never;
-    url: '/lke/tiers/{tier}/versions/{version}';
+    url: 'lke/tiers/{tier}/versions/{version}';
 };
 
 export type GetLkeTiersVersionErrors = {
@@ -40028,7 +40028,7 @@ export type GetLkeTypesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/lke/types';
+    url: 'lke/types';
 };
 
 export type GetLkeTypesErrors = {
@@ -40123,7 +40123,7 @@ export type GetLkeVersionsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/lke/versions';
+    url: 'lke/versions';
 };
 
 export type GetLkeVersionsErrors = {
@@ -40186,7 +40186,7 @@ export type GetLkeVersionData = {
         version: string;
     };
     query?: never;
-    url: '/lke/versions/{version}';
+    url: 'lke/versions/{version}';
 };
 
 export type GetLkeVersionErrors = {
@@ -40236,7 +40236,7 @@ export type GetLongviewClientsData = {
          */
         page_size?: number;
     };
-    url: '/longview/clients';
+    url: 'longview/clients';
 };
 
 export type GetLongviewClientsErrors = {
@@ -40381,7 +40381,7 @@ export type PostLongviewClientData = {
     };
     path?: never;
     query?: never;
-    url: '/longview/clients';
+    url: 'longview/clients';
 };
 
 export type PostLongviewClientErrors = {
@@ -40468,7 +40468,7 @@ export type DeleteLongviewClientData = {
         clientId: number;
     };
     query?: never;
-    url: '/longview/clients/{clientId}';
+    url: 'longview/clients/{clientId}';
 };
 
 export type DeleteLongviewClientErrors = {
@@ -40511,7 +40511,7 @@ export type GetLongviewClientData = {
         clientId: number;
     };
     query?: never;
-    url: '/longview/clients/{clientId}';
+    url: 'longview/clients/{clientId}';
 };
 
 export type GetLongviewClientErrors = {
@@ -40647,7 +40647,7 @@ export type PutLongviewClientData = {
         clientId: number;
     };
     query?: never;
-    url: '/longview/clients/{clientId}';
+    url: 'longview/clients/{clientId}';
 };
 
 export type PutLongviewClientErrors = {
@@ -40729,7 +40729,7 @@ export type GetLongviewPlanData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/longview/plan';
+    url: 'longview/plan';
 };
 
 export type GetLongviewPlanErrors = {
@@ -40799,7 +40799,7 @@ export type PutLongviewPlanData = {
     };
     path?: never;
     query?: never;
-    url: '/longview/plan';
+    url: 'longview/plan';
 };
 
 export type PutLongviewPlanErrors = {
@@ -40870,7 +40870,7 @@ export type GetLongviewSubscriptionsData = {
          */
         page_size?: number;
     };
-    url: '/longview/subscriptions';
+    url: 'longview/subscriptions';
 };
 
 export type GetLongviewSubscriptionsErrors = {
@@ -40951,7 +40951,7 @@ export type GetLongviewSubscriptionData = {
         subscriptionId: string;
     };
     query?: never;
-    url: '/longview/subscriptions/{subscriptionId}';
+    url: 'longview/subscriptions/{subscriptionId}';
 };
 
 export type GetLongviewSubscriptionErrors = {
@@ -41013,7 +41013,7 @@ export type GetLongviewTypesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/longview/types';
+    url: 'longview/types';
 };
 
 export type GetLongviewTypesErrors = {
@@ -41108,7 +41108,7 @@ export type GetMaintenancePoliciesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/maintenance/policies';
+    url: 'maintenance/policies';
 };
 
 export type GetMaintenancePoliciesErrors = {
@@ -41192,7 +41192,7 @@ export type GetManagedContactsData = {
          */
         page_size?: number;
     };
-    url: '/managed/contacts';
+    url: 'managed/contacts';
 };
 
 export type GetManagedContactsErrors = {
@@ -41313,7 +41313,7 @@ export type PostManagedContactData = {
     };
     path?: never;
     query?: never;
-    url: '/managed/contacts';
+    url: 'managed/contacts';
 };
 
 export type PostManagedContactErrors = {
@@ -41388,7 +41388,7 @@ export type DeleteManagedContactData = {
         contactId: number;
     };
     query?: never;
-    url: '/managed/contacts/{contactId}';
+    url: 'managed/contacts/{contactId}';
 };
 
 export type DeleteManagedContactErrors = {
@@ -41431,7 +41431,7 @@ export type GetManagedContactData = {
         contactId: number;
     };
     query?: never;
-    url: '/managed/contacts/{contactId}';
+    url: 'managed/contacts/{contactId}';
 };
 
 export type GetManagedContactErrors = {
@@ -41543,7 +41543,7 @@ export type PutManagedContactData = {
         contactId: number;
     };
     query?: never;
-    url: '/managed/contacts/{contactId}';
+    url: 'managed/contacts/{contactId}';
 };
 
 export type PutManagedContactErrors = {
@@ -41622,7 +41622,7 @@ export type GetManagedCredentialsData = {
          */
         page_size?: number;
     };
-    url: '/managed/credentials';
+    url: 'managed/credentials';
 };
 
 export type GetManagedCredentialsErrors = {
@@ -41710,7 +41710,7 @@ export type PostManagedCredentialData = {
     };
     path?: never;
     query?: never;
-    url: '/managed/credentials';
+    url: 'managed/credentials';
 };
 
 export type PostManagedCredentialErrors = {
@@ -41759,7 +41759,7 @@ export type GetManagedSshKeyData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/managed/credentials/sshkey';
+    url: 'managed/credentials/sshkey';
 };
 
 export type GetManagedSshKeyErrors = {
@@ -41805,7 +41805,7 @@ export type GetManagedCredentialData = {
         credentialId: number;
     };
     query?: never;
-    url: '/managed/credentials/{credentialId}';
+    url: 'managed/credentials/{credentialId}';
 };
 
 export type GetManagedCredentialErrors = {
@@ -41875,7 +41875,7 @@ export type PutManagedCredentialData = {
         credentialId: number;
     };
     query?: never;
-    url: '/managed/credentials/{credentialId}';
+    url: 'managed/credentials/{credentialId}';
 };
 
 export type PutManagedCredentialErrors = {
@@ -41929,7 +41929,7 @@ export type PostManagedCredentialRevokeData = {
         credentialId: number;
     };
     query?: never;
-    url: '/managed/credentials/{credentialId}/revoke';
+    url: 'managed/credentials/{credentialId}/revoke';
 };
 
 export type PostManagedCredentialRevokeErrors = {
@@ -41984,7 +41984,7 @@ export type PostManagedCredentialUsernamePasswordData = {
         credentialId: number;
     };
     query?: never;
-    url: '/managed/credentials/{credentialId}/update';
+    url: 'managed/credentials/{credentialId}/update';
 };
 
 export type PostManagedCredentialUsernamePasswordErrors = {
@@ -42031,7 +42031,7 @@ export type GetManagedIssuesData = {
          */
         page_size?: number;
     };
-    url: '/managed/issues';
+    url: 'managed/issues';
 };
 
 export type GetManagedIssuesErrors = {
@@ -42120,7 +42120,7 @@ export type GetManagedIssueData = {
         issueId: number;
     };
     query?: never;
-    url: '/managed/issues/{issueId}';
+    url: 'managed/issues/{issueId}';
 };
 
 export type GetManagedIssueErrors = {
@@ -42199,7 +42199,7 @@ export type GetManagedLinodeSettingsData = {
          */
         page_size?: number;
     };
-    url: '/managed/linode-settings';
+    url: 'managed/linode-settings';
 };
 
 export type GetManagedLinodeSettingsErrors = {
@@ -42296,7 +42296,7 @@ export type GetManagedLinodeSettingData = {
         linodeId: number;
     };
     query?: never;
-    url: '/managed/linode-settings/{linodeId}';
+    url: 'managed/linode-settings/{linodeId}';
 };
 
 export type GetManagedLinodeSettingErrors = {
@@ -42424,7 +42424,7 @@ export type PutManagedLinodeSettingData = {
         linodeId: number;
     };
     query?: never;
-    url: '/managed/linode-settings/{linodeId}';
+    url: 'managed/linode-settings/{linodeId}';
 };
 
 export type PutManagedLinodeSettingErrors = {
@@ -42502,7 +42502,7 @@ export type GetManagedServicesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/managed/services';
+    url: 'managed/services';
 };
 
 export type GetManagedServicesErrors = {
@@ -42661,7 +42661,7 @@ export type PostManagedServiceData = {
     };
     path?: never;
     query?: never;
-    url: '/managed/services';
+    url: 'managed/services';
 };
 
 export type PostManagedServiceErrors = {
@@ -42755,7 +42755,7 @@ export type DeleteManagedServiceData = {
         serviceId: number;
     };
     query?: never;
-    url: '/managed/services/{serviceId}';
+    url: 'managed/services/{serviceId}';
 };
 
 export type DeleteManagedServiceErrors = {
@@ -42798,7 +42798,7 @@ export type GetManagedServiceData = {
         serviceId: number;
     };
     query?: never;
-    url: '/managed/services/{serviceId}';
+    url: 'managed/services/{serviceId}';
 };
 
 export type GetManagedServiceErrors = {
@@ -42948,7 +42948,7 @@ export type PutManagedServiceData = {
         serviceId: number;
     };
     query?: never;
-    url: '/managed/services/{serviceId}';
+    url: 'managed/services/{serviceId}';
 };
 
 export type PutManagedServiceErrors = {
@@ -43042,7 +43042,7 @@ export type PostDisableManagedServiceData = {
         serviceId: number;
     };
     query?: never;
-    url: '/managed/services/{serviceId}/disable';
+    url: 'managed/services/{serviceId}/disable';
 };
 
 export type PostDisableManagedServiceErrors = {
@@ -43136,7 +43136,7 @@ export type PostEnableManagedServiceData = {
         serviceId: number;
     };
     query?: never;
-    url: '/managed/services/{serviceId}/enable';
+    url: 'managed/services/{serviceId}/enable';
 };
 
 export type PostEnableManagedServiceErrors = {
@@ -43225,7 +43225,7 @@ export type GetManagedStatsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/managed/stats';
+    url: 'managed/stats';
 };
 
 export type GetManagedStatsErrors = {
@@ -43329,7 +43329,7 @@ export type GetAlertChannelsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/monitor/alert-channels';
+    url: 'monitor/alert-channels';
 };
 
 export type GetAlertChannelsErrors = {
@@ -43463,7 +43463,7 @@ export type GetAlertDefinitionsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/monitor/alert-definitions';
+    url: 'monitor/alert-definitions';
 };
 
 export type GetAlertDefinitionsErrors = {
@@ -43679,7 +43679,7 @@ export type GetDashboardsAllData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/monitor/dashboards';
+    url: 'monitor/dashboards';
 };
 
 export type GetDashboardsAllErrors = {
@@ -43797,7 +43797,7 @@ export type GetDashboardsByIdData = {
         dashboardId: number;
     };
     query?: never;
-    url: '/monitor/dashboards/{dashboardId}';
+    url: 'monitor/dashboards/{dashboardId}';
 };
 
 export type GetDashboardsByIdErrors = {
@@ -43895,7 +43895,7 @@ export type GetMonitorServicesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/monitor/services';
+    url: 'monitor/services';
 };
 
 export type GetMonitorServicesErrors = {
@@ -43959,7 +43959,7 @@ export type GetMonitorServicesForServiceTypeData = {
         serviceType: string;
     };
     query?: never;
-    url: '/monitor/services/{serviceType}';
+    url: 'monitor/services/{serviceType}';
 };
 
 export type GetMonitorServicesForServiceTypeErrors = {
@@ -44023,7 +44023,7 @@ export type GetAlertDefinitionsForServiceTypeData = {
         serviceType: string;
     };
     query?: never;
-    url: '/monitor/services/{serviceType}/alert-definitions';
+    url: 'monitor/services/{serviceType}/alert-definitions';
 };
 
 export type GetAlertDefinitionsForServiceTypeErrors = {
@@ -44341,7 +44341,7 @@ export type PostAlertDefinitionForServiceTypeData = {
         serviceType: string;
     };
     query?: never;
-    url: '/monitor/services/{serviceType}/alert-definitions';
+    url: 'monitor/services/{serviceType}/alert-definitions';
 };
 
 export type PostAlertDefinitionForServiceTypeErrors = {
@@ -44552,7 +44552,7 @@ export type DeleteAlertDefinitionData = {
         alertId: number;
     };
     query?: never;
-    url: '/monitor/services/{serviceType}/alert-definitions/{alertId}';
+    url: 'monitor/services/{serviceType}/alert-definitions/{alertId}';
 };
 
 export type DeleteAlertDefinitionErrors = {
@@ -44599,7 +44599,7 @@ export type GetAlertDefinitionData = {
         alertId: number;
     };
     query?: never;
-    url: '/monitor/services/{serviceType}/alert-definitions/{alertId}';
+    url: 'monitor/services/{serviceType}/alert-definitions/{alertId}';
 };
 
 export type GetAlertDefinitionErrors = {
@@ -44911,7 +44911,7 @@ export type PutAlertDefinitionData = {
         alertId: number;
     };
     query?: never;
-    url: '/monitor/services/{serviceType}/alert-definitions/{alertId}';
+    url: 'monitor/services/{serviceType}/alert-definitions/{alertId}';
 };
 
 export type PutAlertDefinitionErrors = {
@@ -45118,7 +45118,7 @@ export type GetDashboardsData = {
         serviceType: string;
     };
     query?: never;
-    url: '/monitor/services/{serviceType}/dashboards';
+    url: 'monitor/services/{serviceType}/dashboards';
 };
 
 export type GetDashboardsErrors = {
@@ -45267,7 +45267,7 @@ export type GetMonitorInformationData = {
         serviceType: string;
     };
     query?: never;
-    url: '/monitor/services/{serviceType}/metric-definitions';
+    url: 'monitor/services/{serviceType}/metric-definitions';
 };
 
 export type GetMonitorInformationErrors = {
@@ -45537,7 +45537,7 @@ export type PostReadMetricData = {
         serviceType: string;
     };
     query?: never;
-    url: '/monitor/services/{serviceType}/metrics';
+    url: 'monitor/services/{serviceType}/metrics';
 };
 
 export type PostReadMetricErrors = {
@@ -45635,7 +45635,7 @@ export type PostGetTokenData = {
         serviceType: string;
     };
     query?: never;
-    url: '/monitor/services/{serviceType}/token';
+    url: 'monitor/services/{serviceType}/token';
 };
 
 export type PostGetTokenErrors = {
@@ -45676,7 +45676,7 @@ export type GetNetworkTransferPricesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/network-transfer/prices';
+    url: 'network-transfer/prices';
 };
 
 export type GetNetworkTransferPricesErrors = {
@@ -45777,7 +45777,7 @@ export type GetFirewallsData = {
          */
         page_size?: number;
     };
-    url: '/networking/firewalls';
+    url: 'networking/firewalls';
 };
 
 export type GetFirewallsErrors = {
@@ -46289,7 +46289,7 @@ export type PostFirewallsData = {
     };
     path?: never;
     query?: never;
-    url: '/networking/firewalls';
+    url: 'networking/firewalls';
 };
 
 export type PostFirewallsErrors = {
@@ -46544,7 +46544,7 @@ export type GetFirewallSettingsData = {
          */
         page_size?: number;
     };
-    url: '/networking/firewalls/settings';
+    url: 'networking/firewalls/settings';
 };
 
 export type GetFirewallSettingsErrors = {
@@ -46627,7 +46627,7 @@ export type PutFirewallSettingsData = {
     };
     path?: never;
     query?: never;
-    url: '/networking/firewalls/settings';
+    url: 'networking/firewalls/settings';
 };
 
 export type PutFirewallSettingsErrors = {
@@ -46694,7 +46694,7 @@ export type GetFirewallTemplatesData = {
          */
         page_size?: number;
     };
-    url: '/networking/firewalls/templates';
+    url: 'networking/firewalls/templates';
 };
 
 export type GetFirewallTemplatesErrors = {
@@ -46880,7 +46880,7 @@ export type GetFirewallTemplateData = {
          */
         page_size?: number;
     };
-    url: '/networking/firewalls/templates/{slug}';
+    url: 'networking/firewalls/templates/{slug}';
 };
 
 export type GetFirewallTemplateErrors = {
@@ -47043,7 +47043,7 @@ export type DeleteFirewallData = {
         firewallId: number;
     };
     query?: never;
-    url: '/networking/firewalls/{firewallId}';
+    url: 'networking/firewalls/{firewallId}';
 };
 
 export type DeleteFirewallErrors = {
@@ -47086,7 +47086,7 @@ export type GetFirewallData = {
         firewallId: number;
     };
     query?: never;
-    url: '/networking/firewalls/{firewallId}';
+    url: 'networking/firewalls/{firewallId}';
 };
 
 export type GetFirewallErrors = {
@@ -47362,7 +47362,7 @@ export type PutFirewallData = {
         firewallId: number;
     };
     query?: never;
-    url: '/networking/firewalls/{firewallId}';
+    url: 'networking/firewalls/{firewallId}';
 };
 
 export type PutFirewallErrors = {
@@ -47622,7 +47622,7 @@ export type GetFirewallDevicesData = {
          */
         page_size?: number;
     };
-    url: '/networking/firewalls/{firewallId}/devices';
+    url: 'networking/firewalls/{firewallId}/devices';
 };
 
 export type GetFirewallDevicesErrors = {
@@ -47781,7 +47781,7 @@ export type PostFirewallDeviceData = {
         firewallId: number;
     };
     query?: never;
-    url: '/networking/firewalls/{firewallId}/devices';
+    url: 'networking/firewalls/{firewallId}/devices';
 };
 
 export type PostFirewallDeviceErrors = {
@@ -47885,7 +47885,7 @@ export type DeleteFirewallDeviceData = {
         deviceId: number;
     };
     query?: never;
-    url: '/networking/firewalls/{firewallId}/devices/{deviceId}';
+    url: 'networking/firewalls/{firewallId}/devices/{deviceId}';
 };
 
 export type DeleteFirewallDeviceErrors = {
@@ -47932,7 +47932,7 @@ export type GetFirewallDeviceData = {
         deviceId: number;
     };
     query?: never;
-    url: '/networking/firewalls/{firewallId}/devices/{deviceId}';
+    url: 'networking/firewalls/{firewallId}/devices/{deviceId}';
 };
 
 export type GetFirewallDeviceErrors = {
@@ -48032,7 +48032,7 @@ export type GetFirewallRuleVersionsData = {
         firewallId: number;
     };
     query?: never;
-    url: '/networking/firewalls/{firewallId}/history';
+    url: 'networking/firewalls/{firewallId}/history';
 };
 
 export type GetFirewallRuleVersionsErrors = {
@@ -48287,7 +48287,7 @@ export type GetFirewallRuleVersionData = {
         version: number;
     };
     query?: never;
-    url: '/networking/firewalls/{firewallId}/history/rules/{version}';
+    url: 'networking/firewalls/{firewallId}/history/rules/{version}';
 };
 
 export type GetFirewallRuleVersionErrors = {
@@ -48538,7 +48538,7 @@ export type GetFirewallRulesData = {
         firewallId: number;
     };
     query?: never;
-    url: '/networking/firewalls/{firewallId}/rules';
+    url: 'networking/firewalls/{firewallId}/rules';
 };
 
 export type GetFirewallRulesErrors = {
@@ -48827,7 +48827,7 @@ export type PutFirewallRulesData = {
         firewallId: number;
     };
     query?: never;
-    url: '/networking/firewalls/{firewallId}/rules';
+    url: 'networking/firewalls/{firewallId}/rules';
 };
 
 export type PutFirewallRulesErrors = {
@@ -48991,7 +48991,7 @@ export type GetIpsData = {
          */
         skip_ipv6_rdns?: boolean;
     };
-    url: '/networking/ips';
+    url: 'networking/ips';
 };
 
 export type GetIpsErrors = {
@@ -49123,7 +49123,7 @@ export type PostAllocateIpData = {
     };
     path?: never;
     query?: never;
-    url: '/networking/ips';
+    url: 'networking/ips';
 };
 
 export type PostAllocateIpErrors = {
@@ -49248,7 +49248,7 @@ export type PostAssignIpsData = {
     };
     path?: never;
     query?: never;
-    url: '/networking/ips/assign';
+    url: 'networking/ips/assign';
 };
 
 export type PostAssignIpsErrors = {
@@ -49303,7 +49303,7 @@ export type PostShareIpsData = {
     };
     path?: never;
     query?: never;
-    url: '/networking/ips/share';
+    url: 'networking/ips/share';
 };
 
 export type PostShareIpsErrors = {
@@ -49346,7 +49346,7 @@ export type GetIpData = {
         address: string;
     };
     query?: never;
-    url: '/networking/ips/{address}';
+    url: 'networking/ips/{address}';
 };
 
 export type GetIpErrors = {
@@ -49457,7 +49457,7 @@ export type PutIpData = {
         address: string;
     };
     query?: never;
-    url: '/networking/ips/{address}';
+    url: 'networking/ips/{address}';
 };
 
 export type PutIpErrors = {
@@ -49582,7 +49582,7 @@ export type PostAssignIpv4sData = {
     };
     path?: never;
     query?: never;
-    url: '/networking/ipv4/assign';
+    url: 'networking/ipv4/assign';
 };
 
 export type PostAssignIpv4sErrors = {
@@ -49637,7 +49637,7 @@ export type PostShareIpv4sData = {
     };
     path?: never;
     query?: never;
-    url: '/networking/ipv4/share';
+    url: 'networking/ipv4/share';
 };
 
 export type PostShareIpv4sErrors = {
@@ -49684,7 +49684,7 @@ export type GetIpv6PoolsData = {
          */
         page_size?: number;
     };
-    url: '/networking/ipv6/pools';
+    url: 'networking/ipv6/pools';
 };
 
 export type GetIpv6PoolsErrors = {
@@ -49760,7 +49760,7 @@ export type GetIpv6RangesData = {
          */
         page_size?: number;
     };
-    url: '/networking/ipv6/ranges';
+    url: 'networking/ipv6/ranges';
 };
 
 export type GetIpv6RangesErrors = {
@@ -49855,7 +49855,7 @@ export type PostIpv6RangeData = {
     };
     path?: never;
     query?: never;
-    url: '/networking/ipv6/ranges';
+    url: 'networking/ipv6/ranges';
 };
 
 export type PostIpv6RangeErrors = {
@@ -49909,7 +49909,7 @@ export type DeleteIpv6RangeData = {
         range: string;
     };
     query?: never;
-    url: '/networking/ipv6/ranges/{range}';
+    url: 'networking/ipv6/ranges/{range}';
 };
 
 export type DeleteIpv6RangeErrors = {
@@ -49956,7 +49956,7 @@ export type GetIpv6RangeData = {
         range: string;
     };
     query?: never;
-    url: '/networking/ipv6/ranges/{range}';
+    url: 'networking/ipv6/ranges/{range}';
 };
 
 export type GetIpv6RangeErrors = {
@@ -50022,7 +50022,7 @@ export type GetVlansData = {
          */
         page_size?: number;
     };
-    url: '/networking/vlans';
+    url: 'networking/vlans';
 };
 
 export type GetVlansErrors = {
@@ -50102,7 +50102,7 @@ export type DeleteVlanData = {
         regionId: string;
     };
     query?: never;
-    url: '/networking/vlans/{regionId}/{label}';
+    url: 'networking/vlans/{regionId}/{label}';
 };
 
 export type DeleteVlanErrors = {
@@ -50149,7 +50149,7 @@ export type GetNodeBalancersData = {
          */
         page_size?: number;
     };
-    url: '/nodebalancers';
+    url: 'nodebalancers';
 };
 
 export type GetNodeBalancersErrors = {
@@ -50975,7 +50975,7 @@ export type PostNodeBalancerData = {
     };
     path?: never;
     query?: never;
-    url: '/nodebalancers';
+    url: 'nodebalancers';
 };
 
 export type PostNodeBalancerErrors = {
@@ -51096,7 +51096,7 @@ export type GetNodeBalancerTypesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/nodebalancers/types';
+    url: 'nodebalancers/types';
 };
 
 export type GetNodeBalancerTypesErrors = {
@@ -51196,7 +51196,7 @@ export type DeleteNodeBalancerData = {
         nodeBalancerId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}';
+    url: 'nodebalancers/{nodeBalancerId}';
 };
 
 export type DeleteNodeBalancerErrors = {
@@ -51239,7 +51239,7 @@ export type GetNodeBalancerData = {
         nodeBalancerId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}';
+    url: 'nodebalancers/{nodeBalancerId}';
 };
 
 export type GetNodeBalancerErrors = {
@@ -51453,7 +51453,7 @@ export type PutNodeBalancerData = {
         nodeBalancerId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}';
+    url: 'nodebalancers/{nodeBalancerId}';
 };
 
 export type PutNodeBalancerErrors = {
@@ -51588,7 +51588,7 @@ export type GetNodeBalancerConfigsData = {
          */
         page_size?: number;
     };
-    url: '/nodebalancers/{nodeBalancerId}/configs';
+    url: 'nodebalancers/{nodeBalancerId}/configs';
 };
 
 export type GetNodeBalancerConfigsErrors = {
@@ -52742,7 +52742,7 @@ export type PostNodeBalancerConfigData = {
         nodeBalancerId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/configs';
+    url: 'nodebalancers/{nodeBalancerId}/configs';
 };
 
 export type PostNodeBalancerConfigErrors = {
@@ -53224,7 +53224,7 @@ export type DeleteNodeBalancerConfigData = {
         configId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}';
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}';
 };
 
 export type DeleteNodeBalancerConfigErrors = {
@@ -53271,7 +53271,7 @@ export type GetNodeBalancerConfigData = {
         configId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}';
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}';
 };
 
 export type GetNodeBalancerConfigErrors = {
@@ -54201,7 +54201,7 @@ export type PutNodeBalancerConfigData = {
         configId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}';
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}';
 };
 
 export type PutNodeBalancerConfigErrors = {
@@ -54692,7 +54692,7 @@ export type GetNodeBalancerConfigNodesData = {
          */
         page_size?: number;
     };
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes';
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/nodes';
 };
 
 export type GetNodeBalancerConfigNodesErrors = {
@@ -54921,7 +54921,7 @@ export type PostNodeBalancerNodeData = {
         configId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes';
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/nodes';
 };
 
 export type PostNodeBalancerNodeErrors = {
@@ -55049,7 +55049,7 @@ export type DeleteNodeBalancerConfigNodeData = {
         nodeId: string;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}';
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}';
 };
 
 export type DeleteNodeBalancerConfigNodeErrors = {
@@ -55100,7 +55100,7 @@ export type GetNodeBalancerNodeData = {
         nodeId: string;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}';
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}';
 };
 
 export type GetNodeBalancerNodeErrors = {
@@ -55316,7 +55316,7 @@ export type PutNodeBalancerNodeData = {
         nodeId: string;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}';
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId}';
 };
 
 export type PutNodeBalancerNodeErrors = {
@@ -56116,7 +56116,7 @@ export type PostRebuildNodeBalancerConfigData = {
         configId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/configs/{configId}/rebuild';
+    url: 'nodebalancers/{nodeBalancerId}/configs/{configId}/rebuild';
 };
 
 export type PostRebuildNodeBalancerConfigErrors = {
@@ -56594,7 +56594,7 @@ export type GetNodeBalancerFirewallsData = {
         nodeBalancerId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/firewalls';
+    url: 'nodebalancers/{nodeBalancerId}/firewalls';
 };
 
 export type GetNodeBalancerFirewallsErrors = {
@@ -56877,7 +56877,7 @@ export type PutNodeBalancerFirewallsData = {
          */
         page_size?: number;
     };
-    url: '/nodebalancers/{nodeBalancerId}/firewalls';
+    url: 'nodebalancers/{nodeBalancerId}/firewalls';
 };
 
 export type PutNodeBalancerFirewallsErrors = {
@@ -57143,7 +57143,7 @@ export type GetNodeBalancerStatsData = {
         nodeBalancerId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/stats';
+    url: 'nodebalancers/{nodeBalancerId}/stats';
 };
 
 export type GetNodeBalancerStatsErrors = {
@@ -57220,7 +57220,7 @@ export type GetNodeBalancerVpcsData = {
          */
         page_size?: number;
     };
-    url: '/nodebalancers/{nodeBalancerId}/vpcs';
+    url: 'nodebalancers/{nodeBalancerId}/vpcs';
 };
 
 export type GetNodeBalancerVpcsErrors = {
@@ -57308,7 +57308,7 @@ export type GetNodeBalancerVpcConfigData = {
         nodeBalancerVpcConfigId: number;
     };
     query?: never;
-    url: '/nodebalancers/{nodeBalancerId}/vpcs/{nodeBalancerVpcConfigId}';
+    url: 'nodebalancers/{nodeBalancerId}/vpcs/{nodeBalancerVpcConfigId}';
 };
 
 export type GetNodeBalancerVpcConfigErrors = {
@@ -57373,7 +57373,7 @@ export type GetObjectStorageBucketsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/object-storage/buckets';
+    url: 'object-storage/buckets';
 };
 
 export type GetObjectStorageBucketsErrors = {
@@ -57505,7 +57505,7 @@ export type PostObjectStorageBucketData = {
     };
     path?: never;
     query?: never;
-    url: '/object-storage/buckets';
+    url: 'object-storage/buckets';
 };
 
 export type PostObjectStorageBucketErrors = {
@@ -57595,7 +57595,7 @@ export type GetObjectStorageBucketinClusterData = {
         regionId: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}';
+    url: 'object-storage/buckets/{regionId}';
 };
 
 export type GetObjectStorageBucketinClusterErrors = {
@@ -57703,7 +57703,7 @@ export type DeleteObjectStorageBucketData = {
         bucket: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}/{bucket}';
+    url: 'object-storage/buckets/{regionId}/{bucket}';
 };
 
 export type DeleteObjectStorageBucketErrors = {
@@ -57754,7 +57754,7 @@ export type GetObjectStorageBucketData = {
         bucket: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}/{bucket}';
+    url: 'object-storage/buckets/{regionId}/{bucket}';
 };
 
 export type GetObjectStorageBucketErrors = {
@@ -57848,7 +57848,7 @@ export type GetObjectStorageBucketAccessData = {
         bucket: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}/{bucket}/access';
+    url: 'object-storage/buckets/{regionId}/{bucket}/access';
 };
 
 export type GetObjectStorageBucketAccessErrors = {
@@ -57923,7 +57923,7 @@ export type PostObjectStorageBucketAccessData = {
         bucket: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}/{bucket}/access';
+    url: 'object-storage/buckets/{regionId}/{bucket}/access';
 };
 
 export type PostObjectStorageBucketAccessErrors = {
@@ -57983,7 +57983,7 @@ export type PutStorageBucketAccessData = {
         bucket: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}/{bucket}/access';
+    url: 'object-storage/buckets/{regionId}/{bucket}/access';
 };
 
 export type PutStorageBucketAccessErrors = {
@@ -58039,7 +58039,7 @@ export type GetObjectStorageBucketAclData = {
          */
         name: string;
     };
-    url: '/object-storage/buckets/{regionId}/{bucket}/object-acl';
+    url: 'object-storage/buckets/{regionId}/{bucket}/object-acl';
 };
 
 export type GetObjectStorageBucketAclErrors = {
@@ -58106,7 +58106,7 @@ export type PutObjectStorageBucketAclData = {
         bucket: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}/{bucket}/object-acl';
+    url: 'object-storage/buckets/{regionId}/{bucket}/object-acl';
 };
 
 export type PutObjectStorageBucketAclErrors = {
@@ -58174,7 +58174,7 @@ export type GetObjectStorageBucketContentData = {
          */
         page_size?: number;
     };
-    url: '/object-storage/buckets/{regionId}/{bucket}/object-list';
+    url: 'object-storage/buckets/{regionId}/{bucket}/object-list';
 };
 
 export type GetObjectStorageBucketContentErrors = {
@@ -58274,7 +58274,7 @@ export type PostObjectStorageObjectUrlData = {
         bucket: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}/{bucket}/object-url';
+    url: 'object-storage/buckets/{regionId}/{bucket}/object-url';
 };
 
 export type PostObjectStorageObjectUrlErrors = {
@@ -58328,7 +58328,7 @@ export type DeleteObjectStorageSslData = {
         bucket: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}/{bucket}/ssl';
+    url: 'object-storage/buckets/{regionId}/{bucket}/ssl';
 };
 
 export type DeleteObjectStorageSslErrors = {
@@ -58379,7 +58379,7 @@ export type GetObjectStorageSslData = {
         bucket: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}/{bucket}/ssl';
+    url: 'object-storage/buckets/{regionId}/{bucket}/ssl';
 };
 
 export type GetObjectStorageSslErrors = {
@@ -58449,7 +58449,7 @@ export type PostObjectStorageSslData = {
         bucket: string;
     };
     query?: never;
-    url: '/object-storage/buckets/{regionId}/{bucket}/ssl';
+    url: 'object-storage/buckets/{regionId}/{bucket}/ssl';
 };
 
 export type PostObjectStorageSslErrors = {
@@ -58490,7 +58490,7 @@ export type PostCancelObjectStorageData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/object-storage/cancel';
+    url: 'object-storage/cancel';
 };
 
 export type PostCancelObjectStorageErrors = {
@@ -58528,7 +58528,7 @@ export type GetObjectStorageClustersData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/object-storage/clusters';
+    url: 'object-storage/clusters';
 };
 
 export type GetObjectStorageClustersErrors = {
@@ -58608,7 +58608,7 @@ export type GetObjectStorageClusterData = {
         clusterId: string;
     };
     query?: never;
-    url: '/object-storage/clusters/{clusterId}';
+    url: 'object-storage/clusters/{clusterId}';
 };
 
 export type GetObjectStorageClusterErrors = {
@@ -58665,7 +58665,7 @@ export type GetObjectStorageEndpointsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/object-storage/endpoints';
+    url: 'object-storage/endpoints';
 };
 
 export type GetObjectStorageEndpointsErrors = {
@@ -58729,7 +58729,7 @@ export type GetObjectStorageKeysData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/object-storage/keys';
+    url: 'object-storage/keys';
 };
 
 export type GetObjectStorageKeysErrors = {
@@ -58901,7 +58901,7 @@ export type PostObjectStorageKeysData = {
     };
     path?: never;
     query?: never;
-    url: '/object-storage/keys';
+    url: 'object-storage/keys';
 };
 
 export type PostObjectStorageKeysErrors = {
@@ -59013,7 +59013,7 @@ export type DeleteObjectStorageKeyData = {
         keyId: number;
     };
     query?: never;
-    url: '/object-storage/keys/{keyId}';
+    url: 'object-storage/keys/{keyId}';
 };
 
 export type DeleteObjectStorageKeyErrors = {
@@ -59056,7 +59056,7 @@ export type GetObjectStorageKeyData = {
         keyId: number;
     };
     query?: never;
-    url: '/object-storage/keys/{keyId}';
+    url: 'object-storage/keys/{keyId}';
 };
 
 export type GetObjectStorageKeyErrors = {
@@ -59188,7 +59188,7 @@ export type PutObjectStorageKeyData = {
         keyId: number;
     };
     query?: never;
-    url: '/object-storage/keys/{keyId}';
+    url: 'object-storage/keys/{keyId}';
 };
 
 export type PutObjectStorageKeyErrors = {
@@ -59270,7 +59270,7 @@ export type GetObjectStorageQuotasData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/object-storage/quotas';
+    url: 'object-storage/quotas';
 };
 
 export type GetObjectStorageQuotasErrors = {
@@ -59361,7 +59361,7 @@ export type GetObjectStorageQuotaData = {
         objQuotaId: string;
     };
     query?: never;
-    url: '/object-storage/quotas/{objQuotaId}';
+    url: 'object-storage/quotas/{objQuotaId}';
 };
 
 export type GetObjectStorageQuotaErrors = {
@@ -59437,7 +59437,7 @@ export type GetObjectStorageQuotaUsageData = {
         objQuotaId: string;
     };
     query?: never;
-    url: '/object-storage/quotas/{objQuotaId}/usage';
+    url: 'object-storage/quotas/{objQuotaId}/usage';
 };
 
 export type GetObjectStorageQuotaUsageErrors = {
@@ -59482,7 +59482,7 @@ export type GetObjectStorageTransferData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/object-storage/transfer';
+    url: 'object-storage/transfer';
 };
 
 export type GetObjectStorageTransferErrors = {
@@ -59523,7 +59523,7 @@ export type GetObjectStorageTypesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/object-storage/types';
+    url: 'object-storage/types';
 };
 
 export type GetObjectStorageTypesErrors = {
@@ -59627,7 +59627,7 @@ export type GetPlacementGroupsData = {
          */
         page_size?: number;
     };
-    url: '/placement/groups';
+    url: 'placement/groups';
 };
 
 export type GetPlacementGroupsErrors = {
@@ -59792,7 +59792,7 @@ export type PostPlacementGroupData = {
     };
     path?: never;
     query?: never;
-    url: '/placement/groups';
+    url: 'placement/groups';
 };
 
 export type PostPlacementGroupErrors = {
@@ -59891,7 +59891,7 @@ export type DeletePlacementGroupData = {
         groupId: number;
     };
     query?: never;
-    url: '/placement/groups/{groupId}';
+    url: 'placement/groups/{groupId}';
 };
 
 export type DeletePlacementGroupErrors = {
@@ -59934,7 +59934,7 @@ export type GetPlacementGroupData = {
         groupId: number;
     };
     query?: never;
-    url: '/placement/groups/{groupId}';
+    url: 'placement/groups/{groupId}';
 };
 
 export type GetPlacementGroupResponses = {
@@ -60044,7 +60044,7 @@ export type PutPlacementGroupData = {
         groupId: number;
     };
     query?: never;
-    url: '/placement/groups/{groupId}';
+    url: 'placement/groups/{groupId}';
 };
 
 export type PutPlacementGroupErrors = {
@@ -60151,7 +60151,7 @@ export type PostGroupAddLinodeData = {
         groupId: number;
     };
     query?: never;
-    url: '/placement/groups/{groupId}/assign';
+    url: 'placement/groups/{groupId}/assign';
 };
 
 export type PostGroupAddLinodeErrors = {
@@ -60258,7 +60258,7 @@ export type PostGroupUnassignData = {
         groupId: number;
     };
     query?: never;
-    url: '/placement/groups/{groupId}/unassign';
+    url: 'placement/groups/{groupId}/unassign';
 };
 
 export type PostGroupUnassignErrors = {
@@ -60352,7 +60352,7 @@ export type GetProfileData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/profile';
+    url: 'profile';
 };
 
 export type GetProfileErrors = {
@@ -60575,7 +60575,7 @@ export type PutProfileData = {
     };
     path?: never;
     query?: never;
-    url: '/profile';
+    url: 'profile';
 };
 
 export type PutProfileErrors = {
@@ -60712,7 +60712,7 @@ export type GetProfileAppsData = {
          */
         page_size?: number;
     };
-    url: '/profile/apps';
+    url: 'profile/apps';
 };
 
 export type GetProfileAppsErrors = {
@@ -60796,7 +60796,7 @@ export type DeleteProfileAppData = {
         appId: number;
     };
     query?: never;
-    url: '/profile/apps/{appId}';
+    url: 'profile/apps/{appId}';
 };
 
 export type DeleteProfileAppErrors = {
@@ -60839,7 +60839,7 @@ export type GetProfileAppData = {
         appId: number;
     };
     query?: never;
-    url: '/profile/apps/{appId}';
+    url: 'profile/apps/{appId}';
 };
 
 export type GetProfileAppErrors = {
@@ -60904,7 +60904,7 @@ export type GetDevicesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/profile/devices';
+    url: 'profile/devices';
 };
 
 export type GetDevicesErrors = {
@@ -60984,7 +60984,7 @@ export type DeleteTrustedDeviceData = {
         deviceId: number;
     };
     query?: never;
-    url: '/profile/devices/{deviceId}';
+    url: 'profile/devices/{deviceId}';
 };
 
 export type DeleteTrustedDeviceErrors = {
@@ -61027,7 +61027,7 @@ export type GetTrustedDeviceData = {
         deviceId: number;
     };
     query?: never;
-    url: '/profile/devices/{deviceId}';
+    url: 'profile/devices/{deviceId}';
 };
 
 export type GetTrustedDeviceErrors = {
@@ -61088,7 +61088,7 @@ export type GetProfileGrantsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/profile/grants';
+    url: 'profile/grants';
 };
 
 export type GetProfileGrantsErrors = {
@@ -61368,7 +61368,7 @@ export type GetProfileLoginsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/profile/logins';
+    url: 'profile/logins';
 };
 
 export type GetProfileLoginsErrors = {
@@ -61448,7 +61448,7 @@ export type GetProfileLoginData = {
         loginId: number;
     };
     query?: never;
-    url: '/profile/logins/{loginId}';
+    url: 'profile/logins/{loginId}';
 };
 
 export type GetProfileLoginErrors = {
@@ -61509,7 +61509,7 @@ export type DeleteProfilePhoneNumberData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/profile/phone-number';
+    url: 'profile/phone-number';
 };
 
 export type DeleteProfilePhoneNumberErrors = {
@@ -61559,7 +61559,7 @@ export type PostProfilePhoneNumberData = {
     };
     path?: never;
     query?: never;
-    url: '/profile/phone-number';
+    url: 'profile/phone-number';
 };
 
 export type PostProfilePhoneNumberErrors = {
@@ -61605,7 +61605,7 @@ export type PostProfilePhoneNumberVerifyData = {
     };
     path?: never;
     query?: never;
-    url: '/profile/phone-number/verify';
+    url: 'profile/phone-number/verify';
 };
 
 export type PostProfilePhoneNumberVerifyErrors = {
@@ -61643,7 +61643,7 @@ export type GetUserPreferencesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/profile/preferences';
+    url: 'profile/preferences';
 };
 
 export type GetUserPreferencesErrors = {
@@ -61688,7 +61688,7 @@ export type PutUserPreferencesData = {
     };
     path?: never;
     query?: never;
-    url: '/profile/preferences';
+    url: 'profile/preferences';
 };
 
 export type PutUserPreferencesErrors = {
@@ -61726,7 +61726,7 @@ export type GetSecurityQuestionsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/profile/security-questions';
+    url: 'profile/security-questions';
 };
 
 export type GetSecurityQuestionsErrors = {
@@ -61801,7 +61801,7 @@ export type PostSecurityQuestionsData = {
     };
     path?: never;
     query?: never;
-    url: '/profile/security-questions';
+    url: 'profile/security-questions';
 };
 
 export type PostSecurityQuestionsErrors = {
@@ -61864,7 +61864,7 @@ export type GetSshKeysData = {
          */
         page_size?: number;
     };
-    url: '/profile/sshkeys';
+    url: 'profile/sshkeys';
 };
 
 export type GetSshKeysErrors = {
@@ -61967,7 +61967,7 @@ export type PostAddSshKeyData = {
     };
     path?: never;
     query?: never;
-    url: '/profile/sshkeys';
+    url: 'profile/sshkeys';
 };
 
 export type PostAddSshKeyErrors = {
@@ -62033,7 +62033,7 @@ export type DeleteSshKeyData = {
         sshKeyId: number;
     };
     query?: never;
-    url: '/profile/sshkeys/{sshKeyId}';
+    url: 'profile/sshkeys/{sshKeyId}';
 };
 
 export type DeleteSshKeyErrors = {
@@ -62076,7 +62076,7 @@ export type GetSshKeyData = {
         sshKeyId: number;
     };
     query?: never;
-    url: '/profile/sshkeys/{sshKeyId}';
+    url: 'profile/sshkeys/{sshKeyId}';
 };
 
 export type GetSshKeyErrors = {
@@ -62150,7 +62150,7 @@ export type PutSshKeyData = {
         sshKeyId: number;
     };
     query?: never;
-    url: '/profile/sshkeys/{sshKeyId}';
+    url: 'profile/sshkeys/{sshKeyId}';
 };
 
 export type PutSshKeyErrors = {
@@ -62211,7 +62211,7 @@ export type PostTfaDisableData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/profile/tfa-disable';
+    url: 'profile/tfa-disable';
 };
 
 export type PostTfaDisableErrors = {
@@ -62249,7 +62249,7 @@ export type PostTfaEnableData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/profile/tfa-enable';
+    url: 'profile/tfa-enable';
 };
 
 export type PostTfaEnableErrors = {
@@ -62302,7 +62302,7 @@ export type PostTfaConfirmData = {
     };
     path?: never;
     query?: never;
-    url: '/profile/tfa-enable-confirm';
+    url: 'profile/tfa-enable-confirm';
 };
 
 export type PostTfaConfirmErrors = {
@@ -62343,7 +62343,7 @@ export type GetPersonalAccessTokensData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/profile/tokens';
+    url: 'profile/tokens';
 };
 
 export type GetPersonalAccessTokensErrors = {
@@ -62440,7 +62440,7 @@ export type PostPersonalAccessTokenData = {
     };
     path?: never;
     query?: never;
-    url: '/profile/tokens';
+    url: 'profile/tokens';
 };
 
 export type PostPersonalAccessTokenErrors = {
@@ -62506,7 +62506,7 @@ export type DeletePersonalAccessTokenData = {
         tokenId: number;
     };
     query?: never;
-    url: '/profile/tokens/{tokenId}';
+    url: 'profile/tokens/{tokenId}';
 };
 
 export type DeletePersonalAccessTokenErrors = {
@@ -62549,7 +62549,7 @@ export type GetPersonalAccessTokenData = {
         tokenId: number;
     };
     query?: never;
-    url: '/profile/tokens/{tokenId}';
+    url: 'profile/tokens/{tokenId}';
 };
 
 export type GetPersonalAccessTokenErrors = {
@@ -62643,7 +62643,7 @@ export type PutPersonalAccessTokenData = {
         tokenId: number;
     };
     query?: never;
-    url: '/profile/tokens/{tokenId}';
+    url: 'profile/tokens/{tokenId}';
 };
 
 export type PutPersonalAccessTokenErrors = {
@@ -62704,7 +62704,7 @@ export type GetRegionsData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/regions';
+    url: 'regions';
 };
 
 export type GetRegionsErrors = {
@@ -62823,7 +62823,7 @@ export type GetRegionsAvailabilityData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/regions/availability';
+    url: 'regions/availability';
 };
 
 export type GetRegionsAvailabilityErrors = {
@@ -62892,7 +62892,7 @@ export type GetRegionData = {
         regionId: string;
     };
     query?: never;
-    url: '/regions/{regionId}';
+    url: 'regions/{regionId}';
 };
 
 export type GetRegionErrors = {
@@ -63002,7 +63002,7 @@ export type GetRegionAvailabilityData = {
         regionId: string;
     };
     query?: never;
-    url: '/regions/{regionId}/availability';
+    url: 'regions/{regionId}/availability';
 };
 
 export type GetRegionAvailabilityErrors = {
@@ -63060,7 +63060,7 @@ export type GetTicketsData = {
          */
         page_size?: number;
     };
-    url: '/support/tickets';
+    url: 'support/tickets';
 };
 
 export type GetTicketsErrors = {
@@ -63260,7 +63260,7 @@ export type PostTicketData = {
     };
     path?: never;
     query?: never;
-    url: '/support/tickets';
+    url: 'support/tickets';
 };
 
 export type PostTicketErrors = {
@@ -63375,7 +63375,7 @@ export type GetTicketData = {
         ticketId: number;
     };
     query?: never;
-    url: '/support/tickets/{ticketId}';
+    url: 'support/tickets/{ticketId}';
 };
 
 export type GetTicketErrors = {
@@ -63495,7 +63495,7 @@ export type PostTicketAttachmentData = {
         ticketId: number;
     };
     query?: never;
-    url: '/support/tickets/{ticketId}/attachments';
+    url: 'support/tickets/{ticketId}/attachments';
 };
 
 export type PostTicketAttachmentErrors = {
@@ -63538,7 +63538,7 @@ export type PostCloseTicketData = {
         ticketId: number;
     };
     query?: never;
-    url: '/support/tickets/{ticketId}/close';
+    url: 'support/tickets/{ticketId}/close';
 };
 
 export type PostCloseTicketErrors = {
@@ -63590,7 +63590,7 @@ export type GetTicketRepliesData = {
          */
         page_size?: number;
     };
-    url: '/support/tickets/{ticketId}/replies';
+    url: 'support/tickets/{ticketId}/replies';
 };
 
 export type GetTicketRepliesErrors = {
@@ -63675,7 +63675,7 @@ export type PostTicketReplyData = {
         ticketId: number;
     };
     query?: never;
-    url: '/support/tickets/{ticketId}/replies';
+    url: 'support/tickets/{ticketId}/replies';
 };
 
 export type PostTicketReplyErrors = {
@@ -63745,7 +63745,7 @@ export type GetTagsData = {
          */
         page_size?: number;
     };
-    url: '/tags';
+    url: 'tags';
 };
 
 export type GetTagsErrors = {
@@ -63821,7 +63821,7 @@ export type PostTagData = {
     };
     path?: never;
     query?: never;
-    url: '/tags';
+    url: 'tags';
 };
 
 export type PostTagErrors = {
@@ -63867,7 +63867,7 @@ export type DeleteTagData = {
         tagLabel: string;
     };
     query?: never;
-    url: '/tags/{tagLabel}';
+    url: 'tags/{tagLabel}';
 };
 
 export type DeleteTagErrors = {
@@ -63919,7 +63919,7 @@ export type GetTaggedObjectsData = {
          */
         page_size?: number;
     };
-    url: '/tags/{tagLabel}';
+    url: 'tags/{tagLabel}';
 };
 
 export type GetTaggedObjectsErrors = {
@@ -64450,7 +64450,7 @@ export type GetVolumesData = {
          */
         page_size?: number;
     };
-    url: '/volumes';
+    url: 'volumes';
 };
 
 export type GetVolumesErrors = {
@@ -64606,7 +64606,7 @@ export type PostVolumeData = {
     };
     path?: never;
     query?: never;
-    url: '/volumes';
+    url: 'volumes';
 };
 
 export type PostVolumeErrors = {
@@ -64709,7 +64709,7 @@ export type GetVolumeTypesData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/volumes/types';
+    url: 'volumes/types';
 };
 
 export type GetVolumeTypesErrors = {
@@ -64809,7 +64809,7 @@ export type DeleteVolumeData = {
         volumeId: number;
     };
     query?: never;
-    url: '/volumes/{volumeId}';
+    url: 'volumes/{volumeId}';
 };
 
 export type DeleteVolumeErrors = {
@@ -64861,7 +64861,7 @@ export type GetVolumeData = {
          */
         page_size?: number;
     };
-    url: '/volumes/{volumeId}';
+    url: 'volumes/{volumeId}';
 };
 
 export type GetVolumeErrors = {
@@ -65037,7 +65037,7 @@ export type PutVolumeData = {
         volumeId: number;
     };
     query?: never;
-    url: '/volumes/{volumeId}';
+    url: 'volumes/{volumeId}';
 };
 
 export type PutVolumeErrors = {
@@ -65168,7 +65168,7 @@ export type PostAttachVolumeData = {
         volumeId: number;
     };
     query?: never;
-    url: '/volumes/{volumeId}/attach';
+    url: 'volumes/{volumeId}/attach';
 };
 
 export type PostAttachVolumeErrors = {
@@ -65281,7 +65281,7 @@ export type PostCloneVolumeData = {
         volumeId: number;
     };
     query?: never;
-    url: '/volumes/{volumeId}/clone';
+    url: 'volumes/{volumeId}/clone';
 };
 
 export type PostCloneVolumeErrors = {
@@ -65389,7 +65389,7 @@ export type PostDetachVolumeData = {
         volumeId: number;
     };
     query?: never;
-    url: '/volumes/{volumeId}/detach';
+    url: 'volumes/{volumeId}/detach';
 };
 
 export type PostDetachVolumeErrors = {
@@ -65440,7 +65440,7 @@ export type PostResizeVolumeData = {
         volumeId: number;
     };
     query?: never;
-    url: '/volumes/{volumeId}/resize';
+    url: 'volumes/{volumeId}/resize';
 };
 
 export type PostResizeVolumeErrors = {
@@ -65552,7 +65552,7 @@ export type GetVpcsData = {
          */
         page_size?: number;
     };
-    url: '/vpcs';
+    url: 'vpcs';
 };
 
 export type GetVpcsErrors = {
@@ -65786,7 +65786,7 @@ export type PostVpcData = {
     };
     path?: never;
     query?: never;
-    url: '/vpcs';
+    url: 'vpcs';
 };
 
 export type PostVpcErrors = {
@@ -65920,7 +65920,7 @@ export type GetVpcsIpsData = {
          */
         page_size?: number;
     };
-    url: '/vpcs/ips';
+    url: 'vpcs/ips';
 };
 
 export type GetVpcsIpsErrors = {
@@ -66029,7 +66029,7 @@ export type DeleteVpcData = {
         vpcId: number;
     };
     query?: never;
-    url: '/vpcs/{vpcId}';
+    url: 'vpcs/{vpcId}';
 };
 
 export type DeleteVpcErrors = {
@@ -66072,7 +66072,7 @@ export type GetVpcData = {
         vpcId: number;
     };
     query?: never;
-    url: '/vpcs/{vpcId}';
+    url: 'vpcs/{vpcId}';
 };
 
 export type GetVpcErrors = {
@@ -66217,7 +66217,7 @@ export type PutVpcData = {
         vpcId: number;
     };
     query?: never;
-    url: '/vpcs/{vpcId}';
+    url: 'vpcs/{vpcId}';
 };
 
 export type PutVpcErrors = {
@@ -66356,7 +66356,7 @@ export type GetVpcIpsData = {
          */
         page_size?: number;
     };
-    url: '/vpcs/{vpcId}/ips';
+    url: 'vpcs/{vpcId}/ips';
 };
 
 export type GetVpcIpsErrors = {
@@ -66474,7 +66474,7 @@ export type GetVpcSubnetsData = {
          */
         page_size?: number;
     };
-    url: '/vpcs/{vpcId}/subnets';
+    url: 'vpcs/{vpcId}/subnets';
 };
 
 export type GetVpcSubnetsErrors = {
@@ -66607,7 +66607,7 @@ export type PostVpcSubnetData = {
         vpcId: number;
     };
     query?: never;
-    url: '/vpcs/{vpcId}/subnets';
+    url: 'vpcs/{vpcId}/subnets';
 };
 
 export type PostVpcSubnetErrors = {
@@ -66709,7 +66709,7 @@ export type DeleteVpcSubnetData = {
         vpcSubnetId: number;
     };
     query?: never;
-    url: '/vpcs/{vpcId}/subnets/{vpcSubnetId}';
+    url: 'vpcs/{vpcId}/subnets/{vpcSubnetId}';
 };
 
 export type DeleteVpcSubnetErrors = {
@@ -66756,7 +66756,7 @@ export type GetVpcSubnetData = {
         vpcSubnetId: number;
     };
     query?: never;
-    url: '/vpcs/{vpcId}/subnets/{vpcSubnetId}';
+    url: 'vpcs/{vpcId}/subnets/{vpcSubnetId}';
 };
 
 export type GetVpcSubnetErrors = {
@@ -66869,7 +66869,7 @@ export type PutVpcSubnetData = {
         vpcSubnetId: number;
     };
     query?: never;
-    url: '/vpcs/{vpcId}/subnets/{vpcSubnetId}';
+    url: 'vpcs/{vpcId}/subnets/{vpcSubnetId}';
 };
 
 export type PutVpcSubnetErrors = {

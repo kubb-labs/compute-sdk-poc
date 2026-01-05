@@ -8,7 +8,7 @@ export function moveApiVersionToServerUrl({ spec }: { spec: OpenAPIV3_1.Document
   for (const path in spec.paths) {
     const pathItem = spec.paths[path];
     const oldPath = path;
-    const newPath = path.replace('/{apiVersion}', '');
+    const newPath = path.replace('/{apiVersion}/', '');
     spec.paths[newPath] = pathItem;
     delete spec.paths[oldPath];
     if (spec.paths[newPath]?.parameters) {
