@@ -41,8 +41,6 @@ export interface Tag {
     name?: string;
 }
 
-export type PetStatusEnum = "available" | "pending" | "sold";
-
 export interface Pet {
     /**
      * @type integer | undefined, int64
@@ -68,10 +66,8 @@ export interface Pet {
      * @description pet status in the store
      * @type string | undefined
     */
-    status?: PetStatusEnum;
+    status?: ("available" | "pending" | "sold");
 }
-
-export type OrderStatusEnum = "placed" | "approved" | "delivered";
 
 export interface Order {
     /**
@@ -94,7 +90,7 @@ export interface Order {
      * @description Order Status
      * @type string | undefined
     */
-    status?: OrderStatusEnum;
+    status?: ("placed" | "approved" | "delivered");
     /**
      * @type boolean | undefined
     */
@@ -220,14 +216,12 @@ export type UpdatePetMutation = {
     Errors: UpdatePet400 | UpdatePet404 | UpdatePet405;
 };
 
-export type FindPetsByStatusQueryParamsStatusEnum = "available" | "pending" | "sold";
-
 export interface FindPetsByStatusQueryParams {
     /**
      * @description Status values that need to be considered for filter
      * @type array
     */
-    status: Array<FindPetsByStatusQueryParamsStatusEnum>;
+    status: Array<("available" | "pending" | "sold")>;
 }
 
 /**

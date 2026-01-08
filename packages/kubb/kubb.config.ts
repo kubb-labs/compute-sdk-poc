@@ -27,7 +27,7 @@ export default defineConfig({
         path: './types.ts',
         barrelType: 'named',
       },
-      enumType: 'literal',
+      enumType: 'inlineLiteral',
       arrayType: 'generic',
       syntaxType: 'interface',
     }),
