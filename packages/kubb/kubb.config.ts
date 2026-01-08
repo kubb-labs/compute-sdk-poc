@@ -28,6 +28,7 @@ export default defineConfig({
         barrelType: 'named',
       },
       enumType: 'literal',
+      arrayType: 'generic',
       syntaxType: 'interface',
     }),
     pluginZod({

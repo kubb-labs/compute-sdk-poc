@@ -59,11 +59,11 @@ export interface Pet {
     /**
      * @type array
     */
-    photoUrls: string[];
+    photoUrls: Array<string>;
     /**
      * @type array | undefined
     */
-    tags?: Tag[];
+    tags?: Array<Tag>;
     /**
      * @description pet status in the store
      * @type string | undefined
@@ -137,7 +137,7 @@ export interface User {
     userStatus?: number;
 }
 
-export type UserArray = User[];
+export type UserArray = Array<User>;
 
 export interface UploadFilePathParams {
     /**
@@ -227,13 +227,13 @@ export interface FindPetsByStatusQueryParams {
      * @description Status values that need to be considered for filter
      * @type array
     */
-    status: FindPetsByStatusQueryParamsStatusEnum[];
+    status: Array<FindPetsByStatusQueryParamsStatusEnum>;
 }
 
 /**
  * @description successful operation
 */
-export type FindPetsByStatus200 = Pet[];
+export type FindPetsByStatus200 = Array<Pet>;
 
 /**
  * @description Invalid status value
@@ -253,13 +253,13 @@ export interface FindPetsByTagsQueryParams {
      * @description Tags to filter by
      * @type array
     */
-    tags: string[];
+    tags: Array<string>;
 }
 
 /**
  * @description successful operation
 */
-export type FindPetsByTags200 = Pet[];
+export type FindPetsByTags200 = Array<Pet>;
 
 /**
  * @description Invalid tag value
@@ -479,7 +479,7 @@ export type CreateUsersWithListInputError = any;
 /**
  * @description List of user object
 */
-export type CreateUsersWithListInputMutationRequest = User[];
+export type CreateUsersWithListInputMutationRequest = Array<User>;
 
 export type CreateUsersWithListInputMutationResponse = any;
 
@@ -629,7 +629,7 @@ export type CreateUsersWithArrayInputError = any;
 /**
  * @description List of user object
 */
-export type CreateUsersWithArrayInputMutationRequest = User[];
+export type CreateUsersWithArrayInputMutationRequest = Array<User>;
 
 export type CreateUsersWithArrayInputMutationResponse = any;
 
