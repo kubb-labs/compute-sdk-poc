@@ -1,1 +1,0 @@
-{"description":"__Filterable__, __Read-only__ The name of the Beta Program.","example":"Example Open Beta","readOnly":true,"type":"string","x-akamai":{"labels":["Filterable"]},"x-linode-cli-display":2,"x-linode-filterable":true,"x-readme-ref-name":"label"}

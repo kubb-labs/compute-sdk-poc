@@ -1,1 +1,0 @@
-{"description":"Specify the name of the data field and the accompanying value.","title":"Simple filter","type":"object","x-akamai":{"file-path":"schemas/x-filter-criteria.yaml"},"x-readme-ref-name":"x-filter-criteria"}

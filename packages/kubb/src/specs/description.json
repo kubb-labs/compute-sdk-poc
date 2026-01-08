@@ -1,1 +1,0 @@
-{"description":"__Read-only__ Additional details regarding the Beta Program.","example":"This is an open public beta for an example feature.","nullable":true,"readOnly":true,"type":"string","x-linode-cli-display":3,"x-readme-ref-name":"description"}

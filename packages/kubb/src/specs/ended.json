@@ -1,1 +1,0 @@
-{"description":"__Filterable__, __Read-only__ The date-time that the Beta Program ended.\n\n`null` indicates that the Beta Program is ongoing.","example":null,"format":"date-time","nullable":true,"readOnly":true,"type":"string","x-akamai":{"labels":["Filterable"]},"x-linode-cli-display":6,"x-linode-filterable":true,"x-readme-ref-name":"ended"}

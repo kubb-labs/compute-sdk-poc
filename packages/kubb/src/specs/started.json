@@ -1,1 +1,0 @@
-{"description":"__Filterable__, __Read-only__ The start date-time of the Beta Program.","example":"2023-07-11T00:00:00","format":"date-time","readOnly":true,"type":"string","x-akamai":{"labels":["Filterable"]},"x-linode-cli-display":5,"x-linode-filterable":true,"x-readme-ref-name":"started"}

@@ -6,18 +6,18 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
   "scripts": {
-    "generate": "kubb generate && echo \"export * from './.kubb/fetch.ts'\" >> src/index.ts",
+    "generate": "kubb generate --debug && echo \"export * from './.kubb/fetch.ts'\" >> src/index.ts",
     "download": "bun run ./scripts/download.ts",
     "build": "tsdown",
     "build:full": "bun run download && bun run generate && bun run build",
     "typecheck": "tsc"
   },
   "devDependencies": {
-    "@kubb/cli": "^4.6.0",
-    "@kubb/core": "^4.6.0",
+    "@kubb/cli": "^4.14.1",
+    "@kubb/core": "^4.14.1",
     "@kubb/plugin-faker": "^4.7.2",
-    "@kubb/plugin-oas": "^4.6.0",
-    "@kubb/plugin-ts": "^4.6.0",
+    "@kubb/plugin-oas": "^4.14.1",
+    "@kubb/plugin-ts": "^4.14.1",
     "@kubb/plugin-zod": "^4.7.2",
     "@types/bun": "latest",
     "tsdown": "^0.17.0-beta.6",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "10.1.0",
-    "@kubb/plugin-client": "^4.6.0",
+    "@kubb/plugin-client": "^4.14.1",
     "zod": "^4"
   }
 }
